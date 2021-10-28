@@ -1,0 +1,42 @@
+version: "3"
+
+networks:
+  apoc_workshop:
+    driver: bridge
+
+services:
+  zeppelin:
+    hostname: zeppelin
+    container_name: zeppelin
+    image: larusefraudy/zeppelin:0.9.0
+    depends_on:
+      - neo4j
+    ports:
+      - "8080:8080"
+      - "4040:4040"
+    volumes:
+      - ./zeppelin/notebook:/zeppelin/notebook
+      - ./zeppelin/conf:/zeppelin/conf
+      - ./zeppelin/interpreter/neo4j:/zeppelin/interpreter/neo4j
+    networks:
+      - apoc_workshop
+
+  neo4j:
+    platform: linux/amd64
+    image: neo4j:4.3-enterprise
+    hostname: neo4j
+    container_name: neo4j
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - ./neo4j/plugins:/plugins
+    environment:
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
+      NEO4J_AUTH: neo4j/password
+      NEO4J_dbms_memory_heap_max__size: 2G
+      NEO4J_dbms_logs_debug_level: DEBUG
+      NEO4J_apoc_export_file_enabled: "true"
+      NEO4J_apoc_import_file_enabled: "true"
+    networks:
+      - apoc_workshop
