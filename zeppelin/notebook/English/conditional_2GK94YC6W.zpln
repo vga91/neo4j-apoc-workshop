@@ -1,0 +1,155 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\napoc.case and apoc.when read-only\n\n\napoc.do.when --\u003e al posto di `match (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)`\n        The FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\n        Quindi se voglio fare cose più complesse uso db.when\n\n    match (n:Prova)\n    with n\n    call apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\n    yield value return null\n\n\n\napoc.do.case:\napoc.do.case([condition, query, condition, query, …​], elseQuery:\u0027\u0027, params:{})\n\nIf we wanted to MATCH to selection nodes in a column, we could use entirely different MATCHES depending on query parameters, or based on data already in the graph:\nMATCH (me:User {id:$myId})\nCALL apoc.case([\n$selection \u003d \u0027friends\u0027, \"RETURN [(me)-[:FRIENDS]-(friend) | friend] as selection\",\n$selection \u003d \u0027coworkers\u0027, \"RETURN [(me)-[:WORKS_AT*2]-(coworker) | coworker] as selection\",\n$selection \u003d \u0027all\u0027, \"RETURN apoc.coll.union([(me)-[:FRIENDS]-(friend) | friend], [(me)-[:WORKS_AT*2]-(coworker) | coworker]) as selection\"],\n\u0027RETURN [] as selection\u0027,\n{me:me}\n)\nYIELD value\nRETURN value.selection as selection;\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 22:34:11.642",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eapoc.case and apoc.when read-only\u003c/p\u003e\n\u003cp\u003eapoc.do.when \u0026ndash;\u0026gt; al posto di \u003ccode\u003ematch (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)\u003c/code\u003e\u003cbr /\u003e\nThe FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\u003cbr /\u003e\nQuindi se voglio fare cose più complesse uso db.when\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ematch (n:Prova)\nwith n\ncall apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\nyield value return null\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eapoc.do.case:\u003cbr /\u003e\napoc.do.case([condition, query, condition, query, …​], elseQuery:\u0027\u0027, params:{})\u003c/p\u003e\n\u003cp\u003eIf we wanted to MATCH to selection nodes in a column, we could use entirely different MATCHES depending on query parameters, or based on data already in the graph:\u003cbr /\u003e\nMATCH (me:User {id:$myId})\u003cbr /\u003e\nCALL apoc.case([\u003cbr /\u003e\n$selection \u003d \u0026lsquo;friends\u0026rsquo;, \u0026ldquo;RETURN [(me)-[:FRIENDS]-(friend) | friend] as selection\u0026rdquo;,\u003cbr /\u003e\n$selection \u003d \u0026lsquo;coworkers\u0026rsquo;, \u0026ldquo;RETURN [(me)-[:WORKS_AT*2]-(coworker) | coworker] as selection\u0026rdquo;,\u003cbr /\u003e\n$selection \u003d \u0026lsquo;all\u0026rsquo;, \u0026ldquo;RETURN apoc.coll.union([(me)-[:FRIENDS]-(friend) | friend], [(me)-[:WORKS_AT*2]-(coworker) | coworker]) as selection\u0026rdquo;],\u003cbr /\u003e\n\u0026lsquo;RETURN [] as selection\u0026rsquo;,\u003cbr /\u003e\n{me:me}\u003cbr /\u003e\n)\u003cbr /\u003e\nYIELD value\u003cbr /\u003e\nRETURN value.selection as selection;\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635374036059_1504013326",
+      "id": "paragraph_1635374036059_1504013326",
+      "dateCreated": "2021-10-27 22:33:56.059",
+      "dateStarted": "2021-10-27 22:34:11.643",
+      "dateFinished": "2021-10-27 22:34:13.529",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n\u003d\u003d Conditional Cypher execution\n\nhttps://neo4j.com/developer/kb/conditional-cypher-execution/\n\n\nSometimes queries require conditional execution logic that can\u0027t be adequately expressed in Cypher.\nThe conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\n\n[[conditionals-overview]]\n\u003d\u003d Procedure and Function Overview\n\nThe available procedures and functions are described below:\n\n[separator\u003d¦,opts\u003dheader,cols\u003d\"5,1m,1m\"]\n|\u003d\u003d\u003d\n¦Qualified Name¦Type¦Release\ninclude::example$generated-documentation/apoc.when.adoc[]\ninclude::example$generated-documentation/apoc.do.when.adoc[]\ninclude::example$generated-documentation/apoc.case.adoc[]\ninclude::example$generated-documentation/apoc.do.case.adoc[]\n|\u003d\u003d\u003d\n\n[[conditionals-when]]\n\u003d\u003d\u003d WHEN Procedures\n\nFor if / else conditional logic, when procedures allow an ifQuery and elseQuery to be specified.\nIf the conditional is true, the ifQuery will be run, and if not the elseQuery will be run.\n\n[separator\u003d¦,opts\u003dheader]\n|\u003d\u003d\u003d\ninclude::example$generated-documentation/apoc.when-lite.csv[]\ninclude::example$generated-documentation/apoc.do.when-lite.csv[lines\u003d2:]\n|\u003d\u003d\u003d\n\n.Read only\n[source,cypher]\n----\nCALL apoc.when(\n  condition: Boolean,\n  ifQuery: String,\n  elseQuery: String,\n  params: Map)\nYIELD value\n----\n\n.Write\n[source,cypher]\n----\nCALL apoc.do.when(\n  condition: Boolean,\n  ifQuery: String,\n  elseQuery: String,\n  params: Map)\nYIELD value\n----\n\nFor example, if we wanted to match to neighbor nodes one and two traversals away from a start node, and return the smaller set (either those one hop away, or those that are two hops away), we might use:\n\n[source,cypher]\n----\nMATCH (start:Node)-[:REL]-\u003e(a)-[:REL]-\u003e(b)\nWITH collect(distinct a) as aNodes, collect(distinct b) as bNodes\n\nCALL apoc.when(\n  size(aNodes) \u003c\u003d size(bNodes),\n  \u0027RETURN aNodes as resultNodes\u0027,\n  \u0027RETURN bNodes as resultNodes\u0027,\n  {aNodes:aNodes, bNodes:bNodes})\nYIELD value\n\nRETURN value.resultNodes as resultNodes\n----\n\nOr, if we wanted to conditionally set or create graph elements if we deem some account to be suspicious, but still want to continue other query operations in either case, we could use `apoc.do.when`:\n\n[source,cypher]\n----\nMATCH (acc:Account)\nOPTIONAL MATCH (acc)-[r:ACCESSED_BY]-\u003e(suspect:User)\nWHERE suspect.id in {suspiciousUsersIdList}\n\nCALL apoc.do.when(\n  r IS NOT NULL,\n  \u0027SET acc:Suspicious\u0027,\n  \u0027\u0027,\n  {acc:acc})\nYIELD value\n\n// ignore value and continue\nWITH acc\n...\n----\n\n[[conditionals-case]]\n\u003d\u003d\u003d CASE Procedures\n\nFor more complex conditional logic, case procedures allow for a variable-length list of condition / query pairs, where the query following the first conditional evaluating to true is executed. An elseQuery block is executed if none of the conditionals are true.\n\n[separator\u003d¦,opts\u003dheader]\n|\u003d\u003d\u003d\ninclude::example$generated-documentation/apoc.case-lite.csv[]\ninclude::example$generated-documentation/apoc.do.case-lite.csv[lines\u003d2:]\n|\u003d\u003d\u003d\n\n.Read only\n[source,cypher]\n----\nCALL apoc.case(\n  conditionals: List of alternating Boolean/String,\n  elseQuery: String,\n  params: Map)\nYIELD value\n----\n\n.Write\n[source,cypher]\n----\nCALL apoc.do.case(\n  conditionals: List of alternating Boolean/String,\n  elseQuery: String,\n  params: Map)\nYIELD value\n----\n\nIf we wanted to MATCH to selection nodes in a column, we could use entirely different MATCHES depending on query parameters, or based on data already in the graph:\n\n[source,cypher]\n----\nMATCH (me:User {id:$myId})\nCALL apoc.case([\n  $selection \u003d \u0027friends\u0027, \"RETURN [(me)-[:FRIENDS]-(friend) | friend] as selection\",\n  $selection \u003d \u0027coworkers\u0027, \"RETURN [(me)-[:WORKS_AT*2]-(coworker) | coworker] as selection\",\n  $selection \u003d \u0027all\u0027, \"RETURN apoc.coll.union([(me)-[:FRIENDS]-(friend) | friend], [(me)-[:WORKS_AT*2]-(coworker) | coworker]) as selection\"],\n  \u0027RETURN [] as selection\u0027,\n  {me:me}\n)\nYIELD value\nRETURN value.selection as selection;\n----\n\nOr if we want to create different relationship types between two nodes based on the value\n\n[source,cypher]\n----\nMATCH (me:User {id:$myId})\nMATCH (friend:User {id:$friendId})\nCALL apoc.do.case([\n  $selection \u003d \u0027friends\u0027, \"MERGE (me)-[rel:FRIENDS]-\u003e(friend) RETURN rel\",\n  $selection \u003d \u0027coworkers\u0027, \"MERGE (me)-[rel:CO_WORKER]-\u003e(friend) RETURN rel\"],\n  \u0027MERGE (me)-[rel:CONNECTED]-\u003e(friend) RETURN rel\u0027,\n  {me:me, friend:friend}\n)\nYIELD value\nRETURN value.rel as rel;\n----\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 23:04:15.577",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Conditional Cypher execution\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"https://neo4j.com/developer/kb/conditional-cypher-execution/\"\u003ehttps://neo4j.com/developer/kb/conditional-cypher-execution/\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eSometimes queries require conditional execution logic that can\u0026rsquo;t be adequately expressed in Cypher.\u003cbr /\u003e\nThe conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"conditionals-overview\"\u003econditionals-overview\u003c/a\u003e\u003cbr /\u003e\n\u003d\u003d Procedure and Function Overview\u003c/p\u003e\n\u003cp\u003eThe available procedures and functions are described below:\u003c/p\u003e\n\u003cp\u003e[separator\u003d¦,opts\u003dheader,cols\u003d\u0026ldquo;5,1m,1m\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n¦Qualified Name¦Type¦Release\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.when.adoc[]\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.do.when.adoc[]\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.case.adoc[]\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.do.case.adoc[]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"conditionals-when\"\u003econditionals-when\u003c/a\u003e\u003cbr /\u003e\n\u003d\u003d\u003d WHEN Procedures\u003c/p\u003e\n\u003cp\u003eFor if / else conditional logic, when procedures allow an ifQuery and elseQuery to be specified.\u003cbr /\u003e\nIf the conditional is true, the ifQuery will be run, and if not the elseQuery will be run.\u003c/p\u003e\n\u003cp\u003e[separator\u003d¦,opts\u003dheader]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.when-lite.csv[]\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.do.when-lite.csv[lines\u003d2:]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003ch2\u003e.Read only\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.when(\u003cbr /\u003e\ncondition: Boolean,\u003cbr /\u003e\nifQuery: String,\u003cbr /\u003e\nelseQuery: String,\u003cbr /\u003e\nparams: Map)\u003cbr /\u003e\nYIELD value\u003c/h2\u003e\n\u003ch2\u003e.Write\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.do.when(\u003cbr /\u003e\ncondition: Boolean,\u003cbr /\u003e\nifQuery: String,\u003cbr /\u003e\nelseQuery: String,\u003cbr /\u003e\nparams: Map)\u003cbr /\u003e\nYIELD value\u003c/h2\u003e\n\u003cp\u003eFor example, if we wanted to match to neighbor nodes one and two traversals away from a start node, and return the smaller set (either those one hop away, or those that are two hops away), we might use:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003cp\u003eMATCH (start:Node)-[:REL]-\u0026gt;(a)-[:REL]-\u0026gt;(b)\u003cbr /\u003e\nWITH collect(distinct a) as aNodes, collect(distinct b) as bNodes\u003c/p\u003e\n\u003cp\u003eCALL apoc.when(\u003cbr /\u003e\nsize(aNodes) \u0026lt;\u003d size(bNodes),\u003cbr /\u003e\n\u0026lsquo;RETURN aNodes as resultNodes\u0026rsquo;,\u003cbr /\u003e\n\u0026lsquo;RETURN bNodes as resultNodes\u0026rsquo;,\u003cbr /\u003e\n{aNodes:aNodes, bNodes:bNodes})\u003cbr /\u003e\nYIELD value\u003c/p\u003e\n\u003ch2\u003eRETURN value.resultNodes as resultNodes\u003c/h2\u003e\n\u003cp\u003eOr, if we wanted to conditionally set or create graph elements if we deem some account to be suspicious, but still want to continue other query operations in either case, we could use \u003ccode\u003eapoc.do.when\u003c/code\u003e:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003cp\u003eMATCH (acc:Account)\u003cbr /\u003e\nOPTIONAL MATCH (acc)-[r:ACCESSED_BY]-\u0026gt;(suspect:User)\u003cbr /\u003e\nWHERE suspect.id in {suspiciousUsersIdList}\u003c/p\u003e\n\u003cp\u003eCALL apoc.do.when(\u003cbr /\u003e\nr IS NOT NULL,\u003cbr /\u003e\n\u0026lsquo;SET acc:Suspicious\u0026rsquo;,\u003cbr /\u003e\n\u0027\u0027,\u003cbr /\u003e\n{acc:acc})\u003cbr /\u003e\nYIELD value\u003c/p\u003e\n\u003ch2\u003e// ignore value and continue\u003cbr /\u003e\nWITH acc\u003cbr /\u003e\n\u0026hellip;\u003c/h2\u003e\n\u003cp\u003e\u003ca href\u003d\"conditionals-case\"\u003econditionals-case\u003c/a\u003e\u003cbr /\u003e\n\u003d\u003d\u003d CASE Procedures\u003c/p\u003e\n\u003cp\u003eFor more complex conditional logic, case procedures allow for a variable-length list of condition / query pairs, where the query following the first conditional evaluating to true is executed. An elseQuery block is executed if none of the conditionals are true.\u003c/p\u003e\n\u003cp\u003e[separator\u003d¦,opts\u003dheader]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.case-lite.csv[]\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.do.case-lite.csv[lines\u003d2:]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003ch2\u003e.Read only\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.case(\u003cbr /\u003e\nconditionals: List of alternating Boolean/String,\u003cbr /\u003e\nelseQuery: String,\u003cbr /\u003e\nparams: Map)\u003cbr /\u003e\nYIELD value\u003c/h2\u003e\n\u003ch2\u003e.Write\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.do.case(\u003cbr /\u003e\nconditionals: List of alternating Boolean/String,\u003cbr /\u003e\nelseQuery: String,\u003cbr /\u003e\nparams: Map)\u003cbr /\u003e\nYIELD value\u003c/h2\u003e\n\u003cp\u003eIf we wanted to MATCH to selection nodes in a column, we could use entirely different MATCHES depending on query parameters, or based on data already in the graph:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (me:User {id:$myId})\u003cbr /\u003e\nCALL apoc.case([\u003cbr /\u003e\n$selection \u003d \u0026lsquo;friends\u0026rsquo;, \u0026ldquo;RETURN [(me)-[:FRIENDS]-(friend) | friend] as selection\u0026rdquo;,\u003cbr /\u003e\n$selection \u003d \u0026lsquo;coworkers\u0026rsquo;, \u0026ldquo;RETURN [(me)-[:WORKS_AT*2]-(coworker) | coworker] as selection\u0026rdquo;,\u003cbr /\u003e\n$selection \u003d \u0026lsquo;all\u0026rsquo;, \u0026ldquo;RETURN apoc.coll.union([(me)-[:FRIENDS]-(friend) | friend], [(me)-[:WORKS_AT*2]-(coworker) | coworker]) as selection\u0026rdquo;],\u003cbr /\u003e\n\u0026lsquo;RETURN [] as selection\u0026rsquo;,\u003cbr /\u003e\n{me:me}\u003cbr /\u003e\n)\u003cbr /\u003e\nYIELD value\u003cbr /\u003e\nRETURN value.selection as selection;\u003c/h2\u003e\n\u003cp\u003eOr if we want to create different relationship types between two nodes based on the value\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (me:User {id:$myId})\u003cbr /\u003e\nMATCH (friend:User {id:$friendId})\u003cbr /\u003e\nCALL apoc.do.case([\u003cbr /\u003e\n$selection \u003d \u0026lsquo;friends\u0026rsquo;, \u0026ldquo;MERGE (me)-[rel:FRIENDS]-\u0026gt;(friend) RETURN rel\u0026rdquo;,\u003cbr /\u003e\n$selection \u003d \u0026lsquo;coworkers\u0026rsquo;, \u0026ldquo;MERGE (me)-[rel:CO_WORKER]-\u0026gt;(friend) RETURN rel\u0026rdquo;],\u003cbr /\u003e\n\u0026lsquo;MERGE (me)-[rel:CONNECTED]-\u0026gt;(friend) RETURN rel\u0026rsquo;,\u003cbr /\u003e\n{me:me, friend:friend}\u003cbr /\u003e\n)\u003cbr /\u003e\nYIELD value\u003cbr /\u003e\nRETURN value.rel as rel;\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635374051639_339949898",
+      "id": "paragraph_1635374051639_339949898",
+      "dateCreated": "2021-10-27 22:34:11.639",
+      "dateStarted": "2021-10-27 23:04:15.569",
+      "dateFinished": "2021-10-27 23:04:15.630",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n\u003d\u003d Conditional Cypher Execution\n// todo - mi sa che c\u0027è qualcosa di duplicato\n\ntodo - fare comparazioni con cypher classico se riesco, oppure dire che è molto difficile\napoc.case and apoc.when read-only\n\n\napoc.do.when --\u003e al posto di `match (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)`\n        The FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\n        Quindi se voglio fare cose più complesse uso db.when\n\n    match (n:Prova)\n    with n\n    call apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\n    yield value return null\n\n\n\napoc.do.case:\napoc.do.case([condition, query, condition, query, …​], elseQuery:\u0027\u0027, params:{})\n\nIf we wanted to MATCH to selection nodes in a column, we could use entirely different MATCHES depending on query parameters, or based on data already in the graph:\nMATCH (me:User {id:$myId})\nCALL apoc.case([\n$selection \u003d \u0027friends\u0027, \"RETURN [(me)-[:FRIENDS]-(friend) | friend] as selection\",\n$selection \u003d \u0027coworkers\u0027, \"RETURN [(me)-[:WORKS_AT*2]-(coworker) | coworker] as selection\",\n$selection \u003d \u0027all\u0027, \"RETURN apoc.coll.union([(me)-[:FRIENDS]-(friend) | friend], [(me)-[:WORKS_AT*2]-(coworker) | coworker]) as selection\"],\n\u0027RETURN [] as selection\u0027,\n{me:me}\n)\nYIELD value\nRETURN value.selection as selection;\n\ntestare\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 23:08:36.014",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Conditional Cypher Execution\u003cbr /\u003e\n// todo - mi sa che c\u0026rsquo;è qualcosa di duplicato\u003c/p\u003e\n\u003cp\u003etodo - fare comparazioni con cypher classico se riesco, oppure dire che è molto difficile\u003cbr /\u003e\napoc.case and apoc.when read-only\u003c/p\u003e\n\u003cp\u003eapoc.do.when \u0026ndash;\u0026gt; al posto di \u003ccode\u003ematch (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)\u003c/code\u003e\u003cbr /\u003e\nThe FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\u003cbr /\u003e\nQuindi se voglio fare cose più complesse uso db.when\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ematch (n:Prova)\nwith n\ncall apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\nyield value return null\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eapoc.do.case:\u003cbr /\u003e\napoc.do.case([condition, query, condition, query, …​], elseQuery:\u0027\u0027, params:{})\u003c/p\u003e\n\u003cp\u003eIf we wanted to MATCH to selection nodes in a column, we could use entirely different MATCHES depending on query parameters, or based on data already in the graph:\u003cbr /\u003e\nMATCH (me:User {id:$myId})\u003cbr /\u003e\nCALL apoc.case([\u003cbr /\u003e\n$selection \u003d \u0026lsquo;friends\u0026rsquo;, \u0026ldquo;RETURN [(me)-[:FRIENDS]-(friend) | friend] as selection\u0026rdquo;,\u003cbr /\u003e\n$selection \u003d \u0026lsquo;coworkers\u0026rsquo;, \u0026ldquo;RETURN [(me)-[:WORKS_AT*2]-(coworker) | coworker] as selection\u0026rdquo;,\u003cbr /\u003e\n$selection \u003d \u0026lsquo;all\u0026rsquo;, \u0026ldquo;RETURN apoc.coll.union([(me)-[:FRIENDS]-(friend) | friend], [(me)-[:WORKS_AT*2]-(coworker) | coworker]) as selection\u0026rdquo;],\u003cbr /\u003e\n\u0026lsquo;RETURN [] as selection\u0026rsquo;,\u003cbr /\u003e\n{me:me}\u003cbr /\u003e\n)\u003cbr /\u003e\nYIELD value\u003cbr /\u003e\nRETURN value.selection as selection;\u003c/p\u003e\n\u003cp\u003etestare\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635375855567_312619097",
+      "id": "paragraph_1635375855567_312619097",
+      "dateCreated": "2021-10-27 23:04:15.568",
+      "dateStarted": "2021-10-27 23:08:36.011",
+      "dateFinished": "2021-10-27 23:08:36.035",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 23:08:36.010",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635376116009_684532889",
+      "id": "paragraph_1635376116009_684532889",
+      "dateCreated": "2021-10-27 23:08:36.009",
+      "status": "READY"
+    }
+  ],
+  "name": "conditional",
+  "id": "2GK94YC6W",
+  "defaultInterpreterGroup": "md",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

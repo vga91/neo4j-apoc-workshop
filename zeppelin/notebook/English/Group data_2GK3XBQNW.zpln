@@ -1,0 +1,44 @@
+{
+  "paragraphs": [
+    {
+      "text": "\u003d\u003d apoc.agg\nTODO: mettere sezione a parte con apoc agg\n\napoc.agg.first invece di collect(p.name)[0]\n\napoc.agg.last invece di collect(p.name)[count(p.name)]\n\napoc.agg.nth invece di collect(p.name)[n]\n\n\u003d\u003d apoc.agg.percentile\n\nmatch (p:Person) where exists(p.born) return apoc.agg.percentile(p.born.year, [0.5, 0.75, 0.9…])\nto show immediately all percentiles\n\n\u003d\u003d apoc.agg.statistics\n\ncon stessa query precedente. Vedere i risultati\n\n\u003d\u003d apoc.algo\n\nspiegare brevemente un po\u0027 tutte\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:34:48.432",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348868512_1292273233",
+      "id": "paragraph_1635348868512_1292273233",
+      "dateCreated": "2021-10-27 15:34:28.512",
+      "status": "READY"
+    }
+  ],
+  "name": "Group data",
+  "id": "2GK3XBQNW",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

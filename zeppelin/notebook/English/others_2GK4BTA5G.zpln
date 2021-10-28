@@ -1,0 +1,177 @@
+{
+  "paragraphs": [
+    {
+      "text": "\n\n\u003d\u003d Static values\n\n// The library has support for storing and retrieving static values, functionality that can be used to work with API credentials or cache query results.\n// esempio come di issue github che ho chiuso\nhttps://neo4j.com/labs/apoc/4.1/misc/static-values/\n\n\nThe examples below assume that we have the following entries in the APOC configuration file (`conf/apoc.conf`):\n\n----\napoc.static.twitter.bearer\u003dABCDEF\napoc.static.twitter.url\u003dhttps://api.twitter.com/1.1/search/tweets.json?count\u003d100\u0026result_type\u003drecent\u0026lang\u003den\u0026q\u003d\n----\n\n.The following returns the `apoc.static.twitter.bearer` value:\n[source,cypher]\n----\nRETURN apoc.static.get(\"twitter.bearer\") AS value\n----\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1\"]\n|\u003d\u003d\u003d\n| value\n| \"ABCDEF\"\n|\u003d\u003d\u003d\n\n\n.The following returns all values with the `twitter` prefix\n[source,cypher]\n----\nRETURN apoc.static.getAll(\"twitter\") AS value\n----\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1\"]\n|\u003d\u003d\u003d\n| value\n| {\"bearer\":\"ABCDEF\",\"url\":\"https://api.twitter.com/1.1/search/tweets.json?count\u003d100\u0026result_type\u003drecent\u0026lang\u003den\u0026q\u003d\"}\n|\u003d\u003d\u003d\n\n\n.The following stores an in memory value that lasts for the lifetime of the server:\n[source,cypher]\n----\nCALL apoc.static.set(\"twitter.user\", \"Michael\")\n----\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1\"]\n|\u003d\u003d\u003d\n| value\n| null\n|\u003d\u003d\u003d\n\n// todo - fare dopo load jdbc questo esempio\n[source,cypher]\n----\nCALL apoc.load.jdbc(\u0027jdbc:oracle:thin:@HOST:PORT/SERVICE_NAME\u0027,\n\u0027select * from dual\u0027, [],\n{credentials:{user:apoc.static.get(\"apoc.static.jdbc.\u003ckey\u003e.user\"), password: apoc.static.get(\"apoc.static.jdbc.\u003ckey\u003e.password\")}})\nYIELD row\nRETURN row\n----\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:47:12.271",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635340803726_1233963523",
+      "id": "paragraph_1635340803726_1233963523",
+      "dateCreated": "2021-10-27 13:20:03.726",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n\n\u003d\u003d Conditional exception\n\napoc.util.validate(predicate, message, params) | if the predicate yields to true raise an exception\nThe following throws an exception because the predicate is true:\n\nCypher\n[source, cypher]\n----\nWITH true AS predicate\nCALL apoc.util.validate(predicate,\u0027message %d\u0027,[42])\nRETURN count(*);\n----\n\nThe following does nothing because the predicate is false:\n\n[source, cypher]\n----\nWITH false AS predicate\nCALL apoc.util.validate(predicate,\u0027message %d\u0027,[42])\nRETURN count(*);\n----\n\n\nValidate predicate it\u0027s the same but is a function:\n\n\n[source, cypher]\n----\nMATCH (a)\nWHERE apoc.util.validatePredicate(true,\u0027message %d\u0027,[42])\nRETURN a\n----\n\n\n[source, cypher]\n----\nRETURN apoc.util.validatePredicate(false,\u0027message %d\u0027,[42]) AS result\n----\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:51:04.821",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Conditional exception\u003c/p\u003e\n\u003cp\u003eapoc.util.validate(predicate, message, params) | if the predicate yields to true raise an exception\u003cbr /\u003e\nThe following throws an exception because the predicate is true:\u003c/p\u003e\n\u003ch2\u003eCypher\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eWITH true AS predicate\u003cbr /\u003e\nCALL apoc.util.validate(predicate,\u0026lsquo;message %d\u0026rsquo;,[42])\u003cbr /\u003e\nRETURN count(*);\u003c/h2\u003e\n\u003cp\u003eThe following does nothing because the predicate is false:\u003c/p\u003e\n\u003ch2\u003e[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eWITH false AS predicate\u003cbr /\u003e\nCALL apoc.util.validate(predicate,\u0026lsquo;message %d\u0026rsquo;,[42])\u003cbr /\u003e\nRETURN count(*);\u003c/h2\u003e\n\u003cp\u003eValidate predicate it\u0026rsquo;s the same but is a function:\u003c/p\u003e\n\u003ch2\u003e[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (a)\u003cbr /\u003e\nWHERE apoc.util.validatePredicate(true,\u0026lsquo;message %d\u0026rsquo;,[42])\u003cbr /\u003e\nRETURN a\u003c/h2\u003e\n\u003ch2\u003e[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eRETURN apoc.util.validatePredicate(false,\u0026lsquo;message %d\u0026rsquo;,[42]) AS result\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635349754442_628927367",
+      "id": "paragraph_1635349754442_628927367",
+      "dateCreated": "2021-10-27 15:49:14.442",
+      "dateStarted": "2021-10-27 15:51:04.819",
+      "dateFinished": "2021-10-27 15:51:04.835",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n\u003d\u003d sleep\n\n\n[.emphasis]\napoc.util.sleep(\u003cduration\u003e) | sleeps for \u003cduration\u003e millis, transaction termination is honored\n\n\n// -- in this example we leverage on apoc.date.format to retrieve minutes and seconds\n[source, cypher]\n----\nWITH apoc.date.currentTimestamp() as timeBefore\nCALL apoc.util.sleep(4000)\nRETURN apoc.date.format(timeBefore, \u0027ms\u0027,\u0027mm:ss\u0027), apoc.date.format(apoc.date.currentTimestamp(), \u0027ms\u0027,\u0027mm:ss\u0027)\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:50:07.762",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d sleep\u003c/p\u003e\n\u003cp\u003e[.emphasis]\u003cbr /\u003e\napoc.util.sleep(\u003cduration\u003e) | sleeps for \u003cduration\u003e millis, transaction termination is honored\u003c/p\u003e\n\u003ch2\u003e// \u0026ndash; in this example we leverage on apoc.date.format to retrieve minutes and seconds\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003cp\u003eWITH apoc.date.currentTimestamp() as timeBefore\u003cbr /\u003e\nCALL apoc.util.sleep(4000)\u003cbr /\u003e\nRETURN apoc.date.format(timeBefore, \u0026lsquo;ms\u0026rsquo;,\u0026lsquo;mm:ss\u0026rsquo;), apoc.date.format(apoc.date.currentTimestamp(), \u0026lsquo;ms\u0026rsquo;,\u0026lsquo;mm:ss\u0026rsquo;)\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635349766818_1822740037",
+      "id": "paragraph_1635349766818_1822740037",
+      "dateCreated": "2021-10-27 15:49:26.818",
+      "dateStarted": "2021-10-27 15:50:07.757",
+      "dateFinished": "2021-10-27 15:50:07.771",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n\n\u003d\u003d Temporal (Date Time)\n\ntodo - esempio per conversion \ntodo 2 - integrarlo con parte di sopra\nhttps://neo4j.com/labs/apoc/4.1/temporal/ --\u003e tanta roba... solo alcune\n\n\n\u003d\u003d Graph Updates\n\nhttps://neo4j.com/labs/apoc/4.1/graph-updates/ --\u003e tanta roba... solo alcune\nCreating Data\nGraph Refactorings\nUUIDs\nPeriodic Execution\nAtomic Property Updates\nLocking\nTime To Live (TTL) - Expire Nodes\nGenerating Graphs\nDeleting Data\n\n\n\u003d\u003d ttl\n\nSome nodes are not meant to live forever. That’s why with APOC you can specify a time by when they are removed from the database, by utilizing a schema index and an additional label. A few procedures help with that.\n\nconf: to activate it --\u003e\n    [source, cypher]\n    \u003d\u003d\u003d\n    apoc.ttl.enabled\u003dtrue\u003c\n    # Optional: controls the repeat frequency\n    # apoc.ttl.schedule\u003d5\u003e\n    \u003d\u003d\u003d\n\nFor example (in a specific time): (params: node, epochTime, time unit (ms, s, m, h, d or millis, milliseconds, seconds, minutes, hours, days) )\nMATCH (movie:Movie)\u003c-[produced:PRODUCED]-(person:Person)\nCALL apoc.ttl.expire(person,1585176720,\u0027s\u0027)\nRETURN movie, produced, person\n\nExpire after a periond(same syntax)\nMATCH (movie:Movie)\u003c-[directed:DIRECTED]-(person:Person)\nCALL apoc.ttl.expireIn(person,120,\u0027s\u0027)\nRETURN movie, directed, person\n\nHow it works:\n    Set the :TTL label and ttl property on the node(s) you want to expire.\n    [sfondo grigio]\n    SET n:TTL\n    SET n.ttl \u003d timestamp() + 3600\n    [sfondo grigio]\n\n    The ttl property holds the time when the node is expired in milliseconds since epoch.\n    CREATE INDEX ON :TTL(ttl)\n\n    Remove node(s) that have passed the expiration time or length of time (through the apoc.ttl.schedule\u003d120)\n    MATCH (t:TTL) where t.ttl \u003c timestamp() WITH t LIMIT 1000 DETACH DELETE t\n\n\nttl: emulato come MongoDb o Redis\n\n\n\u003d\u003d uuid\nautomation generation of UUIDs\n\nIn 2 ways:\nManual UUIDs: RETURN apoc.create.uuid() AS uuid; --\u003e e.g.: CREATE (p:Person {id: apoc.create.uuid()})\n\nAuto UUID:\nthrough 4 proc:\napoc.uuid.install(\u0027Label\u0027, `{configMap}`)\n\nExample:\nFirst of all, we need to create a constraint:\n// todo - far vedere che succede se non lo installo\n[source, cypher]\n----\nCREATE CONSTRAINT ON (person:Person)\nASSERT person.uuid IS UNIQUE\n----\n\nAdd the uuid:\n\n.Test to see what happening... todo todo \n[source, cypher]\n----\nCALL apoc.uuid.install(\u0027Person\u0027)\n----\n\nSo each new node will have a uuid property.\n\nconfig: `addToExistingNodes` (adds the UUID to the nodes already existing in your graph),\n`uuidProperty` (the name of the name of the UUID field, by default is `uuid` )\n// todo - fare un esempio con uuidProperty\n\n\n.To remove a specific auto uuid\n[source, cypher]\n----\nCALL apoc.uuid.remove(\u0027LabelName\u0027)\n----\n\n.To remove all\n[source, cypher]\n----\nCALL apoc.uuid.removeAll()\n----\n\n.To get the list\n[source, cypher]\n----\nCALL apoc.uuid.list()\n----\n\n\u003d\u003d atomic props update:\n\n??? . sì ok, mah boh...\n\n\n\u003d\u003d locking\n\n\n\n\nThe examples in this section are based on the following sample graph:\n\n[source, bash]\n----\nCREATE (:Person {name:\u0027Alex\u0027})\nCREATE (:Email {address:\u0027alex@somewhere.com\u0027});\n----\n\n// todo - used to prevent some not-thread safety condition\n\nWe want to create exactly one HAS_EMAIL relationship between these nodes. We can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, so we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\n// so exactly one write\n\nWe can prevent this race condition by using the apoc.lock.nodes procedure, as shown below:\n\n[source, bash]\n----\nMATCH (p:Person {name:\u0027Alex\u0027})\nMATCH (e:Email {address:\u0027alex@somewhere.com\u0027})\nCALL apoc.lock.nodes([p,e])\nMERGE (p)-[rel:HAS_EMAIL]-\u003e(e) // could have multiple writes without apoc.lock.nodes\nRETURN rel;\n----\n\n\n- apoc.lock.all([nodes],[relationships])\n- apoc.lock.nodes([nodes])\n- apoc.lock.rels([relationships]\n- apoc.lock.read.nodes\n- apoc.lock.read.rels\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 23:08:15.884",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Temporal (Date Time)\u003c/p\u003e\n\u003cp\u003etodo - esempio per conversion\u003cbr /\u003e\ntodo 2 - integrarlo con parte di sopra\u003cbr /\u003e\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/temporal/\"\u003ehttps://neo4j.com/labs/apoc/4.1/temporal/\u003c/a\u003e \u0026ndash;\u0026gt; tanta roba\u0026hellip; solo alcune\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Graph Updates\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/graph-updates/\"\u003ehttps://neo4j.com/labs/apoc/4.1/graph-updates/\u003c/a\u003e \u0026ndash;\u0026gt; tanta roba\u0026hellip; solo alcune\u003cbr /\u003e\nCreating Data\u003cbr /\u003e\nGraph Refactorings\u003cbr /\u003e\nUUIDs\u003cbr /\u003e\nPeriodic Execution\u003cbr /\u003e\nAtomic Property Updates\u003cbr /\u003e\nLocking\u003cbr /\u003e\nTime To Live (TTL) - Expire Nodes\u003cbr /\u003e\nGenerating Graphs\u003cbr /\u003e\nDeleting Data\u003c/p\u003e\n\u003cp\u003e\u003d\u003d ttl\u003c/p\u003e\n\u003cp\u003eSome nodes are not meant to live forever. That’s why with APOC you can specify a time by when they are removed from the database, by utilizing a schema index and an additional label. A few procedures help with that.\u003c/p\u003e\n\u003cp\u003econf: to activate it \u0026ndash;\u0026gt;\u003cbr /\u003e\n[source, cypher]\u003cbr /\u003e\n\u003d\u003d\u003d\u003cbr /\u003e\napoc.ttl.enabled\u003dtrue\u0026lt;\u003cbr /\u003e\n# Optional: controls the repeat frequency\u003cbr /\u003e\n# apoc.ttl.schedule\u003d5\u0026gt;\u003cbr /\u003e\n\u003d\u003d\u003d\u003c/p\u003e\n\u003cp\u003eFor example (in a specific time): (params: node, epochTime, time unit (ms, s, m, h, d or millis, milliseconds, seconds, minutes, hours, days) )\u003cbr /\u003e\nMATCH (movie:Movie)\u0026lt;-[produced:PRODUCED]-(person:Person)\u003cbr /\u003e\nCALL apoc.ttl.expire(person,1585176720,\u0026lsquo;s\u0026rsquo;)\u003cbr /\u003e\nRETURN movie, produced, person\u003c/p\u003e\n\u003cp\u003eExpire after a periond(same syntax)\u003cbr /\u003e\nMATCH (movie:Movie)\u0026lt;-[directed:DIRECTED]-(person:Person)\u003cbr /\u003e\nCALL apoc.ttl.expireIn(person,120,\u0026lsquo;s\u0026rsquo;)\u003cbr /\u003e\nRETURN movie, directed, person\u003c/p\u003e\n\u003cp\u003eHow it works:\u003cbr /\u003e\nSet the :TTL label and ttl property on the node(s) you want to expire.\u003cbr /\u003e\n[sfondo grigio]\u003cbr /\u003e\nSET n:TTL\u003cbr /\u003e\nSET n.ttl \u003d timestamp() + 3600\u003cbr /\u003e\n[sfondo grigio]\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eThe ttl property holds the time when the node is expired in milliseconds since epoch.\nCREATE INDEX ON :TTL(ttl)\n\nRemove node(s) that have passed the expiration time or length of time (through the apoc.ttl.schedule\u003d120)\nMATCH (t:TTL) where t.ttl \u0026lt; timestamp() WITH t LIMIT 1000 DETACH DELETE t\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003ettl: emulato come MongoDb o Redis\u003c/p\u003e\n\u003cp\u003e\u003d\u003d uuid\u003cbr /\u003e\nautomation generation of UUIDs\u003c/p\u003e\n\u003cp\u003eIn 2 ways:\u003cbr /\u003e\nManual UUIDs: RETURN apoc.create.uuid() AS uuid; \u0026ndash;\u0026gt; e.g.: CREATE (p:Person {id: apoc.create.uuid()})\u003c/p\u003e\n\u003cp\u003eAuto UUID:\u003cbr /\u003e\nthrough 4 proc:\u003cbr /\u003e\napoc.uuid.install(\u0026lsquo;Label\u0026rsquo;, \u003ccode\u003e{configMap}\u003c/code\u003e)\u003c/p\u003e\n\u003ch2\u003eExample:\u003cbr /\u003e\nFirst of all, we need to create a constraint:\u003cbr /\u003e\n// todo - far vedere che succede se non lo installo\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCREATE CONSTRAINT ON (person:Person)\u003cbr /\u003e\nASSERT person.uuid IS UNIQUE\u003c/h2\u003e\n\u003cp\u003eAdd the uuid:\u003c/p\u003e\n\u003ch2\u003e.Test to see what happening\u0026hellip; todo todo\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.uuid.install(\u0026lsquo;Person\u0026rsquo;)\u003c/h2\u003e\n\u003cp\u003eSo each new node will have a uuid property.\u003c/p\u003e\n\u003cp\u003econfig: \u003ccode\u003eaddToExistingNodes\u003c/code\u003e (adds the UUID to the nodes already existing in your graph),\u003cbr /\u003e\n\u003ccode\u003euuidProperty\u003c/code\u003e (the name of the name of the UUID field, by default is \u003ccode\u003euuid\u003c/code\u003e )\u003cbr /\u003e\n// todo - fare un esempio con uuidProperty\u003c/p\u003e\n\u003ch2\u003e.To remove a specific auto uuid\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.uuid.remove(\u0026lsquo;LabelName\u0026rsquo;)\u003c/h2\u003e\n\u003ch2\u003e.To remove all\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.uuid.removeAll()\u003c/h2\u003e\n\u003ch2\u003e.To get the list\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.uuid.list()\u003c/h2\u003e\n\u003cp\u003e\u003d\u003d atomic props update:\u003c/p\u003e\n\u003cp\u003e??? . sì ok, mah boh\u0026hellip;\u003c/p\u003e\n\u003cp\u003e\u003d\u003d locking\u003c/p\u003e\n\u003cp\u003eThe examples in this section are based on the following sample graph:\u003c/p\u003e\n\u003ch2\u003e[source, bash]\u003c/h2\u003e\n\u003ch2\u003eCREATE (:Person {name:\u0026lsquo;Alex\u0026rsquo;})\u003cbr /\u003e\nCREATE (:Email {address:\u0026lsquo;\u003ca href\u003d\"mailto:alex@somewhere.com\"\u003ealex@somewhere.com\u003c/a\u003e\u0026rsquo;});\u003c/h2\u003e\n\u003cp\u003e// todo - used to prevent some not-thread safety condition\u003c/p\u003e\n\u003cp\u003eWe want to create exactly one HAS_EMAIL relationship between these nodes. We can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, so we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\u003cbr /\u003e\n// so exactly one write\u003c/p\u003e\n\u003cp\u003eWe can prevent this race condition by using the apoc.lock.nodes procedure, as shown below:\u003c/p\u003e\n\u003ch2\u003e[source, bash]\u003c/h2\u003e\n\u003ch2\u003eMATCH (p:Person {name:\u0026lsquo;Alex\u0026rsquo;})\u003cbr /\u003e\nMATCH (e:Email {address:\u0026lsquo;\u003ca href\u003d\"mailto:alex@somewhere.com\"\u003ealex@somewhere.com\u003c/a\u003e\u0026rsquo;})\u003cbr /\u003e\nCALL apoc.lock.nodes([p,e])\u003cbr /\u003e\nMERGE (p)-[rel:HAS_EMAIL]-\u0026gt;(e) // could have multiple writes without apoc.lock.nodes\u003cbr /\u003e\nRETURN rel;\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.lock.all([nodes],[relationships])\u003c/li\u003e\n\u003cli\u003eapoc.lock.nodes([nodes])\u003c/li\u003e\n\u003cli\u003eapoc.lock.rels([relationships]\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.nodes\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.rels\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635349807756_1469558743",
+      "id": "paragraph_1635349807756_1469558743",
+      "dateCreated": "2021-10-27 15:50:07.756",
+      "dateStarted": "2021-10-27 23:08:15.900",
+      "dateFinished": "2021-10-27 23:08:15.924",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 23:08:15.899",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635376095899_1541463143",
+      "id": "paragraph_1635376095899_1541463143",
+      "dateCreated": "2021-10-27 23:08:15.899",
+      "status": "READY"
+    }
+  ],
+  "name": "others",
+  "id": "2GK4BTA5G",
+  "defaultInterpreterGroup": "neo4j",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

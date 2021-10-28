@@ -1,0 +1,73 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# todo\n\n\n\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:40:53.617",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348979662_2072141118",
+      "id": "paragraph_1635348979662_2072141118",
+      "dateCreated": "2021-10-27 15:36:19.662",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n\u003d\u003d Export\n\nvarie configurazioni. \n- Con stream:true\n- appoggandosi alla apoc.periodic.iterate \"in a batch fashion\" —\u003e img apocbatch.png\n- dire che la parallel:true è sconsigliata per …. ?? vedere doc\n\n\n\u003d\u003d Import\ndacanc: sulla falsariga (along the lines of) del neo4j-admin-import, ma non richiede riavvio e db vuoto `However, using the import command of neo4j-admin is generally faster since it is run against a stopped and empty database.`\n\n\n\n\n\u003d\u003d Load\ndacanc: sulla falsariga della LOAD CSV\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:40:55.893",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635349254490_188990093",
+      "id": "paragraph_1635349254490_188990093",
+      "dateCreated": "2021-10-27 15:40:54.490",
+      "status": "READY"
+    }
+  ],
+  "name": "Import and export",
+  "id": "2GJCSVRMK",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -1,0 +1,44 @@
+{
+  "paragraphs": [
+    {
+      "text": "\u003d\u003d apoc.convert\n\ndacanc: if I want a map representation of a node\nCREATE (node:Node {id: 4})\nRETURN apoc.convert.toMap(node) AS output;\n\n\u003d\u003d apoc.convert.toList\n\nWhat if we want to take the first element from each path? We could try to do it like this:\n\nCypher\nCopy to Clipboard\nRun in Neo4j Browser\nMATCH path \u003d ()-[:ACTED_IN]-\u003e()\nRETURN path[0];\nResults\nText\nCopy to Clipboard\nType mismatch: expected List\u003cT\u003e but was Path (line 3, column 8 (offset: 40))\n\"RETURN path[0];\"\n^\nWe can use apoc.convert.toList to convert the path to a list and then take the first item from that list:\n\nCypher\nCopy to Clipboard\nRun in Neo4j Browser\nMATCH path \u003d ()-[:ACTED_IN]-\u003e()\nRETURN apoc.convert.toList(path)[0];\n\n\n\n\n\n\n\u003d\u003d MAP FUNCTION\nhttps://neo4j.com/labs/apoc/4.1/data-structures/map-functions/\n\n\u003d\u003d COLL FUNCTION\nhttps://neo4j.com/labs/apoc/4.1/data-structures/collection-list-functions/\n\napoc.coll.randomItem",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:40:22.416",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635349204080_1323972748",
+      "id": "paragraph_1635349204080_1323972748",
+      "dateCreated": "2021-10-27 15:40:04.080",
+      "status": "READY"
+    }
+  ],
+  "name": "apoc.convert",
+  "id": "2GMDQ631G",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

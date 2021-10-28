@@ -1,0 +1,187 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# Batch Data in Neo4j with APOC\n\nSometimes, the updates that need to be made to data are operationally intensive and require more resources than can be allocated in a single transaction. APOC provides a few options for batching data to handle these larger demands.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:23:55.279",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348221301_1190350236",
+      "id": "paragraph_1635348221301_1190350236",
+      "dateCreated": "2021-10-27 15:23:41.301",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n\n\u003d\u003d Batching data with apoc.periodic.iterate\n\nFor making updates to data in the graph, we may want to make the update across the entire graph or we may want to select a subset of data for updating. Either way, we could be dealing with vast amounts of data and may want to batch imports coming from files or other systems to load into our graph.\n\nThe apoc.periodic.iterate procedure is one of the best ways to handle a variety of import and update scenarios in a batch manner. It uses a data-driven statement to select or read data, then uses an operation statement for specifying what we want to do with each batch.\n\nFormat: `apoc.periodic.iterate(\u0027data-driven statement\u0027, \u0027operations statement\u0027, {config: …})`\n\nThe procedure has 3 parameters -\n\n    the data-driven statement for selecting/reading data into batches\n\n    the operations statement for updating/creating data in batches\n\n    any configurations\n\n\n\u003d\u003d apoc.periodic.commit Example:\n\nLet’s start with an example that is narrow in scope and is based on the need that we might want to flag products that need to be reordered. Perhaps we want to send our stock associates messages or put these items on a weekly report.\n\nTo do this, we can search for products where our stock level is equal to or less than our reorder level and add an extra label to those nodes for easy retrieval by various systems or people.\n\nCALL apoc.periodic.iterate(\n\u0027MATCH (p:Product) WHERE p.unitsInStock \u003c\u003d p.reorderLevel RETURN p\u0027,\n\u0027SET p:Reorder\u0027,\n{batchSize: 100, batchMode: \u0027BATCH\u0027}\n) YIELD batches, total, timeTaken, committedOperations, failedOperations, failedBatches, retries, errorMessages\nRETURN batches, total, timeTaken, committedOperations, failedOperations, failedBatches, retries, errorMessages\n\nOur statement above calls the procedure and uses the first Cypher query to select all of the Products where our stock is less or equal to the reorder level. Then, our second statement needs to add the Reorder label to those Product nodes. Next, we set some config for batchsize and the mode we want batches to execute. Because our Northwind data set is small, our batch size is also very small (it’s not uncommon to see batchSizes set at 10,000 or more on larger graphs).\n\nFinally, we retrieve some statistics about our procedure execution, so that we have insight if anything goes wrong and can verify all the batches were successful. Note that since we set our batch size to 100, and we only have 22 updates (22 Product nodes have stock less than/equal to reorder level), it completes in a single batch. If we had hundreds or thousands of products in our graph and had low stock on most of them, however, we would see more batches. We could also have added a parallel: true config, since these updates wouldn’t conflict (no relationships involved). However, since our graph is very small and we don’t have very many updates, we don’t need to add this configuration on this statement.\n\n\u003d\u003d Verify results\n\nWe can verify the update worked by running a query like the one below.\n\nMATCH (p:Product)\nRETURN p LIMIT 25;\n\n\u003d\u003d Another apoc.periodic.iterate Example:\n\nLet’s take, for instance, that we might want to track and maintain our order line item information as a separate node, rather than properties on a relationship. We may be querying those relationship properties more often than initially thought, and query performance may see a dip, since relationship properties are not as optimized as patterns.\n\nTo do this, we can use apoc.periodic.iterate to select all of the ORDERS relationships in our graph and add a LineItem intermediary node with relationships.\n\nCALL apoc.periodic.iterate(\n\u0027MATCH (o:Order)-[r:ORDERS]-\u003e(p:Product) RETURN r, o, p\u0027,\n\u0027MERGE (i:LineItem {id: o.orderID+p.productID})\nSET i.quantity \u003d r.quantity, i.unitPrice \u003d r.unitPrice, i.discount \u003d r.discount\nMERGE (o)-[rel:HAS_ITEM]-\u003e(i)-[rel2:IS_FOR]-(p)\nDELETE r\u0027,\n{batchSize: 10000, batchMode: \u0027BATCH\u0027}\n) YIELD batches, total, timeTaken, committedOperations, failedOperations, failedBatches, retries, errorMessages\nRETURN batches, total, timeTaken, committedOperations, failedOperations, failedBatches, retries, errorMessages\n\nOur statement above calls the procedure and selects all of the Orders with an ORDERS relationship to Products in the first query. Then, our second statement takes those patterns and create a new intermediary node (LineItem) with the line item properties (from the existing ORDERS relationships). The next merge statement connects the new line items to the related Order and Product nodes, and the last statement deletes the old ORDERS relationships, since we have the new pattern.\n\nFinally, we set some config for batch size and the mode we want batches to execute. We retrieve some statistics about our procedure execution, so that we have insight if anything goes wrong and can verify all the batches were successful. Note that since we set our batch size to 10,000, and we only have 2,155 updates, it completes in a single batch. If our graph was much larger, however, we could very easily see more batches.\n\n\u003d\u003d Verify results\n\nWe can verify everything looks correct with the query below by selecting a specific customer and pulling all their orders with the new line items and related products.\n\nMATCH (c:Customer {companyName: \u0027Hanari Carnes\u0027})-[r:PURCHASED]-(o:Order)-[r2:HAS_ITEM]-(i:LineItem)-[r3:IS_FOR]-(p:Product)\nRETURN c, r, o, r2, i, r3, p LIMIT 25\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 22:53:39.018",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Batching data with apoc.periodic.iterate\u003c/p\u003e\n\u003cp\u003eFor making updates to data in the graph, we may want to make the update across the entire graph or we may want to select a subset of data for updating. Either way, we could be dealing with vast amounts of data and may want to batch imports coming from files or other systems to load into our graph.\u003c/p\u003e\n\u003cp\u003eThe apoc.periodic.iterate procedure is one of the best ways to handle a variety of import and update scenarios in a batch manner. It uses a data-driven statement to select or read data, then uses an operation statement for specifying what we want to do with each batch.\u003c/p\u003e\n\u003cp\u003eFormat: \u003ccode\u003eapoc.periodic.iterate(\u0027data-driven statement\u0027, \u0027operations statement\u0027, {config: …})\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eThe procedure has 3 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe data-driven statement for selecting/reading data into batches\n\nthe operations statement for updating/creating data in batches\n\nany configurations\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003d\u003d apoc.periodic.commit Example:\u003c/p\u003e\n\u003cp\u003eLet’s start with an example that is narrow in scope and is based on the need that we might want to flag products that need to be reordered. Perhaps we want to send our stock associates messages or put these items on a weekly report.\u003c/p\u003e\n\u003cp\u003eTo do this, we can search for products where our stock level is equal to or less than our reorder level and add an extra label to those nodes for easy retrieval by various systems or people.\u003c/p\u003e\n\u003cp\u003eCALL apoc.periodic.iterate(\u003cbr /\u003e\n\u0026lsquo;MATCH (p:Product) WHERE p.unitsInStock \u0026lt;\u003d p.reorderLevel RETURN p\u0026rsquo;,\u003cbr /\u003e\n\u0026lsquo;SET p:Reorder\u0026rsquo;,\u003cbr /\u003e\n{batchSize: 100, batchMode: \u0026lsquo;BATCH\u0026rsquo;}\u003cbr /\u003e\n) YIELD batches, total, timeTaken, committedOperations, failedOperations, failedBatches, retries, errorMessages\u003cbr /\u003e\nRETURN batches, total, timeTaken, committedOperations, failedOperations, failedBatches, retries, errorMessages\u003c/p\u003e\n\u003cp\u003eOur statement above calls the procedure and uses the first Cypher query to select all of the Products where our stock is less or equal to the reorder level. Then, our second statement needs to add the Reorder label to those Product nodes. Next, we set some config for batchsize and the mode we want batches to execute. Because our Northwind data set is small, our batch size is also very small (it’s not uncommon to see batchSizes set at 10,000 or more on larger graphs).\u003c/p\u003e\n\u003cp\u003eFinally, we retrieve some statistics about our procedure execution, so that we have insight if anything goes wrong and can verify all the batches were successful. Note that since we set our batch size to 100, and we only have 22 updates (22 Product nodes have stock less than/equal to reorder level), it completes in a single batch. If we had hundreds or thousands of products in our graph and had low stock on most of them, however, we would see more batches. We could also have added a parallel: true config, since these updates wouldn’t conflict (no relationships involved). However, since our graph is very small and we don’t have very many updates, we don’t need to add this configuration on this statement.\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Verify results\u003c/p\u003e\n\u003cp\u003eWe can verify the update worked by running a query like the one below.\u003c/p\u003e\n\u003cp\u003eMATCH (p:Product)\u003cbr /\u003e\nRETURN p LIMIT 25;\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Another apoc.periodic.iterate Example:\u003c/p\u003e\n\u003cp\u003eLet’s take, for instance, that we might want to track and maintain our order line item information as a separate node, rather than properties on a relationship. We may be querying those relationship properties more often than initially thought, and query performance may see a dip, since relationship properties are not as optimized as patterns.\u003c/p\u003e\n\u003cp\u003eTo do this, we can use apoc.periodic.iterate to select all of the ORDERS relationships in our graph and add a LineItem intermediary node with relationships.\u003c/p\u003e\n\u003cp\u003eCALL apoc.periodic.iterate(\u003cbr /\u003e\n\u0026lsquo;MATCH (o:Order)-[r:ORDERS]-\u0026gt;(p:Product) RETURN r, o, p\u0026rsquo;,\u003cbr /\u003e\n\u0026lsquo;MERGE (i:LineItem {id: o.orderID+p.productID})\u003cbr /\u003e\nSET i.quantity \u003d r.quantity, i.unitPrice \u003d r.unitPrice, i.discount \u003d r.discount\u003cbr /\u003e\nMERGE (o)-[rel:HAS_ITEM]-\u0026gt;(i)-[rel2:IS_FOR]-(p)\u003cbr /\u003e\nDELETE r\u0026rsquo;,\u003cbr /\u003e\n{batchSize: 10000, batchMode: \u0026lsquo;BATCH\u0026rsquo;}\u003cbr /\u003e\n) YIELD batches, total, timeTaken, committedOperations, failedOperations, failedBatches, retries, errorMessages\u003cbr /\u003e\nRETURN batches, total, timeTaken, committedOperations, failedOperations, failedBatches, retries, errorMessages\u003c/p\u003e\n\u003cp\u003eOur statement above calls the procedure and selects all of the Orders with an ORDERS relationship to Products in the first query. Then, our second statement takes those patterns and create a new intermediary node (LineItem) with the line item properties (from the existing ORDERS relationships). The next merge statement connects the new line items to the related Order and Product nodes, and the last statement deletes the old ORDERS relationships, since we have the new pattern.\u003c/p\u003e\n\u003cp\u003eFinally, we set some config for batch size and the mode we want batches to execute. We retrieve some statistics about our procedure execution, so that we have insight if anything goes wrong and can verify all the batches were successful. Note that since we set our batch size to 10,000, and we only have 2,155 updates, it completes in a single batch. If our graph was much larger, however, we could very easily see more batches.\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Verify results\u003c/p\u003e\n\u003cp\u003eWe can verify everything looks correct with the query below by selecting a specific customer and pulling all their orders with the new line items and related products.\u003c/p\u003e\n\u003cp\u003eMATCH (c:Customer {companyName: \u0026lsquo;Hanari Carnes\u0026rsquo;})-[r:PURCHASED]-(o:Order)-[r2:HAS_ITEM]-(i:LineItem)-[r3:IS_FOR]-(p:Product)\u003cbr /\u003e\nRETURN c, r, o, r2, i, r3, p LIMIT 25\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348485582_2026030069",
+      "id": "paragraph_1635348485582_2026030069",
+      "dateCreated": "2021-10-27 15:28:05.582",
+      "dateStarted": "2021-10-27 15:28:24.118",
+      "dateFinished": "2021-10-27 15:28:24.215",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n\u003d\u003d apoc.periodic.truncate\n\nThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies because it allows you very easily to wipe the entire database:\nCALL apoc.periodic.truncate({dropSchema: true})\nAs you can see we manage a configuration map that at this very moment (May 2021) manages just one property dropSchema\u003dtrue/false that eventually drops indexes and constraints.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 15:38:32.370",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d apoc.periodic.truncate\u003c/p\u003e\n\u003cp\u003eThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies because it allows you very easily to wipe the entire database:\u003cbr /\u003e\nCALL apoc.periodic.truncate({dropSchema: true})\u003cbr /\u003e\nAs you can see we manage a configuration map that at this very moment (May 2021) manages just one property dropSchema\u003dtrue/false that eventually drops indexes and constraints.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348504117_79924958",
+      "id": "paragraph_1635348504117_79924958",
+      "dateCreated": "2021-10-27 15:28:24.118",
+      "dateStarted": "2021-10-27 15:38:32.367",
+      "dateFinished": "2021-10-27 15:38:32.391",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n\u003d\u003d Periodic Execution\n\n\n\n\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| CALL apoc.periodic.list() | list all jobs\n| CALL apoc.periodic.submit(\u0027name\u0027,statement) | submit a one-off background statement\n| CALL apoc.periodic.schedule(\u0027name\u0027,statement,repeat-time-in-seconds) | submit a repeatedly-called background statement\n| CALL apoc.periodic.countdown(\u0027name\u0027,statement,delay-in-seconds) | submit a repeatedly-called background statement until it returns 0\n|\u003d\u003d\u003d\n\n* there are also static methods `Jobs.submit`, and `Jobs.schedule` to be used from other procedures\n* jobs list is checked / cleared every 10s for finished jobs\n\nMany procedures run in the background or asynchronously. This setting overrides the default thread pool size (processors*2).\n\n`apoc.jobs.pool.num_threads\u003d10`\n\nMany periodic procedures rely on a scheduled executor that has a pool of threads with a default fixed size (processors/4, at least 1). You can configure the pool size using the following configuration property:\n\n`apoc.jobs.scheduled.num_threads\u003d10`\n\nRepeats a statement until the termination is reached. The statement must return a numeric value and it should decrement (like a monotonically decreasing function). When the return value reaches 0 than the iteration stops.\nFor example, define a counter with a numeric property:\n\n[source,cypher]\n----\nCREATE (counter:Counter) SET counter.c \u003d 10\n----\n\nand decrement this property by 1 each second:\n\n[source,cypher]\n----\nCALL apoc.periodic.countdown(\u0027decrement\u0027,\"MATCH (counter:Counter) SET counter.c \u003d counter.c - 1 RETURN counter.c as count\", 1)\n----\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 22:58:23.112",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Periodic Execution\u003c/p\u003e\n\u003cp\u003e[cols\u003d\u0026ldquo;5m,5\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| CALL apoc.periodic.list() | list all jobs\u003cbr /\u003e\n| CALL apoc.periodic.submit(\u0026lsquo;name\u0026rsquo;,statement) | submit a one-off background statement\u003cbr /\u003e\n| CALL apoc.periodic.schedule(\u0026lsquo;name\u0026rsquo;,statement,repeat-time-in-seconds) | submit a repeatedly-called background statement\u003cbr /\u003e\n| CALL apoc.periodic.countdown(\u0026lsquo;name\u0026rsquo;,statement,delay-in-seconds) | submit a repeatedly-called background statement until it returns 0\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ethere are also static methods \u003ccode\u003eJobs.submit\u003c/code\u003e, and \u003ccode\u003eJobs.schedule\u003c/code\u003e to be used from other procedures\u003c/li\u003e\n\u003cli\u003ejobs list is checked / cleared every 10s for finished jobs\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eMany procedures run in the background or asynchronously. This setting overrides the default thread pool size (processors*2).\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003eapoc.jobs.pool.num_threads\u003d10\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eMany periodic procedures rely on a scheduled executor that has a pool of threads with a default fixed size (processors/4, at least 1). You can configure the pool size using the following configuration property:\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003eapoc.jobs.scheduled.num_threads\u003d10\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eRepeats a statement until the termination is reached. The statement must return a numeric value and it should decrement (like a monotonically decreasing function). When the return value reaches 0 than the iteration stops.\u003cbr /\u003e\nFor example, define a counter with a numeric property:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCREATE (counter:Counter) SET counter.c \u003d 10\u003c/h2\u003e\n\u003cp\u003eand decrement this property by 1 each second:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.periodic.countdown(\u0026lsquo;decrement\u0026rsquo;,\u0026ldquo;MATCH (counter:Counter) SET counter.c \u003d counter.c - 1 RETURN counter.c as count\u0026rdquo;, 1)\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635349112365_1947424998",
+      "id": "paragraph_1635349112365_1947424998",
+      "dateCreated": "2021-10-27 15:38:32.365",
+      "dateStarted": "2021-10-27 22:58:23.109",
+      "dateFinished": "2021-10-27 22:58:23.142",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-27 22:58:23.108",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635375503108_345428266",
+      "id": "paragraph_1635375503108_345428266",
+      "dateCreated": "2021-10-27 22:58:23.108",
+      "status": "READY"
+    }
+  ],
+  "name": "Batch data",
+  "id": "2GMVKHGBW",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
