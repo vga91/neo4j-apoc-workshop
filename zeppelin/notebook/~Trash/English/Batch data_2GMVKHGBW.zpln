@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n\u003d\u003d apoc.periodic.truncate\n\nThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies because it allows you very easily to wipe the entire database:\nCALL apoc.periodic.truncate({dropSchema: true})\nAs you can see we manage a configuration map that at this very moment (May 2021) manages just one property dropSchema\u003dtrue/false that eventually drops indexes and constraints.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 15:19:11.387",
+      "dateUpdated": "2021-10-29 14:10:05.406",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,8 +16,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -38,14 +38,14 @@
       "jobName": "paragraph_1635348504117_79924958",
       "id": "paragraph_1635348504117_79924958",
       "dateCreated": "2021-10-27 15:28:24.118",
-      "dateStarted": "2021-10-28 15:15:06.094",
-      "dateFinished": "2021-10-28 15:15:06.110",
+      "dateStarted": "2021-10-29 14:10:05.404",
+      "dateFinished": "2021-10-29 14:10:05.431",
       "status": "FINISHED"
     },
     {
       "text": "%md\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 15:15:24.279",
+      "dateUpdated": "2021-10-29 14:10:01.002",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -58,7 +58,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -83,7 +84,5 @@
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
-  "info": {
-    "isRunning": false
-  }
+  "info": {}
 }
