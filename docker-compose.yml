@@ -31,12 +31,77 @@ services:
       - 7687:7687
     volumes:
       - ./neo4j/plugins:/plugins
+      - ./neo4j/import:/import
     environment:
       NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
       NEO4J_AUTH: neo4j/password
       NEO4J_dbms_memory_heap_max__size: 2G
       NEO4J_dbms_logs_debug_level: DEBUG
-      NEO4J_apoc_export_file_enabled: "true"
+      # NEO4J_apoc_export_file_enabled: "true"
+      apoc.export.file.enabled: "true"
       NEO4J_apoc_import_file_enabled: "true"
+      NEO4J_dbms_security_procedures_unrestricted: "apoc.*"
     networks:
       - apoc_workshop
+
+  # postgres:
+  #   image: postgres
+  #   container_name: postgres
+  #   environment:
+  #     POSTGRES_USER: test
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: myapp
+  #   user: postgres
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #      # - postgres:/data/postgres
+  #      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  postgres:
+    image: postgres:13.1
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - APP_DB_USER=docker
+      - APP_DB_PASS=docker
+      - APP_DB_NAME=docker
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    ports:
+      - "55005:5432"
+
+
+  # db:
+  #   container_name: postgres_container
+  #   image: postgres:9.6.12
+  #   environment:
+  #     POSTGRES_USER: myUser
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: test
+  #     PGDATA: /data/postgres
+  #   #volumes:
+  #      # - postgres:/data/postgres
+  #      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - apoc_workshop
+  #   restart: unless-stopped
+
+  # db:
+  #   image: mysql
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: test_db
+  #   ports:
+  #     - "3307:3306"
+    # volumes:
+      # - $HOME/Desktop/MySQL-Snippets/school.sql:/school.sql

@@ -1,36 +1,6 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-10-27 22:38:45.427",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/scala",
-        "editorHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635346014026_1901040276",
-      "id": "paragraph_1635346014026_1901040276",
-      "dateCreated": "2021-10-27 14:46:54.026",
-      "status": "READY"
-    },
-    {
       "text": "%md\n\n## BUILT IN HELP\n\nmettere return.apoc version e apoc.help\n",
       "user": "anonymous",
       "dateUpdated": "2021-10-27 22:38:45.442",
@@ -1841,7 +1811,7 @@
       "status": "READY"
     }
   ],
-  "name": "2. Apache Spark and Neo4j",
+  "name": "Other stuff",
   "id": "2GJS97DAA",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",

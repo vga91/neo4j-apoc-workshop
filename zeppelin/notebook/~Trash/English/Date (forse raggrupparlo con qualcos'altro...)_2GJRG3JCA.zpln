@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n# DATE CONVERSION: APOC Date \u0026 Time Conversion\n\nNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\n\nAPOC has several procedures for converting and formatting various date, time, and temporal values. They save valuable time in manually converting values or creating a procedure from scratch! The full list of available procedures is in the APOC documentation.",
       "user": "anonymous",
-      "dateUpdated": "2021-10-27 15:09:09.231",
+      "dateUpdated": "2021-10-28 08:23:32.921",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,7 +16,7 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
+        "editorHide": false,
         "tableHide": false
       },
       "settings": {
@@ -144,6 +144,23 @@
       "jobName": "paragraph_1635347588380_42450979",
       "id": "paragraph_1635347588380_42450979",
       "dateCreated": "2021-10-27 15:13:08.380",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-28 08:23:59.569",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635409439569_1740893490",
+      "id": "paragraph_1635409439569_1740893490",
+      "dateCreated": "2021-10-28 08:23:59.569",
       "status": "READY"
     },
     {
@@ -338,7 +355,7 @@
       "status": "READY"
     }
   ],
-  "name": "Other",
+  "name": "Date (forse raggrupparlo con qualcos\u0027altro...)",
   "id": "2GJRG3JCA",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",

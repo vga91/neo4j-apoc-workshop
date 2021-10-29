@@ -1,0 +1,481 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# REFACTOR DATA in Neo4j with APOC\n\nOne major component of data and business is that it constantly changes. When external factors change, we will likely need to modify our data to fit the new scenario, business requirements, or customer needs.\n\nWe can do this with data refactoring. The APOC library has a set of procedures that can be used to adjust data structure and values across parts or the entirety of the graph. In this section, we will take a look at using several of these procedures to alter our data and respond to potential needs.\n\n-- todo: formattare meglio\n\napoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize) turn each unique propertyKey into a category node and connect to it\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.cloneNodes.adoc[apoc.refactor.cloneNodes icon:book[]]\n\napoc.refactor.cloneNodes([node1,node2,...]) clone nodes with their labels and properties\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.cloneNodesWithRelationships.adoc[apoc.refactor.cloneNodesWithRelationships icon:book[]]\n\napoc.refactor.cloneNodesWithRelationships([node1,node2,...]) clone nodes with their labels, properties and relationships\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.cloneSubgraph.adoc[apoc.refactor.cloneSubgraph icon:book[]]\n\napoc.refactor.cloneSubgraph([node1,node2,...], [rel1,rel2,...]:[], {standinNodes:[], skipProperties:[]}) YIELD input, output, error \\| clone nodes with their labels and properties (optionally skipping any properties in the skipProperties list via the config map), and clone the given relationships (will exist between cloned nodes only). If no relationships are provided, all relationships between the given nodes will be cloned. Relationships can be optionally redirected according to standinNodes node pairings (this is a list of list-pairs of nodes), so given a node in the original subgraph (first of the pair), an existing node (second of the pair) can act as a standin for it within the cloned subgraph. Cloned relationships will be redirected to the standin.\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.cloneSubgraphFromPaths.adoc[apoc.refactor.cloneSubgraphFromPaths icon:book[]]\n\napoc.refactor.cloneSubgraphFromPaths([path1, path2, ...], {standinNodes:[], skipProperties:[]}) YIELD input, output, error \\| from the subgraph formed from the given paths, clone nodes with their labels and properties (optionally skipping any properties in the skipProperties list via the config map), and clone the relationships (will exist between cloned nodes only). Relationships can be optionally redirected according to standinNodes node pairings (this is a list of list-pairs of nodes), so given a node in the original subgraph (first of the pair), an existing node (second of the pair) can act as a standin for it within the cloned subgraph. Cloned relationships will be redirected to the standin.\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.collapseNode.adoc[apoc.refactor.collapseNode icon:book[]]\n\napoc.refactor.collapseNode([node1,node2],\u0027TYPE\u0027) collapse node to relationship, node with one rel becomes self-relationship\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.deleteAndReconnect.adoc[apoc.refactor.deleteAndReconnect icon:book[]]\n\napoc.refactor.deleteAndReconnect([pathLinkedList], [nodesToRemove], \\{config}) - Removes some nodes from a linked list\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.extractNode.adoc[apoc.refactor.extractNode icon:book[]]\n\napoc.refactor.extractNode([rel1,rel2,...], [labels],\u0027OUT\u0027,\u0027IN\u0027) extract node from relationships\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.from.adoc[apoc.refactor.from icon:book[]]\n\napoc.refactor.from(rel, startNode) redirect relationship to use new start-node\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.invert.adoc[apoc.refactor.invert icon:book[]]\n\napoc.refactor.invert(rel) inverts relationship direction\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.mergeNodes.adoc[apoc.refactor.mergeNodes icon:book[]]\n\napoc.refactor.mergeNodes([node1,node2],[{properties:\u0027overwrite\u0027 or \u0027discard\u0027 or \u0027combine\u0027}]) merge nodes onto first in list\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.mergeRelationships.adoc[apoc.refactor.mergeRelationships icon:book[]]\n\napoc.refactor.mergeRelationships([rel1,rel2]) merge relationships onto first in list\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.normalizeAsBoolean.adoc[apoc.refactor.normalizeAsBoolean icon:book[]]\n\napoc.refactor.normalizeAsBoolean(entity, propertyKey, true_values, false_values) normalize/convert a property to be boolean\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.rename.label.adoc[apoc.refactor.rename.label icon:book[]]\n\napoc.refactor.rename.label(oldLabel, newLabel, [nodes]) \\| rename a label from \u0027oldLabel\u0027 to \u0027newLabel\u0027 for all nodes. If \u0027nodes\u0027 is provided renaming is applied to this set only\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.rename.nodeProperty.adoc[apoc.refactor.rename.nodeProperty icon:book[]]\n\napoc.refactor.rename.nodeProperty(oldName, newName, [nodes], \\{config}) \\| rename all node\u0027s property from \u0027oldName\u0027 to \u0027newName\u0027. If \u0027nodes\u0027 is provided renaming is applied to this set only\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.rename.type.adoc[apoc.refactor.rename.type icon:book[]]\n\napoc.refactor.rename.type(oldType, newType, [rels], \\{config}) \\| rename all relationships with type \u0027oldType\u0027 to \u0027newType\u0027. If \u0027rels\u0027 is provided renaming is applied to this set only\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.rename.typeProperty.adoc[apoc.refactor.rename.typeProperty icon:book[]]\n\napoc.refactor.rename.typeProperty(oldName, newName, [rels], \\{config}) \\| rename all relationship\u0027s property from \u0027oldName\u0027 to \u0027newName\u0027. If \u0027rels\u0027 is provided renaming is applied to this set only\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.setType.adoc[apoc.refactor.setType icon:book[]]\n\napoc.refactor.setType(rel, \u0027NEW-TYPE\u0027) change relationship-type\n|label:procedure[]\n|label:apoc-core[]\n|xref::overview/apoc.refactor/apoc.refactor.to.adoc[apoc.refactor.to icon:book[]]\n\n  apoc.refactor.to(rel, endNode) redirect relationship to use new end-node\n|label:procedure[]\n|label:apoc-core[]\n\nhttps://neo4j.com/labs/apoc/4.1/overview/apoc.refactor/",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:58:00.794",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eREFACTOR DATA in Neo4j with APOC\u003c/h1\u003e\n\u003cp\u003eOne major component of data and business is that it constantly changes. When external factors change, we will likely need to modify our data to fit the new scenario, business requirements, or customer needs.\u003c/p\u003e\n\u003cp\u003eWe can do this with data refactoring. The APOC library has a set of procedures that can be used to adjust data structure and values across parts or the entirety of the graph. In this section, we will take a look at using several of these procedures to alter our data and respond to potential needs.\u003c/p\u003e\n\u003cp\u003e\u0026ndash; todo: formattare meglio\u003c/p\u003e\n\u003cp\u003eapoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize) turn each unique propertyKey into a category node and connect to it\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.cloneNodes.adoc[apoc.refactor.cloneNodes icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.cloneNodes([node1,node2,\u0026hellip;]) clone nodes with their labels and properties\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.cloneNodesWithRelationships.adoc[apoc.refactor.cloneNodesWithRelationships icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.cloneNodesWithRelationships([node1,node2,\u0026hellip;]) clone nodes with their labels, properties and relationships\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.cloneSubgraph.adoc[apoc.refactor.cloneSubgraph icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.cloneSubgraph([node1,node2,\u0026hellip;], [rel1,rel2,\u0026hellip;]:[], {standinNodes:[], skipProperties:[]}) YIELD input, output, error | clone nodes with their labels and properties (optionally skipping any properties in the skipProperties list via the config map), and clone the given relationships (will exist between cloned nodes only). If no relationships are provided, all relationships between the given nodes will be cloned. Relationships can be optionally redirected according to standinNodes node pairings (this is a list of list-pairs of nodes), so given a node in the original subgraph (first of the pair), an existing node (second of the pair) can act as a standin for it within the cloned subgraph. Cloned relationships will be redirected to the standin.\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.cloneSubgraphFromPaths.adoc[apoc.refactor.cloneSubgraphFromPaths icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.cloneSubgraphFromPaths([path1, path2, \u0026hellip;], {standinNodes:[], skipProperties:[]}) YIELD input, output, error | from the subgraph formed from the given paths, clone nodes with their labels and properties (optionally skipping any properties in the skipProperties list via the config map), and clone the relationships (will exist between cloned nodes only). Relationships can be optionally redirected according to standinNodes node pairings (this is a list of list-pairs of nodes), so given a node in the original subgraph (first of the pair), an existing node (second of the pair) can act as a standin for it within the cloned subgraph. Cloned relationships will be redirected to the standin.\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.collapseNode.adoc[apoc.refactor.collapseNode icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.collapseNode([node1,node2],\u0026lsquo;TYPE\u0026rsquo;) collapse node to relationship, node with one rel becomes self-relationship\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.deleteAndReconnect.adoc[apoc.refactor.deleteAndReconnect icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.deleteAndReconnect([pathLinkedList], [nodesToRemove], {config}) - Removes some nodes from a linked list\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.extractNode.adoc[apoc.refactor.extractNode icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.extractNode([rel1,rel2,\u0026hellip;], [labels],\u0026lsquo;OUT\u0026rsquo;,\u0026lsquo;IN\u0026rsquo;) extract node from relationships\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.from.adoc[apoc.refactor.from icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.from(rel, startNode) redirect relationship to use new start-node\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.invert.adoc[apoc.refactor.invert icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.invert(rel) inverts relationship direction\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.mergeNodes.adoc[apoc.refactor.mergeNodes icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.mergeNodes([node1,node2],[{properties:\u0026lsquo;overwrite\u0026rsquo; or \u0026lsquo;discard\u0026rsquo; or \u0026lsquo;combine\u0026rsquo;}]) merge nodes onto first in list\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.mergeRelationships.adoc[apoc.refactor.mergeRelationships icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.mergeRelationships([rel1,rel2]) merge relationships onto first in list\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.normalizeAsBoolean.adoc[apoc.refactor.normalizeAsBoolean icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.normalizeAsBoolean(entity, propertyKey, true_values, false_values) normalize/convert a property to be boolean\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.rename.label.adoc[apoc.refactor.rename.label icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.rename.label(oldLabel, newLabel, [nodes]) | rename a label from \u0026lsquo;oldLabel\u0026rsquo; to \u0026lsquo;newLabel\u0026rsquo; for all nodes. If \u0026lsquo;nodes\u0026rsquo; is provided renaming is applied to this set only\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.rename.nodeProperty.adoc[apoc.refactor.rename.nodeProperty icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.rename.nodeProperty(oldName, newName, [nodes], {config}) | rename all node\u0026rsquo;s property from \u0026lsquo;oldName\u0026rsquo; to \u0026lsquo;newName\u0026rsquo;. If \u0026lsquo;nodes\u0026rsquo; is provided renaming is applied to this set only\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.rename.type.adoc[apoc.refactor.rename.type icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.rename.type(oldType, newType, [rels], {config}) | rename all relationships with type \u0026lsquo;oldType\u0026rsquo; to \u0026lsquo;newType\u0026rsquo;. If \u0026lsquo;rels\u0026rsquo; is provided renaming is applied to this set only\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.rename.typeProperty.adoc[apoc.refactor.rename.typeProperty icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.rename.typeProperty(oldName, newName, [rels], {config}) | rename all relationship\u0026rsquo;s property from \u0026lsquo;oldName\u0026rsquo; to \u0026lsquo;newName\u0026rsquo;. If \u0026lsquo;rels\u0026rsquo; is provided renaming is applied to this set only\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.setType.adoc[apoc.refactor.setType icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.setType(rel, \u0026lsquo;NEW-TYPE\u0026rsquo;) change relationship-type\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003cbr /\u003e\n|xref::overview/apoc.refactor/apoc.refactor.to.adoc[apoc.refactor.to icon:book[]]\u003c/p\u003e\n\u003cp\u003eapoc.refactor.to(rel, endNode) redirect relationship to use new end-node\u003cbr /\u003e\n|label:procedure[]\u003cbr /\u003e\n|label:apoc-core[]\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.refactor/\"\u003ehttps://neo4j.com/labs/apoc/4.1/overview/apoc.refactor/\u003c/a\u003e\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348036359_2131776212",
+      "id": "paragraph_1635348036359_2131776212",
+      "dateCreated": "2021-10-27 15:20:36.359",
+      "dateStarted": "2021-10-29 12:52:10.560",
+      "dateFinished": "2021-10-29 12:52:10.591",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\u003d\u003d Inverting relationships\n\nFirst, our data model shows Product nodes that are PART_OF the Category nodes. We might need to change the direction of the relationship if we discover that our queries actually focus on what products a category contains, rather than on the ordered products. We can flip the relationship direction with the apoc.refactor.invert procedure.\n\nFormat: apoc.refactor.invert(rel) YIELD input, output, error\n\nThis procedure has 1 parameter for the relationship (or relationship variable) of the one we want to flip.",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:26.872",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Inverting relationships\u003c/p\u003e\n\u003cp\u003eFirst, our data model shows Product nodes that are PART_OF the Category nodes. We might need to change the direction of the relationship if we discover that our queries actually focus on what products a category contains, rather than on the ordered products. We can flip the relationship direction with the apoc.refactor.invert procedure.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.invert(rel) YIELD input, output, error\u003c/p\u003e\n\u003cp\u003eThis procedure has 1 parameter for the relationship (or relationship variable) of the one we want to flip.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348058224_33193473",
+      "id": "paragraph_1635348058224_33193473",
+      "dateCreated": "2021-10-27 15:20:58.224",
+      "dateStarted": "2021-10-29 12:50:26.890",
+      "dateFinished": "2021-10-29 12:50:26.903",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\u003d\u003d apoc.refactor.invert Example:\n\nWith our scenario in the last slide, we want to invert the PART_OF relationship between Product and Category nodes. The query below shows us how to use the apoc.refactor.invert procedure to do that.\n\nMATCH (p:Product)-[part:PART_OF]-\u003e(c:Category)\nCALL apoc.refactor.invert(part) YIELD output\nRETURN output\n\nAfter running this statement, we can run our data model query again or retrieve a sample of the data to see the change.\n\nCALL db.schema.visualization\n\nIt worked!",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:26.990",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.invert Example:\u003c/p\u003e\n\u003cp\u003eWith our scenario in the last slide, we want to invert the PART_OF relationship between Product and Category nodes. The query below shows us how to use the apoc.refactor.invert procedure to do that.\u003c/p\u003e\n\u003cp\u003eMATCH (p:Product)-[part:PART_OF]-\u0026gt;(c:Category)\u003cbr /\u003e\nCALL apoc.refactor.invert(part) YIELD output\u003cbr /\u003e\nRETURN output\u003c/p\u003e\n\u003cp\u003eAfter running this statement, we can run our data model query again or retrieve a sample of the data to see the change.\u003c/p\u003e\n\u003cp\u003eCALL db.schema.visualization\u003c/p\u003e\n\u003cp\u003eIt worked!\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348071412_1417491836",
+      "id": "paragraph_1635348071412_1417491836",
+      "dateCreated": "2021-10-27 15:21:11.413",
+      "dateStarted": "2021-10-29 12:50:27.006",
+      "dateFinished": "2021-10-29 12:50:27.014",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// todo - cercare esempio adatto\nMATCH (p:Product)-[part:PART_OF]-\u003e(c:Category)\nCALL apoc.refactor.invert(part) YIELD output\nRETURN output",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:59:44.047",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635512346388_400316643",
+      "id": "paragraph_1635512346388_400316643",
+      "dateCreated": "2021-10-29 12:59:06.388",
+      "dateStarted": "2021-10-29 12:59:22.119",
+      "dateFinished": "2021-10-29 12:59:22.469",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// todo - riprendendo l\u0027esempio di sopra\nMATCH path\u003d(p:Product)-[part:PART_OF]-(c:Category) RETURN path;",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 13:00:42.714",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635512384106_1528908340",
+      "id": "paragraph_1635512384106_1528908340",
+      "dateCreated": "2021-10-29 12:59:44.106",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n\u003d\u003d Renaming relationships\n\nNow we might want to rename that relationship, since the idea that a Category is PART_OF a Product conveys the incorrect meaning for our use case. We can do this with the apoc.refactor.rename.type procedure.\n\nFormat: apoc.refactor.rename.type(oldType, newType, [rels])\n\nThe procedure has 3 parameters -\n\n    the string type (name) of the relationship we want to change\n\n    the new string type (name) we want the relationship to have\n\n    (optional) provided list of specific relationships we want to change\n    \n    \n\u003d\u003d apoc.refactor.rename.type Example:\n\nLet’s change the name of our PART_OF relationship between the Category and Product nodes so that it fits our business model more accurately.\n\nCALL apoc.refactor.rename.type(\u0027PART_OF\u0027,\u0027INCLUDES\u0027) yield total\nRETURN total\n\nIn the above statement, we call the procedure and pass in the relationship we want to change (PART_OF) and tell it what we want the new relationship to be called (INCLUDES). Then, we pull the count of how many were updated in the procedure and return that count.\n\nIf we run our visualization statement again, we now will see that a Category INCLUDES a Product, just as we planned.\n\nCALL db.schema.visualization",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:27.106",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Renaming relationships\u003c/p\u003e\n\u003cp\u003eNow we might want to rename that relationship, since the idea that a Category is PART_OF a Product conveys the incorrect meaning for our use case. We can do this with the apoc.refactor.rename.type procedure.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.rename.type(oldType, newType, [rels])\u003c/p\u003e\n\u003cp\u003eThe procedure has 3 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe string type (name) of the relationship we want to change\n\nthe new string type (name) we want the relationship to have\n\n(optional) provided list of specific relationships we want to change\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.rename.type Example:\u003c/p\u003e\n\u003cp\u003eLet’s change the name of our PART_OF relationship between the Category and Product nodes so that it fits our business model more accurately.\u003c/p\u003e\n\u003cp\u003eCALL apoc.refactor.rename.type(\u0026lsquo;PART_OF\u0026rsquo;,\u0026lsquo;INCLUDES\u0026rsquo;) yield total\u003cbr /\u003e\nRETURN total\u003c/p\u003e\n\u003cp\u003eIn the above statement, we call the procedure and pass in the relationship we want to change (PART_OF) and tell it what we want the new relationship to be called (INCLUDES). Then, we pull the count of how many were updated in the procedure and return that count.\u003c/p\u003e\n\u003cp\u003eIf we run our visualization statement again, we now will see that a Category INCLUDES a Product, just as we planned.\u003c/p\u003e\n\u003cp\u003eCALL db.schema.visualization\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348082297_1111714116",
+      "id": "paragraph_1635348082297_1111714116",
+      "dateCreated": "2021-10-27 15:21:22.297",
+      "dateStarted": "2021-10-29 12:50:27.125",
+      "dateFinished": "2021-10-29 12:50:27.136",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\u003d\u003d Grouping nodes into categories\n\nOutside of our product and category data, we also might want to add categorization for other groupings in our graph. For instance, we might want to categorize customers by country to know how our customers are distributed or for ensuring we have enough support staff to manage larger customer bases in different areas.\n\nWe can use the apoc.refactor.categorize procedure to extract country information from our Customer nodes and create new Country nodes out of it.\n\nFormat: apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize)\n\nThe procedure has up to 7 parameters -\n\n    the property on the existing node we want to use to create the new node\n\n    the type for the new relationship for connecting the existing node to the new node\n\n    whether the relationship is outgoing or not\n\n    the label for the new node\n\n    the key property name we want on the new node\n\n    any additional properties we’d like copied from the old node to the new\n\n    if we have a lot of nodes to update, we can specify to do it in batches\n\n\u003d\u003d apoc.refactor.categorize Example:\n\nBefore we can execute this procedure, we need to put a constraint on the new node and property key. That can be done with the statement below.\n\nCREATE CONSTRAINT ON (c:Country) ASSERT c.countryName IS UNIQUE;\n\nWe will want to wait a few minutes for the constraint to come online, and we can check that by running the db.indexes procedure. Then, we can add our new Country node categories with the following procedure:\n\nCALL apoc.refactor.categorize(\u0027country\u0027, \u0027LOCATED_IN\u0027, true, \u0027Country\u0027, \u0027countryName\u0027, [], 100)\n\nHere, we have specified that we want to take the country property, which is on the Customer nodes and create a LOCATED_IN relationship that is outgoing from the customer to a new Country node with the property called countryName on the new node.\n\nNote: This procedure will remove the country property from the Customer nodes and move them to Country, rather than making a copy of the property to the new nodes.\n\n\u003d\u003d Verify categories\n\nNow, if we run either our visualization or a sample data query, we can verify. Here, we will run a sample data query to see move of the property from Customer to Country.\n\nMATCH (c:Customer)-[rel]-\u003e(other)\nRETURN c, rel, other\n\nIf you click on a Customer node in the result set, you can see that the country property from customers no longer exists on those nodes and has been moved over to new Country nodes as countryName property. Everything looks as we expect it!\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:27.224",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Grouping nodes into categories\u003c/p\u003e\n\u003cp\u003eOutside of our product and category data, we also might want to add categorization for other groupings in our graph. For instance, we might want to categorize customers by country to know how our customers are distributed or for ensuring we have enough support staff to manage larger customer bases in different areas.\u003c/p\u003e\n\u003cp\u003eWe can use the apoc.refactor.categorize procedure to extract country information from our Customer nodes and create new Country nodes out of it.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize)\u003c/p\u003e\n\u003cp\u003eThe procedure has up to 7 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe property on the existing node we want to use to create the new node\n\nthe type for the new relationship for connecting the existing node to the new node\n\nwhether the relationship is outgoing or not\n\nthe label for the new node\n\nthe key property name we want on the new node\n\nany additional properties we’d like copied from the old node to the new\n\nif we have a lot of nodes to update, we can specify to do it in batches\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.categorize Example:\u003c/p\u003e\n\u003cp\u003eBefore we can execute this procedure, we need to put a constraint on the new node and property key. That can be done with the statement below.\u003c/p\u003e\n\u003cp\u003eCREATE CONSTRAINT ON (c:Country) ASSERT c.countryName IS UNIQUE;\u003c/p\u003e\n\u003cp\u003eWe will want to wait a few minutes for the constraint to come online, and we can check that by running the db.indexes procedure. Then, we can add our new Country node categories with the following procedure:\u003c/p\u003e\n\u003cp\u003eCALL apoc.refactor.categorize(\u0026lsquo;country\u0026rsquo;, \u0026lsquo;LOCATED_IN\u0026rsquo;, true, \u0026lsquo;Country\u0026rsquo;, \u0026lsquo;countryName\u0026rsquo;, [], 100)\u003c/p\u003e\n\u003cp\u003eHere, we have specified that we want to take the country property, which is on the Customer nodes and create a LOCATED_IN relationship that is outgoing from the customer to a new Country node with the property called countryName on the new node.\u003c/p\u003e\n\u003cp\u003eNote: This procedure will remove the country property from the Customer nodes and move them to Country, rather than making a copy of the property to the new nodes.\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Verify categories\u003c/p\u003e\n\u003cp\u003eNow, if we run either our visualization or a sample data query, we can verify. Here, we will run a sample data query to see move of the property from Customer to Country.\u003c/p\u003e\n\u003cp\u003eMATCH (c:Customer)-[rel]-\u0026gt;(other)\u003cbr /\u003e\nRETURN c, rel, other\u003c/p\u003e\n\u003cp\u003eIf you click on a Customer node in the result set, you can see that the country property from customers no longer exists on those nodes and has been moved over to new Country nodes as countryName property. Everything looks as we expect it!\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348112816_1621294288",
+      "id": "paragraph_1635348112816_1621294288",
+      "dateCreated": "2021-10-27 15:21:52.816",
+      "dateStarted": "2021-10-29 12:50:27.240",
+      "dateFinished": "2021-10-29 12:50:27.251",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\u003d\u003d Refactor relationships to other nodes\n\nTaking refactoring to the next level, we may want to change existing structure of our graph to represent the idea that customers purchase products, rather than orders. So, instead of having Customer PURCHASED Order, as we do now, it could be that Customer PURCHASED Product. This could help us see more easily which products are most popular or prioritize stocking of products that larger customers rely upon.\n\nThe apoc.refactor.to procedure can help us do that.\n\nFormat: apoc.refactor.to(relationship, endNode)\n\nThe procedure has 2 parameters -\n\n    the relationship that we want to change\n\n    the node where we want the relationship to go\n\n\u003d\u003d apoc.refactor.to Example:\n\nWe can alter where the PURCHASED relationship goes with the APOC code below.\n\nMATCH (c:Customer)-[rel:PURCHASED]-(o:Order)-[rel2:ORDERS]-(p:Product)\nCALL apoc.refactor.to(rel, p) YIELD output\nRETURN output\n\nFor verification, we can retrieve some customers and related entities to see that now Customer nodes are connected to Product nodes directly with a PURCHASED relationship.\n\nMATCH (c:Customer)-[rel]-(other)\nRETURN c, rel, other LIMIT 50\n\nWith this new structure, we can run queries to see how many different products a customer has purchased, how many products within specific categories, and most similar customers (based on products in common) without going through the Order nodes to find this information.\n\nNote: We have also diluted our order tracking where we no longer can easily tell which orders a specific customer made. Refactoring may make some queries easier, but others more complex. Impacts of changes should be evaluated.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:27.339",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Refactor relationships to other nodes\u003c/p\u003e\n\u003cp\u003eTaking refactoring to the next level, we may want to change existing structure of our graph to represent the idea that customers purchase products, rather than orders. So, instead of having Customer PURCHASED Order, as we do now, it could be that Customer PURCHASED Product. This could help us see more easily which products are most popular or prioritize stocking of products that larger customers rely upon.\u003c/p\u003e\n\u003cp\u003eThe apoc.refactor.to procedure can help us do that.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.to(relationship, endNode)\u003c/p\u003e\n\u003cp\u003eThe procedure has 2 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe relationship that we want to change\n\nthe node where we want the relationship to go\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.to Example:\u003c/p\u003e\n\u003cp\u003eWe can alter where the PURCHASED relationship goes with the APOC code below.\u003c/p\u003e\n\u003cp\u003eMATCH (c:Customer)-[rel:PURCHASED]-(o:Order)-[rel2:ORDERS]-(p:Product)\u003cbr /\u003e\nCALL apoc.refactor.to(rel, p) YIELD output\u003cbr /\u003e\nRETURN output\u003c/p\u003e\n\u003cp\u003eFor verification, we can retrieve some customers and related entities to see that now Customer nodes are connected to Product nodes directly with a PURCHASED relationship.\u003c/p\u003e\n\u003cp\u003eMATCH (c:Customer)-[rel]-(other)\u003cbr /\u003e\nRETURN c, rel, other LIMIT 50\u003c/p\u003e\n\u003cp\u003eWith this new structure, we can run queries to see how many different products a customer has purchased, how many products within specific categories, and most similar customers (based on products in common) without going through the Order nodes to find this information.\u003c/p\u003e\n\u003cp\u003eNote: We have also diluted our order tracking where we no longer can easily tell which orders a specific customer made. Refactoring may make some queries easier, but others more complex. Impacts of changes should be evaluated.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348117637_648932751",
+      "id": "paragraph_1635348117637_648932751",
+      "dateCreated": "2021-10-27 15:21:57.637",
+      "dateStarted": "2021-10-29 12:50:27.354",
+      "dateFinished": "2021-10-29 12:50:27.361",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\u003d\u003d Condensing multiple relationships\n\nWith our last update, you may have noticed that some customers have purchased certain products multiple times, causing multiple PURCHASED relationships to appear between a Customer and Product node when we moved the relationship from individual orders to more general products. We can condense these multiple relationships into a single PURCHASED relationship, as well as add a count property for the number of times a certain product has been ordered by that customer.\n\nThe apoc.refactor.mergeRelationships procedure can help.\n\nFormat: apoc.refactor.mergeRelationships([rel1, rel2])\n\nThe procedure has 2 parameters -\n\n    a list of the relationships we want to merge\n\n    any configuration for whether we want properties to be overwritten, discarded, or combined\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:27.453",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Condensing multiple relationships\u003c/p\u003e\n\u003cp\u003eWith our last update, you may have noticed that some customers have purchased certain products multiple times, causing multiple PURCHASED relationships to appear between a Customer and Product node when we moved the relationship from individual orders to more general products. We can condense these multiple relationships into a single PURCHASED relationship, as well as add a count property for the number of times a certain product has been ordered by that customer.\u003c/p\u003e\n\u003cp\u003eThe apoc.refactor.mergeRelationships procedure can help.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.mergeRelationships([rel1, rel2])\u003c/p\u003e\n\u003cp\u003eThe procedure has 2 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ea list of the relationships we want to merge\n\nany configuration for whether we want properties to be overwritten, discarded, or combined\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348136638_535583225",
+      "id": "paragraph_1635348136638_535583225",
+      "dateCreated": "2021-10-27 15:22:16.638",
+      "dateStarted": "2021-10-29 12:50:27.467",
+      "dateFinished": "2021-10-29 12:50:27.474",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\u003d\u003d apoc.refactor.mergeRelationships Example:\n\nNow, we can go ahead and see this in action to condense our relationships between customers and products to a single relationship and tracking the number of times a customer has purchased a particular product.\n\nMATCH (c:Customer)-[r:PURCHASED]-\u003e(p:Product)\nWITH c, p, collect(r) as rels, count(r) as relNum\nCALL apoc.refactor.mergeRelationships(rels, {properties: \u0027discard\u0027}) yield rel\nSET rel.purchaseCount \u003d relNum\nRETURN rel\n\nIn our query, we find Customer nodes with a PURCHASED relationship to Product nodes. We then aggregate those patterns into unique rows (based on aggregations for customer and product nodes), as well as collect the relationships into a list (so we can merge them) and count the relationships to store. The next line calls the procedure and passes in the list of relationships, adding configuration to discard properties on duplicate relationships and outputs the relationships from the merge. Next, we set the purchaseCount property on each relationship with the count of purchases between individual customers and products and return the results.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:27.567",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.mergeRelationships Example:\u003c/p\u003e\n\u003cp\u003eNow, we can go ahead and see this in action to condense our relationships between customers and products to a single relationship and tracking the number of times a customer has purchased a particular product.\u003c/p\u003e\n\u003cp\u003eMATCH (c:Customer)-[r:PURCHASED]-\u0026gt;(p:Product)\u003cbr /\u003e\nWITH c, p, collect(r) as rels, count(r) as relNum\u003cbr /\u003e\nCALL apoc.refactor.mergeRelationships(rels, {properties: \u0026lsquo;discard\u0026rsquo;}) yield rel\u003cbr /\u003e\nSET rel.purchaseCount \u003d relNum\u003cbr /\u003e\nRETURN rel\u003c/p\u003e\n\u003cp\u003eIn our query, we find Customer nodes with a PURCHASED relationship to Product nodes. We then aggregate those patterns into unique rows (based on aggregations for customer and product nodes), as well as collect the relationships into a list (so we can merge them) and count the relationships to store. The next line calls the procedure and passes in the list of relationships, adding configuration to discard properties on duplicate relationships and outputs the relationships from the merge. Next, we set the purchaseCount property on each relationship with the count of purchases between individual customers and products and return the results.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348147110_48008613",
+      "id": "paragraph_1635348147110_48008613",
+      "dateCreated": "2021-10-27 15:22:27.110",
+      "dateStarted": "2021-10-29 12:50:27.582",
+      "dateFinished": "2021-10-29 12:50:27.589",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\u003d\u003d Verify merged relationships\n\nIf we run a quick sample query like the one below, we can verify that we now have a single relationship between each Customer and Product and that the purchaseCount stores the number of times someone has purchased something.\n\nMATCH (n1:Customer)-[r]-\u003e(n2) RETURN r, n1, n2 LIMIT 25\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:27.681",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Verify merged relationships\u003c/p\u003e\n\u003cp\u003eIf we run a quick sample query like the one below, we can verify that we now have a single relationship between each Customer and Product and that the purchaseCount stores the number of times someone has purchased something.\u003c/p\u003e\n\u003cp\u003eMATCH (n1:Customer)-[r]-\u0026gt;(n2) RETURN r, n1, n2 LIMIT 25\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348151510_2035604528",
+      "id": "paragraph_1635348151510_2035604528",
+      "dateCreated": "2021-10-27 15:22:31.510",
+      "dateStarted": "2021-10-29 12:50:27.694",
+      "dateFinished": "2021-10-29 12:50:27.700",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-29 12:50:27.794",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348165978_2086027420",
+      "id": "paragraph_1635348165978_2086027420",
+      "dateCreated": "2021-10-27 15:22:45.978",
+      "status": "FINISHED"
+    }
+  ],
+  "name": "Refactor data",
+  "id": "2GKZNUE99",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {
+    "isRunning": false
+  }
+}

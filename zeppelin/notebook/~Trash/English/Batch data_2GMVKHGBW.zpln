@@ -1,0 +1,89 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n\u003d\u003d apoc.periodic.truncate\n\nThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies because it allows you very easily to wipe the entire database:\nCALL apoc.periodic.truncate({dropSchema: true})\nAs you can see we manage a configuration map that at this very moment (May 2021) manages just one property dropSchema\u003dtrue/false that eventually drops indexes and constraints.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-28 15:19:11.387",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d apoc.periodic.truncate\u003c/p\u003e\n\u003cp\u003eThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies because it allows you very easily to wipe the entire database:\u003cbr /\u003e\nCALL apoc.periodic.truncate({dropSchema: true})\u003cbr /\u003e\nAs you can see we manage a configuration map that at this very moment (May 2021) manages just one property dropSchema\u003dtrue/false that eventually drops indexes and constraints.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348504117_79924958",
+      "id": "paragraph_1635348504117_79924958",
+      "dateCreated": "2021-10-27 15:28:24.118",
+      "dateStarted": "2021-10-28 15:15:06.094",
+      "dateFinished": "2021-10-28 15:15:06.110",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-28 15:15:24.279",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635375503108_345428266",
+      "id": "paragraph_1635375503108_345428266",
+      "dateCreated": "2021-10-27 22:58:23.108",
+      "status": "FINISHED"
+    }
+  ],
+  "name": "Batch data",
+  "id": "2GMVKHGBW",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {
+    "isRunning": false
+  }
+}
