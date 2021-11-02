@@ -167,9 +167,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## CONFIGURATION\n\n### Location of config options\n\nAll config options from \u003c\u003cconfig-reference\u003e\u003e can be provided either in:\n\n\n- environment variables | set them either via `export key\u003dval` or via `--env` settings when used for docker.\n- `conf/apoc.conf` | located side-by-side with `conf/neo4j.conf` using the very same property style notation\n- system properties ??? todo - a sto punto lo tolgo e sti cazzi...\n\n```\nsome config can be present in `conf/neo4j.conf` to mantain compatibility with \u0027old\u0027 configuration manager, deprecated in 4.0\n```\n\n\nThe complete list of Apoc config is located https://neo4j.com/labs/apoc/4.1/config/#config-reference[here].\nAll boolean options have the default value set to **false**. This means that they are *disabled*, unless mentioned otherwise.\n\n\nUnlike the \u0027classic\u0027 neo4j configurations,\nin docker the apocconfigs we don\u0027t have to change the setting by adding `NEO4J_` and replacing `.` with `_` and `_` with `__`:\n- `dbms.logs.debug.level` --\u003e `NEO4J_dbms_logs_debug_level`\n- `apoc.export.file.enabled` --\u003e `apoc.export.file.enabled`\n        some config accept \u0027old\u0027 notation with `NEO4J_` prefix [`NEO4J_apoc_export_file_enabled`]\n",
+      "text": "%md\n\n## CONFIGURATION\n\n### Location of config options\n\nAll config options from \u003c\u003cconfig-reference\u003e\u003e can be provided either in:\n\n\n- environment variables | set them either via `export key\u003dval` or via `--env` settings when used for docker.\n- `conf/apoc.conf` | located side-by-side with `conf/neo4j.conf` using the very same property style notation\n- system properties\n\n```\nsome config can be present in `conf/neo4j.conf` to mantain compatibility with \u0027old\u0027 configuration manager, deprecated in 4.0\n```\n\n\nThe complete list of Apoc config is located https://neo4j.com/labs/apoc/4.1/config/#config-reference[here].\nAll boolean options have the default value set to **false**. This means that they are *disabled*, unless mentioned otherwise.\n\n\nUnlike the \u0027classic\u0027 neo4j configurations,\nin docker the apocconfigs we don\u0027t have to change the setting by adding `NEO4J_` and replacing `.` with `_` and `_` with `__`:\n- `dbms.logs.debug.level` --\u003e `NEO4J_dbms_logs_debug_level`\n- `apoc.export.file.enabled` --\u003e `apoc.export.file.enabled`\n        some config accept \u0027old\u0027 notation with `NEO4J_` prefix [`NEO4J_apoc_export_file_enabled`]\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 13:46:20.780",
+      "dateUpdated": "2021-11-02 09:00:09.892",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -194,7 +194,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eCONFIGURATION\u003c/h2\u003e\n\u003ch3\u003eLocation of config options\u003c/h3\u003e\n\u003cp\u003eAll config options from \u0026laquo;config-reference\u0026raquo; can be provided either in:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eenvironment variables | set them either via \u003ccode\u003eexport key\u003dval\u003c/code\u003e or via \u003ccode\u003e--env\u003c/code\u003e settings when used for docker.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003econf/apoc.conf\u003c/code\u003e | located side-by-side with \u003ccode\u003econf/neo4j.conf\u003c/code\u003e using the very same property style notation\u003c/li\u003e\n\u003cli\u003esystem properties ??? todo - a sto punto lo tolgo e sti cazzi\u0026hellip;\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\u003ccode\u003esome config can be present in `conf/neo4j.conf` to mantain compatibility with \u0027old\u0027 configuration manager, deprecated in 4.0\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eThe complete list of Apoc config is located \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/config/#config-reference\"\u003ehttps://neo4j.com/labs/apoc/4.1/config/#config-reference\u003c/a\u003e[here].\u003cbr /\u003e\nAll boolean options have the default value set to \u003cstrong\u003efalse\u003c/strong\u003e. This means that they are \u003cem\u003edisabled\u003c/em\u003e, unless mentioned otherwise.\u003c/p\u003e\n\u003cp\u003eUnlike the \u0026lsquo;classic\u0026rsquo; neo4j configurations,\u003cbr /\u003e\nin docker the apocconfigs we don\u0026rsquo;t have to change the setting by adding \u003ccode\u003eNEO4J_\u003c/code\u003e and replacing \u003ccode\u003e.\u003c/code\u003e with \u003ccode\u003e_\u003c/code\u003e and \u003ccode\u003e_\u003c/code\u003e with \u003ccode\u003e__\u003c/code\u003e:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003edbms.logs.debug.level\u003c/code\u003e \u0026ndash;\u0026gt; \u003ccode\u003eNEO4J_dbms_logs_debug_level\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.export.file.enabled\u003c/code\u003e \u0026ndash;\u0026gt; \u003ccode\u003eapoc.export.file.enabled\u003c/code\u003e\u003cbr /\u003e\nsome config accept \u0026lsquo;old\u0026rsquo; notation with \u003ccode\u003eNEO4J_\u003c/code\u003e prefix [\u003ccode\u003eNEO4J_apoc_export_file_enabled\u003c/code\u003e]\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eCONFIGURATION\u003c/h2\u003e\n\u003ch3\u003eLocation of config options\u003c/h3\u003e\n\u003cp\u003eAll config options from \u0026laquo;config-reference\u0026raquo; can be provided either in:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eenvironment variables | set them either via \u003ccode\u003eexport key\u003dval\u003c/code\u003e or via \u003ccode\u003e--env\u003c/code\u003e settings when used for docker.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003econf/apoc.conf\u003c/code\u003e | located side-by-side with \u003ccode\u003econf/neo4j.conf\u003c/code\u003e using the very same property style notation\u003c/li\u003e\n\u003cli\u003esystem properties\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\u003ccode\u003esome config can be present in `conf/neo4j.conf` to mantain compatibility with \u0027old\u0027 configuration manager, deprecated in 4.0\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eThe complete list of Apoc config is located \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/config/#config-reference\"\u003ehttps://neo4j.com/labs/apoc/4.1/config/#config-reference\u003c/a\u003e[here].\u003cbr /\u003e\nAll boolean options have the default value set to \u003cstrong\u003efalse\u003c/strong\u003e. This means that they are \u003cem\u003edisabled\u003c/em\u003e, unless mentioned otherwise.\u003c/p\u003e\n\u003cp\u003eUnlike the \u0026lsquo;classic\u0026rsquo; neo4j configurations,\u003cbr /\u003e\nin docker the apocconfigs we don\u0026rsquo;t have to change the setting by adding \u003ccode\u003eNEO4J_\u003c/code\u003e and replacing \u003ccode\u003e.\u003c/code\u003e with \u003ccode\u003e_\u003c/code\u003e and \u003ccode\u003e_\u003c/code\u003e with \u003ccode\u003e__\u003c/code\u003e:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003edbms.logs.debug.level\u003c/code\u003e \u0026ndash;\u0026gt; \u003ccode\u003eNEO4J_dbms_logs_debug_level\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.export.file.enabled\u003c/code\u003e \u0026ndash;\u0026gt; \u003ccode\u003eapoc.export.file.enabled\u003c/code\u003e\u003cbr /\u003e\nsome config accept \u0026lsquo;old\u0026rsquo; notation with \u003ccode\u003eNEO4J_\u003c/code\u003e prefix [\u003ccode\u003eNEO4J_apoc_export_file_enabled\u003c/code\u003e]\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -204,8 +204,8 @@
       "jobName": "paragraph_1635374701870_452524224",
       "id": "paragraph_1635374701870_452524224",
       "dateCreated": "2021-10-27 22:45:01.870",
-      "dateStarted": "2021-10-29 13:46:20.776",
-      "dateFinished": "2021-10-29 13:46:20.790",
+      "dateStarted": "2021-11-02 09:00:09.899",
+      "dateFinished": "2021-11-02 09:00:11.189",
       "status": "FINISHED"
     },
     {
@@ -506,9 +506,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n```\nThis guide is based on Apoc `4.3.x`. In other versions some procedures / functions could be a bit differents.\n```\n",
+      "text": "%md\n\n```\nThis guide is based on Apoc `4.3.x`. In other versions some procedures / functions could be a little different\n```\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 13:43:47.796",
+      "dateUpdated": "2021-11-02 09:02:15.806",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -521,8 +521,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -533,7 +533,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cpre\u003e\u003ccode\u003eThis guide is based on Apoc `4.3.x`. In other versions some procedures / functions could be a bit differents.\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cpre\u003e\u003ccode\u003eThis guide is based on Apoc `4.3.x`. In other versions some procedures / functions could be a little different\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -543,8 +543,8 @@
       "jobName": "paragraph_1635514962621_1447448077",
       "id": "paragraph_1635514962621_1447448077",
       "dateCreated": "2021-10-29 13:42:42.621",
-      "dateStarted": "2021-10-29 13:43:44.025",
-      "dateFinished": "2021-10-29 13:43:44.034",
+      "dateStarted": "2021-11-02 09:02:15.806",
+      "dateFinished": "2021-11-02 09:02:15.830",
       "status": "FINISHED"
     },
     {

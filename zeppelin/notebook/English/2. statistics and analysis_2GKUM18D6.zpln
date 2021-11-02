@@ -271,9 +271,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n// todo - spiegare sample\nCALL apoc.meta.nodeTypeProperties({excludeLabels:[label,,...]})",
+      "text": "%neo4j\n\nCALL apoc.meta.nodeTypeProperties({excludeLabels:[label,,...]})",
       "user": "anonymous",
-      "dateUpdated": "2021-10-30 16:54:45.992",
+      "dateUpdated": "2021-11-02 08:57:58.850",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,

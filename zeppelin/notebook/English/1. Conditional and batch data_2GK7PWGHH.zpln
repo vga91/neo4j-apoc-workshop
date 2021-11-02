@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. The conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\n\nal posto di `match (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)`\n        The FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\n        Quindi se voglio fare cose più complesse uso db.when\n\n\n    match (n:Prova)\n    with n\n    call apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\n    yield value return null\n",
+      "text": "%md\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. The conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\nIinstead of `match (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)`\n        The FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\n        So if I want to do more complex things I can use `db.when` procedure.\n\n\n    match (n:Prova)\n    with n\n    call apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\n    yield value return null\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 14:15:30.794",
+      "dateUpdated": "2021-11-02 09:03:42.440",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -28,7 +28,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. The conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\u003c/p\u003e\n\u003cp\u003eal posto di \u003ccode\u003ematch (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)\u003c/code\u003e\u003cbr /\u003e\nThe FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\u003cbr /\u003e\nQuindi se voglio fare cose più complesse uso db.when\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ematch (n:Prova)\nwith n\ncall apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\nyield value return null\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. The conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\u003cbr /\u003e\nIinstead of \u003ccode\u003ematch (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)\u003c/code\u003e\u003cbr /\u003e\nThe FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\u003cbr /\u003e\nSo if I want to do more complex things I can use \u003ccode\u003edb.when\u003c/code\u003e procedure.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ematch (n:Prova)\nwith n\ncall apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\nyield value return null\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -38,8 +38,8 @@
       "jobName": "paragraph_1635516691436_323316003",
       "id": "paragraph_1635516691436_323316003",
       "dateCreated": "2021-10-29 14:11:31.436",
-      "dateStarted": "2021-10-29 14:15:30.795",
-      "dateFinished": "2021-10-29 14:15:30.841",
+      "dateStarted": "2021-11-02 09:03:42.441",
+      "dateFinished": "2021-11-02 09:03:42.479",
       "status": "FINISHED"
     },
     {
