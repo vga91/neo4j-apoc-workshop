@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. The conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\nIinstead of `match (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)`\n        The FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\n        So if I want to do more complex things I can use `db.when` procedure.\n\n\n    match (n:Prova)\n    with n\n    call apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\n    yield value return null\n",
+      "text": "%md\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. The conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\nTo simulate a conditional Instead of `match (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.otherProp \u003d 0)`\n        The FOREACH clause can be used to update data, but with more complex use cases (for example a `MATCH`), we cannot use it.\n        So if I want to do more complex things I can use `apoc.when` / `apoc.case` procedure.\n\n\n    match (n:Prova)\n    with n\n    call apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\n    yield value return null\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 09:03:42.440",
+      "dateUpdated": "2021-11-02 09:15:14.138",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,8 +16,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -198,9 +198,9 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\n\nThe apoc.periodic.iterate procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. It provides a way to batch the data by dividing the workload into two parts:\n\na data-driven statement\n\n    This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\nan operation statement\n\n    This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\n\nThe data-driven statement is provided as the first statement that results in a stream of values to be processed. The operation statement is provided as the second statement to process one element at a time or (with batchMode: \"BATCH\") a batch at a time. The results of the data-driven statement are passed to the operation statement as parameters, so they are automatically made available with their names.\n\n\n| name | type | default | description\n| batchSize | Long | 10000 | run the specified number of operation statements in a single tx - params: {_count, _batch}\n| parallel | boolean | false | run operation statements in parallel (note that statements might deadlock if conflicting)\n| retries | Long | 0 | if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param \\{_retry}\n| batchMode | String | \"BATCH\" a| how data-driven statements should be processed by operation statement. Valid values are:\n\n* \"BATCH\" - execute operation statement once per batchSize. Operation statement is prefixed with the following, which extracts each field returned in the data-driven statement from the `$_batch` parameter:\n[source,cypher]\n----\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n----\n* \"SINGLE\" - execute operation statement one at a time\n* \"BATCH_SINGLE\" - execute operation statement once per batchSize, but leaves unpacking of batch to the operation statement.\nThe operation query can access the batched values via the `$_batch` parameter.\n\n| params | Map | {} | externally pass in map of params\n| concurrency | Long | 50 | number of concurrent tasks are generated when using `parallel:true`\n| failedParams | Long |  -1 | if set to a non-negative value, each failed batch up to `failedParams` parameter sets are returned in `yield failedParams`.\n| planner | Enum[DEFAULT, COST, IDP, DP] |  DEFAULT | Any planner other than `DEFAULT` will be prepended to the second statement as `cypher planner\u003d[VALUE_OF_CONFIG]` (or insert `planner\u003d[VALUE_OF_CONFIG]` with any existing query options).\n    This planner value (except for `DEFAULT`) has higher precedence than the planner defined in the query (if any).\n\n\n| first      | second |\n| ----------- | ----------- |\n| alpha      | beta       |\n| gamma   | delta        |\n| ...        | ... |\n\n`$_batch` is `[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027}  .....]`\n    \n    \n//  $_batch is [{firstColumn: firstResult, 2ndColumn: 2ndR]\n\n// with BATCH group in a variable $_batch (list of result) and then execute a \u0027UNWIND $_batch AS _batch WITH _batch.field1 AS field1, _batch.field2 AS field2\u0027\n// so second parameter is a single element of batch\nCALL apoc.periodic.iterate(\n  \"MATCH (p:Inizio) WHERE (p)-[:UGO]-\u003e() RETURN p\",\n  \"SET p:Actor\", // this is a single element of batch\n  {batchMode: \u0027BATCH_SINGLE\u0027,batchSize:10000, parallel:true})\n\n// BATCH_SINGLE - we have $_batch",
+      "text": "%md\n\n## Batching data\n\nThe apoc.periodic.iterate procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. It provides a way to batch the data by dividing the workload into two parts:\n\n- a data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\n- an operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\n\nThe data-driven statement is provided as the first statement that results in a stream of values to be processed. The operation statement is provided as the second statement to process one element at a time or (with batchMode: \"BATCH\") a batch at a time. The results of the data-driven statement are passed to the operation statement as parameters, so they are automatically made available with their names.\n\nWe can use the following:\n\n- batchSize (default: 10000) : run the specified number of operation statements in a single tx - params: {_count, _batch}\n- parallel | boolean | false : run operation statements in parallel (note that statements might deadlock if conflicting)\n- retries | Long | 0 : if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param \\{_retry}\n- batchMode | String | \"BATCH\" : how data-driven statements should be processed by operation statement. See above\n- params | Map | {} : externally pass in map of params |\n- concurrency | Long | 50 : number of concurrent tasks are generated when using `parallel:true` |\n- failedParams | Long |  -1 : if set to a non-negative value, each failed batch up to `failedParams` parameter sets are returned in `yield failedParams`.\n\n\n\n`batchMode` can have 3 values. \n`SINGLE` to perform one operation at a time. \nBoth `BATCH` and `BATCH_SINGLE` execute operation statement once per batchSize. In both modes, the results of data-driven statement will be grouped in a `$_batch`. For example, in this case:\n\n| first      | second | second |\n| ----------- | ----------- | --- |\n| alpha      | beta       | second |\n| gamma   | delta        | second |\n| ...        | ... | second |\n\n`$_batch` is `[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027}  .....]`\n\n    \nWith `BATCH` will be executed an unpacking of batch, that is:\n\n```\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n```\n\nInstead with `BATCH_SINGLE`\n\n\"SINGLE\" - execute operation statement one at a time\n\"BATCH_SINGLE\" - execute operation statement once per batchSize, but leaves unpacking of batch to the operation statement.\nThe operation query can access the batched values via the `$_batch` parameter.\n\n    \n    \n//  $_batch is [{firstColumn: firstResult, 2ndColumn: 2ndR]\n\n// with BATCH group in a variable $_batch (list of result) and then execute a \u0027UNWIND $_batch AS _batch WITH _batch.field1 AS field1, _batch.field2 AS field2\u0027\n// so second parameter is a single element of batch\nCALL apoc.periodic.iterate(\n  \"MATCH (p:Inizio) WHERE (p)-[:UGO]-\u003e() RETURN p\",\n  \"SET p:Actor\", \n  {batchMode: \u0027BATCH\u0027,batchSize:10000, parallel:true})\n\n// BATCH_SINGLE - we have $_batch",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 15:58:26.225",
+      "dateUpdated": "2021-11-02 09:58:39.435",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -213,8 +213,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -225,7 +225,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eThe apoc.periodic.iterate procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. It provides a way to batch the data by dividing the workload into two parts:\u003c/p\u003e\n\u003cp\u003ea data-driven statement\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eThis defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003ean operation statement\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eThis defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eThe data-driven statement is provided as the first statement that results in a stream of values to be processed. The operation statement is provided as the second statement to process one element at a time or (with batchMode: \u0026ldquo;BATCH\u0026rdquo;) a batch at a time. The results of the data-driven statement are passed to the operation statement as parameters, so they are automatically made available with their names.\u003c/p\u003e\n\u003cp\u003e| name | type | default | description\u003cbr /\u003e\n| batchSize | Long | 10000 | run the specified number of operation statements in a single tx - params: {_count, _batch}\u003cbr /\u003e\n| parallel | boolean | false | run operation statements in parallel (note that statements might deadlock if conflicting)\u003cbr /\u003e\n| retries | Long | 0 | if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param {_retry}\u003cbr /\u003e\n| batchMode | String | \u0026ldquo;BATCH\u0026rdquo; a| how data-driven statements should be processed by operation statement. Valid values are:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u0026ldquo;BATCH\u0026rdquo; - execute operation statement once per batchSize. Operation statement is prefixed with the following, which extracts each field returned in the data-driven statement from the \u003ccode\u003e$_batch\u003c/code\u003e parameter:\u003cbr /\u003e\n[source,cypher]\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr /\u003e\n\u003ch2\u003eUNWIND $_batch AS _batch\u003cbr /\u003e\nWITH _batch.field1 AS field1, _batch.field2 AS field2\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003e\u0026ldquo;SINGLE\u0026rdquo; - execute operation statement one at a time\u003c/li\u003e\n\u003cli\u003e\u0026ldquo;BATCH_SINGLE\u0026rdquo; - execute operation statement once per batchSize, but leaves unpacking of batch to the operation statement.\u003cbr /\u003e\nThe operation query can access the batched values via the \u003ccode\u003e$_batch\u003c/code\u003e parameter.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e| params | Map | {} | externally pass in map of params\u003cbr /\u003e\n| concurrency | Long | 50 | number of concurrent tasks are generated when using \u003ccode\u003eparallel:true\u003c/code\u003e\u003cbr /\u003e\n| failedParams | Long |  -1 | if set to a non-negative value, each failed batch up to \u003ccode\u003efailedParams\u003c/code\u003e parameter sets are returned in \u003ccode\u003eyield failedParams\u003c/code\u003e.\u003cbr /\u003e\n| planner | Enum[DEFAULT, COST, IDP, DP] |  DEFAULT | Any planner other than \u003ccode\u003eDEFAULT\u003c/code\u003e will be prepended to the second statement as \u003ccode\u003ecypher planner\u003d[VALUE_OF_CONFIG]\u003c/code\u003e (or insert \u003ccode\u003eplanner\u003d[VALUE_OF_CONFIG]\u003c/code\u003e with any existing query options).\u003cbr /\u003e\nThis planner value (except for \u003ccode\u003eDEFAULT\u003c/code\u003e) has higher precedence than the planner defined in the query (if any).\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003cth\u003efirst\u003c/th\u003e\u003cth\u003esecond\u003c/th\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003ealpha\u003c/td\u003e\u003ctd\u003ebeta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003egamma\u003c/td\u003e\u003ctd\u003edelta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003e\u003ccode\u003e$_batch\u003c/code\u003e is \u003ccode\u003e[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027} .....]\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003e//  $_batch is [{firstColumn: firstResult, 2ndColumn: 2ndR]\u003c/p\u003e\n\u003cp\u003e// with BATCH group in a variable $_batch (list of result) and then execute a \u0026lsquo;UNWIND $_batch AS _batch WITH _batch.field1 AS field1, _batch.field2 AS field2\u0026rsquo;\u003cbr /\u003e\n// so second parameter is a single element of batch\u003cbr /\u003e\nCALL apoc.periodic.iterate(\u003cbr /\u003e\n\u0026ldquo;MATCH (p:Inizio) WHERE (p)-[:UGO]-\u0026gt;() RETURN p\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;SET p:Actor\u0026rdquo;, // this is a single element of batch\u003cbr /\u003e\n{batchMode: \u0026lsquo;BATCH_SINGLE\u0026rsquo;,batchSize:10000, parallel:true})\u003c/p\u003e\n\u003cp\u003e// BATCH_SINGLE - we have $_batch\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eBatching data\u003c/h2\u003e\n\u003cp\u003eThe apoc.periodic.iterate procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. It provides a way to batch the data by dividing the workload into two parts:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ea data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\u003c/li\u003e\n\u003cli\u003ean operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe data-driven statement is provided as the first statement that results in a stream of values to be processed. The operation statement is provided as the second statement to process one element at a time or (with batchMode: \u0026ldquo;BATCH\u0026rdquo;) a batch at a time. The results of the data-driven statement are passed to the operation statement as parameters, so they are automatically made available with their names.\u003c/p\u003e\n\u003cp\u003eWe can use the following:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ebatchSize | Long | 10000 | run the specified number of operation statements in a single tx - params: {_count, _batch} |\u003c/li\u003e\n\u003cli\u003eparallel | boolean | false | run operation statements in parallel (note that statements might deadlock if conflicting) |\u003c/li\u003e\n\u003cli\u003eretries | Long | 0 | if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param {_retry} |\u003c/li\u003e\n\u003cli\u003ebatchMode | String | \u0026ldquo;BATCH\u0026rdquo; | how data-driven statements should be processed by operation statement. See above\u003c/li\u003e\n\u003cli\u003eparams | Map | {} | externally pass in map of params |\u003c/li\u003e\n\u003cli\u003econcurrency | Long | 50 | number of concurrent tasks are generated when using \u003ccode\u003eparallel:true\u003c/code\u003e |\u003c/li\u003e\n\u003cli\u003efailedParams | Long |  -1 | if set to a non-negative value, each failed batch up to \u003ccode\u003efailedParams\u003c/code\u003e parameter sets are returned in \u003ccode\u003eyield failedParams\u003c/code\u003e. |\u003c/li\u003e\n\u003cli\u003eplanner | Enum[DEFAULT, COST, IDP, DP] |  DEFAULT | Any planner other than \u003ccode\u003eDEFAULT\u003c/code\u003e will be prepended to the second statement as \u003ccode\u003ecypher planner\u003d[VALUE_OF_CONFIG]\u003c/code\u003e (or insert \u003ccode\u003eplanner\u003d[VALUE_OF_CONFIG]\u003c/code\u003e with any existing query options).\u003cbr /\u003e\nThis planner value (except for \u003ccode\u003eDEFAULT\u003c/code\u003e) has higher precedence than the planner defined in the query (if any). |\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003edata-driven statement from the \u003ccode\u003e$_batch\u003c/code\u003e parameter:\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eUNWIND $_batch AS _batch\u003cbr /\u003e\nWITH _batch.field1 AS field1, _batch.field2 AS field2\u003c/h2\u003e\n\u003cp\u003e\u0026ldquo;SINGLE\u0026rdquo; - execute operation statement one at a time\u003cbr /\u003e\n\u0026ldquo;BATCH_SINGLE\u0026rdquo; - execute operation statement once per batchSize, but leaves unpacking of batch to the operation statement.\u003cbr /\u003e\nThe operation query can access the batched values via the \u003ccode\u003e$_batch\u003c/code\u003e parameter.\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003cth\u003efirst\u003c/th\u003e\u003cth\u003esecond\u003c/th\u003e\u003cth\u003esecond\u003c/th\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003ealpha\u003c/td\u003e\u003ctd\u003ebeta\u003c/td\u003e\u003ctd\u003esecond\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003egamma\u003c/td\u003e\u003ctd\u003edelta\u003c/td\u003e\u003ctd\u003esecond\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003ctd\u003esecond\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003e\u003ccode\u003e$_batch\u003c/code\u003e is \u003ccode\u003e[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027} .....]\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003e//  $_batch is [{firstColumn: firstResult, 2ndColumn: 2ndR]\u003c/p\u003e\n\u003cp\u003e// with BATCH group in a variable $_batch (list of result) and then execute a \u0026lsquo;UNWIND $_batch AS _batch WITH _batch.field1 AS field1, _batch.field2 AS field2\u0026rsquo;\u003cbr /\u003e\n// so second parameter is a single element of batch\u003cbr /\u003e\nCALL apoc.periodic.iterate(\u003cbr /\u003e\n\u0026ldquo;MATCH (p:Inizio) WHERE (p)-[:UGO]-\u0026gt;() RETURN p\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;SET p:Actor\u0026rdquo;, // this is a single element of batch\u003cbr /\u003e\n{batchMode: \u0026lsquo;BATCH_SINGLE\u0026rsquo;,batchSize:10000, parallel:true})\u003c/p\u003e\n\u003cp\u003e// BATCH_SINGLE - we have $_batch\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -235,14 +235,14 @@
       "jobName": "paragraph_1635518181245_851865146",
       "id": "paragraph_1635518181245_851865146",
       "dateCreated": "2021-10-29 14:36:21.246",
-      "dateStarted": "2021-10-29 15:58:26.226",
-      "dateFinished": "2021-10-29 15:58:26.256",
+      "dateStarted": "2021-11-02 09:28:34.221",
+      "dateFinished": "2021-11-02 09:28:34.234",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nUNWIND range(1,999) as id create (:Start {alpha: id})-[rel:MY_PERIODIC_REL]-\u003e(:End);\n\n// the $_batch is [{p: Node(1)}, {p: Node(2)}, ....]\nCALL apoc.periodic.iterate(\n  \"MATCH (p) WHERE (p)-[:MY_PERIODIC_REL]-\u003e() RETURN p\",\n  \"WITH $_batch as b CREATE (batch:Batch) set batch.prop \u003d [item in b | item.p.myProp]\",\n  {batchMode: \u0027BATCH_SINGLE\u0027,batchSize:10000, parallel:true})\n\n// todo...\n\n//CALL apoc.periodic.iterate(\n  // \"MATCH ()-[rel:RELATED]-\u003e() RETURN rel\", \n  // \"UNWIND $_batch AS item CALL apoc.refactor.invert(item.rel) YIELD input, output RETURN input, output\",\n    //  {batchMode: \"BATCH\", batchSize: 100}\n//   {batchMode: \"BATCH_SINGLE\", batchSize: 100}\n//)\n//YIELD batches, operations\n//RETURN batches, operations AS total\n",
+      "text": "%neo4j\n\nUNWIND range(1,100) as id create (:Start {myProp: id})-[rel:MY_PERIODIC_REL]-\u003e(:End);\n\nCALL apoc.periodic.iterate(\n  \"MATCH (p) WHERE (p)-[:MY_PERIODIC_REL]-\u003e() RETURN p\",\n  \"SET p:AnotherLabel\", // this is a single element of batch UNWINDed\n  {batchMode: \u0027BATCH\u0027,batchSize:10, parallel:false})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 16:01:17.581",
+      "dateUpdated": "2021-11-02 10:00:07.313",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -251,7 +251,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 134.006,
+              "height": 300.0,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -259,9 +259,96 @@
                   "tableColumnTypeState": {
                     "names": {
                       "batches": "string",
-                      "total.total": "string",
-                      "total.committed": "string",
-                      "total.failed": "string"
+                      "total": "string",
+                      "timeTaken": "string",
+                      "committedOperations": "string",
+                      "failedOperations": "string",
+                      "failedBatches": "string",
+                      "retries": "string",
+                      "batch.total": "string",
+                      "batch.committed": "string",
+                      "batch.failed": "string",
+                      "operations.total": "string",
+                      "operations.committed": "string",
+                      "operations.failed": "string",
+                      "wasTerminated": "string",
+                      "updateStatistics.nodesDeleted": "string",
+                      "updateStatistics.labelsAdded": "string",
+                      "updateStatistics.relationshipsCreated": "string",
+                      "updateStatistics.nodesCreated": "string",
+                      "updateStatistics.propertiesSet": "string",
+                      "updateStatistics.relationshipsDeleted": "string",
+                      "updateStatistics.labelsRemoved": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n20\t200\t0\t200\t0\t0\t0\t20\t20\t0\t200\t200\t0\tFALSE\t0\t200\t0\t0\t0\t0\t0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635847089976_739455528",
+      "id": "paragraph_1635847089976_739455528",
+      "dateCreated": "2021-11-02 09:58:09.976",
+      "dateStarted": "2021-11-02 10:00:06.208",
+      "dateFinished": "2021-11-02 10:00:06.576",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nmatch (s:Start) return distinct labels(s)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 10:00:38.726",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "labels(s)": "string"
                     },
                     "updated": false
                   },
@@ -296,7 +383,95 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "batches\ttotal.total\ttotal.committed\ttotal.failed\n3000\t300000\t300000\t0\n"
+            "data": "labels(s)\n[\"Start\",\"AnotherLabel\"]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635847187269_311493915",
+      "id": "paragraph_1635847187269_311493915",
+      "dateCreated": "2021-11-02 09:59:47.269",
+      "dateStarted": "2021-11-02 10:00:38.740",
+      "dateFinished": "2021-11-02 10:00:38.760",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n//UNWIND range(1,100) as id create (:Start {myProp: id})-[rel:MY_PERIODIC_REL]-\u003e(:End);\n\n// the $_batch is [{p: Node(1)}, {p: Node(2)}, ....]\nCALL apoc.periodic.iterate(\n  \"MATCH (p) WHERE (p)-[:MY_PERIODIC_REL]-\u003e() RETURN p\",\n  \"WITH $_batch as b CREATE (batch:Batch) set batch.prop \u003d [item in b | item.p.myProp]\",\n  {batchMode: \u0027BATCH_SINGLE\u0027,batchSize:10, parallel:false})\n\n// todo...\n\n//CALL apoc.periodic.iterate(\n  // \"MATCH ()-[rel:RELATED]-\u003e() RETURN rel\", \n  // \"UNWIND $_batch AS item CALL apoc.refactor.invert(item.rel) YIELD input, output RETURN input, output\",\n    //  {batchMode: \"BATCH\", batchSize: 100}\n//   {batchMode: \"BATCH_SINGLE\", batchSize: 100}\n//)\n//YIELD batches, operations\n//RETURN batches, operations AS total\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 10:00:49.742",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "batches": "string",
+                      "total": "string",
+                      "timeTaken": "string",
+                      "committedOperations": "string",
+                      "failedOperations": "string",
+                      "failedBatches": "string",
+                      "retries": "string",
+                      "batch.total": "string",
+                      "batch.committed": "string",
+                      "batch.failed": "string",
+                      "operations.total": "string",
+                      "operations.committed": "string",
+                      "operations.failed": "string",
+                      "wasTerminated": "string",
+                      "updateStatistics.nodesDeleted": "string",
+                      "updateStatistics.labelsAdded": "string",
+                      "updateStatistics.relationshipsCreated": "string",
+                      "updateStatistics.nodesCreated": "string",
+                      "updateStatistics.propertiesSet": "string",
+                      "updateStatistics.relationshipsDeleted": "string",
+                      "updateStatistics.labelsRemoved": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n10\t100\t0\t100\t0\t0\t0\t10\t10\t0\t100\t100\t0\tFALSE\t0\t10\t0\t10\t10\t0\t0\n"
           }
         ]
       },
@@ -306,14 +481,84 @@
       "jobName": "paragraph_1635518708818_1857499773",
       "id": "paragraph_1635518708818_1857499773",
       "dateCreated": "2021-10-29 14:45:08.818",
-      "dateStarted": "2021-10-29 15:32:33.649",
-      "dateFinished": "2021-10-29 15:33:13.610",
+      "dateStarted": "2021-11-02 09:57:58.676",
+      "dateFinished": "2021-11-02 09:57:58.971",
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n\nEspecially for graph processing it is useful to run a query repeatedly in separate transactions until it doesn’t process and generates any results anymore. So you can iterate in batches over elements that don’t fulfill a condition and update them so that they do afterwards.\nas a safety net your statement used inside apoc.periodic.commit must contain a LIMIT clause.\n\nThe query is executed repeatedly in separate transactions until it returns 0.\n\n",
+      "text": "%neo4j\n\nMATCH (n:Batch) return n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 14:44:38.529",
+      "dateUpdated": "2021-11-02 10:12:02.053",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "prop": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":800,\"data\":{\"prop\":[1,2,3,4,5,6,7,8,9,10]},\"label\":\"Batch\"},{\"id\":816,\"data\":{\"prop\":[41,42,43,44,45,46,47,48,49,50]},\"label\":\"Batch\"},{\"id\":832,\"data\":{\"prop\":[81,82,83,84,85,86,87,88,89,90]},\"label\":\"Batch\"},{\"id\":804,\"data\":{\"prop\":[11,12,13,14,15,16,17,18,19,20]},\"label\":\"Batch\"},{\"id\":820,\"data\":{\"prop\":[51,52,53,54,55,56,57,58,59,60]},\"label\":\"Batch\"},{\"id\":836,\"data\":{\"prop\":[91,92,93,94,95,96,97,98,99,100]},\"label\":\"Batch\"},{\"id\":808,\"data\":{\"prop\":[21,22,23,24,25,26,27,28,29,30]},\"label\":\"Batch\"},{\"id\":824,\"data\":{\"prop\":[61,62,63,64,65,66,67,68,69,70]},\"label\":\"Batch\"},{\"id\":812,\"data\":{\"prop\":[31,32,33,34,35,36,37,38,39,40]},\"label\":\"Batch\"},{\"id\":828,\"data\":{\"prop\":[71,72,73,74,75,76,77,78,79,80]},\"label\":\"Batch\"},{\"id\":3998,\"data\":{\"prop\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,549,550,551,552,553,554,555,556,557,558,559,560,561,562,563,564,565,566,567,568,569,570,571,572,573,574,575,576,577,578,579,580,581,582,583,584,585,586,587,588,589,590,591,592,593,594,595,596,597,598,599,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,619,620,621,622,623,624,625,626,627,628,629,630,631,632,633,634,635,636,637,638,639,640,641,642,643,644,645,646,647,648,649,650,651,652,653,654,655,656,657,658,659,660,661,662,663,664,665,666,667,668,669,670,671,672,673,674,675,676,677,678,679,680,681,682,683,684,685,686,687,688,689,690,691,692,693,694,695,696,697,698,699,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723,724,725,726,727,728,729,730,731,732,733,734,735,736,737,738,739,740,741,742,743,744,745,746,747,748,749,750,751,752,753,754,755,756,757,758,759,760,761,762,763,764,765,766,767,768,769,770,771,772,773,774,775,776,777,778,779,780,781,782,783,784,785,786,787,788,789,790,791,792,793,794,795,796,797,798,799,800,801,802,803,804,805,806,807,808,809,810,811,812,813,814,815,816,817,818,819,820,821,822,823,824,825,826,827,828,829,830,831,832,833,834,835,836,837,838,839,840,841,842,843,844,845,846,847,848,849,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,867,868,869,870,871,872,873,874,875,876,877,878,879,880,881,882,883,884,885,886,887,888,889,890,891,892,893,894,895,896,897,898,899,900,901,902,903,904,905,906,907,908,909,910,911,912,913,914,915,916,917,918,919,920,921,922,923,924,925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,941,942,943,944,945,946,947,948,949,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999]},\"label\":\"Batch\"}],\"edges\":[],\"labels\":{\"Start\":\"#A80920\",\"End\":\"#1E8380\",\"Batch\":\"#B31EA7\",\"AnotherLabel\":\"#25508D\"},\"types\":[\"MY_PERIODIC_REL\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635846293577_421797261",
+      "id": "paragraph_1635846293577_421797261",
+      "dateCreated": "2021-11-02 09:44:53.578",
+      "dateStarted": "2021-11-02 10:12:02.073",
+      "dateFinished": "2021-11-02 10:12:02.153",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n\nEspecially for graph processing it is useful to run a query repeatedly in separate transactions until it doesn’t process and generates any results anymore. \nSo you can iterate in batches over elements that don’t fulfill a condition and update them so that they do afterwards.\n\nTherefore, we can use `apoc.periodic.commit`, with which the query is executed repeatedly in separate transactions until it returns 0.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 10:15:33.874",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -340,9 +585,9 @@
       "status": "READY"
     },
     {
-      "text": "%neo4j\n\ncall apoc.periodic.commit(\n  \"match (user:User) WHERE exists( user.city )\n   with user limit {limit}\n   MERGE (city:City {name:user.city})\n   MERGE (user)-[:LIVES_IN]-\u003e(city)\n   REMOVE user.city\n   RETURN count(*)\",\n  {limit:10000})",
+      "text": "%neo4j\n\n// apoc.periodic.commit must contain a LIMIT clause to batch results\n\ncall apoc.periodic.commit(\n  \"match (user:User) WHERE exists( user.city )\n   with user LIMIT {limit}\n   MERGE (city:City {name:user.city})\n   MERGE (user)-[:LIVES_IN]-\u003e(city)\n   REMOVE user.city\n   RETURN count(*)\",\n  {limit:10000})",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 14:43:37.542",
+      "dateUpdated": "2021-11-02 10:14:40.032",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -369,10 +614,51 @@
       "status": "READY"
     },
     {
-      "text": "%neo4j\n",
+      "text": "%md\n\n## Delete the entire database\n\nWe can use the `apoc.periodic.truncate` to delete periodically the entire database. This procedure uses the apoc.periodic.iterate under the hood.\nThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies.\n\n```\nCALL apoc.periodic.truncate({dropSchema: true})\n```\nWith dropSchema\u003dtrue/false that eventually drops indexes and constraints.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 14:44:38.615",
-      "config": {},
+      "dateUpdated": "2021-11-02 10:19:55.898",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635848145239_975766747",
+      "id": "paragraph_1635848145239_975766747",
+      "dateCreated": "2021-11-02 10:15:45.240",
+      "status": "READY"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 10:15:52.820",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
       "settings": {
         "params": {},
         "forms": {}
