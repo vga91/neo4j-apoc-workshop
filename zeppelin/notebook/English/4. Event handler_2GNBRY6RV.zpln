@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\u003d\u003d Event listener\n\n\nIn a trigger you register Cypher statements that are called when data in Neo4j is changed (created, updated, deleted).\nYou can run them before or after commit.\n\n```\nYou have to enable trigger through the config `apoc.trigger.enabled\u003dtrue` to use it.\n```\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| CALL apoc.trigger.add(name, statement, selector, params) yield name, statement, installed | add a trigger statement under a name,\nin the statement you can use `$createdNodes`, `$deletedNodes` etc., the selector is `{phase:\u0027before/after/rollback/afterAsync\u0027}`\nreturns previous and new trigger information, please check **Trigger Phase Table** for more details\n\n|\u003d\u003d\u003d\n\nIn particular, the add procedure accept \n\nThe transaction data from Neo4j is turned into appropriate data structures to be consumed as parameters to your statement, i.e. `$createdNodes`.\n\nThe parameters available are:\n\n[options\u003d\"header\"]\n|\u003d\u003d\u003d\n|Statement | Description\n|transactionId | returns the id of the transaction\n|commitTime | return the date of the transaction in milliseconds\n|createdNodes | when a node is created our trigger fires (list of nodes)\n|createdRelationships | when a relationship is created our trigger fires (list of relationships)\n|deletedNodes | when a node is deleted our trigger fires (list of nodes)\n|deletedRelationships | when a relationship is deleted our trigger fires (list of relationships)\n|removedLabels | when a label is removed our trigger fires (map of label to list of nodes)\n|removedNodeProperties | when a properties of node is removed our trigger fires (map of key to list of map of key,old,node)\n|removedRelationshipProperties | when a properties of relationship is removed our trigger fires (map of key to list of map of key,old,relationship)\n|assignedLabels | when a labes is assigned our trigger fires  (map of label to list of nodes)\n|assignedNodeProperties | when node property is assigned our trigger fires (map of key to list of map of key,old,new,node)\n|assignedRelationshipProperties | when relationship property is assigned our trigger fires (map of key to list of map of key,old,new,relationship)\n|metaData | a map containing the metadata of that transaction. Transaction meta data can be set on client side e.g. via https://neo4j.com/docs/api/java-driver/current/org/neo4j/driver/TransactionConfig.html#metadata--\n|\u003d\u003d\u003d\n\nYou can use these helper functions to extract nodes or relationships by label/relationship-type or updated property key.\n\n.Helper Functions\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.trigger.nodesByLabel($assignedLabels/$assignedNodeProperties,\u0027Label\u0027) | function to filter entries by label, to be used within a trigger statement with `$assignedLabels` and `$removedLabels`\n| apoc.trigger.propertiesByKey($assignedNodeProperties,\u0027key\u0027) | function to filter propertyEntries by property-key, to be used within a trigger statement with $assignedNode/RelationshipProperties and $removedNode/RelationshipProperties. Returns [{old,[new],key,node,relationship}]\n|\u003d\u003d\u003d\n\n\n\n- CALL apoc.trigger.remove(name) yield name, statement, installed | remove previously added trigger, returns trigger information\n- CALL apoc.trigger.removeAll() yield name, statement, installed | removes all previously added triggers , returns trigger information\n- CALL apoc.trigger.list() yield name, statement, installed | update and list all installed triggers\n- CALL apoc.trigger.pause(name) | it pauses the trigger\n- CALL apoc.trigger.resume(name) | it resumes the paused trigger\n\n\n\n\u003d\u003d\u003d Triggers Examples\n\n.Set properties connected to a node\n\nWe could add a trigger that when is added a specific property on a node, that property is added to all the nodes connected to this node\n\nDataset\n\n[source,cypher]\n----\nCREATE (d:Person {name:\u0027Daniel\u0027})\nCREATE (l:Person {name:\u0027Mary\u0027})\nCREATE (t:Person {name:\u0027Tom\u0027})\nCREATE (j:Person {name:\u0027John\u0027})\nCREATE (m:Person {name:\u0027Michael\u0027})\nCREATE (a:Person {name:\u0027Anne\u0027})\nCREATE (l)-[:DAUGHTER_OF]-\u003e(d)\nCREATE (t)-[:SON_OF]-\u003e(d)\nCREATE (t)-[:BROTHER]-\u003e(j)\nCREATE (a)-[:WIFE_OF]-\u003e(d)\nCREATE (d)-[:SON_OF]-\u003e(m)\nCREATE (j)-[:SON_OF]-\u003e(d)\n----\n\nimage::apoc.trigger.add.setAllConnectedNodes.dataset.png[width\u003d800]\n\nNow we add the trigger using `apoc.trigger.propertiesByKey` on the `surname` property\n\n[source,cypher]\n----\nCALL apoc.trigger.add(\u0027setAllConnectedNodes\u0027,\n\u0027UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties,\"surname\") as prop WITH prop.node as n MATCH(n)-[]-(a) SET a.complete \u003d n.name + n.nickname\u0027,\n{phase:\u0027after\u0027});\n----\n\nSo when we add the `surname` property on a node, it\u0027s added to all the nodes connected (in this case one level deep)\n\n[source,cypher]\n----\nMATCH (d:Person {name:\u0027Keanu Reeves\u0027})\nSET d.nickname \u003d \u0027KeRe\u0027\n----\n\nimage::apoc.trigger.add.setAllConnectedNodes.png[width\u003d800]\n\nThe `surname` property is add/change on all related nodes\n\n.Update labels\n\nDataset\n\n[source,cypher]\n----\nCREATE (k:Actor {name:\u0027Keanu Reeves\u0027})\nCREATE (l:Actor {name:\u0027Laurence Fishburne\u0027})\nCREATE (c:Actor {name:\u0027Carrie-Anne Moss\u0027})\nCREATE (m:Movie {title:\u0027Matrix\u0027})\nCREATE (k)-[:ACT_IN]-\u003e(m)\nCREATE (l)-[:ACT_IN]-\u003e(m)\nCREATE (c)-[:ACT_IN]-\u003e(m)\n----\n\nimage::apoc.trigger.add.setLabels.png[width\u003d800]\n\nWe add a trigger using `apoc.trigger.nodesByLabel` that when the label `Actor` of a node is removed, update all labels `Actor` with `Person`\n\n[source,cypher]\n----\nCALL apoc.trigger.add(\u0027updateLabels\u0027,\"UNWIND apoc.trigger.nodesByLabel($removedLabels,\u0027Actor\u0027) AS node\nMATCH (n:Actor)\nREMOVE n:Actor SET n:Person SET node:Person\", {phase:\u0027before\u0027})\n----\n\n[source,cypher]\n----\n\nMATCH (k:Actor {name:\u0027Keanu Reeves\u0027})\nREMOVE k:Actor\n----\n\nimage::apoc.trigger.add.setLabelsResult.png[width\u003d800]\n\n.Create relationship on a new node\n\nWe can add a trigger that connect every new node with label `Actor` and as  `name` property a specific value\n\n[source,cypher]\n----\nCALL apoc.trigger.add(\u0027create-rel-new-node\u0027,\"UNWIND $createdNodes AS n\nMATCH (m:Movie {title:\u0027Matrix\u0027})\nWHERE n:Actor AND n.name IN [\u0027Keanu Reeves\u0027,\u0027Laurence Fishburne\u0027,\u0027Carrie-Anne Moss\u0027]\nCREATE (n)-[:ACT_IN]-\u003e(m)\", {phase:\u0027before\u0027})\n----\n\n[source,cypher]\n----\nCREATE (k:Actor {name:\u0027Keanu Reeves\u0027})\nCREATE (l:Actor {name:\u0027Laurence Fishburne\u0027})\nCREATE (c:Actor {name:\u0027Carrie-Anne Moss\u0027})\nCREATE (a:Actor {name:\u0027Tom Hanks\u0027})\nCREATE (m:Movie {title:\u0027Matrix\u0027})\n----\n\nimage::apoc.trigger.add.create-rel-new-node.png[width\u003d800]\n\n.Pause trigger\n\nWe have the possibility to pause a trigger without remove it, if we will need it in the future\n\nimage::apoc.trigger.pause.png[width\u003d800]\n\n\n.Resume paused trigger\n\nWhen you need again of a trigger paused\n\nimage::apoc.trigger.resume.png[width\u003d800]\n\n.Enforcing property type\n\nFor this example, we would like that all the `reference` node properties are of type `STRING`\n\n[source,cypher]\n----\nCALL apoc.trigger.add(\"forceStringType\",\n\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\", {phase:\u0027before\u0027})\n----\n\n[source,cypher]\n----\nCREATE (a:Node) SET a.reference \u003d 1\n\nNeo.ClientError.Transaction.TransactionHookFailed\n----\n\n.Other examples\n[source,cypher]\n----\nCALL apoc.trigger.add(\u0027timestamp\u0027,\u0027UNWIND $createdNodes AS n SET n.ts \u003d timestamp()\u0027);\nCALL apoc.trigger.add(\u0027lowercase\u0027,\u0027UNWIND $createdNodes AS n SET n.id \u003d toLower(n.name)\u0027);\nCALL apoc.trigger.add(\u0027txInfo\u0027,   \u0027UNWIND $createdNodes AS n SET n.txId \u003d $transactionId, n.txTime \u003d $commitTime\u0027, {phase:\u0027after\u0027});\nCALL apoc.trigger.add(\u0027count-removed-rels\u0027,\u0027MATCH (c:Counter) SET c.count \u003d c.count + size([r IN $deletedRelationships WHERE type(r) \u003d \"X\"])\u0027)\nCALL apoc.trigger.add(\u0027lowercase-by-label\u0027,\u0027UNWIND apoc.trigger.nodesByLabel($assignedLabels,\u0027Person\u0027) AS n SET n.id \u003d toLower(n.name)\u0027)\n----\n\n// end::trigger[]\n\n.Trigger Phase Table\n.Helper Functions\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| Phase | Description\n| before | The trigger will be activate right `before` the commit. If no phase is specified, it\u0027s the default.\n| rollback | The trigger will be activate right after the  `rollback`\n| after | The trigger will be activate right `after` the commit\n| afterAsync | The trigger will be activate right `after` the commit and inside a new transaction and thread that will not\nimpact the original one.\nHeavy operations should be processed in this phase without blocking the original transaction.\n|\u003d\u003d\u003d\n",
+      "text": "%md\n\u003d\u003d Event listener\n\n\nIn a trigger you register Cypher statements that are called when data in Neo4j is changed (created, updated, deleted).\nYou can run them before or after commit.\n\n```\nYou have to enable trigger through the config `apoc.trigger.enabled\u003dtrue` to use it.\n```\n\n\nTo add a trigger you can execute this query:\n`CALL apoc.trigger.add(triggerName, statement, selector, params)` yield name, statement, installed | \nSecond param is the statement, in which you can put one of these parameters: `$createdNodes`, `$deletedNodes` etc.,\nreturns previous and new trigger information, please check **Trigger Phase Table** for more details\n\n|\u003d\u003d\u003d\n\n\nThe transaction data from Neo4j is turned into appropriate data structures to be consumed as parameters to your statement, i.e. `$createdNodes`.\n\nThe parameters available are:\n\n[options\u003d\"header\"]\n|\u003d\u003d\u003d\n|Statement | Description\n|transactionId | returns the id of the transaction\n|commitTime | return the date of the transaction in milliseconds\n|createdNodes | when a node is created our trigger fires (list of nodes)\n|createdRelationships | when a relationship is created our trigger fires (list of relationships)\n|deletedNodes | when a node is deleted our trigger fires (list of nodes)\n|deletedRelationships | when a relationship is deleted our trigger fires (list of relationships)\n|removedLabels | when a label is removed our trigger fires (map of label to list of nodes)\n|removedNodeProperties | when a properties of node is removed our trigger fires (map of key to list of map of key,old,node)\n|removedRelationshipProperties | when a properties of relationship is removed our trigger fires (map of key to list of map of key,old,relationship)\n|assignedLabels | when a labes is assigned our trigger fires  (map of label to list of nodes)\n|assignedNodeProperties | when node property is assigned our trigger fires (map of key to list of map of key,old,new,node)\n|assignedRelationshipProperties | when relationship property is assigned our trigger fires (map of key to list of map of key,old,new,relationship)\n|metaData | a map containing the metadata of that transaction. Transaction meta data can be set on client side e.g. via https://neo4j.com/docs/api/java-driver/current/org/neo4j/driver/TransactionConfig.html#metadata--\n|\u003d\u003d\u003d\n\nYou can use these helper functions to extract nodes or relationships by label/relationship-type or updated property key.\n\n.Helper Functions\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.trigger.nodesByLabel($assignedLabels/$assignedNodeProperties,\u0027Label\u0027) | function to filter entries by label, to be used within a trigger statement with `$assignedLabels` and `$removedLabels`\n| apoc.trigger.propertiesByKey($assignedNodeProperties,\u0027key\u0027) | function to filter propertyEntries by property-key, to be used within a trigger statement with $assignedNode/RelationshipProperties and $removedNode/RelationshipProperties. Returns [{old,[new],key,node,relationship}]\n|\u003d\u003d\u003d\n\n\n the selector is `{phase:\u0027before/after/rollback/afterAsync\u0027}`\n \n .Trigger Phase Table\n.Helper Functions\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| Phase | Description\n| before (default value) | The trigger will be activate right `before` the commit. If no phase is specified, it\u0027s the default.\n| rollback | The trigger will be activate right after the  `rollback`\n| after | The trigger will be activate right `after` the commit\n| afterAsync | The trigger will be activate right `after` the commit and inside a new transaction and thread that will not\nimpact the original one.\nHeavy operations should be processed in this phase without blocking the original transaction.\n|\u003d\u003d\u003d\n \n\nInto the 4th argument, you can put additional parameters: `{params: {paramMap}` \n\n\nIn addition to `trigger.add` there are the following procedures:\n\n- CALL apoc.trigger.remove(name) yield name, statement, installed | remove previously added trigger, returns trigger information\n- CALL apoc.trigger.removeAll() yield name, statement, installed | removes all previously added triggers , returns trigger information\n- CALL apoc.trigger.list() yield name, statement, installed | update and list all installed triggers\n- CALL apoc.trigger.pause(name) | it pauses the trigger\n- CALL apoc.trigger.resume(name) | it resumes the paused trigger\n\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:42:11.648",
+      "dateUpdated": "2021-11-02 14:50:18.258",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -44,9 +44,9 @@
     },
     {
       "title": "Install a trigger ",
-      "text": "%neo4j\n\nCALL apoc.trigger.add(\u0027setlabels\u0027,\u0027UNWIND apoc.trigger.nodesByLabel($assignedLabels,\"Trigger\") AS n SET n.triggered \u003d true\u0027,\n{phase:\u0027afterAsync\u0027})",
+      "text": "%neo4j\n\n// We could add a trigger that when is added a specific property on a node, that property is added to all the nodes connected to this node\n\nCALL apoc.trigger.add(\u0027setlabels\u0027,\u0027UNWIND apoc.trigger.nodesByLabel($assignedLabels,\"Trigger\") AS n SET n.triggered \u003d $triggered\u0027,\n{phase:\u0027afterAsync\u0027}, \n{params: {triggered: true}}) // param to be used in $triggered",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:54:37.958",
+      "dateUpdated": "2021-11-02 14:50:50.689",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -55,7 +55,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 134.006,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -65,6 +65,7 @@
                       "name": "string",
                       "query": "string",
                       "selector.phase": "string",
+                      "params.triggered": "string",
                       "installed": "string",
                       "paused": "string"
                     },
@@ -90,7 +91,7 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala",
+        "editorMode": "ace/mode/undefined",
         "title": true
       },
       "settings": {
@@ -102,7 +103,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "name\tquery\tselector.phase\tinstalled\tpaused\n\"setlabels\"\t\"UNWIND apoc.trigger.nodesByLabel($assignedLabels,\\\"Trigger\\\") AS n SET n.triggered \u003d true\"\tafterAsync\tTRUE\tFALSE\n"
+            "data": "name\tquery\tselector.phase\tparams.triggered\tinstalled\tpaused\n\"setlabels1\"\t\"UNWIND apoc.trigger.nodesByLabel($assignedLabels,\\\"Trigger\\\") AS n SET n.triggered1 \u003d $triggered\"\tafterAsync\ttrue\tTRUE\tFALSE\n"
           }
         ]
       },
@@ -112,15 +113,15 @@
       "jobName": "paragraph_1635853267522_1557662643",
       "id": "paragraph_1635853267522_1557662643",
       "dateCreated": "2021-11-02 11:41:07.522",
-      "dateStarted": "2021-11-02 11:52:59.279",
-      "dateFinished": "2021-11-02 11:52:59.393",
+      "dateStarted": "2021-11-02 14:48:36.870",
+      "dateFinished": "2021-11-02 14:48:37.211",
       "status": "FINISHED"
     },
     {
       "title": "Query to trigger ",
       "text": "%neo4j\n\nMATCH (d:Person {name:\u0027Keanu Reeves\u0027})\nSET d:Trigger\nRETURN d",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:54:16.588",
+      "dateUpdated": "2021-11-02 14:49:09.422",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -129,7 +130,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 84.0057,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -138,9 +139,7 @@
                     "names": {
                       "id": "string",
                       "label": "string",
-                      "nickname": "string",
-                      "name": "string",
-                      "born": "string"
+                      "name": "string"
                     },
                     "updated": false
                   },
@@ -176,7 +175,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"nickname\":\"KeRe\",\"born\":1964},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Movie\":\"#293A15\",\"Person\":\"#02BB9A\",\"Trigger\":\"#2FD220\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":40006,\"data\":{\"name\":\"Keanu Reeves\"},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Node\":\"#D91954\",\"Actor\":\"#E3A533\",\"Actorone\":\"#F31782\",\"LabelWithIdx\":\"#13D974\",\"Movie\":\"#B9B237\",\"TimeoutTest\":\"#B52491\",\"Person\":\"#CFC5B7\",\"Trigger\":\"#9DF49A\"},\"types\":[],\"directed\":true}"
           }
         ]
       },
@@ -186,15 +185,15 @@
       "jobName": "paragraph_1635853359717_1862278247",
       "id": "paragraph_1635853359717_1862278247",
       "dateCreated": "2021-11-02 11:42:39.717",
-      "dateStarted": "2021-11-02 11:53:02.870",
-      "dateFinished": "2021-11-02 11:53:03.227",
+      "dateStarted": "2021-11-02 14:49:06.146",
+      "dateFinished": "2021-11-02 14:49:06.201",
       "status": "FINISHED"
     },
     {
       "title": "Check trigger execution",
       "text": "%neo4j\n\nMATCH (p:Person {name:\u0027Keanu Reeves\u0027}) RETURN p",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:53:58.310",
+      "dateUpdated": "2021-11-02 14:49:11.069",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -213,9 +212,7 @@
                       "id": "string",
                       "label": "string",
                       "name": "string",
-                      "nickname": "string",
-                      "triggered": "string",
-                      "born": "string"
+                      "triggered1": "string"
                     },
                     "updated": false
                   },
@@ -251,7 +248,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"nickname\":\"KeRe\",\"triggered\":true,\"born\":1964},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Movie\":\"#293A15\",\"Person\":\"#02BB9A\",\"Trigger\":\"#2FD220\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":40006,\"data\":{\"name\":\"Keanu Reeves\",\"triggered1\":true},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Node\":\"#D91954\",\"Actor\":\"#E3A533\",\"Actorone\":\"#F31782\",\"LabelWithIdx\":\"#13D974\",\"Movie\":\"#B9B237\",\"TimeoutTest\":\"#B52491\",\"Person\":\"#CFC5B7\",\"Trigger\":\"#9DF49A\"},\"types\":[],\"directed\":true}"
           }
         ]
       },
@@ -261,9 +258,260 @@
       "jobName": "paragraph_1635853392081_796719443",
       "id": "paragraph_1635853392081_796719443",
       "dateCreated": "2021-11-02 11:43:12.081",
-      "dateStarted": "2021-11-02 11:53:11.398",
-      "dateFinished": "2021-11-02 11:53:11.456",
+      "dateStarted": "2021-11-02 14:49:10.907",
+      "dateFinished": "2021-11-02 14:49:10.940",
       "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n// 3rd parameter is null, so phase is \u0027before\u0027 by default\nCALL apoc.trigger.add(\u0027unique\u0027,\u0027UNWIND $createdNodes AS n SET n.unique \u003d $unique\u0027, null, {params: {unique: apoc.create.uuid()}}); ",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 14:59:44.526",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 118.011,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "name": "string",
+                      "query": "string",
+                      "selector": "string",
+                      "params.unique": "string",
+                      "installed": "string",
+                      "paused": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tquery\tselector\tparams.unique\tinstalled\tpaused\n\"unique\"\t\"UNWIND $createdNodes AS n SET n.unique \u003d $unique\"\tNULL\t62908388-0be6-44f9-a4de-9a9533bed222\tFALSE\tFALSE\n\"unique\"\t\"UNWIND $createdNodes AS n SET n.unique \u003d $unique\"\tNULL\t944d0429-3688-4694-afcf-39a3cb907a8f\tTRUE\tFALSE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864280616_762486125",
+      "id": "paragraph_1635864280616_762486125",
+      "dateCreated": "2021-11-02 14:44:40.616",
+      "dateStarted": "2021-11-02 14:59:40.434",
+      "dateFinished": "2021-11-02 14:59:40.526",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nCREATE (n:NodeWithTime);\nMATCH  (n:NodeWithTime) RETURN n;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 14:59:35.075",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 194.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "ts": "string",
+                      "unique": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":40007,\"data\":{\"ts\":1635864966241},\"label\":\"NodeWithTime\"},{\"id\":40008,\"data\":{\"ts\":1635864966241},\"label\":\"NodeWithTime\"},{\"id\":40009,\"data\":{\"ts\":1635864966241},\"label\":\"NodeWithTime\"},{\"id\":40010,\"data\":{\"unique\":\"62908388-0be6-44f9-a4de-9a9533bed222\",\"ts\":1635864966241},\"label\":\"NodeWithTime\"}],\"edges\":[],\"labels\":{\"Node\":\"#D91954\",\"Actor\":\"#E3A533\",\"Actorone\":\"#F31782\",\"LabelWithIdx\":\"#13D974\",\"Movie\":\"#B9B237\",\"TimeoutTest\":\"#B52491\",\"Person\":\"#CFC5B7\",\"Trigger\":\"#9DF49A\",\"NodeWithTime\":\"#5A05BA\"},\"types\":[],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864655639_1005439890",
+      "id": "paragraph_1635864655639_1005439890",
+      "dateCreated": "2021-11-02 14:50:55.639",
+      "dateStarted": "2021-11-02 14:59:21.387",
+      "dateFinished": "2021-11-02 14:59:21.524",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n.Enforcing property type\n\nFor this example, we would like that all the `reference` node properties are of type `STRING`\n\n[source,cypher]\n----\nCALL apoc.trigger.add(\"forceStringType\",\n\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\", {phase:\u0027before\u0027})\n----",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 14:44:22.234",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864199254_1511871497",
+      "id": "paragraph_1635864199254_1511871497",
+      "dateCreated": "2021-11-02 14:43:19.254",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\nCALL apoc.trigger.list",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 14:59:55.328",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 154.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "name": "string",
+                      "query": "string",
+                      "selector.phase": "string",
+                      "params.triggered": "string",
+                      "installed": "string",
+                      "paused": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tquery\tselector.phase\tparams.triggered\tinstalled\tpaused\n\"setlabels1\"\t\"UNWIND apoc.trigger.nodesByLabel($assignedLabels,\\\"Trigger\\\") AS n SET n.triggered1 \u003d $triggered\"\tafterAsync\ttrue\tTRUE\tFALSE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864312695_2074767345",
+      "id": "paragraph_1635864312695_2074767345",
+      "dateCreated": "2021-11-02 14:45:12.695",
+      "dateStarted": "2021-11-02 14:50:45.314",
+      "dateFinished": "2021-11-02 14:50:45.394",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nCREATE (a:Node) SET a.reference \u003d 1",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 14:44:26.471",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864255093_158993446",
+      "id": "paragraph_1635864255093_158993446",
+      "dateCreated": "2021-11-02 14:44:15.093",
+      "status": "READY"
     },
     {
       "text": "%md\n\u003d\u003d NPL\nnon so... dire che c\u0027è qualcosa ma giusto una panoramica e dire che fa...\n\n\u003d\u003d Virtual Resource\n\n// TODO - FORSE TOGLIERE?\n???? che cazz\u0027è https://neo4j.com/labs/apoc/4.1/virtual-resource/\n\n\u003d\u003d Virtual node\n\npanoramica e qualche esempio... --\u003e tipo se voglio caricare un csv e vedere una rappresentazione a grafo\n\n\u003d\u003d Virtual functions / proc\n\n// essendo virtuali, non funzionano le classiche funzioni native di Neo4j, perciò devo usare queste\napoc.rel.type\napoc.rel.endNode / apoc.rel.startNode\napoc.rel.id\n\n\n\n\u003d\u003d Cypher Execution\n\nhttps://neo4j.com/labs/apoc/4.1/cypher-execution/ --\u003e tanta roba... solo alcune\n// todo - lista delle cose... forse\n\n\n\n\u003d\u003d Running cypher statement\n// todo - trovare titolo più consono\n\n\n\nWe can use Cypher as a safe, graph-aware, partially compiled scripting language within APOC.\n\n// include::overview.adoc[tags\u003dcypher,labeloffset\u003d-1]\n\n[[running-cypher-overview]]\n\u003d\u003d\u003d Procedure Overview\n\nThe supported procedures are described in the table below:\n\n[separator\u003d¦,opts\u003dheader,cols\u003d\"5,1m,1m\"]\n|\u003d\u003d\u003d\n¦Qualified Name¦Type¦Release\ninclude::example$generated-documentation/apoc.cypher.doIt.adoc[]\ninclude::example$generated-documentation/apoc.cypher.run.adoc[]\ninclude::example$generated-documentation/apoc.cypher.runMany.adoc[]\ninclude::example$generated-documentation/apoc.cypher.parallel.adoc[]\ninclude::example$generated-documentation/apoc.cypher.parallel2.adoc[]\ninclude::example$generated-documentation/apoc.cypher.mapParallel.adoc[]\ninclude::example$generated-documentation/apoc.cypher.mapParallel2.adoc[]\ninclude::example$generated-documentation/apoc.cypher.runFirstColumn.adoc[]\ninclude::example$generated-documentation/apoc.cypher.runFirstColumnMany.adoc[]\ninclude::example$generated-documentation/apoc.cypher.runFirstColumnSingle.adoc[]\n|\u003d\u003d\u003d\n\n\n\n[[cypher-fast-node-count-by-label]]\n\u003d\u003d\u003d Example: Fast Node-Counts by Label\n\nWe can quickly compute the number of nodes for a specific label using the `count` function, but only if that\u0027s the only single thing in the query.\nFor example:\n\n[source,cypher]\n----\nMATCH (:Person) RETURN count(*);\n----\n\nWe can also combine several with `UNION ALL`:\n\n.Works\n[source,cypher]\n----\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*);\n----\n\nBut we can\u0027t do the same thing using the `WITH` clause:\n\n.Doesn\u0027t work\n[source,cypher]\n----\nMATCH (:Person)\nWITH count(*) as people\nMATCH (:Movie) RETURN people, count(*) as movies;\n----\n\nThis query will work out the count by iterating over all nodes, which is a very slow operation\n\nWe can use `apoc.cypher.run` to construct the `COUNT()` statements and run each of them individually, so it completes in a few ms.\n\n[source,cypher]\n----\nCALL db.labels() yield label\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count\n----\n\nYou can use a similar approach to get the property-keys per label:\n\n[source,cypher]\n----\nCALL db.labels() yield label\nCALL apoc.cypher.run(\"MATCH (n:`\"+label+\"`) RETURN keys(n) as keys LIMIT 1\",null) yield value\nRETURN label, value.keys as keys\n----\n\n\n",

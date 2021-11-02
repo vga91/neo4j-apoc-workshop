@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "\u003d\u003d apoc.agg\nTODO: mettere sezione a parte con apoc agg\n\napoc.agg.first invece di collect(p.name)[0]\n\napoc.agg.last invece di collect(p.name)[count(p.name)]\n\napoc.agg.nth invece di collect(p.name)[n]\n\n\u003d\u003d apoc.agg.percentile\n\nmatch (p:Person) where exists(p.born) return apoc.agg.percentile(p.born.year, [0.5, 0.75, 0.9…])\nto show immediately all percentiles\n\n\u003d\u003d apoc.agg.statistics\n\ncon stessa query precedente. Vedere i risultati\n\n\u003d\u003d apoc.algo\n\nspiegare brevemente un po\u0027 tutte\n",
+      "text": "",
       "user": "anonymous",
-      "dateUpdated": "2021-10-27 15:34:48.432",
+      "dateUpdated": "2021-11-02 15:03:16.832",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -30,7 +30,7 @@
       "status": "READY"
     }
   ],
-  "name": "Group data",
+  "name": "5. Group data",
   "id": "2GK3XBQNW",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",
