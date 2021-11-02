@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n## Meta information\n\nTo retrieve an overview of labels / relationship-type present, \n\nCALL apoc.meta.graphSample() - examines the database statistics to build the meta graph, very fast, might report extra relationships\n\nCALL apoc.meta.graph - examines the database statistics to create the meta-graph, post filters extra relationships by sampling\n\nCALL apoc.meta.subGraph({labels:[labels],rels:[rel-types],excludes:[label,rel-type,...]}) - examines a sample sub graph to create the meta-graph\n\nCALL apoc.meta.data - examines a subset of the graph to provide a tabular meta information\n\nCALL apoc.meta.schema - examines a subset of the graph to provide a map-like meta information\n\nCALL apoc.meta.stats yield labelCount, relTypeCount, propertyKeyCount, nodeCount, relCount, labels, relTypes, stats - returns the information stored in the transactional database statistics\n\nCALL apoc.meta.nodeTypeProperties({includeLabels:[label,...],includeRels:[rel-type,...],excludeLabels:[label,,...],excludeRels:[rel-type,...]}) - replaces built-in function for node property schema to provide a sample-based result for high performance - used by the Neo4J BI Connector\n\nCALL apoc.meta.relTypeProperties({includeLabels:[label,...],includeRels:[rel-type,...],excludeLabels:[label,...],excludeRels:[rel-type,...]}) - replaces built-in function for relationship property schema to provide a sample-based result for high performance - used by the Neo4J BI Con\n",
+      "text": "%md\n\n## Meta information\n\nTo retrieve an overview of labels / relationship-type present, and so on...\n\n- CALL apoc.meta.graphSample() - examines the database statistics to build the meta graph, very fast, might report extra relationships\n\n- CALL apoc.meta.graph - examines the database statistics to create the meta-graph, post filters extra relationships by sampling\n\n- CALL apoc.meta.subGraph({labels:[labels],rels:[rel-types],excludes:[label,rel-type,...]}) - examines a sample sub graph to create the meta-graph\n\n- CALL apoc.meta.data - examines a subset of the graph to provide a tabular meta information\n\n- CALL apoc.meta.schema - examines a subset of the graph to provide a map-like meta information\n\n- CALL apoc.meta.stats yield labelCount, relTypeCount, propertyKeyCount, nodeCount, relCount, labels, relTypes, stats - returns the information stored in the transactional database statistics\n\n- CALL apoc.meta.nodeTypeProperties({includeLabels:[label,...],includeRels:[rel-type,...],excludeLabels:[label,,...],excludeRels:[rel-type,...]}) - replaces built-in function for node property schema to provide a sample-based result for high performance - used by the Neo4J BI Connector\n\n- CALL apoc.meta.relTypeProperties({includeLabels:[label,...],includeRels:[rel-type,...],excludeLabels:[label,...],excludeRels:[rel-type,...]}) - replaces built-in function for relationship property schema to provide a sample-based result for high performance - used by the Neo4J BI Con\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 13:54:10.406",
+      "dateUpdated": "2021-10-30 16:48:12.499",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -43,9 +43,154 @@
       "status": "FINISHED"
     },
     {
+      "text": "%neo4j\ncall apoc.meta.stats()",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-30 16:52:58.364",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "labelCount": "string",
+                      "relTypeCount": "string",
+                      "propertyKeyCount": "string",
+                      "nodeCount": "string",
+                      "relCount": "string",
+                      "labels.Movie": "string",
+                      "labels.Person": "string",
+                      "relTypes.()-[:DIRECTED]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:PRODUCED]-\u003e()": "string",
+                      "relTypes.()-[:DIRECTED]-\u003e()": "string",
+                      "relTypes.()-[:PRODUCED]-\u003e()": "string",
+                      "relTypes.(:Person)-[:DIRECTED]-\u003e()": "string",
+                      "relTypes.()-[:REVIEWED]-\u003e()": "string",
+                      "relTypes.()-[:FOLLOWS]-\u003e(:Person)": "string",
+                      "relTypes.(:Person)-[:REVIEWED]-\u003e()": "string",
+                      "relTypes.()-[:PRODUCED]-\u003e(:Movie)": "string",
+                      "relTypes.()-[:FOLLOWS]-\u003e()": "string",
+                      "relTypes.()-[:WROTE]-\u003e()": "string",
+                      "relTypes.()-[:ACTED_IN]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:FOLLOWS]-\u003e()": "string",
+                      "relTypes.()-[:WROTE]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:WROTE]-\u003e()": "string",
+                      "relTypes.()-[:REVIEWED]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:ACTED_IN]-\u003e()": "string",
+                      "relTypes.()-[:ACTED_IN]-\u003e()": "string",
+                      "relTypesCount.ACTED_IN": "string",
+                      "relTypesCount.REVIEWED": "string",
+                      "relTypesCount.PRODUCED": "string",
+                      "relTypesCount.WROTE": "string",
+                      "relTypesCount.FOLLOWS": "string",
+                      "relTypesCount.DIRECTED": "string",
+                      "stats.relTypeCount": "string",
+                      "stats.propertyKeyCount": "string",
+                      "stats.labelCount": "string",
+                      "stats.nodeCount": "string",
+                      "stats.relCount": "string",
+                      "stats.labels.Movie": "string",
+                      "stats.labels.Person": "string",
+                      "stats.relTypes.()-[:DIRECTED]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:PRODUCED]-\u003e()": "string",
+                      "stats.relTypes.()-[:DIRECTED]-\u003e()": "string",
+                      "stats.relTypes.()-[:PRODUCED]-\u003e()": "string",
+                      "stats.relTypes.(:Person)-[:DIRECTED]-\u003e()": "string",
+                      "stats.relTypes.()-[:REVIEWED]-\u003e()": "string",
+                      "stats.relTypes.()-[:FOLLOWS]-\u003e(:Person)": "string",
+                      "stats.relTypes.(:Person)-[:REVIEWED]-\u003e()": "string",
+                      "stats.relTypes.()-[:PRODUCED]-\u003e(:Movie)": "string",
+                      "stats.relTypes.()-[:FOLLOWS]-\u003e()": "string",
+                      "stats.relTypes.()-[:WROTE]-\u003e()": "string",
+                      "stats.relTypes.()-[:ACTED_IN]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:FOLLOWS]-\u003e()": "string",
+                      "stats.relTypes.()-[:WROTE]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:WROTE]-\u003e()": "string",
+                      "stats.relTypes.()-[:REVIEWED]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:ACTED_IN]-\u003e()": "string",
+                      "stats.relTypes.()-[:ACTED_IN]-\u003e()": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "labelCount\trelTypeCount\tpropertyKeyCount\tnodeCount\trelCount\tlabels.Movie\tlabels.Person\trelTypes.()-[:DIRECTED]-\u003e(:Movie)\trelTypes.(:Person)-[:PRODUCED]-\u003e()\trelTypes.()-[:DIRECTED]-\u003e()\trelTypes.()-[:PRODUCED]-\u003e()\trelTypes.(:Person)-[:DIRECTED]-\u003e()\trelTypes.()-[:REVIEWED]-\u003e()\trelTypes.()-[:FOLLOWS]-\u003e(:Person)\trelTypes.(:Person)-[:REVIEWED]-\u003e()\trelTypes.()-[:PRODUCED]-\u003e(:Movie)\trelTypes.()-[:FOLLOWS]-\u003e()\trelTypes.()-[:WROTE]-\u003e()\trelTypes.()-[:ACTED_IN]-\u003e(:Movie)\trelTypes.(:Person)-[:FOLLOWS]-\u003e()\trelTypes.()-[:WROTE]-\u003e(:Movie)\trelTypes.(:Person)-[:WROTE]-\u003e()\trelTypes.()-[:REVIEWED]-\u003e(:Movie)\trelTypes.(:Person)-[:ACTED_IN]-\u003e()\trelTypes.()-[:ACTED_IN]-\u003e()\trelTypesCount.ACTED_IN\trelTypesCount.REVIEWED\trelTypesCount.PRODUCED\trelTypesCount.WROTE\trelTypesCount.FOLLOWS\trelTypesCount.DIRECTED\tstats.relTypeCount\tstats.propertyKeyCount\tstats.labelCount\tstats.nodeCount\tstats.relCount\tstats.labels.Movie\tstats.labels.Person\tstats.relTypes.()-[:DIRECTED]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:PRODUCED]-\u003e()\tstats.relTypes.()-[:DIRECTED]-\u003e()\tstats.relTypes.()-[:PRODUCED]-\u003e()\tstats.relTypes.(:Person)-[:DIRECTED]-\u003e()\tstats.relTypes.()-[:REVIEWED]-\u003e()\tstats.relTypes.()-[:FOLLOWS]-\u003e(:Person)\tstats.relTypes.(:Person)-[:REVIEWED]-\u003e()\tstats.relTypes.()-[:PRODUCED]-\u003e(:Movie)\tstats.relTypes.()-[:FOLLOWS]-\u003e()\tstats.relTypes.()-[:WROTE]-\u003e()\tstats.relTypes.()-[:ACTED_IN]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:FOLLOWS]-\u003e()\tstats.relTypes.()-[:WROTE]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:WROTE]-\u003e()\tstats.relTypes.()-[:REVIEWED]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:ACTED_IN]-\u003e()\tstats.relTypes.()-[:ACTED_IN]-\u003e()\n2\t6\t8\t171\t253\t38\t133\t44\t15\t44\t15\t44\t9\t3\t9\t15\t3\t10\t172\t3\t10\t10\t9\t172\t172\t172\t9\t15\t10\t3\t44\t6\t8\t2\t171\t253\t38\t133\t44\t15\t44\t15\t44\t9\t3\t9\t15\t3\t10\t172\t3\t10\t10\t9\t172\t172\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635612379063_2028984115",
+      "id": "paragraph_1635612379063_2028984115",
+      "dateCreated": "2021-10-30 16:46:19.063",
+      "dateStarted": "2021-10-30 16:52:56.195",
+      "dateFinished": "2021-10-30 16:52:56.255",
+      "status": "FINISHED"
+    },
+    {
       "text": "%neo4j\n\nCALL apoc.meta.data()",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 14:03:47.678",
+      "dateUpdated": "2021-10-30 16:50:56.732",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -121,9 +266,38 @@
       "jobName": "paragraph_1635515971440_1210427180",
       "id": "paragraph_1635515971440_1210427180",
       "dateCreated": "2021-10-29 13:59:31.440",
-      "dateStarted": "2021-10-29 14:03:12.491",
-      "dateFinished": "2021-10-29 14:03:12.649",
+      "dateStarted": "2021-10-30 16:50:56.753",
+      "dateFinished": "2021-10-30 16:50:56.959",
       "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n// todo - spiegare sample\nCALL apoc.meta.nodeTypeProperties({excludeLabels:[label,,...]})",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-30 16:54:45.992",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635612794975_468706129",
+      "id": "paragraph_1635612794975_468706129",
+      "dateCreated": "2021-10-30 16:53:14.976",
+      "status": "READY"
     },
     {
       "text": "%md\n\n## Monitoring\n\nProvides some useful procedures to monitor what is happening / happened in the db \n\n- call apoc.monitor.ids()\n- CALL apoc.monitor.kernel\n- CALL apoc.monitor.store()\n- CALL apoc.monitor.tx()\n",
@@ -498,9 +672,9 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can checking for db changes through these 2 procedures:\n\n\nThe following functions calculate hashsums over nodes, relationship or the entire graph.\n\n// If we want to handle entity changes\napoc.hashing.fingerprinting(object, {conf})\n\napoc.hashing.graph(\u003clist_of_props_to_ignore\u003e)\n\nhttps://neo4j.com/labs/apoc/4.1/overview/apoc.hashing/apoc.hashing.fingerprinting/\n\n// you can create an hashsum for the whole graph\n// fare un po\u0027 di prove\nhttps://neo4j.com/labs/apoc/4.1/overview/apoc.hashing/apoc.hashing.fingerprintGraph/\n// todo - source cyph\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;\n\n\n",
+      "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can verify db changes through these 2 procedures:\n\n\nThe following functions calculate hashsums over nodes, relationship or the entire graph.\n\n// If we want to handle entity changes\napoc.hashing.fingerprinting(object, {conf})\n\napoc.hashing.graph(\u003clist_of_props_to_ignore\u003e)\n\nhttps://neo4j.com/labs/apoc/4.1/overview/apoc.hashing/apoc.hashing.fingerprinting/\n\n// you can create an hashsum for the whole graph\n// fare un po\u0027 di prove\nhttps://neo4j.com/labs/apoc/4.1/overview/apoc.hashing/apoc.hashing.fingerprintGraph/\n// todo - source cyph\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 15:24:47.644",
+      "dateUpdated": "2021-10-30 16:55:16.510",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -513,8 +687,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -726,21 +900,21 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n\"nodeAllowMap\", Util.map(\"Person\", Collections.singletonList(\"name\")))\n\n\"WITH {nodes: apoc.coll.toSet(g.nodes), rels: apoc.coll.toSet(g.relationships)} AS map \" +\n                        \"RETURN apoc.hashing.fingerprinting(map, $conf) as hash \"",
+      "text": "%neo4j\n\n// \"nodeAllowMap\", Util.map(\"Person\", Collections.singletonList(\"name\")))\n\nWITH {nodes: apoc.coll.toSet(g.nodes), rels: apoc.coll.toSet(g.relationships)} AS map\nRETURN apoc.hashing.fingerprinting(map, {nodeAllowMap: {Person: \u0027name\u0027}}) as hash",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 12:52:39.428",
+      "dateUpdated": "2021-10-30 16:56:56.134",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
+          "language": "text",
+          "editOnDblClick": false,
           "completionKey": "TAB",
-          "completionSupport": false
+          "completionSupport": true
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/undefined"
       },
       "settings": {
         "params": {},
@@ -792,7 +966,7 @@
     {
       "text": "%neo4j\n\n// The following generates the fingerprint for Ryan, excluding the name property:\n// prova MATCH \n\nMATCH (person:Person {name: \u0027Keanu Reeves\u0027})\nWITH person, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"born\"]}) AS outputBornBefore\nset person.born \u003d rand() // we change born propery\nRETURN apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS output, outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"born\"]}) AS outputBorn , outputBornBefore\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 13:12:49.388",
+      "dateUpdated": "2021-10-30 16:57:22.003",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -801,7 +975,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 84.0057,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -862,9 +1036,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n\n\u003d\u003d Meta\n\nhttps://neo4j.com/labs/apoc/4.1/database-introspection/meta/\n\n\n\n\u003d\u003d monitoring procedures\nhttps://neo4j.com/labs/apoc/4.1/database-introspection/monitoring/\n\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.monitor.ids | node and relationships-ids in total and in use\n| apoc.monitor.kernel | store information such as kernel version, start time, read-only, database-name, store-log-version etc.\n| apoc.monitor.store | store size information for the different types of stores\n| apoc.monitor.tx | number of transactions total,opened,committed,concurrent,rolled-back,last-tx-id\n| apoc.monitor.locks(minWaitTime long) | db locking information such as avertedDeadLocks, lockCount, contendedLockCount and contendedLocks etc. (enterprise)\n|\u003d\u003d\u003d\n\n\n.The following returns ID usage:\n[source, cypher]\n----\nCALL apoc.monitor.ids();\n----\n\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1,1,1,1\"]\n|\u003d\u003d\u003d\n| nodeIds | relIds | propIds | relTypeIds\n| 400     | 3560   | 4000    | 7\n|\u003d\u003d\u003d\n\n.The following returns store information:\n[source, cypher]\n----\nCALL apoc.monitor.kernel();\n----\n\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1,1,1,1,1,1,1\"]\n|\u003d\u003d\u003d\n|readOnly | kernelVersion                                                           | storeId            | kernelStartTime       | databaseName | storeLogVersion | storeCreationDate\n|FALSE    | \"neo4j-kernel, version: 3.5.6,73866e84158298d5f4a7325b6466c0189ad21d11\" | \"7f450cfe1e4fefb5\" | \"2019-06-24 12:01:01\" | \"graph.db\"   | 0               | \"2019-06-24 11:59:28\"\n|\u003d\u003d\u003d\n\n.The following returns store size information:\n[source, cypher]\n----\nCALL apoc.monitor.store();\n----\n\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1,1,1,1,1,1,1\"]\n|\u003d\u003d\u003d\n| logSize | stringStoreSize | arrayStoreSize | relStoreSize | propStoreSize | totalStoreSize | nodeStoreSize\n| 691264  | 8192            | 8192           | 122400       | 171339        | 1207741        | 8190\n|\u003d\u003d\u003d\n\n.The following returns transaction information:\n[source, cypher]\n----\nCALL apoc.monitor.tx();\n----\n\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1,1,1,1,1,1\"]\n|\u003d\u003d\u003d\n| rolledBackTx | peakTx | lastTxId | currentOpenedTx | totalOpenedTx | totalTx\n| 2213         | 6      | 16       | 1               | 9170          | 6956\n|\u003d\u003d\u003d\n\n\u003d\u003d system database\n// with introduction of system database concept in neo4j 4.0\nhttps://neo4j.com/labs/apoc/4.1/database-introspection/systemdb/ -\u003e dire che vale solo per la 4.x\n\n.Procedures\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.systemdb.graph | returns a `nodes` and `relationships` stored in systemdb.\n| apoc.systemdb.execute | executes an DDL command or a list of DDL commands on system db, yields `row` for further processing\n|\u003d\u003d\u003d\n\n.isType example\n[source,cypher]\n----\nCALL apoc.systemdb.graph() YIELD nodes, relationships RETURN *;\nCALL apoc.systemdb.execute(\u0027SHOW DATABASES\u0027) YIELD row RETURN row.name as dbName;\nCALL apoc.systemdb.execute([\"CREATE USER foo\", \"GRANT ROLE myRole TO foo\"])\n----\n\n",
+      "text": "%md\n\n\n\u003d\u003d Meta\n\nhttps://neo4j.com/labs/apoc/4.1/database-introspection/meta/\n\n\n\u003d\u003d monitoring procedures\nhttps://neo4j.com/labs/apoc/4.1/database-introspection/monitoring/\n\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.monitor.ids | node and relationships-ids in total and in use\n| apoc.monitor.kernel | store information such as kernel version, start time, read-only, database-name, store-log-version etc.\n| apoc.monitor.store | store size information for the different types of stores\n| apoc.monitor.tx | number of transactions total,opened,committed,concurrent,rolled-back,last-tx-id\n| apoc.monitor.locks(minWaitTime long) | db locking information such as avertedDeadLocks, lockCount, contendedLockCount and contendedLocks etc. (enterprise)\n|\u003d\u003d\u003d\n\n\n.The following returns ID usage:\n[source, cypher]\n----\nCALL apoc.monitor.ids();\n----\n\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1,1,1,1\"]\n|\u003d\u003d\u003d\n| nodeIds | relIds | propIds | relTypeIds\n| 400     | 3560   | 4000    | 7\n|\u003d\u003d\u003d\n\n.The following returns store information:\n[source, cypher]\n----\nCALL apoc.monitor.kernel();\n----\n\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1,1,1,1,1,1,1\"]\n|\u003d\u003d\u003d\n|readOnly | kernelVersion                                                           | storeId            | kernelStartTime       | databaseName | storeLogVersion | storeCreationDate\n|FALSE    | \"neo4j-kernel, version: 3.5.6,73866e84158298d5f4a7325b6466c0189ad21d11\" | \"7f450cfe1e4fefb5\" | \"2019-06-24 12:01:01\" | \"graph.db\"   | 0               | \"2019-06-24 11:59:28\"\n|\u003d\u003d\u003d\n\n.The following returns store size information:\n[source, cypher]\n----\nCALL apoc.monitor.store();\n----\n\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1,1,1,1,1,1,1\"]\n|\u003d\u003d\u003d\n| logSize | stringStoreSize | arrayStoreSize | relStoreSize | propStoreSize | totalStoreSize | nodeStoreSize\n| 691264  | 8192            | 8192           | 122400       | 171339        | 1207741        | 8190\n|\u003d\u003d\u003d\n\n.The following returns transaction information:\n[source, cypher]\n----\nCALL apoc.monitor.tx();\n----\n\n\n.Results\n[opts\u003d\"header\",cols\u003d\"1,1,1,1,1,1\"]\n|\u003d\u003d\u003d\n| rolledBackTx | peakTx | lastTxId | currentOpenedTx | totalOpenedTx | totalTx\n| 2213         | 6      | 16       | 1               | 9170          | 6956\n|\u003d\u003d\u003d\n\n\u003d\u003d system database\n// with introduction of system database concept in neo4j 4.0\nhttps://neo4j.com/labs/apoc/4.1/database-introspection/systemdb/ -\u003e dire che vale solo per la 4.x\n\n.Procedures\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.systemdb.graph | returns a `nodes` and `relationships` stored in systemdb.\n| apoc.systemdb.execute | executes an DDL command or a list of DDL commands on system db, yields `row` for further processing\n|\u003d\u003d\u003d\n\n.isType example\n[source,cypher]\n----\nCALL apoc.systemdb.graph() YIELD nodes, relationships RETURN *;\nCALL apoc.systemdb.execute(\u0027SHOW DATABASES\u0027) YIELD row RETURN row.name as dbName;\nCALL apoc.systemdb.execute([\"CREATE USER foo\", \"GRANT ROLE myRole TO foo\"])\n----\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 13:17:00.091",
+      "dateUpdated": "2021-10-30 16:57:33.203",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -944,6 +1118,23 @@
       "dateStarted": "2021-10-27 23:07:47.884",
       "dateFinished": "2021-10-27 23:07:47.902",
       "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-30 16:58:02.092",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635613082092_52825019",
+      "id": "paragraph_1635613082092_52825019",
+      "dateCreated": "2021-10-30 16:58:02.092",
+      "status": "READY"
     },
     {
       "text": "%md\n\n\u003d\u003d apoc.metrics\n\nCALL apoc.metrics.get(\"neo4j.neo4j.transaction.started\")\nYIELD metric, map, timestamp\nRETURN metric, map, datetime({epochSeconds: timestamp}) AS timestamp\nLIMIT 5;\n\n\napoc.metrics.storage(directorySetting :: STRING?) :: (setting :: STRING?, freeSpaceBytes :: INTEGER?, totalSpaceBytes :: INTEGER?, usableSpaceBytes :: INTEGER?, percentFree :: FLOAT?)\n\napoc.metrics.list()\n",
