@@ -198,9 +198,9 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\ntodo - apoc.util.validate....\n",
+      "text": "%md\n\ntodo - apoc.util.validate....\n\n\u003d\u003d Conditional exception\n\napoc.util.validate(predicate, message, params) | if the predicate yields to true raise an exception\nThe following throws an exception because the predicate is true:\n\nCypher\n[source, cypher]\n----\nWITH true AS predicate\nCALL apoc.util.validate(predicate,\u0027message %d\u0027,[42])\nRETURN count(*);\n----\n\nThe following does nothing because the predicate is false:\n\n[source, cypher]\n----\nWITH false AS predicate\nCALL apoc.util.validate(predicate,\u0027message %d\u0027,[42])\nRETURN count(*);\n----\n\n\nValidate predicate it\u0027s the same but is a function:\n\n\n[source, cypher]\n----\nMATCH (a)\nWHERE apoc.util.validatePredicate(true,\u0027message %d\u0027,[42])\nRETURN a\n----\n\n\n[source, cypher]\n----\nRETURN apoc.util.validatePredicate(false,\u0027message %d\u0027,[42]) AS result\n----\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 15:02:30.045",
+      "dateUpdated": "2021-11-02 15:52:37.735",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,

@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n# Collection and map functions\n\nHere is the list of all collection functions\n\n| xref::overview/apoc.coll/apoc.coll.sum.adoc[+++apoc.coll.sum([0.5,1,2.3])+++] | sum of all values in a list\n| xref::overview/apoc.coll/apoc.coll.avg.adoc[+++apoc.coll.avg([0.5,1,2.3])+++] | avg of all values in a list\n| xref::overview/apoc.coll/apoc.coll.min.adoc[+++apoc.coll.min([0.5,1,2.3])+++] | minimum of all values in a list\n| xref::overview/apoc.coll/apoc.coll.max.adoc[+++apoc.coll.max([0.5,1,2.3])+++] | maximum of all values in a list\n| xref::overview/apoc.coll/apoc.coll.sumLongs.adoc[+++apoc.coll.sumLongs([1,3,3])+++] | sums all numeric values in a list\n| xref::overview/apoc.coll/apoc.coll.partition.adoc[+++apoc.coll.partition(list,batchSize)+++] | partitions a list into sublists of `batchSize`\n| xref::overview/apoc.coll/apoc.coll.zip.adoc[+++apoc.coll.zip([list1],[list2])+++] | all values in a list\n| xref::overview/apoc.coll/apoc.coll.pairs.adoc[+++apoc.coll.pairs([1,2,3]) YIELD value+++] | [1,2],[2,3],[3,null]\n| xref::overview/apoc.coll/apoc.coll.pairsMin.adoc[+++apoc.coll.pairsMin([1,2,3]) YIELD value+++] | [1,2],[2,3]\n| xref::overview/apoc.coll/apoc.coll.toSet.adoc[+++apoc.coll.toSet([list])+++] | returns a unique list backed by a set\n| xref::overview/apoc.coll/apoc.coll.sort.adoc[+++apoc.coll.sort(coll)+++] | sort on Collections\n| xref::overview/apoc.coll/apoc.coll.sortNodes.adoc[+++apoc.coll.sortNodes([nodes], \u0027name\u0027)+++] | sort nodes by property, ascending sorting by adding ^ in front of the sorting field\n| xref::overview/apoc.coll/apoc.coll.sortMaps.adoc[+++apoc.coll.sortMaps([maps], \u0027key\u0027)+++] | sort maps by map key, ascending sorting by adding ^ in front of the sorting field\n| xref::overview/apoc.coll/apoc.coll.reverse.adoc[+++apoc.coll.reverse(coll)+++] | returns the reversed list\n| xref::overview/apoc.coll/apoc.coll.contains.adoc[+++apoc.coll.contains(coll, value)+++] | returns true if collection contains the value\n| xref::overview/apoc.coll/apoc.coll.containsAll.adoc[+++apoc.coll.containsAll(coll, values)+++] | optimized contains-all operation (using a HashSet) returns true or false\n| xref::overview/apoc.coll/apoc.coll.containsSorted.adoc[+++apoc.coll.containsSorted(coll, value)+++] | optimized contains on a sorted list operation (Collections.binarySearch) (returns true or false)\n| xref::overview/apoc.coll/apoc.coll.containsAllSorted.adoc[+++apoc.coll.containsAllSorted(coll, value)+++] | optimized contains-all on a sorted list operation (Collections.binarySearch) (returns true or false)\n| xref::overview/apoc.coll/apoc.coll.isEqualCollection.adoc[+++apoc.coll.isEqualCollection(coll, values)+++] | return true if two collections contain the same elements with the same cardinality in any order (using a HashMap)\n| xref::overview/apoc.coll/apoc.coll.union.adoc[+++apoc.coll.union(first, second)+++] | creates the distinct union of the 2 lists\n| xref::overview/apoc.coll/apoc.coll.unionAll.adoc[+++apoc.coll.unionAll(first, second)+++] | creates the full union with duplicates of the two lists\n| xref::overview/apoc.coll/apoc.coll.subtract.adoc[+++apoc.coll.subtract(first, second)+++] | returns unique set of first list with all elements of second list removed\n| xref::overview/apoc.coll/apoc.coll.removeAll.adoc[+++apoc.coll.removeAll(first, second)+++] | returns first list with all elements of second list removed\n| xref::overview/apoc.coll/apoc.coll.intersection.adoc[+++apoc.coll.intersection(first, second)+++] | returns the unique intersection of the two lists\n| xref::overview/apoc.coll/apoc.coll.disjunction.adoc[+++apoc.coll.disjunction(first, second)+++] | returns the disjunct set of the two lists\n| xref::overview/apoc.coll/apoc.coll.split.adoc[+++apoc.coll.split(list,value)+++] | splits collection on given values rows of lists, value itself will not be part of resulting lists\n| xref::overview/apoc.coll/apoc.coll.indexOf.adoc[+++apoc.coll.indexOf(coll, value)+++] | position of value in the list\n| xref::overview/apoc.coll/apoc.coll.shuffle.adoc[+++apoc.coll.shuffle(coll)+++] | returns the shuffled list\n| xref::overview/apoc.coll/apoc.coll.randomItem.adoc[+++apoc.coll.randomItem(coll)+++] | returns a random item from the list\n| xref::overview/apoc.coll/apoc.coll.randomItems.adoc[+++apoc.coll.randomItems(coll, itemCount, allowRepick: false)+++] | returns a list of `itemCount` random items from the list, optionally allowing picked elements to be picked again\n| xref::overview/apoc.coll/apoc.coll.containsDuplicates.adoc[+++apoc.coll.containsDuplicates(coll)+++] | returns true if a collection contains duplicate elements\n| xref::overview/apoc.coll/apoc.coll.duplicates.adoc[+++apoc.coll.duplicates(coll)+++] | returns a list of duplicate items in the collection\n| xref::overview/apoc.coll/apoc.coll.duplicatesWithCount.adoc[+++apoc.coll.duplicatesWithCount(coll)+++] | returns a list of duplicate items in the collection and their count, keyed by `item` and `count` (e.g., `[{item: xyz, count:2}, {item:zyx, count:5}]`)\n| xref::overview/apoc.coll/apoc.coll.occurrences.adoc[+++apoc.coll.occurrences(coll, item)+++] | returns the count of the given item in the collection\n| xref::overview/apoc.coll/apoc.coll.frequencies.adoc[+++apoc.coll.frequencies(coll)+++] | returns a list of frequencies of the items in the collection, keyed by `item` and `count` (e.g., `[{item: xyz, count:2}, {item:zyx, count:5}, {item:abc, count:1}]`)\n| xref::overview/apoc.coll/apoc.coll.frequenciesAsMap.adoc[+++apoc.coll.frequenciesAsMap(coll)+++] | return a map of frequencies of the items in the collection, keyed by `item` and `count` (e.g., `{1: 2, 3: 2}`)\n| xref::overview/apoc.coll/apoc.coll.sortMulti.adoc[+++apoc.coll.sortMulti+++] | sort list of maps by several sort fields (ascending with ^ prefix) and optionally applies limit and skip\n| xref::overview/apoc.coll/apoc.coll.flatten.adoc[+++apoc.coll.flatten+++] | flattens a nested list\n| xref::overview/apoc.coll/apoc.coll.combinations.adoc[+++apoc.coll.combinations(coll, minSelect, maxSelect:minSelect)+++] | Returns collection of all combinations of list elements of selection size between minSelect and maxSelect (default:minSelect), inclusive\n| xref::overview/apoc.coll/apoc.coll.elements.adoc[+++CALL apoc.coll.elements(list,limit,offset) yield _1,_2,..,_10,_1s,_2i,_3f,_4m,_5l,_6n,_7r,_8p+++] | deconstruct subset of mixed list into identifiers of the correct type\n| xref::overview/apoc.coll/apoc.coll.set.adoc[+++apoc.coll.set(coll, index, value)+++] | set index to value\n| xref::overview/apoc.coll/apoc.coll.insert.adoc[+++apoc.coll.insert(coll, index, value)+++] | insert value at index\n| xref::overview/apoc.coll/apoc.coll.insertAll.adoc[+++apoc.coll.insertAll(coll, index, values)+++] | insert values at index\n| xref::overview/apoc.coll/apoc.coll.remove.adoc[+++apoc.coll.remove(coll, index, [length\u003d1])+++] | remove range of values from index to length\n| xref::overview/apoc.coll/apoc.coll.different.adoc[+++apoc.coll.different(values)+++] | returns true if value are different\n| xref::overview/apoc.coll/apoc.coll.fill.adoc[+++apoc.coll.fill(item, count)+++] | returns a list with the given count of items\n| xref::overview/apoc.coll/apoc.coll.sortText.adoc[+++apoc.coll.sortText(coll, conf)+++] | sort on string based collections\n| xref::overview/apoc.coll/apoc.coll.pairWithOffset.adoc[+++apoc.coll.pairWithOffset(values, offset)+++] | returns a list of pairs defined by the offset\n\n\n",
+      "text": "%md\n\n# Collection and map functions\n\nHere is the list of all collection functions:\n\n- apoc.coll.sum([0.5,1,2.3]) - sum of all values in a list\n- apoc.coll.avg([0.5,1,2.3]) - avg of all values in a list\n- apoc.coll.min([0.5,1,2.3]) - minimum of all values in a list\n- apoc.coll.max([0.5,1,2.3]) - maximum of all values in a list\n- apoc.coll.sumLongs([1,3,3]) - sums all numeric values in a list\n- apoc.coll.partition(list,batchSize) - partitions a list into sublists of `batchSize`\n- apoc.coll.zip([list1],[list2]) - all values in a list\n- apoc.coll.pairs([1,2,3]) YIELD value - [1,2],[2,3],[3,null]\n- apoc.coll.pairsMin([1,2,3]) YIELD value - [1,2],[2,3]:\n- apoc.coll.toSet([list]) - returns a unique list backed by a set\n- apoc.coll.sort(coll) - sort on Collections\n- apoc.coll.sortNodes([nodes], \u0027name\u0027) - sort nodes by property, ascending sorting by adding ^ in front of the sorting field\n- apoc.coll.sortMaps([maps], \u0027key\u0027) - sort maps by map key, ascending sorting by adding ^ in front of the sorting field\n- apoc.coll.reverse(coll) - returns the reversed list\n- apoc.coll.contains(coll, value) - returns true if collection contains the value\n- apoc.coll.containsAll(coll, values) - optimized contains-all operation (using a HashSet) returns true or false\n- apoc.coll.containsSorted(coll, value) - optimized contains on a sorted list operation (Collections.binarySearch) (returns true or false)\n- apoc.coll.containsAllSorted(coll, value) - optimized contains-all on a sorted list operation (Collections.binarySearch) (returns true or false)\n- apoc.coll.isEqualCollection(coll, values) - return true if two collections contain the same elements with the same cardinality in any order (using a HashMap)\n- apoc.coll.union(first, second) - creates the distinct union of the 2 lists\n- apoc.coll.unionAll(first, second) - creates the full union with duplicates of the two lists\n- apoc.coll.subtract(first, second) - returns unique set of first list with all elements of second list removed\n- apoc.coll.removeAll(first, second) - returns first list with all elements of second list removed\n- apoc.coll.intersection(first, second) - returns the unique intersection of the two lists\n- apoc.coll.disjunction(first, second) - returns the disjunct set of the two lists\n- apoc.coll.split(list,value) - splits collection on given values rows of lists, value itself will not be part of resulting lists\n- apoc.coll.indexOf(coll, value) - position of value in the list\n- apoc.coll.shuffle(coll) - returns the shuffled list\n- apoc.coll.randomItem(coll) - returns a random item from the list\n- apoc.coll.randomItems(coll, itemCount, allowRepick:false) - returns a list of `itemCount` random items from the list, optionally allowing picked elements to be picked again\n- apoc.coll.containsDuplicates(coll) - returns true if a collection contains duplicate elements\n- apoc.coll.duplicates(coll) - returns a list of duplicate items in the collection\n- apoc.coll.duplicatesWithCount(coll) - returns a list of duplicate items in the collection and their count, keyed by `item` and `count` (e.g., `[{item:xyz, count:2}, {item:zyx, count:5}]`)\n- apoc.coll.occurrences(coll, item) - returns the count of the given item in the collection\n- apoc.coll.frequencies(coll) - returns a list of frequencies of the items in the collection, keyed by `item` and `count` (e.g., `[{item:xyz, count:2}, {item:zyx, count:5}, {item:abc, count:1}]`)\n- apoc.coll.frequenciesAsMap(coll) - return a map of frequencies of the items in the collection, keyed by `item` and `count` (e.g., `{1:2, 3:2}`)\n- apoc.coll.sortMulti - sort list of maps by several sort fields (ascending with ^ prefix) and optionally applies limit and skip\n- apoc.coll.flatten - flattens a nested list\n- apoc.coll.combinations(coll, minSelect, maxSelect:minSelect) - Returns collection of all combinations of list elements of selection size between minSelect and maxSelect (default:minSelect), inclusive\n- apoc.coll.elements(list,limit,offset) yield _1,_2,..,_10,_1s,_2i,_3f,_4m,_5l,_6n,_7r,_8p - deconstruct subset of mixed list into identifiers of the correct type\n- apoc.coll.set(coll, index, value) - set index to value\n- apoc.coll.insert(coll, index, value) - insert value at index\n- apoc.coll.insertAll(coll, index, values) - insert values at index\n- apoc.coll.remove(coll, index, [length\u003d1]) - remove range of values from index to length\n- apoc.coll.different(values) - returns true if value are different\n- apoc.coll.fill(item, count) - returns a list with the given count of items\n- apoc.coll.sortText(coll, conf) - sort on string based collections\n- apoc.coll.pairWithOffset(values, offset) - returns a list of pairs defined by the offset\n\nLet\u0027s see some examples:",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:08:56.503",
+      "dateUpdated": "2021-11-03 08:09:26.381",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,8 +16,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -28,7 +28,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eCollection and map functions\u003c/h1\u003e\n\u003cp\u003eHere is the list of all collection functions\u003c/p\u003e\n\u003cp\u003e| xref::overview/apoc.coll/apoc.coll.sum.adoc[+++apoc.coll.sum([0.5,1,2.3])+++] | sum of all values in a list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.avg.adoc[+++apoc.coll.avg([0.5,1,2.3])+++] | avg of all values in a list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.min.adoc[+++apoc.coll.min([0.5,1,2.3])+++] | minimum of all values in a list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.max.adoc[+++apoc.coll.max([0.5,1,2.3])+++] | maximum of all values in a list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.sumLongs.adoc[+++apoc.coll.sumLongs([1,3,3])+++] | sums all numeric values in a list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.partition.adoc[+++apoc.coll.partition(list,batchSize)+++] | partitions a list into sublists of \u003ccode\u003ebatchSize\u003c/code\u003e\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.zip.adoc[+++apoc.coll.zip([list1],[list2])+++] | all values in a list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.pairs.adoc[+++apoc.coll.pairs([1,2,3]) YIELD value+++] | [1,2],[2,3],[3,null]\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.pairsMin.adoc[+++apoc.coll.pairsMin([1,2,3]) YIELD value+++] | [1,2],[2,3]\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.toSet.adoc[+++apoc.coll.toSet([list])+++] | returns a unique list backed by a set\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.sort.adoc[+++apoc.coll.sort(coll)+++] | sort on Collections\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.sortNodes.adoc[+++apoc.coll.sortNodes([nodes], \u0026lsquo;name\u0026rsquo;)+++] | sort nodes by property, ascending sorting by adding ^ in front of the sorting field\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.sortMaps.adoc[+++apoc.coll.sortMaps([maps], \u0026lsquo;key\u0026rsquo;)+++] | sort maps by map key, ascending sorting by adding ^ in front of the sorting field\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.reverse.adoc[+++apoc.coll.reverse(coll)+++] | returns the reversed list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.contains.adoc[+++apoc.coll.contains(coll, value)+++] | returns true if collection contains the value\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.containsAll.adoc[+++apoc.coll.containsAll(coll, values)+++] | optimized contains-all operation (using a HashSet) returns true or false\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.containsSorted.adoc[+++apoc.coll.containsSorted(coll, value)+++] | optimized contains on a sorted list operation (Collections.binarySearch) (returns true or false)\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.containsAllSorted.adoc[+++apoc.coll.containsAllSorted(coll, value)+++] | optimized contains-all on a sorted list operation (Collections.binarySearch) (returns true or false)\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.isEqualCollection.adoc[+++apoc.coll.isEqualCollection(coll, values)+++] | return true if two collections contain the same elements with the same cardinality in any order (using a HashMap)\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.union.adoc[+++apoc.coll.union(first, second)+++] | creates the distinct union of the 2 lists\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.unionAll.adoc[+++apoc.coll.unionAll(first, second)+++] | creates the full union with duplicates of the two lists\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.subtract.adoc[+++apoc.coll.subtract(first, second)+++] | returns unique set of first list with all elements of second list removed\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.removeAll.adoc[+++apoc.coll.removeAll(first, second)+++] | returns first list with all elements of second list removed\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.intersection.adoc[+++apoc.coll.intersection(first, second)+++] | returns the unique intersection of the two lists\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.disjunction.adoc[+++apoc.coll.disjunction(first, second)+++] | returns the disjunct set of the two lists\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.split.adoc[+++apoc.coll.split(list,value)+++] | splits collection on given values rows of lists, value itself will not be part of resulting lists\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.indexOf.adoc[+++apoc.coll.indexOf(coll, value)+++] | position of value in the list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.shuffle.adoc[+++apoc.coll.shuffle(coll)+++] | returns the shuffled list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.randomItem.adoc[+++apoc.coll.randomItem(coll)+++] | returns a random item from the list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.randomItems.adoc[+++apoc.coll.randomItems(coll, itemCount, allowRepick: false)+++] | returns a list of \u003ccode\u003eitemCount\u003c/code\u003e random items from the list, optionally allowing picked elements to be picked again\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.containsDuplicates.adoc[+++apoc.coll.containsDuplicates(coll)+++] | returns true if a collection contains duplicate elements\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.duplicates.adoc[+++apoc.coll.duplicates(coll)+++] | returns a list of duplicate items in the collection\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.duplicatesWithCount.adoc[+++apoc.coll.duplicatesWithCount(coll)+++] | returns a list of duplicate items in the collection and their count, keyed by \u003ccode\u003eitem\u003c/code\u003e and \u003ccode\u003ecount\u003c/code\u003e (e.g., \u003ccode\u003e[{item: xyz, count:2}, {item:zyx, count:5}]\u003c/code\u003e)\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.occurrences.adoc[+++apoc.coll.occurrences(coll, item)+++] | returns the count of the given item in the collection\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.frequencies.adoc[+++apoc.coll.frequencies(coll)+++] | returns a list of frequencies of the items in the collection, keyed by \u003ccode\u003eitem\u003c/code\u003e and \u003ccode\u003ecount\u003c/code\u003e (e.g., \u003ccode\u003e[{item: xyz, count:2}, {item:zyx, count:5}, {item:abc, count:1}]\u003c/code\u003e)\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.frequenciesAsMap.adoc[+++apoc.coll.frequenciesAsMap(coll)+++] | return a map of frequencies of the items in the collection, keyed by \u003ccode\u003eitem\u003c/code\u003e and \u003ccode\u003ecount\u003c/code\u003e (e.g., \u003ccode\u003e{1: 2, 3: 2}\u003c/code\u003e)\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.sortMulti.adoc[+++apoc.coll.sortMulti+++] | sort list of maps by several sort fields (ascending with ^ prefix) and optionally applies limit and skip\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.flatten.adoc[+++apoc.coll.flatten+++] | flattens a nested list\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.combinations.adoc[+++apoc.coll.combinations(coll, minSelect, maxSelect:minSelect)+++] | Returns collection of all combinations of list elements of selection size between minSelect and maxSelect (default:minSelect), inclusive\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.elements.adoc[+++CALL apoc.coll.elements(list,limit,offset) yield _1,_2,..,_10,_1s,_2i,_3f,_4m,_5l,_6n,_7r,_8p+++] | deconstruct subset of mixed list into identifiers of the correct type\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.set.adoc[+++apoc.coll.set(coll, index, value)+++] | set index to value\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.insert.adoc[+++apoc.coll.insert(coll, index, value)+++] | insert value at index\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.insertAll.adoc[+++apoc.coll.insertAll(coll, index, values)+++] | insert values at index\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.remove.adoc[+++apoc.coll.remove(coll, index, [length\u003d1])+++] | remove range of values from index to length\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.different.adoc[+++apoc.coll.different(values)+++] | returns true if value are different\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.fill.adoc[+++apoc.coll.fill(item, count)+++] | returns a list with the given count of items\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.sortText.adoc[+++apoc.coll.sortText(coll, conf)+++] | sort on string based collections\u003cbr /\u003e\n| xref::overview/apoc.coll/apoc.coll.pairWithOffset.adoc[+++apoc.coll.pairWithOffset(values, offset)+++] | returns a list of pairs defined by the offset\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eCollection and map functions\u003c/h1\u003e\n\u003cp\u003eHere is the list of all collection functions:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.coll.sum([0.5,1,2.3]) - sum of all values in a list\u003c/li\u003e\n\u003cli\u003eapoc.coll.avg([0.5,1,2.3]) - avg of all values in a list\u003c/li\u003e\n\u003cli\u003eapoc.coll.min([0.5,1,2.3]) - minimum of all values in a list\u003c/li\u003e\n\u003cli\u003eapoc.coll.max([0.5,1,2.3]) - maximum of all values in a list\u003c/li\u003e\n\u003cli\u003eapoc.coll.sumLongs([1,3,3]) - sums all numeric values in a list\u003c/li\u003e\n\u003cli\u003eapoc.coll.partition(list,batchSize) - partitions a list into sublists of \u003ccode\u003ebatchSize\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003eapoc.coll.zip([list1],[list2]) - all values in a list\u003c/li\u003e\n\u003cli\u003eapoc.coll.pairs([1,2,3]) YIELD value - [1,2],[2,3],[3,null]\u003c/li\u003e\n\u003cli\u003eapoc.coll.pairsMin([1,2,3]) YIELD value - [1,2],[2,3]:\u003c/li\u003e\n\u003cli\u003eapoc.coll.toSet([list]) - returns a unique list backed by a set\u003c/li\u003e\n\u003cli\u003eapoc.coll.sort(coll) - sort on Collections\u003c/li\u003e\n\u003cli\u003eapoc.coll.sortNodes([nodes], \u0026lsquo;name\u0026rsquo;) - sort nodes by property, ascending sorting by adding ^ in front of the sorting field\u003c/li\u003e\n\u003cli\u003eapoc.coll.sortMaps([maps], \u0026lsquo;key\u0026rsquo;) - sort maps by map key, ascending sorting by adding ^ in front of the sorting field\u003c/li\u003e\n\u003cli\u003eapoc.coll.reverse(coll) - returns the reversed list\u003c/li\u003e\n\u003cli\u003eapoc.coll.contains(coll, value) - returns true if collection contains the value\u003c/li\u003e\n\u003cli\u003eapoc.coll.containsAll(coll, values) - optimized contains-all operation (using a HashSet) returns true or false\u003c/li\u003e\n\u003cli\u003eapoc.coll.containsSorted(coll, value) - optimized contains on a sorted list operation (Collections.binarySearch) (returns true or false)\u003c/li\u003e\n\u003cli\u003eapoc.coll.containsAllSorted(coll, value) - optimized contains-all on a sorted list operation (Collections.binarySearch) (returns true or false)\u003c/li\u003e\n\u003cli\u003eapoc.coll.isEqualCollection(coll, values) - return true if two collections contain the same elements with the same cardinality in any order (using a HashMap)\u003c/li\u003e\n\u003cli\u003eapoc.coll.union(first, second) - creates the distinct union of the 2 lists\u003c/li\u003e\n\u003cli\u003eapoc.coll.unionAll(first, second) - creates the full union with duplicates of the two lists\u003c/li\u003e\n\u003cli\u003eapoc.coll.subtract(first, second) - returns unique set of first list with all elements of second list removed\u003c/li\u003e\n\u003cli\u003eapoc.coll.removeAll(first, second) - returns first list with all elements of second list removed\u003c/li\u003e\n\u003cli\u003eapoc.coll.intersection(first, second) - returns the unique intersection of the two lists\u003c/li\u003e\n\u003cli\u003eapoc.coll.disjunction(first, second) - returns the disjunct set of the two lists\u003c/li\u003e\n\u003cli\u003eapoc.coll.split(list,value) - splits collection on given values rows of lists, value itself will not be part of resulting lists\u003c/li\u003e\n\u003cli\u003eapoc.coll.indexOf(coll, value) - position of value in the list\u003c/li\u003e\n\u003cli\u003eapoc.coll.shuffle(coll) - returns the shuffled list\u003c/li\u003e\n\u003cli\u003eapoc.coll.randomItem(coll) - returns a random item from the list\u003c/li\u003e\n\u003cli\u003eapoc.coll.randomItems(coll, itemCount, allowRepick:false) - returns a list of \u003ccode\u003eitemCount\u003c/code\u003e random items from the list, optionally allowing picked elements to be picked again\u003c/li\u003e\n\u003cli\u003eapoc.coll.containsDuplicates(coll) - returns true if a collection contains duplicate elements\u003c/li\u003e\n\u003cli\u003eapoc.coll.duplicates(coll) - returns a list of duplicate items in the collection\u003c/li\u003e\n\u003cli\u003eapoc.coll.duplicatesWithCount(coll) - returns a list of duplicate items in the collection and their count, keyed by \u003ccode\u003eitem\u003c/code\u003e and \u003ccode\u003ecount\u003c/code\u003e (e.g., \u003ccode\u003e[{item:xyz, count:2}, {item:zyx, count:5}]\u003c/code\u003e)\u003c/li\u003e\n\u003cli\u003eapoc.coll.occurrences(coll, item) - returns the count of the given item in the collection\u003c/li\u003e\n\u003cli\u003eapoc.coll.frequencies(coll) - returns a list of frequencies of the items in the collection, keyed by \u003ccode\u003eitem\u003c/code\u003e and \u003ccode\u003ecount\u003c/code\u003e (e.g., \u003ccode\u003e[{item:xyz, count:2}, {item:zyx, count:5}, {item:abc, count:1}]\u003c/code\u003e)\u003c/li\u003e\n\u003cli\u003eapoc.coll.frequenciesAsMap(coll) - return a map of frequencies of the items in the collection, keyed by \u003ccode\u003eitem\u003c/code\u003e and \u003ccode\u003ecount\u003c/code\u003e (e.g., \u003ccode\u003e{1:2, 3:2}\u003c/code\u003e)\u003c/li\u003e\n\u003cli\u003eapoc.coll.sortMulti - sort list of maps by several sort fields (ascending with ^ prefix) and optionally applies limit and skip\u003c/li\u003e\n\u003cli\u003eapoc.coll.flatten - flattens a nested list\u003c/li\u003e\n\u003cli\u003eapoc.coll.combinations(coll, minSelect, maxSelect:minSelect) - Returns collection of all combinations of list elements of selection size between minSelect and maxSelect (default:minSelect), inclusive\u003c/li\u003e\n\u003cli\u003eCALL apoc.coll.elements(list,limit,offset) yield _1,_2,..,_10,_1s,_2i,_3f,_4m,_5l,_6n,_7r,_8p - deconstruct subset of mixed list into identifiers of the correct type\u003c/li\u003e\n\u003cli\u003eapoc.coll.set(coll, index, value) - set index to value\u003c/li\u003e\n\u003cli\u003eapoc.coll.insert(coll, index, value) - insert value at index\u003c/li\u003e\n\u003cli\u003eapoc.coll.insertAll(coll, index, values) - insert values at index\u003c/li\u003e\n\u003cli\u003eapoc.coll.remove(coll, index, [length\u003d1]) - remove range of values from index to length\u003c/li\u003e\n\u003cli\u003eapoc.coll.different(values) - returns true if value are different\u003c/li\u003e\n\u003cli\u003eapoc.coll.fill(item, count) - returns a list with the given count of items\u003c/li\u003e\n\u003cli\u003eapoc.coll.sortText(coll, conf) - sort on string based collections\u003c/li\u003e\n\u003cli\u003eapoc.coll.pairWithOffset(values, offset) - returns a list of pairs defined by the offset\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eLet\u0026rsquo;s see some examples:\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -38,8 +38,8 @@
       "jobName": "paragraph_1635349487755_663980320",
       "id": "paragraph_1635349487755_663980320",
       "dateCreated": "2021-10-27 15:44:47.756",
-      "dateStarted": "2021-10-29 12:08:50.968",
-      "dateFinished": "2021-10-29 12:08:51.067",
+      "dateStarted": "2021-11-02 23:42:56.513",
+      "dateFinished": "2021-11-02 23:42:56.569",
       "status": "FINISHED"
     },
     {
@@ -250,9 +250,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nmatch (n)\nRETURN apoc.coll.randomItem(collect(n)) AS output;",
+      "text": "%neo4j\n\n// get a random node\nmatch (n) RETURN apoc.coll.randomItem(collect(n)) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:11:13.609",
+      "dateUpdated": "2021-11-02 23:43:36.725",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -261,7 +261,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 134.006,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -322,10 +322,22 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Map function\n\n| xref::overview/apoc.map/apoc.map.flatten.adoc[+++apoc.map.flatten(map,delimiter:\".\")+++] | flatten a nested map into a single-level map, for example turning {parent:{child:1}} into {\"parent.child\":1}\n| xref::overview/apoc.map/apoc.map.fromNodes.adoc[+++apoc.map.fromNodes(label, property)+++] | creates map from nodes with this label grouped by property\n\n| xref::overview/apoc.map/apoc.map.fromPairs.adoc[+++apoc.map.fromPairs([[key,value],[key2,value2],...])+++] | creates map from list with key-value pairs\n| xref::overview/apoc.map/apoc.map.fromLists.adoc[+++apoc.map.fromLists([keys],[values])+++] | creates map from a keys and a values list\n| xref::overview/apoc.map/apoc.map.fromValues.adoc[+++apoc.map.fromValues([key,value,key1,value1])+++] | creates map from alternating keys and values in a list\n| xref::overview/apoc.map/apoc.map.merge.adoc[+++apoc.map.merge({first},{second}) yield value+++] | creates map from merging the two source maps\n| xref::overview/apoc.map/apoc.map.mergeList.adoc[+++apoc.map.mergeList([{maps}]) yield value+++] | merges all maps in the list into one\n| xref::overview/apoc.map/apoc.map.setKey.adoc[+++apoc.map.setKey(map,key,value)+++] | returns the map with the value for this key added or replaced\n| xref::overview/apoc.map/apoc.map.removeKey.adoc[+++apoc.map.removeKey(map,key,{recursive:true/false})+++] | returns the map with the key removed (recursively if recursive is true)\n| xref::overview/apoc.map/apoc.map.removeKeys.adoc[+++apoc.map.removeKeys(map,[keys],{recursive:true/false})+++] | returns the map with the keys removed (recursively if recursive is true)\n| xref::overview/apoc.map/apoc.map.clean.adoc[+++apoc.map.clean(map,[keys],[values]) yield value+++] | removes the keys and values (e.g. null-placeholders) contained in those lists, good for data cleaning from CSV/JSON\n\n| xref::overview/apoc.map/apoc.map.groupBy.adoc[+++apoc.map.groupBy([maps/nodes/relationships],\u0027key\u0027) yield value+++] | creates a map of the list keyed by the given property, with single values\n| xref::overview/apoc.map/apoc.map.groupByMulti.adoc[+++apoc.map.groupByMulti([maps/nodes/relationships],\u0027key\u0027) yield value+++] | creates a map of the list keyed by the given property, with list values\n| xref::overview/apoc.map/apoc.map.sortedProperties.adoc[+++apoc.map.sortedProperties(map, ignoreCase:true)+++] | returns a list of key/value list pairs, with pairs sorted by keys alphabetically, with optional case sensitivity\n| xref::overview/apoc.map/apoc.map.updateTree.adoc[+++apoc.map.updateTree(tree,key,[[value,{data}]])+++] | returns map - adds the \\{data} map on each level of the nested tree, where the key-value pairs match\n| xref::overview/apoc.map/apoc.map.values.adoc[+++apoc.map.values(map, [key1,key2,key3,...],[addNullsForMissing])+++] | returns list of values indicated by the keys\n| xref::overview/apoc.map/apoc.map.submap.adoc[+++apoc.map.submap(map,keys,[[defaults]],[fail\u003dtrue])+++] | returns submap for keys or throws exception if one of the key doesn\u0027t exist and no default value given at that position\n| xref::overview/apoc.map/apoc.map.mget.adoc[+++apoc.map.mget(map,keys,[[defaults]],[fail\u003dtrue])+++] | returns list of values for keys or throws exception if one of the key doesn\u0027t exist and no default value given at that position\n| xref::overview/apoc.map/apoc.map.get.adoc[+++apoc.map.get(map,key,[default],[fail\u003dtrue])+++] | returns value for key or throws exception if key doesn\u0027t exist and no default given\n",
+      "text": "%md\n\n## Map function\n\nHere is a list of the map function availables:\n\n- apoc.map.flatten(map,delimiter:\".\") - flatten a nested map into a single-level map, for example turning {parent:{child:1}} into {\"parent.child\":1}\n- apoc.map.fromNodes(label, property) - creates map from nodes with this label grouped by property\n- apoc.map.fromPairs([[key,value],[key2,value2],...]) - creates map from list with key-value pairs\n- apoc.map.fromLists([keys],[values]) - creates map from a keys and a values list\n- apoc.map.fromValues([key,value,key1,value1]) - creates map from alternating keys and values in a list\n- apoc.map.merge({first},{second}) yield value - creates map from merging the two source maps\n- apoc.map.mergeList([{maps}]) yield value - merges all maps in the list into one\n- apoc.map.setKey(map,key,value) - returns the map with the value for this key added or replaced\n- apoc.map.removeKey(map,key,{recursive:true/false}) - returns the map with the key removed (recursively if recursive is true)\n- apoc.map.removeKeys(map,[keys],{recursive:true/false}) - returns the map with the keys removed (recursively if recursive is true)\n- apoc.map.clean(map,[keys],[values]) yield value - removes the keys and values (e.g. null-placeholders) contained in those lists, good for data cleaning from CSV/JSON\n- apoc.map.groupBy([maps/nodes/relationships],\u0027key\u0027) yield value - creates a map of the list keyed by the given property, with single values\n- apoc.map.groupByMulti([maps/nodes/relationships],\u0027key\u0027) yield value - creates a map of the list keyed by the given property, with list values\n- apoc.map.sortedProperties(map, ignoreCase:true) - returns a list of key/value list pairs, with pairs sorted by keys alphabetically, with optional case sensitivity\n- apoc.map.updateTree(tree,key,[[value,{data}]]) - returns map - adds the \\{data} map on each level of the nested tree, where the key-value pairs match\n- apoc.map.values(map, [key1,key2,key3,...],[addNullsForMissing]) - returns list of values indicated by the keys\n- apoc.map.submap(map,keys,[[defaults]],[fail\u003dtrue]) - returns submap for keys or throws exception if one of the key doesn\u0027t exist and no default value given at that position\n- apoc.map.mget(map,keys,[[defaults]],[fail\u003dtrue]) - returns list of values for keys or throws exception if one of the key doesn\u0027t exist and no default value given at that position\n- apoc.map.get(map,key,[default],[fail\u003dtrue]) - returns value for key or throws exception if key doesn\u0027t exist and no default given",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:12:09.037",
-      "config": {},
+      "dateUpdated": "2021-11-02 23:45:42.463",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -407,9 +419,9 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\n\u003d\u003d Text function\nhttps://neo4j.com/labs/apoc/4.1/misc/text-functions/\n// there are a bunch of useful text functions\n\n\n\n[[text-functions-overview]]\n\u003d\u003d Overview Text Functions\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| xref::overview/apoc.text/apoc.text.indexOf.adoc[apoc.text.indexOf(text, lookup, offset\u003d0, to\u003d-1\u003d\u003dlen)] | find the first occurence of the lookup string in the text, from inclusive, to exclusive,, -1 if not found, null if text is null.\n| xref::overview/apoc.text/apoc.text.indexesOf.adoc[apoc.text.indexesOf(text, lookup, from\u003d0, to\u003d-1\u003d\u003dlen)] | finds all occurences of the lookup string in the text, return list, from inclusive, to exclusive, empty list if not found, null if text is null.\n| xref::overview/apoc.text/apoc.text.replace.adoc[apoc.text.replace(text, regex, replacement)] | replace each substring of the given string that matches the given regular expression with the given replacement.\n| xref::overview/apoc.text/apoc.text.regexGroups.adoc[apoc.text.regexGroups(text, regex)] | returns an array containing a nested array for each match. The inner array contains all match groups.\n| xref::overview/apoc.text/apoc.text.join.adoc[+++apoc.text.join([\u0027text1\u0027,\u0027text2\u0027,...], delimiter)+++] | join the given strings with the given delimiter.\n| xref::overview/apoc.text/apoc.text.repeat.adoc[apoc.text.repeat(\u0027item\u0027,count)] | multiply the given string with the given count\n| xref::overview/apoc.text/apoc.text.format.adoc[apoc.text.format(text,[params],language)] | sprintf format the string with the params given, and optional param language (default value is \u0027en\u0027).\n| xref::overview/apoc.text/apoc.text.lpad.adoc[apoc.text.lpad(text,count,delim)] | left pad the string to the given width\n| xref::overview/apoc.text/apoc.text.rpad.adoc[apoc.text.rpad(text,count,delim)] | right pad the string to the given width\n| xref::overview/apoc.text/apoc.text.random.adoc[apoc.text.random(length, [valid])] | returns a random string to the specified length\n| xref::overview/apoc.text/apoc.text.capitalize.adoc[apoc.text.capitalize(text)] | capitalise the first letter of the word\n| xref::overview/apoc.text/apoc.text.capitalizeAll.adoc[apoc.text.capitalizeAll(text)] | capitalise the first letter of every word in the text\n| xref::overview/apoc.text/apoc.text.decapitalize.adoc[apoc.text.decapitalize(text)] | decapitalize the first letter of the word\n| xref::overview/apoc.text/apoc.text.decapitalizeAll.adoc[apoc.text.decapitalizeAll(text)] | decapitalize the first letter of all words\n| xref::overview/apoc.text/apoc.text.swapCase.adoc[apoc.text.swapCase(text)] | Swap the case of a string\n| xref::overview/apoc.text/apoc.text.camelCase.adoc[apoc.text.camelCase(text)] | Convert a string to camelCase\n| xref::overview/apoc.text/apoc.text.upperCamelCase.adoc[apoc.text.upperCamelCase(text)] | Convert a string to UpperCamelCase\n| xref::overview/apoc.text/apoc.text.snakeCase.adoc[apoc.text.snakeCase(text)] | Convert a string to snake-case\n| xref::overview/apoc.text/apoc.text.toUpperCase.adoc[apoc.text.toUpperCase(text)] | Convert a string to UPPER_CASE\n| xref::overview/apoc.text/apoc.text.charAt.adoc[apoc.text.charAt(text, index)] | Returns the decimal value of the character at the given index\n| xref::overview/apoc.text/apoc.text.code.adoc[apoc.text.code(codepoint)] | Returns the unicode character of the given codepoint\n| xref::overview/apoc.text/apoc.text.hexCharAt.adoc[apoc.text.hexCharAt(text, index)] | Returns the hex value string of the character at the given index\n| xref::overview/apoc.text/apoc.text.hexValue.adoc[apoc.text.hexValue(value)] | Returns the hex value string of the given value\n| xref::overview/apoc.text/apoc.text.byteCount.adoc[+++apoc.text.byteCount(text,[charset])+++] | return size of text in bytes\n| xref::overview/apoc.text/apoc.text.bytes.adoc[+++apoc.text.bytes(text,[charset])+++] | return bytes of the text\n| xref::overview/apoc.text/apoc.text.toCypher.adoc[apoc.text.toCypher(value, {skipKeys,keepKeys,skipValues,keepValues,skipNull,node,relationship,start,end})] | tries its best to convert the value to a cypher-property-string\n| xref::overview/apoc.text/apoc.text.base64Encode.adoc[apoc.text.base64Encode(text)] | Encode a string with Base64\n| xref::overview/apoc.text/apoc.text.base64Decode.adoc[apoc.text.base64Decode(text)] | Decode Base64 encoded string\n| xref::overview/apoc.text/apoc.text.base64UrlEncode.adoc[apoc.text.base64UrlEncode(url)] | Encode a url with Base64\n| xref::overview/apoc.text/apoc.text.base64UrlDecode.adoc[apoc.text.base64UrlDecode(url)] | Decode Base64 encoded url\n|\u003d\u003d\u003d\n\nThe `replace`, `split` and `regexGroups` functions work with regular expressions.\n\n\n[[text-functions-data-extraction]]\n\u003d\u003d Data Extraction\n\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.data.url(\u0027url\u0027) as {protocol,user,host,port,path,query,file,anchor} | turn URL into map structure\n| apoc.data.email(\u0027email_address\u0027) as {personal,user,domain} | extract the personal name, user and domain as a map (needs javax.mail jar)\n| apoc.data.domain(email_or_url) | *deprecated* returns domain part of the value\n|\u003d\u003d\u003d\n\n[[text-functions-text-similarity]]\n\u003d\u003d Text Similarity Functions\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.text.distance(text1, text2) | compare the given strings with the Levenshtein distance algorithm\n| apoc.text.levenshteinDistance(text1, text2) | compare the given strings with the Levenshtein distance algorithm\n| apoc.text.levenshteinSimilarity(text1, text2) | calculate the similarity (a value within 0 and 1) between two texts based on Levenshtein distance.\n| apoc.text.hammingDistance(text1, text2) | compare the given strings with the Hamming distance algorithm\n| apoc.text.jaroWinklerDistance(text1, text2) | compare the given strings with the Jaro-Winkler distance algorithm\n| apoc.text.sorensenDiceSimilarity(text1, text2) | compare the given strings with the Sørensen–Dice coefficient formula, assuming an English locale\n| apoc.text.sorensenDiceSimilarityWithLanguage(text1, text2, languageTag) | compare the given strings with the Sørensen–Dice coefficient formula, with the provided IETF language tag\n| apoc.text.fuzzyMatch(text1, text2) | check if 2 words can be matched in a fuzzy way (LevenShtein). Depending on the length of the String it will allow more characters that needs to be edited to match the second String (distance: length \u003c 3 then 0, length \u003c 5 then 1, else 2).\n|\u003d\u003d\u003d\nThe replace, split and regexGroups functions work with regular expressions.\n\n\n\n\n\u003d\u003d Data extraction\n\n\n\n\u003d\u003d Text Similarity\n\n// useful to data clean purpose\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.text.distance(text1, text2) | compare the given strings with the Levenshtein distance algorithm\n| apoc.text.levenshteinDistance(text1, text2) | compare the given strings with the Levenshtein distance algorithm\n| apoc.text.levenshteinSimilarity(text1, text2) | calculate the similarity (a value within 0 and 1) between two texts based on Levenshtein distance.\n| apoc.text.hammingDistance(text1, text2) | compare the given strings with the Hamming distance algorithm\n| apoc.text.jaroWinklerDistance(text1, text2) | compare the given strings with the Jaro-Winkler distance algorithm\n| apoc.text.sorensenDiceSimilarity(text1, text2) | compare the given strings with the Sørensen–Dice coefficient formula, assuming an English locale\n| apoc.text.sorensenDiceSimilarityWithLanguage(text1, text2, languageTag) | compare the given strings with the Sørensen–Dice coefficient formula, with the provided IETF language tag\n| apoc.text.fuzzyMatch(text1, text2) | check if 2 words can be matched in a fuzzy way (LevenShtein). Depending on the length of the String it will allow more characters that needs to be edited to match the second String (distance: length \u003c 3 then 0, length \u003c 5 then 1, else 2).\n|\u003d\u003d\u003d\n\n\n.will return \u0027HelloWorld\u0027\n[source,cypher]\n----\nRETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027)\n----\n\n[source,cypher]\n----\nRETURN apoc.text.regexGroups(\u0027abc \u003clink xxx1\u003eyyy1\u003c/link\u003e def \u003clink xxx2\u003eyyy2\u003c/link\u003e\u0027,\u0027\u003clink (\\\\w+)\u003e(\\\\w+)\u003c/link\u003e\u0027) AS result\n\n// [[\"\u003clink xxx1\u003eyyy1\u003c/link\u003e\", \"xxx1\", \"yyy1\"], [\"\u003clink xxx2\u003eyyy2\u003c/link\u003e\", \"xxx2\", \"yyy2\"]]\n----\n\n\n\n\u003d\u003d\u003d Compare the  strings with the Levenshtein distance\n\nCompare the given strings with the `StringUtils.distance(text1, text2)` method (Levenshtein).\n\n[source,cypher]\n----\nRETURN apoc.text.distance(\"Levenshtein\", \"Levenstein\") // 1\n----\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.data.url(\u0027url\u0027) as {protocol,user,host,port,path,query,file,anchor} | turn URL into map structure\n| apoc.data.email(\u0027email_address\u0027) as {personal,user,domain} | extract the personal name, user and domain as a map (needs javax.mail jar)\n| apoc.data.domain(email_or_url) | *deprecated* returns domain part of the value\n|\u003d\u003d\u003d\n\n\n[[text-functions-phonetic-comparison]]\n\u003d\u003d Phonetic Comparison Functions\n\nThe phonetic text (soundex) functions allow you to compute the soundex encoding of a given string.\nThere is also a procedure to compare how similar two strings sound under the soundex algorithm.\nAll soundex procedures by default assume the used language is US English.\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.text.phonetic(value) | Compute the US_ENGLISH phonetic soundex encoding of all words of the text value which can be a single string or a list of strings\n| apoc.text.doubleMetaphone(value) | Compute the Double Metaphone phonetic encoding of all words of the text value which can be a single string or a list of strings\n| apoc.text.clean(text) | strip the given string of everything except alpha numeric characters and convert it to lower case.\n| apoc.text.compareCleaned(text1, text2) | compare the given strings stripped of everything except alpha numeric characters converted to lower case.\n|\u003d\u003d\u003d\n\n.Procedure\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.text.phoneticDelta(text1, text2) yield phonetic1, phonetic2, delta | Compute the US_ENGLISH soundex character difference between two given strings\n|\u003d\u003d\u003d\n\n[source,cypher]\n----\n// will return \u0027H436\u0027\nRETURN apoc.text.phonetic(\u0027Hello, dear User!\u0027)\n----\n\n[source,cypher]\n----\n// will return \u00274\u0027  (very similar)\nRETURN apoc.text.phoneticDelta(\u0027Hello Mr Rabbit\u0027, \u0027Hello Mr Ribbit\u0027)\n----\n\n[[text-functions-formatting-text]]\n\u003d\u003d Formatting Text\n\nFormat the string with the params given, and optional param language.\n\n.without language param (\u0027en\u0027 default)\n\n[source,cypher]\n----\nRETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true]) AS value // abcd 42 3.1 true\n----\n\n.with language param\n\n[source,cypher]\n----\nRETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true],\u0027it\u0027) AS value // abcd 42 3,1 true\n----\n\n[[text-functions-string-search]]\n\u003d\u003d String Search\n\nThe `indexOf` function, provides the fist occurrence of the given `lookup` string within the `text`, or -1 if not found.\nIt can optionally take `from` (inclusive) and `to` (exclusive) parameters.\n\n[source,cypher]\n----\nRETURN apoc.text.indexOf(\u0027Hello World!\u0027, \u0027World\u0027) // 6\n----\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\nIt can optionally take `from` (inclusive) and `to` (exclusive) parameters.\n\n\n[source,cypher]\n----\nRETURN apoc.text.indexesOf(\u0027Hello World!\u0027, \u0027o\u0027,2,9) // [4,7]\n----\n\nIf you want to get a substring starting from your index match, you can use this\n\n.returns `World!`\n[source,cypher]\n----\nWITH \u0027Hello World!\u0027 as text, length(text) as len\nWITH text, len, apoc.text.indexOf(text, \u0027World\u0027,3) as index\nRETURN substring(text, case index when -1 then len-1 else index end, len);\n----\n\n[[text-functions-regex]]\n\u003d\u003d Regular Expressions\n\n.will return \u0027HelloWorld\u0027\n[source,cypher]\n----\nRETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027)\n----\n\n[source,cypher]\n----\nRETURN apoc.text.regexGroups(\u0027abc \u003clink xxx1\u003eyyy1\u003c/link\u003e def \u003clink xxx2\u003eyyy2\u003c/link\u003e\u0027,\u0027\u003clink (\\\\w+)\u003e(\\\\w+)\u003c/link\u003e\u0027) AS result\n\n// [[\"\u003clink xxx1\u003eyyy1\u003c/link\u003e\", \"xxx1\", \"yyy1\"], [\"\u003clink xxx2\u003eyyy2\u003c/link\u003e\", \"xxx2\", \"yyy2\"]]\n----\n\n\n[[text-functions-split-join]]\n\u003d\u003d Split and Join\n\n.will split with the given regular expression return [\u0027Hello\u0027, \u0027World\u0027]\n[source,cypher]\n----\nRETURN apoc.text.split(\u0027Hello   World\u0027, \u0027 +\u0027)\n----\n\n.will return \u0027Hello World\u0027\n[source,cypher]\n----\nRETURN apoc.text.join([\u0027Hello\u0027, \u0027World\u0027], \u0027 \u0027)\n----\n\n[[text-functions-data-cleaning]]\n\u003d\u003d Data Cleaning\n\n.will return \u0027helloworld\u0027\n[source,cypher]\n----\nRETURN apoc.text.clean(\u0027Hello World!\u0027)\n----\n\n.will return `true`\n[source,cypher]\n----\nRETURN apoc.text.compareCleaned(\u0027Hello World!\u0027, \u0027_hello-world_\u0027)\n----\n\n.will return only \u0027Hello World!\u0027\n[source,cypher]\n----\nUNWIND [\u0027Hello World!\u0027, \u0027hello worlds\u0027] as text\nRETURN apoc.text.filterCleanMatches(text, \u0027hello_world\u0027) as text\n----\n\nThe clean functionality can be useful for cleaning up slightly dirty text data with inconsistent formatting for non-exact comparisons.\n\nCleaning will strip the string of all non-alphanumeric characters (including spaces) and convert it to lower case.\n\n[[text-functions-case-change]]\n\u003d\u003d Case Change Functions\n\n.Capitalise the first letter of the word with `capitalize`\n[source,cypher]\n----\nRETURN apoc.text.capitalize(\"neo4j\") // \"Neo4j\"\n----\n\n.Capitalise the first letter of every word in the text with `capitalizeAll`\n[source,cypher]\n----\nRETURN apoc.text.capitalizeAll(\"graph database\") // \"Graph Database\"\n----\n\n.Decapitalize the first letter of the string with `decapitalize`\n[source,cypher]\n----\nRETURN apoc.text.decapitalize(\"Graph Database\") // \"graph Database\"\n----\n\n.Decapitalize the first letter of all words with `decapitalizeAll`\n[source,cypher]\n----\nRETURN apoc.text.decapitalizeAll(\"Graph Databases\") // \"graph databases\"\n----\n\n.Swap the case of a string with `swapCase`\n[source,cypher]\n----\nRETURN apoc.text.swapCase(\"Neo4j\") // nEO4J\n----\n\n.Convert a string to lower camelCase with `camelCase`\n[source,cypher]\n----\nRETURN apoc.text.camelCase(\"FOO_BAR\");    // \"fooBar\"\nRETURN apoc.text.camelCase(\"Foo bar\");    // \"fooBar\"\nRETURN apoc.text.camelCase(\"Foo22 bar\");  // \"foo22Bar\"\nRETURN apoc.text.camelCase(\"foo-bar\");    // \"fooBar\"\nRETURN apoc.text.camelCase(\"Foobar\");     // \"foobar\"\nRETURN apoc.text.camelCase(\"Foo$$Bar\");   // \"fooBar\"\n----\n\n.Convert a string to UpperCamelCase with `upperCamelCase`\n[source,cypher]\n----\nRETURN apoc.text.upperCamelCase(\"FOO_BAR\");   // \"FooBar\"\nRETURN apoc.text.upperCamelCase(\"Foo bar\");   // \"FooBar\"\nRETURN apoc.text.upperCamelCase(\"Foo22 bar\"); // \"Foo22Bar\"\nRETURN apoc.text.upperCamelCase(\"foo-bar\");   // \"FooBar\"\nRETURN apoc.text.upperCamelCase(\"Foobar\");    // \"Foobar\"\nRETURN apoc.text.upperCamelCase(\"Foo$$Bar\");  // \"FooBar\"\n----\n\n.Convert a string to snake-case with `snakeCase`\n[source,cypher]\n----\nRETURN apoc.text.snakeCase(\"test Snake Case\"); // \"test-snake-case\"\nRETURN apoc.text.snakeCase(\"FOO_BAR\");         // \"foo-bar\"\nRETURN apoc.text.snakeCase(\"Foo bar\");         // \"foo-bar\"\nRETURN apoc.text.snakeCase(\"fooBar\");          // \"foo-bar\"\nRETURN apoc.text.snakeCase(\"foo-bar\");         // \"foo-bar\"\nRETURN apoc.text.snakeCase(\"Foo bar\");         // \"foo-bar\"\nRETURN apoc.text.snakeCase(\"Foo  bar\");        // \"foo-bar\"\n----\n\n.Convert a string to UPPER_CASE with `toUpperCase`\n[source,cypher]\n----\nRETURN apoc.text.toUpperCase(\"test upper case\"); // \"TEST_UPPER_CASE\"\nRETURN apoc.text.toUpperCase(\"FooBar\");          // \"FOO_BAR\"\nRETURN apoc.text.toUpperCase(\"fooBar\");          // \"FOO_BAR\"\nRETURN apoc.text.toUpperCase(\"foo-bar\");         // \"FOO_BAR\"\nRETURN apoc.text.toUpperCase(\"foo--bar\");        // \"FOO_BAR\"\nRETURN apoc.text.toUpperCase(\"foo$$bar\");        // \"FOO_BAR\"\nRETURN apoc.text.toUpperCase(\"foo 22 bar\");      // \"FOO_22_BAR\"\n----\n\n\n[[text-functions-base64-encoding-decoding]]\n\u003d\u003d Base64 De- and Encoding\n\nEncode or decode a string in base64 or base64Url\n\n.Encode base 64\n[source,cypher]\n----\nRETURN apoc.text.base64Encode(\"neo4j\") // bmVvNGo\u003d\n----\n\n.Decode base 64\n[source,cypher]\n----\nRETURN apoc.text.base64Decode(\"bmVvNGo\u003d\") // neo4j\n----\n\n\n.Encode base 64 URL\n[source,cypher]\n----\nRETURN apoc.text.base64UrlEncode(\"http://neo4j.com/?test\u003dtest\") // aHR0cDovL25lbzRqLmNvbS8_dGVzdD10ZXN0\n----\n\n.Decode base 64 URL\n[source,cypher]\n----\nRETURN apoc.text.base64UrlDecode(\"aHR0cDovL25lbzRqLmNvbS8_dGVzdD10ZXN0\") // http://neo4j.com/?test\u003dtest\n----\n\n[[text-functions-random-string]]\n\u003d\u003d Random String\n\nYou can generate a random string to a specified length by calling `apoc.text.random` with a length parameter and optional string of valid characters.\n\nThe `valid` parameter will accept the following regex patterns, alternatively you can provide a string of letters and/or characters.\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| Pattern | Description\n| A-Z | A-Z in uppercase\n| a-z | A-Z in lowercase\n| 0-9 | Numbers 0-9 inclusive\n|\u003d\u003d\u003d\n\n.The following call will return a random string including uppercase letters, numbers and `.` and `$` characters.\n[source,cypher]\n----\nRETURN apoc.text.random(10, \"A-Z0-9.$\")\n----\n\n[[text-functions-extract-domain]]\n\u003d\u003d Extract Domain\n\nThe User Function `apoc.data.domain` will take a url or email address and try to determine the domain name.\nThis can be useful to make easier correlations and equality tests between differently formatted email addresses, and between urls to the same domains but specifying different locations.\n\n[source,cypher]\n----\nWITH \u0027foo@bar.com\u0027 AS email\nRETURN apoc.data.domain(email) // will return \u0027bar.com\u0027\n----\n\n[source,cypher]\n----\nWITH \u0027http://www.example.com/all-the-things\u0027 AS url\nRETURN apoc.data.domain(url) // will return \u0027www.example.com\u0027\n----\n\n[[text-functions-hashing]]\n\u003d\u003d Hashing Functions\n\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.util.sha1([values]) | computes the sha1 of the concatenation of all string values of the list\n| apoc.util.md5([values]) | computes the md5 of the concatenation of all string values of the list\n|\u003d\u003d\u003d\n\n",
+      "text": "%md\n\n## Text Functions\n\n- apoc.text.indexOf(text, lookup, offset\u003d0, to\u003d-1\u003d\u003dlen) - find the first occurence of the lookup string in the text, from inclusive, to exclusive,, -1 if not found, null if text is null.\n- apoc.text.indexesOf(text, lookup, from\u003d0, to\u003d-1\u003d\u003dlen) - finds all occurences of the lookup string in the text, return list, from inclusive, to exclusive, empty list if not found, null if text is null.\n- apoc.text.replace(text, regex, replacement) - replace each substring of the given string that matches the given regular expression with the given replacement.\n- apoc.text.regexGroups(text, regex) - returns an array containing a nested array for each match. The inner array contains all match groups.\n- apoc.text.join([\u0027text1\u0027,\u0027text2\u0027,...], delimiter) - join the given strings with the given delimiter.\n- apoc.text.repeat(\u0027item\u0027,count) - multiply the given string with the given count\n- apoc.text.format(text,[params],language) - sprintf format the string with the params given, and optional param language (default value is \u0027en\u0027).\n- apoc.text.lpad(text,count,delim) - left pad the string to the given width\n- apoc.text.rpad(text,count,delim) - right pad the string to the given width\n- apoc.text.random(length, [valid]) - returns a random string to the specified length\n- apoc.text.capitalize(text) - capitalise the first letter of the word\n- apoc.text.capitalizeAll(text) - capitalise the first letter of every word in the text\n- apoc.text.decapitalize(text) - decapitalize the first letter of the word\n- apoc.text.decapitalizeAll(text) - decapitalize the first letter of all words\n- apoc.text.swapCase(text) - Swap the case of a string\n- apoc.text.camelCase(text) - Convert a string to camelCase\n- apoc.text.upperCamelCase(text) - Convert a string to UpperCamelCase\n- apoc.text.snakeCase(text) - Convert a string to snake-case\n- apoc.text.toUpperCase(text) - Convert a string to UPPER_CASE\n- apoc.text.charAt(text, index) - Returns the decimal value of the character at the given index\n- apoc.text.code(codepoint) - Returns the unicode character of the given codepoint\n- apoc.text.hexCharAt(text, index) - Returns the hex value string of the character at the given index\n- apoc.text.hexValue(value) - Returns the hex value string of the given value\n- apoc.text.byteCount(text,[charset]) - return size of text in bytes\n- apoc.text.bytes(text,[charset]) - return bytes of the text\n- apoc.text.toCypher(value, {skipKeys,keepKeys,skipValues,keepValues,skipNull,node,relationship,start,end}) - tries its best to convert the value to a cypher-property-string\n- apoc.text.base64Encode(text) - Encode a string with Base64\n- apoc.text.base64Decode(text) - Decode Base64 encoded string\n- apoc.text.base64UrlEncode(url) - Encode a url with Base64\n- apoc.text.base64UrlDecode(url) - Decode Base64 encoded url\n|\u003d\u003d\u003d\n\nThe `replace`, `split` and `regexGroups` functions work with regular expressions.\n\n\n\n\nRETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027) .will return \u0027HelloWorld\u0027\n\n\n\nFormat the string with the params given, and optional param language.\nRETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true]) AS value // without language param (\u0027en\u0027 default) return \u0027abcd 42 3.1 true\u0027\nRETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true],\u0027it\u0027) AS value // abcd 42 3,1 true\n\n\nRETURN apoc.text.indexOf(\u0027Hello World!\u0027, \u0027World\u0027) // 6\n\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\nIt can optionally take `from` (inclusive) and `to` (exclusive) parameters.\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\nRETURN apoc.text.indexesOf(\u0027Hello World!\u0027, \u0027o\u0027,2,9) // [4,7]\n\n\n\nRETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027) .will return \u0027HelloWorld\u0027\n----\n\n\n\nRETURN apoc.text.split(\u0027Hello   World\u0027, \u0027 +\u0027) .will split with the given regular expression return [\u0027Hello\u0027, \u0027World\u0027]\n\nRETURN apoc.text.join([\u0027Hello\u0027, \u0027World\u0027], \u0027 \u0027) .will return \u0027Hello World\u0027\n\n\nRETURN apoc.text.clean(\u0027Hello World!\u0027) .will return \u0027helloworld\u0027\n\n\nRETURN apoc.text.compareCleaned(\u0027Hello World!\u0027, \u0027_hello-world_\u0027) will return `true`\n\nRETURN apoc.text.capitalize(\"neo4j\") // \"Neo4j\"\n\nRETURN apoc.text.capitalizeAll(\"graph database\") // \"Graph Database\"\n\nRETURN apoc.text.decapitalize(\"Graph Database\") // \"graph Database\"\n\nRETURN apoc.text.decapitalizeAll(\"Graph Databases\") // \"graph databases\"\n\nRETURN apoc.text.swapCase(\"Neo4j\") // nEO4J\n\nRETURN apoc.text.camelCase(\"FOO_BAR\");    // \"fooBar\"\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:15:05.999",
+      "dateUpdated": "2021-11-03 08:59:18.411",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -449,9 +461,743 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n\u003d\u003d Spatial\n\nThe spatial procedures enable geographic capabilities on your data, and complement the https://neo4j.com/docs/cypher-manual/current/functions/spatial/[spatial functions^] that come with Neo4j.\nMore extensive Spatial functionality can be found in the https://neo4j-contrib.github.io/spatial/0.24-neo4j-3.1/index.html[Neo4j Spatial Library^].\n\n[separator\u003d¦,opts\u003dheader,cols\u003d\"5,1m,1m\"]\n|\u003d\u003d\u003d\n¦Qualified Name¦Type¦Release\ninclude::example$generated-documentation/apoc.spatial.geocode.adoc[]\ninclude::example$generated-documentation/apoc.spatial.reverseGeocode.adoc[]\ninclude::example$generated-documentation/apoc.spatial.sortByDistance.adoc[]\n|\u003d\u003d\u003d\n\n\n\u003d\u003d Geocode\n\nThe _geocode_ procedure converts a textual address into a location containing _latitude_, _longitude_ and _description_.\nDespite being only a single function, together with the built-in functions _point_ and _distance_ we can achieve quite powerful results.\n\nFirst, how can we use the procedure:\n\n[source,cypher]\n----\nCALL apoc.spatial.geocodeOnce(\u002721 rue Paul Bellamy 44000 NANTES FRANCE\u0027)\nYIELD location\nRETURN location.latitude, location.longitude\n----\n\n.Results\n[opts\u003d\"header\"]\n|\u003d\u003d\u003d\n| location.latitude | location.longitude\n| 47.2221667 | -1.5566625\n|\u003d\u003d\u003d\n\n\nThere are three forms of the procedure:\n\n* geocodeOnce(address) returns zero or one result.\n* geocode(address,maxResults) returns zero, one or more up to maxResults.\n* reverseGeocode(latitude,longitude) returns zero or one result.\n\nThis is because the backing geocoding service (OSM, Google, OpenCage or other) might return multiple results for the same query.\nGeocodeOnce() is designed to return the first, or highest ranking result.\n\nThe third procedure _reverseGeocode_ will convert a location containing _latitude_ and _longitude_ into a textual address.\n\n[source,cypher]\n----\nCALL apoc.spatial.reverseGeocode(47.2221667,-1.5566625) YIELD location\nRETURN location.description;\n----\n\n.Results\n[opts\u003d\"header\"]\n|\u003d\u003d\u003d\n| location.description\n| \"21, Rue Paul Bellamy, Talensac - Pont Morand, Hauts-Pavés - Saint-Félix, Nantes, Loire-Atlantique, Pays de la Loire, France métropolitaine, 44000, France\"\n|\u003d\u003d\u003d\n\n\u003d\u003d\u003d Configuring Geocode\n\nThere are a few options that can be set in the apoc.conf file to control the service:\n\n* apoc.spatial.geocode.provider\u003dosm (osm, google, opencage, etc.)\n* apoc.spatial.geocode.osm.throttle\u003d5000 (ms to delay between queries to not overload OSM servers)\n* apoc.spatial.geocode.google.throttle\u003d1 (ms to delay between queries to not overload Google servers)\n* apoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\n* apoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\n* apoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n\nFor google, you should use either a key or a combination of client and signature. Read more\nabout this on the google page for geocode access at\nhttps://developers.google.com/maps/documentation/geocoding/get-api-key#key\n\n\u003d\u003d\u003d Configuring Custom Geocode Provider\n\n*Geocode*\n\nFor any provider that is not \u0027osm\u0027 or \u0027google\u0027 you get a configurable supplier that requires two\nadditional settings, \u0027url\u0027 and \u0027key\u0027. The \u0027url\u0027 must contain the two words \u0027PLACE\u0027 and \u0027KEY\u0027.\nThe \u0027KEY\u0027 will be replaced with the key you get from the provider when you register for the service.\nThe \u0027PLACE\u0027 will be replaced with the address to geocode when the procedure is called.\n\n*Reverse Geocode*\n\nThe \u0027url\u0027 must contain the three words \u0027LAT\u0027, \u0027LNG\u0027 and \u0027KEY\u0027.\nThe \u0027LAT\u0027 will be replaced with the latitude and \u0027LNG\u0027 will be replaced with the the longitude to reverse geocode when the procedure is called.\n\nFor example, to get the service working with OpenCage, perform the following steps:\n\n* Register your own application key at https://geocoder.opencagedata.com/\n* Once you have a key, add the following three lines to apoc.conf\n\n----\napoc.spatial.geocode.provider\u003dopencage\napoc.spatial.geocode.opencage.key\u003dXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\napoc.spatial.geocode.opencage.url\u003dhttp://api.opencagedata.com/geocode/v1/json?q\u003dPLACE\u0026key\u003dKEY\napoc.spatial.geocode.opencage.reverse.url\u003dhttp://api.opencagedata.com/geocode/v1/json?q\u003dLAT+LNG\u0026key\u003dKEY\n----\n\n* make sure that the \u0027XXXXXXX\u0027 part above is replaced with your actual key\n* Restart the Neo4j server and then test the geocode procedures to see that they work\n* If you are unsure if the provider is correctly configured try verify with:\n\n\n\n[source,cypher]\n----\nCALL apoc.spatial.showConfig()\n----\n\n\u003d\u003d Using Geocode within a bigger Cypher query\n\nA more complex, or useful, example which geocodes addresses found in properties of nodes:\n\n[source,cypher]\n----\nMATCH (a:Place)\nWHERE exists(a.address)\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\nRETURN location.latitude AS latitude, location.longitude AS longitude, location.description AS description\n----\n\n\u003d\u003d Calculating distance between locations\n\nIf we wish to calculate the distance between addresses, we need to use the point() function to convert\nlatitude and longitude to Cyper Point types, and then use the distance() function to calculate the distance:\n\n[source,cypher]\n----\nWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\nMATCH (a:Place)\nWHERE exists(a.address)\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\nWITH location, distance(point(location), eiffel) AS distance\nWHERE distance \u003c 5000\nRETURN location.description AS description, distance\nORDER BY distance\nLIMIT 100\n----\n\n\u003d\u003d\u003d sortByDistance\n\nThe second procedure enables you to sort a given collection of paths by the sum of their distance based on lat/long properties\non the nodes.\n\nSample data :\n\n[source, cypher]\n----\nCREATE (bruges:City {name:\"bruges\", latitude: 51.2605829, longitude: 3.0817189})\nCREATE (brussels:City {name:\"brussels\", latitude: 50.854954, longitude: 4.3051786})\nCREATE (paris:City {name:\"paris\", latitude: 48.8588376, longitude: 2.2773455})\nCREATE (dresden:City {name:\"dresden\", latitude: 51.0767496, longitude: 13.6321595})\nMERGE (bruges)-[:NEXT]-\u003e(brussels)\nMERGE (brussels)-[:NEXT]-\u003e(dresden)\nMERGE (brussels)-[:NEXT]-\u003e(paris)\nMERGE (bruges)-[:NEXT]-\u003e(paris)\nMERGE (paris)-[:NEXT]-\u003e(dresden)\n----\n\nFinding paths and sort them by distance\n\n[source, cypher]\n----\nMATCH (a:City {name:\u0027bruges\u0027}), (b:City {name:\u0027dresden\u0027})\nMATCH p\u003d(a)-[*]-\u003e(b)\nWITH collect(p) as paths\nCALL apoc.spatial.sortByDistance(paths) YIELD path, distance\nRETURN path, distance\n----\n\n\u003d\u003d Graph Refactoring\n\nIn order not to have to repeatedly geocode the same thing in multiple queries, especially\nif the database will be used by many people, it might be a good idea to persist the results\nin the database so that subsequent calls can use the saved results.\n\nGeocode and persist the result\n\n[source,cypher]\n----\nMATCH (a:Place)\nWHERE exists(a.address) AND NOT exists(a.latitude)\nWITH a LIMIT 1000\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\nSET a.latitude \u003d location.latitude\nSET a.longitude \u003d location.longitude\n----\n\nNote that the above command only geocodes the first 1000 ‘Place’ nodes that have not already been geocoded.\nThis query can be run multiple times until all places are geocoded. Why would we want to do this?\nTwo good reasons:\n\n* The geocoding service is a public service that can throttle or blacklist sites that hit the service too heavily, so controlling how much we do is useful.\n* The transaction is updating the database, and it is wise not to update the database with too many things in the same transaction, to avoid using up too much memory. This trick will keep the memory usage very low.\n\nNow make use of the results in distance queries\n\n\n[source,cypher]\n----\nWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\nMATCH (a:Place)\nWHERE exists(a.latitude) AND exists(a.longitude)\nWITH a, distance(point(a), eiffel) AS distance\nWHERE distance \u003c 5000\nRETURN a.name, distance\nORDER BY distance\nLIMIT 100\n----\n\n\u003d\u003d Combined Space and Time search\n\nCombining spatial and date-time functions can allow for more complex queries:\n\n[source,cypher]\n----\nWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\nMATCH (e:Event)\nWHERE exists(e.address) AND exists(e.datetime)\nCALL apoc.spatial.geocodeOnce(e.address) YIELD location\nWITH e, location,\ndistance(point(location), eiffel) AS distance,\n            (apoc.date.parse(\u00272016-06-01 00:00:00\u0027,\u0027h\u0027) - apoc.date.parse(e.datetime,\u0027h\u0027))/24.0 AS days_before_due\nWHERE distance \u003c 5000 AND days_before_due \u003c 14 AND apoc.date.parse(e.datetime,\u0027h\u0027) \u003c apoc.date.parse(\u00272016-06-01 00:00:00\u0027,\u0027h\u0027)\nRETURN e.name AS event, e.datetime AS date,\nlocation.description AS description, distance\nORDER BY distance\n----\n\nWith date parse we can parse any type of string date to date\n```\nWITH apoc.date.parse(\"31/05/2019\", \"ms\", \"dd/MM/yyyy\") AS ms\nRETURN date(datetime({epochmillis: ms})) AS date\n```\n",
+      "text": "%neo4j\nRETURN apoc.text.regexGroups(\u0027abc \u003clink xxx1\u003eyyy1\u003c/link\u003e def \u003clink xxx2\u003eyyy2\u003c/link\u003e\u0027,\u0027\u003clink (\\\\w+)\u003e(\\\\w+)\u003c/link\u003e\u0027) AS result",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:15:07.611",
+      "dateUpdated": "2021-11-03 08:51:14.022",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "result": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "result\n[[\"\u003clink xxx1\u003eyyy1\u003c/link\u003e\",\"xxx1\",\"yyy1\"],[\"\u003clink xxx2\u003eyyy2\u003c/link\u003e\",\"xxx2\",\"yyy2\"]]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635929463924_1652386274",
+      "id": "paragraph_1635929463924_1652386274",
+      "dateCreated": "2021-11-03 08:51:03.924",
+      "dateStarted": "2021-11-03 08:51:08.034",
+      "dateFinished": "2021-11-03 08:51:08.143",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nRETURN apoc.text.snakeCase(\"test Snake Case\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:48:40.231",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.text.snakeCase(\"test Snake Case\")": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.text.snakeCase(\"test Snake Case\")\n\"test-snake-case\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635929316180_1022830283",
+      "id": "paragraph_1635929316180_1022830283",
+      "dateCreated": "2021-11-03 08:48:36.180",
+      "dateStarted": "2021-11-03 08:48:39.464",
+      "dateFinished": "2021-11-03 08:48:39.522",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nRETURN apoc.text.toUpperCase(\"test upper case\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:48:31.064",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.text.toUpperCase(\"test upper case\")": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.text.toUpperCase(\"test upper case\")\n\"TEST_UPPER_CASE\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635929298323_387798574",
+      "id": "paragraph_1635929298323_387798574",
+      "dateCreated": "2021-11-03 08:48:18.323",
+      "dateStarted": "2021-11-03 08:48:26.062",
+      "dateFinished": "2021-11-03 08:48:26.114",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n// | Pattern | Description\n//| A-Z | A-Z in uppercase\n//| a-z | A-Z in lowercase\n//| 0-9 | Numbers 0-9 inclusive\nRETURN apoc.text.random(10, \"A-Z0-9.$\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:47:54.448",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.text.random(10, \"A-Z0-9.$\")": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.text.random(10, \"A-Z0-9.$\")\n\"82241L$QBY\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635929249112_198078275",
+      "id": "paragraph_1635929249112_198078275",
+      "dateCreated": "2021-11-03 08:47:29.112",
+      "dateStarted": "2021-11-03 08:47:53.747",
+      "dateFinished": "2021-11-03 08:47:53.765",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nRETURN apoc.text.base64UrlEncode(\"http://neo4j.com/?test\u003dtest\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:41:49.049",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.text.base64UrlEncode(\"http://neo4j.com/?test\u003dtest\")": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.text.base64UrlEncode(\"http://neo4j.com/?test\u003dtest\")\n\"aHR0cDovL25lbzRqLmNvbS8_dGVzdD10ZXN0\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635927214543_164452942",
+      "id": "paragraph_1635927214543_164452942",
+      "dateCreated": "2021-11-03 08:13:34.545",
+      "dateStarted": "2021-11-03 08:41:49.068",
+      "dateFinished": "2021-11-03 08:41:49.368",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nRETURN apoc.text.base64UrlDecode(\"aHR0cDovL25lbzRqLmNvbS8_dGVzdD10ZXN0\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:44:43.934",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.text.base64UrlDecode(\"aHR0cDovL25lbzRqLmNvbS8_dGVzdD10ZXN0\")": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.text.base64UrlDecode(\"aHR0cDovL25lbzRqLmNvbS8_dGVzdD10ZXN0\")\n\"http://neo4j.com/?test\u003dtest\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635928351596_93292989",
+      "id": "paragraph_1635928351596_93292989",
+      "dateCreated": "2021-11-03 08:32:31.596",
+      "dateStarted": "2021-11-03 08:42:05.593",
+      "dateFinished": "2021-11-03 08:42:05.611",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n### Hashing Functions\n\n- apoc.util.sha1([values]) - computes the sha1 of the concatenation of all string values of the list\n- apoc.util.md5([values]) - computes the md5 of the concatenation of all string values of the list",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:35:59.519",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eHashing Functions\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.util.sha1([values]) - computes the sha1 of the concatenation of all string values of the list\u003c/li\u003e\n\u003cli\u003eapoc.util.md5([values]) - computes the md5 of the concatenation of all string values of the list\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635928539685_813935914",
+      "id": "paragraph_1635928539685_813935914",
+      "dateCreated": "2021-11-03 08:35:39.685",
+      "dateStarted": "2021-11-03 08:35:59.517",
+      "dateFinished": "2021-11-03 08:35:59.535",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nRETURN apoc.util.sha1([\"Michael\"]) AS output;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:35:30.952",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "output": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "output\n\"f8c38b2167c0ab6d7c720e47c2139428d77d8b6a\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635928489871_264661887",
+      "id": "paragraph_1635928489871_264661887",
+      "dateCreated": "2021-11-03 08:34:49.871",
+      "dateStarted": "2021-11-03 08:35:26.473",
+      "dateFinished": "2021-11-03 08:35:26.533",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n- apoc.data.url(\u0027url\u0027) as {protocol,user,host,port,path,query,file,anchor} - turn URL into map structure\n- apoc.data.email(\u0027email_address\u0027) as {personal,user,domain} - extract the personal name, user and domain as a map",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:46:52.882",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.data.url(\u0026lsquo;url\u0026rsquo;) as {protocol,user,host,port,path,query,file,anchor} - turn URL into map structure\u003c/li\u003e\n\u003cli\u003eapoc.data.email(\u0026lsquo;email_address\u0026rsquo;) as {personal,user,domain} - extract the personal name, user and domain as a map\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635929132917_1044838267",
+      "id": "paragraph_1635929132917_1044838267",
+      "dateCreated": "2021-11-03 08:45:32.917",
+      "dateStarted": "2021-11-03 08:46:52.884",
+      "dateFinished": "2021-11-03 08:46:52.898",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nwith \"https://user:secret@localhost:666/path/to/file.html?x\u003d1#b\" as url\nreturn apoc.data.url(url)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:32:27.297",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 144.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.data.url(url).path": "string",
+                      "apoc.data.url(url).protocol": "string",
+                      "apoc.data.url(url).file": "string",
+                      "apoc.data.url(url).port": "string",
+                      "apoc.data.url(url).query": "string",
+                      "apoc.data.url(url).anchor": "string",
+                      "apoc.data.url(url).host": "string",
+                      "apoc.data.url(url).user": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.data.url(url).path\tapoc.data.url(url).protocol\tapoc.data.url(url).file\tapoc.data.url(url).port\tapoc.data.url(url).query\tapoc.data.url(url).anchor\tapoc.data.url(url).host\tapoc.data.url(url).user\n/path/to/file.html\thttps\t/path/to/file.html?x\u003d1\t666\tx\u003d1\tb\tlocalhost\tuser:secret\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635927229657_1883809715",
+      "id": "paragraph_1635927229657_1883809715",
+      "dateCreated": "2021-11-03 08:13:49.657",
+      "dateStarted": "2021-11-03 08:32:22.697",
+      "dateFinished": "2021-11-03 08:32:22.760",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n### Text Similarity\n\nUseful, for example, to data clean purpose:\n\n- apoc.text.distance(text1, text2) - compare the given strings with the Apache Commons StringUtils.distance method (Levenshtein algorithm)\n- apoc.text.levenshteinDistance(text1, text2) - compare the given strings with the Levenshtein distance algorithm\n- apoc.text.levenshteinSimilarity(text1, text2) - calculate the similarity (a value within 0 and 1) between two texts based on Levenshtein distance.\n- apoc.text.hammingDistance(text1, text2) - compare the given strings with the Hamming distance algorithm\n- apoc.text.jaroWinklerDistance(text1, text2) - compare the given strings with the Jaro-Winkler distance algorithm\n- apoc.text.sorensenDiceSimilarity(text1, text2) - compare the given strings with the Sørensen–Dice coefficient formula, assuming an English locale\n- apoc.text.sorensenDiceSimilarityWithLanguage(text1, text2, languageTag) - compare the given strings with the Sørensen–Dice coefficient formula, with the provided IETF language tag\n- apoc.text.fuzzyMatch(text1, text2) - check if 2 words can be matched in a fuzzy way (LevenShtein). Depending on the length of the String it will allow more characters that needs to be edited to match the second String (distance: length \u003c 3 then 0, length \u003c 5 then 1, else 2).",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:57:28.971",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635928302510_764079613",
+      "id": "paragraph_1635928302510_764079613",
+      "dateCreated": "2021-11-03 08:31:42.510",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\nRETURN apoc.text.sorensenDiceSimilarity(\"belly\", \"jolly\") as first, \n    apoc.text.sorensenDiceSimilarity(\"belly\", \"jelly\") as second, \n    apoc.text.sorensenDiceSimilarity(\"belly\", \"belly\") as third",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:40:33.667",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "first": "string",
+                      "second": "string",
+                      "third": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "first\tsecond\tthird\n0.5\t0.75\t1.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635928763794_1002626739",
+      "id": "paragraph_1635928763794_1002626739",
+      "dateCreated": "2021-11-03 08:39:23.794",
+      "dateStarted": "2021-11-03 08:40:33.380",
+      "dateFinished": "2021-11-03 08:40:33.438",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Spatial\n\nThe spatial procedures enable geographic capabilities on your data, and complement the https://neo4j.com/docs/cypher-manual/current/functions/spatial/[spatial functions^] that come with Neo4j.\nMore extensive Spatial functionality can be found in the https://neo4j-contrib.github.io/spatial/0.24-neo4j-3.1/index.html[Neo4j Spatial Library^].\n\n[separator\u003d¦,opts\u003dheader,cols\u003d\"5,1m,1m\"]\n|\u003d\u003d\u003d\n¦Qualified Name¦Type¦Release\ninclude::example$generated-documentation/apoc.spatial.geocode.adoc[]\ninclude::example$generated-documentation/apoc.spatial.reverseGeocode.adoc[]\ninclude::example$generated-documentation/apoc.spatial.sortByDistance.adoc[]\n|\u003d\u003d\u003d\n\n\n\u003d\u003d Geocode\n\nThe _geocode_ procedure converts a textual address into a location containing _latitude_, _longitude_ and _description_.\nDespite being only a single function, together with the built-in functions _point_ and _distance_ we can achieve quite powerful results.\n\nFirst, how can we use the procedure:\n\n[source,cypher]\n----\nCALL apoc.spatial.geocodeOnce(\u002721 rue Paul Bellamy 44000 NANTES FRANCE\u0027)\nYIELD location\nRETURN location.latitude, location.longitude\n----\n\n.Results\n[opts\u003d\"header\"]\n|\u003d\u003d\u003d\n| location.latitude | location.longitude\n| 47.2221667 | -1.5566625\n|\u003d\u003d\u003d\n\n\nThere are three forms of the procedure:\n\n* geocodeOnce(address) returns zero or one result.\n* geocode(address,maxResults) returns zero, one or more up to maxResults.\n* reverseGeocode(latitude,longitude) returns zero or one result.\n\nThis is because the backing geocoding service (OSM, Google, OpenCage or other) might return multiple results for the same query.\nGeocodeOnce() is designed to return the first, or highest ranking result.\n\nThe third procedure _reverseGeocode_ will convert a location containing _latitude_ and _longitude_ into a textual address.\n\n[source,cypher]\n----\nCALL apoc.spatial.reverseGeocode(47.2221667,-1.5566625) YIELD location\nRETURN location.description;\n----\n\n.Results\n[opts\u003d\"header\"]\n|\u003d\u003d\u003d\n| location.description\n| \"21, Rue Paul Bellamy, Talensac - Pont Morand, Hauts-Pavés - Saint-Félix, Nantes, Loire-Atlantique, Pays de la Loire, France métropolitaine, 44000, France\"\n|\u003d\u003d\u003d\n\n\u003d\u003d\u003d Configuring Geocode\n\nThere are a few options that can be set in the apoc.conf file to control the service:\n\n* apoc.spatial.geocode.provider\u003dosm (osm, google, opencage, etc.)\n* apoc.spatial.geocode.osm.throttle\u003d5000 (ms to delay between queries to not overload OSM servers)\n* apoc.spatial.geocode.google.throttle\u003d1 (ms to delay between queries to not overload Google servers)\n* apoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\n* apoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\n* apoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n\nFor google, you should use either a key or a combination of client and signature. Read more\nabout this on the google page for geocode access at\nhttps://developers.google.com/maps/documentation/geocoding/get-api-key#key\n\n\u003d\u003d\u003d Configuring Custom Geocode Provider\n\n*Geocode*\n\nFor any provider that is not \u0027osm\u0027 or \u0027google\u0027 you get a configurable supplier that requires two\nadditional settings, \u0027url\u0027 and \u0027key\u0027. The \u0027url\u0027 must contain the two words \u0027PLACE\u0027 and \u0027KEY\u0027.\nThe \u0027KEY\u0027 will be replaced with the key you get from the provider when you register for the service.\nThe \u0027PLACE\u0027 will be replaced with the address to geocode when the procedure is called.\n\n*Reverse Geocode*\n\nThe \u0027url\u0027 must contain the three words \u0027LAT\u0027, \u0027LNG\u0027 and \u0027KEY\u0027.\nThe \u0027LAT\u0027 will be replaced with the latitude and \u0027LNG\u0027 will be replaced with the the longitude to reverse geocode when the procedure is called.\n\nFor example, to get the service working with OpenCage, perform the following steps:\n\n* Register your own application key at https://geocoder.opencagedata.com/\n* Once you have a key, add the following three lines to apoc.conf\n\n----\napoc.spatial.geocode.provider\u003dopencage\napoc.spatial.geocode.opencage.key\u003dXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\napoc.spatial.geocode.opencage.url\u003dhttp://api.opencagedata.com/geocode/v1/json?q\u003dPLACE\u0026key\u003dKEY\napoc.spatial.geocode.opencage.reverse.url\u003dhttp://api.opencagedata.com/geocode/v1/json?q\u003dLAT+LNG\u0026key\u003dKEY\n----\n\n* make sure that the \u0027XXXXXXX\u0027 part above is replaced with your actual key\n* Restart the Neo4j server and then test the geocode procedures to see that they work\n* If you are unsure if the provider is correctly configured try verify with:\n\n\n\n[source,cypher]\n----\nCALL apoc.spatial.showConfig()\n----\n\n\u003d\u003d Using Geocode within a bigger Cypher query\n\nA more complex, or useful, example which geocodes addresses found in properties of nodes:\n\n[source,cypher]\n----\nMATCH (a:Place)\nWHERE exists(a.address)\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\nRETURN location.latitude AS latitude, location.longitude AS longitude, location.description AS description\n----\n\n\u003d\u003d Calculating distance between locations\n\nIf we wish to calculate the distance between addresses, we need to use the point() function to convert\nlatitude and longitude to Cyper Point types, and then use the distance() function to calculate the distance:\n\n[source,cypher]\n----\nWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\nMATCH (a:Place)\nWHERE exists(a.address)\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\nWITH location, distance(point(location), eiffel) AS distance\nWHERE distance \u003c 5000\nRETURN location.description AS description, distance\nORDER BY distance\nLIMIT 100\n----\n\n\u003d\u003d\u003d sortByDistance\n\nThe second procedure enables you to sort a given collection of paths by the sum of their distance based on lat/long properties\non the nodes.\n\nSample data :\n\n[source, cypher]\n----\nCREATE (bruges:City {name:\"bruges\", latitude: 51.2605829, longitude: 3.0817189})\nCREATE (brussels:City {name:\"brussels\", latitude: 50.854954, longitude: 4.3051786})\nCREATE (paris:City {name:\"paris\", latitude: 48.8588376, longitude: 2.2773455})\nCREATE (dresden:City {name:\"dresden\", latitude: 51.0767496, longitude: 13.6321595})\nMERGE (bruges)-[:NEXT]-\u003e(brussels)\nMERGE (brussels)-[:NEXT]-\u003e(dresden)\nMERGE (brussels)-[:NEXT]-\u003e(paris)\nMERGE (bruges)-[:NEXT]-\u003e(paris)\nMERGE (paris)-[:NEXT]-\u003e(dresden)\n----\n\nFinding paths and sort them by distance\n\n[source, cypher]\n----\nMATCH (a:City {name:\u0027bruges\u0027}), (b:City {name:\u0027dresden\u0027})\nMATCH p\u003d(a)-[*]-\u003e(b)\nWITH collect(p) as paths\nCALL apoc.spatial.sortByDistance(paths) YIELD path, distance\nRETURN path, distance\n----\n\n\u003d\u003d Graph Refactoring\n\nIn order not to have to repeatedly geocode the same thing in multiple queries, especially\nif the database will be used by many people, it might be a good idea to persist the results\nin the database so that subsequent calls can use the saved results.\n\nGeocode and persist the result\n\n[source,cypher]\n----\nMATCH (a:Place)\nWHERE exists(a.address) AND NOT exists(a.latitude)\nWITH a LIMIT 1000\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\nSET a.latitude \u003d location.latitude\nSET a.longitude \u003d location.longitude\n----\n\nNote that the above command only geocodes the first 1000 ‘Place’ nodes that have not already been geocoded.\nThis query can be run multiple times until all places are geocoded. Why would we want to do this?\nTwo good reasons:\n\n* The geocoding service is a public service that can throttle or blacklist sites that hit the service too heavily, so controlling how much we do is useful.\n* The transaction is updating the database, and it is wise not to update the database with too many things in the same transaction, to avoid using up too much memory. This trick will keep the memory usage very low.\n\nNow make use of the results in distance queries\n\n\n[source,cypher]\n----\nWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\nMATCH (a:Place)\nWHERE exists(a.latitude) AND exists(a.longitude)\nWITH a, distance(point(a), eiffel) AS distance\nWHERE distance \u003c 5000\nRETURN a.name, distance\nORDER BY distance\nLIMIT 100\n----\n\n\u003d\u003d Combined Space and Time search\n\nCombining spatial and date-time functions can allow for more complex queries:\n\n[source,cypher]\n----\nWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\nMATCH (e:Event)\nWHERE exists(e.address) AND exists(e.datetime)\nCALL apoc.spatial.geocodeOnce(e.address) YIELD location\nWITH e, location,\ndistance(point(location), eiffel) AS distance,\n            (apoc.date.parse(\u00272016-06-01 00:00:00\u0027,\u0027h\u0027) - apoc.date.parse(e.datetime,\u0027h\u0027))/24.0 AS days_before_due\nWHERE distance \u003c 5000 AND days_before_due \u003c 14 AND apoc.date.parse(e.datetime,\u0027h\u0027) \u003c apoc.date.parse(\u00272016-06-01 00:00:00\u0027,\u0027h\u0027)\nRETURN e.name AS event, e.datetime AS date,\nlocation.description AS description, distance\nORDER BY distance\n----\n\nWith date parse we can parse any type of string date to date\n```\nWITH apoc.date.parse(\"31/05/2019\", \"ms\", \"dd/MM/yyyy\") AS ms\nRETURN date(datetime({epochmillis: ms})) AS date\n```\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:41:28.251",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -489,6 +1235,178 @@
       "dateStarted": "2021-10-29 12:08:52.992",
       "dateFinished": "2021-10-29 12:08:53.039",
       "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nwith \"https://user:secret@localhost:666/path/to/file.html?x\u003d1\u0026y\u003d2#b\" as url\nRETURN apoc.data.url(url) AS value",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:43:15.243",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value.path": "string",
+                      "value.protocol": "string",
+                      "value.file": "string",
+                      "value.port": "string",
+                      "value.query": "string",
+                      "value.anchor": "string",
+                      "value.host": "string",
+                      "value.user": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value.path\tvalue.protocol\tvalue.file\tvalue.port\tvalue.query\tvalue.anchor\tvalue.host\tvalue.user\n/path/to/file.html\thttps\t/path/to/file.html?x\u003d1\u0026y\u003d2\t666\tx\u003d1\u0026y\u003d2\tb\tlocalhost\tuser:secret\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635928100983_31606260",
+      "id": "paragraph_1635928100983_31606260",
+      "dateCreated": "2021-11-03 08:28:20.983",
+      "dateStarted": "2021-11-03 08:30:12.253",
+      "dateFinished": "2021-11-03 08:30:12.306",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n// regex\nRETURN apoc.text.random(10, \"A-Z0-9.$\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:43:22.403",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 89.9716,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.text.random(10, \"A-Z0-9.$\")": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.text.random(10, \"A-Z0-9.$\")\n\"LP4$.SY9TL\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635927323720_1644990730",
+      "id": "paragraph_1635927323720_1644990730",
+      "dateCreated": "2021-11-03 08:15:23.720",
+      "dateStarted": "2021-11-03 08:27:14.143",
+      "dateFinished": "2021-11-03 08:27:14.209",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 08:33:31.974",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635927351454_377659193",
+      "id": "paragraph_1635927351454_377659193",
+      "dateCreated": "2021-11-03 08:15:51.454",
+      "status": "READY"
     },
     {
       "text": "%md\n\n# DATE CONVERSION: APOC Date \u0026 Time Conversion\n\nNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\n\nAPOC has several procedures for converting and formatting various date, time, and temporal values. They save valuable time in manually converting values or creating a procedure from scratch! The full list of available procedures is in the APOC documentation.",
@@ -861,9 +1779,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n\u003d\u003d apoc.convert\n\ndacanc: if I want a map representation of a node\nCREATE (node:Node {id: 4})\nRETURN apoc.convert.toMap(node) AS output;\n\n\u003d\u003d apoc.convert.toList\n\nWhat if we want to take the first element from each path? We could try to do it like this:\n\nCypher\nCopy to Clipboard\nRun in Neo4j Browser\nMATCH path \u003d ()-[:ACTED_IN]-\u003e()\nRETURN path[0];\nResults\nText\nCopy to Clipboard\nType mismatch: expected List\u003cT\u003e but was Path (line 3, column 8 (offset: 40))\n\"RETURN path[0];\"\n^\nWe can use apoc.convert.toList to convert the path to a list and then take the first item from that list:\n\nCypher\nCopy to Clipboard\nRun in Neo4j Browser\nMATCH path \u003d ()-[:ACTED_IN]-\u003e()\nRETURN apoc.convert.toList(path)[0];\n\n\n\n\n\n\n\u003d\u003d MAP FUNCTION\nhttps://neo4j.com/labs/apoc/4.1/data-structures/map-functions/\n\n\u003d\u003d COLL FUNCTION\nhttps://neo4j.com/labs/apoc/4.1/data-structures/collection-list-functions/\n\napoc.coll.randomItem",
+      "text": "%md\n\n\u003d\u003d apoc.convert\n\ndacanc: if I want a map representation of a node\nCREATE (node:Node {id: 4})\nRETURN apoc.convert.toMap(node) AS output;\n\n\u003d\u003d apoc.convert.toList\n\nWhat if we want to take the first element from each path? We could try to do it like this:\n\nCypher\nCopy to Clipboard\nRun in Neo4j Browser\nMATCH path \u003d ()-[:ACTED_IN]-\u003e()\nRETURN path[0];\nResults\nText\nCopy to Clipboard\nType mismatch: expected List\u003cT\u003e but was Path (line 3, column 8 (offset: 40))\n\"RETURN path[0];\"\n^\nWe can use apoc.convert.toList to convert the path to a list and then take the first item from that list:\n\nCypher\nCopy to Clipboard\nRun in Neo4j Browser\nMATCH path \u003d ()-[:ACTED_IN]-\u003e()\nRETURN apoc.convert.toList(path)[0];\n\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:08:56.696",
+      "dateUpdated": "2021-11-02 23:46:34.458",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -876,8 +1794,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -901,6 +1819,35 @@
       "dateStarted": "2021-10-29 12:08:54.174",
       "dateFinished": "2021-10-29 12:08:54.187",
       "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n// todo - check...\n\u003d\u003d Temporal (Date Time)\n\ntodo - esempio per conversion \ntodo 2 - integrarlo con parte di sopra\nhttps://neo4j.com/labs/apoc/4.1/temporal/ --\u003e tanta roba... solo alcune\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 16:15:26.267",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635869719574_1755877996",
+      "id": "paragraph_1635869719574_1755877996",
+      "dateCreated": "2021-11-02 16:15:19.574",
+      "status": "READY"
     },
     {
       "text": "%md\n",
@@ -933,7 +1880,7 @@
       "status": "FINISHED"
     }
   ],
-  "name": "Property and composite types manipulation",
+  "name": "7. Property and composite types manipulation",
   "id": "2GN8QQ2U3",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",
@@ -943,7 +1890,5 @@
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
-  "info": {
-    "isRunning": false
-  }
+  "info": {}
 }
