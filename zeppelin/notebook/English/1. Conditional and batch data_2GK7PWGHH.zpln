@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. The conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\nTo simulate a conditional Instead of `match (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.otherProp \u003d 0)`\n        The FOREACH clause can be used to update data, but with more complex use cases (for example a `MATCH`), we cannot use it.\n        So if I want to do more complex things I can use `apoc.when` / `apoc.case` procedure.\n\n\n    match (n:Prova)\n    with n\n    call apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\n    yield value return null\n",
+      "text": "%md\n\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. \nThe conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\nTo simulate a conditional with pure cypher we could execute for example\n`MATCH (n:Test) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.myProp) THEN [1] ELSE [] END | set n.otherProp \u003d 0)`\n\nThe FOREACH clause can be used to update data, but with more complex use cases (for example a `MATCH`), we cannot use it.\nSo if I want to do more complex things I can use `apoc.when` / `apoc.case` procedure.\n- apoc.when\n- apoc.case\n- apoc.do.when\n- apoc.do.case\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 09:15:14.138",
+      "dateUpdated": "2021-11-03 11:38:46.692",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -28,7 +28,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. The conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\u003cbr /\u003e\nIinstead of \u003ccode\u003ematch (n:Prova) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.ragione_sociale) THEN [1] ELSE [] END | set n.altrone \u003d 0)\u003c/code\u003e\u003cbr /\u003e\nThe FOREACH clause can be used to update data, such as executing update commands on elements in a path, or on a list created by aggregation.\u003cbr /\u003e\nSo if I want to do more complex things I can use \u003ccode\u003edb.when\u003c/code\u003e procedure.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ematch (n:Prova)\nwith n\ncall apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\nyield value return null\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher.\u003cbr /\u003e\nThe conditional execution procedures simulate an if / else structure, where a supplied boolean condition determines which cypher query is executed.\u003cbr /\u003e\nTo simulate a conditional with pure cypher we could execute for example\u003cbr /\u003e\n\u003ccode\u003eMATCH (n:Test) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.myProp) THEN [1] ELSE [] END | set n.otherProp \u003d 0)\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eThe FOREACH clause can be used to update data, but with more complex use cases (for example a \u003ccode\u003eMATCH\u003c/code\u003e), we cannot use it.\u003cbr /\u003e\nSo if I want to do more complex things I can use \u003ccode\u003eapoc.when\u003c/code\u003e / \u003ccode\u003eapoc.case\u003c/code\u003e procedure.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ematch (n:Prova)\nwith n\ncall apoc.do.when(exists(n.propTest), \u0027create (:Altro)\u0027, \u0027create (:Due)\u0027)\nyield value return null\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -38,8 +38,218 @@
       "jobName": "paragraph_1635516691436_323316003",
       "id": "paragraph_1635516691436_323316003",
       "dateCreated": "2021-10-29 14:11:31.436",
-      "dateStarted": "2021-11-02 09:03:42.441",
-      "dateFinished": "2021-11-02 09:03:42.479",
+      "dateStarted": "2021-11-03 11:37:27.430",
+      "dateFinished": "2021-11-03 11:37:27.450",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n    match (n:Person)\n    with n\n    call apoc.do.when(n.name \u003d \u0027Keanu Reeves\u0027, \u0027create (n:Keanu {born: $born}) return n\u0027, \u0027create (n:NotKeanu {born: $born}) return n\u0027, {born: n.born})\n    yield value \n    return value.n.born, value.n.name",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 11:45:51.471",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value.n.born": "string",
+                      "value.n.name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value.n.born\tvalue.n.name\n1964\tNULL\n1967\tNULL\n1961\tNULL\n1960\tNULL\n1967\tNULL\n1965\tNULL\n1952\tNULL\n1978\tNULL\n1975\tNULL\n1940\tNULL\n1944\tNULL\n1962\tNULL\n1937\tNULL\n1962\tNULL\n1958\tNULL\n1966\tNULL\n1971\tNULL\n1968\tNULL\n1957\tNULL\n1943\tNULL\n1967\tNULL\n1948\tNULL\n1947\tNULL\n1961\tNULL\n1957\tNULL\n1959\tNULL\n1962\tNULL\n1933\tNULL\n1961\tNULL\n1944\tNULL\n1941\tNULL\n1969\tNULL\n1962\tNULL\n1974\tNULL\n1970\tNULL\n1961\tNULL\n1971\tNULL\n1996\tNULL\n1957\tNULL\n1970\tNULL\n1971\tNULL\n1972\tNULL\n1966\tNULL\n1942\tNULL\n1963\tNULL\n1963\tNULL\n1940\tNULL\n1960\tNULL\n1929\tNULL\n1942\tNULL\n1951\tNULL\n1956\tNULL\n1970\tNULL\n1971\tNULL\n1940\tNULL\n1953\tNULL\n1968\tNULL\n1973\tNULL\n1967\tNULL\n1956\tNULL\n1941\tNULL\n1956\tNULL\n1953\tNULL\n1949\tNULL\n1962\tNULL\n1950\tNULL\n1956\tNULL\n1948\tNULL\n1956\tNULL\n1949\tNULL\n1977\tNULL\n1970\tNULL\n1930\tNULL\n1968\tNULL\n1950\tNULL\n1974\tNULL\n1954\tNULL\n1931\tNULL\n1930\tNULL\n1930\tNULL\n1947\tNULL\n1968\tNULL\n1958\tNULL\n1953\tNULL\n1966\tNULL\n1949\tNULL\n1965\tNULL\n1969\tNULL\n1961\tNULL\n1939\tNULL\n1976\tNULL\n1971\tNULL\n1954\tNULL\n1981\tNULL\n1946\tNULL\n1940\tNULL\n1967\tNULL\n1985\tNULL\n1960\tNULL\n1946\tNULL\n1966\tNULL\n1980\tNULL\n1982\tNULL\nNULL\tNULL\n1957\tNULL\n1953\tNULL\n1968\tNULL\n1955\tNULL\n1959\tNULL\n1959\tNULL\n1938\tNULL\n1969\tNULL\n1960\tNULL\n1944\tNULL\n1965\tNULL\n1950\tNULL\n1955\tNULL\n1967\tNULL\n1943\tNULL\n1951\tNULL\n1932\tNULL\n1946\tNULL\n1949\tNULL\n1958\tNULL\n1967\tNULL\n1954\tNULL\n1956\tNULL\n1963\tNULL\n1943\tNULL\nNULL\tNULL\nNULL\tNULL\nNULL\tNULL\nNULL\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635939526752_538363380",
+      "id": "paragraph_1635939526752_538363380",
+      "dateCreated": "2021-11-03 11:38:46.752",
+      "dateStarted": "2021-11-03 11:45:50.919",
+      "dateFinished": "2021-11-03 11:45:51.296",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nmatch (nt:NotKeanu) return nk",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 11:43:20.774",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "born": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":256,\"data\":{\"born\":1949},\"label\":\"Keanu\"},{\"id\":257,\"data\":{\"born\":1965},\"label\":\"Keanu\"},{\"id\":258,\"data\":{\"born\":1969},\"label\":\"Keanu\"},{\"id\":259,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":260,\"data\":{\"born\":1939},\"label\":\"Keanu\"},{\"id\":261,\"data\":{\"born\":1976},\"label\":\"Keanu\"},{\"id\":262,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":263,\"data\":{\"born\":1954},\"label\":\"Keanu\"},{\"id\":264,\"data\":{\"born\":1981},\"label\":\"Keanu\"},{\"id\":265,\"data\":{\"born\":1946},\"label\":\"Keanu\"},{\"id\":266,\"data\":{\"born\":1940},\"label\":\"Keanu\"},{\"id\":267,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":268,\"data\":{\"born\":1985},\"label\":\"Keanu\"},{\"id\":269,\"data\":{\"born\":1960},\"label\":\"Keanu\"},{\"id\":270,\"data\":{\"born\":1946},\"label\":\"Keanu\"},{\"id\":271,\"data\":{\"born\":1966},\"label\":\"Keanu\"},{\"id\":272,\"data\":{\"born\":1980},\"label\":\"Keanu\"},{\"id\":273,\"data\":{\"born\":1982},\"label\":\"Keanu\"},{\"id\":274,\"data\":{},\"label\":\"Keanu\"},{\"id\":275,\"data\":{\"born\":1957},\"label\":\"Keanu\"},{\"id\":276,\"data\":{\"born\":1953},\"label\":\"Keanu\"},{\"id\":277,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":278,\"data\":{\"born\":1955},\"label\":\"Keanu\"},{\"id\":279,\"data\":{\"born\":1959},\"label\":\"Keanu\"},{\"id\":280,\"data\":{\"born\":1959},\"label\":\"Keanu\"},{\"id\":281,\"data\":{\"born\":1938},\"label\":\"Keanu\"},{\"id\":282,\"data\":{\"born\":1969},\"label\":\"Keanu\"},{\"id\":283,\"data\":{\"born\":1960},\"label\":\"Keanu\"},{\"id\":284,\"data\":{\"born\":1944},\"label\":\"Keanu\"},{\"id\":285,\"data\":{\"born\":1965},\"label\":\"Keanu\"},{\"id\":286,\"data\":{\"born\":1950},\"label\":\"Keanu\"},{\"id\":287,\"data\":{\"born\":1955},\"label\":\"Keanu\"},{\"id\":288,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":289,\"data\":{\"born\":1943},\"label\":\"Keanu\"},{\"id\":290,\"data\":{\"born\":1951},\"label\":\"Keanu\"},{\"id\":291,\"data\":{\"born\":1932},\"label\":\"Keanu\"},{\"id\":292,\"data\":{\"born\":1946},\"label\":\"Keanu\"},{\"id\":293,\"data\":{\"born\":1949},\"label\":\"Keanu\"},{\"id\":294,\"data\":{\"born\":1958},\"label\":\"Keanu\"},{\"id\":295,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":296,\"data\":{\"born\":1954},\"label\":\"Keanu\"},{\"id\":297,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":298,\"data\":{\"born\":1963},\"label\":\"Keanu\"},{\"id\":299,\"data\":{\"born\":1943},\"label\":\"Keanu\"},{\"id\":300,\"data\":{},\"label\":\"Keanu\"},{\"id\":301,\"data\":{},\"label\":\"Keanu\"},{\"id\":302,\"data\":{},\"label\":\"Keanu\"},{\"id\":303,\"data\":{},\"label\":\"Keanu\"},{\"id\":304,\"data\":{\"born\":1964},\"label\":\"Keanu\"},{\"id\":171,\"data\":{\"born\":1964},\"label\":\"Keanu\"},{\"id\":172,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":173,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":174,\"data\":{\"born\":1960},\"label\":\"Keanu\"},{\"id\":175,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":176,\"data\":{\"born\":1965},\"label\":\"Keanu\"},{\"id\":177,\"data\":{\"born\":1952},\"label\":\"Keanu\"},{\"id\":178,\"data\":{\"born\":1978},\"label\":\"Keanu\"},{\"id\":179,\"data\":{\"born\":1975},\"label\":\"Keanu\"},{\"id\":180,\"data\":{\"born\":1940},\"label\":\"Keanu\"},{\"id\":181,\"data\":{\"born\":1944},\"label\":\"Keanu\"},{\"id\":182,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":183,\"data\":{\"born\":1937},\"label\":\"Keanu\"},{\"id\":184,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":185,\"data\":{\"born\":1958},\"label\":\"Keanu\"},{\"id\":186,\"data\":{\"born\":1966},\"label\":\"Keanu\"},{\"id\":187,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":188,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":189,\"data\":{\"born\":1957},\"label\":\"Keanu\"},{\"id\":190,\"data\":{\"born\":1943},\"label\":\"Keanu\"},{\"id\":191,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":192,\"data\":{\"born\":1948},\"label\":\"Keanu\"},{\"id\":193,\"data\":{\"born\":1947},\"label\":\"Keanu\"},{\"id\":194,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":195,\"data\":{\"born\":1957},\"label\":\"Keanu\"},{\"id\":196,\"data\":{\"born\":1959},\"label\":\"Keanu\"},{\"id\":197,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":198,\"data\":{\"born\":1933},\"label\":\"Keanu\"},{\"id\":199,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":200,\"data\":{\"born\":1944},\"label\":\"Keanu\"},{\"id\":201,\"data\":{\"born\":1941},\"label\":\"Keanu\"},{\"id\":202,\"data\":{\"born\":1969},\"label\":\"Keanu\"},{\"id\":203,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":204,\"data\":{\"born\":1974},\"label\":\"Keanu\"},{\"id\":205,\"data\":{\"born\":1970},\"label\":\"Keanu\"},{\"id\":206,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":207,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":208,\"data\":{\"born\":1996},\"label\":\"Keanu\"},{\"id\":209,\"data\":{\"born\":1957},\"label\":\"Keanu\"},{\"id\":210,\"data\":{\"born\":1970},\"label\":\"Keanu\"},{\"id\":211,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":212,\"data\":{\"born\":1972},\"label\":\"Keanu\"},{\"id\":213,\"data\":{\"born\":1966},\"label\":\"Keanu\"},{\"id\":214,\"data\":{\"born\":1942},\"label\":\"Keanu\"},{\"id\":215,\"data\":{\"born\":1963},\"label\":\"Keanu\"},{\"id\":216,\"data\":{\"born\":1963},\"label\":\"Keanu\"},{\"id\":217,\"data\":{\"born\":1940},\"label\":\"Keanu\"},{\"id\":218,\"data\":{\"born\":1960},\"label\":\"Keanu\"},{\"id\":219,\"data\":{\"born\":1929},\"label\":\"Keanu\"},{\"id\":220,\"data\":{\"born\":1942},\"label\":\"Keanu\"},{\"id\":221,\"data\":{\"born\":1951},\"label\":\"Keanu\"},{\"id\":222,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":223,\"data\":{\"born\":1970},\"label\":\"Keanu\"},{\"id\":224,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":225,\"data\":{\"born\":1940},\"label\":\"Keanu\"},{\"id\":226,\"data\":{\"born\":1953},\"label\":\"Keanu\"},{\"id\":227,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":228,\"data\":{\"born\":1973},\"label\":\"Keanu\"},{\"id\":229,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":230,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":231,\"data\":{\"born\":1941},\"label\":\"Keanu\"},{\"id\":232,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":233,\"data\":{\"born\":1953},\"label\":\"Keanu\"},{\"id\":234,\"data\":{\"born\":1949},\"label\":\"Keanu\"},{\"id\":235,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":236,\"data\":{\"born\":1950},\"label\":\"Keanu\"},{\"id\":237,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":238,\"data\":{\"born\":1948},\"label\":\"Keanu\"},{\"id\":239,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":240,\"data\":{\"born\":1949},\"label\":\"Keanu\"},{\"id\":241,\"data\":{\"born\":1977},\"label\":\"Keanu\"},{\"id\":242,\"data\":{\"born\":1970},\"label\":\"Keanu\"},{\"id\":243,\"data\":{\"born\":1930},\"label\":\"Keanu\"},{\"id\":244,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":245,\"data\":{\"born\":1950},\"label\":\"Keanu\"},{\"id\":246,\"data\":{\"born\":1974},\"label\":\"Keanu\"},{\"id\":247,\"data\":{\"born\":1954},\"label\":\"Keanu\"},{\"id\":248,\"data\":{\"born\":1931},\"label\":\"Keanu\"},{\"id\":249,\"data\":{\"born\":1930},\"label\":\"Keanu\"},{\"id\":250,\"data\":{\"born\":1930},\"label\":\"Keanu\"},{\"id\":251,\"data\":{\"born\":1947},\"label\":\"Keanu\"},{\"id\":252,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":253,\"data\":{\"born\":1958},\"label\":\"Keanu\"},{\"id\":254,\"data\":{\"born\":1953},\"label\":\"Keanu\"},{\"id\":255,\"data\":{\"born\":1966},\"label\":\"Keanu\"}],\"edges\":[],\"labels\":{\"TTL\":\"#9A58CC\",\"Movie\":\"#A8DD80\",\"Person\":\"#F2BD8C\",\"Keanu\":\"#B54EEB\",\"NotKeanu\":\"#1EA51E\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635939537974_717266072",
+      "id": "paragraph_1635939537974_717266072",
+      "dateCreated": "2021-11-03 11:38:57.974",
+      "dateStarted": "2021-11-03 11:42:29.075",
+      "dateFinished": "2021-11-03 11:42:29.560",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nmatch (k:Keanu) return k",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03 11:43:28.655",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "born": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":256,\"data\":{\"born\":1949},\"label\":\"Keanu\"},{\"id\":257,\"data\":{\"born\":1965},\"label\":\"Keanu\"},{\"id\":258,\"data\":{\"born\":1969},\"label\":\"Keanu\"},{\"id\":259,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":260,\"data\":{\"born\":1939},\"label\":\"Keanu\"},{\"id\":261,\"data\":{\"born\":1976},\"label\":\"Keanu\"},{\"id\":262,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":263,\"data\":{\"born\":1954},\"label\":\"Keanu\"},{\"id\":264,\"data\":{\"born\":1981},\"label\":\"Keanu\"},{\"id\":265,\"data\":{\"born\":1946},\"label\":\"Keanu\"},{\"id\":266,\"data\":{\"born\":1940},\"label\":\"Keanu\"},{\"id\":267,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":268,\"data\":{\"born\":1985},\"label\":\"Keanu\"},{\"id\":269,\"data\":{\"born\":1960},\"label\":\"Keanu\"},{\"id\":270,\"data\":{\"born\":1946},\"label\":\"Keanu\"},{\"id\":271,\"data\":{\"born\":1966},\"label\":\"Keanu\"},{\"id\":272,\"data\":{\"born\":1980},\"label\":\"Keanu\"},{\"id\":273,\"data\":{\"born\":1982},\"label\":\"Keanu\"},{\"id\":274,\"data\":{},\"label\":\"Keanu\"},{\"id\":275,\"data\":{\"born\":1957},\"label\":\"Keanu\"},{\"id\":276,\"data\":{\"born\":1953},\"label\":\"Keanu\"},{\"id\":277,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":278,\"data\":{\"born\":1955},\"label\":\"Keanu\"},{\"id\":279,\"data\":{\"born\":1959},\"label\":\"Keanu\"},{\"id\":280,\"data\":{\"born\":1959},\"label\":\"Keanu\"},{\"id\":281,\"data\":{\"born\":1938},\"label\":\"Keanu\"},{\"id\":282,\"data\":{\"born\":1969},\"label\":\"Keanu\"},{\"id\":283,\"data\":{\"born\":1960},\"label\":\"Keanu\"},{\"id\":284,\"data\":{\"born\":1944},\"label\":\"Keanu\"},{\"id\":285,\"data\":{\"born\":1965},\"label\":\"Keanu\"},{\"id\":286,\"data\":{\"born\":1950},\"label\":\"Keanu\"},{\"id\":287,\"data\":{\"born\":1955},\"label\":\"Keanu\"},{\"id\":288,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":289,\"data\":{\"born\":1943},\"label\":\"Keanu\"},{\"id\":290,\"data\":{\"born\":1951},\"label\":\"Keanu\"},{\"id\":291,\"data\":{\"born\":1932},\"label\":\"Keanu\"},{\"id\":292,\"data\":{\"born\":1946},\"label\":\"Keanu\"},{\"id\":293,\"data\":{\"born\":1949},\"label\":\"Keanu\"},{\"id\":294,\"data\":{\"born\":1958},\"label\":\"Keanu\"},{\"id\":295,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":296,\"data\":{\"born\":1954},\"label\":\"Keanu\"},{\"id\":297,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":298,\"data\":{\"born\":1963},\"label\":\"Keanu\"},{\"id\":299,\"data\":{\"born\":1943},\"label\":\"Keanu\"},{\"id\":300,\"data\":{},\"label\":\"Keanu\"},{\"id\":301,\"data\":{},\"label\":\"Keanu\"},{\"id\":302,\"data\":{},\"label\":\"Keanu\"},{\"id\":303,\"data\":{},\"label\":\"Keanu\"},{\"id\":304,\"data\":{\"born\":1964},\"label\":\"Keanu\"},{\"id\":171,\"data\":{\"born\":1964},\"label\":\"Keanu\"},{\"id\":172,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":173,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":174,\"data\":{\"born\":1960},\"label\":\"Keanu\"},{\"id\":175,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":176,\"data\":{\"born\":1965},\"label\":\"Keanu\"},{\"id\":177,\"data\":{\"born\":1952},\"label\":\"Keanu\"},{\"id\":178,\"data\":{\"born\":1978},\"label\":\"Keanu\"},{\"id\":179,\"data\":{\"born\":1975},\"label\":\"Keanu\"},{\"id\":180,\"data\":{\"born\":1940},\"label\":\"Keanu\"},{\"id\":181,\"data\":{\"born\":1944},\"label\":\"Keanu\"},{\"id\":182,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":183,\"data\":{\"born\":1937},\"label\":\"Keanu\"},{\"id\":184,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":185,\"data\":{\"born\":1958},\"label\":\"Keanu\"},{\"id\":186,\"data\":{\"born\":1966},\"label\":\"Keanu\"},{\"id\":187,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":188,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":189,\"data\":{\"born\":1957},\"label\":\"Keanu\"},{\"id\":190,\"data\":{\"born\":1943},\"label\":\"Keanu\"},{\"id\":191,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":192,\"data\":{\"born\":1948},\"label\":\"Keanu\"},{\"id\":193,\"data\":{\"born\":1947},\"label\":\"Keanu\"},{\"id\":194,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":195,\"data\":{\"born\":1957},\"label\":\"Keanu\"},{\"id\":196,\"data\":{\"born\":1959},\"label\":\"Keanu\"},{\"id\":197,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":198,\"data\":{\"born\":1933},\"label\":\"Keanu\"},{\"id\":199,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":200,\"data\":{\"born\":1944},\"label\":\"Keanu\"},{\"id\":201,\"data\":{\"born\":1941},\"label\":\"Keanu\"},{\"id\":202,\"data\":{\"born\":1969},\"label\":\"Keanu\"},{\"id\":203,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":204,\"data\":{\"born\":1974},\"label\":\"Keanu\"},{\"id\":205,\"data\":{\"born\":1970},\"label\":\"Keanu\"},{\"id\":206,\"data\":{\"born\":1961},\"label\":\"Keanu\"},{\"id\":207,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":208,\"data\":{\"born\":1996},\"label\":\"Keanu\"},{\"id\":209,\"data\":{\"born\":1957},\"label\":\"Keanu\"},{\"id\":210,\"data\":{\"born\":1970},\"label\":\"Keanu\"},{\"id\":211,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":212,\"data\":{\"born\":1972},\"label\":\"Keanu\"},{\"id\":213,\"data\":{\"born\":1966},\"label\":\"Keanu\"},{\"id\":214,\"data\":{\"born\":1942},\"label\":\"Keanu\"},{\"id\":215,\"data\":{\"born\":1963},\"label\":\"Keanu\"},{\"id\":216,\"data\":{\"born\":1963},\"label\":\"Keanu\"},{\"id\":217,\"data\":{\"born\":1940},\"label\":\"Keanu\"},{\"id\":218,\"data\":{\"born\":1960},\"label\":\"Keanu\"},{\"id\":219,\"data\":{\"born\":1929},\"label\":\"Keanu\"},{\"id\":220,\"data\":{\"born\":1942},\"label\":\"Keanu\"},{\"id\":221,\"data\":{\"born\":1951},\"label\":\"Keanu\"},{\"id\":222,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":223,\"data\":{\"born\":1970},\"label\":\"Keanu\"},{\"id\":224,\"data\":{\"born\":1971},\"label\":\"Keanu\"},{\"id\":225,\"data\":{\"born\":1940},\"label\":\"Keanu\"},{\"id\":226,\"data\":{\"born\":1953},\"label\":\"Keanu\"},{\"id\":227,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":228,\"data\":{\"born\":1973},\"label\":\"Keanu\"},{\"id\":229,\"data\":{\"born\":1967},\"label\":\"Keanu\"},{\"id\":230,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":231,\"data\":{\"born\":1941},\"label\":\"Keanu\"},{\"id\":232,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":233,\"data\":{\"born\":1953},\"label\":\"Keanu\"},{\"id\":234,\"data\":{\"born\":1949},\"label\":\"Keanu\"},{\"id\":235,\"data\":{\"born\":1962},\"label\":\"Keanu\"},{\"id\":236,\"data\":{\"born\":1950},\"label\":\"Keanu\"},{\"id\":237,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":238,\"data\":{\"born\":1948},\"label\":\"Keanu\"},{\"id\":239,\"data\":{\"born\":1956},\"label\":\"Keanu\"},{\"id\":240,\"data\":{\"born\":1949},\"label\":\"Keanu\"},{\"id\":241,\"data\":{\"born\":1977},\"label\":\"Keanu\"},{\"id\":242,\"data\":{\"born\":1970},\"label\":\"Keanu\"},{\"id\":243,\"data\":{\"born\":1930},\"label\":\"Keanu\"},{\"id\":244,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":245,\"data\":{\"born\":1950},\"label\":\"Keanu\"},{\"id\":246,\"data\":{\"born\":1974},\"label\":\"Keanu\"},{\"id\":247,\"data\":{\"born\":1954},\"label\":\"Keanu\"},{\"id\":248,\"data\":{\"born\":1931},\"label\":\"Keanu\"},{\"id\":249,\"data\":{\"born\":1930},\"label\":\"Keanu\"},{\"id\":250,\"data\":{\"born\":1930},\"label\":\"Keanu\"},{\"id\":251,\"data\":{\"born\":1947},\"label\":\"Keanu\"},{\"id\":252,\"data\":{\"born\":1968},\"label\":\"Keanu\"},{\"id\":253,\"data\":{\"born\":1958},\"label\":\"Keanu\"},{\"id\":254,\"data\":{\"born\":1953},\"label\":\"Keanu\"},{\"id\":255,\"data\":{\"born\":1966},\"label\":\"Keanu\"}],\"edges\":[],\"labels\":{\"TTL\":\"#9A58CC\",\"Movie\":\"#A8DD80\",\"Person\":\"#F2BD8C\",\"Keanu\":\"#B54EEB\",\"NotKeanu\":\"#1EA51E\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635939784252_499221163",
+      "id": "paragraph_1635939784252_499221163",
+      "dateCreated": "2021-11-03 11:43:04.252",
+      "dateStarted": "2021-11-03 11:43:28.673",
+      "dateFinished": "2021-11-03 11:43:28.725",
       "status": "FINISHED"
     },
     {
