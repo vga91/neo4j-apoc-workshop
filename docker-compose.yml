@@ -18,6 +18,7 @@ services:
       - ./zeppelin/notebook:/zeppelin/notebook
       - ./zeppelin/conf:/zeppelin/conf
       - ./zeppelin/interpreter/neo4j:/zeppelin/interpreter/neo4j
+      #- ./zeppelin/webapps:/zeppelin/webapps
     networks:
       - apoc_workshop
 
