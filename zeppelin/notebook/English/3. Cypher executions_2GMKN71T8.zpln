@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n\n\u003d\u003d Virtual node\n\npanoramica e qualche esempio... --\u003e tipo se voglio caricare un csv e vedere una rappresentazione a grafo\n\n\u003d\u003d Virtual functions / proc\n\n// essendo virtuali, non funzionano le classiche funzioni native di Neo4j, perciò devo usare queste\napoc.rel.type\napoc.rel.endNode / apoc.rel.startNode\napoc.rel.id\n\n\n\n\u003d\u003d Cypher Execution\n\nhttps://neo4j.com/labs/apoc/4.1/cypher-execution/ --\u003e tanta roba... solo alcune\n// todo - lista delle cose... forse\n\n\n\n\u003d\u003d Running cypher statement\n// todo - trovare titolo più consono\n\n\n\nWe can use Cypher as a safe, graph-aware, partially compiled scripting language within APOC.\n\n// include::overview.adoc[tags\u003dcypher,labeloffset\u003d-1]\n\n[[running-cypher-overview]]\n\u003d\u003d\u003d Procedure Overview\n\nThe supported procedures are described in the table below:\n\n[separator\u003d¦,opts\u003dheader,cols\u003d\"5,1m,1m\"]\n|\u003d\u003d\u003d\n¦Qualified Name¦Type¦Release\n\n\n- apoc.cypher.mapParallel / apoc.cypher.mapParallel2 / apoc.cypher.parallel / apoc.cypher.parallel2\n- apoc.cypher.run(fragment, params) yield value - executes reading fragment with the given parameters - currently no schema operations\n- apoc.cypher.doIt(fragment, params) yield value - executes writing fragment with the given parameters\n- apoc.cypher.runFile(file or url,[{statistics:true,timeout:10,parameters:{}}]) - runs each statement in the file, all semicolon separated - currently no schema operations\n- apoc.cypher.runFiles([files or urls],[{statistics:true,timeout:10,parameters:{}}])) - runs each statement in the files, all semicolon separated\n- apoc.cypher.runMany(\u0027cypher;\\nstatements;\u0027, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations\n- apoc.cypher.runManyReadOnly(\u0027cypher;\\nstatements;\u0027, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated, read-only statement and returns summary - currently no schema operations\n- apoc.cypher.runSchema(statement, params) yield value - executes query schema statement with the given parameters\n- apoc.cypher.runSchemaFile(file or url,[{statistics:true,timeout:10}]) - allows only schema operations, runs each schema statement in the file, all semicolon separated\n- apoc.cypher.runSchemaFiles([files or urls],{statistics:true,timeout:10}) - allows only schema operations, runs each schema statement in the files, all semicolon separated\n- apoc.cypher.runTimeboxed(\u0027cypherStatement\u0027,\\{params}, timeout) - abort kernelTransaction after timeout ms if not finished\n- apoc.cypher.runFirstColumnMany(statement, params) - executes statement with given parameters, returns first column only collected into a list, params are available as identifiers\n- apoc.cypher.runFirstColumnSingle(statement, params) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers\n\n\nTo use runFile.... `apoc.import.file.enabled\u003dtrue`\n\n\n\n[[cypher-fast-node-count-by-label]]\n\u003d\u003d\u003d Example: Fast Node-Counts by Label\n\nWe can quickly compute the number of nodes for a specific label using the `count` function, but only if that\u0027s the only single thing in the query.\nFor example:\n\n[source,cypher]\n----\nMATCH (:Person) RETURN count(*);\n----\n\nWe can also combine several with `UNION ALL`:\n\n.Works\n[source,cypher]\n----\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*);\n----\n\nBut we can\u0027t do the same thing using the `WITH` clause:\n\n.Doesn\u0027t work\n[source,cypher]\n----\nMATCH (:Person)\nWITH count(*) as people\nMATCH (:Movie) RETURN people, count(*) as movies;\n----\n\nThis query will work out the count by iterating over all nodes, which is a very slow operation\n\nWe can use `apoc.cypher.run` to construct the `COUNT()` statements and run each of them individually, so it completes in a few ms.\n\n[source,cypher]\n----\nCALL db.labels() yield label\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count\n----\n\nYou can use a similar approach to get the property-keys per label:\n\n[source,cypher]\n----\nCALL db.labels() yield label\nCALL apoc.cypher.run(\"MATCH (n:`\"+label+\"`) RETURN keys(n) as keys LIMIT 1\",null) yield value\nRETURN label, value.keys as keys\n----\n\n\n",
+      "text": "%md\n\n# Cypher Execution\n\nThe Apoc library comes with many procedure to help us to execute specific Cypher statements:\n\n\n- apoc.cypher.mapParallel / apoc.cypher.mapParallel2 / apoc.cypher.parallel / apoc.cypher.parallel2 - to execute statements in parallel\n- apoc.cypher.run(fragment, params) yield value - executes a reading fragment with the given parameters\n- apoc.cypher.doIt(fragment, params) yield value - executes writing fragment with the given parameters\n- apoc.cypher.runFile(file or url,[{statistics:true,timeout:10,parameters:{}}]) - runs each statement in the file, all semicolon separated - currently no schema operations\n- apoc.cypher.runFiles([files or urls],[{statistics:true,timeout:10,parameters:{}}])) - runs each statement in the files, all semicolon separated\n- apoc.cypher.runMany(\u0027cypher;\\nstatements;\u0027, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations\n- apoc.cypher.runManyReadOnly(\u0027cypher;\\nstatements;\u0027, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated, read-only statement and returns summary - currently no schema operations\n- apoc.cypher.runSchema(statement, params) yield value - executes query schema statement with the given parameters\n- apoc.cypher.runSchemaFile(file or url,[{statistics:true,timeout:10}]) - allows only schema operations, runs each schema statement in the file, all semicolon separated\n- apoc.cypher.runSchemaFiles([files or urls],{statistics:true,timeout:10}) - allows only schema operations, runs each schema statement in the files, all semicolon separated\n- apoc.cypher.runTimeboxed(\u0027cypherStatement\u0027,\\{params}, timeout) - abort kernelTransaction after timeout ms if not finished\n- apoc.cypher.runFirstColumnMany(statement, params) - executes statement with given parameters, returns first column only collected into a list, params are available as identifiers\n- apoc.cypher.runFirstColumnSingle(statement, params) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers\n\n\nTo use apoc.cypher.runFile and apoc.cypher.runFiles we need to set `apoc.import.file.enabled\u003dtrue`\n\n\n\n[[cypher-fast-node-count-by-label]]\n\u003d\u003d\u003d Example: Fast Node-Counts by Label\n\nWe can quickly compute the number of nodes for a specific label using the `count` function, but only if that\u0027s the only single thing in the query.\nFor example:\n\n[source,cypher]\n----\nMATCH (:Person) RETURN count(*);\n----\n\nWe can also combine several with `UNION ALL`:\n\n.Works\n[source,cypher]\n----\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*);\n----\n\nBut we can\u0027t do the same thing using the `WITH` clause:\n\n.Doesn\u0027t work\n[source,cypher]\n----\nMATCH (:Person)\nWITH count(*) as people\nMATCH (:Movie) RETURN people, count(*) as movies;\n----\n\nThis query will work out the count by iterating over all nodes, which is a very slow operation\n\nWe can use `apoc.cypher.run` to construct the `COUNT()` statements and run each of them individually, so it completes in a few ms.\n\n[source,cypher]\n----\nCALL db.labels() yield label\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count\n----\n\nYou can use a similar approach to get the property-keys per label:\n\n[source,cypher]\n----\nCALL db.labels() yield label\nCALL apoc.cypher.run(\"MATCH (n:`\"+label+\"`) RETURN keys(n) as keys LIMIT 1\",null) yield value\nRETURN label, value.keys as keys\n----\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 13:37:26.404",
+      "dateUpdated": "2021-11-05 11:23:09.467",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -28,7 +28,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Virtual node\u003c/p\u003e\n\u003cp\u003epanoramica e qualche esempio\u0026hellip; \u0026ndash;\u0026gt; tipo se voglio caricare un csv e vedere una rappresentazione a grafo\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Virtual functions / proc\u003c/p\u003e\n\u003cp\u003e// essendo virtuali, non funzionano le classiche funzioni native di Neo4j, perciò devo usare queste\u003cbr /\u003e\napoc.rel.type\u003cbr /\u003e\napoc.rel.endNode / apoc.rel.startNode\u003cbr /\u003e\napoc.rel.id\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Cypher Execution\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/cypher-execution/\"\u003ehttps://neo4j.com/labs/apoc/4.1/cypher-execution/\u003c/a\u003e \u0026ndash;\u0026gt; tanta roba\u0026hellip; solo alcune\u003cbr /\u003e\n// todo - lista delle cose\u0026hellip; forse\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Running cypher statement\u003cbr /\u003e\n// todo - trovare titolo più consono\u003c/p\u003e\n\u003cp\u003eWe can use Cypher as a safe, graph-aware, partially compiled scripting language within APOC.\u003c/p\u003e\n\u003cp\u003e// include::overview.adoc[tags\u003dcypher,labeloffset\u003d-1]\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"running-cypher-overview\"\u003erunning-cypher-overview\u003c/a\u003e\u003cbr /\u003e\n\u003d\u003d\u003d Procedure Overview\u003c/p\u003e\n\u003cp\u003eThe supported procedures are described in the table below:\u003c/p\u003e\n\u003cp\u003e[separator\u003d¦,opts\u003dheader,cols\u003d\u0026ldquo;5,1m,1m\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n¦Qualified Name¦Type¦Release\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cem\u003eapoc.cypher.mapParallel / apoc.cypher.mapParallel2 / apoc.cypher.parallel / apoc.cypher.parallel2\u003c/em\u003e\u003c/li\u003e\n\u003cli\u003eapoc.cypher.run(fragment, params) yield value - executes reading fragment with the given parameters - currently no schema operations\u003c/li\u003e\n\u003cli\u003eapoc.cypher.doIt(fragment, params) yield value - executes writing fragment with the given parameters\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runFile(file or url,[{statistics:true,timeout:10,parameters:{}}]) - runs each statement in the file, all semicolon separated - currently no schema operations\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runFiles([files or urls],[{statistics:true,timeout:10,parameters:{}}])) - runs each statement in the files, all semicolon separated\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runMany(\u0026lsquo;cypher;\\nstatements;\u0026rsquo;, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runManyReadOnly(\u0026lsquo;cypher;\\nstatements;\u0026rsquo;, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated, read-only statement and returns summary - currently no schema operations\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runSchema(statement, params) yield value - executes query schema statement with the given parameters\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runSchemaFile(file or url,[{statistics:true,timeout:10}]) - allows only schema operations, runs each schema statement in the file, all semicolon separated\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runSchemaFiles([files or urls],{statistics:true,timeout:10}) - allows only schema operations, runs each schema statement in the files, all semicolon separated\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runTimeboxed(\u0026lsquo;cypherStatement\u0026rsquo;,{params}, timeout) - abort kernelTransaction after timeout ms if not finished\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runWrite(statement, params) yield value - alias for apoc.cypher.doIt\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runFirstColumnMany(statement, params) - executes statement with given parameters, returns first column only collected into a list, params are available as identifiers\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runFirstColumnSingle(statement, params) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003ca href\u003d\"cypher-fast-node-count-by-label\"\u003ecypher-fast-node-count-by-label\u003c/a\u003e\u003cbr /\u003e\n\u003d\u003d\u003d Example: Fast Node-Counts by Label\u003c/p\u003e\n\u003cp\u003eWe can quickly compute the number of nodes for a specific label using the \u003ccode\u003ecount\u003c/code\u003e function, but only if that\u0026rsquo;s the only single thing in the query.\u003cbr /\u003e\nFor example:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (:Person) RETURN count(*);\u003c/h2\u003e\n\u003cp\u003eWe can also combine several with \u003ccode\u003eUNION ALL\u003c/code\u003e:\u003c/p\u003e\n\u003ch2\u003e.Works\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (:Person) RETURN count(\u003cem\u003e)\u003cbr /\u003e\nUNION ALL\u003cbr /\u003e\nMATCH (:Movie) RETURN count(\u003c/em\u003e);\u003c/h2\u003e\n\u003cp\u003eBut we can\u0026rsquo;t do the same thing using the \u003ccode\u003eWITH\u003c/code\u003e clause:\u003c/p\u003e\n\u003ch2\u003e.Doesn\u0026rsquo;t work\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (:Person)\u003cbr /\u003e\nWITH count(\u003cem\u003e) as people\u003cbr /\u003e\nMATCH (:Movie) RETURN people, count(\u003c/em\u003e) as movies;\u003c/h2\u003e\n\u003cp\u003eThis query will work out the count by iterating over all nodes, which is a very slow operation\u003c/p\u003e\n\u003cp\u003eWe can use \u003ccode\u003eapoc.cypher.run\u003c/code\u003e to construct the \u003ccode\u003eCOUNT()\u003c/code\u003e statements and run each of them individually, so it completes in a few ms.\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL db.labels() yield label\u003cbr /\u003e\nCALL apoc.cypher.run(\u0026ldquo;match (:\u003ccode\u003e\u0026quot;+label+\u0026quot;\u003c/code\u003e) return count(*) as count\u0026rdquo;, null) yield value\u003cbr /\u003e\nreturn label, value.count as count\u003c/h2\u003e\n\u003cp\u003eYou can use a similar approach to get the property-keys per label:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL db.labels() yield label\u003cbr /\u003e\nCALL apoc.cypher.run(\u0026ldquo;MATCH (n:\u003ccode\u003e\u0026quot;+label+\u0026quot;\u003c/code\u003e) RETURN keys(n) as keys LIMIT 1\u0026rdquo;,null) yield value\u003cbr /\u003e\nRETURN label, value.keys as keys\u003c/h2\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eCypher Execution\u003c/h1\u003e\n\u003cp\u003eThe Apoc library comes with many procedure to help us to execute specific Cypher statements:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.cypher.mapParallel / apoc.cypher.mapParallel2 / apoc.cypher.parallel / apoc.cypher.parallel2 - to execute statements in parallel\u003c/li\u003e\n\u003cli\u003eapoc.cypher.run(fragment, params) yield value - executes a reading fragment with the given parameters\u003c/li\u003e\n\u003cli\u003eapoc.cypher.doIt(fragment, params) yield value - executes writing fragment with the given parameters\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runFile(file or url,[{statistics:true,timeout:10,parameters:{}}]) - runs each statement in the file, all semicolon separated - currently no schema operations\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runFiles([files or urls],[{statistics:true,timeout:10,parameters:{}}])) - runs each statement in the files, all semicolon separated\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runMany(\u0026lsquo;cypher;\\nstatements;\u0026rsquo;, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runManyReadOnly(\u0026lsquo;cypher;\\nstatements;\u0026rsquo;, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated, read-only statement and returns summary - currently no schema operations\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runSchema(statement, params) yield value - executes query schema statement with the given parameters\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runSchemaFile(file or url,[{statistics:true,timeout:10}]) - allows only schema operations, runs each schema statement in the file, all semicolon separated\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runSchemaFiles([files or urls],{statistics:true,timeout:10}) - allows only schema operations, runs each schema statement in the files, all semicolon separated\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runTimeboxed(\u0026lsquo;cypherStatement\u0026rsquo;,{params}, timeout) - abort kernelTransaction after timeout ms if not finished\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runFirstColumnMany(statement, params) - executes statement with given parameters, returns first column only collected into a list, params are available as identifiers\u003c/li\u003e\n\u003cli\u003eapoc.cypher.runFirstColumnSingle(statement, params) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eTo use apoc.cypher.runFile and apoc.cypher.runFiles we need to set \u003ccode\u003eapoc.import.file.enabled\u003dtrue\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"cypher-fast-node-count-by-label\"\u003ecypher-fast-node-count-by-label\u003c/a\u003e\u003cbr /\u003e\n\u003d\u003d\u003d Example: Fast Node-Counts by Label\u003c/p\u003e\n\u003cp\u003eWe can quickly compute the number of nodes for a specific label using the \u003ccode\u003ecount\u003c/code\u003e function, but only if that\u0026rsquo;s the only single thing in the query.\u003cbr /\u003e\nFor example:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (:Person) RETURN count(*);\u003c/h2\u003e\n\u003cp\u003eWe can also combine several with \u003ccode\u003eUNION ALL\u003c/code\u003e:\u003c/p\u003e\n\u003ch2\u003e.Works\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (:Person) RETURN count(\u003cem\u003e)\u003cbr /\u003e\nUNION ALL\u003cbr /\u003e\nMATCH (:Movie) RETURN count(\u003c/em\u003e);\u003c/h2\u003e\n\u003cp\u003eBut we can\u0026rsquo;t do the same thing using the \u003ccode\u003eWITH\u003c/code\u003e clause:\u003c/p\u003e\n\u003ch2\u003e.Doesn\u0026rsquo;t work\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (:Person)\u003cbr /\u003e\nWITH count(\u003cem\u003e) as people\u003cbr /\u003e\nMATCH (:Movie) RETURN people, count(\u003c/em\u003e) as movies;\u003c/h2\u003e\n\u003cp\u003eThis query will work out the count by iterating over all nodes, which is a very slow operation\u003c/p\u003e\n\u003cp\u003eWe can use \u003ccode\u003eapoc.cypher.run\u003c/code\u003e to construct the \u003ccode\u003eCOUNT()\u003c/code\u003e statements and run each of them individually, so it completes in a few ms.\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL db.labels() yield label\u003cbr /\u003e\nCALL apoc.cypher.run(\u0026ldquo;match (:\u003ccode\u003e\u0026quot;+label+\u0026quot;\u003c/code\u003e) return count(*) as count\u0026rdquo;, null) yield value\u003cbr /\u003e\nreturn label, value.count as count\u003c/h2\u003e\n\u003cp\u003eYou can use a similar approach to get the property-keys per label:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL db.labels() yield label\u003cbr /\u003e\nCALL apoc.cypher.run(\u0026ldquo;MATCH (n:\u003ccode\u003e\u0026quot;+label+\u0026quot;\u003c/code\u003e) RETURN keys(n) as keys LIMIT 1\u0026rdquo;,null) yield value\u003cbr /\u003e\nRETURN label, value.keys as keys\u003c/h2\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -38,8 +38,8 @@
       "jobName": "paragraph_1635854661682_1970406879",
       "id": "paragraph_1635854661682_1970406879",
       "dateCreated": "2021-11-02 12:04:21.682",
-      "dateStarted": "2021-11-02 13:32:59.846",
-      "dateFinished": "2021-11-02 13:32:59.978",
+      "dateStarted": "2021-11-05 11:23:05.375",
+      "dateFinished": "2021-11-05 11:23:05.405",
       "status": "FINISHED"
     },
     {
@@ -60,10 +60,22 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\n### apoc.cypher.run\n\nTo retrieve count of nodes for each labels\n```\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*)\nUNION ALL\n...\n```\n\n",
+      "text": "%md\n\n### apoc.cypher.run\n\nTo retrieve count of nodes for each labels we could do somethin like:\n```\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*)\nUNION ALL\n...\n```\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 13:33:49.514",
-      "config": {},
+      "dateUpdated": "2021-11-05 11:31:06.681",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -77,13 +89,63 @@
       "status": "READY"
     },
     {
-      "text": "%neo4j\n\n// to \nCALL db.labels() yield label\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count",
+      "text": "%neo4j\n\nCALL db.labels() yield label\n// we can concatenate string and variables (label)\n// otherwise, with pure cypher it would be `match (:label) ...` (doesn\u0027t work) because it would searching for nodes with label `:label`\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 13:06:06.499",
-      "config": {},
+      "dateUpdated": "2021-11-05 11:30:59.284",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 195.994,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "label": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "label\tcount\n\"TTL\"\t0\n\"Movie\"\t38\n\"Person\"\t133\n\"Something\"\t1\n"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -91,41 +153,9 @@
       "jobName": "paragraph_1635858066468_27777609",
       "id": "paragraph_1635858066468_27777609",
       "dateCreated": "2021-11-02 13:01:06.468",
-      "status": "READY"
-    },
-    {
-      "text": "%md\n### apoc.cypher.runMany",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-02 13:34:06.686",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635860040574_732276897",
-      "id": "paragraph_1635860040574_732276897",
-      "dateCreated": "2021-11-02 13:34:00.574",
-      "status": "READY"
-    },
-    {
-      "text": "%neo4j\n\nCALL apoc.cypher.runMany(\n  \u0027CREATE (n:Node {name:$name});\n   MATCH (n {name:$name})\n   CREATE (n)-[:X {name:$name2}]-\u003e(n);\u0027,\n  {name:\"John\", name2:\"Doe\"},\n  {statistics: false}\n);",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-02 13:33:56.576",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635858533101_485953923",
-      "id": "paragraph_1635858533101_485953923",
-      "dateCreated": "2021-11-02 13:08:53.101",
-      "status": "READY"
+      "dateStarted": "2021-11-05 11:24:02.322",
+      "dateFinished": "2021-11-05 11:24:02.343",
+      "status": "FINISHED"
     },
     {
       "text": "%neo4j\nCALL apoc.cypher.runTimeboxed(\n  \"match (n),(m) match p\u003dshortestPath((n)-[*]-(m)) return p\",\n  null,\n  10000\n)\nYIELD value\nRETURN value.p",
@@ -163,18 +193,18 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\n// File content\n// CREATE (n:Node {id:1});\n// MATCH (n:Node) SET n.import \u003d true;\n\n\nCALL apoc.cypher.runFile(\"fileExample.cypher\");",
+      "text": "%neo4j\n\n// I have a file `fileExample.cypher` with this content\n// CREATE (n:Node {id:1});\n// MATCH (n:Node) SET n.import \u003d true;\n\n\nCALL apoc.cypher.runFile(\"fileExample.cypher\");",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 14:14:26.427",
+      "dateUpdated": "2021-11-05 11:40:26.847",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 184.006,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -218,7 +248,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -229,7 +260,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "row\tresult.constraintsRemoved\tresult.indexesRemoved\tresult.nodesCreated\tresult.rows\tresult.propertiesSet\tresult.labelsRemoved\tresult.relationshipsDeleted\tresult.constraintsAdded\tresult.nodesDeleted\tresult.indexesAdded\tresult.labelsAdded\tresult.relationshipsCreated\tresult.time\n-1\t0\t0\t1\t0\t1\t0\t0\t0\t0\t0\t1\t0\t0\n-1\t0\t0\t0\t0\t4\t0\t0\t0\t0\t0\t0\t0\t0\n"
+            "data": "row\tresult.constraintsRemoved\tresult.indexesRemoved\tresult.nodesCreated\tresult.rows\tresult.propertiesSet\tresult.labelsRemoved\tresult.relationshipsDeleted\tresult.constraintsAdded\tresult.nodesDeleted\tresult.indexesAdded\tresult.labelsAdded\tresult.relationshipsCreated\tresult.time\n-1\t0\t0\t1\t0\t1\t0\t0\t0\t0\t0\t1\t0\t0\n-1\t0\t0\t0\t0\t9\t0\t0\t0\t0\t0\t0\t0\t0\n"
           }
         ]
       },
@@ -239,16 +270,16 @@
       "jobName": "paragraph_1635860142585_1100337140",
       "id": "paragraph_1635860142585_1100337140",
       "dateCreated": "2021-11-02 13:35:42.586",
-      "dateStarted": "2021-11-02 14:13:49.256",
-      "dateFinished": "2021-11-02 14:13:49.350",
+      "dateStarted": "2021-11-05 11:39:32.922",
+      "dateFinished": "2021-11-05 11:39:33.103",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\nMATCH (n:Node {id: 2}) RETURN n",
+      "text": "%neo4j\nMATCH (n:Node {id: 1}) RETURN n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 14:16:09.870",
+      "dateUpdated": "2021-11-05 11:40:02.761",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
@@ -288,7 +319,7 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/undefined"
       },
       "settings": {
         "params": {},
@@ -299,7 +330,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":4,\"data\":{\"import\":true,\"id\":2},\"label\":\"Node\"}],\"edges\":[],\"labels\":{\"Node\":\"#D91954\"},\"types\":[],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":181,\"data\":{\"import\":true,\"id\":1},\"label\":\"Node\"}],\"edges\":[],\"labels\":{\"TTL\":\"#C6497C\",\"Movie\":\"#9305B2\",\"Person\":\"#9E79D1\",\"Something\":\"#6343C6\",\"Node\":\"#DBE67F\",\"KKK\":\"#088420\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"X\"],\"directed\":true}"
           }
         ]
       },
@@ -309,23 +340,23 @@
       "jobName": "paragraph_1635860300022_129065438",
       "id": "paragraph_1635860300022_129065438",
       "dateCreated": "2021-11-02 13:38:20.022",
-      "dateStarted": "2021-11-02 14:16:09.892",
-      "dateFinished": "2021-11-02 14:16:09.961",
+      "dateStarted": "2021-11-05 11:40:02.779",
+      "dateFinished": "2021-11-05 11:40:02.828",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\n\n// file content\n// CREATE INDEX FOR (a:Actor) ON (a.name, a.born);\n// CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE\n\nCALL apoc.cypher.runSchemaFile(\"fileExampleSchema.cypher\");",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 14:24:06.617",
+      "dateUpdated": "2021-11-05 11:41:15.647",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 238.011,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -390,23 +421,23 @@
       "jobName": "paragraph_1635862450813_1749992024",
       "id": "paragraph_1635862450813_1749992024",
       "dateCreated": "2021-11-02 14:14:10.814",
-      "dateStarted": "2021-11-02 14:24:06.637",
-      "dateFinished": "2021-11-02 14:24:06.830",
+      "dateStarted": "2021-11-05 11:41:05.018",
+      "dateFinished": "2021-11-05 11:41:05.305",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\ncall db.indexes",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 14:24:09.329",
+      "dateUpdated": "2021-11-05 11:41:09.753",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 324.006,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -457,7 +488,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "id\tname\tstate\tpopulationPercent\tuniqueness\ttype\tentityType\tlabelsOrTypes\tproperties\tprovider\n6\t\"constraint_3044d997\"\t\"ONLINE\"\t100.0\t\"UNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Movie\"]\t[\"title\"]\t\"native-btree-1.0\"\n5\t\"index_2dd4f7d\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"LabelWithIdx\"]\t[\"name\",\"born\"]\t\"native-btree-1.0\"\n4\t\"index_2e813b27\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Actorone\"]\t[\"namone\",\"bornone\"]\t\"native-btree-1.0\"\n1\t\"index_343aff4e\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"LOOKUP\"\t\"NODE\"\t[]\t[]\t\"token-lookup-1.0\"\n3\t\"index_d3911f47\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Actor\"]\t[\"name\",\"born\"]\t\"native-btree-1.0\"\n2\t\"index_f7700477\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"LOOKUP\"\t\"RELATIONSHIP\"\t[]\t[]\t\"token-lookup-1.0\"\n"
+            "data": "id\tname\tstate\tpopulationPercent\tuniqueness\ttype\tentityType\tlabelsOrTypes\tproperties\tprovider\n5\t\"constraint_3044d997\"\t\"ONLINE\"\t100.0\t\"UNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Movie\"]\t[\"title\"]\t\"native-btree-1.0\"\n1\t\"index_343aff4e\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"LOOKUP\"\t\"NODE\"\t[]\t[]\t\"token-lookup-1.0\"\n3\t\"index_a5e3e466\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"TTL\"]\t[\"ttl\"]\t\"native-btree-1.0\"\n4\t\"index_d3911f47\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Actor\"]\t[\"name\",\"born\"]\t\"native-btree-1.0\"\n2\t\"index_f7700477\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"LOOKUP\"\t\"RELATIONSHIP\"\t[]\t[]\t\"token-lookup-1.0\"\n"
           }
         ]
       },
@@ -467,14 +498,14 @@
       "jobName": "paragraph_1635862549037_1694262330",
       "id": "paragraph_1635862549037_1694262330",
       "dateCreated": "2021-11-02 14:15:49.037",
-      "dateStarted": "2021-11-02 14:24:09.350",
-      "dateFinished": "2021-11-02 14:24:09.431",
+      "dateStarted": "2021-11-05 11:41:06.923",
+      "dateFinished": "2021-11-05 11:41:06.980",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\n//UNWIND range(0, 20000) as idx CREATE (n:TimeoutTest {id: idx});\n\ncall apoc.cypher.runTimeboxed(\"match (n:TimeoutTest) RETURN n\", {}, 10000)\nYIELD value\nRETURN count(value.n.id);\n",
+      "text": "%neo4j\n\n// I create 20000 \u0027TimeoutTest\u0027 nodes\n//UNWIND range(1, 20000) as idx CREATE (n:TimeoutTest {id: idx});\n\ncall apoc.cypher.runTimeboxed(\"match (n:TimeoutTest) RETURN n\", {}, 100) // I set a small timeout\nYIELD value\nRETURN count(value.n.id);\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 14:29:49.381",
+      "dateUpdated": "2021-11-05 11:46:38.683",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -525,7 +556,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "count(value.n.id)\n40001\n"
+            "data": "count(value.n.id)\n40000\n"
           }
         ]
       },
@@ -535,8 +566,8 @@
       "jobName": "paragraph_1635862617028_1273613672",
       "id": "paragraph_1635862617028_1273613672",
       "dateCreated": "2021-11-02 14:16:57.028",
-      "dateStarted": "2021-11-02 14:29:49.404",
-      "dateFinished": "2021-11-02 14:29:49.630",
+      "dateStarted": "2021-11-05 11:46:14.919",
+      "dateFinished": "2021-11-05 11:46:15.081",
       "status": "FINISHED"
     },
     {

@@ -1,0 +1,739 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# Triggers\n\nIn a trigger you register Cypher statements that are called when data in Neo4j is changed (created, updated, deleted).\nYou can run them before or after commit.\n\n```\nYou have to enable trigger through the config `apoc.trigger.enabled\u003dtrue` to use it.\n```\n\n\nTo add a trigger you can execute this query:\n`CALL apoc.trigger.add(triggerName, statement, selector, params)`\n\nSecond param is the statement, in which you can put these parameters: `$createdNodes`, `$deletedNodes` etc.,\n\n- transactionId - returns the id of the transaction\n- commitTime - return the date of the transaction in milliseconds\n- createdNodes - when a node is created our trigger fires (list of nodes)\n- createdRelationships - when a relationship is created our trigger fires (list of relationships)\n- deletedNodes - when a node is deleted our trigger fires (list of nodes)\n- deletedRelationships - when a relationship is deleted our trigger fires (list of relationships)\n- removedLabels - when a label is removed our trigger fires (map of label to list of nodes)\n- assignedLabels - when a labes is assigned our trigger fires  (map of label to list of nodes)\n- removedNodeProperties - when a properties of node is removed our trigger fires (Map\u003cString, List\u003e, see below)\n- removedRelationshipProperties - when a properties of relationship is removed our trigger fires (Map\u003cString, List\u003e, see below)\n- assignedNodeProperties - when node property is assigned our trigger fires (Map\u003cString, List\u003e, see below)\n- assignedRelationshipProperties - when relationship property is assigned our trigger fires (Map\u003cString, List\u003e, see below)\n\nIf i have 2 nodes (:Test {a: 1}), (:Test {b:1}),\nif i execute `MATCH (n:Test) SET n.a\u003d2, n.b\u003d3` in a trigger\nthe `$assignedNodeProperties` will be this one (where map keys are property names):\n```\n{\n   a: [{\n         node : NODE(1),\n         new: 2,\n         old: 1,\n         key: \"a\"\n      },\n      {\n         node: NODE(2),\n         new: 2,\n         old: null,\n         key: \"a\"\n      }],\n   \n   b: [{\n         node: NODE(1),\n         new: 3,\n         old: null,\n         key: \"b\"\n      },\n      {\n         node: NODE(2),\n         new: 3,\n         old: 1,\n         key: \"b\"\n      }]\n}\n```\nSame structure for `removedNodeProperties`. \nThe `removedRelationshipProperties` and `assignedRelationshipProperties` have `relationship : REL` instead of `node : NODE`.\n\n\nYou can use these helper functions to extract nodes or relationships by label/relationship-type or updated property key.\n\n- apoc.trigger.nodesByLabel($assignedLabels/$assignedNodeProperties,\u0027Label\u0027) | function to filter entries by label, to be used within a trigger statement with `$assignedLabels` and `\n- apoc.trigger.propertiesByKey($assignedNodeProperties,\u0027key\u0027) | function to filter propertyEntries by property-key, to be used within a trigger statement with `$assignedNodeProperties`, `$assignedRelationshipProperties`, `$removedNodeProperties` and `$removedRelationshipProperties` .\n    So in previous case `apoc.trigger.propertiesByKey($assignedNodeProperties,\u0027b\u0027)` return only second array, \n    that is `[{node:NODE(1), new:3, old:null, key:\"b\"}, {node:NODE(2), new:3, old:1, key:\"b\"}]`\n\n\n\nThe `selector` parameter could be `{phase:PHASENAME\u0027}`\nwhere `PHASENAME` is:\n\n- before (default value) - The trigger will be activate right `before` the commit\n- rollback - The trigger will be activate right after the  `rollback`\n- after - The trigger will be activate right after the `commit`\n- afterAsync - The trigger will be activate right after the commit and inside a new transaction and thread so that will not\nimpact the original one. Useful for heavy operations without to not blocking the original transaction.\n\n\nInto the 4th argument, you can put additional parameters: `{params: {paramMap}}` \n\n\n## Other trigger procedures:\n\nIn addition to `trigger.add` there are the following procedures:\n\n- CALL apoc.trigger.remove(name) yield name, statement, installed | remove previously added trigger, returns trigger information\n- CALL apoc.trigger.removeAll() yield name, statement, installed | removes all previously added triggers , returns trigger information\n- CALL apoc.trigger.list() yield name, statement, installed | update and list all installed triggers\n- CALL apoc.trigger.pause(name) | it pauses the trigger\n- CALL apoc.trigger.resume(name) | it resumes the paused trigger\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 14:02:41.669",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eTriggers\u003c/h1\u003e\n\u003cp\u003eIn a trigger you register Cypher statements that are called when data in Neo4j is changed (created, updated, deleted).\u003cbr /\u003e\nYou can run them before or after commit.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eYou have to enable trigger through the config `apoc.trigger.enabled\u003dtrue` to use it.\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eTo add a trigger you can execute this query:\u003cbr /\u003e\n\u003ccode\u003eCALL apoc.trigger.add(triggerName, statement, selector, params)\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eSecond param is the statement, in which you can put these parameters: \u003ccode\u003e$createdNodes\u003c/code\u003e, \u003ccode\u003e$deletedNodes\u003c/code\u003e etc.,\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003etransactionId - returns the id of the transaction\u003c/li\u003e\n\u003cli\u003ecommitTime - return the date of the transaction in milliseconds\u003c/li\u003e\n\u003cli\u003ecreatedNodes - when a node is created our trigger fires (list of nodes)\u003c/li\u003e\n\u003cli\u003ecreatedRelationships - when a relationship is created our trigger fires (list of relationships)\u003c/li\u003e\n\u003cli\u003edeletedNodes - when a node is deleted our trigger fires (list of nodes)\u003c/li\u003e\n\u003cli\u003edeletedRelationships - when a relationship is deleted our trigger fires (list of relationships)\u003c/li\u003e\n\u003cli\u003eremovedLabels - when a label is removed our trigger fires (map of label to list of nodes)\u003c/li\u003e\n\u003cli\u003eassignedLabels - when a labes is assigned our trigger fires  (map of label to list of nodes)\u003c/li\u003e\n\u003cli\u003eremovedNodeProperties - when a properties of node is removed our trigger fires (Map\u0026lt;String, List\u0026gt;, see below)\u003c/li\u003e\n\u003cli\u003eremovedRelationshipProperties - when a properties of relationship is removed our trigger fires (Map\u0026lt;String, List\u0026gt;, see below)\u003c/li\u003e\n\u003cli\u003eassignedNodeProperties - when node property is assigned our trigger fires (Map\u0026lt;String, List\u0026gt;, see below)\u003c/li\u003e\n\u003cli\u003eassignedRelationshipProperties - when relationship property is assigned our trigger fires (Map\u0026lt;String, List\u0026gt;, see below)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eIf i have 2 nodes (:Test {a: 1}), (:Test {b:1}),\u003cbr /\u003e\nif i execute \u003ccode\u003eMATCH (n:Test) SET n.a\u003d2, n.b\u003d3\u003c/code\u003e in a trigger\u003cbr /\u003e\nthe \u003ccode\u003e$assignedNodeProperties\u003c/code\u003e will be this one (where map keys are property names):\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e{\n   a: [{\n         node : NODE(1),\n         new: 2,\n         old: 1,\n         key: \u0026quot;a\u0026quot;\n      },\n      {\n         node: NODE(2),\n         new: 2,\n         old: null,\n         key: \u0026quot;a\u0026quot;\n      }],\n   \n   b: [{\n         node: NODE(1),\n         new: 3,\n         old: null,\n         key: \u0026quot;b\u0026quot;\n      },\n      {\n         node: NODE(2),\n         new: 3,\n         old: 1,\n         key: \u0026quot;b\u0026quot;\n      }]\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eSame structure for \u003ccode\u003eremovedNodeProperties\u003c/code\u003e.\u003cbr /\u003e\nThe \u003ccode\u003eremovedRelationshipProperties\u003c/code\u003e and \u003ccode\u003eassignedRelationshipProperties\u003c/code\u003e have \u003ccode\u003erelationship : REL\u003c/code\u003e instead of \u003ccode\u003enode : NODE\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eYou can use these helper functions to extract nodes or relationships by label/relationship-type or updated property key.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.trigger.nodesByLabel($assignedLabels/$assignedNodeProperties,\u0026lsquo;Label\u0026rsquo;) | function to filter entries by label, to be used within a trigger statement with \u003ccode\u003e$assignedLabels\u003c/code\u003e and `\u003c/li\u003e\n\u003cli\u003eapoc.trigger.propertiesByKey($assignedNodeProperties,\u0026lsquo;key\u0026rsquo;) | function to filter propertyEntries by property-key, to be used within a trigger statement with \u003ccode\u003e$assignedNodeProperties\u003c/code\u003e, \u003ccode\u003e$assignedRelationshipProperties\u003c/code\u003e, \u003ccode\u003e$removedNodeProperties\u003c/code\u003e and \u003ccode\u003e$removedRelationshipProperties\u003c/code\u003e .\u003cbr /\u003e\nSo in previous case \u003ccode\u003eapoc.trigger.propertiesByKey($assignedNodeProperties,\u0027b\u0027)\u003c/code\u003e return only second array,\u003cbr /\u003e\nthat is \u003ccode\u003e[{node:NODE(1), new:3, old:null, key:\u0026quot;b\u0026quot;}, {node:NODE(2), new:3, old:1, key:\u0026quot;b\u0026quot;}]\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003eselector\u003c/code\u003e parameter could be \u003ccode\u003e{phase:PHASENAME\u0027}\u003c/code\u003e\u003cbr /\u003e\nwhere \u003ccode\u003ePHASENAME\u003c/code\u003e is:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ebefore (default value) - The trigger will be activate right \u003ccode\u003ebefore\u003c/code\u003e the commit\u003c/li\u003e\n\u003cli\u003erollback - The trigger will be activate right after the  \u003ccode\u003erollback\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003eafter - The trigger will be activate right after the \u003ccode\u003ecommit\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003eafterAsync - The trigger will be activate right after the commit and inside a new transaction and thread so that will not\u003cbr /\u003e\nimpact the original one. Useful for heavy operations without to not blocking the original transaction.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eInto the 4th argument, you can put additional parameters: \u003ccode\u003e{params: {paramMap}}\u003c/code\u003e\u003c/p\u003e\n\u003ch2\u003eOther trigger procedures:\u003c/h2\u003e\n\u003cp\u003eIn addition to \u003ccode\u003etrigger.add\u003c/code\u003e there are the following procedures:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eCALL apoc.trigger.remove(name) yield name, statement, installed | remove previously added trigger, returns trigger information\u003c/li\u003e\n\u003cli\u003eCALL apoc.trigger.removeAll() yield name, statement, installed | removes all previously added triggers , returns trigger information\u003c/li\u003e\n\u003cli\u003eCALL apoc.trigger.list() yield name, statement, installed | update and list all installed triggers\u003c/li\u003e\n\u003cli\u003eCALL apoc.trigger.pause(name) | it pauses the trigger\u003c/li\u003e\n\u003cli\u003eCALL apoc.trigger.resume(name) | it resumes the paused trigger\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635375648253_1121247002",
+      "id": "paragraph_1635375648253_1121247002",
+      "dateCreated": "2021-10-27 23:00:48.253",
+      "dateStarted": "2021-11-05 14:02:41.674",
+      "dateFinished": "2021-11-05 14:02:41.708",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Install a trigger ",
+      "text": "%neo4j\n\n// We could add a trigger that when is added a specific property on a node, that property is added to all the nodes connected to this node\n\nCALL apoc.trigger.add(\u0027setlabels\u0027,\u0027UNWIND apoc.trigger.nodesByLabel($assignedLabels,\"Trigger\") AS n SET n.triggered \u003d $triggered\u0027,\n{phase:\u0027afterAsync\u0027}, \n{params: {triggered: true}}) // param to be used in $triggered",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 11:59:19.090",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "name": "string",
+                      "query": "string",
+                      "selector.phase": "string",
+                      "params.triggered": "string",
+                      "installed": "string",
+                      "paused": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tquery\tselector.phase\tparams.triggered\tinstalled\tpaused\n\"setlabels\"\t\"UNWIND apoc.trigger.nodesByLabel($assignedLabels,\\\"Trigger\\\") AS n SET n.triggered \u003d $triggered\"\tafterAsync\ttrue\tTRUE\tFALSE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635853267522_1557662643",
+      "id": "paragraph_1635853267522_1557662643",
+      "dateCreated": "2021-11-02 11:41:07.522",
+      "dateStarted": "2021-11-05 11:59:19.111",
+      "dateFinished": "2021-11-05 11:59:19.313",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Query to trigger ",
+      "text": "%neo4j\n\nMATCH (d:Person {name:\u0027Keanu Reeves\u0027})\nSET d:Trigger\nRETURN d",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 11:59:33.352",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 105.994,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "other": "string",
+                      "something": "string",
+                      "born": "string",
+                      "stuff": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"other\":1636110017365,\"something\":\"731a7903-428f-4b06-871b-d29af1d82b48\",\"born\":0.657333135535437,\"stuff\":0.9740008175789256},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"TTL\":\"#C6497C\",\"Movie\":\"#9305B2\",\"Person\":\"#9E79D1\",\"Something\":\"#6343C6\",\"Node\":\"#DBE67F\",\"KKK\":\"#088420\",\"Actor\":\"#2FD6F9\",\"TimeoutTest\":\"#AD4C73\",\"Trigger\":\"#8B3B53\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"X\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635853359717_1862278247",
+      "id": "paragraph_1635853359717_1862278247",
+      "dateCreated": "2021-11-02 11:42:39.717",
+      "dateStarted": "2021-11-05 11:59:22.784",
+      "dateFinished": "2021-11-05 11:59:22.933",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check trigger execution",
+      "text": "%neo4j\n\nMATCH (p:Person {name:\u0027Keanu Reeves\u0027}) RETURN p",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 12:00:16.414",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 129.972,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "other": "string",
+                      "triggered": "string",
+                      "born": "string",
+                      "name": "string",
+                      "something": "string",
+                      "stuff": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"other\":1636110017365,\"triggered\":true,\"born\":0.657333135535437,\"name\":\"Keanu Reeves\",\"something\":\"731a7903-428f-4b06-871b-d29af1d82b48\",\"stuff\":0.9740008175789256},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"TTL\":\"#C6497C\",\"Movie\":\"#9305B2\",\"Person\":\"#9E79D1\",\"Something\":\"#6343C6\",\"Node\":\"#DBE67F\",\"KKK\":\"#088420\",\"Actor\":\"#2FD6F9\",\"TimeoutTest\":\"#AD4C73\",\"Trigger\":\"#8B3B53\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"X\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635853392081_796719443",
+      "id": "paragraph_1635853392081_796719443",
+      "dateCreated": "2021-11-02 11:43:12.081",
+      "dateStarted": "2021-11-05 11:59:50.111",
+      "dateFinished": "2021-11-05 11:59:50.172",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n// 3rd parameter is null, so phase is \u0027before\u0027 by default\nCALL apoc.trigger.add(\u0027unique\u0027,\u0027UNWIND $createdNodes AS n SET n.unique \u003d $unique\u0027, null, {params: {unique: apoc.create.uuid()}}); ",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 14:12:42.626",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 161.989,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "name": "string",
+                      "query": "string",
+                      "selector": "string",
+                      "params.unique": "string",
+                      "installed": "string",
+                      "paused": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tquery\tselector\tparams.unique\tinstalled\tpaused\n\"unique\"\t\"UNWIND $createdNodes AS n SET n.unique \u003d $unique\"\tNULL\t76d3384b-c8b9-4b99-a591-b90f34c0bb96\tTRUE\tFALSE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864280616_762486125",
+      "id": "paragraph_1635864280616_762486125",
+      "dateCreated": "2021-11-02 14:44:40.616",
+      "dateStarted": "2021-11-05 14:12:19.824",
+      "dateFinished": "2021-11-05 14:12:19.869",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check result",
+      "text": "%neo4j\nCREATE (n:NodeWithTime);\nMATCH (n:NodeWithTime) RETURN n;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 14:13:03.199",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 88.0114,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "unique": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":40185,\"data\":{\"unique\":\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\"},\"label\":\"NodeWithTime\"}],\"edges\":[],\"labels\":{\"TTL\":\"#C6497C\",\"Movie\":\"#9305B2\",\"Person\":\"#9E79D1\",\"Something\":\"#6343C6\",\"Node\":\"#DBE67F\",\"KKK\":\"#088420\",\"Actor\":\"#2FD6F9\",\"TimeoutTest\":\"#AD4C73\",\"Trigger\":\"#8B3B53\",\"NodeWithTime\":\"#A19D52\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"X\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864655639_1005439890",
+      "id": "paragraph_1635864655639_1005439890",
+      "dateCreated": "2021-11-02 14:50:55.639",
+      "dateStarted": "2021-11-05 14:12:25.531",
+      "dateFinished": "2021-11-05 14:12:25.598",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// Enforcing property type, For this example, we would like that all the `reference` node properties are of type `STRING`\n\nCALL apoc.trigger.add(\"forceStringType\",\n\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\", {phase:\u0027before\u0027})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 14:14:33.201",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "name0",
+                        "visible": true,
+                        "width": 377.0,
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "query1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "selector.phase2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "installed3",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "paused4",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "name": "string",
+                      "query": "string",
+                      "selector.phase": "string",
+                      "installed": "string",
+                      "paused": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tquery\tselector.phase\tinstalled\tpaused\n\"forceStringType\"\t\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\"\tbefore\tTRUE\tFALSE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864199254_1511871497",
+      "id": "paragraph_1635864199254_1511871497",
+      "dateCreated": "2021-11-02 14:43:19.254",
+      "dateStarted": "2021-11-05 14:14:10.137",
+      "dateFinished": "2021-11-05 14:14:10.459",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nCREATE (a:Node) SET a.reference \u003d 1",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 14:14:43.384",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Error executing triggers {forceStringType\u003dFailed to invoke procedure `apoc.util.validate`: Caused by: java.lang.RuntimeException: expected string property type, got MAP}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864255093_158993446",
+      "id": "paragraph_1635864255093_158993446",
+      "dateCreated": "2021-11-02 14:44:15.093",
+      "dateStarted": "2021-11-05 14:14:43.407",
+      "dateFinished": "2021-11-05 14:14:43.635",
+      "status": "ERROR"
+    },
+    {
+      "text": "%neo4j\nCALL apoc.trigger.list",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 14:16:44.389",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 154.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "name": "string",
+                      "query": "string",
+                      "selector": "string",
+                      "params.unique": "string",
+                      "installed": "string",
+                      "paused": "string",
+                      "selector.phase": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tquery\tselector\tparams.unique\tinstalled\tpaused\tselector.phase\n\"unique\"\t\"UNWIND $createdNodes AS n SET n.unique \u003d $unique\"\tNULL\t76d3384b-c8b9-4b99-a591-b90f34c0bb96\tTRUE\tFALSE\t\n\"forceStringType\"\t\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\"\t\t\tTRUE\tFALSE\tbefore\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635864312695_2074767345",
+      "id": "paragraph_1635864312695_2074767345",
+      "dateCreated": "2021-11-02 14:45:12.695",
+      "dateStarted": "2021-11-05 14:16:43.879",
+      "dateFinished": "2021-11-05 14:16:43.997",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\nLoad directory async\n\napoc.load.directory.async.add(name, cypher, pattern, urlDir, {}) YIELD name, status, pattern, cypher, urlDir, config, error - Add or replace a folder listener with a specific name, pattern and url directory that execute the specified cypher query when an event is triggered and return listener list\n\n\n\napoc.load.directory.async.add(name :: STRING?, cypher :: STRING?, pattern \u003d * :: STRING?, urlDir \u003d  :: STRING?, config \u003d {} :: MAP?) :: (name :: STRING?, status :: STRING?, pattern :: STRING?, cypher :: STRING?, urlDir :: STRING?, config :: MAP?, error :: STRING?)\n\nconfigs:\n\ninterval Integer 1000 Time interval in ms after re-watch for directory changes\n\nlistenEventType List\u003cEnum\u003e List.of(\"CREATE\", \"DELETE\", \"MODIFY\") Types of event that execute the cypher query, that is creation (CREATE), deletion (DELETE) or editing (MODIFY) of a file in specified folder\n\n\nThe first parameter is the name of our custom watch listener.\nIf we use an already existing listener name, that listener will be overwritten.\nThe second parameter is the cypher query that will be executed.\nThe query can have the following parameters:\n\n* $fileName: the name of the file which triggered the event\n* $filePath: the absolute path of the file which triggered the event if `apoc.import.file.use_neo4j_config\u003dfalse`, otherwise the relative path starting from `$IMPORT_DIR`\n* $fileDirectory: the absolute path directory of the file which triggered the event if `apoc.import.file.use_neo4j_config\u003dfalse`, otherwise the relative path starting from `$IMPORT_DIR`\n* $listenEventType: the triggered event (\"CREATE\", \"DELETE\" or \"MODIFY\"). The event \"CREATE\" happens when a file is inserted in the folder,\n\"DELETE\" when a file is removed from the folder and \"MODIFY\" when a file in the folder is changed.\nPlease note that if a file is renamed, will be triggered 2 event, that is first \"DELETE\" and then\"CREATE\"\n\n\nThe third parameter is the pattern of file to search for.\nBy default is \u0027*\u0027, that is, search all files.\nThe fourth is the search path of directory.\nBy default is an empty string, that is, search file in `import` directory.\n\n\n\u003d\u003d\u003d Examples of interoperability with other procedures\n\nWe can use another load procedure as query parameter, like `apoc.load.csv` or `apoc.load.json`.\n\nHere are two examples.\n\nWe can execute:\n\n[source,cypher]\n----\nCALL apoc.load.directory.async.add(\u0027csvImport\u0027,\n\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\",\n\"*.csv\", \"csvFolder\" ,{listenEventType: [\"CREATE\", \"MODIFY\"]})\n----\n\nwhere `$fileName` is the file created/modified,\n`$filePath` is the relative path of the file, that is `$IMPORT_DIR/csvFolder/[FILENAME.csv]`,\n`$fileDirectory` is the relative path of the directory, that is `$IMPORT_DIR/csvFolder`\nand `$listenEventType` is the triggered event, that is `CREATE` or `MODIFY`.\n\n\nIf we upload the following file in `$IMPORT_DIR/csvFolder` folder:\n\n.test.csv\n[source,csv]\n----\nname,age\nSelma,8\nRana,11\nSelina,18\n----\n\nand then, executing `MATCH (n:CsvToNode) RETURN properties(n) as props`:\n\n.Results\n[opts\u003d\"header\"]\n|\u003d\u003d\u003d\n| props\n| {\n  \"fileName\": \"test.csv\",\n  \"listenEventType\": \"CREATE\",\n  \"fileDirectory\": \"csvFolder\",\n  \"content\": [\n    \"Selma\",\n    \"8\"\n  ]\n}\n| {\n  \"fileName\": \"test.csv\",\n  \"listenEventType\": \"CREATE\",\n  \"fileDirectory\": \"csvFolder\",\n  \"content\": [\n    \"Rana\",\n    \"11\"\n  ]\n}\n| {\n  \"fileName\": \"test.csv\",\n  \"listenEventType\": \"CREATE\",\n  \"fileDirectory\": \"csvFolder\",\n  \"content\": [\n    \"Selina\",\n    \"18\"\n  ]\n}\n|\u003d\u003d\u003d\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 14:26:06.621",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eLoad directory async\u003c/p\u003e\n\u003cp\u003eapoc.load.directory.async.add(name, cypher, pattern, urlDir, {}) YIELD name, status, pattern, cypher, urlDir, config, error - Add or replace a folder listener with a specific name, pattern and url directory that execute the specified cypher query when an event is triggered and return listener list\u003c/p\u003e\n\u003cp\u003eapoc.load.directory.async.add(name :: STRING?, cypher :: STRING?, pattern \u003d * :: STRING?, urlDir \u003d  :: STRING?, config \u003d {} :: MAP?) :: (name :: STRING?, status :: STRING?, pattern :: STRING?, cypher :: STRING?, urlDir :: STRING?, config :: MAP?, error :: STRING?)\u003c/p\u003e\n\u003cp\u003econfigs:\u003c/p\u003e\n\u003cp\u003einterval Integer 1000 Time interval in ms after re-watch for directory changes\u003c/p\u003e\n\u003cp\u003elistenEventType List\u003cEnum\u003e List.of(\u0026ldquo;CREATE\u0026rdquo;, \u0026ldquo;DELETE\u0026rdquo;, \u0026ldquo;MODIFY\u0026rdquo;) Types of event that execute the cypher query, that is creation (CREATE), deletion (DELETE) or editing (MODIFY) of a file in specified folder\u003c/p\u003e\n\u003cp\u003eThe first parameter is the name of our custom watch listener.\u003cbr /\u003e\nIf we use an already existing listener name, that listener will be overwritten.\u003cbr /\u003e\nThe second parameter is the cypher query that will be executed.\u003cbr /\u003e\nThe query can have the following parameters:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e$fileName: the name of the file which triggered the event\u003c/li\u003e\n\u003cli\u003e$filePath: the absolute path of the file which triggered the event if \u003ccode\u003eapoc.import.file.use_neo4j_config\u003dfalse\u003c/code\u003e, otherwise the relative path starting from \u003ccode\u003e$IMPORT_DIR\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e$fileDirectory: the absolute path directory of the file which triggered the event if \u003ccode\u003eapoc.import.file.use_neo4j_config\u003dfalse\u003c/code\u003e, otherwise the relative path starting from \u003ccode\u003e$IMPORT_DIR\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e$listenEventType: the triggered event (\u0026ldquo;CREATE\u0026rdquo;, \u0026ldquo;DELETE\u0026rdquo; or \u0026ldquo;MODIFY\u0026rdquo;). The event \u0026ldquo;CREATE\u0026rdquo; happens when a file is inserted in the folder,\u003cbr /\u003e\n\u0026ldquo;DELETE\u0026rdquo; when a file is removed from the folder and \u0026ldquo;MODIFY\u0026rdquo; when a file in the folder is changed.\u003cbr /\u003e\nPlease note that if a file is renamed, will be triggered 2 event, that is first \u0026ldquo;DELETE\u0026rdquo; and then\u0026quot;CREATE\u0026quot;\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe third parameter is the pattern of file to search for.\u003cbr /\u003e\nBy default is \u0026lsquo;*\u0026rsquo;, that is, search all files.\u003cbr /\u003e\nThe fourth is the search path of directory.\u003cbr /\u003e\nBy default is an empty string, that is, search file in \u003ccode\u003eimport\u003c/code\u003e directory.\u003c/p\u003e\n\u003cp\u003e\u003d\u003d\u003d Examples of interoperability with other procedures\u003c/p\u003e\n\u003cp\u003eWe can use another load procedure as query parameter, like \u003ccode\u003eapoc.load.csv\u003c/code\u003e or \u003ccode\u003eapoc.load.json\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eHere are two examples.\u003c/p\u003e\n\u003cp\u003eWe can execute:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.load.directory.async.add(\u0026lsquo;csvImport\u0026rsquo;,\u003cbr /\u003e\n\u0026ldquo;CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;*.csv\u0026rdquo;, \u0026ldquo;csvFolder\u0026rdquo; ,{listenEventType: [\u0026ldquo;CREATE\u0026rdquo;, \u0026ldquo;MODIFY\u0026rdquo;]})\u003c/h2\u003e\n\u003cp\u003ewhere \u003ccode\u003e$fileName\u003c/code\u003e is the file created/modified,\u003cbr /\u003e\n\u003ccode\u003e$filePath\u003c/code\u003e is the relative path of the file, that is \u003ccode\u003e$IMPORT_DIR/csvFolder/[FILENAME.csv]\u003c/code\u003e,\u003cbr /\u003e\n\u003ccode\u003e$fileDirectory\u003c/code\u003e is the relative path of the directory, that is \u003ccode\u003e$IMPORT_DIR/csvFolder\u003c/code\u003e\u003cbr /\u003e\nand \u003ccode\u003e$listenEventType\u003c/code\u003e is the triggered event, that is \u003ccode\u003eCREATE\u003c/code\u003e or \u003ccode\u003eMODIFY\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eIf we upload the following file in \u003ccode\u003e$IMPORT_DIR/csvFolder\u003c/code\u003e folder:\u003c/p\u003e\n\u003ch2\u003e.test.csv\u003cbr /\u003e\n[source,csv]\u003c/h2\u003e\n\u003ch2\u003ename,age\u003cbr /\u003e\nSelma,8\u003cbr /\u003e\nRana,11\u003cbr /\u003e\nSelina,18\u003c/h2\u003e\n\u003cp\u003eand then, executing \u003ccode\u003eMATCH (n:CsvToNode) RETURN properties(n) as props\u003c/code\u003e:\u003c/p\u003e\n\u003cp\u003e.Results\u003cbr /\u003e\n[opts\u003d\u0026ldquo;header\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| props\u003cbr /\u003e\n| {\u003cbr /\u003e\n\u0026ldquo;fileName\u0026rdquo;: \u0026ldquo;test.csv\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;listenEventType\u0026rdquo;: \u0026ldquo;CREATE\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;fileDirectory\u0026rdquo;: \u0026ldquo;csvFolder\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;content\u0026rdquo;: [\n\u003cbr /\u003e\n\u0026ldquo;Selma\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;8\u0026rdquo;\u003cbr /\u003e\n]\u003cbr /\u003e\n}\u003cbr /\u003e\n| {\u003cbr /\u003e\n\u0026ldquo;fileName\u0026rdquo;: \u0026ldquo;test.csv\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;listenEventType\u0026rdquo;: \u0026ldquo;CREATE\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;fileDirectory\u0026rdquo;: \u0026ldquo;csvFolder\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;content\u0026rdquo;: [\n\u003cbr /\u003e\n\u0026ldquo;Rana\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;11\u0026rdquo;\u003cbr /\u003e\n]\u003cbr /\u003e\n}\u003cbr /\u003e\n| {\u003cbr /\u003e\n\u0026ldquo;fileName\u0026rdquo;: \u0026ldquo;test.csv\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;listenEventType\u0026rdquo;: \u0026ldquo;CREATE\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;fileDirectory\u0026rdquo;: \u0026ldquo;csvFolder\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;content\u0026rdquo;: [\n\u003cbr /\u003e\n\u0026ldquo;Selina\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;18\u0026rdquo;\u003cbr /\u003e\n]\u003cbr /\u003e\n}\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635375754840_2020527960",
+      "id": "paragraph_1635375754840_2020527960",
+      "dateCreated": "2021-10-27 23:02:34.840",
+      "dateStarted": "2021-11-05 14:25:59.558",
+      "dateFinished": "2021-11-05 14:25:59.587",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\nNext cap",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-02 11:55:37.623",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635854131205_175828569",
+      "id": "paragraph_1635854131205_175828569",
+      "dateCreated": "2021-11-02 11:55:31.206",
+      "status": "READY"
+    }
+  ],
+  "name": "5. Event listener",
+  "id": "2GNBRY6RV",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

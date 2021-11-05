@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n## Meta information\n\napoc provides a set of procedures to retrieve an overview of labels / relationship-type present, and so on...\n\n- CALL apoc.meta.graphSample({configMap}) - examines the database statistics to build the meta graph, very fast, might report extra relationships\n\n- CALL apoc.meta.graph({configMap}) - examines the database statistics to create the meta-graph, post filters extra relationships by sampling\n\n- CALL apoc.meta.subGraph({configMap}) - examines a sample sub graph to create the meta-graph\n\n- CALL apoc.meta.data({configMap}}) - examines a subset of the graph to provide a tabular meta information\n\n- CALL apoc.meta.schema({configMap}) - examines a subset of the graph to provide a map-like meta information\n\n- CALL apoc.meta.stats() yield labelCount, relTypeCount, propertyKeyCount, nodeCount, relCount, labels, relTypes, stats - returns the information stored in the transactional database statistics\n\n- CALL apoc.meta.nodeTypeProperties({configMap}) - replaces built-in function for node property schema to provide a sample-based result for high performance\n\n- CALL apoc.meta.relTypeProperties({configMap}) - replaces built-in function for relationship property schema to provide a sample-based result for high performance\n\nconfigMap depends on procedure, see [https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/](here).\n\n",
+      "text": "%md\n\n## Meta information\n\nApoc provides a set of procedures to retrieve an overview of labels / relationship-type present, and so on...\n\n- `CALL apoc.meta.graphSample({configMap})` - examines the database statistics to build the meta graph, very fast, might report extra relationships\n\n- `CALL apoc.meta.graph({configMap})` - examines the database statistics to create the meta-graph, post filters extra relationships by sampling\n\n- `CALL apoc.meta.subGraph({configMap})` - examines a sample sub graph to create the meta-graph\n\n- `CALL apoc.meta.data({configMap}})` - examines a subset of the graph to provide a tabular meta information\n\n- `CALL apoc.meta.schema({configMap})` - examines a subset of the graph to provide a map-like meta information\n\n- `CALL apoc.meta.stats()` yield labelCount, relTypeCount, propertyKeyCount, nodeCount, relCount, labels, relTypes, stats - returns the information stored in the transactional database statistics\n\n- `CALL apoc.meta.nodeTypeProperties({configMap})` - replaces built-in function for node property schema to provide a sample-based result for high performance\n\n- `CALL apoc.meta.relTypeProperties({configMap})` - replaces built-in function for relationship property schema to provide a sample-based result for high performance\n\n\n`configMap` depends on procedure, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e .\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 10:34:04.808",
+      "dateUpdated": "2021-11-05 10:34:57.260",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,8 +16,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -28,7 +28,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eMeta information\u003c/h2\u003e\n\u003cp\u003eCALL apoc.meta.graphSample() - examines the database statistics to build the meta graph, very fast, might report extra relationships\u003c/p\u003e\n\u003cp\u003eCALL apoc.meta.graph - examines the database statistics to create the meta-graph, post filters extra relationships by sampling\u003c/p\u003e\n\u003cp\u003eCALL apoc.meta.subGraph({labels:[labels],rels:[rel-types],excludes:[label,rel-type,\u0026hellip;]}) - examines a sample sub graph to create the meta-graph\u003c/p\u003e\n\u003cp\u003eCALL apoc.meta.data - examines a subset of the graph to provide a tabular meta information\u003c/p\u003e\n\u003cp\u003eCALL apoc.meta.schema - examines a subset of the graph to provide a map-like meta information\u003c/p\u003e\n\u003cp\u003eCALL apoc.meta.stats yield labelCount, relTypeCount, propertyKeyCount, nodeCount, relCount, labels, relTypes, stats - returns the information stored in the transactional database statistics\u003c/p\u003e\n\u003cp\u003eCALL apoc.meta.nodeTypeProperties({includeLabels:[label,\u0026hellip;],includeRels:[rel-type,\u0026hellip;],excludeLabels:[label,,\u0026hellip;],excludeRels:[rel-type,\u0026hellip;]}) - replaces built-in function for node property schema to provide a sample-based result for high performance - used by the Neo4J BI Connector\u003c/p\u003e\n\u003cp\u003eCALL apoc.meta.relTypeProperties({includeLabels:[label,\u0026hellip;],includeRels:[rel-type,\u0026hellip;],excludeLabels:[label,\u0026hellip;],excludeRels:[rel-type,\u0026hellip;]}) - replaces built-in function for relationship property schema to provide a sample-based result for high performance - used by the Neo4J BI Con\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eMeta information\u003c/h2\u003e\n\u003cp\u003eApoc provides a set of procedures to retrieve an overview of labels / relationship-type present, and so on\u0026hellip;\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.graphSample({configMap})\u003c/code\u003e - examines the database statistics to build the meta graph, very fast, might report extra relationships\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.graph({configMap})\u003c/code\u003e - examines the database statistics to create the meta-graph, post filters extra relationships by sampling\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.subGraph({configMap})\u003c/code\u003e - examines a sample sub graph to create the meta-graph\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.data({configMap}})\u003c/code\u003e - examines a subset of the graph to provide a tabular meta information\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.schema({configMap})\u003c/code\u003e - examines a subset of the graph to provide a map-like meta information\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.stats()\u003c/code\u003e yield labelCount, relTypeCount, propertyKeyCount, nodeCount, relCount, labels, relTypes, stats - returns the information stored in the transactional database statistics\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.nodeTypeProperties({configMap})\u003c/code\u003e - replaces built-in function for node property schema to provide a sample-based result for high performance\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.relTypeProperties({configMap})\u003c/code\u003e - replaces built-in function for relationship property schema to provide a sample-based result for high performance\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003ccode\u003econfigMap\u003c/code\u003e depends on procedure, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e .\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -38,8 +38,8 @@
       "jobName": "paragraph_1635422768628_1724003655",
       "id": "paragraph_1635422768628_1724003655",
       "dateCreated": "2021-10-28 12:06:08.628",
-      "dateStarted": "2021-10-28 13:18:24.807",
-      "dateFinished": "2021-10-28 13:18:24.831",
+      "dateStarted": "2021-11-05 10:34:57.259",
+      "dateFinished": "2021-11-05 10:34:57.286",
       "status": "FINISHED"
     },
     {
@@ -190,7 +190,7 @@
     {
       "text": "%neo4j\n\nCALL apoc.meta.data()",
       "user": "anonymous",
-      "dateUpdated": "2021-10-30 16:50:56.732",
+      "dateUpdated": "2021-11-05 10:32:37.520",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -253,12 +253,7 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "label\tproperty\tcount\tunique\tindex\texistence\ttype\tarray\tsample\tleftCount\trightCount\tleft\tright\tother\totherLabels\telementType\n\"ACTED_IN\"\t\"Person\"\t172\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t512\t940\t2\t5\t[\"Movie\"]\t[]\t\"relationship\"\n\"ACTED_IN\"\t\"roles\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"DIRECTED\"\t\"Person\"\t44\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t104\t58\t2\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"PRODUCED\"\t\"Person\"\t15\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t49\t29\t3\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"WROTE\"\t\"Person\"\t10\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t14\t14\t1\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"FOLLOWS\"\t\"Person\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t5\t1\t1\t[\"Person\"]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"Person\"\t9\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t41\t17\t4\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"summary\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"rating\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"Movie\"\t\"title\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"tagline\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"released\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"ACTED_IN\"\t172\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t512\t940\t2\t5\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"born\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"name\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"DIRECTED\"\t44\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t104\t58\t2\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"PRODUCED\"\t15\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t49\t29\t3\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"WROTE\"\t10\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t14\t14\t1\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"FOLLOWS\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t5\t1\t1\t[\"Person\"]\t[]\t\"node\"\n\"Person\"\t\"REVIEWED\"\t9\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t41\t17\t4\t1\t[\"Movie\"]\t[]\t\"node\"\n"
-          }
-        ]
+        "msg": []
       },
       "apps": [],
       "runtimeInfos": {},
@@ -266,8 +261,8 @@
       "jobName": "paragraph_1635515971440_1210427180",
       "id": "paragraph_1635515971440_1210427180",
       "dateCreated": "2021-10-29 13:59:31.440",
-      "dateStarted": "2021-10-30 16:50:56.753",
-      "dateFinished": "2021-10-30 16:50:56.959",
+      "dateStarted": "2021-11-05 10:32:37.544",
+      "dateFinished": "2021-11-05 10:32:41.476",
       "status": "FINISHED"
     },
     {
@@ -428,6 +423,81 @@
       "status": "FINISHED"
     },
     {
+      "text": "%neo4j\n\n\nCALL apoc.meta.relTypeProperties({excludeRels:[\"DIRECTED\"]})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 10:35:50.538",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "relType": "string",
+                      "sourceNodeLabels": "string",
+                      "targetNodeLabels": "string",
+                      "propertyName": "string",
+                      "propertyTypes": "string",
+                      "mandatory": "string",
+                      "propertyObservations": "string",
+                      "totalObservations": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "relType\tsourceNodeLabels\ttargetNodeLabels\tpropertyName\tpropertyTypes\tmandatory\tpropertyObservations\ttotalObservations\n\":`ACTED_IN`\"\t[\"Person\"]\t[\"Movie\"]\t\"roles\"\t[\"StringArray\"]\tFALSE\t100\t155\n\":`PRODUCED`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t7\n\":`WROTE`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`FOLLOWS`\"\t[\"Person\"]\t[\"Person\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`REVIEWED`\"\t[\"Person\"]\t[\"Movie\"]\t\"summary\"\t[\"String\"]\tFALSE\t9\t9\n\":`REVIEWED`\"\t[\"Person\"]\t[\"Movie\"]\t\"rating\"\t[\"Long\"]\tFALSE\t9\t9\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636108429613_1279360973",
+      "id": "paragraph_1636108429613_1279360973",
+      "dateCreated": "2021-11-05 10:33:49.613",
+      "dateStarted": "2021-11-05 10:35:50.559",
+      "dateFinished": "2021-11-05 10:35:50.623",
+      "status": "FINISHED"
+    },
+    {
       "text": "%md\n\nMoreover, there are some apoc.meta.* to retrieve informations about a single entity or property.\n\nFunctions:\n\n- apoc.meta.cypher.isType(value, metaType)\n- apoc.meta.cypher.type(value)\n- apoc.meta.cypher.types(value)\n\nPossible meta types are `INTEGER`,`FLOAT`,`STRING`,`BOOLEAN`,`RELATIONSHIP`,`NODE`,`PATH`,`NULL`,`MAP`,`POINT`,`DATE`,`DATE_TIME`,`LOCAL_TIME`,`LOCAL_DATE_TIME`,`TIME,DURATION`, `LIST OF \u003cPREVIOUS TYPE\u003e`",
       "user": "anonymous",
       "dateUpdated": "2021-11-02 10:46:47.456",
@@ -457,9 +527,9 @@
       "status": "READY"
     },
     {
-      "text": "%neo4j\n\nmatch (p:Person) with p limit 1 \nreturn apoc.meta.cypher.types(p) as types, apoc.meta.cypher.isType(p.name, \"STRING\") as isNameAString, apoc.meta.cypher.type(p.name) as typeName\n// return list of properies, a column with a boolean and a column with a meta type\n",
+      "text": "%neo4j\n\nmatch (p:Person) with p limit 1 \nreturn apoc.meta.cypher.types(p) as types,                       // return 2 column, that is the properies (name and born)\n    apoc.meta.cypher.isType(p.name, \"STRING\") as isNameAString,  // return a boolean\n    apoc.meta.cypher.type(p.name) as typeName                    // return a column with a meta type\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 10:49:09.290",
+      "dateUpdated": "2021-11-05 10:39:53.809",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -523,14 +593,14 @@
       "jobName": "paragraph_1635849322493_867707092",
       "id": "paragraph_1635849322493_867707092",
       "dateCreated": "2021-11-02 10:35:22.493",
-      "dateStarted": "2021-11-02 10:49:09.302",
-      "dateFinished": "2021-11-02 10:49:09.339",
+      "dateStarted": "2021-11-05 10:39:53.828",
+      "dateFinished": "2021-11-05 10:39:53.858",
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Monitoring\n\nProvides some useful procedures to monitor what is happening / happened in the db \n\n- call apoc.monitor.ids()\n- CALL apoc.monitor.kernel\n- CALL apoc.monitor.store()\n- CALL apoc.monitor.tx()\n",
+      "text": "%md\n\n## Monitoring\n\nProvides some useful procedures to monitor what is happening / happened in the db \n\n- CALL apoc.monitor.ids()\n- CALL apoc.monitor.kernel\n- CALL apoc.monitor.store()\n- CALL apoc.monitor.tx()\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 13:50:02.509",
+      "dateUpdated": "2021-11-05 10:41:19.627",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -560,7 +630,7 @@
       "title": "Node and relationships-ids in total and in use",
       "text": "%neo4j\n\ncall apoc.monitor.ids()",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 13:50:05.271",
+      "dateUpdated": "2021-11-05 10:40:16.534",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -615,7 +685,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "nodeIds\trelIds\tpropIds\trelTypeIds\n1\t0\t9\t0\n"
+            "data": "nodeIds\trelIds\tpropIds\trelTypeIds\n171\t253\t403\t6\n"
           }
         ]
       },
@@ -625,15 +695,15 @@
       "jobName": "paragraph_1635424116376_1179404834",
       "id": "paragraph_1635424116376_1179404834",
       "dateCreated": "2021-10-28 12:28:36.376",
-      "dateStarted": "2021-10-28 12:30:21.466",
-      "dateFinished": "2021-10-28 12:30:21.540",
+      "dateStarted": "2021-11-05 10:40:16.555",
+      "dateFinished": "2021-11-05 10:40:16.614",
       "status": "FINISHED"
     },
     {
-      "title": "store information such as kernel version, start time, read-only, database-name, store-log-version etc.",
+      "title": "Store information such as kernel version, start time, read-only, database-name, store-log-version",
       "text": "%neo4j\n\nCALL apoc.monitor.kernel",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 15:25:23.264",
+      "dateUpdated": "2021-11-05 10:42:48.356",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -777,7 +847,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "readOnly\tkernelVersion\tstoreId\tkernelStartTime\tdatabaseName\tstoreLogVersion\tstoreCreationDate\nFALSE\t\"4.3.6\"\t\"StoreId{creationTime\u003d1635422674945, randomId\u003d6101790659069986225, storeVersion\u003d3471768636287762695, upgradeTime\u003d1635422674945, upgradeTxId\u003d1}\"\t\"2021-10-28 12:04:09\"\t\"neo4j\"\t3471768636287762695\t\"2021-10-28 12:04:34\"\n"
+            "data": "readOnly\tkernelVersion\tstoreId\tkernelStartTime\tdatabaseName\tstoreLogVersion\tstoreCreationDate\nFALSE\t\"4.3.6\"\t\"StoreId{creationTime\u003d1636100888870, randomId\u003d7250621792253662692, storeVersion\u003d3471768636287762695, upgradeTime\u003d1636100888870, upgradeTxId\u003d1}\"\t\"2021-11-05 08:27:43\"\t\"neo4j\"\t3471768636287762695\t\"2021-11-05 08:28:08\"\n"
           }
         ]
       },
@@ -787,15 +857,15 @@
       "jobName": "paragraph_1635424228078_1692654500",
       "id": "paragraph_1635424228078_1692654500",
       "dateCreated": "2021-10-28 12:30:28.078",
-      "dateStarted": "2021-10-28 13:05:35.172",
-      "dateFinished": "2021-10-28 13:05:35.243",
+      "dateStarted": "2021-11-05 10:42:47.322",
+      "dateFinished": "2021-11-05 10:42:47.492",
       "status": "FINISHED"
     },
     {
-      "title": "store size information for the different types of stores",
+      "title": "Store size information for the different types of stores",
       "text": "%neo4j\n\nCALL apoc.monitor.store()",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 15:25:44.100",
+      "dateUpdated": "2021-11-05 10:42:54.408",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -868,15 +938,48 @@
       "status": "FINISHED"
     },
     {
-      "title": "number of transactions total,opened,committed,concurrent,rolled-back,last-tx-id",
+      "title": "Number of transactions total, opened, committed, rolled-back, last-tx-id",
       "text": "%neo4j\n\nCALL apoc.monitor.tx()",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 12:38:23.488",
+      "dateUpdated": "2021-11-05 10:43:49.778",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
-        "results": {},
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "rolledBackTx": "string",
+                      "peakTx": "string",
+                      "lastTxId": "string",
+                      "currentOpenedTx": "string",
+                      "totalOpenedTx": "string",
+                      "totalTx": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
@@ -891,18 +994,29 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "rolledBackTx\tpeakTx\tlastTxId\tcurrentOpenedTx\ttotalOpenedTx\ttotalTx\n0\t2\t24\t1\t11367\t11366\n"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1635424273157_1460585641",
       "id": "paragraph_1635424273157_1460585641",
       "dateCreated": "2021-10-28 12:31:13.158",
-      "status": "READY"
+      "dateStarted": "2021-11-05 10:43:36.877",
+      "dateFinished": "2021-11-05 10:43:36.902",
+      "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can verify database changes through these 2 procedures:\n\n\nThe following functions calculate hashsums of an entity\n\n- apoc.hashing.fingerprinting(object, {conf}) - single entity\n- apoc.hashing.graph(\u003clist_of_props_to_ignore\u003e) - whole graph\n",
+      "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can handle and / or verify database changes through these 2 procedures:\n\n\nThe following functions calculate hashsums of an entity\n\n- `apoc.hashing.fingerprinting(object, {conf})` - single entity\n- `apoc.hashing.fingerprintGraph(\u003clist_of_props_to_ignore\u003e)` - whole graph\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 10:55:11.182",
+      "dateUpdated": "2021-11-05 10:44:40.550",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -915,8 +1029,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -927,7 +1041,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFingerprint (Checksum)\u003c/h2\u003e\n\u003cp\u003eWe can checking for db changes through these 2 procedures:\u003c/p\u003e\n\u003cp\u003eThe following functions calculate hashsums over nodes, relationship or the entire graph.\u003c/p\u003e\n\u003cp\u003e// If we want to handle entity changes\u003cbr /\u003e\napoc.hashing.fingerprinting(object, {conf})\u003c/p\u003e\n\u003cp\u003eapoc.hashing.graph(\u0026lt;list_of_props_to_ignore\u0026gt;)\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.hashing/apoc.hashing.fingerprinting/\"\u003ehttps://neo4j.com/labs/apoc/4.1/overview/apoc.hashing/apoc.hashing.fingerprinting/\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e// you can create an hashsum for the whole graph\u003cbr /\u003e\n// fare un po\u0026rsquo; di prove\u003cbr /\u003e\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.hashing/apoc.hashing.fingerprintGraph/\"\u003ehttps://neo4j.com/labs/apoc/4.1/overview/apoc.hashing/apoc.hashing.fingerprintGraph/\u003c/a\u003e\u003cbr /\u003e\n// todo - source cyph\u003cbr /\u003e\nRETURN apoc.hashing.fingerprintGraph([\u0026ldquo;since\u0026rdquo;]) AS output;\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFingerprint (Checksum)\u003c/h2\u003e\n\u003cp\u003eWe can handle and / or verify database changes through these 2 procedures:\u003c/p\u003e\n\u003cp\u003eThe following functions calculate hashsums of an entity\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.hashing.fingerprinting(object, {conf})\u003c/code\u003e - single entity\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.hashing.fingerprintGraph(\u0026lt;list_of_props_to_ignore\u0026gt;)\u003c/code\u003e - whole graph\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -937,17 +1051,17 @@
       "jobName": "paragraph_1635376240174_40107247",
       "id": "paragraph_1635376240174_40107247",
       "dateCreated": "2021-10-27 23:10:40.174",
-      "dateStarted": "2021-10-28 15:24:47.645",
-      "dateFinished": "2021-10-28 15:24:47.664",
+      "dateStarted": "2021-11-05 10:44:40.549",
+      "dateFinished": "2021-11-05 10:44:40.563",
       "status": "FINISHED"
     },
     {
       "title": "Whole graph",
       "text": "%neo4j\n\n// we ignore \u0027since\u0027 propery\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 10:53:30.886",
+      "dateUpdated": "2021-11-05 10:45:21.429",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
@@ -995,11 +1109,11 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
-            "type": "TEXT",
-            "data": "Failed to invoke function `apoc.hashing.fingerprintGraph`: Caused by: java.lang.RuntimeException"
+            "type": "TABLE",
+            "data": "output\n\"1ED0986E2BAE4D078A3C20EF49456389\"\n"
           }
         ]
       },
@@ -1009,17 +1123,17 @@
       "jobName": "paragraph_1635424699183_500883585",
       "id": "paragraph_1635424699183_500883585",
       "dateCreated": "2021-10-28 12:38:19.184",
-      "dateStarted": "2021-11-02 10:53:30.901",
-      "dateFinished": "2021-11-02 10:53:32.194",
-      "status": "ERROR"
+      "dateStarted": "2021-11-05 10:45:21.447",
+      "dateFinished": "2021-11-05 10:45:22.077",
+      "status": "FINISHED"
     },
     {
       "title": "Whole graph after update",
       "text": "%neo4j\n\nCREATE (n:Something {id: apoc.create.uuid()});\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 10:53:52.392",
+      "dateUpdated": "2021-11-05 10:45:15.880",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
@@ -1067,11 +1181,11 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
-            "type": "TEXT",
-            "data": "Failed to invoke function `apoc.hashing.fingerprintGraph`: Caused by: java.lang.RuntimeException"
+            "type": "TABLE",
+            "data": "output\n\"1ED0986E2BAE4D078A3C20EF49456389\"\n"
           }
         ]
       },
@@ -1081,14 +1195,14 @@
       "jobName": "paragraph_1635424825025_731790922",
       "id": "paragraph_1635424825025_731790922",
       "dateCreated": "2021-10-28 12:40:25.025",
-      "dateStarted": "2021-11-02 10:53:52.406",
-      "dateFinished": "2021-11-02 10:53:53.130",
-      "status": "ERROR"
+      "dateStarted": "2021-11-05 10:44:57.589",
+      "dateFinished": "2021-11-05 10:44:58.388",
+      "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### apoc.hashing.fingerprinting\n\nThe procedure accepts 2 parameter, `apoc.hashing.fingerprinting(object, {config})`.\nObject could be node or relationship.\n\nThe object can be a node or relationship.\n\n\nThe procedure has the following config parameters:\n\n.Config parameters\n[opts\u003dheader]\n|\u003d\u003d\u003d\n\n| name | type | default | description\n| --- | --- | --- | ---\n| digestAlgorithm | String | \"MD5\" | The algorithm used to compute the fingerprint. Supported values are: `MD5`, `SHA-1`, `SHA-256`\n| strategy | String | \"LAZY\" a| Property loading strategy. Supported values are `LAZY` - does not include properties, `EAGER` - uses all properties\n| nodeAllowMap | Map\u003cString, List\u003cString\u003e\u003e | {} | Properties to include per node label\n| nodeDisallowMap | Map\u003cString, List\u003cString\u003e\u003e | [] | Properties to exclude per node label\n| relAllowMap | Map\u003cString, List\u003cString\u003e\u003e | {} | Properties to include per relationship type\n| relDisallowMap | Map\u003cString, List\u003cString\u003e\u003e | [] | Properties to exclude per relationship type\n| mapAllowList | List\u003cString\u003e | [] | Map properties to include\n| mapDisallowList | List\u003cString\u003e | [] | Map properties to exclude\n| allNodesAllowList | List\u003cString\u003e | [] | Node properties to include\n| allNodesDisallowList | List\u003cString\u003e | [] | Node properties to exclude\n| allRelsAllowList | List\u003cString\u003e | [] | Relationship properties to include\n| allRelsDisallowList | List\u003cString\u003e | [] | Relationship properties to exclude\n\n\n```\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), without {config} parameter\n```",
+      "text": "%md\n\n### apoc.hashing.fingerprinting\n\nThe procedure accepts 2 parameter, `apoc.hashing.fingerprinting(object, {config})`.\n\nThe `object` could be a node or relationship.\n\n\nThe procedure has the following config parameters:\n\n- digestAlgorithm (default: \u0027MD5\u0027) - The algorithm used to compute the fingerprint. Supported values are: `MD5`, `SHA-1`, `SHA-256`\n- strategy - Property loading strategy. Supported values are `LAZY` - does not include properties, `EAGER` - uses all properties\n- nodeAllowMap - Properties to include per node label\n- nodeDisallowMap - Properties to exclude per node label\n- relAllowMap - Properties to include per relationship type\n- relDisallowMap -- Properties to exclude per relationship type\n- mapAllowList - Map properties to include\n- mapDisallowList - Map properties to exclude\n- allNodesAllowList - Node properties to include\n- allNodesDisallowList - Node properties to exclude\n- allRelsAllowList - Relationship properties to include\n- allRelsDisallowList - Relationship properties to exclude\n\n\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no {config} parameter\n\u003c/pre\u003e",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:01:36.985",
+      "dateUpdated": "2021-11-05 10:48:29.003",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1101,8 +1215,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -1113,7 +1227,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cpre\u003e\u003ccode\u003eThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no {config} parameter\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eapoc.hashing.fingerprinting(object, {conf}); // object could be node / relationship\u003c/p\u003e\n\u003cp\u003eThe procedure support the following config parameters:\u003c/p\u003e\n\u003cp\u003e.Config parameters\u003cbr /\u003e\n[opts\u003dheader]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003cth\u003ename\u003c/th\u003e\u003cth\u003etype\u003c/th\u003e\u003cth\u003edefault\u003c/th\u003e\u003cth\u003edescription\u003c/th\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003edigestAlgorithm\u003c/td\u003e\u003ctd\u003eString\u003c/td\u003e\u003ctd\u003e\u0026ldquo;MD5\u0026rdquo;\u003c/td\u003e\u003ctd\u003eThe algorithm used to compute the fingerprint. Supported values are: \u003ccode\u003eMD5\u003c/code\u003e, \u003ccode\u003eSHA-1\u003c/code\u003e, \u003ccode\u003eSHA-256\u003c/code\u003e\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003estrategy\u003c/td\u003e\u003ctd\u003eString\u003c/td\u003e\u003ctd\u003e\u0026ldquo;LAZY\u0026rdquo; a\u003c/td\u003e\u003ctd\u003eProperty loading strategy. Supported values are:\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eLAZY\u003c/code\u003e - does not include properties\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eEAGER\u003c/code\u003e - uses all properties\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e| nodeAllowMap | Map\u0026lt;String, List\u003cString\u003e\u0026gt; | {} | Properties to include per node label\u003cbr /\u003e\n| nodeDisallowMap | Map\u0026lt;String, List\u003cString\u003e\u0026gt; | [] | Properties to exclude per node label\u003c/p\u003e\n\u003cp\u003e| relAllowMap | Map\u0026lt;String, List\u003cString\u003e\u0026gt; | {} | Properties to include per relationship type\u003cbr /\u003e\n| relDisallowMap | Map\u0026lt;String, List\u003cString\u003e\u0026gt; | [] | Properties to exclude per relationship type\u003c/p\u003e\n\u003cp\u003e| mapAllowList | List\u003cString\u003e | [] | Map properties to include\u003cbr /\u003e\n| mapDisallowList | List\u003cString\u003e | [] | Map properties to exclude\u003c/p\u003e\n\u003cp\u003e| allNodesAllowList | List\u003cString\u003e | [] | Node properties to include\u003cbr /\u003e\n| allNodesDisallowList | List\u003cString\u003e | [] | Node properties to exclude\u003c/p\u003e\n\u003cp\u003e| allRelsAllowList | List\u003cString\u003e | [] | Relationship properties to include\u003cbr /\u003e\n| allRelsDisallowList | List\u003cString\u003e | [] | Relationship properties to exclude\u003c/p\u003e\n\u003cp\u003e|\u003d\u003d\u003d\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eapoc.hashing.fingerprinting\u003c/h3\u003e\n\u003cp\u003eThe procedure accepts 2 parameter, \u003ccode\u003eapoc.hashing.fingerprinting(object, {config})\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eobject\u003c/code\u003e could be a node or relationship.\u003c/p\u003e\n\u003cp\u003eThe procedure has the following config parameters:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003edigestAlgorithm (default: \u0026lsquo;MD5\u0026rsquo;) - The algorithm used to compute the fingerprint. Supported values are: \u003ccode\u003eMD5\u003c/code\u003e, \u003ccode\u003eSHA-1\u003c/code\u003e, \u003ccode\u003eSHA-256\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003estrategy - Property loading strategy. Supported values are \u003ccode\u003eLAZY\u003c/code\u003e - does not include properties, \u003ccode\u003eEAGER\u003c/code\u003e - uses all properties\u003c/li\u003e\n\u003cli\u003enodeAllowMap - Properties to include per node label\u003c/li\u003e\n\u003cli\u003enodeDisallowMap - Properties to exclude per node label\u003c/li\u003e\n\u003cli\u003erelAllowMap - Properties to include per relationship type\u003c/li\u003e\n\u003cli\u003erelDisallowMap \u0026ndash; Properties to exclude per relationship type\u003c/li\u003e\n\u003cli\u003emapAllowList - Map properties to include\u003c/li\u003e\n\u003cli\u003emapDisallowList - Map properties to exclude\u003c/li\u003e\n\u003cli\u003eallNodesAllowList - Node properties to include\u003c/li\u003e\n\u003cli\u003eallNodesDisallowList - Node properties to exclude\u003c/li\u003e\n\u003cli\u003eallRelsAllowList - Relationship properties to include\u003c/li\u003e\n\u003cli\u003eallRelsDisallowList - Relationship properties to exclude\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no {config} parameter\n\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1123,62 +1237,31 @@
       "jobName": "paragraph_1635424958843_1538360015",
       "id": "paragraph_1635424958843_1538360015",
       "dateCreated": "2021-10-28 12:42:38.843",
-      "dateStarted": "2021-11-02 10:56:03.698",
-      "dateFinished": "2021-11-02 10:56:05.168",
+      "dateStarted": "2021-11-05 10:48:29.004",
+      "dateFinished": "2021-11-05 10:48:29.021",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\n// \"nodeAllowMap\", Util.map(\"Person\", Collections.singletonList(\"name\")))\n\nWITH {nodes: apoc.coll.toSet(g.nodes), rels: apoc.coll.toSet(g.relationships)} AS map\nRETURN apoc.hashing.fingerprinting(map, {nodeAllowMap: {Person: \u0027name\u0027}}) as hash",
+      "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property NOT included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashAfter, hashBefore",
       "user": "anonymous",
-      "dateUpdated": "2021-10-30 16:56:56.134",
+      "dateUpdated": "2021-11-05 11:00:50.863",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635425240161_890228484",
-      "id": "paragraph_1635425240161_890228484",
-      "dateCreated": "2021-10-28 12:47:20.162",
-      "status": "READY"
-    },
-    {
-      "text": "%neo4j\n\n// The following generates the fingerprint for Ryan, using the EAGER strategy, which includes node properties:\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nWITH apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyBefore, person // we calculate fingerprints before property changes\nset person.something \u003d apoc.create.uuid() // we change a property\nRETURN eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerAfter, lazyBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyAfter  // we return fingerprints before and after property changes",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:05:47.971",
-      "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
           "0": {
             "graph": {
               "mode": "table",
-              "height": 94.0057,
+              "height": 84.0057,
               "optionOpen": false,
               "setting": {
                 "table": {
                   "tableGridState": {},
                   "tableColumnTypeState": {
                     "names": {
-                      "eagerBefore": "string",
-                      "eagerAfter": "string",
-                      "lazyBefore": "string",
-                      "lazyAfter": "string"
+                      "hashAfter": "string",
+                      "hashBefore": "string"
                     },
                     "updated": false
                   },
@@ -1200,7 +1283,7 @@
           "language": "text",
           "editOnDblClick": false,
           "completionKey": "TAB",
-          "completionSupport": false
+          "completionSupport": true
         },
         "editorMode": "ace/mode/undefined"
       },
@@ -1213,24 +1296,94 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "eagerBefore\teagerAfter\tlazyBefore\tlazyAfter\n\"56919936FA3AB4B66C136A21BBA6C223\"\t\"2E287565F08D9108753F5113258480D2\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\n"
+            "data": "hashAfter\thashBefore\n\"5C3E579ACEF81AF691FC4BE5D2AE6D65\"\t\"01E981BA52C687498E1CE1CE93BABEB1\"\n"
           }
         ]
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635425538359_312764038",
-      "id": "paragraph_1635425538359_312764038",
-      "dateCreated": "2021-10-28 12:52:18.359",
-      "dateStarted": "2021-11-02 11:05:32.804",
-      "dateFinished": "2021-11-02 11:05:32.904",
+      "jobName": "paragraph_1635425240161_890228484",
+      "id": "paragraph_1635425240161_890228484",
+      "dateCreated": "2021-10-28 12:47:20.162",
+      "dateStarted": "2021-11-05 10:59:32.841",
+      "dateFinished": "2021-11-05 10:59:32.909",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\n// The following generates the fingerprint for Ryan, excluding the name property:\n// prova MATCH \n\nMATCH (person:Person {name: \u0027Keanu Reeves\u0027})\nWITH person, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"born\"]}) AS outputBornBefore\nset person.born \u003d rand() // we change born propery\nRETURN apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS output, outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"born\"]}) AS outputBorn , outputBornBefore\n\n",
+      "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property other for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashAfter, hashBefore",
       "user": "anonymous",
-      "dateUpdated": "2021-10-30 16:57:22.003",
+      "dateUpdated": "2021-11-05 11:00:45.810",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "hashAfter": "string",
+                      "hashBefore": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "hashAfter\thashBefore\n\"754EABC659FD879BA07054E8377DA1EC\"\t\"5C3E579ACEF81AF691FC4BE5D2AE6D65\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636109985372_771018932",
+      "id": "paragraph_1636109985372_771018932",
+      "dateCreated": "2021-11-05 10:59:45.372",
+      "dateStarted": "2021-11-05 11:00:17.354",
+      "dateFinished": "2021-11-05 11:00:17.379",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (person:Person {name: \u0027Keanu Reeves\u0027})\n// we create 2 fingerprint with allNodesDisallowList to disallow respectively \u0027name\u0027 and \u0027stuff\u0027\nWITH person, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBornBefore\n\nset person.stuff \u003d rand() // we change born propery\n\n// we create another 2 fingerprint as above\nRETURN apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS output, outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBorn , outputBornBefore\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 11:03:40.927",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1285,7 +1438,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "output\toutputBefore\toutputBorn\toutputBornBefore\n\"91759F21AB22A0454C0958E4ED2D4B20\"\t\"FA1D866EB217BA8F49AF353DE2AD3CC3\"\t\"705F17808A51D56043E5C74A1A82A89F\"\t\"705F17808A51D56043E5C74A1A82A89F\"\n"
+            "data": "output\toutputBefore\toutputBorn\toutputBornBefore\n\"E2F6CBE2ED866B915566934299AD1AA0\"\t\"D75B0103D6B59A4BF032EBA93A2FAA9F\"\t\"B13B087AD39FDC87A07815E109A275DD\"\t\"81BA011C0E08FC7B038346EB8A63AFDE\"\n"
           }
         ]
       },
@@ -1295,28 +1448,57 @@
       "jobName": "paragraph_1635426007544_145180203",
       "id": "paragraph_1635426007544_145180203",
       "dateCreated": "2021-10-28 13:00:07.544",
-      "dateStarted": "2021-10-28 13:12:33.546",
-      "dateFinished": "2021-10-28 13:12:33.568",
+      "dateStarted": "2021-11-05 11:03:21.752",
+      "dateFinished": "2021-11-05 11:03:21.885",
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n\n## System database\n\nWith introduction of system database concept in neo4j 4.0\nhttps://neo4j.com/labs/apoc/4.1/database-introspection/systemdb/ -\u003e dire che vale solo per la 4.x\n\n.Procedures\n[cols\u003d\"5m,5\"]\n|\u003d\u003d\u003d\n| apoc.systemdb.graph | returns a `nodes` and `relationships` stored in systemdb.\n| apoc.systemdb.execute | executes an DDL command or a list of DDL commands on system db, yields `row` for further processing\n|\u003d\u003d\u003d\n\n.isType example\n[source,cypher]\n----\nCALL apoc.systemdb.graph() - return a virtual graph with the entities\nCALL apoc.systemdb.execute(`command/list of commands`) - execute a Data Definition Language command or list of DDL commands on system db\n----\n\n",
+      "text": "%neo4j\n\n// The following generates the fingerprint for Keanu Reeves, using the EAGER strategy, which includes node properties:\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nWITH apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyBefore, person // we calculate fingerprints before property changes\n\nset person.something \u003d apoc.create.uuid() // we change a property\n\nRETURN eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerAfter, lazyBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyAfter  // we return fingerprints before and after property changes",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:09:32.822",
+      "dateUpdated": "2021-11-05 11:01:10.979",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
-        "results": {},
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "eagerBefore": "string",
+                      "eagerAfter": "string",
+                      "lazyBefore": "string",
+                      "lazyAfter": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
         "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
+          "language": "text",
+          "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorMode": "ace/mode/undefined"
       },
       "settings": {
         "params": {},
@@ -1326,59 +1508,19 @@
         "code": "SUCCESS",
         "msg": [
           {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Meta\u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-introspection/meta/\"\u003ehttps://neo4j.com/labs/apoc/4.1/database-introspection/meta/\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e\u003d\u003d config\u003cbr /\u003e\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-introspection/config/\"\u003ehttps://neo4j.com/labs/apoc/4.1/database-introspection/config/\u003c/a\u003e\u003cbr /\u003e\n// differenza con dbms.listConfig(), non l\u0026rsquo;ho capita tanto bene, sembrano quasi uguali\u0026hellip;\u003c/p\u003e\n\u003cp\u003e\u003d\u003d monitoring procedures\u003cbr /\u003e\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-introspection/monitoring/\"\u003ehttps://neo4j.com/labs/apoc/4.1/database-introspection/monitoring/\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e[cols\u003d\u0026ldquo;5m,5\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| apoc.monitor.ids | node and relationships-ids in total and in use\u003cbr /\u003e\n| apoc.monitor.kernel | store information such as kernel version, start time, read-only, database-name, store-log-version etc.\u003cbr /\u003e\n| apoc.monitor.store | store size information for the different types of stores\u003cbr /\u003e\n| apoc.monitor.tx | number of transactions total,opened,committed,concurrent,rolled-back,last-tx-id\u003cbr /\u003e\n| apoc.monitor.locks(minWaitTime long) | db locking information such as avertedDeadLocks, lockCount, contendedLockCount and contendedLocks etc. (enterprise)\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003ch2\u003e.The following returns ID usage:\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.monitor.ids();\u003c/h2\u003e\n\u003cp\u003e.Results\u003cbr /\u003e\n[opts\u003d\u0026ldquo;header\u0026rdquo;,cols\u003d\u0026ldquo;1,1,1,1\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| nodeIds | relIds | propIds | relTypeIds\u003cbr /\u003e\n| 400     | 3560   | 4000    | 7\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003ch2\u003e.The following returns store information:\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.monitor.kernel();\u003c/h2\u003e\n\u003cp\u003e.Results\u003cbr /\u003e\n[opts\u003d\u0026ldquo;header\u0026rdquo;,cols\u003d\u0026ldquo;1,1,1,1,1,1,1\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n|readOnly | kernelVersion                                                           | storeId            | kernelStartTime       | databaseName | storeLogVersion | storeCreationDate\u003cbr /\u003e\n|FALSE    | \u0026ldquo;neo4j-kernel, version: 3.5.6,73866e84158298d5f4a7325b6466c0189ad21d11\u0026rdquo; | \u0026ldquo;7f450cfe1e4fefb5\u0026rdquo; | \u0026ldquo;2019-06-24 12:01:01\u0026rdquo; | \u0026ldquo;graph.db\u0026rdquo;   | 0               | \u0026ldquo;2019-06-24 11:59:28\u0026rdquo;\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003ch2\u003e.The following returns store size information:\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.monitor.store();\u003c/h2\u003e\n\u003cp\u003e.Results\u003cbr /\u003e\n[opts\u003d\u0026ldquo;header\u0026rdquo;,cols\u003d\u0026ldquo;1,1,1,1,1,1,1\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| logSize | stringStoreSize | arrayStoreSize | relStoreSize | propStoreSize | totalStoreSize | nodeStoreSize\u003cbr /\u003e\n| 691264  | 8192            | 8192           | 122400       | 171339        | 1207741        | 8190\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003ch2\u003e.The following returns transaction information:\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.monitor.tx();\u003c/h2\u003e\n\u003cp\u003e.Results\u003cbr /\u003e\n[opts\u003d\u0026ldquo;header\u0026rdquo;,cols\u003d\u0026ldquo;1,1,1,1,1,1\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| rolledBackTx | peakTx | lastTxId | currentOpenedTx | totalOpenedTx | totalTx\u003cbr /\u003e\n| 2213         | 6      | 16       | 1               | 9170          | 6956\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003cp\u003e\u003d\u003d system database\u003cbr /\u003e\n// with introduction of system database concept in neo4j 4.0\u003cbr /\u003e\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-introspection/systemdb/\"\u003ehttps://neo4j.com/labs/apoc/4.1/database-introspection/systemdb/\u003c/a\u003e -\u0026gt; dire che vale solo per la 4.x\u003c/p\u003e\n\u003cp\u003e.Procedures\u003cbr /\u003e\n[cols\u003d\u0026ldquo;5m,5\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| apoc.systemdb.graph | returns a \u003ccode\u003enodes\u003c/code\u003e and \u003ccode\u003erelationships\u003c/code\u003e stored in systemdb.\u003cbr /\u003e\n| apoc.systemdb.execute | executes an DDL command or a list of DDL commands on system db, yields \u003ccode\u003erow\u003c/code\u003e for further processing\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003ch2\u003e.isType example\u003cbr /\u003e\n[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.systemdb.graph() YIELD nodes, relationships RETURN *;\u003cbr /\u003e\nCALL apoc.systemdb.execute(\u0026lsquo;SHOW DATABASES\u0026rsquo;) YIELD row RETURN row.name as dbName;\u003cbr /\u003e\nCALL apoc.systemdb.execute([\u0026ldquo;CREATE USER foo\u0026rdquo;, \u0026ldquo;GRANT ROLE myRole TO foo\u0026rdquo;])\u003c/h2\u003e\n\n\u003c/div\u003e"
+            "type": "TABLE",
+            "data": "eagerBefore\teagerAfter\tlazyBefore\tlazyAfter\n\"BA377FB2B32C6D709D6D0DCD7152C3DD\"\t\"CD4C724BB350153509B0C378631BF435\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\n"
           }
         ]
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635375412912_1535762876",
-      "id": "paragraph_1635375412912_1535762876",
-      "dateCreated": "2021-10-27 22:56:52.912",
-      "dateStarted": "2021-10-27 22:57:25.283",
-      "dateFinished": "2021-10-27 22:57:25.329",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\n## Advanced Graph Querying\n\u003c!-- todo - vedere se sto con i tempi --\u003e\n\n## Math functions\n\u003c!-- todo - vedere se sto con i tempi --\u003e\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:23:56.315",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eAdvanced Graph Querying\u003c/h2\u003e\n\u003c!-- todo - vedere se sto con i tempi --\u003e\n\u003ch2\u003eMath functions\u003c/h2\u003e\n\u003c!-- todo - vedere se sto con i tempi --\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635613082092_52825019",
-      "id": "paragraph_1635613082092_52825019",
-      "dateCreated": "2021-10-30 16:58:02.092",
-      "dateStarted": "2021-11-02 11:23:56.330",
-      "dateFinished": "2021-11-02 11:23:56.341",
+      "jobName": "paragraph_1635425538359_312764038",
+      "id": "paragraph_1635425538359_312764038",
+      "dateCreated": "2021-10-28 12:52:18.359",
+      "dateStarted": "2021-11-05 11:01:10.996",
+      "dateFinished": "2021-11-05 11:01:11.091",
       "status": "FINISHED"
     },
     {
@@ -1399,7 +1541,7 @@
       "status": "READY"
     }
   ],
-  "name": "2. statistics and analysis",
+  "name": "2. Statistics and analysis",
   "id": "2GKUM18D6",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",

@@ -1,0 +1,1212 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# Export\n\n```\nTo activate NEO4J_apoc_export_file_enabled: \"true\"\n```\n\n- Export to CSV (apoc.export.csv.TYPE)\n- Export to JSON (apoc.export.json.TYPE)\n- Export to Cypher Script (apoc.export.cypher.TYPE)\n- Export to GraphML (apoc.export.graphml.TYPE)\n- Export to Xls (apoc.export.xls.TYPE)\n\n\nWhere `\u003cTYPE\u003e` can be all, data, graph, query.\n\nFor example, in CSV case, we have `apoc.export.csv.all(fileName, {configMap})`, \n`apoc.export.csv.query(query, file, {configMap})`, \n`apoc.export.csv.data(nodes, rels, fileName, {configMap})`\n`apoc.export.csv.graph(graph, fileName?, {configMap})`.\n\n`{configMap}` depends on file Type. See \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.export/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to see all possible configurations.\n\nIn `apoc.export.csv.*` we have\n- batchSize (default: 20000) - define the batch size to export large files avoiding heap space errors\n- delim (default: \",\") - define the delimiter character (export csv)\n- arrayDelim (default: \";\") - define the delimiter character for arrays\n- quotes (default: \u0027always\u0027) - quote-character used for CSV. It can be \u0027always\u0027, \u0027none\u0027 or \u0027ifNeeded\u0027, that apply quotes only when it\u0027s necessary (for escape purpose or when a value is blank)\n\n\n// todo - esempio ifNeeded con arrays\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:23:40.778",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eExport\u003c/h1\u003e\n\u003cpre\u003e\u003ccode\u003eTo activate NEO4J_apoc_export_file_enabled: \u0026quot;true\u0026quot;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cul\u003e\n\u003cli\u003eExport to CSV (apoc.export.csv.TYPE)\u003c/li\u003e\n\u003cli\u003eExport to JSON (apoc.export.json.TYPE)\u003c/li\u003e\n\u003cli\u003eExport to Cypher Script (apoc.export.cypher.TYPE)\u003c/li\u003e\n\u003cli\u003eExport to GraphML (apoc.export.graphml.TYPE)\u003c/li\u003e\n\u003cli\u003eExport to Xls (apoc.export.xls.TYPE)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWhere \u003ccode\u003e\u0026lt;TYPE\u0026gt;\u003c/code\u003e can be all, data, graph, query.\u003c/p\u003e\n\u003cp\u003eFor example, in CSV case, we have \u003ccode\u003eapoc.export.csv.all(fileName, {configMap})\u003c/code\u003e,\u003cbr /\u003e\n\u003ccode\u003eapoc.export.csv.query(query, file, {configMap})\u003c/code\u003e,\u003cbr /\u003e\n\u003ccode\u003eapoc.export.csv.data(nodes, rels, fileName, {configMap})\u003c/code\u003e\u003cbr /\u003e\n\u003ccode\u003eapoc.export.csv.graph(graph, fileName?, {configMap})\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003e{configMap}\u003c/code\u003e depends on file Type. See \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.export/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to see all possible configurations.\u003c/p\u003e\n\u003cp\u003eIn \u003ccode\u003eapoc.export.csv.*\u003c/code\u003e we have\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ebatchSize (default: 20000) - define the batch size to export large files avoiding heap space errors\u003c/li\u003e\n\u003cli\u003edelim (default: \u0026ldquo;,\u0026rdquo;) - define the delimiter character (export csv)\u003c/li\u003e\n\u003cli\u003earrayDelim (default: \u0026ldquo;;\u0026rdquo;) - define the delimiter character for arrays\u003c/li\u003e\n\u003cli\u003equotes (default: \u0026lsquo;always\u0026rsquo;) - quote-character used for CSV. It can be \u0026lsquo;always\u0026rsquo;, \u0026lsquo;none\u0026rsquo; or \u0026lsquo;ifNeeded\u0026rsquo;, that apply quotes only when it\u0026rsquo;s necessary (escape purpose)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e// todo - esempio ifNeeded con arrays\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635348979662_2072141118",
+      "id": "paragraph_1635348979662_2072141118",
+      "dateCreated": "2021-10-27 15:36:19.662",
+      "dateStarted": "2021-11-05 15:13:32.099",
+      "dateFinished": "2021-11-05 15:13:32.117",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfile.csv\u0027, {quotes: \u0027always\u0027})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:25:03.008",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"testfile.csv\"\t\"database: nodes(171), rels(253)\"\t\"csv\"\t171\t253\t737\t22\t424\t20000\t1\tTRUE\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635427510277_1468145857",
+      "id": "paragraph_1635427510277_1468145857",
+      "dateCreated": "2021-10-28 13:25:10.278",
+      "dateStarted": "2021-11-05 15:25:03.035",
+      "dateFinished": "2021-11-05 15:25:03.106",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfileNoQuote.csv\u0027, {quotes: \u0027none\u0027})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:24:08.398",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"testfileNoQuote.csv\"\t\"database: nodes(171), rels(253)\"\t\"csv\"\t171\t253\t737\t20\t424\t20000\t1\tTRUE\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636123179923_1013459302",
+      "id": "paragraph_1636123179923_1013459302",
+      "dateCreated": "2021-11-05 14:39:39.923",
+      "dateStarted": "2021-11-05 15:24:08.420",
+      "dateFinished": "2021-11-05 15:24:08.487",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfileNeededQuote.csv\u0027, {quotes: \u0027ifNeeded\u0027})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:03:38.028",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"testfileNeededQuote.csv\"\t\"database: nodes(171), rels(253)\"\t\"csv\"\t171\t253\t737\t29\t424\t20000\t1\tTRUE\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636124595874_8748788",
+      "id": "paragraph_1636124595874_8748788",
+      "dateCreated": "2021-11-05 15:03:15.875",
+      "dateStarted": "2021-11-05 15:03:38.045",
+      "dateFinished": "2021-11-05 15:03:38.125",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.export.csv.query(\"MATCH (person:Person) RETURN person\", \u0027person.csv\u0027, {})\nYIELD file RETURN file",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:15:49.321",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\n\"person.csv\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635429979268_1227511209",
+      "id": "paragraph_1635429979268_1227511209",
+      "dateCreated": "2021-10-28 14:06:19.269",
+      "dateStarted": "2021-11-05 15:15:44.644",
+      "dateFinished": "2021-11-05 15:15:44.739",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (person:Person)-[r:DIRECTED]-\u003e() \nWITH {nodes: collect(person), relationships: collect(r)} as graph\nCALL apoc.export.csv.graph(graph, \u0027graphFile.csv\u0027, {}) YIELD file RETURN file",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:15:09.001",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\n\"graphFile.csv\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635430116277_440029225",
+      "id": "paragraph_1635430116277_440029225",
+      "dateCreated": "2021-10-28 14:08:36.277",
+      "dateStarted": "2021-11-05 15:12:04.174",
+      "dateFinished": "2021-11-05 15:12:04.284",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nMATCH (person:Person) \nWITH collect(person) as people\nCALL apoc.export.csv.data(people, [], \u0027dataFile.csv\u0027, {})\nyield file return file",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:52:07.669",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 101.989,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\n\"dataFile.csv\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635430176279_54704858",
+      "id": "paragraph_1635430176279_54704858",
+      "dateCreated": "2021-10-28 14:09:36.279",
+      "dateStarted": "2021-11-05 15:16:21.084",
+      "dateFinished": "2021-11-05 15:16:21.182",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.export.csv.all(\"customDelim.csv\", {quotes: \u0027none\u0027, delim: \u0027|\u0027, arrayDelimiter: \u0027_\u0027}) ",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:52:02.317",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"customDelim.csv\"\t\"database: nodes(171), rels(253)\"\t\"csv\"\t171\t253\t737\t53\t424\t20000\t1\tTRUE\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635428971466_1949470120",
+      "id": "paragraph_1635428971466_1949470120",
+      "dateCreated": "2021-10-28 13:49:31.466",
+      "dateStarted": "2021-11-05 15:27:31.785",
+      "dateFinished": "2021-11-05 15:27:32.276",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// We can pass filename null and a config with `stream:true` to retrieve results directly in neo4j instead of a file\nCALL apoc.export.csv.all(null, {stream:true, batchSize: 20, quote: \u0027none\u0027}) yield data return data",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:53:41.259",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 394.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "data",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "data\n\"\\\"_id\\\",\\\"_labels\\\",\\\"born\\\",\\\"children\\\",\\\"name\\\",\\\"released\\\",\\\"tagline\\\",\\\"title\\\",\\\"unique\\\",\\\"_start\\\",\\\"_end\\\",\\\"_type\\\",\\\"rating\\\",\\\"roles\\\",\\\"summary\\\"\n\\\"0\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1999\\\",\\\"Welcome to the Real World\\\",\\\"The Matrix\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"1\\\",\\\":Person\\\",\\\"1964\\\",\\\"\\\",\\\"Keanu Reeves\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"2\\\",\\\":Person\\\",\\\"1967\\\",\\\"[\\\"\\\"Al\\\"\\\",\\\"\\\"John\\\"\\\",\\\"\\\"Jack\\\"\\\"]\\\",\\\"Carrie-Anne Moss\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"3\\\",\\\":Person\\\",\\\"1961\\\",\\\"[\\\"\\\"Naruto\\\"\\\",\\\"\\\"Sasuke\\\"\\\",\\\"\\\"Sakura\\\"\\\"]\\\",\\\"Laurence Fishburne\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"4\\\",\\\":Person\\\",\\\"1960\\\",\\\"\\\",\\\"Hugo Weaving\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"5\\\",\\\":Person\\\",\\\"1967\\\",\\\"\\\",\\\"Lilly Wachowski\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"6\\\",\\\":Person\\\",\\\"1965\\\",\\\"\\\",\\\"Lana Wachowski\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"7\\\",\\\":Person\\\",\\\"1952\\\",\\\"\\\",\\\"Joel Silver\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"8\\\",\\\":Person\\\",\\\"1978\\\",\\\"\\\",\\\"Emil Eifrem\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"9\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2003\\\",\\\"Free your mind\\\",\\\"The Matrix Reloaded\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"10\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2003\\\",\\\"Everything that has a beginning has an end\\\",\\\"The Matrix Revolutions\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"11\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1997\\\",\\\"Evil has its winning ways\\\",\\\"The Devil\u0027s Advocate\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"12\\\",\\\":Person\\\",\\\"1975\\\",\\\"\\\",\\\"Charlize Theron\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"13\\\",\\\":Person\\\",\\\"1940\\\",\\\"\\\",\\\"Al Pacino\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"14\\\",\\\":Person\\\",\\\"1944\\\",\\\"\\\",\\\"Taylor Hackford\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"15\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1992\\\",\\\"In the heart of the nation\u0027s capital, in a courthouse of the U.S. government, one man will stop at nothing to keep his honor, and one will stop at nothing to find the truth.\\\",\\\"A Few Good Men\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"16\\\",\\\":Person\\\",\\\"1962\\\",\\\"\\\",\\\"Tom Cruise\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"17\\\",\\\":Person\\\",\\\"1937\\\",\\\"\\\",\\\"Jack Nicholson\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"18\\\",\\\":Person\\\",\\\"1962\\\",\\\"\\\",\\\"Demi Moore\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"19\\\",\\\":Person\\\",\\\"1958\\\",\\\"\\\",\\\"Kevin Bacon\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\"\n\"\\\"20\\\",\\\":Person\\\",\\\"1966\\\",\\\"\\\",\\\"Kiefer Sutherland\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"21\\\",\\\":Person\\\",\\\"1971\\\",\\\"\\\",\\\"Noah Wyle\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"22\\\",\\\":Person\\\",\\\"1968\\\",\\\"\\\",\\\"Cuba Gooding Jr.\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"23\\\",\\\":Person\\\",\\\"1957\\\",\\\"\\\",\\\"Kevin Pollak\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"24\\\",\\\":Person\\\",\\\"1943\\\",\\\"\\\",\\\"J.T. Walsh\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"25\\\",\\\":Person\\\",\\\"1967\\\",\\\"\\\",\\\"James Marshall\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"26\\\",\\\":Person\\\",\\\"1948\\\",\\\"\\\",\\\"Christopher Guest\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"27\\\",\\\":Person\\\",\\\"1947\\\",\\\"\\\",\\\"Rob Reiner\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"28\\\",\\\":Person\\\",\\\"1961\\\",\\\"\\\",\\\"Aaron Sorkin\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"29\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1986\\\",\\\"I feel the need, the need for speed.\\\",\\\"Top Gun\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"30\\\",\\\":Person\\\",\\\"1957\\\",\\\"\\\",\\\"Kelly McGillis\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"31\\\",\\\":Person\\\",\\\"1959\\\",\\\"\\\",\\\"Val Kilmer\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"32\\\",\\\":Person\\\",\\\"1962\\\",\\\"\\\",\\\"Anthony Edwards\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"33\\\",\\\":Person\\\",\\\"1933\\\",\\\"\\\",\\\"Tom Skerritt\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"34\\\",\\\":Person\\\",\\\"1961\\\",\\\"\\\",\\\"Meg Ryan\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"35\\\",\\\":Person\\\",\\\"1944\\\",\\\"\\\",\\\"Tony Scott\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"36\\\",\\\":Person\\\",\\\"1941\\\",\\\"\\\",\\\"Jim Cash\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"37\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2000\\\",\\\"The rest of his life begins now.\\\",\\\"Jerry Maguire\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"38\\\",\\\":Person\\\",\\\"1969\\\",\\\"\\\",\\\"Renee Zellweger\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"39\\\",\\\":Person\\\",\\\"1962\\\",\\\"\\\",\\\"Kelly Preston\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\"\n\"\\\"40\\\",\\\":Person\\\",\\\"1974\\\",\\\"\\\",\\\"Jerry O\u0027Connell\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"41\\\",\\\":Person\\\",\\\"1970\\\",\\\"\\\",\\\"Jay Mohr\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"42\\\",\\\":Person\\\",\\\"1961\\\",\\\"\\\",\\\"Bonnie Hunt\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"43\\\",\\\":Person\\\",\\\"1971\\\",\\\"\\\",\\\"Regina King\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"44\\\",\\\":Person\\\",\\\"1996\\\",\\\"\\\",\\\"Jonathan Lipnicki\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"45\\\",\\\":Person\\\",\\\"1957\\\",\\\"\\\",\\\"Cameron Crowe\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"46\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1986\\\",\\\"For some, it\u0027s the last real taste of innocence, and the first real taste of life. But for everyone, it\u0027s the time that memories are made of.\\\",\\\"Stand By Me\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"47\\\",\\\":Person\\\",\\\"1970\\\",\\\"\\\",\\\"River Phoenix\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"48\\\",\\\":Person\\\",\\\"1971\\\",\\\"\\\",\\\"Corey Feldman\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"49\\\",\\\":Person\\\",\\\"1972\\\",\\\"\\\",\\\"Wil Wheaton\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"50\\\",\\\":Person\\\",\\\"1966\\\",\\\"\\\",\\\"John Cusack\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"51\\\",\\\":Person\\\",\\\"1942\\\",\\\"\\\",\\\"Marshall Bell\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"52\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1997\\\",\\\"A comedy from the heart that goes for the throat.\\\",\\\"As Good as It Gets\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"53\\\",\\\":Person\\\",\\\"1963\\\",\\\"\\\",\\\"Helen Hunt\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"54\\\",\\\":Person\\\",\\\"1963\\\",\\\"\\\",\\\"Greg Kinnear\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"55\\\",\\\":Person\\\",\\\"1940\\\",\\\"\\\",\\\"James L. Brooks\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"56\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1998\\\",\\\"After life there is more. The end is just the beginning.\\\",\\\"What Dreams May Come\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"57\\\",\\\":Person\\\",\\\"1960\\\",\\\"\\\",\\\"Annabella Sciorra\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"58\\\",\\\":Person\\\",\\\"1929\\\",\\\"\\\",\\\"Max von Sydow\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"59\\\",\\\":Person\\\",\\\"1942\\\",\\\"\\\",\\\"Werner Herzog\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\"\n\"\\\"60\\\",\\\":Person\\\",\\\"1951\\\",\\\"\\\",\\\"Robin Williams\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"61\\\",\\\":Person\\\",\\\"1956\\\",\\\"\\\",\\\"Vincent Ward\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"62\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1999\\\",\\\"First loves last. Forever.\\\",\\\"Snow Falling on Cedars\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"63\\\",\\\":Person\\\",\\\"1970\\\",\\\"\\\",\\\"Ethan Hawke\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"64\\\",\\\":Person\\\",\\\"1971\\\",\\\"\\\",\\\"Rick Yune\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"65\\\",\\\":Person\\\",\\\"1940\\\",\\\"\\\",\\\"James Cromwell\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"66\\\",\\\":Person\\\",\\\"1953\\\",\\\"\\\",\\\"Scott Hicks\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"67\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1998\\\",\\\"At odds in life... in love on-line.\\\",\\\"You\u0027ve Got Mail\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"68\\\",\\\":Person\\\",\\\"1968\\\",\\\"\\\",\\\"Parker Posey\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"69\\\",\\\":Person\\\",\\\"1973\\\",\\\"\\\",\\\"Dave Chappelle\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"70\\\",\\\":Person\\\",\\\"1967\\\",\\\"\\\",\\\"Steve Zahn\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"71\\\",\\\":Person\\\",\\\"1956\\\",\\\"\\\",\\\"Tom Hanks\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"72\\\",\\\":Person\\\",\\\"1941\\\",\\\"\\\",\\\"Nora Ephron\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"73\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1993\\\",\\\"What if someone you never met, someone you never saw, someone you never knew was the only someone for you?\\\",\\\"Sleepless in Seattle\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"74\\\",\\\":Person\\\",\\\"1956\\\",\\\"\\\",\\\"Rita Wilson\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"75\\\",\\\":Person\\\",\\\"1953\\\",\\\"\\\",\\\"Bill Pullman\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"76\\\",\\\":Person\\\",\\\"1949\\\",\\\"\\\",\\\"Victor Garber\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"77\\\",\\\":Person\\\",\\\"1962\\\",\\\"\\\",\\\"Rosie O\u0027Donnell\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"78\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1990\\\",\\\"A story of love, lava and burning desire.\\\",\\\"Joe Versus the Volcano\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"79\\\",\\\":Person\\\",\\\"1950\\\",\\\"\\\",\\\"John Patrick Stanley\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\"\n\"\\\"80\\\",\\\":Person\\\",\\\"1956\\\",\\\"\\\",\\\"Nathan Lane\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"81\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1998\\\",\\\"Can two friends sleep together and still love each other in the morning?\\\",\\\"When Harry Met Sally\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"82\\\",\\\":Person\\\",\\\"1948\\\",\\\"\\\",\\\"Billy Crystal\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"83\\\",\\\":Person\\\",\\\"1956\\\",\\\"\\\",\\\"Carrie Fisher\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"84\\\",\\\":Person\\\",\\\"1949\\\",\\\"\\\",\\\"Bruno Kirby\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"85\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1996\\\",\\\"In every life there comes a time when that thing you dream becomes that thing you do\\\",\\\"That Thing You Do\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"86\\\",\\\":Person\\\",\\\"1977\\\",\\\"\\\",\\\"Liv Tyler\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"87\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2000\\\",\\\"Pain heals, Chicks dig scars... Glory lasts forever\\\",\\\"The Replacements\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"88\\\",\\\":Person\\\",\\\"1970\\\",\\\"\\\",\\\"Brooke Langton\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"89\\\",\\\":Person\\\",\\\"1930\\\",\\\"\\\",\\\"Gene Hackman\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"90\\\",\\\":Person\\\",\\\"1968\\\",\\\"\\\",\\\"Orlando Jones\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"91\\\",\\\":Person\\\",\\\"1950\\\",\\\"\\\",\\\"Howard Deutch\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"92\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2006\\\",\\\"Based on the extraordinary true story of one man\u0027s fight for freedom\\\",\\\"RescueDawn\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"93\\\",\\\":Person\\\",\\\"1974\\\",\\\"\\\",\\\"Christian Bale\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"94\\\",\\\":Person\\\",\\\"1954\\\",\\\"\\\",\\\"Zach Grenier\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"95\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1996\\\",\\\"Come as you are\\\",\\\"The Birdcage\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"96\\\",\\\":Person\\\",\\\"1931\\\",\\\"\\\",\\\"Mike Nichols\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"97\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1992\\\",\\\"It\u0027s a hell of a thing, killing a man\\\",\\\"Unforgiven\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"98\\\",\\\":Person\\\",\\\"1930\\\",\\\"\\\",\\\"Richard Harris\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"99\\\",\\\":Person\\\",\\\"1930\\\",\\\"\\\",\\\"Clint Eastwood\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\"\n\"\\\"100\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1995\\\",\\\"The hottest data on earth. In the coolest head in town\\\",\\\"Johnny Mnemonic\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"101\\\",\\\":Person\\\",\\\"1947\\\",\\\"\\\",\\\"Takeshi Kitano\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"102\\\",\\\":Person\\\",\\\"1968\\\",\\\"\\\",\\\"Dina Meyer\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"103\\\",\\\":Person\\\",\\\"1958\\\",\\\"\\\",\\\"Ice-T\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"104\\\",\\\":Person\\\",\\\"1953\\\",\\\"\\\",\\\"Robert Longo\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"105\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2012\\\",\\\"Everything is connected\\\",\\\"Cloud Atlas\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"106\\\",\\\":Person\\\",\\\"1966\\\",\\\"\\\",\\\"Halle Berry\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"107\\\",\\\":Person\\\",\\\"1949\\\",\\\"\\\",\\\"Jim Broadbent\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"108\\\",\\\":Person\\\",\\\"1965\\\",\\\"\\\",\\\"Tom Tykwer\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"109\\\",\\\":Person\\\",\\\"1969\\\",\\\"\\\",\\\"David Mitchell\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"110\\\",\\\":Person\\\",\\\"1961\\\",\\\"\\\",\\\"Stefan Arndt\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"111\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2006\\\",\\\"Break The Codes\\\",\\\"The Da Vinci Code\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"112\\\",\\\":Person\\\",\\\"1939\\\",\\\"\\\",\\\"Ian McKellen\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"113\\\",\\\":Person\\\",\\\"1976\\\",\\\"\\\",\\\"Audrey Tautou\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"114\\\",\\\":Person\\\",\\\"1971\\\",\\\"\\\",\\\"Paul Bettany\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"115\\\",\\\":Person\\\",\\\"1954\\\",\\\"\\\",\\\"Ron Howard\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"116\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2006\\\",\\\"Freedom! Forever!\\\",\\\"V for Vendetta\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"117\\\",\\\":Person\\\",\\\"1981\\\",\\\"\\\",\\\"Natalie Portman\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"118\\\",\\\":Person\\\",\\\"1946\\\",\\\"\\\",\\\"Stephen Rea\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"119\\\",\\\":Person\\\",\\\"1940\\\",\\\"\\\",\\\"John Hurt\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\"\n\"\\\"120\\\",\\\":Person\\\",\\\"1967\\\",\\\"\\\",\\\"Ben Miles\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"121\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2008\\\",\\\"Speed has no limits\\\",\\\"Speed Racer\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"122\\\",\\\":Person\\\",\\\"1985\\\",\\\"\\\",\\\"Emile Hirsch\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"123\\\",\\\":Person\\\",\\\"1960\\\",\\\"\\\",\\\"John Goodman\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"124\\\",\\\":Person\\\",\\\"1946\\\",\\\"\\\",\\\"Susan Sarandon\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"125\\\",\\\":Person\\\",\\\"1966\\\",\\\"\\\",\\\"Matthew Fox\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"126\\\",\\\":Person\\\",\\\"1980\\\",\\\"\\\",\\\"Christina Ricci\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"127\\\",\\\":Person\\\",\\\"1982\\\",\\\"\\\",\\\"Rain\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"128\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2009\\\",\\\"Prepare to enter a secret world of assassins\\\",\\\"Ninja Assassin\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"129\\\",\\\":Person\\\",\\\"\\\",\\\"\\\",\\\"Naomie Harris\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"130\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1999\\\",\\\"Walk a mile you\u0027ll never forget.\\\",\\\"The Green Mile\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"131\\\",\\\":Person\\\",\\\"1957\\\",\\\"\\\",\\\"Michael Clarke Duncan\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"132\\\",\\\":Person\\\",\\\"1953\\\",\\\"\\\",\\\"David Morse\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"133\\\",\\\":Person\\\",\\\"1968\\\",\\\"\\\",\\\"Sam Rockwell\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"134\\\",\\\":Person\\\",\\\"1955\\\",\\\"\\\",\\\"Gary Sinise\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"135\\\",\\\":Person\\\",\\\"1959\\\",\\\"\\\",\\\"Patricia Clarkson\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"136\\\",\\\":Person\\\",\\\"1959\\\",\\\"\\\",\\\"Frank Darabont\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"137\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2008\\\",\\\"400 million people were waiting for the truth.\\\",\\\"Frost/Nixon\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"138\\\",\\\":Person\\\",\\\"1938\\\",\\\"\\\",\\\"Frank Langella\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"139\\\",\\\":Person\\\",\\\"1969\\\",\\\"\\\",\\\"Michael Sheen\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\"\n\"\\\"140\\\",\\\":Person\\\",\\\"1960\\\",\\\"\\\",\\\"Oliver Platt\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"141\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1992\\\",\\\"He didn\u0027t want law. He wanted justice.\\\",\\\"Hoffa\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"142\\\",\\\":Person\\\",\\\"1944\\\",\\\"\\\",\\\"Danny DeVito\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"143\\\",\\\":Person\\\",\\\"1965\\\",\\\"\\\",\\\"John C. Reilly\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"144\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1995\\\",\\\"Houston, we have a problem.\\\",\\\"Apollo 13\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"145\\\",\\\":Person\\\",\\\"1950\\\",\\\"\\\",\\\"Ed Harris\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"146\\\",\\\":Person\\\",\\\"1955\\\",\\\"\\\",\\\"Bill Paxton\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"147\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1996\\\",\\\"Don\u0027t Breathe. Don\u0027t Look Back.\\\",\\\"Twister\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"148\\\",\\\":Person\\\",\\\"1967\\\",\\\"\\\",\\\"Philip Seymour Hoffman\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"149\\\",\\\":Person\\\",\\\"1943\\\",\\\"\\\",\\\"Jan de Bont\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"150\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2000\\\",\\\"At the edge of the world, his journey begins.\\\",\\\"Cast Away\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"151\\\",\\\":Person\\\",\\\"1951\\\",\\\"\\\",\\\"Robert Zemeckis\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"152\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1975\\\",\\\"If he\u0027s crazy, what does that make you?\\\",\\\"One Flew Over the Cuckoo\u0027s Nest\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"153\\\",\\\":Person\\\",\\\"1932\\\",\\\"\\\",\\\"Milos Forman\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"154\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2003\\\",\\\"\\\",\\\"Something\u0027s Gotta Give\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"155\\\",\\\":Person\\\",\\\"1946\\\",\\\"\\\",\\\"Diane Keaton\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"156\\\",\\\":Person\\\",\\\"1949\\\",\\\"\\\",\\\"Nancy Meyers\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"157\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1999\\\",\\\"One robot\u0027s 200 year journey to become an ordinary man.\\\",\\\"Bicentennial Man\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"158\\\",\\\":Person\\\",\\\"1958\\\",\\\"\\\",\\\"Chris Columbus\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"159\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2007\\\",\\\"A stiff drink. A little mascara. A lot of nerve. Who said they couldn\u0027t bring down the Soviet empire.\\\",\\\"Charlie Wilson\u0027s War\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\"\n\"\\\"160\\\",\\\":Person\\\",\\\"1967\\\",\\\"\\\",\\\"Julia Roberts\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"161\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"2004\\\",\\\"This Holiday Season... Believe\\\",\\\"The Polar Express\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"162\\\",\\\":Movie\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"1992\\\",\\\"Once in a lifetime you get a chance to do something different.\\\",\\\"A League of Their Own\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"163\\\",\\\":Person\\\",\\\"1954\\\",\\\"\\\",\\\"Madonna\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"164\\\",\\\":Person\\\",\\\"1956\\\",\\\"\\\",\\\"Geena Davis\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"165\\\",\\\":Person\\\",\\\"1963\\\",\\\"\\\",\\\"Lori Petty\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"166\\\",\\\":Person\\\",\\\"1943\\\",\\\"\\\",\\\"Penny Marshall\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"167\\\",\\\":Person\\\",\\\"\\\",\\\"\\\",\\\"Paul Blythe\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"168\\\",\\\":Person\\\",\\\"\\\",\\\"\\\",\\\"Angela Scope\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"169\\\",\\\":Person\\\",\\\"\\\",\\\"\\\",\\\"Jessica Thompson\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n\\\"170\\\",\\\":Person\\\",\\\"\\\",\\\"\\\",\\\"James Thompson\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"76d3384b-c8b9-4b99-a591-b90f34c0bb96\\\",,,,,,\n,,,,,,,,,\\\"1\\\",\\\"0\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Neo\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"2\\\",\\\"0\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Trinity\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"3\\\",\\\"0\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Morpheus\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"4\\\",\\\"0\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Agent Smith\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"5\\\",\\\"0\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"6\\\",\\\"0\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"7\\\",\\\"0\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"8\\\",\\\"0\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Emil\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"1\\\",\\\"9\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Neo\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"2\\\",\\\"9\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Trinity\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"3\\\",\\\"9\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Morpheus\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"4\\\",\\\"9\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Agent Smith\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"5\\\",\\\"9\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"6\\\",\\\"9\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"7\\\",\\\"9\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"1\\\",\\\"10\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Neo\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"2\\\",\\\"10\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Trinity\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"3\\\",\\\"10\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Morpheus\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"4\\\",\\\"10\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Agent Smith\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"5\\\",\\\"10\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"6\\\",\\\"10\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"7\\\",\\\"10\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"1\\\",\\\"11\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Kevin Lomax\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"12\\\",\\\"11\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Mary Ann Lomax\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"13\\\",\\\"11\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"John Milton\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"14\\\",\\\"11\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"16\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Lt. Daniel Kaffee\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"17\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Col. Nathan R. Jessup\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"18\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Lt. Cdr. JoAnne Galloway\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"19\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Capt. Jack Ross\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"20\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Lt. Jonathan Kendrick\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"21\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Cpl. Jeffrey Barnes\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"22\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Cpl. Carl Hammaker\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"23\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Lt. Sam Weinberg\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"24\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Lt. Col. Matthew Andrew Markinson\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"25\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Pfc. Louden Downey\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"26\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Dr. Stone\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"28\\\",\\\"15\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Man in Bar\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"27\\\",\\\"15\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"28\\\",\\\"15\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"16\\\",\\\"29\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Maverick\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"30\\\",\\\"29\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Charlie\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"31\\\",\\\"29\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Iceman\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"32\\\",\\\"29\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Goose\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"33\\\",\\\"29\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Viper\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"34\\\",\\\"29\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Carole\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"35\\\",\\\"29\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"36\\\",\\\"29\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"16\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jerry Maguire\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"22\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Rod Tidwell\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"38\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Dorothy Boyd\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"39\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Avery Bishop\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"40\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Frank Cushman\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"41\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Bob Sugar\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"42\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Laurel Boyd\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"43\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Marcee Tidwell\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"44\\\",\\\"37\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Ray Boyd\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"45\\\",\\\"37\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"45\\\",\\\"37\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"45\\\",\\\"37\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"49\\\",\\\"46\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Gordie Lachance\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"47\\\",\\\"46\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Chris Chambers\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"40\\\",\\\"46\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Vern Tessio\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"48\\\",\\\"46\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Teddy Duchamp\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"50\\\",\\\"46\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Denny Lachance\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"20\\\",\\\"46\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Ace Merrill\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"51\\\",\\\"46\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Mr. Lachance\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"27\\\",\\\"46\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"17\\\",\\\"52\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Melvin Udall\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"53\\\",\\\"52\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Carol Connelly\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"54\\\",\\\"52\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Simon Bishop\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"22\\\",\\\"52\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Frank Sachs\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"55\\\",\\\"52\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"60\\\",\\\"56\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Chris Nielsen\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"22\\\",\\\"56\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Albert Lewis\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"57\\\",\\\"56\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Annie Collins-Nielsen\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"58\\\",\\\"56\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"The Tracker\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"59\\\",\\\"56\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"The Face\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"61\\\",\\\"56\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"63\\\",\\\"62\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Ishmael Chambers\\\"\\\"]\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"64\\\",\\\"62\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Kazuo Miyamoto\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"58\\\",\\\"62\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Nels Gudmundsson\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"65\\\",\\\"62\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Judge Fielding\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"66\\\",\\\"62\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"67\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Joe Fox\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"34\\\",\\\"67\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Kathleen Kelly\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"54\\\",\\\"67\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Frank Navasky\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"68\\\",\\\"67\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Patricia Eden\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"69\\\",\\\"67\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Kevin Jackson\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"70\\\",\\\"67\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"George Pappas\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"72\\\",\\\"67\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"73\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Sam Baldwin\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"34\\\",\\\"73\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Annie Reed\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"74\\\",\\\"73\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Suzy\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"75\\\",\\\"73\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Walter\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"76\\\",\\\"73\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Greg\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"77\\\",\\\"73\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Becky\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"72\\\",\\\"73\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"78\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Joe Banks\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"34\\\",\\\"78\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"DeDe\\\"\\\",\\\"\\\"Angelica Graynamore\\\"\\\",\\\"\\\"Patricia Graynamore\\\"\\\"]\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"80\\\",\\\"78\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Baw\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"79\\\",\\\"78\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"82\\\",\\\"81\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Harry Burns\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"34\\\",\\\"81\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Sally Albright\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"83\\\",\\\"81\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Marie\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"84\\\",\\\"81\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jess\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"27\\\",\\\"81\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"27\\\",\\\"81\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"72\\\",\\\"81\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"72\\\",\\\"81\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"85\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Mr. White\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"86\\\",\\\"85\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Faye Dolan\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"12\\\",\\\"85\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Tina\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"85\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"1\\\",\\\"87\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Shane Falco\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"88\\\",\\\"87\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Annabelle Farrell\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"89\\\",\\\"87\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jimmy McGinty\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"90\\\",\\\"87\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Clifford Franklin\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"91\\\",\\\"87\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"51\\\",\\\"92\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Admiral\\\"\\\"]\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"93\\\",\\\"92\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Dieter Dengler\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"94\\\",\\\"92\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Squad Leader\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"70\\\",\\\"92\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Duane\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"59\\\",\\\"92\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"60\\\",\\\"95\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Armand Goldman\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"80\\\",\\\"95\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Albert Goldman\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"89\\\",\\\"95\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Sen. Kevin Keeley\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"96\\\",\\\"95\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"98\\\",\\\"97\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"English Bob\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"99\\\",\\\"97\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Bill Munny\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"89\\\",\\\"97\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Little Bill Daggett\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"99\\\",\\\"97\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"1\\\",\\\"100\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Johnny Mnemonic\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"101\\\",\\\"100\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Takahashi\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"102\\\",\\\"100\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jane\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"103\\\",\\\"100\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"J-Bone\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"104\\\",\\\"100\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"105\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Zachry\\\"\\\",\\\"\\\"Dr. Henry Goose\\\"\\\",\\\"\\\"Isaac Sachs\\\"\\\",\\\"\\\"Dermot Hoggins\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"4\\\",\\\"105\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Bill Smoke\\\"\\\",\\\"\\\"Haskell Moore\\\"\\\",\\\"\\\"Tadeusz Kesselring\\\"\\\",\\\"\\\"Nurse Noakes\\\"\\\",\\\"\\\"Boardman Mephi\\\"\\\",\\\"\\\"Old Georgie\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"106\\\",\\\"105\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Luisa Rey\\\"\\\",\\\"\\\"Jocasta Ayrs\\\"\\\",\\\"\\\"Ovid\\\"\\\",\\\"\\\"Meronym\\\"\\\"]\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"107\\\",\\\"105\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Vyvyan Ayrs\\\"\\\",\\\"\\\"Captain Molyneux\\\"\\\",\\\"\\\"Timothy Cavendish\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"108\\\",\\\"105\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"5\\\",\\\"105\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"6\\\",\\\"105\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"109\\\",\\\"105\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"110\\\",\\\"105\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"111\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Dr. Robert Langdon\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"112\\\",\\\"111\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Sir Leight Teabing\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"113\\\",\\\"111\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Sophie Neveu\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"114\\\",\\\"111\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Silas\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"115\\\",\\\"111\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"4\\\",\\\"116\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"V\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"117\\\",\\\"116\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Evey Hammond\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"118\\\",\\\"116\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Eric Finch\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"119\\\",\\\"116\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"High Chancellor Adam Sutler\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"120\\\",\\\"116\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Dascomb\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"25\\\",\\\"116\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"5\\\",\\\"116\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"6\\\",\\\"116\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"7\\\",\\\"116\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"5\\\",\\\"116\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"6\\\",\\\"116\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"122\\\",\\\"121\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Speed Racer\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"123\\\",\\\"121\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Pops\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"124\\\",\\\"121\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Mom\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"125\\\",\\\"121\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Racer X\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"126\\\",\\\"121\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Trixie\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"127\\\",\\\"121\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Taejo Togokahn\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"120\\\",\\\"121\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Cass Jones\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"5\\\",\\\"121\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"6\\\",\\\"121\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"5\\\",\\\"121\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"6\\\",\\\"121\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"7\\\",\\\"121\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"127\\\",\\\"128\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Raizo\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"129\\\",\\\"128\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Mika Coretti\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"64\\\",\\\"128\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Takeshi\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"120\\\",\\\"128\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Ryan Maslow\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"25\\\",\\\"128\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"5\\\",\\\"128\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"6\\\",\\\"128\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"7\\\",\\\"128\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"130\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Paul Edgecomb\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"131\\\",\\\"130\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"John Coffey\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"132\\\",\\\"130\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Brutus \\\\\"\\\"Brutal\\\\\"\\\" Howell\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"42\\\",\\\"130\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jan Edgecomb\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"65\\\",\\\"130\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Warden Hal Moores\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"133\\\",\\\"130\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"\\\\\"\\\"Wild Bill\\\\\"\\\" Wharton\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"134\\\",\\\"130\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Burt Hammersmith\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"135\\\",\\\"130\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Melinda Moores\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"136\\\",\\\"130\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"138\\\",\\\"137\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Richard Nixon\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"139\\\",\\\"137\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"David Frost\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"19\\\",\\\"137\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jack Brennan\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"140\\\",\\\"137\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Bob Zelnick\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"133\\\",\\\"137\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"James Reston, Jr.\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"115\\\",\\\"137\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"17\\\",\\\"141\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Hoffa\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"142\\\",\\\"141\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Robert \\\\\"\\\"Bobby\\\\\"\\\" Ciaro\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"24\\\",\\\"141\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Frank Fitzsimmons\\\"\\\"]\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"143\\\",\\\"141\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Peter \\\\\"\\\"Pete\\\\\"\\\" Connelly\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"142\\\",\\\"141\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"144\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jim Lovell\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"19\\\",\\\"144\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jack Swigert\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"145\\\",\\\"144\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Gene Kranz\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"146\\\",\\\"144\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Fred Haise\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"134\\\",\\\"144\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Ken Mattingly\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"115\\\",\\\"144\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"146\\\",\\\"147\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Bill Harding\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"53\\\",\\\"147\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Dr. Jo Harding\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"94\\\",\\\"147\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Eddie\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"148\\\",\\\"147\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Dustin \\\\\"\\\"Dusty\\\\\"\\\" Davis\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"149\\\",\\\"147\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"150\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Chuck Noland\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"53\\\",\\\"150\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Kelly Frears\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"151\\\",\\\"150\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"17\\\",\\\"152\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Randle McMurphy\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"142\\\",\\\"152\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Martini\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"153\\\",\\\"152\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"17\\\",\\\"154\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Harry Sanborn\\\"\\\"]\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"155\\\",\\\"154\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Erica Barry\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"1\\\",\\\"154\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Julian Mercer\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"156\\\",\\\"154\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"156\\\",\\\"154\\\",\\\"PRODUCED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"156\\\",\\\"154\\\",\\\"WROTE\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"60\\\",\\\"157\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Andrew Marin\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"140\\\",\\\"157\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Rupert Burns\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"158\\\",\\\"157\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"159\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Rep. Charlie Wilson\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"160\\\",\\\"159\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Joanne Herring\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"148\\\",\\\"159\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Gust Avrakotos\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"96\\\",\\\"159\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"161\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Hero Boy\\\"\\\",\\\"\\\"Father\\\"\\\",\\\"\\\"Conductor\\\"\\\",\\\"\\\"Hobo\\\"\\\",\\\"\\\"Scrooge\\\"\\\",\\\"\\\"Santa Claus\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"151\\\",\\\"161\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"71\\\",\\\"162\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Jimmy Dugan\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"164\\\",\\\"162\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Dottie Hinson\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"165\\\",\\\"162\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Kit Keller\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"77\\\",\\\"162\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Doris Murphy\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"163\\\",\\\"162\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"\\\\\"\\\"All the Way\\\\\"\\\" Mae Mordabito\\\"\\\"]\\\",\\\"\\\"\n,,,,,,,,,\\\"146\\\",\\\"162\\\",\\\"ACTED_IN\\\",\\\"\\\",\\\"[\\\"\\\"Bob Hinson\\\"\\\"]\\\",\\\"\\\"\n\"\n\",,,,,,,,,\\\"166\\\",\\\"162\\\",\\\"DIRECTED\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"170\\\",\\\"169\\\",\\\"FOLLOWS\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"168\\\",\\\"169\\\",\\\"FOLLOWS\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"167\\\",\\\"168\\\",\\\"FOLLOWS\\\",\\\"\\\",\\\"\\\",\\\"\\\"\n,,,,,,,,,\\\"169\\\",\\\"105\\\",\\\"REVIEWED\\\",\\\"95\\\",\\\"\\\",\\\"An amazing journey\\\"\n,,,,,,,,,\\\"169\\\",\\\"87\\\",\\\"REVIEWED\\\",\\\"65\\\",\\\"\\\",\\\"Silly, but fun\\\"\n,,,,,,,,,\\\"170\\\",\\\"87\\\",\\\"REVIEWED\\\",\\\"100\\\",\\\"\\\",\\\"The coolest football movie ever\\\"\n,,,,,,,,,\\\"168\\\",\\\"87\\\",\\\"REVIEWED\\\",\\\"62\\\",\\\"\\\",\\\"Pretty funny at times\\\"\n,,,,,,,,,\\\"169\\\",\\\"97\\\",\\\"REVIEWED\\\",\\\"85\\\",\\\"\\\",\\\"Dark, but compelling\\\"\n,,,,,,,,,\\\"169\\\",\\\"95\\\",\\\"REVIEWED\\\",\\\"45\\\",\\\"\\\",\\\"Slapstick redeemed only by the Robin Williams and Gene Hackman\u0027s stellar performances\\\"\n,,,,,,,,,\\\"169\\\",\\\"111\\\",\\\"REVIEWED\\\",\\\"68\\\",\\\"\\\",\\\"A solid romp\\\"\n,,,,,,,,,\\\"170\\\",\\\"111\\\",\\\"REVIEWED\\\",\\\"65\\\",\\\"\\\",\\\"Fun, but a little far fetched\\\"\n,,,,,,,,,\\\"169\\\",\\\"37\\\",\\\"REVIEWED\\\",\\\"92\\\",\\\"\\\",\\\"You had me at Jerry\\\"\n\"\n\"\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635428920212_1319826402",
+      "id": "paragraph_1635428920212_1319826402",
+      "dateCreated": "2021-10-28 13:48:40.212",
+      "dateStarted": "2021-11-05 15:53:41.296",
+      "dateFinished": "2021-11-05 15:53:41.402",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n## Import procedures\n\n- apoc.import.csv\n- apoc.import.graphml\n- apoc.import.json\n- apoc.import.xml\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/\u003e for more details.",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 16:04:27.840",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635430474392_1169397948",
+      "id": "paragraph_1635430474392_1169397948",
+      "dateCreated": "2021-10-28 14:14:34.392",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\n\nsulla falsariga (along the lines of) del neo4j-admin-import, ma non richiede riavvio e db vuoto `However, using the import command of neo4j-admin is generally faster since it is run against a stopped and empty database.`\n\napoc.import.csv(nodes :: LIST? OF MAP?, relationships :: LIST? OF MAP?, config :: MAP?)\n\nThe procedure support the following config parameters:\n\n.Config parameters\n[opts\u003dheader]\n|\u003d\u003d\u003d\n| name | type | default | description | https://neo4j.com/docs/operations-manual/current/tools/import/options/[import tool counterpart]\n| delimiter | String | ,  |delimiter character between columns  | `--delimiter\u003d,`\n| arrayDelimiter | String | ; | delimiter character in arrays | `--array-delimiter\u003d;`\n| ignoreDuplicateNodes | Boolean | false | for duplicate nodes, only load the first one and skip the rest (true) or fail the import (false)  | `--ignore-duplicate-nodes\u003dfalse`\n| quotationCharacter | String | \" | quotation character   | `--quote\u003d\u0027\"\u0027`\n| stringIds | Boolean | true | treat ids as strings  | `--id-type\u003dSTRING`\n| skipLines | Integer | 1 | lines to skip (incl. header)  | N/A\n| ignoreBlankString | Boolean | false | if true ignore properties with a blank string | N/A\n|\u003d\u003d\u003d",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-28 14:31:00.486",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635431087189_1210091021",
+      "id": "paragraph_1635431087189_1210091021",
+      "dateCreated": "2021-10-28 14:24:47.190",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\n\n/*  \n    person.csv\n    ---\n    id:ID,name:STRING\n    1,John\n    2,Jane\n*/\n\n\nCALL apoc.import.csv([{fileName: \u0027file:/persons.csv\u0027, labels: [\u0027Person\u0027]}], [], {});\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:54:40.587",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635431483321_1383593912",
+      "id": "paragraph_1635431483321_1383593912",
+      "dateCreated": "2021-10-28 14:31:23.321",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n\n## File load procedures\nSimilar to import procedure, retrieve the results from file but doesn\u0027t execute graph operation, more flexible\n\n- apoc.load.csv\n- apoc.load.json \n- apoc.load.xls\n- apoc.load.xml\n- apoc.load.html\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\n\n\n\n\n\n\nCALL apoc.load.csv(\u0027test.csv\u0027)\n\nCALL apoc.load.csv($url,{skip: 1, limit: 2})\n\n\nname,age,kids,pass\nMichael,41,8:11:18,pass\nMichael,41,8:11:18,pass\nMichael,41,8:11:18,pass\nCALL apoc.load.csv($url,{results:[\u0027map\u0027,\u0027list\u0027,\u0027stringMap\u0027,\u0027strings\u0027],mapping:{name:{type:\u0027string\u0027},age:{type:\u0027int\u0027},kids:{array:true,arraySep:\u0027:\u0027,type:\u0027int\u0027},pass:{ignore:true}}})\n\n\n\nname\tage\nRana\t11\nCALL apoc.load.csv($url,{sep:\u0027TAB\u0027,results:[\u0027map\u0027,\u0027list\u0027,\u0027stringMap\u0027,\u0027strings\u0027]})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 16:19:10.025",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFile load procedures\u003c/h2\u003e\n\u003cp\u003eSimilar to import procedure, retrieve the results from file but doesn\u0026rsquo;t execute graph operation, more flexible\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.load.csv\u003c/li\u003e\n\u003cli\u003eapoc.load.json\u003c/li\u003e\n\u003cli\u003eapoc.load.xls\u003c/li\u003e\n\u003cli\u003eapoc.load.xml\u003c/li\u003e\n\u003cli\u003eapoc.load.html\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.csv(\u0026lsquo;test.csv\u0026rsquo;)\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.csv($url,{skip: 1, limit: 2})\u003c/p\u003e\n\u003cp\u003ename,age,kids,pass\u003cbr /\u003e\nMichael,41,8:11:18,pass\u003cbr /\u003e\nMichael,41,8:11:18,pass\u003cbr /\u003e\nMichael,41,8:11:18,pass\u003cbr /\u003e\nCALL apoc.load.csv($url,{results:[\u0026lsquo;map\u0026rsquo;,\u0026lsquo;list\u0026rsquo;,\u0026lsquo;stringMap\u0026rsquo;,\u0026lsquo;strings\u0026rsquo;],mapping:{name:{type:\u0026lsquo;string\u0026rsquo;},age:{type:\u0026lsquo;int\u0026rsquo;},kids:{array:true,arraySep:\u0026lsquo;:\u0026rsquo;,type:\u0026lsquo;int\u0026rsquo;},pass:{ignore:true}}})\u003c/p\u003e\n\u003cp\u003ename\tage\u003cbr /\u003e\nRana\t11\u003cbr /\u003e\nCALL apoc.load.csv($url,{sep:\u0026lsquo;TAB\u0026rsquo;,results:[\u0026lsquo;map\u0026rsquo;,\u0026lsquo;list\u0026rsquo;,\u0026lsquo;stringMap\u0026rsquo;,\u0026lsquo;strings\u0026rsquo;]})\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635430550983_1766130711",
+      "id": "paragraph_1635430550983_1766130711",
+      "dateCreated": "2021-10-28 14:15:50.984",
+      "dateStarted": "2021-11-05 16:19:10.033",
+      "dateFinished": "2021-11-05 16:19:10.051",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Load directory\n\napoc.load.directory(\u0027pattern\u0027, \u0027urlDir\u0027, {config}) YIELD value - Loads list of all files in folder specified by urlDir or in import folder if urlDir string is empty or not specified\n\n\nCALL apoc.load.directory();\n\nCALL apoc.load.directory(\"*.csv\");\n\nCALL apoc.load.directory(\"*.csv\", \"subfolder1\");\n\nCALL apoc.load.directory(\"*\", \"subfolder2\", {recursive: false});\n\n\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027path/to/directory\u0027)\nYIELD value WITH value as url ORDER BY url DESC\nCALL apoc.load.csv(url, {results:[\u0027map\u0027]}) YIELD map RETURN map",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 15:55:28.951",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635349254490_188990093",
+      "id": "paragraph_1635349254490_188990093",
+      "dateCreated": "2021-10-27 15:40:54.490",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.load.directory();",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 16:20:18.644",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value\n\"customDelim.csv\"\n\"dataFile.csv\"\n\"fileExample.cypher\"\n\"fileExampleSchema.cypher\"\n\"fileTest.csv\"\n\"graphFile.csv\"\n\"miofile.csv\"\n\"myfile.csv\"\n\"pathFile.csv\"\n\"person.csv\"\n\"testfile.csv\"\n\"testfileNeededQuote.csv\"\n\"testfileNoQuote.csv\"\n\"testfileQuote.csv\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636129189657_1174288019",
+      "id": "paragraph_1636129189657_1174288019",
+      "dateCreated": "2021-11-05 16:19:49.660",
+      "dateStarted": "2021-11-05 16:19:59.746",
+      "dateFinished": "2021-11-05 16:19:59.895",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.load.directory(\u0027*.csv\u0027);",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 16:20:33.327",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value\n\"customDelim.csv\"\n\"dataFile.csv\"\n\"fileTest.csv\"\n\"graphFile.csv\"\n\"miofile.csv\"\n\"myfile.csv\"\n\"pathFile.csv\"\n\"person.csv\"\n\"testfile.csv\"\n\"testfileNeededQuote.csv\"\n\"testfileNoQuote.csv\"\n\"testfileQuote.csv\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636129224968_1644618758",
+      "id": "paragraph_1636129224968_1644618758",
+      "dateCreated": "2021-11-05 16:20:24.968",
+      "dateStarted": "2021-11-05 16:20:33.347",
+      "dateFinished": "2021-11-05 16:20:33.404",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// there is a sub-subfolder\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027subfolder\u0027);",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 16:23:16.414",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value\n\"subfolder/inner/innerfile.csv\"\n\"subfolder/subfolderfile.csv\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636129247531_1713475725",
+      "id": "paragraph_1636129247531_1713475725",
+      "dateCreated": "2021-11-05 16:20:47.531",
+      "dateStarted": "2021-11-05 16:22:46.980",
+      "dateFinished": "2021-11-05 16:22:47.006",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.load.directory(\"*.csv\", \u0027subfolder\u0027, {recursive: false})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 16:23:28.452",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 118.011,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value\n\"subfolder/subfolderfile.csv\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636129261692_2130891748",
+      "id": "paragraph_1636129261692_2130891748",
+      "dateCreated": "2021-11-05 16:21:01.692",
+      "dateStarted": "2021-11-05 16:23:10.373",
+      "dateFinished": "2021-11-05 16:23:10.391",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n// todo\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027path/to/directory\u0027)\nYIELD value WITH value as url ORDER BY url DESC\nCALL apoc.load.csv(url, {results:[\u0027map\u0027]}) YIELD map RETURN map",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 16:24:01.183",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Failed to invoke procedure `apoc.load.directory`: Caused by: java.nio.file.NoSuchFileException: /import/path/to/directory"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636129428031_1340573358",
+      "id": "paragraph_1636129428031_1340573358",
+      "dateCreated": "2021-11-05 16:23:48.032",
+      "dateStarted": "2021-11-05 16:24:01.204",
+      "dateFinished": "2021-11-05 16:24:01.400",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-05 16:27:49.859",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eLoad directory async\u003c/p\u003e\n\u003cp\u003eapoc.load.directory.async.add(name, cypher, pattern, urlDir, {}) YIELD name, status, pattern, cypher, urlDir, config, error - Add or replace a folder listener with a specific name, pattern and url directory that execute the specified cypher query when an event is triggered and return listener list\u003c/p\u003e\n\u003cp\u003eapoc.load.directory.async.add(name :: STRING?, cypher :: STRING?, pattern \u003d * :: STRING?, urlDir \u003d  :: STRING?, config \u003d {} :: MAP?) :: (name :: STRING?, status :: STRING?, pattern :: STRING?, cypher :: STRING?, urlDir :: STRING?, config :: MAP?, error :: STRING?)\u003c/p\u003e\n\u003cp\u003econfigs:\u003c/p\u003e\n\u003cp\u003einterval Integer 1000 Time interval in ms after re-watch for directory changes\u003c/p\u003e\n\u003cp\u003elistenEventType List\u003cEnum\u003e List.of(\u0026ldquo;CREATE\u0026rdquo;, \u0026ldquo;DELETE\u0026rdquo;, \u0026ldquo;MODIFY\u0026rdquo;) Types of event that execute the cypher query, that is creation (CREATE), deletion (DELETE) or editing (MODIFY) of a file in specified folder\u003c/p\u003e\n\u003cp\u003eThe first parameter is the name of our custom watch listener.\u003cbr /\u003e\nIf we use an already existing listener name, that listener will be overwritten.\u003cbr /\u003e\nThe second parameter is the cypher query that will be executed.\u003cbr /\u003e\nThe query can have the following parameters:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e$fileName: the name of the file which triggered the event\u003c/li\u003e\n\u003cli\u003e$filePath: the absolute path of the file which triggered the event if \u003ccode\u003eapoc.import.file.use_neo4j_config\u003dfalse\u003c/code\u003e, otherwise the relative path starting from \u003ccode\u003e$IMPORT_DIR\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e$fileDirectory: the absolute path directory of the file which triggered the event if \u003ccode\u003eapoc.import.file.use_neo4j_config\u003dfalse\u003c/code\u003e, otherwise the relative path starting from \u003ccode\u003e$IMPORT_DIR\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e$listenEventType: the triggered event (\u0026ldquo;CREATE\u0026rdquo;, \u0026ldquo;DELETE\u0026rdquo; or \u0026ldquo;MODIFY\u0026rdquo;). The event \u0026ldquo;CREATE\u0026rdquo; happens when a file is inserted in the folder,\u003cbr /\u003e\n\u0026ldquo;DELETE\u0026rdquo; when a file is removed from the folder and \u0026ldquo;MODIFY\u0026rdquo; when a file in the folder is changed.\u003cbr /\u003e\nPlease note that if a file is renamed, will be triggered 2 event, that is first \u0026ldquo;DELETE\u0026rdquo; and then\u0026quot;CREATE\u0026quot;\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe third parameter is the pattern of file to search for.\u003cbr /\u003e\nBy default is \u0026lsquo;*\u0026rsquo;, that is, search all files.\u003cbr /\u003e\nThe fourth is the search path of directory.\u003cbr /\u003e\nBy default is an empty string, that is, search file in \u003ccode\u003eimport\u003c/code\u003e directory.\u003c/p\u003e\n\u003cp\u003e\u003d\u003d\u003d Examples of interoperability with other procedures\u003c/p\u003e\n\u003cp\u003eWe can use another load procedure as query parameter, like \u003ccode\u003eapoc.load.csv\u003c/code\u003e or \u003ccode\u003eapoc.load.json\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eHere are two examples.\u003c/p\u003e\n\u003cp\u003eWe can execute:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.load.directory.async.add(\u0026lsquo;csvImport\u0026rsquo;,\u003cbr /\u003e\n\u0026ldquo;CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;*.csv\u0026rdquo;, \u0026ldquo;csvFolder\u0026rdquo; ,{listenEventType: [\u0026ldquo;CREATE\u0026rdquo;, \u0026ldquo;MODIFY\u0026rdquo;]})\u003c/h2\u003e\n\u003cp\u003ewhere \u003ccode\u003e$fileName\u003c/code\u003e is the file created/modified,\u003cbr /\u003e\n\u003ccode\u003e$filePath\u003c/code\u003e is the relative path of the file, that is \u003ccode\u003e$IMPORT_DIR/csvFolder/[FILENAME.csv]\u003c/code\u003e,\u003cbr /\u003e\n\u003ccode\u003e$fileDirectory\u003c/code\u003e is the relative path of the directory, that is \u003ccode\u003e$IMPORT_DIR/csvFolder\u003c/code\u003e\u003cbr /\u003e\nand \u003ccode\u003e$listenEventType\u003c/code\u003e is the triggered event, that is \u003ccode\u003eCREATE\u003c/code\u003e or \u003ccode\u003eMODIFY\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eIf we upload the following file in \u003ccode\u003e$IMPORT_DIR/csvFolder\u003c/code\u003e folder:\u003c/p\u003e\n\u003ch2\u003e.test.csv\u003cbr /\u003e\n[source,csv]\u003c/h2\u003e\n\u003ch2\u003ename,age\u003cbr /\u003e\nSelma,8\u003cbr /\u003e\nRana,11\u003cbr /\u003e\nSelina,18\u003c/h2\u003e\n\u003cp\u003eand then, executing \u003ccode\u003eMATCH (n:CsvToNode) RETURN properties(n) as props\u003c/code\u003e:\u003c/p\u003e\n\u003cp\u003e.Results\u003cbr /\u003e\n[opts\u003d\u0026ldquo;header\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| props\u003cbr /\u003e\n| {\u003cbr /\u003e\n\u0026ldquo;fileName\u0026rdquo;: \u0026ldquo;test.csv\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;listenEventType\u0026rdquo;: \u0026ldquo;CREATE\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;fileDirectory\u0026rdquo;: \u0026ldquo;csvFolder\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;content\u0026rdquo;: [\n\u003cbr /\u003e\n\u0026ldquo;Selma\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;8\u0026rdquo;\u003cbr /\u003e\n]\u003cbr /\u003e\n}\u003cbr /\u003e\n| {\u003cbr /\u003e\n\u0026ldquo;fileName\u0026rdquo;: \u0026ldquo;test.csv\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;listenEventType\u0026rdquo;: \u0026ldquo;CREATE\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;fileDirectory\u0026rdquo;: \u0026ldquo;csvFolder\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;content\u0026rdquo;: [\n\u003cbr /\u003e\n\u0026ldquo;Rana\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;11\u0026rdquo;\u003cbr /\u003e\n]\u003cbr /\u003e\n}\u003cbr /\u003e\n| {\u003cbr /\u003e\n\u0026ldquo;fileName\u0026rdquo;: \u0026ldquo;test.csv\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;listenEventType\u0026rdquo;: \u0026ldquo;CREATE\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;fileDirectory\u0026rdquo;: \u0026ldquo;csvFolder\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;content\u0026rdquo;: [\n\u003cbr /\u003e\n\u0026ldquo;Selina\u0026rdquo;,\u003cbr /\u003e\n\u0026ldquo;18\u0026rdquo;\u003cbr /\u003e\n]\u003cbr /\u003e\n}\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635432964037_45593404",
+      "id": "paragraph_1635432964037_45593404",
+      "dateCreated": "2021-10-28 14:56:04.037",
+      "dateStarted": "2021-10-28 15:07:27.956",
+      "dateFinished": "2021-10-28 15:07:28.206",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-10-28 15:07:27.955",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635433647954_1159343284",
+      "id": "paragraph_1635433647954_1159343284",
+      "dateCreated": "2021-10-28 15:07:27.955",
+      "status": "READY"
+    }
+  ],
+  "name": "4. Import and export",
+  "id": "2GJCSVRMK",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
