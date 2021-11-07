@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n# Cypher Execution\n\nThe Apoc library comes with many procedure to help us to execute specific Cypher statements:\n\n\n- apoc.cypher.mapParallel / apoc.cypher.mapParallel2 / apoc.cypher.parallel / apoc.cypher.parallel2 - to execute statements in parallel\n- apoc.cypher.run(fragment, params) yield value - executes a reading fragment with the given parameters\n- apoc.cypher.doIt(fragment, params) yield value - executes writing fragment with the given parameters\n- apoc.cypher.runFile(file or url,[{statistics:true,timeout:10,parameters:{}}]) - runs each statement in the file, all semicolon separated - currently no schema operations\n- apoc.cypher.runFiles([files or urls],[{statistics:true,timeout:10,parameters:{}}])) - runs each statement in the files, all semicolon separated\n- apoc.cypher.runMany(\u0027cypher;\\nstatements;\u0027, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations\n- apoc.cypher.runManyReadOnly(\u0027cypher;\\nstatements;\u0027, $params, [{statistics:true,timeout:10}]) - runs each semicolon separated, read-only statement and returns summary - currently no schema operations\n- apoc.cypher.runSchema(statement, params) yield value - executes query schema statement with the given parameters\n- apoc.cypher.runSchemaFile(file or url,[{statistics:true,timeout:10}]) - allows only schema operations, runs each schema statement in the file, all semicolon separated\n- apoc.cypher.runSchemaFiles([files or urls],{statistics:true,timeout:10}) - allows only schema operations, runs each schema statement in the files, all semicolon separated\n- apoc.cypher.runTimeboxed(\u0027cypherStatement\u0027,\\{params}, timeout) - abort kernelTransaction after timeout ms if not finished\n- apoc.cypher.runFirstColumnMany(statement, params) - executes statement with given parameters, returns first column only collected into a list, params are available as identifiers\n- apoc.cypher.runFirstColumnSingle(statement, params) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers\n\n\nTo use apoc.cypher.runFile and apoc.cypher.runFiles we need to set `apoc.import.file.enabled\u003dtrue`\n\n\n\n[[cypher-fast-node-count-by-label]]\n\u003d\u003d\u003d Example: Fast Node-Counts by Label\n\nWe can quickly compute the number of nodes for a specific label using the `count` function, but only if that\u0027s the only single thing in the query.\nFor example:\n\n[source,cypher]\n----\nMATCH (:Person) RETURN count(*);\n----\n\nWe can also combine several with `UNION ALL`:\n\n.Works\n[source,cypher]\n----\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*);\n----\n\nBut we can\u0027t do the same thing using the `WITH` clause:\n\n.Doesn\u0027t work\n[source,cypher]\n----\nMATCH (:Person)\nWITH count(*) as people\nMATCH (:Movie) RETURN people, count(*) as movies;\n----\n\nThis query will work out the count by iterating over all nodes, which is a very slow operation\n\nWe can use `apoc.cypher.run` to construct the `COUNT()` statements and run each of them individually, so it completes in a few ms.\n\n[source,cypher]\n----\nCALL db.labels() yield label\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count\n----\n\nYou can use a similar approach to get the property-keys per label:\n\n[source,cypher]\n----\nCALL db.labels() yield label\nCALL apoc.cypher.run(\"MATCH (n:`\"+label+\"`) RETURN keys(n) as keys LIMIT 1\",null) yield value\nRETURN label, value.keys as keys\n----\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 11:23:09.467",
+      "dateUpdated": "2021-11-07 15:08:08.341",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,8 +16,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -38,8 +38,8 @@
       "jobName": "paragraph_1635854661682_1970406879",
       "id": "paragraph_1635854661682_1970406879",
       "dateCreated": "2021-11-02 12:04:21.682",
-      "dateStarted": "2021-11-05 11:23:05.375",
-      "dateFinished": "2021-11-05 11:23:05.405",
+      "dateStarted": "2021-11-07 15:08:08.342",
+      "dateFinished": "2021-11-07 15:08:08.363",
       "status": "FINISHED"
     },
     {
@@ -571,9 +571,51 @@
       "status": "FINISHED"
     },
     {
+      "text": "%md\n\n## [NEXT CHAPTER](http://localhost:8080/#/notebook/2GJCSVRMK)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-07 15:08:50.907",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GJCSVRMK\"\u003eNEXT CHAPTER\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635863303356_2095614526",
+      "id": "paragraph_1635863303356_2095614526",
+      "dateCreated": "2021-11-02 14:28:23.356",
+      "dateStarted": "2021-11-07 15:08:50.907",
+      "dateFinished": "2021-11-07 15:08:50.916",
+      "status": "FINISHED"
+    },
+    {
       "text": "%neo4j\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 14:28:23.356",
+      "dateUpdated": "2021-11-07 15:08:43.807",
       "config": {},
       "settings": {
         "params": {},
@@ -582,9 +624,9 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635863303356_2095614526",
-      "id": "paragraph_1635863303356_2095614526",
-      "dateCreated": "2021-11-02 14:28:23.356",
+      "jobName": "paragraph_1636297723807_660054266",
+      "id": "paragraph_1636297723807_660054266",
+      "dateCreated": "2021-11-07 15:08:43.807",
       "status": "READY"
     }
   ],

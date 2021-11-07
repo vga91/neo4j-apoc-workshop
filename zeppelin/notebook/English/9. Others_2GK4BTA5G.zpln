@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n# VIRTUAL ENTITIES\n\nesempio community con csv...",
+      "text": "%md\n# VIRTUAL ENTITIES\n\nWe can visualize nodes and relationships that don’t exist in the graph but only returned by a query. This could be used for:\n\n- return only a few properties of nodes/rels to the visualization, e.g. if you have huge text properties\n\n- aggregate information to a higher level of abstraction\n\n- visualization of data from other sources (computation, RDBMS, document-dbs, CSV, XML, JSON) as graph without even storing it\n\n\nExamples:\n\n- CALL apoc.nodes.group([\u0027Person\u0027,\u0027Movie\u0027],[\u0027century\u0027]);\n- apoc.graph.from(data,\u0027name\u0027,{properties}) yield graph \n- apoc.graph.fromData([nodes],[relationships],\u0027name\u0027,{properties})  --\u003c todo: esempio\n- apoc.graph.fromPaths(path,\u0027name\u0027,{properties})\n- apoc.graph.fromDocument({json},{config})  --\u003c todo: esempio\n- CALL apoc.nodes.collapse(subgraph,{properties:\u0027combine\u0027})\n- CALL apoc.create.vNode([\u0027Label\u0027], {key:value,…​}) YIELD node\n- apoc.create.virtualPath \n- apoc.create.vRelationship (both procedure and function)\n- apoc.create.virtual.fromNode\n- apoc.create.vNode (both procedure and function)\n \n\n\n\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/virtual/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more information.\n\nTo manipulate virtual\nprocedures: To update a virtual node you can use the xref::overview/apoc.create/apoc.create.setProperty.adoc[apoc.create.setProperty] or\nxref::overview/apoc.create/apoc.create.setProperties.adoc[apoc.create.setProperties],\notherwise for a virtual relationships the xref::overview/apoc.create/apoc.create.setRelProperty.adoc[apoc.create.setRelProperty] or xref::overview/apoc.create/apoc.create.setRelProperties.adoc[apoc.create.setRelProperties]\n\n\napoc.node.id\napoc.node.labels\n\napoc.rel.type\napoc.rel.endNode / apoc.rel.startNode\napoc.rel.id\n\nesempio community con csv...",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:31:33.550",
+      "dateUpdated": "2021-11-07 14:22:18.026",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -14,11 +14,22 @@
           "language": "markdown",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eVIRTUAL ENTITIES\u003c/h1\u003e\n\u003cp\u003eWe can visualize nodes and relationships that don’t exist in the graph but only returned by a query. This could be used for:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003ereturn only a few properties of nodes/rels to the visualization, e.g. if you have huge text properties\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eaggregate information to a higher level of abstraction\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003evisualization of data from other sources (computation, RDBMS, document-dbs, CSV, XML, JSON) as graph without even storing it\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eExamples:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eCALL apoc.nodes.group([\u0026lsquo;Person\u0026rsquo;,\u0026lsquo;Movie\u0026rsquo;],[\u0026lsquo;century\u0026rsquo;]);\u003c/li\u003e\n\u003cli\u003eapoc.graph.from(data,\u0026lsquo;name\u0026rsquo;,{properties}) yield graph\u003c/li\u003e\n\u003cli\u003eapoc.graph.fromData([nodes],[relationships],\u0026lsquo;name\u0026rsquo;,{properties})\u003c/li\u003e\n\u003cli\u003eapoc.graph.fromPaths(path,\u0026lsquo;name\u0026rsquo;,{properties})\u003c/li\u003e\n\u003cli\u003eapoc.graph.fromDocument({json},{config})\u003c/li\u003e\n\u003cli\u003eCALL apoc.nodes.collapse(subgraph,{properties:\u0026lsquo;combine\u0026rsquo;})\u003c/li\u003e\n\u003cli\u003eCALL apoc.create.vNode([\u0026lsquo;Label\u0026rsquo;], {key:value,…​}) YIELD node\u003c/li\u003e\n\u003cli\u003eapoc.create.virtualPath\u003c/li\u003e\n\u003cli\u003eapoc.create.vRelationship (both procedure and function)\u003c/li\u003e\n\u003cli\u003eapoc.create.virtual.fromNode\u003c/li\u003e\n\u003cli\u003eapoc.create.vNode (both procedure and function)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/virtual/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more information.\u003c/p\u003e\n\u003cp\u003eesempio community con csv\u0026hellip;\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -26,12 +37,98 @@
       "jobName": "paragraph_1636129873062_1526049960",
       "id": "paragraph_1636129873062_1526049960",
       "dateCreated": "2021-11-05 16:31:13.062",
-      "status": "READY"
+      "dateStarted": "2021-11-07 14:17:37.503",
+      "dateFinished": "2021-11-07 14:17:37.522",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// visualize a graph from a csv file\n\n\nCALL apoc.load.csv(\"persons.csv\") YIELD map \n// we retrieve the csv as a row of maps, so {\"name\":\"Eren\", \"surname\": \"Jager\"} , {\"name\": \"Mikasa\", \"surname\": \"Ackermann\"}, {\"name\": \"Armin\", \"surname\": \"Arelet\"}\nWITH map \nCALL apoc.create.vNode([\u0027Person\u0027], map) // we create 2 virtual nodes from csv\nYIELD node\nRETURN node",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-07 14:16:47.781",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "summary": "string",
+                      "_start": "string",
+                      "born": "string",
+                      "roles": "string",
+                      "_type": "string",
+                      "rating": "string",
+                      "title": "string",
+                      "_end": "string",
+                      "children": "string",
+                      "unique": "string",
+                      "name": "string",
+                      "tagline": "string",
+                      "_id": "string",
+                      "_labels": "string",
+                      "released": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":-561,\"data\":{\"name\":\"Eren\",\"surname\":\"Jager\"},\"label\":\"Person\"},{\"id\":-562,\"data\":{\"name\":\"Mikasa\",\"surname\":\"Ackermann\"},\"label\":\"Person\"},{\"id\":-563,\"data\":{\"name\":\"Armin\",\"surname\":\"Arelet \"},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"TTL\":\"#4ED4BA\"},\"types\":[],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636293811647_1694047595",
+      "id": "paragraph_1636293811647_1694047595",
+      "dateCreated": "2021-11-07 14:03:31.647",
+      "dateStarted": "2021-11-07 14:16:47.807",
+      "dateFinished": "2021-11-07 14:16:47.916",
+      "status": "FINISHED"
     },
     {
       "text": "%md\n\n## System database\n\nWith introduction of system database concept in neo4j 4.0, Apoc introduces a procedure to see a virtual graph visualization of system entities\n\n\u003cpre\u003e\nCALL apoc.systemdb.graph() [see this one in Neo4j Desktop]\n\u003c/pre\u003e\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 11:08:16.756",
+      "dateUpdated": "2021-11-07 14:16:48.013",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -65,14 +162,14 @@
       "jobName": "paragraph_1636110384368_1627598108",
       "id": "paragraph_1636110384368_1627598108",
       "dateCreated": "2021-11-05 11:06:24.368",
-      "dateStarted": "2021-11-05 11:08:16.756",
-      "dateFinished": "2021-11-05 11:08:16.774",
+      "dateStarted": "2021-11-07 14:16:48.040",
+      "dateFinished": "2021-11-07 14:16:48.064",
       "status": "FINISHED"
     },
     {
       "text": "%md\n\n## Automatic UUID\n\n\nAuto UUID: we can generate uuids when we create a node with specific label, through the procedure:\napoc.uuid.install(\u0027LabelName\u0027, `{configMap}`)\n\n\nSo each new node with this label `LabelName` will have a uuid property.\n\nIn `configMap` parameter we can have the following values:\n- `addToExistingNodes` (adds the UUID to the nodes already existing in your graph),\n- `uuidProperty` (the name of the name of the UUID field, by default is `uuid` )\n\n\nHowever, to create auto uuid we have to add the apoc config `apoc.uuid.enabled\u003dtrue`.\n\nThen, we need to create a unique constraint on label and on property to associate with the uuid (otherwise we receive a `RuntimeException`)\n`CREATE CONSTRAINT ON (person:LabelName) ASSERT person.uuid IS UNIQUE`\n\n\nOther procedures regarding auto uuid:\n\n- CALL apoc.uuid.remove(\u0027LabelName\u0027): To remove a specific auto uuid\n- CALL apoc.uuid.removeAll(): To remove all auto uuids\n- CALL apoc.uuid.list(): To get the list of auto uuids\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 11:08:20.151",
+      "dateUpdated": "2021-11-07 14:16:48.139",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -106,14 +203,14 @@
       "jobName": "paragraph_1635868849395_339438832",
       "id": "paragraph_1635868849395_339438832",
       "dateCreated": "2021-11-02 16:00:49.395",
-      "dateStarted": "2021-11-05 11:08:20.149",
-      "dateFinished": "2021-11-05 11:08:20.171",
+      "dateStarted": "2021-11-07 14:16:48.163",
+      "dateFinished": "2021-11-07 14:16:48.185",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\n// Firstly we create the constraint\nCREATE CONSTRAINT ON (node:NodeWithUnique) ASSERT node.omega IS UNIQUE;\n\nCALL apoc.uuid.install(\u0027NodeWithUnique\u0027, {uuidProperty: \u0027omega\u0027});",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 16:09:42.428",
+      "dateUpdated": "2021-11-07 14:16:48.263",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -197,14 +294,14 @@
       "jobName": "paragraph_1635868931436_15761564",
       "id": "paragraph_1635868931436_15761564",
       "dateCreated": "2021-11-02 16:02:11.436",
-      "dateStarted": "2021-11-02 16:04:20.292",
-      "dateFinished": "2021-11-02 16:04:20.814",
+      "dateStarted": "2021-11-07 14:16:48.285",
+      "dateFinished": "2021-11-07 14:16:49.727",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\nCREATE (n:NodeWithUnique);\n\nMATCH (n:NodeWithUnique) RETURN n;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 16:04:31.008",
+      "dateUpdated": "2021-11-07 14:16:49.755",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -254,7 +351,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"omega\":\"38f566d2-613b-4df8-8766-a7a72edf2e5c\"},\"label\":\"NodeWithUnique\"}],\"edges\":[],\"labels\":{\"NodeWithUnique\":\"#6AB7BC\"},\"types\":[],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"omega\":\"04f5e911-838f-422e-a61e-005ada1c2b33\"},\"label\":\"NodeWithUnique\"}],\"edges\":[],\"labels\":{\"TTL\":\"#4ED4BA\",\"NodeWithUnique\":\"#DDC73A\"},\"types\":[],\"directed\":true}"
           }
         ]
       },
@@ -264,14 +361,14 @@
       "jobName": "paragraph_1635868938917_1994016294",
       "id": "paragraph_1635868938917_1994016294",
       "dateCreated": "2021-11-02 16:02:18.918",
-      "dateStarted": "2021-11-02 16:04:26.701",
-      "dateFinished": "2021-11-02 16:04:26.948",
+      "dateStarted": "2021-11-07 14:16:49.799",
+      "dateFinished": "2021-11-07 14:16:50.126",
       "status": "FINISHED"
     },
     {
       "text": "%md\n\n## Static values\n\nThe Apoc provides support for storing and retrieving static values, functionality that can be used to work with API credentials or cache query results.\n\n\nTo store a value, we can set settings into Apoc config, starting with `apoc.static` prefix. For example:\n```\napoc.static.mystore.id\u003dq123e456t\napoc.static.mystore.url\u003dhttps://api.twitter.com/1.1/search/tweets.json?count\u003d100\u0026result_type\u003drecent\u0026lang\u003den\u0026q\u003d\n```\n\nor using the following procedure:\n```\nCALL apoc.static.set(\"mystore.user\", \"asd\")\n```\n\n.The following returns the `apoc.static.twitter.bearer` value, so \u0027q123e456t\u0027:\n```\nRETURN apoc.static.get(\"twitter.bearer\") AS value\n```\n\n\nThe following returns all values with the `mystore` prefix: `RETURN apoc.static.getAll(\"twitter\")`\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 23:16:20.863",
+      "dateUpdated": "2021-11-07 14:16:50.187",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -305,14 +402,14 @@
       "jobName": "paragraph_1635340803726_1233963523",
       "id": "paragraph_1635340803726_1233963523",
       "dateCreated": "2021-10-27 13:20:03.726",
-      "dateStarted": "2021-11-02 23:16:19.170",
-      "dateFinished": "2021-11-02 23:16:19.189",
+      "dateStarted": "2021-11-07 14:16:50.222",
+      "dateFinished": "2021-11-07 14:16:50.248",
       "status": "FINISHED"
     },
     {
       "text": "%md\n\n## Block the query for a while\n\nWe can sleep the query execution through the:\n```\napoc.util.sleep(\u003cduration in milliseconds\u003e)\n```\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 16:14:05.582",
+      "dateUpdated": "2021-11-07 14:16:50.320",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -346,14 +443,14 @@
       "jobName": "paragraph_1635349766818_1822740037",
       "id": "paragraph_1635349766818_1822740037",
       "dateCreated": "2021-10-27 15:49:26.818",
-      "dateStarted": "2021-11-02 16:14:05.583",
-      "dateFinished": "2021-11-02 16:14:05.613",
+      "dateStarted": "2021-11-07 14:16:50.344",
+      "dateFinished": "2021-11-07 14:16:50.369",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\n\n// we use `apoc.date.format` to get only minutes and seconds from a query\n\nWITH apoc.date.currentTimestamp() as currentTime\nCALL apoc.util.sleep(3000)\nRETURN apoc.date.format(currentTime, \u0027ms\u0027,\u0027mm:ss\u0027) as timeBefore, apoc.date.format(apoc.date.currentTimestamp(), \u0027ms\u0027,\u0027mm:ss\u0027) as timeAfter",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 23:16:38.472",
+      "dateUpdated": "2021-11-07 14:16:50.443",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -404,7 +501,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "timeBefore\ttimeAfter\n\"14:51\"\t\"14:54\"\n"
+            "data": "timeBefore\ttimeAfter\n\"16:50\"\t\"16:53\"\n"
           }
         ]
       },
@@ -414,14 +511,14 @@
       "jobName": "paragraph_1635869493908_1027009727",
       "id": "paragraph_1635869493908_1027009727",
       "dateCreated": "2021-11-02 16:11:33.908",
-      "dateStarted": "2021-11-02 16:14:51.585",
-      "dateFinished": "2021-11-02 16:14:54.726",
+      "dateStarted": "2021-11-07 14:16:50.475",
+      "dateFinished": "2021-11-07 14:16:53.695",
       "status": "FINISHED"
     },
     {
       "text": "%md\n\n# Time to leave\n\nWe can set to ttl to remove some nodes after a specified time, similar to MongoDb and Redis analogues\n\n\nTo activate it, you have to set the apoc configuration `apoc.ttl.enabled\u003dtrue`.\nOptionally, we can set the chek frequency: `apoc.ttl.schedule\u003d5`\n\n\nFor example (in a specific epoch time), with parameters: `node, epochTime, time unit (ms, s, m, h, d or millis, milliseconds, seconds, minutes, hours, days) )\n`CALL apoc.ttl.expire(node,epochTime,time)`\nwhere `time` is one of these: \u0027ms\u0027, \u0027s\u0027, \u0027m\u0027, \u0027h\u0027, \u0027d\u0027, \u0027millis\u0027, \u0027milliseconds\u0027, \u0027seconds\u0027, \u0027minutes\u0027, \u0027hours\u0027 or \u0027days\u0027\n\nFor example:\n`MATCH (movie:Movie)\u003c-[produced:PRODUCED]-(person:Person)\n    CALL apoc.ttl.expire(person,1585176720,\u0027s\u0027)\n    RETURN movie, produced, person`\n\nMoreover, i can expire a node after a perion with `apoc.ttl.expireIn` (same syntax as above)\n\n\nHow it works:\n\n- Set the :TTL label and ttl property on the node(s) you want to expire:\n    - SET n:TTL\n    - SET n.ttl \u003d `time selected`\n- Create an index: `CREATE INDEX ON :TTL(ttl)`\n- Remove node(s) that have passed the expiration time:  `MATCH (t:TTL) where t.ttl \u003c timestamp() WITH t LIMIT 1000 DETACH DELETE t`\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 23:16:43.542",
+      "dateUpdated": "2021-11-07 14:16:53.786",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -455,14 +552,14 @@
       "jobName": "paragraph_1635870688445_1102628038",
       "id": "paragraph_1635870688445_1102628038",
       "dateCreated": "2021-11-02 16:31:28.445",
-      "dateStarted": "2021-11-02 23:16:43.542",
-      "dateFinished": "2021-11-02 23:16:43.569",
+      "dateStarted": "2021-11-07 14:16:53.807",
+      "dateFinished": "2021-11-07 14:16:53.826",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\n\nCREATE (n:ToRemove) WITH n\nCALL apoc.ttl.expireIn(n, 10,\u0027s\u0027)\nRETURN n;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 17:13:23.588",
+      "dateUpdated": "2021-11-07 14:16:53.907",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -514,7 +611,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"ttl\":1635872681324},\"label\":\"TTL\"}],\"edges\":[],\"labels\":{\"TTL\":\"#6C116B\",\"ToRemove\":\"#4614F4\"},\"types\":[],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"ttl\":1636294624037},\"label\":\"TTL\"}],\"edges\":[],\"labels\":{\"TTL\":\"#4ED4BA\",\"NodeWithUnique\":\"#DDC73A\",\"ToRemove\":\"#5A29A9\"},\"types\":[],\"directed\":true}"
           }
         ]
       },
@@ -524,14 +621,14 @@
       "jobName": "paragraph_1635872050501_1981233352",
       "id": "paragraph_1635872050501_1981233352",
       "dateCreated": "2021-11-02 16:54:10.501",
-      "dateStarted": "2021-11-02 17:04:29.234",
-      "dateFinished": "2021-11-02 17:04:31.481",
+      "dateStarted": "2021-11-07 14:16:53.936",
+      "dateFinished": "2021-11-07 14:16:54.091",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\nMATCH (n:ToRemove) RETURN n;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 17:04:46.189",
+      "dateUpdated": "2021-11-07 14:27:40.740",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -540,7 +637,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 94.0057,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -578,7 +675,12 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": []
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"ttl\":1636294624037},\"label\":\"TTL\"}],\"edges\":[],\"labels\":{\"TTL\":\"#4ED4BA\",\"NodeWithUnique\":\"#DDC73A\",\"ToRemove\":\"#5A29A9\"},\"types\":[],\"directed\":true}"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -586,14 +688,14 @@
       "jobName": "paragraph_1635872225286_1576254618",
       "id": "paragraph_1635872225286_1576254618",
       "dateCreated": "2021-11-02 16:57:05.287",
-      "dateStarted": "2021-11-02 17:04:46.202",
-      "dateFinished": "2021-11-02 17:04:46.221",
+      "dateStarted": "2021-11-07 14:16:54.157",
+      "dateFinished": "2021-11-07 14:16:54.258",
       "status": "FINISHED"
     },
     {
       "text": "%md\n\n## Lock nodes\n\n\nThe examples in this section are based on the following sample graph:\n\n[source, bash]\n----\nCREATE (:Person {name:\u0027Alex\u0027})\nCREATE (:Email {address:\u0027alex@somewhere.com\u0027});\n----\n\n// todo - used to prevent some not-thread safety condition\n\nWe want to create exactly one HAS_EMAIL relationship between these nodes. We can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, so we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\n// so exactly one write\n\nWe can prevent this race condition by using the apoc.lock.nodes procedure, as shown below:\n\n[source, bash]\n----\nMATCH (p:Person {name:\u0027Alex\u0027})\nMATCH (e:Email {address:\u0027alex@somewhere.com\u0027})\nCALL apoc.lock.nodes([p,e])\nMERGE (p)-[rel:HAS_EMAIL]-\u003e(e) // could have multiple writes without apoc.lock.nodes\nRETURN rel;\n----\n\n\n- apoc.lock.all([nodes],[relationships])\n- apoc.lock.nodes([nodes])\n- apoc.lock.rels([relationships]\n- apoc.lock.read.nodes\n- apoc.lock.read.rels\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 23:17:12.970",
+      "dateUpdated": "2021-11-07 14:16:54.357",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -610,18 +712,29 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eLock nodes\u003c/h2\u003e\n\u003cp\u003eThe examples in this section are based on the following sample graph:\u003c/p\u003e\n\u003ch2\u003e[source, bash]\u003c/h2\u003e\n\u003ch2\u003eCREATE (:Person {name:\u0026lsquo;Alex\u0026rsquo;})\u003cbr /\u003e\nCREATE (:Email {address:\u0026lsquo;\u003ca href\u003d\"mailto:alex@somewhere.com\"\u003ealex@somewhere.com\u003c/a\u003e\u0026rsquo;});\u003c/h2\u003e\n\u003cp\u003e// todo - used to prevent some not-thread safety condition\u003c/p\u003e\n\u003cp\u003eWe want to create exactly one HAS_EMAIL relationship between these nodes. We can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, so we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\u003cbr /\u003e\n// so exactly one write\u003c/p\u003e\n\u003cp\u003eWe can prevent this race condition by using the apoc.lock.nodes procedure, as shown below:\u003c/p\u003e\n\u003ch2\u003e[source, bash]\u003c/h2\u003e\n\u003ch2\u003eMATCH (p:Person {name:\u0026lsquo;Alex\u0026rsquo;})\u003cbr /\u003e\nMATCH (e:Email {address:\u0026lsquo;\u003ca href\u003d\"mailto:alex@somewhere.com\"\u003ealex@somewhere.com\u003c/a\u003e\u0026rsquo;})\u003cbr /\u003e\nCALL apoc.lock.nodes([p,e])\u003cbr /\u003e\nMERGE (p)-[rel:HAS_EMAIL]-\u0026gt;(e) // could have multiple writes without apoc.lock.nodes\u003cbr /\u003e\nRETURN rel;\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.lock.all([nodes],[relationships])\u003c/li\u003e\n\u003cli\u003eapoc.lock.nodes([nodes])\u003c/li\u003e\n\u003cli\u003eapoc.lock.rels([relationships]\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.nodes\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.rels\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1635870732173_423048846",
       "id": "paragraph_1635870732173_423048846",
       "dateCreated": "2021-11-02 16:32:12.173",
-      "status": "READY"
+      "dateStarted": "2021-11-07 14:16:54.400",
+      "dateFinished": "2021-11-07 14:16:54.424",
+      "status": "FINISHED"
     },
     {
       "text": "%md\n\n# Schema operations\n\n\nTo drop or create index or constraint, you can use the following procedure:\n\n[separator\u003d¦,opts\u003dheader,cols\u003d\"5,1m,1m\"]\n|\u003d\u003d\u003d\n¦Qualified Name¦Type¦Release\ninclude::example$generated-documentation/apoc.schema.assert.adoc[]\ninclude::example$generated-documentation/apoc.schema.nodes.adoc[]\ninclude::example$generated-documentation/apoc.schema.relationships.adoc[]\ninclude::example$generated-documentation/apoc.schema.node.constraintExists.adoc[]\ninclude::example$generated-documentation/apoc.schema.relationship.constraintExists.adoc[]\ninclude::example$generated-documentation/apoc.schema.node.indexExists.adoc[]\n|\u003d\u003d\u003d\n\n[source,cypher]\n----\nCALL apoc.schema.assert({indexLabel:[[indexKeys]], ...}, {constraintLabel:[constraintKeys], ...}, dropExisting : true)\nYIELD label, key, keys, unique, action\n----\n\nWhere the outputs are:\n\n* label\n* key\n* keys, list of the key\n* unique, if the index or constraint are unique\n* action, can be the following values: DROPPED, CREATED\n\nTo retrieve indexes and constraints information for all the node labels in your database, you can use the following procedure:\n\n[source,cypher]\n----\nCALL apoc.schema.nodes()\nYIELD name, label, properties, status, type\n----\n\nWhere the outputs are:\n\n* name of the index/constraint,\n* label\n* properties, (for Neo4j 3.1 and lower versions is a single element array) that are affected by the constraint\n* status, for index can be one of the following values: ONLINE, POPULATING and FAILED\n* type, always \"INDEX\" for indexes, constraint type for constraints\n* failure, the failure description of a failed index\n* populationProgress, the population progress of the index in percentage\n* size, the size of the index\n* valuesSelectivity, computes the selectivity of the unique values\n* userDescription, a user friendly description of what this index indexes\n\nTo retrieve the constraint information for all the relationship types in your database, you can use the following procedure:\n\n[source,cypher]\n----\nCALL apoc.schema.relationships()\nYIELD name, type, properties, status\n----\n\nWhere the outputs are:\n\n* name of the constraint\n* type of the relationship\n* properties, (for Neo4j 3.1 and lower versions is a single element array) that are affected by the constraint\n* status\n\nConfig optional param is a map and its possible values are:\n\n* labels : list of labels to retrieve index/constraint information\n* excludeLabels: list of labels to exclude from retrieve index/constraint information\n* relationships: list of relationships type to retrieve constraint information\n* excludeRelationships: list of relationships\u0027 type to exclude from retrieve constraint information\n\n**Exclude has more power than include, so if excludeLabels and labels are both valued, procedure considers excludeLabels only, the same for relationships.**\n\n[source,cypher]\n----\nCALL apoc.schema.nodes({labels:[\u0027Book\u0027]})\nYIELD name, label, properties, status, type\n----\n\n\nN.B. Constraints for property existence on nodes and relationships are available only for the Enterprise Edition.\n\nTo retrieve the index existence on node, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.indexExists(labelName, propertyNames)\n\n----\n\nThe output return the index existence on node is present or not\n\nTo retrieve if the constraint exists on node, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.constraintExists(labelName, propertyNames)\n----\n\nThe output return the constraint existence on node.\n\nTo retrieve if the constraint exists on relationship, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.relationship.constraintExists(type, propertyNames)\n----\n\nThe output return the constraint on the relationship is present or not\n\n\n\u003d\u003d\u003d Examples\n\n\u003d\u003d\u003d List Schema assert\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert({Foo:[\u0027bar\u0027]},null)\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.index.png[scaledwidth\u003d\"100%\"]\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert(null,{Foo:[\u0027bar\u0027]})\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.constraint.png[scaledwidth\u003d\"100%\"]\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert(null,null)\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.drop.png[scaledwidth\u003d\"100%\"]\n\n\n\u003d\u003d\u003d List indexes and constraints for nodes\n\nGiven the following cypher statements:\n\n[source,cypher]\n----\nCREATE CONSTRAINT ON (bar:Bar) ASSERT exists(bar.foobar)\nCREATE CONSTRAINT ON (bar:Bar) ASSERT bar.foo IS UNIQUE\nCREATE INDEX ON :Person(name)\nCREATE INDEX ON :Publication(name)\nCREATE INDEX ON :Source(name)\n----\n\nWhen you\n\n[source,cypher]\n----\nCALL apoc.schema.nodes()\n----\n\n\nyou will receive this result:\n\nimage::apoc.schema.nodes.png[scaledwidth\u003d\"100%\"]\n\n\u003d\u003d\u003d List constraints for relationships\n\nGiven the following cypher statements:\n\n[source,cypher]\n----\nCREATE CONSTRAINT ON ()-[like:LIKED]-() ASSERT exists(like.day)\nCREATE CONSTRAINT ON ()-[starred:STARRED]-() ASSERT exists(starred.month)\n----\n\nWhen you\n\n[source,cypher]\n----\nCALL apoc.schema.relationships()\n----\n\nyou will receive this result:\n\nimage::apoc.schema.relationships.png[scaledwidth\u003d\"100%\"]\n\n\u003d\u003d\u003d Check if an index or a constraint exists for a Label and property\n\nGiven the previous index definitions, running this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.indexExists(\"Publication\", [\"name\"])\n----\nproduces the following output:\n\nimage::apoc.schema.node.indexExists.png[scaledwidth\u003d\"100%\"]\n\n\nGiven the previous constraint definitions, running this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.constraintExists(\"Bar\", [\"foobar\"])\n----\nproduces the following output:\n\nimage::apoc.schema.node.constraintExists.png[scaledwidth\u003d\"100%\"]\n\nIf you want to check if a constraint exists for a relationship you can run this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.relationship.constraintExists(\u0027LIKED\u0027, [\u0027day\u0027])\n----\n\nand you get the following result:\n\nimage::apoc.schema.relationship.constraintExists.png[scaledwidth\u003d\"100%\"]\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 23:17:31.331",
+      "dateUpdated": "2021-11-07 14:16:54.499",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -655,14 +768,14 @@
       "jobName": "paragraph_1635376095899_1541463143",
       "id": "paragraph_1635376095899_1541463143",
       "dateCreated": "2021-10-27 23:08:15.899",
-      "dateStarted": "2021-11-02 16:33:19.183",
-      "dateFinished": "2021-11-02 16:33:19.254",
+      "dateStarted": "2021-11-07 14:16:54.532",
+      "dateFinished": "2021-11-07 14:16:54.582",
       "status": "FINISHED"
     },
     {
       "text": "%md\n## Logs",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 23:36:08.003",
+      "dateUpdated": "2021-11-07 14:16:54.631",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -678,6 +791,15 @@
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eLogs\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -685,12 +807,14 @@
       "jobName": "paragraph_1635896159694_696516335",
       "id": "paragraph_1635896159694_696516335",
       "dateCreated": "2021-11-02 23:35:59.695",
-      "status": "READY"
+      "dateStarted": "2021-11-07 14:16:54.652",
+      "dateFinished": "2021-11-07 14:16:54.668",
+      "status": "FINISHED"
     },
     {
       "text": "%md\n## Cypher initializer\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:44:55.350",
+      "dateUpdated": "2021-11-07 14:16:54.751",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -707,18 +831,29 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eCypher initializer\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636130663479_1194669185",
       "id": "paragraph_1636130663479_1194669185",
       "dateCreated": "2021-11-05 16:44:23.479",
-      "status": "READY"
+      "dateStarted": "2021-11-07 14:16:54.773",
+      "dateFinished": "2021-11-07 14:16:54.788",
+      "status": "FINISHED"
     },
     {
       "text": "%md\n\n# todo - docker img\n- Jdbc (apoc.load.jdbc)\n- Elastic search (load.es.*)\n- MongoDb (apoc.mongo.*)\n- Couchbase (apoc.couchbase.*): https://neo4j.com/labs/apoc/4.1/database-integration/couchbase/\n- Load Ldap (apoc.load.ldap)\n- Bolt\n```\nCALL apoc.bolt.execute(urlOrKey, statement, params, config) YIELD row - access to other databases via bolt for read and write\n\nCALL apoc.bolt.load(urlOrKey, statement, params, config) YIELD row - access to other databases via bolt for read\n```\n\n\n\nTo execute jdbc procedure you have to download the correspondig jdbc driver and put in `plugin` folder:\nhere is the list of privided driver (https://neo4j.com/labs/apoc/4.1/database-integration/load-jdbc/#_load_jdbc_resources)\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:50:02.673",
+      "dateUpdated": "2021-11-07 14:16:54.872",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -752,14 +887,14 @@
       "jobName": "paragraph_1635436437219_504267999",
       "id": "paragraph_1635436437219_504267999",
       "dateCreated": "2021-10-28 15:53:57.219",
-      "dateStarted": "2021-10-29 11:00:09.718",
-      "dateFinished": "2021-10-29 11:00:09.740",
+      "dateStarted": "2021-11-07 14:16:54.892",
+      "dateFinished": "2021-11-07 14:16:54.910",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\n// todo - check\nWITH \"jdbc:postgresql://localhost:55005/myDb?ssl\u003dfalse\" as url\nCALL apoc.load.jdbc(url,\u0027SELECT * FROM event\u0027,[], {schema: \u0027event\u0027, credentials: {user: \u0027root\u0027, password: \u0027postgres\u0027} })\nYIELD row RETURN row",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 23:18:04.289",
+      "dateUpdated": "2021-11-07 14:16:54.992",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -791,14 +926,14 @@
       "jobName": "paragraph_1635504607355_773522466",
       "id": "paragraph_1635504607355_773522466",
       "dateCreated": "2021-10-29 10:50:07.355",
-      "dateStarted": "2021-11-02 15:48:08.723",
-      "dateFinished": "2021-11-02 15:48:10.653",
+      "dateStarted": "2021-11-07 14:16:55.019",
+      "dateFinished": "2021-11-07 14:16:55.305",
       "status": "ERROR"
     },
     {
       "text": "%md\nExample with credential...",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 15:48:47.414",
+      "dateUpdated": "2021-11-07 14:16:55.319",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -815,18 +950,29 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eExample with credential\u0026hellip;\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1635868116149_932610756",
       "id": "paragraph_1635868116149_932610756",
       "dateCreated": "2021-11-02 15:48:36.149",
-      "status": "READY"
+      "dateStarted": "2021-11-07 14:16:55.336",
+      "dateFinished": "2021-11-07 14:16:55.346",
+      "status": "FINISHED"
     },
     {
       "text": "%neo4j\nWITH \"jdbc:postgresql://localhost:55005/myDb?ssl\u003dfalse\" as url\nCALL apoc.load.jdbc(url,\u0027SELECT * FROM event\u0027,[], {schema: \u0027event\u0027, credentials: {user: \u0027root\u0027, password: \u0027postgres\u0027} })\nYIELD row RETURN row",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 15:48:29.760",
+      "dateUpdated": "2021-11-07 14:16:55.436",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -841,12 +987,81 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Failed to invoke procedure `apoc.load.jdbc`: Caused by: java.net.ConnectException: Connection refused (Connection refused)"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1635504779978_1876755451",
       "id": "paragraph_1635504779978_1876755451",
       "dateCreated": "2021-10-29 10:52:59.978",
+      "dateStarted": "2021-11-07 14:16:55.457",
+      "dateFinished": "2021-11-07 14:16:55.500",
+      "status": "ERROR"
+    },
+    {
+      "text": "%md\nCONCLUSIONI",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-07 15:21:13.190",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eCONCLUSIONI\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636298465103_1913554570",
+      "id": "paragraph_1636298465103_1913554570",
+      "dateCreated": "2021-11-07 15:21:05.103",
+      "dateStarted": "2021-11-07 15:21:13.188",
+      "dateFinished": "2021-11-07 15:21:13.197",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-07 15:21:13.187",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636298473187_1917983",
+      "id": "paragraph_1636298473187_1917983",
+      "dateCreated": "2021-11-07 15:21:13.187",
       "status": "READY"
     }
   ],
@@ -860,5 +1075,7 @@
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
-  "info": {}
+  "info": {
+    "isRunning": false
+  }
 }

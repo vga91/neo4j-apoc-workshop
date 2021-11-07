@@ -351,7 +351,7 @@
     {
       "text": "%neo4j\n\nCALL apoc.meta.nodeTypeProperties({excludeLabels:[\"Movie\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 10:21:41.372",
+      "dateUpdated": "2021-11-07 15:06:02.245",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -360,7 +360,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 164.006,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -703,7 +703,7 @@
       "title": "Store information such as kernel version, start time, read-only, database-name, store-log-version",
       "text": "%neo4j\n\nCALL apoc.monitor.kernel",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 10:42:48.356",
+      "dateUpdated": "2021-11-07 15:06:13.766",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -712,7 +712,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 124.006,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -1059,7 +1059,7 @@
       "title": "Whole graph",
       "text": "%neo4j\n\n// we ignore \u0027since\u0027 propery\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 10:45:21.429",
+      "dateUpdated": "2021-11-07 15:06:30.882",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1068,7 +1068,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 84.0057,
+              "height": 116.009,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -1524,13 +1524,35 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n",
+      "text": "%md\n\n## [NEXT CHAPTER](http://localhost:8080/#/notebook/2GMKN71T8)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:19:33.936",
-      "config": {},
+      "dateUpdated": "2021-11-07 15:07:45.602",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true
+      },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GMKN71T8\"\u003eNEXT CHAPTER\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -1538,7 +1560,9 @@
       "jobName": "paragraph_1635851973936_1972506870",
       "id": "paragraph_1635851973936_1972506870",
       "dateCreated": "2021-11-02 11:19:33.936",
-      "status": "READY"
+      "dateStarted": "2021-11-07 15:07:35.170",
+      "dateFinished": "2021-11-07 15:07:35.176",
+      "status": "FINISHED"
     }
   ],
   "name": "2. Statistics and analysis",

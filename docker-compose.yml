@@ -49,6 +49,95 @@ services:
     networks:
       - apoc_workshop
 
+  couchbase-couchbase:
+      image: couchbase/server:community-5.0.1
+      ports:
+          - 8091:8091
+          - 8092:8092
+          - 8093:8093
+          - 11210:11210
+      entrypoint:
+          - /bin/bash
+          - -c
+          - "echo 'Launching couchbase' &&
+            /usr/sbin/runsvdir-start &
+
+            (
+                ok=1; \
+                while [ $$ok != 0 ]; do \
+                    sleep 5; \
+                    echo 'Couchbase is starting (rest api not available)'; \
+                    curl --connect-timeout 1 -s  http://127.0.0.1:8091 > /dev/null; \
+                    ok=$$?; \
+                done
+            ) &&
+
+            (
+                echo 'Configuring Couchbase' &&
+                echo 'Creating cluster' &&
+                couchbase-cli cluster-init -c 127.0.0.1:8091 --cluster-username=${COUCHBASE_ADMIN_USER} --cluster-password=${COUCHBASE_ADMIN_PWD} --cluster-ramsize=512 --cluster-index-ramsize=512 --cluster-fts-ramsize=256 --services=data,index,query,fts &&
+                echo 'Creating '${BUCKET_NAME}' bucket' &&
+                couchbase-cli bucket-create -c 127.0.0.1:8091 -u ${COUCHBASE_ADMIN_USER} -p ${COUCHBASE_ADMIN_PWD} --bucket=${BUCKET_NAME} --bucket-type=couchbase --bucket-ramsize=300 &&
+                echo 'Creating a user to give the gateway an access to the bucket' &&
+                couchbase-cli user-manage -c 127.0.0.1 -u ${COUCHBASE_ADMIN_USER} -p ${COUCHBASE_ADMIN_PWD} --set --rbac-username ${SECURITY_USER} --rbac-password ${SECURITY_PWD} --roles admin --auth-domain local
+            ) &&
+
+            echo 'Initialization done' &&
+            tail -f /opt/couchbase/var/lib/couchbase/logs/error.log"
+  couchbase-gateway:
+      image: couchbase/sync-gateway:2.0.0-community
+      ports:
+          - 4984:4984
+          - 4985:4985
+      entrypoint:
+          - /bin/bash
+          - -c
+          - "
+              echo 'Sleep 5s at launch time' &&
+              sleep 5 &&
+              echo 'Creating configuration file' &&
+              COUCHBASE=$$(ping couchbase-couchbase -c 1 | grep -m 1 -E -o '[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+') &&
+
+              echo '
+              {
+                  \"adminInterface\": \"0.0.0.0:4985\",
+                  \"log\": [
+                      \"[*]\"
+                  ],
+                  \"verbose\": true,
+                  \"databases\": {
+                      \"app\": {
+                          \"server\": \"http://'$$COUCHBASE':8091\",
+                          \"bucket\": \"${BUCKET_NAME}\",
+                          \"username\": \"${SECURITY_USER}\",
+                          \"password\": \"${SECURITY_PWD}\",
+                          \"enable_shared_bucket_access\": true,
+                          \"import_docs\": \"continuous\",
+                          \"users\": {
+                              \"admin\": {\"password\": \"adminadmin\", \"admin_channels\": [\"*\"]},
+                              \"test\": {\"password\": \"test\", \"admin_channels\": [\"CHANNEL_test\"]}
+                          },
+                          \"sync\": `
+                              function(doc, oldDoc) {
+                                  if (doc.tag !== undefined) {
+                                      channel(\"CHANNEL_\" + doc.tag);
+                                  }
+                              }
+                          `
+                      }
+                  }
+              }
+              ' > /home/sync_gateway/sync_gateway.json &&
+
+              echo 'Sleep 20s before starting Sync Gateway' &&
+              sleep 20 &&
+              echo 'Starting Sync Gateway' &&
+              /opt/couchbase-sync-gateway/bin/sync_gateway /home/sync_gateway/sync_gateway.json &
+              tail -f /dev/null"
+      links:
+        - couchbase-couchbase
+
+
   # postgres:
   #   image: postgres
   #   container_name: postgres
