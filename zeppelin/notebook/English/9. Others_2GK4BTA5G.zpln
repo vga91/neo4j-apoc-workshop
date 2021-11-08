@@ -693,9 +693,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Lock nodes\n\n\nThe examples in this section are based on the following sample graph:\n\n[source, bash]\n----\nCREATE (:Person {name:\u0027Alex\u0027})\nCREATE (:Email {address:\u0027alex@somewhere.com\u0027});\n----\n\n// todo - used to prevent some not-thread safety condition\n\nWe want to create exactly one HAS_EMAIL relationship between these nodes. We can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, so we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\n// so exactly one write\n\nWe can prevent this race condition by using the apoc.lock.nodes procedure, as shown below:\n\n[source, bash]\n----\nMATCH (p:Person {name:\u0027Alex\u0027})\nMATCH (e:Email {address:\u0027alex@somewhere.com\u0027})\nCALL apoc.lock.nodes([p,e])\nMERGE (p)-[rel:HAS_EMAIL]-\u003e(e) // could have multiple writes without apoc.lock.nodes\nRETURN rel;\n----\n\n\n- apoc.lock.all([nodes],[relationships])\n- apoc.lock.nodes([nodes])\n- apoc.lock.rels([relationships]\n- apoc.lock.read.nodes\n- apoc.lock.read.rels\n",
+      "text": "%md\n\n## Lock nodes\n\nWe can lock one or more entities during a transaction:\n- apoc.lock.all([nodes],[relationships])\n- apoc.lock.nodes([nodes])\n- apoc.lock.rels([relationships]\n- apoc.lock.read.nodes\n- apoc.lock.read.rels\n\nThis can be used to prevent some not-thread safety condition.\nFor example, with a dataset like this:\n\n\u003cpre\u003e\nCREATE (:Person {name:\u0027Alex\u0027})\nCREATE (:Email {address:\u0027alex@somewhere.com\u0027});\n\u003c/pre\u003e\n\n// todo - used to prevent some not-thread safety condition\n\nWe may want to create exactly one HAS_EMAIL relationship between these nodes. \nWe can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, \nso we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\nInstead, we want exactly one write.\n\nWe can ensure this condition by using the apoc.lock.nodes procedure, as shown below:\n\n\u003cpre\u003e\nMATCH (p:Person {name:\u0027Alex\u0027})\nMATCH (e:Email {address:\u0027alex@somewhere.com\u0027})\nCALL apoc.lock.nodes([p,e])\nMERGE (p)-[rel:HAS_EMAIL]-\u003e(e)\nRETURN rel;\n\u003c/pre\u003e\n\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 14:16:54.357",
+      "dateUpdated": "2021-11-07 22:36:05.285",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -706,7 +706,9 @@
           "language": "markdown",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -717,7 +719,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eLock nodes\u003c/h2\u003e\n\u003cp\u003eThe examples in this section are based on the following sample graph:\u003c/p\u003e\n\u003ch2\u003e[source, bash]\u003c/h2\u003e\n\u003ch2\u003eCREATE (:Person {name:\u0026lsquo;Alex\u0026rsquo;})\u003cbr /\u003e\nCREATE (:Email {address:\u0026lsquo;\u003ca href\u003d\"mailto:alex@somewhere.com\"\u003ealex@somewhere.com\u003c/a\u003e\u0026rsquo;});\u003c/h2\u003e\n\u003cp\u003e// todo - used to prevent some not-thread safety condition\u003c/p\u003e\n\u003cp\u003eWe want to create exactly one HAS_EMAIL relationship between these nodes. We can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, so we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\u003cbr /\u003e\n// so exactly one write\u003c/p\u003e\n\u003cp\u003eWe can prevent this race condition by using the apoc.lock.nodes procedure, as shown below:\u003c/p\u003e\n\u003ch2\u003e[source, bash]\u003c/h2\u003e\n\u003ch2\u003eMATCH (p:Person {name:\u0026lsquo;Alex\u0026rsquo;})\u003cbr /\u003e\nMATCH (e:Email {address:\u0026lsquo;\u003ca href\u003d\"mailto:alex@somewhere.com\"\u003ealex@somewhere.com\u003c/a\u003e\u0026rsquo;})\u003cbr /\u003e\nCALL apoc.lock.nodes([p,e])\u003cbr /\u003e\nMERGE (p)-[rel:HAS_EMAIL]-\u0026gt;(e) // could have multiple writes without apoc.lock.nodes\u003cbr /\u003e\nRETURN rel;\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.lock.all([nodes],[relationships])\u003c/li\u003e\n\u003cli\u003eapoc.lock.nodes([nodes])\u003c/li\u003e\n\u003cli\u003eapoc.lock.rels([relationships]\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.nodes\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.rels\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eLock nodes\u003c/h2\u003e\n\u003cp\u003eWe can lock one or more entities during a transaction:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.lock.all([nodes],[relationships])\u003c/li\u003e\n\u003cli\u003eapoc.lock.nodes([nodes])\u003c/li\u003e\n\u003cli\u003eapoc.lock.rels([relationships]\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.nodes\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.rels\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThis can be used to prevent some not-thread safety condition.\u003cbr /\u003e\nFor example, with a dataset like this:\u003c/p\u003e\n\u003cpre\u003e\nCREATE (:Person {name:\u0027Alex\u0027})\nCREATE (:Email {address:\u0027alex@somewhere.com\u0027});\n\u003c/pre\u003e\n\u003cp\u003e// todo - used to prevent some not-thread safety condition\u003c/p\u003e\n\u003cp\u003eWe may want to create exactly one HAS_EMAIL relationship between these nodes.\u003cbr /\u003e\nWe can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe,\u003cbr /\u003e\nso we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\u003cbr /\u003e\nInstead, we want exactly one write.\u003c/p\u003e\n\u003cp\u003eWe can ensure this condition by using the apoc.lock.nodes procedure, as shown below:\u003c/p\u003e\n\u003cpre\u003e\nMATCH (p:Person {name:\u0027Alex\u0027})\nMATCH (e:Email {address:\u0027alex@somewhere.com\u0027})\nCALL apoc.lock.nodes([p,e])\nMERGE (p)-[rel:HAS_EMAIL]-\u003e(e)\nRETURN rel;\n\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -727,8 +729,8 @@
       "jobName": "paragraph_1635870732173_423048846",
       "id": "paragraph_1635870732173_423048846",
       "dateCreated": "2021-11-02 16:32:12.173",
-      "dateStarted": "2021-11-07 14:16:54.400",
-      "dateFinished": "2021-11-07 14:16:54.424",
+      "dateStarted": "2021-11-07 22:36:05.285",
+      "dateFinished": "2021-11-07 22:36:05.318",
       "status": "FINISHED"
     },
     {
@@ -1009,7 +1011,7 @@
     {
       "text": "%md\nCONCLUSIONI",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:21:13.190",
+      "dateUpdated": "2021-11-07 22:37:51.357",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1021,8 +1023,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},

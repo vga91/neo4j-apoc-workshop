@@ -598,9 +598,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Monitoring\n\nProvides some useful procedures to monitor what is happening / happened in the db \n\n- CALL apoc.monitor.ids()\n- CALL apoc.monitor.kernel\n- CALL apoc.monitor.store()\n- CALL apoc.monitor.tx()\n",
+      "text": "%md\n\n## Monitoring\n\nProvides some useful procedures to monitor what is happening / happened in the db \n\n- CALL apoc.monitor.kernel\n- CALL apoc.monitor.store\n- CALL apoc.monitor.tx\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 10:41:19.627",
+      "dateUpdated": "2021-11-07 22:48:32.060",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -625,79 +625,6 @@
       "id": "paragraph_1635423072482_1664531640",
       "dateCreated": "2021-10-28 12:11:12.482",
       "status": "READY"
-    },
-    {
-      "title": "Node and relationships-ids in total and in use",
-      "text": "%neo4j\n\ncall apoc.monitor.ids()",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-05 10:40:16.534",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 108.011,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "nodeIds": "string",
-                      "relIds": "string",
-                      "propIds": "string",
-                      "relTypeIds": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "nodeIds\trelIds\tpropIds\trelTypeIds\n171\t253\t403\t6\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635424116376_1179404834",
-      "id": "paragraph_1635424116376_1179404834",
-      "dateCreated": "2021-10-28 12:28:36.376",
-      "dateStarted": "2021-11-05 10:40:16.555",
-      "dateFinished": "2021-11-05 10:40:16.614",
-      "status": "FINISHED"
     },
     {
       "title": "Store information such as kernel version, start time, read-only, database-name, store-log-version",
