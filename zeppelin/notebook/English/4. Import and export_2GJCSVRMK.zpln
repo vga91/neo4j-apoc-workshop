@@ -748,9 +748,9 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\n## File load procedures\nSimilar to import procedure, retrieve the results from file but doesn\u0027t execute graph operation, more flexible\n\n- apoc.load.csv\n- apoc.load.json \n- apoc.load.xls\n- apoc.load.xml\n- apoc.load.html\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\n\n\n\n\n\n\nCALL apoc.load.csv(\u0027test.csv\u0027)\n\nCALL apoc.load.csv($url,{skip: 1, limit: 2})\n\n\nname,age,kids,pass\nMichael,41,8:11:18,pass\nMichael,41,8:11:18,pass\nMichael,41,8:11:18,pass\nCALL apoc.load.csv($url,{results:[\u0027map\u0027,\u0027list\u0027,\u0027stringMap\u0027,\u0027strings\u0027],mapping:{name:{type:\u0027string\u0027},age:{type:\u0027int\u0027},kids:{array:true,arraySep:\u0027:\u0027,type:\u0027int\u0027},pass:{ignore:true}}})\n\n\n\nname\tage\nRana\t11\nCALL apoc.load.csv($url,{sep:\u0027TAB\u0027,results:[\u0027map\u0027,\u0027list\u0027,\u0027stringMap\u0027,\u0027strings\u0027]})",
+      "text": "%md\n\n## File load procedures\nSimilar to import procedure, retrieve the results from file but doesn\u0027t execute graph operation, more flexible\n\n- apoc.load.csv\n- apoc.load.json \n- apoc.load.xls\n- apoc.load.xml\n- apoc.load.html\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\n\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:19:10.025",
+      "dateUpdated": "2021-11-09 08:38:50.587",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -763,8 +763,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -787,6 +787,305 @@
       "dateCreated": "2021-10-28 14:15:50.984",
       "dateStarted": "2021-11-05 16:19:10.033",
       "dateFinished": "2021-11-05 16:19:10.051",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// File content\nCALL apoc.load.csv(\u0027load.csv\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-09 08:41:58.313",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "lineNo": "string",
+                      "list": "string",
+                      "strings": "string",
+                      "map.name": "string",
+                      "map.age": "string",
+                      "map.beverage": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "lineNo\tlist\tstrings\tmap.name\tmap.age\tmap.beverage\n0\t[\"Selma\",\"9\",\"Soda\"]\t[]\tSelma\t9\tSoda\n1\t[\"Rana\",\"12\",\"Tea;Milk\"]\t[]\tRana\t12\tTea;Milk\n2\t[\"Selina\",\"19\",\"Cola\"]\t[]\tSelina\t19\tCola\n3\t[\"Alhpa\",\"55\",\"Gamma\"]\t[]\tAlhpa\t55\tGamma\n4\t[\"Beta\",\"66\",\"Delta\"]\t[]\tBeta\t66\tDelta\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636447121894_1927356040",
+      "id": "paragraph_1636447121894_1927356040",
+      "dateCreated": "2021-11-09 08:38:41.894",
+      "dateStarted": "2021-11-09 08:41:58.336",
+      "dateFinished": "2021-11-09 08:41:58.380",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nCALL apoc.load.csv(\u0027load.csv\u0027,{skip: 1, limit: 2})\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-09 08:42:11.098",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "lineNo": "string",
+                      "list": "string",
+                      "strings": "string",
+                      "map.name": "string",
+                      "map.age": "string",
+                      "map.beverage": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "lineNo\tlist\tstrings\tmap.name\tmap.age\tmap.beverage\n1\t[\"Rana\",\"12\",\"Tea;Milk\"]\t[]\tRana\t12\tTea;Milk\n2\t[\"Selina\",\"19\",\"Cola\"]\t[]\tSelina\t19\tCola\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636447114960_1911929590",
+      "id": "paragraph_1636447114960_1911929590",
+      "dateCreated": "2021-11-09 08:38:34.960",
+      "dateStarted": "2021-11-09 08:42:10.108",
+      "dateFinished": "2021-11-09 08:42:10.215",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// File content\n//name\tage\n//Rana\t11\nCALL apoc.load.csv(\u0027loadSep.csv\u0027,{sep:\u0027|\u0027, arraySep: \u0027-\u0027})\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-09 08:43:55.394",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "lineNo": "string",
+                      "list": "string",
+                      "strings": "string",
+                      "map.name": "string",
+                      "map.age": "string",
+                      "map.beverage": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "lineNo\tlist\tstrings\tmap.name\tmap.age\tmap.beverage\n0\t[\"Selma\",\"9\",\"Soda\"]\t[]\tSelma\t9\tSoda\n1\t[\"Rana\",\"12\",\"Tea-Milk\"]\t[]\tRana\t12\tTea-Milk\n2\t[\"Selina\",\"19\",\"Cola\"]\t[]\tSelina\t19\tCola\n3\t[\"Alhpa\",\"55\",\"Gamma\"]\t[]\tAlhpa\t55\tGamma\n4\t[\"Beta\",\"66\",\"Delta\"]\t[]\tBeta\t66\tDelta\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636447020232_589420860",
+      "id": "paragraph_1636447020232_589420860",
+      "dateCreated": "2021-11-09 08:37:00.232",
+      "dateStarted": "2021-11-09 08:43:54.441",
+      "dateFinished": "2021-11-09 08:43:54.531",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.load.csv(\u0027load.csv\u0027, {mapping: {name:{type:\u0027string\u0027}, age:{type:\u0027int\u0027}, beverage:{ignore:true}}})\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-09 08:45:54.477",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "lineNo": "string",
+                      "list": "string",
+                      "strings": "string",
+                      "map.name": "string",
+                      "map.age": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "lineNo\tlist\tstrings\tmap.name\tmap.age\n0\t[\"Selma\",9]\t[]\tSelma\t9\n1\t[\"Rana\",12]\t[]\tRana\t12\n2\t[\"Selina\",19]\t[]\tSelina\t19\n3\t[\"Alhpa\",55]\t[]\tAlhpa\t55\n4\t[\"Beta\",66]\t[]\tBeta\t66\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636447031072_222223989",
+      "id": "paragraph_1636447031072_222223989",
+      "dateCreated": "2021-11-09 08:37:11.072",
+      "dateStarted": "2021-11-09 08:45:31.747",
+      "dateFinished": "2021-11-09 08:45:31.879",
       "status": "FINISHED"
     },
     {

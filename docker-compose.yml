@@ -49,163 +49,31 @@ services:
     networks:
       - apoc_workshop
 
-  couchbase-couchbase:
-      image: couchbase/server:community-5.0.1
-      ports:
-          - 8091:8091
-          - 8092:8092
-          - 8093:8093
-          - 11210:11210
-      entrypoint:
-          - /bin/bash
-          - -c
-          - "echo 'Launching couchbase' &&
-            /usr/sbin/runsvdir-start &
-
-            (
-                ok=1; \
-                while [ $$ok != 0 ]; do \
-                    sleep 5; \
-                    echo 'Couchbase is starting (rest api not available)'; \
-                    curl --connect-timeout 1 -s  http://127.0.0.1:8091 > /dev/null; \
-                    ok=$$?; \
-                done
-            ) &&
-
-            (
-                echo 'Configuring Couchbase' &&
-                echo 'Creating cluster' &&
-                couchbase-cli cluster-init -c 127.0.0.1:8091 --cluster-username=${COUCHBASE_ADMIN_USER} --cluster-password=${COUCHBASE_ADMIN_PWD} --cluster-ramsize=512 --cluster-index-ramsize=512 --cluster-fts-ramsize=256 --services=data,index,query,fts &&
-                echo 'Creating '${BUCKET_NAME}' bucket' &&
-                couchbase-cli bucket-create -c 127.0.0.1:8091 -u ${COUCHBASE_ADMIN_USER} -p ${COUCHBASE_ADMIN_PWD} --bucket=${BUCKET_NAME} --bucket-type=couchbase --bucket-ramsize=300 &&
-                echo 'Creating a user to give the gateway an access to the bucket' &&
-                couchbase-cli user-manage -c 127.0.0.1 -u ${COUCHBASE_ADMIN_USER} -p ${COUCHBASE_ADMIN_PWD} --set --rbac-username ${SECURITY_USER} --rbac-password ${SECURITY_PWD} --roles admin --auth-domain local
-            ) &&
-
-            echo 'Initialization done' &&
-            tail -f /opt/couchbase/var/lib/couchbase/logs/error.log"
-  couchbase-gateway:
-      image: couchbase/sync-gateway:2.0.0-community
-      ports:
-          - 4984:4984
-          - 4985:4985
-      entrypoint:
-          - /bin/bash
-          - -c
-          - "
-              echo 'Sleep 5s at launch time' &&
-              sleep 5 &&
-              echo 'Creating configuration file' &&
-              COUCHBASE=$$(ping couchbase-couchbase -c 1 | grep -m 1 -E -o '[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+') &&
-
-              echo '
-              {
-                  \"adminInterface\": \"0.0.0.0:4985\",
-                  \"log\": [
-                      \"[*]\"
-                  ],
-                  \"verbose\": true,
-                  \"databases\": {
-                      \"app\": {
-                          \"server\": \"http://'$$COUCHBASE':8091\",
-                          \"bucket\": \"${BUCKET_NAME}\",
-                          \"username\": \"${SECURITY_USER}\",
-                          \"password\": \"${SECURITY_PWD}\",
-                          \"enable_shared_bucket_access\": true,
-                          \"import_docs\": \"continuous\",
-                          \"users\": {
-                              \"admin\": {\"password\": \"adminadmin\", \"admin_channels\": [\"*\"]},
-                              \"test\": {\"password\": \"test\", \"admin_channels\": [\"CHANNEL_test\"]}
-                          },
-                          \"sync\": `
-                              function(doc, oldDoc) {
-                                  if (doc.tag !== undefined) {
-                                      channel(\"CHANNEL_\" + doc.tag);
-                                  }
-                              }
-                          `
-                      }
-                  }
-              }
-              ' > /home/sync_gateway/sync_gateway.json &&
-
-              echo 'Sleep 20s before starting Sync Gateway' &&
-              sleep 20 &&
-              echo 'Starting Sync Gateway' &&
-              /opt/couchbase-sync-gateway/bin/sync_gateway /home/sync_gateway/sync_gateway.json &
-              tail -f /dev/null"
-      links:
-        - couchbase-couchbase
-
-
-  # postgres:
-  #   image: postgres
-  #   container_name: postgres
-  #   environment:
-  #     POSTGRES_USER: test
-  #     POSTGRES_PASSWORD: password
-  #     POSTGRES_DB: myapp
-  #   user: postgres
+  # neo4j:
+  #   platform: linux/amd64
+  #   image: neo4j:4.3-enterprise
+  #   hostname: neo4j
+  #   container_name: neo4j
   #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #      # - postgres:/data/postgres
-  #      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  postgres:
-    image: postgres:13.1
-    # healthcheck:
-    #   test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
-    #   timeout: 45s
-    #   interval: 10s
-    #   retries: 10
-    # restart: always
-    # environment:
-    #   - POSTGRES_USER=root
-    #   - POSTGRES_PASSWORD=password
-    #   - POSTGRES_DB=myDb
-      # - APP_DB_USER=docker
-      # - APP_DB_PASS=docker
-      #- APP_DB_NAME=docker
-    # volumes:
-    #   - ./db:/docker-entrypoint-initdb.d/
-    environment:
-      POSTGRES_PASSWORD: 'postgres'
-    volumes:
-      - database_data:/var/lib/postgresql/data
-      - ./db:/docker-entrypoint-initdb.d/
-    ports:
-      - "55005:5432"
-
+  #     - 7475:7474
+  #     - 7688:7687
+  #   environment:
+  #     NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
+  #     NEO4J_AUTH: neo4j/password
+  #     NEO4J_dbms_memory_heap_max__size: 2G
+  #     NEO4J_dbms_logs_debug_level: DEBUG
+  #     apoc.cypher.initializer.0: "CREATE (n:Test)"
+  #     # NEO4J_apoc_export_file_enabled: "true"
+  #     apoc.export.file.enabled: "true"
+  #     apoc.trigger.enabled: "true"
+  #     apoc.uuid.enabled: "true"
+  #     apoc.ttl.enabled: "true"
+  #     apoc.ttl.schedule: "5"
+  #     apoc.import.file.enabled: "true"
+  #     NEO4J_dbms_security_procedures_unrestricted: "apoc.*"
+  #   networks:
+  #     - apoc_workshop
 
 volumes:
   database_data:
     driver: local
-
-  # db:
-  #   container_name: postgres_container
-  #   image: postgres:9.6.12
-  #   environment:
-  #     POSTGRES_USER: myUser
-  #     POSTGRES_PASSWORD: password
-  #     POSTGRES_DB: test
-  #     PGDATA: /data/postgres
-  #   #volumes:
-  #      # - postgres:/data/postgres
-  #      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-  #   ports:
-  #     - "5432:5432"
-  #   networks:
-  #     - apoc_workshop
-  #   restart: unless-stopped
-
-  # db:
-  #   image: mysql
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: test_db
-  #   ports:
-  #     - "3307:3306"
-    # volumes:
-      # - $HOME/Desktop/MySQL-Snippets/school.sql:/school.sql

@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n# If-else statements\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. \nThe conditional execution procedures simulate an if / else structure, where a boolean parameter determines which cypher query is executed.\nTo simulate a conditional with pure Cypher we could execute for example:\n`MATCH (n:Test) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.myProp) THEN [1] ELSE [] END | SET n.otherProp \u003d 0)`\n\nThe `FOREACH` clause can be used to update data, but with more complex use cases (for example a `MATCH`), we cannot use it.\n\nSo if I want to do more complex things I can use `apoc.when` / `apoc.case` procedure.\n- `apoc.when(condition, ifQuery, elseQuery, {parameters})` - only for read queries\n- `apoc.case([listOfConditionals], elseQuery, {parameters)` - only for read queries\n- `apoc.do.when` - equals to apoc.when but we can also execute \u0027write\u0027 statements\n- `apoc.do.case` - equals to apoc.case but we can also execute \u0027write\u0027 statements\n\n",
+      "text": "%md\n\n# If-else statements\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. \n\nFor example, to simulate a conditional with pure Cypher we could execute for example:\n`MATCH (n:Test) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.myProp) THEN [1] ELSE [] END | SET n.otherProp \u003d 0)`\n\nThe `FOREACH` clause can be used to update data, but with more complex use cases (for example a `MATCH`), we cannot use it.\n\nThe conditional execution procedures simulate an `if-else` or `switch-case` structure, where a boolean parameter determines which cypher query is executed.\n\nSo if I want to do more complex things I can use `apoc.when` / `apoc.case` procedure.\n- `apoc.when(condition, ifQuery, elseQuery, {parameters})` - only for read queries\n- `apoc.case([listOfConditionals], elseQuery, {parameters})` - only for read queries\n- `apoc.do.when` - equals to apoc.when but we can also execute \u0027write\u0027 statements\n- `apoc.do.case` - equals to apoc.case but we can also execute \u0027write\u0027 statements\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 22:41:55.373",
+      "dateUpdated": "2021-11-08 14:57:26.849",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -28,7 +28,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eIf-else statements\u003c/h1\u003e\n\u003cp\u003eSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher.\u003cbr /\u003e\nThe conditional execution procedures simulate an if / else structure, where a boolean parameter determines which cypher query is executed.\u003cbr /\u003e\nTo simulate a conditional with pure Cypher we could execute for example:\u003cbr /\u003e\n\u003ccode\u003eMATCH (n:Test) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.myProp) THEN [1] ELSE [] END | SET n.otherProp \u003d 0)\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eFOREACH\u003c/code\u003e clause can be used to update data, but with more complex use cases (for example a \u003ccode\u003eMATCH\u003c/code\u003e), we cannot use it.\u003c/p\u003e\n\u003cp\u003eSo if I want to do more complex things I can use \u003ccode\u003eapoc.when\u003c/code\u003e / \u003ccode\u003eapoc.case\u003c/code\u003e procedure.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.when(condition, ifQuery, elseQuery, {parameters})\u003c/code\u003e - only for read queries\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.case([listOfConditionals], elseQuery, {parameters)\u003c/code\u003e - only for read queries\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.do.when\u003c/code\u003e - equals to apoc.when but we can also execute \u0026lsquo;write\u0026rsquo; statements\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.do.case\u003c/code\u003e - equals to apoc.case but we can also execute \u0026lsquo;write\u0026rsquo; statements\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eIf-else statements\u003c/h1\u003e\n\u003cp\u003eSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher.\u003c/p\u003e\n\u003cp\u003eFor example, to simulate a conditional with pure Cypher we could execute for example:\u003cbr /\u003e\n\u003ccode\u003eMATCH (n:Test) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.myProp) THEN [1] ELSE [] END | SET n.otherProp \u003d 0)\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eFOREACH\u003c/code\u003e clause can be used to update data, but with more complex use cases (for example a \u003ccode\u003eMATCH\u003c/code\u003e), we cannot use it.\u003c/p\u003e\n\u003cp\u003eThe conditional execution procedures simulate an \u003ccode\u003eif-else\u003c/code\u003e or \u003ccode\u003eswitch-case\u003c/code\u003e structure, where a boolean parameter determines which cypher query is executed.\u003c/p\u003e\n\u003cp\u003eSo if I want to do more complex things I can use \u003ccode\u003eapoc.when\u003c/code\u003e / \u003ccode\u003eapoc.case\u003c/code\u003e procedure.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.when(condition, ifQuery, elseQuery, {parameters})\u003c/code\u003e - only for read queries\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.case([listOfConditionals], elseQuery, {parameters})\u003c/code\u003e - only for read queries\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.do.when\u003c/code\u003e - equals to apoc.when but we can also execute \u0026lsquo;write\u0026rsquo; statements\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.do.case\u003c/code\u003e - equals to apoc.case but we can also execute \u0026lsquo;write\u0026rsquo; statements\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -38,14 +38,82 @@
       "jobName": "paragraph_1635516691436_323316003",
       "id": "paragraph_1635516691436_323316003",
       "dateCreated": "2021-10-29 14:11:31.436",
-      "dateStarted": "2021-11-07 22:41:55.374",
-      "dateFinished": "2021-11-07 22:41:55.389",
+      "dateStarted": "2021-11-08 14:57:26.849",
+      "dateFinished": "2021-11-08 14:57:26.864",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n    match (n:Person)\n    with n\n    call apoc.do.when(n.name \u003d \u0027Keanu Reeves\u0027, \n        \u0027create (n:Keanu {born: $born}) return n\u0027,     // create a node with `Keanu` label\n        \u0027create (n:NotKeanu {born: $born}) return n\u0027,  // create a node with `NotKeanu` label\n        {born: n.born}) // map of parameters, in this case $born \u003d n.born\n    yield value \n    return value.n.born",
+      "text": "%neo4j\n\nmatch (n:Person)\nwith n\nCALL apoc.when(\n  n.name \u003d \u0027Keanu Reeves\u0027,\n  \u0027RETURN \"yes\" as result\u0027,\n  \u0027RETURN \"no\" as result\u0027)\nYIELD value\n\nRETURN value.result as result",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 14:38:26.304",
+      "dateUpdated": "2021-11-07 14:38:53.368",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 271.989,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "result": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "result\n\"yes\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635516809897_465241544",
+      "id": "paragraph_1635516809897_465241544",
+      "dateCreated": "2021-10-29 14:13:29.897",
+      "dateStarted": "2021-11-07 14:38:53.386",
+      "dateFinished": "2021-11-07 14:38:53.625",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n    match (n:Person)\n    with n\n    CALL apoc.do.when(n.name \u003d \u0027Keanu Reeves\u0027, \n        \u0027create (n:Keanu {born: $born}) return n\u0027,     // create a node with `Keanu` label\n        \u0027create (n:NotKeanu {born: $born}) return n\u0027,  // create a node with `NotKeanu` label\n        {born: n.born}) // map of parameters, in this case $born \u003d n.born\n    yield value \n    return value.n.born",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-08 14:58:23.036",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -113,7 +181,7 @@
     {
       "text": "%neo4j\nmatch (nk:NotKeanu) return nk",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 14:38:29.885",
+      "dateUpdated": "2021-11-08 15:03:03.105",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -155,7 +223,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -163,12 +232,7 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":256,\"data\":{\"born\":1966},\"label\":\"NotKeanu\"},{\"id\":257,\"data\":{\"born\":1949},\"label\":\"NotKeanu\"},{\"id\":258,\"data\":{\"born\":1965},\"label\":\"NotKeanu\"},{\"id\":259,\"data\":{\"born\":1969},\"label\":\"NotKeanu\"},{\"id\":260,\"data\":{\"born\":1961},\"label\":\"NotKeanu\"},{\"id\":261,\"data\":{\"born\":1939},\"label\":\"NotKeanu\"},{\"id\":262,\"data\":{\"born\":1976},\"label\":\"NotKeanu\"},{\"id\":263,\"data\":{\"born\":1971},\"label\":\"NotKeanu\"},{\"id\":264,\"data\":{\"born\":1954},\"label\":\"NotKeanu\"},{\"id\":265,\"data\":{\"born\":1981},\"label\":\"NotKeanu\"},{\"id\":266,\"data\":{\"born\":1946},\"label\":\"NotKeanu\"},{\"id\":267,\"data\":{\"born\":1940},\"label\":\"NotKeanu\"},{\"id\":268,\"data\":{\"born\":1967},\"label\":\"NotKeanu\"},{\"id\":269,\"data\":{\"born\":1985},\"label\":\"NotKeanu\"},{\"id\":270,\"data\":{\"born\":1960},\"label\":\"NotKeanu\"},{\"id\":271,\"data\":{\"born\":1946},\"label\":\"NotKeanu\"},{\"id\":272,\"data\":{\"born\":1966},\"label\":\"NotKeanu\"},{\"id\":273,\"data\":{\"born\":1980},\"label\":\"NotKeanu\"},{\"id\":274,\"data\":{\"born\":1982},\"label\":\"NotKeanu\"},{\"id\":275,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":276,\"data\":{\"born\":1957},\"label\":\"NotKeanu\"},{\"id\":277,\"data\":{\"born\":1953},\"label\":\"NotKeanu\"},{\"id\":278,\"data\":{\"born\":1968},\"label\":\"NotKeanu\"},{\"id\":279,\"data\":{\"born\":1955},\"label\":\"NotKeanu\"},{\"id\":280,\"data\":{\"born\":1959},\"label\":\"NotKeanu\"},{\"id\":281,\"data\":{\"born\":1959},\"label\":\"NotKeanu\"},{\"id\":282,\"data\":{\"born\":1938},\"label\":\"NotKeanu\"},{\"id\":283,\"data\":{\"born\":1969},\"label\":\"NotKeanu\"},{\"id\":284,\"data\":{\"born\":1960},\"label\":\"NotKeanu\"},{\"id\":285,\"data\":{\"born\":1944},\"label\":\"NotKeanu\"},{\"id\":286,\"data\":{\"born\":1965},\"label\":\"NotKeanu\"},{\"id\":287,\"data\":{\"born\":1950},\"label\":\"NotKeanu\"},{\"id\":288,\"data\":{\"born\":1955},\"label\":\"NotKeanu\"},{\"id\":289,\"data\":{\"born\":1967},\"label\":\"NotKeanu\"},{\"id\":290,\"data\":{\"born\":1943},\"label\":\"NotKeanu\"},{\"id\":291,\"data\":{\"born\":1951},\"label\":\"NotKeanu\"},{\"id\":292,\"data\":{\"born\":1932},\"label\":\"NotKeanu\"},{\"id\":293,\"data\":{\"born\":1946},\"label\":\"NotKeanu\"},{\"id\":294,\"data\":{\"born\":1949},\"label\":\"NotKeanu\"},{\"id\":295,\"data\":{\"born\":1958},\"label\":\"NotKeanu\"},{\"id\":296,\"data\":{\"born\":1967},\"label\":\"NotKeanu\"},{\"id\":297,\"data\":{\"born\":1954},\"label\":\"NotKeanu\"},{\"id\":298,\"data\":{\"born\":1956},\"label\":\"NotKeanu\"},{\"id\":299,\"data\":{\"born\":1963},\"label\":\"NotKeanu\"},{\"id\":300,\"data\":{\"born\":1943},\"label\":\"NotKeanu\"},{\"id\":301,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":302,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":303,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":304,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":173,\"data\":{\"born\":1967},\"label\":\"NotKeanu\"},{\"id\":174,\"data\":{\"born\":1961},\"label\":\"NotKeanu\"},{\"id\":175,\"data\":{\"born\":1960},\"label\":\"NotKeanu\"},{\"id\":176,\"data\":{\"born\":1967},\"label\":\"NotKeanu\"},{\"id\":177,\"data\":{\"born\":1965},\"label\":\"NotKeanu\"},{\"id\":178,\"data\":{\"born\":1952},\"label\":\"NotKeanu\"},{\"id\":179,\"data\":{\"born\":1978},\"label\":\"NotKeanu\"},{\"id\":180,\"data\":{\"born\":1975},\"label\":\"NotKeanu\"},{\"id\":181,\"data\":{\"born\":1940},\"label\":\"NotKeanu\"},{\"id\":182,\"data\":{\"born\":1944},\"label\":\"NotKeanu\"},{\"id\":183,\"data\":{\"born\":1962},\"label\":\"NotKeanu\"},{\"id\":184,\"data\":{\"born\":1937},\"label\":\"NotKeanu\"},{\"id\":185,\"data\":{\"born\":1962},\"label\":\"NotKeanu\"},{\"id\":186,\"data\":{\"born\":1958},\"label\":\"NotKeanu\"},{\"id\":187,\"data\":{\"born\":1966},\"label\":\"NotKeanu\"},{\"id\":188,\"data\":{\"born\":1971},\"label\":\"NotKeanu\"},{\"id\":189,\"data\":{\"born\":1968},\"label\":\"NotKeanu\"},{\"id\":190,\"data\":{\"born\":1957},\"label\":\"NotKeanu\"},{\"id\":191,\"data\":{\"born\":1943},\"label\":\"NotKeanu\"},{\"id\":192,\"data\":{\"born\":1967},\"label\":\"NotKeanu\"},{\"id\":193,\"data\":{\"born\":1948},\"label\":\"NotKeanu\"},{\"id\":194,\"data\":{\"born\":1947},\"label\":\"NotKeanu\"},{\"id\":195,\"data\":{\"born\":1961},\"label\":\"NotKeanu\"},{\"id\":196,\"data\":{\"born\":1957},\"label\":\"NotKeanu\"},{\"id\":197,\"data\":{\"born\":1959},\"label\":\"NotKeanu\"},{\"id\":198,\"data\":{\"born\":1962},\"label\":\"NotKeanu\"},{\"id\":199,\"data\":{\"born\":1933},\"label\":\"NotKeanu\"},{\"id\":200,\"data\":{\"born\":1961},\"label\":\"NotKeanu\"},{\"id\":201,\"data\":{\"born\":1944},\"label\":\"NotKeanu\"},{\"id\":202,\"data\":{\"born\":1941},\"label\":\"NotKeanu\"},{\"id\":203,\"data\":{\"born\":1969},\"label\":\"NotKeanu\"},{\"id\":204,\"data\":{\"born\":1962},\"label\":\"NotKeanu\"},{\"id\":205,\"data\":{\"born\":1974},\"label\":\"NotKeanu\"},{\"id\":206,\"data\":{\"born\":1970},\"label\":\"NotKeanu\"},{\"id\":207,\"data\":{\"born\":1961},\"label\":\"NotKeanu\"},{\"id\":208,\"data\":{\"born\":1971},\"label\":\"NotKeanu\"},{\"id\":209,\"data\":{\"born\":1996},\"label\":\"NotKeanu\"},{\"id\":210,\"data\":{\"born\":1957},\"label\":\"NotKeanu\"},{\"id\":211,\"data\":{\"born\":1970},\"label\":\"NotKeanu\"},{\"id\":212,\"data\":{\"born\":1971},\"label\":\"NotKeanu\"},{\"id\":213,\"data\":{\"born\":1972},\"label\":\"NotKeanu\"},{\"id\":214,\"data\":{\"born\":1966},\"label\":\"NotKeanu\"},{\"id\":215,\"data\":{\"born\":1942},\"label\":\"NotKeanu\"},{\"id\":216,\"data\":{\"born\":1963},\"label\":\"NotKeanu\"},{\"id\":217,\"data\":{\"born\":1963},\"label\":\"NotKeanu\"},{\"id\":218,\"data\":{\"born\":1940},\"label\":\"NotKeanu\"},{\"id\":219,\"data\":{\"born\":1960},\"label\":\"NotKeanu\"},{\"id\":220,\"data\":{\"born\":1929},\"label\":\"NotKeanu\"},{\"id\":221,\"data\":{\"born\":1942},\"label\":\"NotKeanu\"},{\"id\":222,\"data\":{\"born\":1951},\"label\":\"NotKeanu\"},{\"id\":223,\"data\":{\"born\":1956},\"label\":\"NotKeanu\"},{\"id\":224,\"data\":{\"born\":1970},\"label\":\"NotKeanu\"},{\"id\":225,\"data\":{\"born\":1971},\"label\":\"NotKeanu\"},{\"id\":226,\"data\":{\"born\":1940},\"label\":\"NotKeanu\"},{\"id\":227,\"data\":{\"born\":1953},\"label\":\"NotKeanu\"},{\"id\":228,\"data\":{\"born\":1968},\"label\":\"NotKeanu\"},{\"id\":229,\"data\":{\"born\":1973},\"label\":\"NotKeanu\"},{\"id\":230,\"data\":{\"born\":1967},\"label\":\"NotKeanu\"},{\"id\":231,\"data\":{\"born\":1956},\"label\":\"NotKeanu\"},{\"id\":232,\"data\":{\"born\":1941},\"label\":\"NotKeanu\"},{\"id\":233,\"data\":{\"born\":1956},\"label\":\"NotKeanu\"},{\"id\":234,\"data\":{\"born\":1953},\"label\":\"NotKeanu\"},{\"id\":235,\"data\":{\"born\":1949},\"label\":\"NotKeanu\"},{\"id\":236,\"data\":{\"born\":1962},\"label\":\"NotKeanu\"},{\"id\":237,\"data\":{\"born\":1950},\"label\":\"NotKeanu\"},{\"id\":238,\"data\":{\"born\":1956},\"label\":\"NotKeanu\"},{\"id\":239,\"data\":{\"born\":1948},\"label\":\"NotKeanu\"},{\"id\":240,\"data\":{\"born\":1956},\"label\":\"NotKeanu\"},{\"id\":241,\"data\":{\"born\":1949},\"label\":\"NotKeanu\"},{\"id\":242,\"data\":{\"born\":1977},\"label\":\"NotKeanu\"},{\"id\":243,\"data\":{\"born\":1970},\"label\":\"NotKeanu\"},{\"id\":244,\"data\":{\"born\":1930},\"label\":\"NotKeanu\"},{\"id\":245,\"data\":{\"born\":1968},\"label\":\"NotKeanu\"},{\"id\":246,\"data\":{\"born\":1950},\"label\":\"NotKeanu\"},{\"id\":247,\"data\":{\"born\":1974},\"label\":\"NotKeanu\"},{\"id\":248,\"data\":{\"born\":1954},\"label\":\"NotKeanu\"},{\"id\":249,\"data\":{\"born\":1931},\"label\":\"NotKeanu\"},{\"id\":250,\"data\":{\"born\":1930},\"label\":\"NotKeanu\"},{\"id\":251,\"data\":{\"born\":1930},\"label\":\"NotKeanu\"},{\"id\":252,\"data\":{\"born\":1947},\"label\":\"NotKeanu\"},{\"id\":253,\"data\":{\"born\":1968},\"label\":\"NotKeanu\"},{\"id\":254,\"data\":{\"born\":1958},\"label\":\"NotKeanu\"},{\"id\":255,\"data\":{\"born\":1953},\"label\":\"NotKeanu\"}],\"edges\":[],\"labels\":{\"TTL\":\"#4ED4BA\",\"NodeWithUnique\":\"#DDC73A\",\"Movie\":\"#1C8939\",\"Person\":\"#269AB1\",\"Keanu\":\"#47A815\",\"NotKeanu\":\"#8B123D\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
-          }
-        ]
+        "msg": []
       },
       "apps": [],
       "runtimeInfos": {},
@@ -176,8 +240,8 @@
       "jobName": "paragraph_1635939537974_717266072",
       "id": "paragraph_1635939537974_717266072",
       "dateCreated": "2021-11-03 11:38:57.974",
-      "dateStarted": "2021-11-07 14:38:29.908",
-      "dateFinished": "2021-11-07 14:38:29.991",
+      "dateStarted": "2021-11-08 15:02:58.334",
+      "dateFinished": "2021-11-08 15:02:58.368",
       "status": "FINISHED"
     },
     {
@@ -252,77 +316,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nmatch (n:Person)\nwith n\nCALL apoc.when(\n  n.name \u003d \u0027Keanu Reeves\u0027,\n  \u0027RETURN \"yes\" as result\u0027,\n  \u0027RETURN \"no\" as result\u0027)\nYIELD value\n\nRETURN value.result as result",
+      "text": "%neo4j\n\n// if name is Keanu Reeves we return list of \u0027title\u0027 movies related\n// if name contains \u0027Carrie\u0027 we return list of \u0027title\u0027 and \u0027tagline\u0027 movies related\n// otherwise we return list of \u0027released\u0027 movies related\n\nMATCH (n:Person)\nCALL apoc.case([                // list of pairs (condition and query)\n  n.name \u003d \u0027Keanu Reeves\u0027, \"WITH $n as n RETURN [(n)-[]-(m:Movie) | m.title] as selection\",\n  n.name contains \u0027Carrie\u0027, \"WITH $n as n RETURN [(n)-[]-(m:Movie) | \u0027title: \u0027 + m.title + \u0027, tagline: \u0027 + m.tagline] as selection\"],   \n  \u0027RETURN [(n)-[]-(m:Movie) | m.released] as selection\u0027,                                         \n  {n: n}\n)\nYIELD value\nRETURN n.name, value.selection as selection;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 14:38:53.368",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 271.989,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "result": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "result\n\"yes\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n\"no\"\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635516809897_465241544",
-      "id": "paragraph_1635516809897_465241544",
-      "dateCreated": "2021-10-29 14:13:29.897",
-      "dateStarted": "2021-11-07 14:38:53.386",
-      "dateFinished": "2021-11-07 14:38:53.625",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%neo4j\n\n// if name is Keanu Reeves we return list of \u0027title\u0027 movies related\n// if name contains \u0027Carrie\u0027 we return list of \u0027title\u0027 and \u0027tagline\u0027 movies related\n// otherwise we return list of \u0027released\u0027 movies related\n \nMATCH (n:Person)\nCALL apoc.case([                // list of pairs (condition and query)\n  n.name \u003d \u0027Keanu Reeves\u0027, \"WITH $n as n RETURN [(n)-[]-(m:Movie) | m.title] as selection\",\n  n.name contains \u0027Carrie\u0027, \"WITH $n as n RETURN [(n)-[]-(m:Movie) | \u0027title: \u0027 + m.title + \u0027, tagline: \u0027 + m.tagline] as selection\"],   \n  \u0027RETURN [(n)-[]-(m:Movie) | m.released] as selection\u0027,                                         \n  {n: n}\n)\nYIELD value\nRETURN n.name, value.selection as selection;",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-07 14:43:06.278",
+      "dateUpdated": "2021-11-08 14:58:46.025",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -563,9 +559,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n\n## Conditional exception\n\nApoc provide a procedure to raise an exception with a specific message when predicate is false.\n\n\u003cpre\u003e\napoc.util.validate(predicate, message, params) - if the `predicate` is true raise an exception with `message`.\n\u003c/pre\u003e\n\n\nWe have also `apoc.util.validatePredicate(predicate, message, params)`, equivalent but it\u0027s a function.\n",
+      "text": "%md\n\n\n## Conditional exception\n\nApoc also provide a procedure to raise an exception with a specific message when predicate is false.\n\n\u003cpre\u003e\napoc.util.validate(predicate, message, params) - if the `predicate` is true raise an exception with `message`.\n\u003c/pre\u003e\n\n\nWe have also `apoc.util.validatePredicate(predicate, message, params)`, equivalent but it\u0027s a function.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 14:59:16.050",
+      "dateUpdated": "2021-11-08 15:03:53.044",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -590,7 +586,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eConditional exception\u003c/h2\u003e\n\u003cp\u003eApoc provide a procedure to raise an exception with a specific message when predicate is false.\u003c/p\u003e\n\u003cpre\u003e\napoc.util.validate(predicate, message, params) - if the `predicate` is true raise an exception with `message`.\n\u003c/pre\u003e\n\u003cp\u003eWe have also \u003ccode\u003eapoc.util.validatePredicate(predicate, message, params)\u003c/code\u003e, equivalent but it\u0026rsquo;s a function.\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eConditional exception\u003c/h2\u003e\n\u003cp\u003eApoc also provide a procedure to raise an exception with a specific message when predicate is false.\u003c/p\u003e\n\u003cpre\u003e\napoc.util.validate(predicate, message, params) - if the `predicate` is true raise an exception with `message`.\n\u003c/pre\u003e\n\u003cp\u003eWe have also \u003ccode\u003eapoc.util.validatePredicate(predicate, message, params)\u003c/code\u003e, equivalent but it\u0026rsquo;s a function.\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -600,14 +596,14 @@
       "jobName": "paragraph_1635865337623_10689460",
       "id": "paragraph_1635865337623_10689460",
       "dateCreated": "2021-11-02 15:02:17.623",
-      "dateStarted": "2021-11-07 14:59:16.050",
-      "dateFinished": "2021-11-07 14:59:16.067",
+      "dateStarted": "2021-11-08 15:03:53.044",
+      "dateFinished": "2021-11-08 15:03:53.056",
       "status": "FINISHED"
     },
     {
       "text": "%neo4j\nMATCH (n:Person) WITH n.name \u003d \u0027Keanu Reeves\u0027 as booleanPredicate\nCALL apoc.util.validate(booleanPredicate,\u0027Error number %d\u0027,[42])\nRETURN count(*)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:00:07.223",
+      "dateUpdated": "2021-11-08 15:04:30.445",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -623,7 +619,7 @@
                   "tableGridState": {},
                   "tableColumnTypeState": {
                     "names": {
-                      "\u0027ok\u0027": "string"
+                      "count(*)": "string"
                     },
                     "updated": false
                   },
@@ -656,11 +652,11 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
-            "type": "TEXT",
-            "data": "Failed to invoke procedure `apoc.util.validate`: Caused by: java.lang.RuntimeException: Error number 42"
+            "type": "TABLE",
+            "data": "count(*)\n0\n"
           }
         ]
       },
@@ -670,9 +666,9 @@
       "jobName": "paragraph_1636043842236_1223515060",
       "id": "paragraph_1636043842236_1223515060",
       "dateCreated": "2021-11-04 16:37:22.237",
-      "dateStarted": "2021-11-07 15:00:07.245",
-      "dateFinished": "2021-11-07 15:00:07.319",
-      "status": "ERROR"
+      "dateStarted": "2021-11-08 15:04:29.829",
+      "dateFinished": "2021-11-08 15:04:30.212",
+      "status": "FINISHED"
     },
     {
       "text": "%neo4j\nMATCH (n:Person) WITH n.name \u003d \u0027Not existent\u0027 as booleanPredicate\nCALL apoc.util.validate(booleanPredicate,\u0027Error number %d\u0027,[42])\nRETURN count(*)",
@@ -745,9 +741,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.util.validatePredicate",
       "text": "%neo4j\n// equivalent to apoc.util.validate but is a function\n\nMATCH (a:Person)\nWHERE apoc.util.validatePredicate(a.name \u003d \u0027Keanu Reeves\u0027,\u0027message %d\u0027,[42])\nRETURN a",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:02:32.911",
+      "dateUpdated": "2021-11-08 15:05:07.570",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -790,7 +787,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -816,9 +814,9 @@
       "status": "ERROR"
     },
     {
-      "text": "%md\n\n# Batching data\n\nApoc provides some procedures to split the data in batches to handle performance and memory issues:\n- apoc.periodic.iterate\n- apoc.periodic.commit\n- apoc.periodic.truncate\n\nThe `apoc.periodic.iterate` procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. \n\nIt provides a way to batch the data by dividing the workload into two parts:\n\n- a data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\n- an operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\n\nThe data-driven statement is provided as the first statement that results in a stream of values to be processed. The operation statement is provided as the second statement to process one element at a time or (with batchMode: \"BATCH\") a batch at a time. The results of the data-driven statement are passed to the operation statement as parameters, so they are automatically made available with their names.\n\nWe can use the following configurations as 3rd parameter:\n\n- batchSize (default: 10000) - run the specified number of operation statements in a single transaction\n- parallel (default: false) - run operation statements in parallel (note that statements might deadlock if conflicting)\n- retries (default: 0) - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param \\{_retry}\n- batchMode (default: \"BATCH\") - how data-driven statements should be processed by operation statement. See above\n- params (default: EmtpyMap) - externally pass in map of params |\n- concurrency (default: 50) - number of concurrent tasks are generated when using `parallel:true` |\n\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\n`batchMode` can have 3 values. \n`SINGLE` to perform one operation at a time. \nBoth `BATCH` and `BATCH_SINGLE` execute operation statement once per batchSize. In both modes, the results of data-driven statement will be grouped in a `$_batch`. For example, in this case:\n\n| first      | second |\n| ----------- | ----------- | \n| alpha      | beta       | \n| gamma   | delta        |\n| ...        | ... |\n\n`$_batch` will be `[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027}  .....]`\n\n\nWith `BATCH` will be executed an unpacking of batch, that is:\n\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\nInstead with `BATCH_SINGLE` but leaves unpacking of batch to the operation statement.\nThe operation query can access the batched values via the `$_batch` parameter.\n",
+      "text": "%md\n\n# Batching data\n\nApoc provides some procedures to split the data in batches to handle performance and memory issues:\n- apoc.periodic.iterate\n- apoc.periodic.commit\n- apoc.periodic.truncate\n\nThe `apoc.periodic.iterate(data-driven, operation, {config})` procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. \n\nIt provides a way to batch the data by dividing the workload into two parts:\n\n- a data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\n- an operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\n\nThe data-driven statement is provided as the first statement that results in a stream of values to be processed. \nThe results of the data-driven statement are passed to the operation statement as parameters and the operation statement is provided as the second statement to process one element at a time or a batch at a time\n\nWe can use the following configurations as 3rd parameter:\n\n- batchSize (default: 10000) - run the specified number of operation statements in a single transaction\n- parallel (default: false) - run operation statements in paralle\n- retries (default: 0) - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param \\{_retry}\n- batchMode (default: \"BATCH\") - how data-driven statements should be processed by operation statement. See below\n- params (default: EmtpyMap) - externally pass in map of params\n- concurrency (default: 50) - number of concurrent tasks are generated when using `parallel:true`\n\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\n`batchMode` can have 3 values. \n`SINGLE` to perform one operation at a time. \nBoth `BATCH` and `BATCH_SINGLE` execute operation statement once per batchSize and the results of data-driven statement will be grouped in a `$_batch`. For example, in this case:\n\n| first      | second |\n| ----------- | ----------- | \n| alpha      | beta       | \n| gamma   | delta        |\n| ...        | ... |\n\n`$_batch` will be a list of maps: `[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027}  .....]`\n\n\nBut with `BATCH` will be executed an unpacking of batch, that is:\n\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\nInstead with `BATCH_SINGLE` but leaves unpacking of batch to the operation statement.\nThe operation query can access the batched values via the `$_batch` parameter.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 22:43:53.732",
+      "dateUpdated": "2021-11-08 15:21:43.394",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -843,7 +841,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eBatching data\u003c/h1\u003e\n\u003cp\u003eApoc provides some procedures to split the data in batches to handle performance and memory issues:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.periodic.iterate\u003c/li\u003e\n\u003cli\u003eapoc.periodic.commit\u003c/li\u003e\n\u003cli\u003eapoc.periodic.truncate\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003eapoc.periodic.iterate\u003c/code\u003e procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions.\u003c/p\u003e\n\u003cp\u003eIt provides a way to batch the data by dividing the workload into two parts:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ea data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\u003c/li\u003e\n\u003cli\u003ean operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe data-driven statement is provided as the first statement that results in a stream of values to be processed. The operation statement is provided as the second statement to process one element at a time or (with batchMode: \u0026ldquo;BATCH\u0026rdquo;) a batch at a time. The results of the data-driven statement are passed to the operation statement as parameters, so they are automatically made available with their names.\u003c/p\u003e\n\u003cp\u003eWe can use the following configurations as 3rd parameter:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ebatchSize (default: 10000) - run the specified number of operation statements in a single transaction\u003c/li\u003e\n\u003cli\u003eparallel (default: false) - run operation statements in parallel (note that statements might deadlock if conflicting)\u003c/li\u003e\n\u003cli\u003eretries (default: 0) - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param {_retry}\u003c/li\u003e\n\u003cli\u003ebatchMode (default: \u0026ldquo;BATCH\u0026rdquo;) - how data-driven statements should be processed by operation statement. See above\u003c/li\u003e\n\u003cli\u003eparams (default: EmtpyMap) - externally pass in map of params |\u003c/li\u003e\n\u003cli\u003econcurrency (default: 50) - number of concurrent tasks are generated when using \u003ccode\u003eparallel:true\u003c/code\u003e |\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\u003cp\u003e\u003ccode\u003ebatchMode\u003c/code\u003e can have 3 values.\u003cbr /\u003e\n\u003ccode\u003eSINGLE\u003c/code\u003e to perform one operation at a time.\u003cbr /\u003e\nBoth \u003ccode\u003eBATCH\u003c/code\u003e and \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e execute operation statement once per batchSize. In both modes, the results of data-driven statement will be grouped in a \u003ccode\u003e$_batch\u003c/code\u003e. For example, in this case:\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003cth\u003efirst\u003c/th\u003e\u003cth\u003esecond\u003c/th\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003ealpha\u003c/td\u003e\u003ctd\u003ebeta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003egamma\u003c/td\u003e\u003ctd\u003edelta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003e\u003ccode\u003e$_batch\u003c/code\u003e will be \u003ccode\u003e[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027} .....]\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eWith \u003ccode\u003eBATCH\u003c/code\u003e will be executed an unpacking of batch, that is:\u003c/p\u003e\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\u003cp\u003eInstead with \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e but leaves unpacking of batch to the operation statement.\u003cbr /\u003e\nThe operation query can access the batched values via the \u003ccode\u003e$_batch\u003c/code\u003e parameter.\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eBatching data\u003c/h1\u003e\n\u003cp\u003eApoc provides some procedures to split the data in batches to handle performance and memory issues:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.periodic.iterate\u003c/li\u003e\n\u003cli\u003eapoc.periodic.commit\u003c/li\u003e\n\u003cli\u003eapoc.periodic.truncate\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003eapoc.periodic.iterate(data-driven, operation, {config})\u003c/code\u003e procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions.\u003c/p\u003e\n\u003cp\u003eIt provides a way to batch the data by dividing the workload into two parts:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ea data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\u003c/li\u003e\n\u003cli\u003ean operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe data-driven statement is provided as the first statement that results in a stream of values to be processed.\u003cbr /\u003e\nThe results of the data-driven statement are passed to the operation statement as parameters and the operation statement is provided as the second statement to process one element at a time or a batch at a time\u003c/p\u003e\n\u003cp\u003eWe can use the following configurations as 3rd parameter:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ebatchSize (default: 10000) - run the specified number of operation statements in a single transaction\u003c/li\u003e\n\u003cli\u003eparallel (default: false) - run operation statements in paralle\u003c/li\u003e\n\u003cli\u003eretries (default: 0) - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param {_retry}\u003c/li\u003e\n\u003cli\u003ebatchMode (default: \u0026ldquo;BATCH\u0026rdquo;) - how data-driven statements should be processed by operation statement. See below\u003c/li\u003e\n\u003cli\u003eparams (default: EmtpyMap) - externally pass in map of params\u003c/li\u003e\n\u003cli\u003econcurrency (default: 50) - number of concurrent tasks are generated when using \u003ccode\u003eparallel:true\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\u003cp\u003e\u003ccode\u003ebatchMode\u003c/code\u003e can have 3 values.\u003cbr /\u003e\n\u003ccode\u003eSINGLE\u003c/code\u003e to perform one operation at a time.\u003cbr /\u003e\nBoth \u003ccode\u003eBATCH\u003c/code\u003e and \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e execute operation statement once per batchSize and the results of data-driven statement will be grouped in a \u003ccode\u003e$_batch\u003c/code\u003e. For example, in this case:\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003cth\u003efirst\u003c/th\u003e\u003cth\u003esecond\u003c/th\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003ealpha\u003c/td\u003e\u003ctd\u003ebeta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003egamma\u003c/td\u003e\u003ctd\u003edelta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003e\u003ccode\u003e$_batch\u003c/code\u003e will be a list of maps: \u003ccode\u003e[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027} .....]\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eBut with \u003ccode\u003eBATCH\u003c/code\u003e will be executed an unpacking of batch, that is:\u003c/p\u003e\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\u003cp\u003eInstead with \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e but leaves unpacking of batch to the operation statement.\u003cbr /\u003e\nThe operation query can access the batched values via the \u003ccode\u003e$_batch\u003c/code\u003e parameter.\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -853,14 +851,52 @@
       "jobName": "paragraph_1635518181245_851865146",
       "id": "paragraph_1635518181245_851865146",
       "dateCreated": "2021-10-29 14:36:21.246",
-      "dateStarted": "2021-11-07 22:43:53.732",
-      "dateFinished": "2021-11-07 22:43:53.746",
+      "dateStarted": "2021-11-08 15:21:43.394",
+      "dateFinished": "2021-11-08 15:21:43.414",
       "status": "FINISHED"
     },
     {
+      "title": "Create \"periodic\" dataset",
+      "text": "%neo4j\nUNWIND range(1,100) as id create (:Start {myProp: id})-[rel:MY_PERIODIC_REL]-\u003e(:End);",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-08 15:23:06.881",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636297395447_1508173035",
+      "id": "paragraph_1636297395447_1508173035",
+      "dateCreated": "2021-11-07 15:03:15.447",
+      "dateStarted": "2021-11-08 15:23:03.883",
+      "dateFinished": "2021-11-08 15:23:04.224",
+      "status": "FINISHED"
+    },
+    {
+      "title": "BATCH mode",
       "text": "%neo4j\n\nUNWIND range(1,100) as id create (:Start {myProp: id})-[rel:MY_PERIODIC_REL]-\u003e(:End);\n\nCALL apoc.periodic.iterate(\n  \"MATCH (p) WHERE (p)-[:MY_PERIODIC_REL]-\u003e() RETURN p\",\n  \"SET p:AnotherLabel\", // this is a single element of batch UNWINDed\n  {batchMode: \u0027BATCH\u0027,batchSize:10, parallel:false})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-04 16:54:42.945",
+      "dateUpdated": "2021-11-08 15:23:12.121",
       "config": {
         "colWidth": 9.0,
         "fontSize": 9.0,
@@ -922,7 +958,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -948,9 +985,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "Check result",
       "text": "%neo4j\n\nmatch (s:Start) \nreturn distinct labels(s)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-04 16:54:47.036",
+      "dateUpdated": "2021-11-08 15:22:07.129",
       "config": {
         "colWidth": 3.0,
         "fontSize": 9.0,
@@ -990,7 +1028,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1016,44 +1055,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\nUNWIND range(1,100) as id create (:Start {myProp: id})-[rel:MY_PERIODIC_REL]-\u003e(:End);",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:03:43.850",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": []
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636297395447_1508173035",
-      "id": "paragraph_1636297395447_1508173035",
-      "dateCreated": "2021-11-07 15:03:15.447",
-      "dateStarted": "2021-11-07 15:03:43.885",
-      "dateFinished": "2021-11-07 15:03:43.999",
-      "status": "FINISHED"
-    },
-    {
       "text": "%neo4j\n\n// the $_batch is [{p: Node(1)}, {p: Node(2)}, ....]\nCALL apoc.periodic.iterate(\n  \"MATCH (p) WHERE (p)-[:MY_PERIODIC_REL]-\u003e() RETURN p\",\n  \"WITH $_batch as b CREATE (batch:Batch) set batch.prop \u003d [item in b | item.p.myProp]\", // we create for each batch a list of \u0027myProp\u0027s\n  {batchMode: \u0027BATCH_SINGLE\u0027,batchSize:10, parallel:false})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:04:37.764",
+      "dateUpdated": "2021-11-08 15:24:25.640",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1141,7 +1145,7 @@
     {
       "text": "%neo4j\n\nMATCH (n:Batch) return n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-04 16:56:32.524",
+      "dateUpdated": "2021-11-08 15:24:30.463",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1159,7 +1163,7 @@
                       {
                         "name": "id0",
                         "visible": true,
-                        "width": 242.0,
+                        "width": 150.0,
                         "sort": {},
                         "filters": [
                           {}
@@ -1255,9 +1259,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### Periodic commit\n\nEspecially for graph processing it is useful to run a query repeatedly in separate transactions until it doesn’t process and generates any results anymore. \n\nIn this case, we can use `apoc.periodic.commit(query, {param})`, \nwith which the query is executed in separate transactions until it returns 0.\n",
+      "text": "%md\n\n### Periodic commit\n\nEspecially for graph processing it is useful to run a query repeatedly in separate transactions until it doesn’t generates any results anymore. \n\nIn this case, we can use `apoc.periodic.commit(query, {param})`, \nwith which the query is executed in separate transactions until it returns `0`.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-04 16:59:02.468",
+      "dateUpdated": "2021-11-08 15:25:43.017",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1284,9 +1288,9 @@
       "status": "READY"
     },
     {
-      "text": "%neo4j\n\n// apoc.periodic.commit must contain a LIMIT clause to batch results\n\nCALL apoc.periodic.commit(\n  \"MATCH (person:Person) WHERE NOT exists(person.city)\n   with person LIMIT $limit\n   SET person.city \u003d apoc.create.uuid() // apoc.create.uuid() is a simple function that generate an UUID\n   RETURN count(*)\", // until count is 0, we continue the execution\n  {limit:10})",
+      "text": "%neo4j\n\n// apoc.periodic.commit must contain a LIMIT clause to batch results\n\nCALL apoc.periodic.commit(\n  \"MATCH (person:Person) WHERE NOT exists(person.city)\n   with person LIMIT $limit                            // we limit the result\n   SET person.city \u003d apoc.create.uuid()                // apoc.create.uuid() is a simple function that generate an UUID, e.g. \u00273a4500b3-350e-43e9-aadb-d839eeb23b62\u0027\n   RETURN count(*)\", // until count is 0, we continue the execution\n  {limit:10})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:05:00.191",
+      "dateUpdated": "2021-11-08 15:26:50.234",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1495,9 +1499,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Delete the entire database\n\nWe can use the `apoc.periodic.truncate` to delete periodically the entire database. This procedure uses the apoc.periodic.iterate under the hood.\nThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies.\n\n```\nCALL apoc.periodic.truncate({dropSchema: true})\n```\nWith dropSchema\u003dtrue/false that eventually drops indexes and constraints.\n",
+      "text": "%md\n\n### Delete the entire database\n\nWe can use the `apoc.periodic.truncate` to delete periodically the entire database. This procedure uses the apoc.periodic.iterate under the hood.\nThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies.\n\n```\nCALL apoc.periodic.truncate({dropSchema: true})\n```\nWith dropSchema\u003dtrue/false that eventually drops indexes and constraints.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 10:19:55.898",
+      "dateUpdated": "2021-11-08 15:27:06.897",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1524,9 +1528,9 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\n## [NEXT CHAPTER](http://localhost:8080/#/notebook/2GKUM18D6)",
+      "text": "%md\n\n## [2. Statistics and analysis](http://localhost:8080/#/notebook/2GKUM18D6)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:05:36.718",
+      "dateUpdated": "2021-11-08 15:27:38.717",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1551,7 +1555,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GKUM18D6\"\u003eNEXT CHAPTER\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GKUM18D6\"\u003e2. Statistics and analysis\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1561,8 +1565,8 @@
       "jobName": "paragraph_1635518678615_1647023307",
       "id": "paragraph_1635518678615_1647023307",
       "dateCreated": "2021-10-29 14:44:38.615",
-      "dateStarted": "2021-11-07 15:05:36.717",
-      "dateFinished": "2021-11-07 15:05:36.728",
+      "dateStarted": "2021-11-08 15:27:38.714",
+      "dateFinished": "2021-11-08 15:27:38.722",
       "status": "FINISHED"
     }
   ],
