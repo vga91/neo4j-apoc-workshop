@@ -965,9 +965,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### apoc.hashing.fingerprinting\n\nThe procedure accepts 2 parameter, `apoc.hashing.fingerprinting(object, {config})`.\n\nThe `object` could be a node or relationship.\n\n\nThe procedure has the following config parameters:\n\n- `digestAlgorithm (default: \u0027MD5\u0027)` - The algorithm used to compute the fingerprint. Supported values are: `MD5`, `SHA-1`, `SHA-256`\n- `strategy (default: \u0027LAZY\u0027)` - `LAZY` to not include properties or `EAGER` to use all properties\n- `nodeAllowMap` - Properties to include per node label\n- `nodeDisallowMap` - Properties to exclude per node label\n- `relAllowMap` - Properties to include per relationship type\n- `relDisallowMap` -- Properties to exclude per relationship type\n- `mapAllowList` - Map properties to include\n- `mapDisallowList` - Map properties to exclude\n- `allNodesAllowList` - Node properties to include\n- `allNodesDisallowList` - Node properties to exclude\n- `allRelsAllowList` - Relationship properties to include\n- `allRelsDisallowList` - Relationship properties to exclude\n\n\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no {config} parameter\n\u003c/pre\u003e",
+      "text": "%md\n\n### apoc.hashing.fingerprinting\n\nThe procedure accepts 2 parameter, `apoc.hashing.fingerprinting(object, {config})`.\n\nThe `object` could be a node or relationship.\n\n\nThe procedure has the following config parameters:\n\n- `digestAlgorithm (default: \u0027MD5\u0027)` - The algorithm used to compute the fingerprint. Supported values are: `MD5`, `SHA-1`, `SHA-256`\n- `strategy (default: \u0027LAZY\u0027)` - `LAZY` to not include properties or `EAGER` to use all properties\n- `nodeAllowMap` / `nodeDisallowMap` - Properties to include / exclude per node label\n- `relAllowMap` / `relDisallowMap` - Properties to include / exclude per relationship type\n- `mapAllowList` / `mapDisallowList` - Map properties to include / exclude\n- `allNodesAllowList` / `allNodesDisallowList` - Node properties to include / exclude\n- `allRelsAllowList` / `allRelsDisallowList`  - Relationship properties to include / exclude\n\n\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no {config} parameter\n\u003c/pre\u003e",
       "user": "anonymous",
-      "dateUpdated": "2021-11-08 16:03:53.564",
+      "dateUpdated": "2021-11-10 09:31:53.119",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -992,7 +992,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eapoc.hashing.fingerprinting\u003c/h3\u003e\n\u003cp\u003eThe procedure accepts 2 parameter, \u003ccode\u003eapoc.hashing.fingerprinting(object, {config})\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eobject\u003c/code\u003e could be a node or relationship.\u003c/p\u003e\n\u003cp\u003eThe procedure has the following config parameters:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003edigestAlgorithm (default: \u0027MD5\u0027)\u003c/code\u003e - The algorithm used to compute the fingerprint. Supported values are: \u003ccode\u003eMD5\u003c/code\u003e, \u003ccode\u003eSHA-1\u003c/code\u003e, \u003ccode\u003eSHA-256\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003estrategy (default: \u0027LAZY\u0027)\u003c/code\u003e - \u003ccode\u003eLAZY\u003c/code\u003e to not include properties or \u003ccode\u003eEAGER\u003c/code\u003e to use all properties\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003enodeAllowMap\u003c/code\u003e - Properties to include per node label\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003enodeDisallowMap\u003c/code\u003e - Properties to exclude per node label\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003erelAllowMap\u003c/code\u003e - Properties to include per relationship type\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003erelDisallowMap\u003c/code\u003e \u0026ndash; Properties to exclude per relationship type\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003emapAllowList\u003c/code\u003e - Map properties to include\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003emapDisallowList\u003c/code\u003e - Map properties to exclude\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eallNodesAllowList\u003c/code\u003e - Node properties to include\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eallNodesDisallowList\u003c/code\u003e - Node properties to exclude\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eallRelsAllowList\u003c/code\u003e - Relationship properties to include\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eallRelsDisallowList\u003c/code\u003e - Relationship properties to exclude\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no {config} parameter\n\u003c/pre\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eapoc.hashing.fingerprinting\u003c/h3\u003e\n\u003cp\u003eThe procedure accepts 2 parameter, \u003ccode\u003eapoc.hashing.fingerprinting(object, {config})\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eobject\u003c/code\u003e could be a node or relationship.\u003c/p\u003e\n\u003cp\u003eThe procedure has the following config parameters:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003edigestAlgorithm (default: \u0027MD5\u0027)\u003c/code\u003e - The algorithm used to compute the fingerprint. Supported values are: \u003ccode\u003eMD5\u003c/code\u003e, \u003ccode\u003eSHA-1\u003c/code\u003e, \u003ccode\u003eSHA-256\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003estrategy (default: \u0027LAZY\u0027)\u003c/code\u003e - \u003ccode\u003eLAZY\u003c/code\u003e to not include properties or \u003ccode\u003eEAGER\u003c/code\u003e to use all properties\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003enodeAllowMap\u003c/code\u003e / \u003ccode\u003enodeDisallowMap\u003c/code\u003e - Properties to include / exclude per node label\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003erelAllowMap\u003c/code\u003e / \u003ccode\u003erelDisallowMap\u003c/code\u003e - Properties to include / exclude per relationship type\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003emapAllowList\u003c/code\u003e / \u003ccode\u003emapDisallowList\u003c/code\u003e - Map properties to include / exclude\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eallNodesAllowList\u003c/code\u003e / \u003ccode\u003eallNodesDisallowList\u003c/code\u003e - Node properties to include / exclude\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eallRelsAllowList\u003c/code\u003e / \u003ccode\u003eallRelsDisallowList\u003c/code\u003e  - Relationship properties to include / exclude\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no {config} parameter\n\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1002,8 +1002,8 @@
       "jobName": "paragraph_1635424958843_1538360015",
       "id": "paragraph_1635424958843_1538360015",
       "dateCreated": "2021-10-28 12:42:38.843",
-      "dateStarted": "2021-11-08 16:03:53.564",
-      "dateFinished": "2021-11-08 16:03:53.577",
+      "dateStarted": "2021-11-10 09:31:53.129",
+      "dateFinished": "2021-11-10 09:31:53.175",
       "status": "FINISHED"
     },
     {
@@ -1289,22 +1289,23 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## [NEXT CHAPTER](http://localhost:8080/#/notebook/2GMKN71T8)",
+      "text": "%md\n\n## [Cypher execution](http://localhost:8080/#/notebook/2GMKN71T8)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:07:45.602",
+      "dateUpdated": "2021-11-10 09:32:42.956",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
+          "language": "markdown",
+          "editOnDblClick": true,
           "completionKey": "TAB",
-          "completionSupport": true
+          "completionSupport": false
         },
-        "editorMode": "ace/mode/scala",
-        "editorHide": true
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -1315,7 +1316,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GMKN71T8\"\u003eNEXT CHAPTER\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GMKN71T8\"\u003eCypher execution\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1325,9 +1326,26 @@
       "jobName": "paragraph_1635851973936_1972506870",
       "id": "paragraph_1635851973936_1972506870",
       "dateCreated": "2021-11-02 11:19:33.936",
-      "dateStarted": "2021-11-07 15:07:35.170",
-      "dateFinished": "2021-11-07 15:07:35.176",
+      "dateStarted": "2021-11-10 09:32:42.957",
+      "dateFinished": "2021-11-10 09:32:42.973",
       "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 09:32:42.954",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636536762954_264568490",
+      "id": "paragraph_1636536762954_264568490",
+      "dateCreated": "2021-11-10 09:32:42.954",
+      "status": "READY"
     }
   ],
   "name": "2. Statistics and analysis",

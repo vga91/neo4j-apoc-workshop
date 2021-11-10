@@ -88,7 +88,7 @@
       "title": "Return current version",
       "text": "%neo4j\nRETURN apoc.version()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-04 15:44:36.988",
+      "dateUpdated": "2021-11-10 09:28:39.311",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -166,11 +166,11 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
-            "type": "TEXT",
-            "data": "Unknown function \u0027apoc.version\u0027 (line 1, column 8 (offset: 7))\n\"RETURN `apoc`.`version`() AS `apoc.version()`\"\n        ^"
+            "type": "TABLE",
+            "data": "apoc.version()\n\"4.3.0.3\"\n"
           }
         ]
       },
@@ -180,9 +180,9 @@
       "jobName": "paragraph_1606905271077_-1805827748",
       "id": "paragraph_1606905271077_-1805827748",
       "dateCreated": "2020-12-02 10:34:31.078",
-      "dateStarted": "2021-11-04 15:44:37.011",
-      "dateFinished": "2021-11-04 15:44:37.054",
-      "status": "ERROR"
+      "dateStarted": "2021-11-10 09:28:39.345",
+      "dateFinished": "2021-11-10 09:28:39.454",
+      "status": "FINISHED"
     },
     {
       "title": "Apoc help",
