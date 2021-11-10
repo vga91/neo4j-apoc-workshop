@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n# VIRTUAL ENTITIES\n\nWe can visualize nodes and relationships that don’t exist in the graph but only returned by a query. This could be used for:\n\n- return only a few properties of nodes/rels to the visualization, e.g. if you have huge text properties\n- aggregate information to a higher level of abstraction\n- visualization of data from other sources (computation, RDBMS, document-dbs, CSV, XML, JSON) as graph without even storing it\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/virtual/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more information.\nSome procedures are:\n\n\n\nNote that, to manipulate virtual entities, you cannot use \"classic\" Neo4j statement, but you have to use these:\n- apoc.create.setProperty / apoc.create.setProperties\n- apoc.node.id\n- apoc.node.labels\n- apoc.create.setRelProperty / apoc.create.setRelProperties\n- apoc.rel.type\n- apoc.rel.endNode / apoc.rel.startNode\n- apoc.rel.id\n\nLet\u0027s see some examples:",
+      "text": "%md\n# Virtual entities\n\nWe can visualize nodes and relationships that don’t exist in the graph but only returned by a query. This could be used for:\n\n- return only a few properties of nodes/rels to the visualization, e.g. if you have huge text properties\n- aggregate information to a higher level of abstraction\n- visualization of data from other sources (computation, RDBMS, document-dbs, CSV, XML, JSON) as graph without even storing it\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/virtual/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more information.\nSome procedures are:\n\n\n\nNote that, to manipulate virtual entities, you cannot use \"classic\" Neo4j statement, but you have to use these:\n- apoc.create.setProperty / apoc.create.setProperties\n- apoc.node.id\n- apoc.node.labels\n- apoc.create.setRelProperty / apoc.create.setRelProperties\n- apoc.rel.type\n- apoc.rel.endNode / apoc.rel.startNode\n- apoc.rel.id\n\nLet\u0027s see some examples:",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 11:30:49.570",
+      "dateUpdated": "2021-11-10 08:18:11.312",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -764,50 +764,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Lock nodes\n\nWe can lock one or more entities during a transaction:\n- apoc.lock.all([nodes],[relationships])\n- apoc.lock.nodes([nodes])\n- apoc.lock.rels([relationships]\n- apoc.lock.read.nodes\n- apoc.lock.read.rels\n\nThis can be used to prevent some not-thread safety condition.\nFor example, with a dataset like this:\n\n\u003cpre\u003e\nCREATE (:Person {name:\u0027Alex\u0027})\nCREATE (:Email {address:\u0027alex@somewhere.com\u0027});\n\u003c/pre\u003e\n\n// todo - used to prevent some not-thread safety condition\n\nWe may want to create exactly one HAS_EMAIL relationship between these nodes. \nWe can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, \nso we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\nInstead, we want exactly one write.\n\nWe can ensure this condition by using the apoc.lock.nodes procedure, as shown below:\n\n\u003cpre\u003e\nMATCH (p:Person {name:\u0027Alex\u0027})\nMATCH (e:Email {address:\u0027alex@somewhere.com\u0027})\nCALL apoc.lock.nodes([p,e])\nMERGE (p)-[rel:HAS_EMAIL]-\u003e(e)\nRETURN rel;\n\u003c/pre\u003e\n\n\n\n",
+      "text": "%md\n\n# Schema operations\n\n\nTo drop or create index or constraint, you can use the following procedure:\n\n\n- apoc.schema.assert(mapIndexes, mapConstraint, dropExisting) - To create indexes and constraint at once. With `dropExisting` true we drop existing indexes/constraints.\n- apoc.schema.nodes / apoc.schema.relationships - To get nodes / relationships indexes\n- apoc.schema.node.constraintExists\n- apoc.schema.relationship.constraintExists\n- apoc.schema.node.indexExists\n|\u003d\u003d\u003d\n\n[source,cypher]\n----\nCALL apoc.schema.assert({indexLabel:[[indexKeys]], ...}, {constraintLabel:[constraintKeys], ...}, dropExisting : true)\nYIELD label, key, keys, unique, action\n----\n\nWhere the outputs are:\n\n* label\n* key\n* keys, list of the key\n* unique, if the index or constraint are unique\n* action, can be the following values: DROPPED, CREATED\n\nTo retrieve indexes and constraints information for all the node labels in your database, you can use the following procedure:\n\n[source,cypher]\n----\nCALL apoc.schema.nodes()\nYIELD name, label, properties, status, type\n----\n\nWhere the outputs are:\n\n* name of the index/constraint,\n* label\n* properties, (for Neo4j 3.1 and lower versions is a single element array) that are affected by the constraint\n* status, for index can be one of the following values: ONLINE, POPULATING and FAILED\n* type, always \"INDEX\" for indexes, constraint type for constraints\n* failure, the failure description of a failed index\n* populationProgress, the population progress of the index in percentage\n* size, the size of the index\n* valuesSelectivity, computes the selectivity of the unique values\n* userDescription, a user friendly description of what this index indexes\n\nTo retrieve the constraint information for all the relationship types in your database, you can use the following procedure:\n\n[source,cypher]\n----\nCALL apoc.schema.relationships()\nYIELD name, type, properties, status\n----\n\nWhere the outputs are:\n\n* name of the constraint\n* type of the relationship\n* properties, (for Neo4j 3.1 and lower versions is a single element array) that are affected by the constraint\n* status\n\nConfig optional param is a map and its possible values are:\n\n* labels : list of labels to retrieve index/constraint information\n* excludeLabels: list of labels to exclude from retrieve index/constraint information\n* relationships: list of relationships type to retrieve constraint information\n* excludeRelationships: list of relationships\u0027 type to exclude from retrieve constraint information\n\n**Exclude has more power than include, so if excludeLabels and labels are both valued, procedure considers excludeLabels only, the same for relationships.**\n\n[source,cypher]\n----\nCALL apoc.schema.nodes({labels:[\u0027Book\u0027]})\nYIELD name, label, properties, status, type\n----\n\n\nN.B. Constraints for property existence on nodes and relationships are available only for the Enterprise Edition.\n\nTo retrieve the index existence on node, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.indexExists(labelName, propertyNames)\n\n----\n\nThe output return the index existence on node is present or not\n\nTo retrieve if the constraint exists on node, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.constraintExists(labelName, propertyNames)\n----\n\nThe output return the constraint existence on node.\n\nTo retrieve if the constraint exists on relationship, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.relationship.constraintExists(type, propertyNames)\n----\n\nThe output return the constraint on the relationship is present or not\n\n\n\u003d\u003d\u003d Examples\n\n\u003d\u003d\u003d List Schema assert\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert({Foo:[\u0027bar\u0027]},null)\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.index.png[scaledwidth\u003d\"100%\"]\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert(null,{Foo:[\u0027bar\u0027]})\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.constraint.png[scaledwidth\u003d\"100%\"]\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert(null,null)\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.drop.png[scaledwidth\u003d\"100%\"]\n\n\n\u003d\u003d\u003d List indexes and constraints for nodes\n\nGiven the following cypher statements:\n\n[source,cypher]\n----\nCREATE CONSTRAINT ON (bar:Bar) ASSERT exists(bar.foobar)\nCREATE CONSTRAINT ON (bar:Bar) ASSERT bar.foo IS UNIQUE\nCREATE INDEX ON :Person(name)\nCREATE INDEX ON :Publication(name)\nCREATE INDEX ON :Source(name)\n----\n\nWhen you\n\n[source,cypher]\n----\nCALL apoc.schema.nodes()\n----\n\n\nyou will receive this result:\n\nimage::apoc.schema.nodes.png[scaledwidth\u003d\"100%\"]\n\n\u003d\u003d\u003d List constraints for relationships\n\nGiven the following cypher statements:\n\n[source,cypher]\n----\nCREATE CONSTRAINT ON ()-[like:LIKED]-() ASSERT exists(like.day)\nCREATE CONSTRAINT ON ()-[starred:STARRED]-() ASSERT exists(starred.month)\n----\n\nWhen you\n\n[source,cypher]\n----\nCALL apoc.schema.relationships()\n----\n\nyou will receive this result:\n\nimage::apoc.schema.relationships.png[scaledwidth\u003d\"100%\"]\n\n\u003d\u003d\u003d Check if an index or a constraint exists for a Label and property\n\nGiven the previous index definitions, running this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.indexExists(\"Publication\", [\"name\"])\n----\nproduces the following output:\n\nimage::apoc.schema.node.indexExists.png[scaledwidth\u003d\"100%\"]\n\n\nGiven the previous constraint definitions, running this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.constraintExists(\"Bar\", [\"foobar\"])\n----\nproduces the following output:\n\nimage::apoc.schema.node.constraintExists.png[scaledwidth\u003d\"100%\"]\n\nIf you want to check if a constraint exists for a relationship you can run this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.relationship.constraintExists(\u0027LIKED\u0027, [\u0027day\u0027])\n----\n\nand you get the following result:\n\nimage::apoc.schema.relationship.constraintExists.png[scaledwidth\u003d\"100%\"]\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 11:30:56.876",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "editOnDblClick": true,
-          "language": "markdown",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eLock nodes\u003c/h2\u003e\n\u003cp\u003eWe can lock one or more entities during a transaction:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.lock.all([nodes],[relationships])\u003c/li\u003e\n\u003cli\u003eapoc.lock.nodes([nodes])\u003c/li\u003e\n\u003cli\u003eapoc.lock.rels([relationships]\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.nodes\u003c/li\u003e\n\u003cli\u003eapoc.lock.read.rels\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThis can be used to prevent some not-thread safety condition.\u003cbr /\u003e\nFor example, with a dataset like this:\u003c/p\u003e\n\u003cpre\u003e\nCREATE (:Person {name:\u0027Alex\u0027})\nCREATE (:Email {address:\u0027alex@somewhere.com\u0027});\n\u003c/pre\u003e\n\u003cp\u003e// todo - used to prevent some not-thread safety condition\u003c/p\u003e\n\u003cp\u003eWe may want to create exactly one HAS_EMAIL relationship between these nodes.\u003cbr /\u003e\nWe can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe,\u003cbr /\u003e\nso we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\u003cbr /\u003e\nInstead, we want exactly one write.\u003c/p\u003e\n\u003cp\u003eWe can ensure this condition by using the apoc.lock.nodes procedure, as shown below:\u003c/p\u003e\n\u003cpre\u003e\nMATCH (p:Person {name:\u0027Alex\u0027})\nMATCH (e:Email {address:\u0027alex@somewhere.com\u0027})\nCALL apoc.lock.nodes([p,e])\nMERGE (p)-[rel:HAS_EMAIL]-\u003e(e)\nRETURN rel;\n\u003c/pre\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635870732173_423048846",
-      "id": "paragraph_1635870732173_423048846",
-      "dateCreated": "2021-11-02 16:32:12.173",
-      "dateStarted": "2021-11-09 11:30:56.907",
-      "dateFinished": "2021-11-09 11:30:56.931",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\n# Schema operations\n\n\nTo drop or create index or constraint, you can use the following procedure:\n\n[separator\u003d¦,opts\u003dheader,cols\u003d\"5,1m,1m\"]\n|\u003d\u003d\u003d\n¦Qualified Name¦Type¦Release\ninclude::example$generated-documentation/apoc.schema.assert.adoc[]\ninclude::example$generated-documentation/apoc.schema.nodes.adoc[]\ninclude::example$generated-documentation/apoc.schema.relationships.adoc[]\ninclude::example$generated-documentation/apoc.schema.node.constraintExists.adoc[]\ninclude::example$generated-documentation/apoc.schema.relationship.constraintExists.adoc[]\ninclude::example$generated-documentation/apoc.schema.node.indexExists.adoc[]\n|\u003d\u003d\u003d\n\n[source,cypher]\n----\nCALL apoc.schema.assert({indexLabel:[[indexKeys]], ...}, {constraintLabel:[constraintKeys], ...}, dropExisting : true)\nYIELD label, key, keys, unique, action\n----\n\nWhere the outputs are:\n\n* label\n* key\n* keys, list of the key\n* unique, if the index or constraint are unique\n* action, can be the following values: DROPPED, CREATED\n\nTo retrieve indexes and constraints information for all the node labels in your database, you can use the following procedure:\n\n[source,cypher]\n----\nCALL apoc.schema.nodes()\nYIELD name, label, properties, status, type\n----\n\nWhere the outputs are:\n\n* name of the index/constraint,\n* label\n* properties, (for Neo4j 3.1 and lower versions is a single element array) that are affected by the constraint\n* status, for index can be one of the following values: ONLINE, POPULATING and FAILED\n* type, always \"INDEX\" for indexes, constraint type for constraints\n* failure, the failure description of a failed index\n* populationProgress, the population progress of the index in percentage\n* size, the size of the index\n* valuesSelectivity, computes the selectivity of the unique values\n* userDescription, a user friendly description of what this index indexes\n\nTo retrieve the constraint information for all the relationship types in your database, you can use the following procedure:\n\n[source,cypher]\n----\nCALL apoc.schema.relationships()\nYIELD name, type, properties, status\n----\n\nWhere the outputs are:\n\n* name of the constraint\n* type of the relationship\n* properties, (for Neo4j 3.1 and lower versions is a single element array) that are affected by the constraint\n* status\n\nConfig optional param is a map and its possible values are:\n\n* labels : list of labels to retrieve index/constraint information\n* excludeLabels: list of labels to exclude from retrieve index/constraint information\n* relationships: list of relationships type to retrieve constraint information\n* excludeRelationships: list of relationships\u0027 type to exclude from retrieve constraint information\n\n**Exclude has more power than include, so if excludeLabels and labels are both valued, procedure considers excludeLabels only, the same for relationships.**\n\n[source,cypher]\n----\nCALL apoc.schema.nodes({labels:[\u0027Book\u0027]})\nYIELD name, label, properties, status, type\n----\n\n\nN.B. Constraints for property existence on nodes and relationships are available only for the Enterprise Edition.\n\nTo retrieve the index existence on node, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.indexExists(labelName, propertyNames)\n\n----\n\nThe output return the index existence on node is present or not\n\nTo retrieve if the constraint exists on node, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.constraintExists(labelName, propertyNames)\n----\n\nThe output return the constraint existence on node.\n\nTo retrieve if the constraint exists on relationship, you can use the following user function:\n\n[source,cypher]\n----\nRETURN apoc.schema.relationship.constraintExists(type, propertyNames)\n----\n\nThe output return the constraint on the relationship is present or not\n\n\n\u003d\u003d\u003d Examples\n\n\u003d\u003d\u003d List Schema assert\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert({Foo:[\u0027bar\u0027]},null)\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.index.png[scaledwidth\u003d\"100%\"]\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert(null,{Foo:[\u0027bar\u0027]})\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.constraint.png[scaledwidth\u003d\"100%\"]\n\nWhen you:\n\n[source,cypher]\n----\nCALL apoc.schema.assert(null,null)\n----\n\nyou will receive this result:\n\nimage::apoc.schema.assert.drop.png[scaledwidth\u003d\"100%\"]\n\n\n\u003d\u003d\u003d List indexes and constraints for nodes\n\nGiven the following cypher statements:\n\n[source,cypher]\n----\nCREATE CONSTRAINT ON (bar:Bar) ASSERT exists(bar.foobar)\nCREATE CONSTRAINT ON (bar:Bar) ASSERT bar.foo IS UNIQUE\nCREATE INDEX ON :Person(name)\nCREATE INDEX ON :Publication(name)\nCREATE INDEX ON :Source(name)\n----\n\nWhen you\n\n[source,cypher]\n----\nCALL apoc.schema.nodes()\n----\n\n\nyou will receive this result:\n\nimage::apoc.schema.nodes.png[scaledwidth\u003d\"100%\"]\n\n\u003d\u003d\u003d List constraints for relationships\n\nGiven the following cypher statements:\n\n[source,cypher]\n----\nCREATE CONSTRAINT ON ()-[like:LIKED]-() ASSERT exists(like.day)\nCREATE CONSTRAINT ON ()-[starred:STARRED]-() ASSERT exists(starred.month)\n----\n\nWhen you\n\n[source,cypher]\n----\nCALL apoc.schema.relationships()\n----\n\nyou will receive this result:\n\nimage::apoc.schema.relationships.png[scaledwidth\u003d\"100%\"]\n\n\u003d\u003d\u003d Check if an index or a constraint exists for a Label and property\n\nGiven the previous index definitions, running this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.indexExists(\"Publication\", [\"name\"])\n----\nproduces the following output:\n\nimage::apoc.schema.node.indexExists.png[scaledwidth\u003d\"100%\"]\n\n\nGiven the previous constraint definitions, running this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.node.constraintExists(\"Bar\", [\"foobar\"])\n----\nproduces the following output:\n\nimage::apoc.schema.node.constraintExists.png[scaledwidth\u003d\"100%\"]\n\nIf you want to check if a constraint exists for a relationship you can run this statement:\n\n[source,cypher]\n----\nRETURN apoc.schema.relationship.constraintExists(\u0027LIKED\u0027, [\u0027day\u0027])\n----\n\nand you get the following result:\n\nimage::apoc.schema.relationship.constraintExists.png[scaledwidth\u003d\"100%\"]\n\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 11:30:57.006",
+      "dateUpdated": "2021-11-10 08:23:55.464",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -843,6 +802,219 @@
       "dateCreated": "2021-10-27 23:08:15.899",
       "dateStarted": "2021-11-09 11:30:57.042",
       "dateFinished": "2021-11-09 11:30:57.114",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCALL apoc.schema.assert({Person:[\u0027name\u0027]}, {Movie: [\"title\"]}, true)\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 08:26:18.397",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "label": "string",
+                      "key": "string",
+                      "keys": "string",
+                      "unique": "string",
+                      "action": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "label\tkey\tkeys\tunique\taction\n\"TTL\"\t\"ttl\"\t[\"ttl\"]\tFALSE\t\"DROPPED\"\n\"Movie\"\t\"title\"\t[\"title\"]\tFALSE\t\"DROPPED\"\n\"Person\"\t\"name\"\t[\"name\"]\tFALSE\t\"CREATED\"\n\"Genre\"\t\"name\"\t[\"name\"]\tTRUE\t\"DROPPED\"\n\"NodeWithUnique\"\t\"omega\"\t[\"omega\"]\tTRUE\t\"DROPPED\"\n\"TagLine\"\t\"name\"\t[\"name\"]\tTRUE\t\"DROPPED\"\n\"Movie\"\t\"title\"\t[\"title\"]\tTRUE\t\"CREATED\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532662677_401422741",
+      "id": "paragraph_1636532662677_401422741",
+      "dateCreated": "2021-11-10 08:24:22.677",
+      "dateStarted": "2021-11-10 08:26:17.409",
+      "dateFinished": "2021-11-10 08:26:17.791",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nRETURN apoc.schema.node.constraintExists(\"Movie\", [\"title\"])\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 08:26:25.790",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.schema.node.constraintExists(\"Movie\", [\"title\"])": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.schema.node.constraintExists(\"Movie\", [\"title\"])\nTRUE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532704343_2097459738",
+      "id": "paragraph_1636532704343_2097459738",
+      "dateCreated": "2021-11-10 08:25:04.343",
+      "dateStarted": "2021-11-10 08:26:25.254",
+      "dateFinished": "2021-11-10 08:26:25.296",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nCALL apoc.schema.nodes()",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 08:26:29.606",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "name": "string",
+                      "label": "string",
+                      "properties": "string",
+                      "status": "string",
+                      "type": "string",
+                      "failure": "string",
+                      "populationProgress": "string",
+                      "size": "string",
+                      "valuesSelectivity": "string",
+                      "userDescription": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tlabel\tproperties\tstatus\ttype\tfailure\tpopulationProgress\tsize\tvaluesSelectivity\tuserDescription\n\":Movie(title)\"\t\"Movie\"\t[\"title\"]\t\"ONLINE\"\t\"UNIQUENESS\"\t\"NO FAILURE\"\t100.0\t38\t1.0\t\"Index( id\u003d12, name\u003d\u0027constraint_3044d997\u0027, type\u003d\u0027UNIQUE BTREE\u0027, schema\u003d(:Movie {title}), indexProvider\u003d\u0027native-btree-1.0\u0027, owningConstraint\u003d13 )\"\n\":Person(name)\"\t\"Person\"\t[\"name\"]\t\"ONLINE\"\t\"INDEX\"\t\"NO FAILURE\"\t100.0\t141\t0.9787234042553191\t\"Index( id\u003d11, name\u003d\u0027index_5c0607ad\u0027, type\u003d\u0027GENERAL BTREE\u0027, schema\u003d(:Person {name}), indexProvider\u003d\u0027native-btree-1.0\u0027 )\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532750579_2013459649",
+      "id": "paragraph_1636532750579_2013459649",
+      "dateCreated": "2021-11-10 08:25:50.580",
+      "dateStarted": "2021-11-10 08:26:28.877",
+      "dateFinished": "2021-11-10 08:26:28.945",
       "status": "FINISHED"
     },
     {

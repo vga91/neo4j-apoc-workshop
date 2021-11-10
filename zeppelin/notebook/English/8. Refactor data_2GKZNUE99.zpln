@@ -344,9 +344,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### Grouping nodes into categories\n\nTo turn a unique property key of a target node into a new node and connect target and new node.\n\nOutside of our product and category data, we also might want to add categorization for other groupings in our graph. For instance, we might want to categorize customers by country to know how our customers are distributed or for ensuring we have enough support staff to manage larger customer bases in different areas.\n\nWe can use the apoc.refactor.categorize procedure to extract country information from our Customer nodes and create new Country nodes out of it.\n\n\u003cpre\u003e\nCALL apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize)\n\u003c/pre\u003e\n```\nWhere the parameters are:\n\n- `sourceKey`: the property on the existing node we want to use to create the new node\n- `type`: the type for the new relationship for connecting the existing node to the new node\n- `outgoing`: whether the relationship is outgoing or not\n- `label`: the label for the new node\n- `targetKey`: the key property name we want on the new node\n- `copiedKeys`: any additional properties we’d like copied from the old node to the new\n- `batchSize`\n    \n\n    \n\n    if we have a lot of nodes to update, we can specify to do it in batches\n\n\u003d\u003d apoc.refactor.categorize Example:\n\nBefore we can execute this procedure, we need to put a constraint on the new node and property key. That can be done with the statement below.\n\nWe will want to wait a few minutes for the constraint to come online, and we can check that by running the db.indexes procedure. Then, we can add our new Country node categories with the following procedure:\n\nCALL apoc.refactor.categorize(\u0027country\u0027, \u0027LOCATED_IN\u0027, true, \u0027Country\u0027, \u0027countryName\u0027, [], 100)\n\nHere, we have specified that we want to take the country property, which is on the Customer nodes and create a LOCATED_IN relationship that is outgoing from the customer to a new Country node with the property called countryName on the new node.\n\nNote: This procedure will remove the country property from the Customer nodes and move them to Country, rather than making a copy of the property to the new nodes.\n\n\u003d\u003d Verify categories\n\nNow, if we run either our visualization or a sample data query, we can verify. Here, we will run a sample data query to see move of the property from Customer to Country.\n\nMATCH (c:Customer)-[rel]-\u003e(other)\nRETURN c, rel, other\n\nIf you click on a Customer node in the result set, you can see that the country property from customers no longer exists on those nodes and has been moved over to new Country nodes as countryName property. Everything looks as we expect it!\n",
+      "text": "%md\n\n### Grouping nodes into categories\n\nTo transform a unique property key of a target node into a new node and connect target and new node.\n\n\u003cpre\u003e\nCALL apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize)\n\u003c/pre\u003e\n```\nWhere the parameters are:\n\n- `sourceKey`: the property on the existing node we want to use to create the new node\n- `type`: the type for the new relationship for connecting the existing node to the new node\n- `outgoing`: whether the relationship is outgoing or not\n- `label`: the label for the new node\n- `targetKey`: the key property name we want on the new node\n- `copiedKeys`: any additional properties we’d like copied from the old node to the new\n- `batchSize`\n    \n\u003cpre\u003e\nBefore we can execute this procedure, we need to put a constraint on the new node and property key.\n\u003c/pre\u003e\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 21:20:15.470",
+      "dateUpdated": "2021-11-10 08:10:57.860",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -644,133 +644,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\u003d\u003d Condensing multiple relationships\n\nWith our last update, you may have noticed that some customers have purchased certain products multiple times, causing multiple PURCHASED relationships to appear between a Customer and Product node when we moved the relationship from individual orders to more general products. We can condense these multiple relationships into a single PURCHASED relationship, as well as add a count property for the number of times a certain product has been ordered by that customer.\n\nThe apoc.refactor.mergeRelationships procedure can help.\n\nFormat: apoc.refactor.mergeRelationships([rel1, rel2])\n\nThe procedure has 2 parameters -\n\n    a list of the relationships we want to merge\n\n    any configuration for whether we want properties to be overwritten, discarded, or combined\n",
+      "text": "%md\n\n### Merge multiple relationships / nodes\n\nWe can join multiple entities through the procedures\n\n- apoc.refactor.mergeRelationships([rels], {config})\n- apoc.refactor.mergeRelationships([nodes], {config})\n\nWhere `{config}` can have:\n- properties (default: \u0027combine\u0027): Map\u003cprop, type\u003e or type, where type can be discard (to take 1st property value found with the same name), overwrite (to pick last prop value), combine (to join properties in an array)\n- mergeRels (default: false) - only for `apoc.refactor.mergeNodes`\n- singleElementAsArray (default: false)\n",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:50:27.453",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Condensing multiple relationships\u003c/p\u003e\n\u003cp\u003eWith our last update, you may have noticed that some customers have purchased certain products multiple times, causing multiple PURCHASED relationships to appear between a Customer and Product node when we moved the relationship from individual orders to more general products. We can condense these multiple relationships into a single PURCHASED relationship, as well as add a count property for the number of times a certain product has been ordered by that customer.\u003c/p\u003e\n\u003cp\u003eThe apoc.refactor.mergeRelationships procedure can help.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.mergeRelationships([rel1, rel2])\u003c/p\u003e\n\u003cp\u003eThe procedure has 2 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ea list of the relationships we want to merge\n\nany configuration for whether we want properties to be overwritten, discarded, or combined\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635348136638_535583225",
-      "id": "paragraph_1635348136638_535583225",
-      "dateCreated": "2021-10-27 15:22:16.638",
-      "dateStarted": "2021-10-29 12:50:27.467",
-      "dateFinished": "2021-10-29 12:50:27.474",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\u003d\u003d apoc.refactor.mergeRelationships Example:\n\nNow, we can go ahead and see this in action to condense our relationships between customers and products to a single relationship and tracking the number of times a customer has purchased a particular product.\n\nMATCH (c:Customer)-[r:PURCHASED]-\u003e(p:Product)\nWITH c, p, collect(r) as rels, count(r) as relNum\nCALL apoc.refactor.mergeRelationships(rels, {properties: \u0027discard\u0027}) yield rel\nSET rel.purchaseCount \u003d relNum\nRETURN rel\n\nIn our query, we find Customer nodes with a PURCHASED relationship to Product nodes. We then aggregate those patterns into unique rows (based on aggregations for customer and product nodes), as well as collect the relationships into a list (so we can merge them) and count the relationships to store. The next line calls the procedure and passes in the list of relationships, adding configuration to discard properties on duplicate relationships and outputs the relationships from the merge. Next, we set the purchaseCount property on each relationship with the count of purchases between individual customers and products and return the results.\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 11:58:35.889",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.mergeRelationships Example:\u003c/p\u003e\n\u003cp\u003eNow, we can go ahead and see this in action to condense our relationships between customers and products to a single relationship and tracking the number of times a customer has purchased a particular product.\u003c/p\u003e\n\u003cp\u003eMATCH (c:Customer)-[r:PURCHASED]-\u0026gt;(p:Product)\u003cbr /\u003e\nWITH c, p, collect(r) as rels, count(r) as relNum\u003cbr /\u003e\nCALL apoc.refactor.mergeRelationships(rels, {properties: \u0026lsquo;discard\u0026rsquo;}) yield rel\u003cbr /\u003e\nSET rel.purchaseCount \u003d relNum\u003cbr /\u003e\nRETURN rel\u003c/p\u003e\n\u003cp\u003eIn our query, we find Customer nodes with a PURCHASED relationship to Product nodes. We then aggregate those patterns into unique rows (based on aggregations for customer and product nodes), as well as collect the relationships into a list (so we can merge them) and count the relationships to store. The next line calls the procedure and passes in the list of relationships, adding configuration to discard properties on duplicate relationships and outputs the relationships from the merge. Next, we set the purchaseCount property on each relationship with the count of purchases between individual customers and products and return the results.\u003c/p\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635348147110_48008613",
-      "id": "paragraph_1635348147110_48008613",
-      "dateCreated": "2021-10-27 15:22:27.110",
-      "dateStarted": "2021-10-29 12:50:27.582",
-      "dateFinished": "2021-10-29 12:50:27.589",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\u003d\u003d Verify merged relationships\n\nIf we run a quick sample query like the one below, we can verify that we now have a single relationship between each Customer and Product and that the purchaseCount stores the number of times someone has purchased something.\n\nMATCH (n1:Customer)-[r]-\u003e(n2) RETURN r, n1, n2 LIMIT 25\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:50:27.681",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Verify merged relationships\u003c/p\u003e\n\u003cp\u003eIf we run a quick sample query like the one below, we can verify that we now have a single relationship between each Customer and Product and that the purchaseCount stores the number of times someone has purchased something.\u003c/p\u003e\n\u003cp\u003eMATCH (n1:Customer)-[r]-\u0026gt;(n2) RETURN r, n1, n2 LIMIT 25\u003c/p\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635348151510_2035604528",
-      "id": "paragraph_1635348151510_2035604528",
-      "dateCreated": "2021-10-27 15:22:31.510",
-      "dateStarted": "2021-10-29 12:50:27.694",
-      "dateFinished": "2021-10-29 12:50:27.700",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\napoc.refactor.mergeRelationships([rels],{config})\n\nConfig can have:\n- properties (default: \u0027combine\u0027): Map\u003cprop, type\u003e or type, where type can be discard (to take 1st property value found with the same name), overwrite (to pick last prop value), combine (to join properties in an array)\n- mergeRels (default: false) - only for `apoc.refactor.mergeNodes`\n- singleElementAsArray (default: false)\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 12:05:55.823",
+      "dateUpdated": "2021-11-10 08:13:16.097",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -797,9 +673,9 @@
       "status": "READY"
     },
     {
-      "text": "%neo4j\n\nCREATE (n1:MergeOne {name:\u0027Tom\u0027}),\n(n2:MergeOne {name:\u0027John\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
+      "text": "%neo4j\n\nCREATE (n1:MergeOne {name:\u0027Tom\u0027, surname: \u0027Jerry\u0027}),\n(n2:MergeOne {name:\u0027John\u0027, surname: \u0027Jack\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 13:18:52.580",
+      "dateUpdated": "2021-11-10 08:16:02.339",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -808,7 +684,7 @@
           "0": {
             "graph": {
               "mode": "network",
-              "height": 359.545,
+              "height": 328.58,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -946,7 +822,7 @@
     {
       "text": "%neo4j\n\nMATCH p\u003d(a1:MergeOne)--()\nRETURN p",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 13:20:39.536",
+      "dateUpdated": "2021-11-10 08:16:04.870",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -955,7 +831,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 454.759,
+              "height": 426.761,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -1019,14 +895,47 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nCREATE (n1:MergeTwo {name:\u0027Tom\u0027}),\n(n2:MergeTwo {name:\u0027John\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
+      "text": "%neo4j\n\nCREATE (n1:MergeTwo {name:\u0027Tom\u0027, surname: \u0027Jerry\u0027}),\n(n2:MergeTwo {name:\u0027John\u0027, surname: \u0027Jack\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 12:10:56.913",
+      "dateUpdated": "2021-11-10 08:17:03.443",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
-        "results": {},
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "surname": "string",
+                      "brand": "string",
+                      "since": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
@@ -1039,13 +948,176 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":242,\"data\":{\"name\":\"Tom\",\"surname\":\"Jerry\"},\"label\":\"MergeTwo\"},{\"id\":243,\"data\":{\"name\":\"John\",\"surname\":\"Jack\"},\"label\":\"MergeTwo\"},{\"id\":244,\"data\":{\"name\":\"Company1\"},\"label\":\"Company\"},{\"id\":245,\"data\":{\"brand\":\"Ferrari\"},\"label\":\"Car\"},{\"id\":246,\"data\":{\"name\":\"Derby\"},\"label\":\"Animal\"},{\"id\":247,\"data\":{\"name\":\"London\"},\"label\":\"City\"}],\"edges\":[{\"source\":242,\"target\":244,\"id\":311,\"data\":{\"since\":2015},\"label\":\"WORKS_FOR\"},{\"source\":243,\"target\":244,\"id\":313,\"data\":{\"since\":2018},\"label\":\"WORKS_FOR\"},{\"source\":244,\"target\":247,\"id\":314,\"data\":{\"since\":2004},\"label\":\"HAS_HQ\"},{\"source\":242,\"target\":245,\"id\":315,\"data\":{\"since\":2017},\"label\":\"DRIVE\"},{\"source\":243,\"target\":246,\"id\":316,\"data\":{\"since\":2013},\"label\":\"HAS\"}],\"labels\":{\"TTL\":\"#2EC610\",\"NodeWithUnique\":\"#B8C858\",\"Person\":\"#F229BB\",\"Company\":\"#F4C50F\",\"Car\":\"#00123F\",\"Animal\":\"#D0B639\",\"Cat\":\"#6AC79B\",\"City\":\"#56B1BC\",\"MergeOne\":\"#15FFE2\",\"Movie\":\"#7A535E\",\"Genre\":\"#F1DFDE\",\"TagLine\":\"#E234BD\",\"MergeTwo\":\"#2A71FE\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"FRIENDS\",\"PRODUCED\",\"WROTE\",\"HAS_HQ\",\"FOLLOWS\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\",\"TAGLINE\",\"DRIVE\"],\"directed\":true}"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636458747902_1200537474",
       "id": "paragraph_1636458747902_1200537474",
       "dateCreated": "2021-11-09 11:52:27.902",
-      "status": "READY"
+      "dateStarted": "2021-11-10 08:17:02.293",
+      "dateFinished": "2021-11-10 08:17:02.770",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH p\u003d(a1:MergeTwo{name:\u0027John\u0027})--(), p2\u003d(a2:MergeOne {name:\u0027Tom\u0027})--()\nWITH [a1,a2] as nodes\nCALL apoc.refactor.mergeNodes(nodes,{properties: {name: \"discard\", surname: \"overwrite\"}, mergeRels:true})\nYIELD node RETURN null",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 08:17:05.864",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532174097_1810713463",
+      "id": "paragraph_1636532174097_1810713463",
+      "dateCreated": "2021-11-10 08:16:14.098",
+      "dateStarted": "2021-11-10 08:17:05.882",
+      "dateFinished": "2021-11-10 08:17:06.074",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH p\u003d(a1:MergeTwo)--()\nRETURN p",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 08:17:09.312",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "surname": "string",
+                      "brand": "string",
+                      "since": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":242,\"data\":{\"name\":\"Tom\",\"surname\":\"Jerry\"},\"label\":\"MergeTwo\"},{\"id\":243,\"data\":{\"name\":\"John\",\"surname\":\"Jack\"},\"label\":\"MergeTwo\"},{\"id\":244,\"data\":{\"name\":\"Company1\"},\"label\":\"Company\"},{\"id\":245,\"data\":{\"brand\":\"Ferrari\"},\"label\":\"Car\"},{\"id\":246,\"data\":{\"name\":\"Derby\"},\"label\":\"Animal\"}],\"edges\":[{\"source\":242,\"target\":244,\"id\":311,\"data\":{\"since\":2015},\"label\":\"WORKS_FOR\"},{\"source\":243,\"target\":244,\"id\":313,\"data\":{\"since\":2018},\"label\":\"WORKS_FOR\"},{\"source\":242,\"target\":245,\"id\":315,\"data\":{\"since\":2017},\"label\":\"DRIVE\"},{\"source\":243,\"target\":246,\"id\":316,\"data\":{\"since\":2013},\"label\":\"HAS\"}],\"labels\":{\"TTL\":\"#2EC610\",\"NodeWithUnique\":\"#B8C858\",\"Person\":\"#F229BB\",\"Company\":\"#F4C50F\",\"Car\":\"#00123F\",\"Animal\":\"#D0B639\",\"Cat\":\"#6AC79B\",\"City\":\"#56B1BC\",\"MergeOne\":\"#15FFE2\",\"Movie\":\"#7A535E\",\"Genre\":\"#F1DFDE\",\"TagLine\":\"#E234BD\",\"MergeTwo\":\"#2A71FE\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"FRIENDS\",\"PRODUCED\",\"WROTE\",\"HAS_HQ\",\"FOLLOWS\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\",\"TAGLINE\",\"DRIVE\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532214885_1158137498",
+      "id": "paragraph_1636532214885_1158137498",
+      "dateCreated": "2021-11-10 08:16:54.885",
+      "dateStarted": "2021-11-10 08:17:08.418",
+      "dateFinished": "2021-11-10 08:17:08.493",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## [Others](http://localhost:8080/#/notebook/2GK4BTA5G)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 08:17:46.354",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GK4BTA5G\"\u003eOthers\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532228417_99296844",
+      "id": "paragraph_1636532228417_99296844",
+      "dateCreated": "2021-11-10 08:17:08.417",
+      "dateStarted": "2021-11-10 08:17:46.355",
+      "dateFinished": "2021-11-10 08:17:46.440",
+      "status": "FINISHED"
     }
   ],
   "name": "8. Refactor data",
