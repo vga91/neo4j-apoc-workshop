@@ -933,9 +933,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n### Other examples\n\n`RETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027)`  ||  return \u0027HelloWorld\u0027\n\n\n\nFormat the string with the params given, and optional param language (\u0027it\u0027 in this case)\n`RETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true]) AS value` || returns \u0027abcd 42 3.1 true\u0027\n`RETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true],\u0027it\u0027) AS value` || returns abcd 42 3,1 true\n\n\n`RETURN apoc.text.indexOf(\u0027Hello World!\u0027, \u0027World\u0027)` || returns 6\n\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\nIt can optionally take `from` (inclusive) and `to` (exclusive) parameters.\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\n`RETURN apoc.text.indexesOf(\u0027Hello World!\u0027, \u0027o\u0027,2,9)` || returns [4,7]\n\n\n`RETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027)` || returns \u0027HelloWorld\u0027\n\n\n`RETURN apoc.text.split(\u0027Hello   World\u0027, \u0027 +\u0027)` || splits with the given regular expression and returns [\u0027Hello\u0027, \u0027World\u0027]\n\n`RETURN apoc.text.join([\u0027Hello\u0027, \u0027World\u0027], \u0027 \u0027)` || returns \u0027Hello World\u0027\n\n\n`RETURN apoc.text.clean(\u0027Hello World!\u0027)` || return \u0027helloworld\u0027\n\n\n`RETURN apoc.text.compareCleaned(\u0027Hello World!\u0027, \u0027_hello-world_\u0027)` || return `true`\n\n`RETURN apoc.text.capitalize(\"neo4j\")` || returns \"Neo4j\"\n\n`RETURN apoc.text.capitalizeAll(\"graph database\")` || returns \"Graph Database\"\n\n`RETURN apoc.text.decapitalize(\"Graph Database\")` || returns \"graph Database\"\n\n`RETURN apoc.text.decapitalizeAll(\"Graph Databases\")` || returns \"graph databases\"\n\n`RETURN apoc.text.swapCase(\"Neo4j\")` || returns \"nEO4J\"\n\n`RETURN apoc.text.camelCase(\"FOO_BAR\")`   || returns \"fooBar\"",
+      "text": "%md\n### Other examples\n\n`RETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027)`  ||  returns \u0027HelloWorld\u0027\n\n\n\nFormat the string with the params given, and optional param language (\u0027it\u0027 in this case)\n`RETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true]) AS value` || returns \u0027abcd 42 3.1 true\u0027\n`RETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true],\u0027it\u0027) AS value` || returns abcd 42 3,1 true\n\n\n`RETURN apoc.text.indexOf(\u0027Hello World!\u0027, \u0027World\u0027)` || returns 6\n\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\nIt can optionally take `from` (inclusive) and `to` (exclusive) parameters.\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\n`RETURN apoc.text.indexesOf(\u0027Hello World!\u0027, \u0027o\u0027,2,9)` || returns [4,7]\n\n\n`RETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027)` || returns \u0027HelloWorld\u0027\n\n\n`RETURN apoc.text.split(\u0027Hello   World\u0027, \u0027 +\u0027)` || splits with the given regular expression and returns [\u0027Hello\u0027, \u0027World\u0027]\n\n`RETURN apoc.text.join([\u0027Hello\u0027, \u0027World\u0027], \u0027 \u0027)` || returns \u0027Hello World\u0027\n\n\n`RETURN apoc.text.clean(\u0027Hello World!\u0027)` || return \u0027helloworld\u0027\n\n\n`RETURN apoc.text.compareCleaned(\u0027Hello World!\u0027, \u0027_hello-world_\u0027)` || return `true`\n\n`RETURN apoc.text.capitalize(\"neo4j\")` || returns \"Neo4j\"\n\n`RETURN apoc.text.capitalizeAll(\"graph database\")` || returns \"Graph Database\"\n\n`RETURN apoc.text.decapitalize(\"Graph Database\")` || returns \"graph Database\"\n\n`RETURN apoc.text.decapitalizeAll(\"Graph Databases\")` || returns \"graph databases\"\n\n`RETURN apoc.text.swapCase(\"Neo4j\")` || returns \"nEO4J\"\n\n`RETURN apoc.text.camelCase(\"FOO_BAR\")`   || returns \"fooBar\"",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:51:33.093",
+      "dateUpdated": "2021-11-10 09:47:13.575",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1314,9 +1314,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Spatial procedures\n\nThe spatial procedures enable geographic capabilities on your data, and complement the https://neo4j.com/docs/cypher-manual/current/functions/spatial/[spatial functions^] that come with Neo4j.\nMore extensive Spatial functionality can be found in the https://neo4j-contrib.github.io/spatial/0.24-neo4j-3.1/index.html[Neo4j Spatial Library^].\n\n\n- apoc.spatial.geocode.adoc\n- apoc.spatial.geocodeOnce\n- apoc.spatial.reverseGeocode.adoc\n- apoc.spatial.sortByDistance.adoc\n\n\n\u003d\u003d\u003d Configuring Geocode\n\nThere are a few options that can be set in the apoc.conf file to control the service:\n\n* apoc.spatial.geocode.provider\u003dosm (osm, google, opencage, etc.)\n* apoc.spatial.geocode.osm.throttle\u003d5000 (ms to delay between queries to not overload OSM servers)\n* apoc.spatial.geocode.google.throttle\u003d1 (ms to delay between queries to not overload Google servers)\n* apoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\n* apoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\n* apoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n\nFor google, you should use either a key or a combination of client and signature. Read more\nabout this on the google page for geocode access at\nhttps://developers.google.com/maps/documentation/geocoding/get-api-key#key\n\n\u003d\u003d\u003d Configuring Custom Geocode Provider\n\n*Geocode*\n\nFor any provider that is not \u0027osm\u0027 or \u0027google\u0027 you get a configurable supplier that requires two\nadditional settings, \u0027url\u0027 and \u0027key\u0027. The \u0027url\u0027 must contain the two words \u0027PLACE\u0027 and \u0027KEY\u0027.\nThe \u0027KEY\u0027 will be replaced with the key you get from the provider when you register for the service.\nThe \u0027PLACE\u0027 will be replaced with the address to geocode when the procedure is called.\n\n*Reverse Geocode*\n\nThe \u0027url\u0027 must contain the three words \u0027LAT\u0027, \u0027LNG\u0027 and \u0027KEY\u0027.\nThe \u0027LAT\u0027 will be replaced with the latitude and \u0027LNG\u0027 will be replaced with the the longitude to reverse geocode when the procedure is called.\n\nFor example, to get the service working with OpenCage, perform the following steps:\n\n* Register your own application key at https://geocoder.opencagedata.com/\n* Once you have a key, add the following three lines to apoc.conf\n\n----\napoc.spatial.geocode.provider\u003dopencage\napoc.spatial.geocode.opencage.key\u003dXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\napoc.spatial.geocode.opencage.url\u003dhttp://api.opencagedata.com/geocode/v1/json?q\u003dPLACE\u0026key\u003dKEY\napoc.spatial.geocode.opencage.reverse.url\u003dhttp://api.opencagedata.com/geocode/v1/json?q\u003dLAT+LNG\u0026key\u003dKEY\n----\n\n* make sure that the \u0027XXXXXXX\u0027 part above is replaced with your actual key\n* Restart the Neo4j server and then test the geocode procedures to see that they work\n* If you are unsure if the provider is correctly configured try verify with:\n\n\n\n[source,cypher]\n----\nCALL apoc.spatial.showConfig()\n----\n\n\u003d\u003d Using Geocode within a bigger Cypher query\n\nA more complex, or useful, example which geocodes addresses found in properties of nodes:\n\n[source,cypher]\n----\nMATCH (a:Place)\nWHERE exists(a.address)\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\nRETURN location.latitude AS latitude, location.longitude AS longitude, location.description AS description\n----\n\n",
+      "text": "%md\n\n## Point values\n\nTo manipulate `Point` values, we can use:\n\n* `geocodeOnce(address)`\n* `geocode(address,maxResults)`\n* `reverseGeocode(latitude,longitude)`\n* `apoc.spatial.sortByDistance(paths)`\n\nThe `geocode` and `geocodeOnce` procedure converts a textual address into a location containing _latitude_, _longitude_ and _description_.\n`GeocodeOnce()` is designed to return the first, or highest ranking result.\nThis is because the backing geocoding service (OSM, Google, OpenCage or other) might return multiple results for the same query.\n\nThe third procedure `reverseGeocode` will convert a location containing `latitude` and `longitude` into a textual address.\n\n\nThere are a few options that can be set in the `apoc.conf` file, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/misc/spatial/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more info:\n\n```\napoc.spatial.geocode.provider\u003dosm (osm, google, opencage, etc.)\napoc.spatial.geocode.osm.throttle\u003d5000 (ms to delay between queries to not overload OSM servers)\napoc.spatial.geocode.google.throttle\u003d1 (ms to delay between queries to not overload Google servers)\napoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\napoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\napoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n```",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 09:24:54.555",
+      "dateUpdated": "2021-11-10 09:52:51.059",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1329,8 +1329,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -1341,40 +1341,9 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Spatial\u003c/p\u003e\n\u003cp\u003eThe spatial procedures enable geographic capabilities on your data, and complement the \u003ca href\u003d\"https://neo4j.com/docs/cypher-manual/current/functions/spatial/\"\u003ehttps://neo4j.com/docs/cypher-manual/current/functions/spatial/\u003c/a\u003e[spatial functions^] that come with Neo4j.\u003cbr /\u003e\nMore extensive Spatial functionality can be found in the \u003ca href\u003d\"https://neo4j-contrib.github.io/spatial/0.24-neo4j-3.1/index.html\"\u003ehttps://neo4j-contrib.github.io/spatial/0.24-neo4j-3.1/index.html\u003c/a\u003e[Neo4j Spatial Library^].\u003c/p\u003e\n\u003cp\u003e[separator\u003d¦,opts\u003dheader,cols\u003d\u0026ldquo;5,1m,1m\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n¦Qualified Name¦Type¦Release\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.spatial.geocode.adoc[]\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.spatial.reverseGeocode.adoc[]\u003cbr /\u003e\ninclude::example$generated-documentation/apoc.spatial.sortByDistance.adoc[]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Geocode\u003c/p\u003e\n\u003cp\u003eThe \u003cem\u003egeocode\u003c/em\u003e procedure converts a textual address into a location containing \u003cem\u003elatitude\u003c/em\u003e, \u003cem\u003elongitude\u003c/em\u003e and \u003cem\u003edescription\u003c/em\u003e.\u003cbr /\u003e\nDespite being only a single function, together with the built-in functions \u003cem\u003epoint\u003c/em\u003e and \u003cem\u003edistance\u003c/em\u003e we can achieve quite powerful results.\u003c/p\u003e\n\u003cp\u003eFirst, how can we use the procedure:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.spatial.geocodeOnce(\u0026lsquo;21 rue Paul Bellamy 44000 NANTES FRANCE\u0026rsquo;)\u003cbr /\u003e\nYIELD location\u003cbr /\u003e\nRETURN location.latitude, location.longitude\u003c/h2\u003e\n\u003cp\u003e.Results\u003cbr /\u003e\n[opts\u003d\u0026ldquo;header\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| location.latitude | location.longitude\u003cbr /\u003e\n| 47.2221667 | -1.5566625\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003cp\u003eThere are three forms of the procedure:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003egeocodeOnce(address) returns zero or one result.\u003c/li\u003e\n\u003cli\u003egeocode(address,maxResults) returns zero, one or more up to maxResults.\u003c/li\u003e\n\u003cli\u003ereverseGeocode(latitude,longitude) returns zero or one result.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThis is because the backing geocoding service (OSM, Google, OpenCage or other) might return multiple results for the same query.\u003cbr /\u003e\nGeocodeOnce() is designed to return the first, or highest ranking result.\u003c/p\u003e\n\u003cp\u003eThe third procedure \u003cem\u003ereverseGeocode\u003c/em\u003e will convert a location containing \u003cem\u003elatitude\u003c/em\u003e and \u003cem\u003elongitude\u003c/em\u003e into a textual address.\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.spatial.reverseGeocode(47.2221667,-1.5566625) YIELD location\u003cbr /\u003e\nRETURN location.description;\u003c/h2\u003e\n\u003cp\u003e.Results\u003cbr /\u003e\n[opts\u003d\u0026ldquo;header\u0026rdquo;]\u003cbr /\u003e\n|\u003d\u003d\u003d\u003cbr /\u003e\n| location.description\u003cbr /\u003e\n| \u0026ldquo;21, Rue Paul Bellamy, Talensac - Pont Morand, Hauts-Pavés - Saint-Félix, Nantes, Loire-Atlantique, Pays de la Loire, France métropolitaine, 44000, France\u0026rdquo;\u003cbr /\u003e\n|\u003d\u003d\u003d\u003c/p\u003e\n\u003cp\u003e\u003d\u003d\u003d Configuring Geocode\u003c/p\u003e\n\u003cp\u003eThere are a few options that can be set in the apoc.conf file to control the service:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.spatial.geocode.provider\u003dosm (osm, google, opencage, etc.)\u003c/li\u003e\n\u003cli\u003eapoc.spatial.geocode.osm.throttle\u003d5000 (ms to delay between queries to not overload OSM servers)\u003c/li\u003e\n\u003cli\u003eapoc.spatial.geocode.google.throttle\u003d1 (ms to delay between queries to not overload Google servers)\u003c/li\u003e\n\u003cli\u003eapoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\u003c/li\u003e\n\u003cli\u003eapoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\u003c/li\u003e\n\u003cli\u003eapoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eFor google, you should use either a key or a combination of client and signature. Read more\u003cbr /\u003e\nabout this on the google page for geocode access at\u003cbr /\u003e\n\u003ca href\u003d\"https://developers.google.com/maps/documentation/geocoding/get-api-key#key\"\u003ehttps://developers.google.com/maps/documentation/geocoding/get-api-key#key\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e\u003d\u003d\u003d Configuring Custom Geocode Provider\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eGeocode\u003c/em\u003e\u003c/p\u003e\n\u003cp\u003eFor any provider that is not \u0026lsquo;osm\u0026rsquo; or \u0026lsquo;google\u0026rsquo; you get a configurable supplier that requires two\u003cbr /\u003e\nadditional settings, \u0026lsquo;url\u0026rsquo; and \u0026lsquo;key\u0026rsquo;. The \u0026lsquo;url\u0026rsquo; must contain the two words \u0026lsquo;PLACE\u0026rsquo; and \u0026lsquo;KEY\u0026rsquo;.\u003cbr /\u003e\nThe \u0026lsquo;KEY\u0026rsquo; will be replaced with the key you get from the provider when you register for the service.\u003cbr /\u003e\nThe \u0026lsquo;PLACE\u0026rsquo; will be replaced with the address to geocode when the procedure is called.\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eReverse Geocode\u003c/em\u003e\u003c/p\u003e\n\u003cp\u003eThe \u0026lsquo;url\u0026rsquo; must contain the three words \u0026lsquo;LAT\u0026rsquo;, \u0026lsquo;LNG\u0026rsquo; and \u0026lsquo;KEY\u0026rsquo;.\u003cbr /\u003e\nThe \u0026lsquo;LAT\u0026rsquo; will be replaced with the latitude and \u0026lsquo;LNG\u0026rsquo; will be replaced with the the longitude to reverse geocode when the procedure is called.\u003c/p\u003e\n\u003cp\u003eFor example, to get the service working with OpenCage, perform the following steps:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eRegister your own application key at \u003ca href\u003d\"https://geocoder.opencagedata.com/\"\u003ehttps://geocoder.opencagedata.com/\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eOnce you have a key, add the following three lines to apoc.conf\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr /\u003e\n\u003ch2\u003eapoc.spatial.geocode.provider\u003dopencage\u003cbr /\u003e\napoc.spatial.geocode.opencage.key\u003dXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\u003cbr /\u003e\napoc.spatial.geocode.opencage.url\u003d\u003ca href\u003d\"http://api.opencagedata.com/geocode/v1/json?q\u003dPLACE\u0026amp;key\u003dKEY\"\u003ehttp://api.opencagedata.com/geocode/v1/json?q\u003dPLACE\u0026amp;key\u003dKEY\u003c/a\u003e\u003cbr /\u003e\napoc.spatial.geocode.opencage.reverse.url\u003d\u003ca href\u003d\"http://api.opencagedata.com/geocode/v1/json?q\u003dLAT+LNG\u0026amp;key\u003dKEY\"\u003ehttp://api.opencagedata.com/geocode/v1/json?q\u003dLAT+LNG\u0026amp;key\u003dKEY\u003c/a\u003e\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003emake sure that the \u0026lsquo;XXXXXXX\u0026rsquo; part above is replaced with your actual key\u003c/li\u003e\n\u003cli\u003eRestart the Neo4j server and then test the geocode procedures to see that they work\u003c/li\u003e\n\u003cli\u003eIf you are unsure if the provider is correctly configured try verify with:\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eCALL apoc.spatial.showConfig()\u003c/h2\u003e\n\u003cp\u003e\u003d\u003d Using Geocode within a bigger Cypher query\u003c/p\u003e\n\u003cp\u003eA more complex, or useful, example which geocodes addresses found in properties of nodes:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (a:Place)\u003cbr /\u003e\nWHERE exists(a.address)\u003cbr /\u003e\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\u003cbr /\u003e\nRETURN location.latitude AS latitude, location.longitude AS longitude, location.description AS description\u003c/h2\u003e\n\u003cp\u003e\u003d\u003d Calculating distance between locations\u003c/p\u003e\n\u003cp\u003eIf we wish to calculate the distance between addresses, we need to use the point() function to convert\u003cbr /\u003e\nlatitude and longitude to Cyper Point types, and then use the distance() function to calculate the distance:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\u003cbr /\u003e\nMATCH (a:Place)\u003cbr /\u003e\nWHERE exists(a.address)\u003cbr /\u003e\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\u003cbr /\u003e\nWITH location, distance(point(location), eiffel) AS distance\u003cbr /\u003e\nWHERE distance \u0026lt; 5000\u003cbr /\u003e\nRETURN location.description AS description, distance\u003cbr /\u003e\nORDER BY distance\u003cbr /\u003e\nLIMIT 100\u003c/h2\u003e\n\u003cp\u003e\u003d\u003d\u003d sortByDistance\u003c/p\u003e\n\u003cp\u003eThe second procedure enables you to sort a given collection of paths by the sum of their distance based on lat/long properties\u003cbr /\u003e\non the nodes.\u003c/p\u003e\n\u003cp\u003eSample data :\u003c/p\u003e\n\u003ch2\u003e[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eCREATE (bruges:City {name:\u0026ldquo;bruges\u0026rdquo;, latitude: 51.2605829, longitude: 3.0817189})\u003cbr /\u003e\nCREATE (brussels:City {name:\u0026ldquo;brussels\u0026rdquo;, latitude: 50.854954, longitude: 4.3051786})\u003cbr /\u003e\nCREATE (paris:City {name:\u0026ldquo;paris\u0026rdquo;, latitude: 48.8588376, longitude: 2.2773455})\u003cbr /\u003e\nCREATE (dresden:City {name:\u0026ldquo;dresden\u0026rdquo;, latitude: 51.0767496, longitude: 13.6321595})\u003cbr /\u003e\nMERGE (bruges)-[:NEXT]-\u0026gt;(brussels)\u003cbr /\u003e\nMERGE (brussels)-[:NEXT]-\u0026gt;(dresden)\u003cbr /\u003e\nMERGE (brussels)-[:NEXT]-\u0026gt;(paris)\u003cbr /\u003e\nMERGE (bruges)-[:NEXT]-\u0026gt;(paris)\u003cbr /\u003e\nMERGE (paris)-[:NEXT]-\u0026gt;(dresden)\u003c/h2\u003e\n\u003cp\u003eFinding paths and sort them by distance\u003c/p\u003e\n\u003ch2\u003e[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (a:City {name:\u0026lsquo;bruges\u0026rsquo;}), (b:City {name:\u0026lsquo;dresden\u0026rsquo;})\u003cbr /\u003e\nMATCH p\u003d(a)-[*]-\u0026gt;(b)\u003cbr /\u003e\nWITH collect(p) as paths\u003cbr /\u003e\nCALL apoc.spatial.sortByDistance(paths) YIELD path, distance\u003cbr /\u003e\nRETURN path, distance\u003c/h2\u003e\n\u003cp\u003e\u003d\u003d Graph Refactoring\u003c/p\u003e\n\u003cp\u003eIn order not to have to repeatedly geocode the same thing in multiple queries, especially\u003cbr /\u003e\nif the database will be used by many people, it might be a good idea to persist the results\u003cbr /\u003e\nin the database so that subsequent calls can use the saved results.\u003c/p\u003e\n\u003cp\u003eGeocode and persist the result\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (a:Place)\u003cbr /\u003e\nWHERE exists(a.address) AND NOT exists(a.latitude)\u003cbr /\u003e\nWITH a LIMIT 1000\u003cbr /\u003e\nCALL apoc.spatial.geocodeOnce(a.address) YIELD location\u003cbr /\u003e\nSET a.latitude \u003d location.latitude\u003cbr /\u003e\nSET a.longitude \u003d location.longitude\u003c/h2\u003e\n\u003cp\u003eNote that the above command only geocodes the first 1000 ‘Place’ nodes that have not already been geocoded.\u003cbr /\u003e\nThis query can be run multiple times until all places are geocoded. Why would we want to do this?\u003cbr /\u003e\nTwo good reasons:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eThe geocoding service is a public service that can throttle or blacklist sites that hit the service too heavily, so controlling how much we do is useful.\u003c/li\u003e\n\u003cli\u003eThe transaction is updating the database, and it is wise not to update the database with too many things in the same transaction, to avoid using up too much memory. This trick will keep the memory usage very low.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eNow make use of the results in distance queries\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\u003cbr /\u003e\nMATCH (a:Place)\u003cbr /\u003e\nWHERE exists(a.latitude) AND exists(a.longitude)\u003cbr /\u003e\nWITH a, distance(point(a), eiffel) AS distance\u003cbr /\u003e\nWHERE distance \u0026lt; 5000\u003cbr /\u003e\nRETURN a.name, distance\u003cbr /\u003e\nORDER BY distance\u003cbr /\u003e\nLIMIT 100\u003c/h2\u003e\n\u003cp\u003e\u003d\u003d Combined Space and Time search\u003c/p\u003e\n\u003cp\u003eCombining spatial and date-time functions can allow for more complex queries:\u003c/p\u003e\n\u003ch2\u003e[source,cypher]\u003c/h2\u003e\n\u003ch2\u003eWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\u003cbr /\u003e\nMATCH (e:Event)\u003cbr /\u003e\nWHERE exists(e.address) AND exists(e.datetime)\u003cbr /\u003e\nCALL apoc.spatial.geocodeOnce(e.address) YIELD location\u003cbr /\u003e\nWITH e, location,\u003cbr /\u003e\ndistance(point(location), eiffel) AS distance,\u003cbr /\u003e\n(apoc.date.parse(\u0026lsquo;2016-06-01 00:00:00\u0026rsquo;,\u0026lsquo;h\u0026rsquo;) - apoc.date.parse(e.datetime,\u0026lsquo;h\u0026rsquo;))/24.0 AS days_before_due\u003cbr /\u003e\nWHERE distance \u0026lt; 5000 AND days_before_due \u0026lt; 14 AND apoc.date.parse(e.datetime,\u0026lsquo;h\u0026rsquo;) \u0026lt; apoc.date.parse(\u0026lsquo;2016-06-01 00:00:00\u0026rsquo;,\u0026lsquo;h\u0026rsquo;)\u003cbr /\u003e\nRETURN e.name AS event, e.datetime AS date,\u003cbr /\u003e\nlocation.description AS description, distance\u003cbr /\u003e\nORDER BY distance\u003c/h2\u003e\n\u003cp\u003eWith date parse we can parse any type of string date to date\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eWITH apoc.date.parse(\u0026quot;31/05/2019\u0026quot;, \u0026quot;ms\u0026quot;, \u0026quot;dd/MM/yyyy\u0026quot;) AS ms\nRETURN date(datetime({epochmillis: ms})) AS date\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003ePoint values\u003c/h2\u003e\n\u003cp\u003eTo manipulate \u003ccode\u003ePoint\u003c/code\u003e values, we can use:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003egeocodeOnce(address)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003egeocode(address,maxResults)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ereverseGeocode(latitude,longitude)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.spatial.sortByDistance(paths)\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003egeocode\u003c/code\u003e and \u003ccode\u003egeocodeOnce\u003c/code\u003e procedure converts a textual address into a location containing \u003cem\u003elatitude\u003c/em\u003e, \u003cem\u003elongitude\u003c/em\u003e and \u003cem\u003edescription\u003c/em\u003e.\u003cbr /\u003e\n\u003ccode\u003eGeocodeOnce()\u003c/code\u003e is designed to return the first, or highest ranking result.\u003cbr /\u003e\nThis is because the backing geocoding service (OSM, Google, OpenCage or other) might return multiple results for the same query.\u003c/p\u003e\n\u003cp\u003eThe third procedure \u003ccode\u003ereverseGeocode\u003c/code\u003e will convert a location containing \u003ccode\u003elatitude\u003c/code\u003e and \u003ccode\u003elongitude\u003c/code\u003e into a textual address.\u003c/p\u003e\n\u003cp\u003eThere are a few options that can be set in the \u003ccode\u003eapoc.conf\u003c/code\u003e file, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/misc/spatial/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more info:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eapoc.spatial.geocode.provider\u003dosm (osm, google, opencage, etc.)\napoc.spatial.geocode.osm.throttle\u003d5000 (ms to delay between queries to not overload OSM servers)\napoc.spatial.geocode.google.throttle\u003d1 (ms to delay between queries to not overload Google servers)\napoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\napoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\napoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635349510510_26604918",
-      "id": "paragraph_1635349510510_26604918",
-      "dateCreated": "2021-10-27 15:45:10.510",
-      "dateStarted": "2021-10-29 12:08:52.992",
-      "dateFinished": "2021-10-29 12:08:53.039",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\n## Geocode functions\n\nThere are three forms of the procedure:\n\n* geocodeOnce(address) returns zero or one result.\n* geocode(address,maxResults) returns zero, one or more up to maxResults.\n* reverseGeocode(latitude,longitude) returns zero or one result.\n\nThe `geocode` and `geocodeOnce` procedure converts a textual address into a location containing _latitude_, _longitude_ and _description_.\n`GeocodeOnce()` is designed to return the first, or highest ranking result.\nThis is because the backing geocoding service (OSM, Google, OpenCage or other) might return multiple results for the same query.\n\nThe third procedure _reverseGeocode_ will convert a location containing _latitude_ and _longitude_ into a textual address.",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 09:02:12.470",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
       },
       "apps": [],
       "runtimeInfos": {},
@@ -1382,7 +1351,9 @@
       "jobName": "paragraph_1635931448998_2028143042",
       "id": "paragraph_1635931448998_2028143042",
       "dateCreated": "2021-11-03 09:24:08.998",
-      "status": "READY"
+      "dateStarted": "2021-11-10 09:52:51.058",
+      "dateFinished": "2021-11-10 09:52:51.086",
+      "status": "FINISHED"
     },
     {
       "text": "%neo4j\nCALL apoc.spatial.geocodeOnce(\u002721 rue Paul Bellamy 44000 NANTES FRANCE\u0027)\nYIELD location\nRETURN location.latitude, location.longitude",
@@ -1516,23 +1487,6 @@
       "status": "READY"
     },
     {
-      "text": "%neo4j\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 09:02:57.049",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636448577049_1532594502",
-      "id": "paragraph_1636448577049_1532594502",
-      "dateCreated": "2021-11-09 09:02:57.049",
-      "status": "READY"
-    },
-    {
       "text": "%neo4j\n\nMATCH (a:City {name:\u0027bruges\u0027}), (b:City {name:\u0027dresden\u0027})\nMATCH p\u003d(a)-[*]-\u003e(b)\nWITH collect(p) as paths\nCALL apoc.spatial.sortByDistance(paths) YIELD path, distance\nRETURN path, distance\n",
       "user": "anonymous",
       "dateUpdated": "2021-11-09 09:03:09.581",
@@ -1562,9 +1516,9 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\n# Date and time functions\n\nNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\n\nAPOC has several procedures for converting and formatting various date, time, and temporal values. They save valuable time in manually converting values or creating a procedure from scratch! The full list of available procedures is in the APOC documentation.\n\n- apoc.date.add(12345, \u0027ms\u0027, -365, \u0027d\u0027) - given a timestamp in one time unit, adds a value of the specified time unit\n- apoc.date.convert(12345, \u0027ms\u0027, \u0027d\u0027) - convert a timestamp in one time unit into one of a different time unit\n- apoc.date.convertFormat(\u0027Tue, 14 May 2019 14:52:06 -0400\u0027, \u0027rfc_1123_date_time\u0027, \u0027iso_date_time\u0027) - convert a String of one date format into a String of another date format.\n- apoc.date.currentTimestamp() - returns System.currentTimeMillis() at the time it was called. The value is current throughout transaction execution, and is different from Cypher’s timestamp() function, which does not update within a transaction.\n- apoc.date.field(12345,(\u0027ms\\|s\\|m\\|h\\|d\\|month\\|year\u0027),(\u0027TZ\u0027)\n- apoc.date.fields(\u00272012-12-23\u0027,(\u0027yyyy-MM-dd\u0027)) - return columns and a map representation of date parsed with the given format with entries for years,months,weekdays,days,hours,minutes,seconds,zoneid\n- apoc.date.format(12345,(\u0027ms\\|s\\|m\\|h\\|d\u0027),(\u0027yyyy-MM-dd HH:mm:ss zzz\u0027),(\u0027TZ\u0027)) - get string representation of time value optionally using the specified unit (default ms) using specified format (default ISO) and specified time zone (default current TZ)\n- apoc.date.fromISO8601(\u0027yyyy-MM-ddTHH:mm:ss.SSSZ\u0027) - return number representation of time in EPOCH format\n- apoc.date.parse(\u00272012-12-23\u0027,\u0027ms\\|s\\|m\\|h\\|d\u0027,\u0027yyyy-MM-dd\u0027) - parse date string using the specified format into the specified time unit\n- apoc.date.parseAsZonedDateTime(\u00272012-12-23 23:59:59\u0027,\u0027yyyy-MM-dd HH:mm:ss\u0027, \u0027UTC-hour-offset\u0027) - parse date string using the specified format to specified timezone\n- apoc.date.systemTimezone() - returns the system timezone display name\n- apoc.date.toISO8601(12345,(\u0027ms\\|s\\|m\\|h\\|d\u0027) - return string representation of time in ISO8601 format\ntoYears(timestamp) or toYears(date[,format]) - converts timestamp into floating point years\n",
+      "text": "%md\n\n# Date and time functions\n\nNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\n\nAPOC has \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/temporal/datetime-conversions/\" target\u003d\"_blank\"\u003eseveral procedures\u003c/a\u003e for converting and formatting various date, time, and temporal values.\nhere are some of them:\n\n- apoc.date.add(12345, \u0027time\u0027, -365, \u0027time\u0027) - given a timestamp in one time unit, adds a value of the specified time unit\n- apoc.date.fields(\u00272012-12-23\u0027,(\u0027yyyy-MM-dd\u0027)) - return columns and a map representation of date parsed with the given format with entries for years,months,weekdays,days,hours,minutes,seconds,zoneid\n- apoc.date.format(12345,time,format,(\u0027timezone\u0027)) - get string representation of time value optionally using the specified unit (default ms) using specified format (default ISO) and specified time zone (default current TZ)\n- apoc.date.parse(\u00272012-12-23\u0027,time,format) - parse date string using the specified format into the specified time unit\n\nwhere `time` parameter is one of these: `\u0027ms\u0027, \u0027s\u0027, \u0027m\u0027, \u0027h\u0027, \u0027d\u0027, \u0027millis\u0027, \u0027milliseconds\u0027, \u0027seconds\u0027, \u0027minutes\u0027, \u0027hours\u0027 or \u0027days\u0027`,\nand `format` is the date format (e.g \"yyyy-MM-dd\", \"yyyy-MM-dd HH:mm:ss zzz\" )\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:19:24.416",
+      "dateUpdated": "2021-11-10 10:07:54.458",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1577,8 +1531,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -1589,7 +1543,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eDate and time functions\u003c/h1\u003e\n\u003cp\u003eNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\u003c/p\u003e\n\u003cp\u003eAPOC has several procedures for converting and formatting various date, time, and temporal values. They save valuable time in manually converting values or creating a procedure from scratch! The full list of available procedures is in the APOC documentation.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.date.add(12345, \u0026lsquo;ms\u0026rsquo;, -365, \u0026lsquo;d\u0026rsquo;) - given a timestamp in one time unit, adds a value of the specified time unit\u003c/li\u003e\n\u003cli\u003eapoc.date.convert(12345, \u0026lsquo;ms\u0026rsquo;, \u0026lsquo;d\u0026rsquo;) - convert a timestamp in one time unit into one of a different time unit\u003c/li\u003e\n\u003cli\u003eapoc.date.convertFormat(\u0026lsquo;Tue, 14 May 2019 14:52:06 -0400\u0026rsquo;, \u0026lsquo;rfc_1123_date_time\u0026rsquo;, \u0026lsquo;iso_date_time\u0026rsquo;) - convert a String of one date format into a String of another date format.\u003c/li\u003e\n\u003cli\u003eapoc.date.currentTimestamp() - returns System.currentTimeMillis() at the time it was called. The value is current throughout transaction execution, and is different from Cypher’s timestamp() function, which does not update within a transaction.\u003c/li\u003e\n\u003cli\u003eapoc.date.field(12345,(\u0026lsquo;ms|s|m|h|d|month|year\u0026rsquo;),(\u0026lsquo;TZ\u0026rsquo;)\u003c/li\u003e\n\u003cli\u003eapoc.date.fields(\u0026lsquo;2012-12-23\u0026rsquo;,(\u0026lsquo;yyyy-MM-dd\u0026rsquo;)) - return columns and a map representation of date parsed with the given format with entries for years,months,weekdays,days,hours,minutes,seconds,zoneid\u003c/li\u003e\n\u003cli\u003eapoc.date.format(12345,(\u0026lsquo;ms|s|m|h|d\u0026rsquo;),(\u0026lsquo;yyyy-MM-dd HH:mm:ss zzz\u0026rsquo;),(\u0026lsquo;TZ\u0026rsquo;)) - get string representation of time value optionally using the specified unit (default ms) using specified format (default ISO) and specified time zone (default current TZ)\u003c/li\u003e\n\u003cli\u003eapoc.date.fromISO8601(\u0026lsquo;yyyy-MM-ddTHH:mm:ss.SSSZ\u0026rsquo;) - return number representation of time in EPOCH format\u003c/li\u003e\n\u003cli\u003eapoc.date.parse(\u0026lsquo;2012-12-23\u0026rsquo;,\u0026lsquo;ms|s|m|h|d\u0026rsquo;,\u0026lsquo;yyyy-MM-dd\u0026rsquo;) - parse date string using the specified format into the specified time unit\u003c/li\u003e\n\u003cli\u003eapoc.date.parseAsZonedDateTime(\u0026lsquo;2012-12-23 23:59:59\u0026rsquo;,\u0026lsquo;yyyy-MM-dd HH:mm:ss\u0026rsquo;, \u0026lsquo;UTC-hour-offset\u0026rsquo;) - parse date string using the specified format to specified timezone\u003c/li\u003e\n\u003cli\u003eapoc.date.systemTimezone() - returns the system timezone display name\u003c/li\u003e\n\u003cli\u003eapoc.date.toISO8601(12345,(\u0026lsquo;ms|s|m|h|d\u0026rsquo;) - return string representation of time in ISO8601 format\u003cbr /\u003e\ntoYears(timestamp) or toYears(date[,format]) - converts timestamp into floating point years\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eDate and time functions\u003c/h1\u003e\n\u003cp\u003eNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\u003c/p\u003e\n\u003cp\u003eAPOC has \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/temporal/datetime-conversions/\" target\u003d\"_blank\"\u003eseveral procedures\u003c/a\u003e for converting and formatting various date, time, and temporal values.\u003cbr /\u003e\nhere are some of them:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.date.add(12345, \u0026lsquo;ms\u0026rsquo;, -365, \u0026lsquo;d\u0026rsquo;) - given a timestamp in one time unit, adds a value of the specified time unit\u003c/li\u003e\n\u003cli\u003eapoc.date.convertFormat(\u0026lsquo;Tue, 14 May 2019 14:52:06 -0400\u0026rsquo;, \u0026lsquo;rfc_1123_date_time\u0026rsquo;, \u0026lsquo;iso_date_time\u0026rsquo;) - convert a String of one date format into a String of another date format.\u003c/li\u003e\n\u003cli\u003eapoc.date.fields(\u0026lsquo;2012-12-23\u0026rsquo;,(\u0026lsquo;yyyy-MM-dd\u0026rsquo;)) - return columns and a map representation of date parsed with the given format with entries for years,months,weekdays,days,hours,minutes,seconds,zoneid\u003c/li\u003e\n\u003cli\u003eapoc.date.format(12345,(\u0026lsquo;ms|s|m|h|d\u0026rsquo;),(\u0026lsquo;yyyy-MM-dd HH:mm:ss zzz\u0026rsquo;),(\u0026lsquo;TZ\u0026rsquo;)) - get string representation of time value optionally using the specified unit (default ms) using specified format (default ISO) and specified time zone (default current TZ)\u003c/li\u003e\n\u003cli\u003eapoc.date.parse(\u0026lsquo;2012-12-23\u0026rsquo;,\u0026lsquo;ms\\s|m|h|d\u0026rsquo;,\u0026lsquo;yyyy-MM-dd\u0026rsquo;) - parse date string using the specified format into the specified time unit\u003c/li\u003e\n\u003cli\u003eapoc.date.parseAsZonedDateTime(\u0026lsquo;2012-12-23 23:59:59\u0026rsquo;,\u0026lsquo;yyyy-MM-dd HH:mm:ss\u0026rsquo;, \u0026lsquo;UTC-hour-offset\u0026rsquo;) - parse date string using the specified format to specified timezone\u003c/li\u003e\n\u003cli\u003eapoc.date.systemTimezone() - returns the system timezone display name\u003c/li\u003e\n\u003cli\u003eapoc.date.toISO8601(12345,(\u0026lsquo;ms|s|m|h|d\u0026rsquo;) - return string representation of time in ISO8601 format\u003cbr /\u003e\ntoYears(timestamp) or toYears(date[,format]) - converts timestamp into floating point years\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1599,8 +1553,8 @@
       "jobName": "paragraph_1635349592486_1411303387",
       "id": "paragraph_1635349592486_1411303387",
       "dateCreated": "2021-10-27 15:46:32.486",
-      "dateStarted": "2021-11-07 15:19:24.416",
-      "dateFinished": "2021-11-07 15:19:24.431",
+      "dateStarted": "2021-11-10 09:57:21.553",
+      "dateFinished": "2021-11-10 09:57:21.592",
       "status": "FINISHED"
     },
     {
@@ -1677,48 +1631,6 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### Converting dates from Integer to String\n\nThe APOC apoc.date.format() takes an integer value for the date and converts it to a string in the desired format, including a custom one. This is commonly used when translating data from APIs, flat files, or even other databases and moving that data into or out of Neo4j.\n\nFormat: apoc.date.format(12345, [\u0027ms\u0027/\u0027s\u0027], [\u0027yyyy/MM/dd HH:mm:ss\u0027])\n\nThis procedure has 3 parameters -\n\n    the date integer value to convert\n\n    how specific the first parameter is (s for seconds, ms for milliseconds)\n\n    how we want the date string result to look",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-03 09:55:33.083",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eConverting dates from Integer to String\u003c/h3\u003e\n\u003cp\u003eThe APOC apoc.date.format() takes an integer value for the date and converts it to a string in the desired format, including a custom one. This is commonly used when translating data from APIs, flat files, or even other databases and moving that data into or out of Neo4j.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.date.format(12345, [\u0026lsquo;ms\u0026rsquo;/\u0026lsquo;s\u0026rsquo;], [\u0026lsquo;yyyy/MM/dd HH:mm:ss\u0026rsquo;])\u003c/p\u003e\n\u003cp\u003eThis procedure has 3 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe date integer value to convert\n\nhow specific the first parameter is (s for seconds, ms for milliseconds)\n\nhow we want the date string result to look\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635409417948_1233797478",
-      "id": "paragraph_1635409417948_1233797478",
-      "dateCreated": "2021-10-28 08:23:37.948",
-      "dateStarted": "2021-11-03 09:55:33.083",
-      "dateFinished": "2021-11-03 09:55:33.115",
-      "status": "FINISHED"
-    },
-    {
       "text": "%neo4j\nWITH datetime(\"2020-11-04T11:23:22\").epochMillis AS datetime // convert in epoch milliseconds\nRETURN apoc.date.format(datetime, \"ms\", \"yyyy-MM-dd\") AS output",
       "user": "anonymous",
       "dateUpdated": "2021-11-03 10:31:05.647",
@@ -1784,89 +1696,6 @@
       "dateCreated": "2021-11-03 09:55:49.161",
       "dateStarted": "2021-11-03 10:30:58.200",
       "dateFinished": "2021-11-03 10:30:58.225",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\n## Converting dates from String to Integer\n\nLet us do the reverse of what we just did on the previous slide by converting a string value to an integer with apoc.date.parse(). This is helpful for comparing date strings from and to various formats, most commonly in data import or export.\n\nFormat: apoc.date.parse(\u00272019/03/25 03:15:59\u0027, [\u0027ms\u0027/\u0027s\u0027], [\u0027yyyy/MM/dd HH:mm:ss\u0027])\n\nThe procedure needs 3 parameters -\n\n    the date string that needs converted\n\n    how specific the conversion should be (down to seconds s or milliseconds ms)\n\n    what the format is of the date string (1st parameter)",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-03 09:58:27.952",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eConverting dates from String to Integer\u003c/h2\u003e\n\u003cp\u003eLet us do the reverse of what we just did on the previous slide by converting a string value to an integer with apoc.date.parse(). This is helpful for comparing date strings from and to various formats, most commonly in data import or export.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.date.parse(\u0026lsquo;2019/03/25 03:15:59\u0026rsquo;, [\u0026lsquo;ms\u0026rsquo;/\u0026lsquo;s\u0026rsquo;], [\u0026lsquo;yyyy/MM/dd HH:mm:ss\u0026rsquo;])\u003c/p\u003e\n\u003cp\u003eThe procedure needs 3 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe date string that needs converted\n\nhow specific the conversion should be (down to seconds s or milliseconds ms)\n\nwhat the format is of the date string (1st parameter)\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635409454888_1885902767",
-      "id": "paragraph_1635409454888_1885902767",
-      "dateCreated": "2021-10-28 08:24:14.888",
-      "dateStarted": "2021-10-29 12:08:53.580",
-      "dateFinished": "2021-10-29 12:08:53.591",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n## apoc.date.parse Example:\n\nLet us say that we received a notification from our monitoring system that there was an error in the system at timestamp 882230400, so we need to find out which orders were possibly affected by the error. We can use apoc.date.parse() to convert the string-formatted date in our Northwind data to a timestamp and compare that to the timestamp we have from our error system.\n\nWITH 882230400 as errorTimestamp //1997-12-16 00:00:00.000 in epoch seconds\nMATCH (o:Order)\nWHERE apoc.date.parse(o.orderDate, \u0027s\u0027, \u0027yyyy-MM-dd HH:mm:ss.SSS\u0027) \u003d errorTimestamp\nRETURN o\n\nIn our example, we are given a date integer (epoch time from the error in monitoring system) and want to find the orders that were made on that date. We use MATCH to search for Order nodes where the converted orderDate property (using the procedure) matches the date integer of the error and return the orders that are found.\n\nIn the return, we should see 3 orders that have an order date of 1997-12-16!",
-      "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:08:56.643",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eapoc.date.parse Example:\u003c/h2\u003e\n\u003cp\u003eLet us say that we received a notification from our monitoring system that there was an error in the system at timestamp 882230400, so we need to find out which orders were possibly affected by the error. We can use apoc.date.parse() to convert the string-formatted date in our Northwind data to a timestamp and compare that to the timestamp we have from our error system.\u003c/p\u003e\n\u003cp\u003eWITH 882230400 as errorTimestamp //1997-12-16 00:00:00.000 in epoch seconds\u003cbr /\u003e\nMATCH (o:Order)\u003cbr /\u003e\nWHERE apoc.date.parse(o.orderDate, \u0026lsquo;s\u0026rsquo;, \u0026lsquo;yyyy-MM-dd HH:mm:ss.SSS\u0026rsquo;) \u003d errorTimestamp\u003cbr /\u003e\nRETURN o\u003c/p\u003e\n\u003cp\u003eIn our example, we are given a date integer (epoch time from the error in monitoring system) and want to find the orders that were made on that date. We use MATCH to search for Order nodes where the converted orderDate property (using the procedure) matches the date integer of the error and return the orders that are found.\u003c/p\u003e\n\u003cp\u003eIn the return, we should see 3 orders that have an order date of 1997-12-16!\u003c/p\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635409466645_527241096",
-      "id": "paragraph_1635409466645_527241096",
-      "dateCreated": "2021-10-28 08:24:26.645",
-      "dateStarted": "2021-10-29 12:08:53.702",
-      "dateFinished": "2021-10-29 12:08:53.712",
       "status": "FINISHED"
     },
     {
@@ -1942,48 +1771,6 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Adding or subtracting units from timestamps\n\nWe can easily add or subtract a specified time value to find the desired timestamp.\n\n```\napoc.date.add(12345, \u0027ms\u0027, -365, \u0027d\u0027)\n```\n\nWhere parameters are:\n- the date integer for adding or subtracting\n- the unit type of the initial date\n- the number to add/substract from date\n- the unit type to add/substract",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-03 10:41:58.753",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Adding or subtracting units from timestamps\u003c/p\u003e\n\u003cp\u003eThe marketing department might want to see how well a marketing campaign did to generate sales. The campaign was published at timestamp 891388800, and we need to find out how many sales it generated within the first 30 days running.\u003c/p\u003e\n\u003cp\u003eWe can use apoc.date.add() to take a point in time of epoch milliseconds (integer) and add or subtract a specified time value to find the desired timestamp.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.date.add(12345, \u0026lsquo;ms\u0026rsquo;, -365, \u0026lsquo;d\u0026rsquo;)\u003c/p\u003e\n\u003cp\u003eThe procedure above contains 4 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe date integer for adding or subtracting\n\nhow specific the date integer is (s for seconds, ms for milliseconds)\n\nthe number to add or subtract from the date integer\n\nthe unit type to add or subtract\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635409477872_135728276",
-      "id": "paragraph_1635409477872_135728276",
-      "dateCreated": "2021-10-28 08:24:37.872",
-      "dateStarted": "2021-10-29 12:08:53.819",
-      "dateFinished": "2021-10-29 12:08:53.828",
-      "status": "FINISHED"
-    },
-    {
       "text": "%neo4j\nWITH 891388800 as startDate\nWITH startDate, apoc.date.add(startDate, \u0027s\u0027, 31, \u0027d\u0027) as endDate\nRETURN apoc.date.format(startDate,\u0027s\u0027,\u0027yyyy-MM-dd\u0027) as startDate, apoc.date.format(endDate,\u0027s\u0027,\u0027yyyy-MM-dd\u0027) as endDate",
       "user": "anonymous",
       "dateUpdated": "2021-11-09 09:04:02.465",
@@ -2055,63 +1842,21 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Converting date string to temporal type\n\nSo far, we have worked with order dates as strings with a particular format. However, Neo4j supports date and time types, so it would probably make things much easier if we converted to the native types.\n\nThere is an APOC procedure to convert the format from a string to a temporal type. Since Neo4j is compatible with the ISO 8601 standard, we will use that for our result format.\n\nFormat: apoc.date.convertFormat(\u00272019-12-31 16:14:20\u0027, \u0027yyyy-MM-dd HH:mm:ss\u0027, \u0027iso_date_format\u0027)\n\nThe procedure contains 3 parameters -\n\n    the date string that needs converted\n\n    what the format is of the date string\n\n    the format for the resulting temporal type (can be specified manually, as Java formats, or as these built-in formats)\n\n\n\nhttps://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html\nhttps://www.elastic.co/guide/en/elasticsearch/reference/5.5/mapping-date-format.html#built-in-date-formats\n\napoc.date.convertFormat Example:\n\nMATCH (o:Order)\nSET o.isoOrderDate \u003d apoc.date.convertFormat(o.orderDate, \u0027yyyy-MM-dd HH:mm:ss.SSS\u0027, \u0027iso_date_time\u0027)\nRETURN o\n\nIn the query above, we find all the orders in our system and set a new property called isoOrderDate that is equal to the converted orderDate string. The orderDate is converted using the procedure, specifying the string format it is currently in and the iso_date_time format (2019-01-01T00:00:00) we want to have as the result.\n\nResults of the query should return a sample (Browser will limit how much JavaScript has to render) of the orders we updated. Clicking on one shows all the properties on that node, including the new isoOrderDate property that is formatted as we expected!\n",
+      "text": "%neo4j\nRETURN apoc.date.convertFormat(\u00272019-12-31 16:14:20\u0027, \u0027yyyy-MM-dd HH:mm:ss\u0027, \u0027iso_date_format\u0027)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 09:04:18.719",
+      "dateUpdated": "2021-11-10 10:07:22.012",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
+          "language": "text",
+          "editOnDblClick": false,
           "completionKey": "TAB",
-          "completionSupport": false
+          "completionSupport": true
         },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Converting date string to temporal type\u003c/p\u003e\n\u003cp\u003eSo far, we have worked with order dates as strings with a particular format. However, Neo4j supports date and time types, so it would probably make things much easier if we converted to the native types.\u003c/p\u003e\n\u003cp\u003eThere is an APOC procedure to convert the format from a string to a temporal type. Since Neo4j is compatible with the ISO 8601 standard, we will use that for our result format.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.date.convertFormat(\u0026lsquo;2019-12-31 16:14:20\u0026rsquo;, \u0026lsquo;yyyy-MM-dd HH:mm:ss\u0026rsquo;, \u0026lsquo;iso_date_format\u0026rsquo;)\u003c/p\u003e\n\u003cp\u003eThe procedure contains 3 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe date string that needs converted\n\nwhat the format is of the date string\n\nthe format for the resulting temporal type (can be specified manually, as Java formats, or as these built-in formats)\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003d\u003d\u003cbr /\u003e\napoc.date.convertFormat Example:\u003c/p\u003e\n\u003cp\u003eMATCH (o:Order)\u003cbr /\u003e\nSET o.isoOrderDate \u003d apoc.date.convertFormat(o.orderDate, \u0026lsquo;yyyy-MM-dd HH:mm:ss.SSS\u0026rsquo;, \u0026lsquo;iso_date_time\u0026rsquo;)\u003cbr /\u003e\nRETURN o\u003c/p\u003e\n\u003cp\u003eIn the query above, we find all the orders in our system and set a new property called isoOrderDate that is equal to the converted orderDate string. The orderDate is converted using the procedure, specifying the string format it is currently in and the iso_date_time format (2019-01-01T00:00:00) we want to have as the result.\u003c/p\u003e\n\u003cp\u003eResults of the query should return a sample (Browser will limit how much JavaScript has to render) of the orders we updated. Clicking on one shows all the properties on that node, including the new isoOrderDate property that is formatted as we expected!\u003c/p\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635409505023_265615401",
-      "id": "paragraph_1635409505023_265615401",
-      "dateCreated": "2021-10-28 08:25:05.023",
-      "dateStarted": "2021-10-29 12:08:54.055",
-      "dateFinished": "2021-10-29 12:08:54.066",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n// The following converts a date in date_hour (yyyy-MM-dd’T’HH) format to date_hour_minute (yyyy-MM-dd’T’HH:mm) format:\n\nCypher\nCopy to Clipboard\nRun in Neo4j Browser\nRETURN apoc.date.convertFormat(\"2020-11-04T22\", \"date_hour\", \"date_hour_minute\") AS output;",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-03 10:25:55.815",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/undefined"
       },
       "settings": {
         "params": {},
@@ -2203,25 +1948,36 @@
       "status": "FINISHED"
     },
     {
-      "text": "",
+      "text": "%md\n\n## [Refactor data](http://localhost:8080/#/notebook/2GKZNUE99)\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:29:53.690",
+      "dateUpdated": "2021-11-10 10:08:34.863",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
+          "language": "markdown",
+          "editOnDblClick": true,
           "completionKey": "TAB",
-          "completionSupport": true
+          "completionSupport": false
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GKZNUE99\"\u003eRefactor data\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -2229,7 +1985,9 @@
       "jobName": "paragraph_1635869719574_1755877996",
       "id": "paragraph_1635869719574_1755877996",
       "dateCreated": "2021-11-02 16:15:19.574",
-      "status": "READY"
+      "dateStarted": "2021-11-10 10:08:34.860",
+      "dateFinished": "2021-11-10 10:08:34.874",
+      "status": "FINISHED"
     },
     {
       "text": "%md\n",

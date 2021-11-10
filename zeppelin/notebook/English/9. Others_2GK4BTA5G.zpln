@@ -587,9 +587,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n# Time to leave\n\nWe can set to ttl to remove some nodes after a specified time, similar to MongoDb and Redis analogues\n\n\nTo activate it, you have to set the apoc configuration `apoc.ttl.enabled\u003dtrue`.\nOptionally, we can set the chek frequency: `apoc.ttl.schedule\u003d5`\n\n\nFor example (in a specific epoch time), with parameters: `node, epochTime, time unit (ms, s, m, h, d or millis, milliseconds, seconds, minutes, hours, days) )\n`CALL apoc.ttl.expire(node,epochTime,time)`\nwhere `time` is one of these: \u0027ms\u0027, \u0027s\u0027, \u0027m\u0027, \u0027h\u0027, \u0027d\u0027, \u0027millis\u0027, \u0027milliseconds\u0027, \u0027seconds\u0027, \u0027minutes\u0027, \u0027hours\u0027 or \u0027days\u0027\n\nFor example:\n`MATCH (movie:Movie)\u003c-[produced:PRODUCED]-(person:Person)\n    CALL apoc.ttl.expire(person,1585176720,\u0027s\u0027)\n    RETURN movie, produced, person`\n\nMoreover, i can expire a node after a perion with `apoc.ttl.expireIn` (same syntax as above)\n\n\nHow it works:\n\n- Set the :TTL label and ttl property on the node(s) you want to expire:\n    - SET n:TTL\n    - SET n.ttl \u003d `time selected`\n- Create an index: `CREATE INDEX ON :TTL(ttl)`\n- Remove node(s) that have passed the expiration time:  `MATCH (t:TTL) where t.ttl \u003c timestamp() WITH t LIMIT 1000 DETACH DELETE t`\n",
+      "text": "%md\n\n# Time to leave\n\nWe can set to ttl to remove some nodes after a specified time, similar to MongoDb and Redis analogues\n\n\nTo activate it, you have to set the apoc configuration `apoc.ttl.enabled\u003dtrue`.\nOptionally, we can set the chek frequency: `apoc.ttl.schedule\u003d5`\n\n\nFor example (in a specific epoch time):\n\n`CALL apoc.ttl.expire(node,epochTime,time)`\nwhere `time` is one of these: `\u0027ms\u0027, \u0027s\u0027, \u0027m\u0027, \u0027h\u0027, \u0027d\u0027, \u0027millis\u0027, \u0027milliseconds\u0027, \u0027seconds\u0027, \u0027minutes\u0027, \u0027hours\u0027 or \u0027days\u0027`\n\nFor example:\n`MATCH (movie:Movie)\u003c-[produced:PRODUCED]-(person:Person)\n    CALL apoc.ttl.expire(person,1585176720,\u0027s\u0027)\n    RETURN movie, produced, person`\n\nMoreover, i can expire a node after a perion with `apoc.ttl.expireIn` (same syntax as above)\n\n\nHow it works:\n\n- Set the :TTL label and ttl property on the node(s) you want to expire:\n    - SET n:TTL\n    - SET n.ttl \u003d `time selected`\n- Create an index: `CREATE INDEX ON :TTL(ttl)`\n- Remove node(s) that have passed the expiration time:  `MATCH (t:TTL) where t.ttl \u003c timestamp() WITH t LIMIT 1000 DETACH DELETE t`\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 11:30:56.357",
+      "dateUpdated": "2021-11-10 10:00:44.280",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -601,8 +601,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -1059,9 +1059,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n# Database interactions\n\nWe can execute read / write / info operations in other database:\n\n- Jdbc (apoc.load.jdbc)\n- Elastic search (load.es.*)\n- MongoDb (apoc.mongo.*)\n- Couchbase (apoc.couchbase.*): https://neo4j.com/labs/apoc/4.1/database-integration/couchbase/\n- Load Ldap (apoc.load.ldap)\n- Bolt (apoc.bolt.*) - To connect to other Neo4j instances\n\nEvery procedure has oviously a different implementation to interface with databases.\nYou can see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-integration\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e for more details.\n",
+      "text": "%md\n\n# Database interactions\n\nWe can execute read / write operations in other database:\n\n- Jdbc (apoc.load.jdbc)\n- Elastic search (load.es.*)\n- MongoDb (apoc.mongo.*)\n- Redis (apoc.redis.*)\n- Couchbase (apoc.couchbase.*)\n- Load Ldap (apoc.load.ldap)\n- Bolt (apoc.bolt.*) - To connect to other Neo4j instances\n\nEvery procedure has oviously a different implementation to interface with databases.\nYou can see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-integration\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e for more details.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:27:49.550",
+      "dateUpdated": "2021-11-10 10:11:27.627",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1085,7 +1085,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eDatabase interactions\u003c/h1\u003e\n\u003cp\u003eWe can execute read / write / info operations in other database:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eJdbc (apoc.load.jdbc)\u003c/li\u003e\n\u003cli\u003eElastic search (load.es.*)\u003c/li\u003e\n\u003cli\u003eMongoDb (apoc.mongo.*)\u003c/li\u003e\n\u003cli\u003eCouchbase (apoc.couchbase.*): \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-integration/couchbase/\"\u003ehttps://neo4j.com/labs/apoc/4.1/database-integration/couchbase/\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eLoad Ldap (apoc.load.ldap)\u003c/li\u003e\n\u003cli\u003eBolt (apoc.bolt.*) - To connect to other Neo4j instances\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eEvery procedure has oviously a different implementation to interface with databases.\u003cbr /\u003e\nYou can see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-integration\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e for more details.\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eDatabase interactions\u003c/h1\u003e\n\u003cp\u003eWe can execute read / write operations in other database:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eJdbc (apoc.load.jdbc)\u003c/li\u003e\n\u003cli\u003eElastic search (load.es.*)\u003c/li\u003e\n\u003cli\u003eMongoDb (apoc.mongo.*)\u003c/li\u003e\n\u003cli\u003eRedis (apoc.redis.*)\u003c/li\u003e\n\u003cli\u003eCouchbase (apoc.couchbase.*)\u003c/li\u003e\n\u003cli\u003eLoad Ldap (apoc.load.ldap)\u003c/li\u003e\n\u003cli\u003eBolt (apoc.bolt.*) - To connect to other Neo4j instances\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eEvery procedure has oviously a different implementation to interface with databases.\u003cbr /\u003e\nYou can see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-integration\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e for more details.\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1095,14 +1095,14 @@
       "jobName": "paragraph_1635436437219_504267999",
       "id": "paragraph_1635436437219_504267999",
       "dateCreated": "2021-10-28 15:53:57.219",
-      "dateStarted": "2021-11-10 09:27:49.559",
-      "dateFinished": "2021-11-10 09:27:49.594",
+      "dateStarted": "2021-11-10 10:11:27.627",
+      "dateFinished": "2021-11-10 10:11:27.641",
       "status": "FINISHED"
     },
     {
       "text": "%md\n## Conclusions\n\n\u003cpre\u003e\nThis guide is based on Apoc 4.3.x. In other versions some procedures / functions could be a little different\n\u003c/pre\u003e\n\nSee \u003ca href\u003d\"https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to get updated about last changes.\n\nVisit the \u003ca href\u003d\"https://community.neo4j.com/\" target\u003d\"_blank\"\u003eNeo4j Community\u003c/a\u003e to get help.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 11:30:57.490",
+      "dateUpdated": "2021-11-10 10:10:43.857",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1114,8 +1114,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -1136,8 +1136,8 @@
       "jobName": "paragraph_1636298465103_1913554570",
       "id": "paragraph_1636298465103_1913554570",
       "dateCreated": "2021-11-07 15:21:05.103",
-      "dateStarted": "2021-11-09 11:30:57.518",
-      "dateFinished": "2021-11-09 11:30:57.533",
+      "dateStarted": "2021-11-10 10:10:43.857",
+      "dateFinished": "2021-11-10 10:10:43.875",
       "status": "FINISHED"
     },
     {
@@ -1179,7 +1179,5 @@
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
-  "info": {
-    "isRunning": false
-  }
+  "info": {}
 }

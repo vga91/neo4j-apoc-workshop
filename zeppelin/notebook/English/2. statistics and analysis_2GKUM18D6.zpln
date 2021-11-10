@@ -630,7 +630,7 @@
       "title": "Store size information for the different types of stores",
       "text": "%neo4j\n\nCALL apoc.monitor.store()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-08 15:56:53.363",
+      "dateUpdated": "2021-11-10 09:39:43.337",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -677,7 +677,8 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/undefined",
-        "title": true
+        "title": true,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -706,7 +707,7 @@
       "title": "Number of transactions total, opened, committed, rolled-back, last-tx-id",
       "text": "%neo4j\n\nCALL apoc.monitor.tx()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 10:43:49.778",
+      "dateUpdated": "2021-11-10 09:39:39.952",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -753,7 +754,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "title": true,
-        "editorHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},

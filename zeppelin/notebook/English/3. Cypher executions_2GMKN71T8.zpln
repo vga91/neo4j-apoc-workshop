@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n# Cypher Execution\n\nThe Apoc library comes with many procedure to help us to execute specific Cypher statements. here are some of them: \n\n\n- apoc.cypher.run(fragment, params) yield value - executes a reading fragment with the given parameters\n- apoc.cypher.doIt(fragment, params) yield value - executes writing fragment with the given parameters\n- apoc.cypher.runFile(file or url,[{statistics:true,timeout:10,parameters:{}}]) - runs each statement in the file, all semicolon separated - currently no schema operations\n- apoc.cypher.runFiles([files or urls],[{statistics:true,timeout:10,parameters:{}}])) - runs each statement in the files, all semicolon separated\n- apoc.cypher.runSchema(statement, params) yield value - executes query schema statement with the given parameters\n- apoc.cypher.runSchemaFile(file or url,[{statistics:true,timeout:10}]) - allows only schema operations, runs each schema statement in the file, all semicolon separated\n- apoc.cypher.runSchemaFiles([files or urls],{statistics:true,timeout:10}) - allows only schema operations, runs each schema statement in the files, all semicolon separated\n- apoc.cypher.runTimeboxed(\u0027cypherStatement\u0027, {params}, timeout) - abort kernelTransaction after timeout ms if not finished\n- apoc.cypher.runFirstColumnMany(statement, {params}) - executes statement with given parameters, returns first column only collected into a list, params are available as identifiers\n- apoc.cypher.runFirstColumnSingle(statement, {params}) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/cypher-execution/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to complete list.\n",
+      "text": "%md\n\n# Cypher Execution\n\nThe Apoc library comes with many procedure to help us to execute specific Cypher statements. here are some of them: \n\n\n- `apoc.cypher.run(fragment, {config})` - executes a reading fragment with the given parameters\n- `apoc.cypher.doIt(fragment, {config})` - executes writing fragment\n- `apoc.cypher.runFile(file or url,{config})` - runs each statement in the file, all semicolon separated - currently no schema operations\n- `apoc.cypher.runSchema(statement, {config})` yield value - executes query schema statement\n- `apoc.cypher.runSchemaFile(file or url, {config})` - allows only schema operations, runs each schema statement in the file, all semicolon separated\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/cypher-execution/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to complete list.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:47:13.058",
+      "dateUpdated": "2021-11-10 09:42:44.901",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,8 +16,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -41,23 +41,6 @@
       "dateStarted": "2021-11-09 08:47:13.058",
       "dateFinished": "2021-11-09 08:47:15.019",
       "status": "FINISHED"
-    },
-    {
-      "text": "%md\nRETURN apoc.cypher.runFirstColumnSingle(\"MATCH (n:Movie) RETURN properties(n)\", {}) AS count;",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-02 13:15:58.375",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635858516702_116920601",
-      "id": "paragraph_1635858516702_116920601",
-      "dateCreated": "2021-11-02 13:08:36.702",
-      "status": "READY"
     },
     {
       "text": "%md\n\n### apoc.cypher.run\n\nTo retrieve count of nodes for each labels we could do somethin like:\n```\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*)\nUNION ALL\n...\n```\n",
@@ -571,9 +554,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## [NEXT CHAPTER](http://localhost:8080/#/notebook/2GJCSVRMK)",
+      "text": "%md\n\n## [Import - Export](http://localhost:8080/#/notebook/2GJCSVRMK)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:08:50.907",
+      "dateUpdated": "2021-11-10 09:43:22.559",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -598,7 +581,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GJCSVRMK\"\u003eNEXT CHAPTER\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GJCSVRMK\"\u003eImport - Export\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -608,8 +591,8 @@
       "jobName": "paragraph_1635863303356_2095614526",
       "id": "paragraph_1635863303356_2095614526",
       "dateCreated": "2021-11-02 14:28:23.356",
-      "dateStarted": "2021-11-07 15:08:50.907",
-      "dateFinished": "2021-11-07 15:08:50.916",
+      "dateStarted": "2021-11-10 09:43:22.567",
+      "dateFinished": "2021-11-10 09:43:24.795",
       "status": "FINISHED"
     },
     {

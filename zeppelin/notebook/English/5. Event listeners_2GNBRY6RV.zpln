@@ -708,9 +708,50 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\nNext cap",
+      "text": "%md\n\n## [Property types manipulation](http://localhost:8080/#/notebook/2GN8QQ2U3)\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 11:55:37.623",
+      "dateUpdated": "2021-11-10 09:46:47.193",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GN8QQ2U3\"\u003eProperty types manipulation\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635854131205_175828569",
+      "id": "paragraph_1635854131205_175828569",
+      "dateCreated": "2021-11-02 11:55:31.206",
+      "dateStarted": "2021-11-10 09:46:45.231",
+      "dateFinished": "2021-11-10 09:46:45.242",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 09:46:08.291",
       "config": {},
       "settings": {
         "params": {},
@@ -719,13 +760,13 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635854131205_175828569",
-      "id": "paragraph_1635854131205_175828569",
-      "dateCreated": "2021-11-02 11:55:31.206",
+      "jobName": "paragraph_1636537568290_841176267",
+      "id": "paragraph_1636537568290_841176267",
+      "dateCreated": "2021-11-10 09:46:08.290",
       "status": "READY"
     }
   ],
-  "name": "5. Event listener",
+  "name": "5. Event listeners",
   "id": "2GNBRY6RV",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",
