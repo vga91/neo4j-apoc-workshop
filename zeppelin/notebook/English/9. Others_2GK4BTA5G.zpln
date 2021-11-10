@@ -437,47 +437,6 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Static values\n\nThe Apoc provides support for storing and retrieving static values, functionality that can be used to work with API credentials or cache query results.\n\n\nTo store a value, we can set settings into Apoc config, starting with `apoc.static` prefix. For example:\n```\napoc.static.mystore.id\u003dq123e456t\napoc.static.mystore.url\u003dhttps://api.twitter.com/1.1/search/tweets.json?count\u003d100\u0026result_type\u003drecent\u0026lang\u003den\u0026q\u003d\n```\n\nor using the following procedure:\n```\nCALL apoc.static.set(\"mystore.user\", \"asd\")\n```\n\n.The following returns the `apoc.static.twitter.bearer` value, so \u0027q123e456t\u0027:\n```\nRETURN apoc.static.get(\"twitter.bearer\") AS value\n```\n\n\nThe following returns all values with the `mystore` prefix: `RETURN apoc.static.getAll(\"twitter\")`\n\n\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 11:30:52.760",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "editOnDblClick": true,
-          "language": "markdown",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eStatic values\u003c/h2\u003e\n\u003cp\u003eThe Apoc provides support for storing and retrieving static values, functionality that can be used to work with API credentials or cache query results.\u003c/p\u003e\n\u003cp\u003eTo store a value, we can set settings into Apoc config, starting with \u003ccode\u003eapoc.static\u003c/code\u003e prefix. For example:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eapoc.static.mystore.id\u003dq123e456t\napoc.static.mystore.url\u003dhttps://api.twitter.com/1.1/search/tweets.json?count\u003d100\u0026amp;result_type\u003drecent\u0026amp;lang\u003den\u0026amp;q\u003d\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eor using the following procedure:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eCALL apoc.static.set(\u0026quot;mystore.user\u0026quot;, \u0026quot;asd\u0026quot;)\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e.The following returns the \u003ccode\u003eapoc.static.twitter.bearer\u003c/code\u003e value, so \u0026lsquo;q123e456t\u0026rsquo;:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eRETURN apoc.static.get(\u0026quot;twitter.bearer\u0026quot;) AS value\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eThe following returns all values with the \u003ccode\u003emystore\u003c/code\u003e prefix: \u003ccode\u003eRETURN apoc.static.getAll(\u0026quot;twitter\u0026quot;)\u003c/code\u003e\u003c/p\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635340803726_1233963523",
-      "id": "paragraph_1635340803726_1233963523",
-      "dateCreated": "2021-10-27 13:20:03.726",
-      "dateStarted": "2021-11-09 11:30:52.798",
-      "dateFinished": "2021-11-09 11:30:52.821",
-      "status": "FINISHED"
-    },
-    {
       "text": "%md\n\n## Block the query for a while\n\nWe can sleep the query execution through the:\n```\napoc.util.sleep(\u003cduration in milliseconds\u003e)\n```\n",
       "user": "anonymous",
       "dateUpdated": "2021-11-09 11:30:52.896",
@@ -1061,7 +1020,7 @@
     {
       "text": "%md\n\n# Database interactions\n\nWe can execute read / write operations in other database:\n\n- Jdbc (apoc.load.jdbc)\n- Elastic search (load.es.*)\n- MongoDb (apoc.mongo.*)\n- Redis (apoc.redis.*)\n- Couchbase (apoc.couchbase.*)\n- Load Ldap (apoc.load.ldap)\n- Bolt (apoc.bolt.*) - To connect to other Neo4j instances\n\nEvery procedure has oviously a different implementation to interface with databases.\nYou can see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-integration\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e for more details.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 10:11:27.627",
+      "dateUpdated": "2021-11-10 10:17:22.758",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1073,8 +1032,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
