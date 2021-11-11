@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n# Collection and map functions\n\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/data-structures/collection-list-functions/\" target\u003d\"_blank\"\u003eHere\u003c/a\u003e is the list of all collection functions.\n\nLet\u0027s see some examples:",
       "user": "anonymous",
-      "dateUpdated": "2021-11-08 22:30:19.978",
+      "dateUpdated": "2021-11-11 10:30:49.680",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,8 +16,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -38,14 +38,15 @@
       "jobName": "paragraph_1635349487755_663980320",
       "id": "paragraph_1635349487755_663980320",
       "dateCreated": "2021-10-27 15:44:47.756",
-      "dateStarted": "2021-11-07 15:18:07.641",
-      "dateFinished": "2021-11-07 15:18:07.653",
+      "dateStarted": "2021-11-11 10:30:49.681",
+      "dateFinished": "2021-11-11 10:30:49.709",
       "status": "FINISHED"
     },
     {
+      "title": "apoc.coll.sum",
       "text": "%neo4j\n\nRETURN apoc.coll.sum([1,2,3,4,5]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:10:12.312",
+      "dateUpdated": "2021-11-11 13:13:12.422",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -86,7 +87,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -112,9 +114,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.coll.intersection",
       "text": "%neo4j\n\nRETURN apoc.coll.intersection([1,2,3,4,5], [3,4,5]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:10:19.846",
+      "dateUpdated": "2021-11-11 13:13:21.088",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -155,7 +158,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -181,9 +185,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.coll.shuffle",
       "text": "%neo4j\n\nRETURN apoc.coll.shuffle([1,3,5,7,9]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:10:25.446",
+      "dateUpdated": "2021-11-11 13:13:24.654",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -224,7 +229,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -250,9 +256,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.coll.randomItem",
       "text": "%neo4j\n\n// get a random node\nmatch (n) RETURN apoc.coll.randomItem(collect(n)) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-02 23:43:36.725",
+      "dateUpdated": "2021-11-11 13:13:32.646",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -296,7 +303,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -322,9 +330,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Map function\n\nHere is a list of the map function availables:\n\n- `apoc.map.flatten(map,delimiter:\".\")`\n- `apoc.map.fromNodes(label, property)`\n- `apoc.map.fromPairs([[key,value],[key2,value2],...])`\n- `apoc.map.fromLists([keys],[values])`\n- `apoc.map.fromValues([key,value,key1,value1])`\n- `apoc.map.merge({first},{second})`\n- `apoc.map.mergeList([{maps}])`\n- `apoc.map.setKey(map,key,value)`\n- `apoc.map.removeKey(map,key,{recursive:true/false})`\n- `apoc.map.removeKeys(map,[keys],{recursive:true/false})`\n- `apoc.map.clean(map,[keys],[values])`\n- `apoc.map.groupBy([maps/nodes/relationships],\u0027key\u0027)`\n- `apoc.map.groupByMulti([maps/nodes/relationships],\u0027key\u0027)`\n- `apoc.map.sortedProperties(map, ignoreCase:true)`\n- `apoc.map.updateTree(tree,key,[[value,{data}]])`\n- `apoc.map.values(map, [key1,key2,key3,...],[addNullsForMissing])`\n- `apoc.map.submap(map,keys,[[defaults]],[fail\u003dtrue])`\n- `apoc.map.mget(map,keys,[[defaults]],[fail\u003dtrue])`\n- `apoc.map.get(map,key,[default],[fail\u003dtrue])`",
+      "text": "%md\n\n## Map function\n\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.map/\" target\u003d\"_blank\"\u003eThis\u003c/a\u003e is the list of the map function availables.",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:24:20.015",
+      "dateUpdated": "2021-11-11 13:14:40.398",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -336,11 +344,22 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eMap function\u003c/h2\u003e\n\u003cp\u003e\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.map/\" target\u003d\"_blank\"\u003eThis\u003c/a\u003e is the list of the map function availables.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -348,12 +367,15 @@
       "jobName": "paragraph_1635509480064_1011363535",
       "id": "paragraph_1635509480064_1011363535",
       "dateCreated": "2021-10-29 12:11:20.064",
-      "status": "READY"
+      "dateStarted": "2021-11-11 13:14:40.398",
+      "dateFinished": "2021-11-11 13:14:40.411",
+      "status": "FINISHED"
     },
     {
+      "title": "apoc.map.fromLists",
       "text": "%neo4j\n\n// convert 2 list (first list representing keys, second list representig values) in maps.\nRETURN apoc.map.fromLists([\"name\", \"dob\"], [\"Cristiano Ronaldo\", date(\"1985-02-05\")]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:26:22.224",
+      "dateUpdated": "2021-11-11 13:17:04.254",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -394,7 +416,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -420,25 +443,66 @@
       "status": "ERROR"
     },
     {
-      "text": "%neo4j\n\nRETURN apoc.map.merge({name: \"Cristiano Ronaldo\", dob: date(\"1985-02-05\")}, {country: \"Portugal\"}) AS output;",
+      "title": "apoc.map.merge",
+      "text": "%neo4j\n\nRETURN apoc.map.merge({name: \"Escanor\", dob: date(\"1985-02-05\")}, {country: \"Somewhere\"}) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:26:24.948",
+      "dateUpdated": "2021-11-11 13:16:57.730",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
-        "results": {},
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 104.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "output.name": "string",
+                      "output.country": "string",
+                      "output.dob": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "output.name\toutput.country\toutput.dob\nEscanor\tSomewhere\t1985-02-05\n"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -446,33 +510,69 @@
       "jobName": "paragraph_1635509615873_1036558899",
       "id": "paragraph_1635509615873_1036558899",
       "dateCreated": "2021-10-29 12:13:35.873",
-      "status": "READY"
+      "dateStarted": "2021-11-11 10:34:56.530",
+      "dateFinished": "2021-11-11 10:34:56.725",
+      "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nRETURN apoc.map.groupBy([\n\t{name: \"Cristiano Ronaldo\", club: \"Juventus\"},\n    {name: \"Lionel Messi\", club: \"Barcelona\"},\n    {name: \"Aaron Ramsey\", club: \"Juventus\"},\n    {name: \"Luiz Suarez\", club: \"Barcelona\"}\n], \"club\") AS output;",
+      "title": "apoc.map.sortedProperties",
+      "text": "%neo4j\n\nWITH {name:\"Gai Maito\",country:\"Japan\", date: \"First Jan\"} AS map\nRETURN apoc.map.sortedProperties(map) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:14:01.530",
-      "config": {},
+      "dateUpdated": "2021-11-11 13:17:11.899",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "output": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635509639889_588550444",
-      "id": "paragraph_1635509639889_588550444",
-      "dateCreated": "2021-10-29 12:13:59.889",
-      "status": "READY"
-    },
-    {
-      "text": "%neo4j\n\nWITH {name:\"Cristiano Ronaldo\",country:\"Portugal\",dob:date(\"1985-02-05\")} AS map\nRETURN apoc.map.sortedProperties(map) AS output;",
-      "user": "anonymous",
-      "dateUpdated": "2021-10-29 12:14:20.556",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "output\n[[\"country\",\"Japan\"],[\"date\",\"First Jan\"],[\"name\",\"Gai Maito\"]]\n"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -480,7 +580,9 @@
       "jobName": "paragraph_1635509642996_603828793",
       "id": "paragraph_1635509642996_603828793",
       "dateCreated": "2021-10-29 12:14:02.996",
-      "status": "READY"
+      "dateStarted": "2021-11-11 10:37:39.536",
+      "dateFinished": "2021-11-11 10:37:39.595",
+      "status": "FINISHED"
     },
     {
       "text": "%md\n\n## Text Functions\n\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/misc/text-functions/\" target\u003d\"_blank\"\u003eHere\u003c/a\u003e is the list of all Apoc text functions.\n\n",
@@ -525,77 +627,10 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\n// apoc.text.regexGroups(text, regex) - returns an array containing a nested array for each match. The inner array contains all match groups.\n\nRETURN apoc.text.regexGroups(\u0027abc \u003clink xxx1\u003eyyy1\u003c/link\u003e def \u003clink xxx2\u003eyyy2\u003c/link\u003e\u0027, \u0027\u003clink (\\\\w+)\u003e(\\\\w+)\u003c/link\u003e\u0027) AS result",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:29:19.300",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 84.0057,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "result": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "result\n[[\"\u003clink xxx1\u003eyyy1\u003c/link\u003e\",\"xxx1\",\"yyy1\"],[\"\u003clink xxx2\u003eyyy2\u003c/link\u003e\",\"xxx2\",\"yyy2\"]]\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635929463924_1652386274",
-      "id": "paragraph_1635929463924_1652386274",
-      "dateCreated": "2021-11-03 08:51:03.924",
-      "dateStarted": "2021-11-09 08:28:52.415",
-      "dateFinished": "2021-11-09 08:28:52.563",
-      "status": "FINISHED"
-    },
-    {
+      "title": "apoc.text.snakeCase",
       "text": "%neo4j\nRETURN apoc.text.snakeCase(\"test Snake Case\")",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 09:14:03.174",
+      "dateUpdated": "2021-11-11 13:17:21.059",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -635,7 +670,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -661,9 +697,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.text.toUpperCase",
       "text": "%neo4j\nRETURN apoc.text.toUpperCase(\"test upper case\")",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 08:48:31.064",
+      "dateUpdated": "2021-11-11 13:17:27.037",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -703,7 +740,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -729,9 +767,10 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n// | Pattern | Description\n//| A-Z | A-Z in uppercase\n//| a-z | A-Z in lowercase\n//| 0-9 | Numbers 0-9 inclusive\nRETURN apoc.text.random(10, \"A-Z0-9.$\")",
+      "title": "apoc.text.random",
+      "text": "%neo4j\n// | Pattern | Description\n// | A-Z | A-Z in uppercase\n// | a-z | A-Z in lowercase\n// | 0-9 | Numbers 0-9 inclusive\n\nRETURN apoc.text.random(10, \"A-Z0-9.$\")",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:18:24.588",
+      "dateUpdated": "2021-11-11 13:17:44.990",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -771,7 +810,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -797,11 +837,12 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.text.base64UrlEncode",
       "text": "%neo4j\nRETURN apoc.text.base64UrlEncode(\"http://neo4j.com/?test\u003dtest\")",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 08:41:49.049",
+      "dateUpdated": "2021-11-11 13:18:07.920",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
@@ -839,7 +880,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -865,11 +907,12 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.text.base64UrlDecode",
       "text": "%neo4j\nRETURN apoc.text.base64UrlDecode(\"aHR0cDovL25lbzRqLmNvbS8_dGVzdD10ZXN0\")",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 08:44:43.934",
+      "dateUpdated": "2021-11-11 13:18:12.084",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
@@ -907,7 +950,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -933,9 +977,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n### Other examples\n\n`RETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027)`  ||  returns \u0027HelloWorld\u0027\n\n\n\nFormat the string with the params given, and optional param language (\u0027it\u0027 in this case)\n`RETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true]) AS value` || returns \u0027abcd 42 3.1 true\u0027\n`RETURN apoc.text.format(\u0027ab%s %d %.1f %s%n\u0027,[\u0027cd\u0027,42,3.14,true],\u0027it\u0027) AS value` || returns abcd 42 3,1 true\n\n\n`RETURN apoc.text.indexOf(\u0027Hello World!\u0027, \u0027World\u0027)` || returns 6\n\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\nIt can optionally take `from` (inclusive) and `to` (exclusive) parameters.\n\nThe `indexesOf` function, provides all occurrences of the given lookup string within the text, or empty list if not found.\n`RETURN apoc.text.indexesOf(\u0027Hello World!\u0027, \u0027o\u0027,2,9)` || returns [4,7]\n\n\n`RETURN apoc.text.replace(\u0027Hello World!\u0027, \u0027[^a-zA-Z]\u0027, \u0027\u0027)` || returns \u0027HelloWorld\u0027\n\n\n`RETURN apoc.text.split(\u0027Hello   World\u0027, \u0027 +\u0027)` || splits with the given regular expression and returns [\u0027Hello\u0027, \u0027World\u0027]\n\n`RETURN apoc.text.join([\u0027Hello\u0027, \u0027World\u0027], \u0027 \u0027)` || returns \u0027Hello World\u0027\n\n\n`RETURN apoc.text.clean(\u0027Hello World!\u0027)` || return \u0027helloworld\u0027\n\n\n`RETURN apoc.text.compareCleaned(\u0027Hello World!\u0027, \u0027_hello-world_\u0027)` || return `true`\n\n`RETURN apoc.text.capitalize(\"neo4j\")` || returns \"Neo4j\"\n\n`RETURN apoc.text.capitalizeAll(\"graph database\")` || returns \"Graph Database\"\n\n`RETURN apoc.text.decapitalize(\"Graph Database\")` || returns \"graph Database\"\n\n`RETURN apoc.text.decapitalizeAll(\"Graph Databases\")` || returns \"graph databases\"\n\n`RETURN apoc.text.swapCase(\"Neo4j\")` || returns \"nEO4J\"\n\n`RETURN apoc.text.camelCase(\"FOO_BAR\")`   || returns \"fooBar\"",
+      "text": "%md\n### Other examples\n\n`RETURN apoc.text.capitalize(\"neo4j\")` || returns \"Neo4j\"\n\n`RETURN apoc.text.capitalizeAll(\"graph database\")` || returns \"Graph Database\"\n\n`RETURN apoc.text.decapitalize(\"Graph Database\")` || returns \"graph Database\"\n\n`RETURN apoc.text.decapitalizeAll(\"Graph Databases\")` || returns \"graph databases\"\n\n`RETURN apoc.text.swapCase(\"Neo4j\")` || returns \"nEO4J\"\n\n`RETURN apoc.text.camelCase(\"FOO_BAR\")`   || returns \"fooBar\"",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:47:13.575",
+      "dateUpdated": "2021-11-11 11:56:00.446",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -975,9 +1019,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n### Hashing Functions\n\n- apoc.util.sha1([values]) /apoc.util.md5([values])  - computes the sha1 / md5 of the concatenation of all string values of the list",
+      "text": "%md\n\n### Text Similarity\n\nWe can compare `text1` with `text2`. Useful, for example, to data clean purpose, with several algorithms:\n\n- apoc.text.levenshteinDistance(text1, text2)\n- apoc.text.levenshteinSimilarity(text1, text2)\n- apoc.text.hammingDistance(text1, text2)\n- apoc.text.jaroWinklerDistance(text1, text2)\n- apoc.text.sorensenDiceSimilarity(text1, text2)\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:51:54.220",
+      "dateUpdated": "2021-11-11 13:18:40.567",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1002,234 +1046,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eHashing Functions\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.util.sha1([values]) /apoc.util.md5([values])  - computes the sha1 / md5 of the concatenation of all string values of the list\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635928539685_813935914",
-      "id": "paragraph_1635928539685_813935914",
-      "dateCreated": "2021-11-03 08:35:39.685",
-      "dateStarted": "2021-11-09 08:51:54.218",
-      "dateFinished": "2021-11-09 08:51:54.231",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%neo4j\nRETURN apoc.util.sha1([\"ASD\", \"ZXC\"]) AS output;",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:52:14.946",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 84.0057,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "output": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "output\n\"3d66263062512dd289132628bd9be7bdfda41fe7\"\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635928489871_264661887",
-      "id": "paragraph_1635928489871_264661887",
-      "dateCreated": "2021-11-03 08:34:49.871",
-      "dateStarted": "2021-11-09 08:52:14.969",
-      "dateFinished": "2021-11-09 08:52:15.027",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n- apoc.data.url(\u0027url\u0027) as {protocol,user,host,port,path,query,file,anchor} - turn URL into map structure\n- apoc.data.email(\u0027email_address\u0027) as {personal,user,domain} - extract the personal name, user and domain as a map",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:52:25.610",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.data.url(\u0026lsquo;url\u0026rsquo;) as {protocol,user,host,port,path,query,file,anchor} - turn URL into map structure\u003c/li\u003e\n\u003cli\u003eapoc.data.email(\u0026lsquo;email_address\u0026rsquo;) as {personal,user,domain} - extract the personal name, user and domain as a map\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635929132917_1044838267",
-      "id": "paragraph_1635929132917_1044838267",
-      "dateCreated": "2021-11-03 08:45:32.917",
-      "dateStarted": "2021-11-03 08:46:52.884",
-      "dateFinished": "2021-11-03 08:46:52.898",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%neo4j\nwith \"https://user:secret@localhost:666/path/to/file.html?x\u003d1#b\" as url\nreturn apoc.data.url(url)",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-03 08:32:27.297",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 144.006,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "apoc.data.url(url).path": "string",
-                      "apoc.data.url(url).protocol": "string",
-                      "apoc.data.url(url).file": "string",
-                      "apoc.data.url(url).port": "string",
-                      "apoc.data.url(url).query": "string",
-                      "apoc.data.url(url).anchor": "string",
-                      "apoc.data.url(url).host": "string",
-                      "apoc.data.url(url).user": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "apoc.data.url(url).path\tapoc.data.url(url).protocol\tapoc.data.url(url).file\tapoc.data.url(url).port\tapoc.data.url(url).query\tapoc.data.url(url).anchor\tapoc.data.url(url).host\tapoc.data.url(url).user\n/path/to/file.html\thttps\t/path/to/file.html?x\u003d1\t666\tx\u003d1\tb\tlocalhost\tuser:secret\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635927229657_1883809715",
-      "id": "paragraph_1635927229657_1883809715",
-      "dateCreated": "2021-11-03 08:13:49.657",
-      "dateStarted": "2021-11-03 08:32:22.697",
-      "dateFinished": "2021-11-03 08:32:22.760",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\n### Text Similarity\n\nWe can compare `text1` with `text2`. Useful, for example, to data clean purpose, with several algorithms:\n\n- apoc.text.levenshteinDistance(text1, text2)\n- apoc.text.levenshteinSimilarity(text1, text2)\n- apoc.text.hammingDistance(text1, text2)\n- apoc.text.jaroWinklerDistance(text1, text2)\n- apoc.text.sorensenDiceSimilarity(text1, text2)\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:53:22.554",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eText Similarity\u003c/h3\u003e\n\u003cp\u003eUseful, for example, to data clean purpose:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.text.distance(text1, text2) - compare the given strings with the Apache Commons StringUtils.distance method (Levenshtein algorithm)\u003c/li\u003e\n\u003cli\u003eapoc.text.levenshteinDistance(text1, text2) - compare the given strings with the Levenshtein distance algorithm\u003c/li\u003e\n\u003cli\u003eapoc.text.levenshteinSimilarity(text1, text2) - calculate the similarity (a value within 0 and 1) between two texts based on Levenshtein distance.\u003c/li\u003e\n\u003cli\u003eapoc.text.hammingDistance(text1, text2) - compare the given strings with the Hamming distance algorithm\u003c/li\u003e\n\u003cli\u003eapoc.text.jaroWinklerDistance(text1, text2) - compare the given strings with the Jaro-Winkler distance algorithm\u003c/li\u003e\n\u003cli\u003eapoc.text.sorensenDiceSimilarity(text1, text2) - compare the given strings with the Sørensen–Dice coefficient formula, assuming an English locale\u003c/li\u003e\n\u003cli\u003eapoc.text.sorensenDiceSimilarityWithLanguage(text1, text2, languageTag) - compare the given strings with the Sørensen–Dice coefficient formula, with the provided IETF language tag\u003c/li\u003e\n\u003cli\u003eapoc.text.fuzzyMatch(text1, text2) - check if 2 words can be matched in a fuzzy way (LevenShtein). Depending on the length of the String it will allow more characters that needs to be edited to match the second String (distance: length \u0026lt; 3 then 0, length \u0026lt; 5 then 1, else 2).\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eText Similarity\u003c/h3\u003e\n\u003cp\u003eWe can compare \u003ccode\u003etext1\u003c/code\u003e with \u003ccode\u003etext2\u003c/code\u003e. Useful, for example, to data clean purpose, with several algorithms:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.text.levenshteinDistance(text1, text2)\u003c/li\u003e\n\u003cli\u003eapoc.text.levenshteinSimilarity(text1, text2)\u003c/li\u003e\n\u003cli\u003eapoc.text.hammingDistance(text1, text2)\u003c/li\u003e\n\u003cli\u003eapoc.text.jaroWinklerDistance(text1, text2)\u003c/li\u003e\n\u003cli\u003eapoc.text.sorensenDiceSimilarity(text1, text2)\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1239,8 +1056,8 @@
       "jobName": "paragraph_1635928302510_764079613",
       "id": "paragraph_1635928302510_764079613",
       "dateCreated": "2021-11-03 08:31:42.510",
-      "dateStarted": "2021-11-03 09:00:42.655",
-      "dateFinished": "2021-11-03 09:00:42.693",
+      "dateStarted": "2021-11-11 13:18:40.568",
+      "dateFinished": "2021-11-11 13:18:40.578",
       "status": "FINISHED"
     },
     {
@@ -1314,9 +1131,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Point values\n\nTo manipulate `Point` values, we can use:\n\n* `geocodeOnce(address)`\n* `geocode(address,maxResults)`\n* `reverseGeocode(latitude,longitude)`\n* `apoc.spatial.sortByDistance(paths)`\n\nThe `geocode` and `geocodeOnce` procedure converts a textual address into a location containing _latitude_, _longitude_ and _description_.\n`GeocodeOnce()` is designed to return the first, or highest ranking result.\nThis is because the backing geocoding service (OSM, Google, OpenCage or other) might return multiple results for the same query.\n\nThe third procedure `reverseGeocode` will convert a location containing `latitude` and `longitude` into a textual address.\n\n\nThere are a few options that can be set in the `apoc.conf` file, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/misc/spatial/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more info:\n\n```\napoc.spatial.geocode.provider\u003dosm (osm, google, opencage, etc.)\napoc.spatial.geocode.osm.throttle\u003d5000 (ms to delay between queries to not overload OSM servers)\napoc.spatial.geocode.google.throttle\u003d1 (ms to delay between queries to not overload Google servers)\napoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\napoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\napoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n```",
+      "text": "%md\n\n## Point values\n\nTo manipulate `Point` values, we can use:\n\n* `geocodeOnce(address)`\n* `geocode(address,maxResults)`\n* `reverseGeocode(latitude,longitude)`\n* `apoc.spatial.sortByDistance(paths)`\n\nThe `geocode` and `geocodeOnce` procedure converts a textual address into a location containing _latitude_, _longitude_ and _description_.\n`GeocodeOnce()` is designed to return the first, or highest ranking result.\nThis is because the backing geocoding service (OSM, Google, OpenCage...) might return multiple results for the same query.\n\nThe third procedure `reverseGeocode` will convert a location containing `latitude` and `longitude` into a textual address.\n\n\nThere are a few options that can be set in the `apoc.conf` file, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/misc/spatial/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more info:\n\n```\napoc.spatial.geocode.provider\u003dosm (osm, google, opencage, ...)\napoc.spatial.geocode.osm.key\u003dxxxx (API key for google geocode access)\napoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\napoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\napoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n```",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:52:51.059",
+      "dateUpdated": "2021-11-11 12:02:26.919",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1341,7 +1158,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003ePoint values\u003c/h2\u003e\n\u003cp\u003eTo manipulate \u003ccode\u003ePoint\u003c/code\u003e values, we can use:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003egeocodeOnce(address)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003egeocode(address,maxResults)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ereverseGeocode(latitude,longitude)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.spatial.sortByDistance(paths)\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003egeocode\u003c/code\u003e and \u003ccode\u003egeocodeOnce\u003c/code\u003e procedure converts a textual address into a location containing \u003cem\u003elatitude\u003c/em\u003e, \u003cem\u003elongitude\u003c/em\u003e and \u003cem\u003edescription\u003c/em\u003e.\u003cbr /\u003e\n\u003ccode\u003eGeocodeOnce()\u003c/code\u003e is designed to return the first, or highest ranking result.\u003cbr /\u003e\nThis is because the backing geocoding service (OSM, Google, OpenCage or other) might return multiple results for the same query.\u003c/p\u003e\n\u003cp\u003eThe third procedure \u003ccode\u003ereverseGeocode\u003c/code\u003e will convert a location containing \u003ccode\u003elatitude\u003c/code\u003e and \u003ccode\u003elongitude\u003c/code\u003e into a textual address.\u003c/p\u003e\n\u003cp\u003eThere are a few options that can be set in the \u003ccode\u003eapoc.conf\u003c/code\u003e file, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/misc/spatial/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more info:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eapoc.spatial.geocode.provider\u003dosm (osm, google, opencage, etc.)\napoc.spatial.geocode.osm.throttle\u003d5000 (ms to delay between queries to not overload OSM servers)\napoc.spatial.geocode.google.throttle\u003d1 (ms to delay between queries to not overload Google servers)\napoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\napoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\napoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003ePoint values\u003c/h2\u003e\n\u003cp\u003eTo manipulate \u003ccode\u003ePoint\u003c/code\u003e values, we can use:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003egeocodeOnce(address)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003egeocode(address,maxResults)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ereverseGeocode(latitude,longitude)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.spatial.sortByDistance(paths)\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003egeocode\u003c/code\u003e and \u003ccode\u003egeocodeOnce\u003c/code\u003e procedure converts a textual address into a location containing \u003cem\u003elatitude\u003c/em\u003e, \u003cem\u003elongitude\u003c/em\u003e and \u003cem\u003edescription\u003c/em\u003e.\u003cbr /\u003e\n\u003ccode\u003eGeocodeOnce()\u003c/code\u003e is designed to return the first, or highest ranking result.\u003cbr /\u003e\nThis is because the backing geocoding service (OSM, Google, OpenCage\u0026hellip;) might return multiple results for the same query.\u003c/p\u003e\n\u003cp\u003eThe third procedure \u003ccode\u003ereverseGeocode\u003c/code\u003e will convert a location containing \u003ccode\u003elatitude\u003c/code\u003e and \u003ccode\u003elongitude\u003c/code\u003e into a textual address.\u003c/p\u003e\n\u003cp\u003eThere are a few options that can be set in the \u003ccode\u003eapoc.conf\u003c/code\u003e file, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/misc/spatial/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more info:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eapoc.spatial.geocode.provider\u003dosm (osm, google, opencage, ...)\napoc.spatial.geocode.osm.key\u003dxxxx (API key for google geocode access)\napoc.spatial.geocode.google.key\u003dxxxx (API key for google geocode access)\napoc.spatial.geocode.google.client\u003dxxxx (client code for google geocode access)\napoc.spatial.geocode.google.signature\u003dxxxx (client signature for google geocode access)\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1351,14 +1168,15 @@
       "jobName": "paragraph_1635931448998_2028143042",
       "id": "paragraph_1635931448998_2028143042",
       "dateCreated": "2021-11-03 09:24:08.998",
-      "dateStarted": "2021-11-10 09:52:51.058",
-      "dateFinished": "2021-11-10 09:52:51.086",
+      "dateStarted": "2021-11-11 12:02:26.920",
+      "dateFinished": "2021-11-11 12:02:26.963",
       "status": "FINISHED"
     },
     {
+      "title": "apoc.spatial.geocodeOnce",
       "text": "%neo4j\nCALL apoc.spatial.geocodeOnce(\u002721 rue Paul Bellamy 44000 NANTES FRANCE\u0027)\nYIELD location\nRETURN location.latitude, location.longitude",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 09:33:27.413",
+      "dateUpdated": "2021-11-11 13:19:08.856",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1370,7 +1188,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1385,10 +1204,10 @@
       "status": "READY"
     },
     {
-      "title": "Calculating distance between locations",
-      "text": "%neo4j\n\n// If we wish to calculate the distance between addresses, we need to use the point() function to convert\n// latitude and longitude to Cyper Point types, and then use the distance() function to calculate the distance:\n\n\nWITH point({latitude: 48.8582532, longitude: 2.294287}) AS eiffel\nUNWIND [\u002721 rue Paul Bellamy 44000 NANTES FRANCE\u0027, \u002721 rue Paul Bellamy 44000 NANTES FRANCE\u0027] as address // todo - edit\nWITH address, eiffel\nCALL apoc.spatial.geocodeOnce(address) YIELD location\nWITH location, distance(point(location), eiffel) AS distance\n// WHERE distance \u003c 5000\nRETURN location.description AS description, distance\nORDER BY distance",
+      "title": "apoc.spatial.reverseGeocode",
+      "text": "%neo4j\n\nCALL apoc.spatial.reverseGeocode(51.5074, 0.1277);",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 09:32:59.399",
+      "dateUpdated": "2021-11-11 13:19:13.943",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1397,15 +1216,27 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 204.0,
               "optionOpen": false,
               "setting": {
                 "table": {
                   "tableGridState": {},
                   "tableColumnTypeState": {
                     "names": {
-                      "description": "string",
-                      "distance": "string"
+                      "location.description": "string",
+                      "location.latitude": "string",
+                      "location.longitude": "string",
+                      "data.country": "string",
+                      "data.country_code": "string",
+                      "data.road": "string",
+                      "data.city": "string",
+                      "data.state_district": "string",
+                      "data.postcode": "string",
+                      "data.state": "string",
+                      "data.city_district": "string",
+                      "latitude": "string",
+                      "longitude": "string",
+                      "description": "string"
                     },
                     "updated": false
                   },
@@ -1430,9 +1261,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "title": true,
         "editorHide": false,
-        "tableHide": false
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1443,24 +1273,25 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "description\tdistance\n\"21, Rue Paul Bellamy, Rennes - Bellamy, Hauts-Pavés - Saint-Félix, Nantes, Loire-Atlantique, Pays de la Loire, France métropolitaine, 44000, France\"\t339529.43088263326\n\"21, Rue Paul Bellamy, Rennes - Bellamy, Hauts-Pavés - Saint-Félix, Nantes, Loire-Atlantique, Pays de la Loire, France métropolitaine, 44000, France\"\t339529.43088263326\n"
+            "data": "location.description\tlocation.latitude\tlocation.longitude\tdata.country\tdata.country_code\tdata.road\tdata.city\tdata.state_district\tdata.postcode\tdata.state\tdata.city_district\tlatitude\tlongitude\tdescription\nCrossway, London Borough of Bexley, London, Greater London, England, SE28 8NH, United Kingdom\t51.50743369498096\t0.1274535888695359\tUnited Kingdom\tgb\tCrossway\tLondon\tGreater London\tSE28 8NH\tEngland\tLondon Borough of Bexley\t51.50743369498096\t0.1274535888695359\t\"Crossway, London Borough of Bexley, London, Greater London, England, SE28 8NH, United Kingdom\"\n"
           }
         ]
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635931459750_1275242928",
-      "id": "paragraph_1635931459750_1275242928",
-      "dateCreated": "2021-11-03 09:24:19.750",
-      "dateStarted": "2021-11-03 09:32:53.374",
-      "dateFinished": "2021-11-03 09:32:58.731",
+      "jobName": "paragraph_1636632099388_152531742",
+      "id": "paragraph_1636632099388_152531742",
+      "dateCreated": "2021-11-11 12:01:39.390",
+      "dateStarted": "2021-11-11 12:02:48.484",
+      "dateFinished": "2021-11-11 12:02:49.824",
       "status": "FINISHED"
     },
     {
+      "title": "Dataset with coords",
       "text": "%neo4j\n----\nCREATE (bruges:City {name:\"bruges\", latitude: 51.2605829, longitude: 3.0817189})\nCREATE (brussels:City {name:\"brussels\", latitude: 50.854954, longitude: 4.3051786})\nCREATE (paris:City {name:\"paris\", latitude: 48.8588376, longitude: 2.2773455})\nCREATE (dresden:City {name:\"dresden\", latitude: 51.0767496, longitude: 13.6321595})\nMERGE (bruges)-[:NEXT]-\u003e(brussels)\nMERGE (brussels)-[:NEXT]-\u003e(dresden)\nMERGE (brussels)-[:NEXT]-\u003e(paris)\nMERGE (bruges)-[:NEXT]-\u003e(paris)\nMERGE (paris)-[:NEXT]-\u003e(dresden)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 09:02:56.595",
+      "dateUpdated": "2021-11-11 13:19:41.661",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1472,7 +1303,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1487,9 +1319,10 @@
       "status": "READY"
     },
     {
+      "title": "apoc.spatial.sortByDistance",
       "text": "%neo4j\n\nMATCH (a:City {name:\u0027bruges\u0027}), (b:City {name:\u0027dresden\u0027})\nMATCH p\u003d(a)-[*]-\u003e(b)\nWITH collect(p) as paths\nCALL apoc.spatial.sortByDistance(paths) YIELD path, distance\nRETURN path, distance\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 09:03:09.581",
+      "dateUpdated": "2021-11-11 13:19:46.869",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1501,7 +1334,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1516,9 +1350,9 @@
       "status": "READY"
     },
     {
-      "text": "%md\n\n# Date and time functions\n\nNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\n\nAPOC has \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/temporal/datetime-conversions/\" target\u003d\"_blank\"\u003eseveral procedures\u003c/a\u003e for converting and formatting various date, time, and temporal values.\nhere are some of them:\n\n- apoc.date.add(12345, \u0027time\u0027, -365, \u0027time\u0027) - given a timestamp in one time unit, adds a value of the specified time unit\n- apoc.date.fields(\u00272012-12-23\u0027,(\u0027yyyy-MM-dd\u0027)) - return columns and a map representation of date parsed with the given format with entries for years,months,weekdays,days,hours,minutes,seconds,zoneid\n- apoc.date.format(12345,time,format,(\u0027timezone\u0027)) - get string representation of time value optionally using the specified unit (default ms) using specified format (default ISO) and specified time zone (default current TZ)\n- apoc.date.parse(\u00272012-12-23\u0027,time,format) - parse date string using the specified format into the specified time unit\n\nwhere `time` parameter is one of these: `\u0027ms\u0027, \u0027s\u0027, \u0027m\u0027, \u0027h\u0027, \u0027d\u0027, \u0027millis\u0027, \u0027milliseconds\u0027, \u0027seconds\u0027, \u0027minutes\u0027, \u0027hours\u0027 or \u0027days\u0027`,\nand `format` is the date format (e.g \"yyyy-MM-dd\", \"yyyy-MM-dd HH:mm:ss zzz\" )\n",
+      "text": "%md\n\n## Date and time functions\n\nNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\n\nAPOC has \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/temporal/datetime-conversions/\" target\u003d\"_blank\"\u003eseveral procedures\u003c/a\u003e for converting and formatting various date, time, and temporal values.\nhere are some of them:\n\n- apoc.date.add(timestamp, \u0027time\u0027, value, \u0027time\u0027) - given a `timestamp` in one time unit, adds a `value` of the specified time unit\n- apoc.date.fields(\u00272012-12-23\u0027,(\u0027yyyy-MM-dd\u0027)) - return columns and a map representation of date parsed\n- apoc.date.format(12345,time,format,\u0027timezone\u0027) - get string representation of time value optionally using the specified `unit` (default ms) using specified `format` (default ISO) and specified `timezone` (default `TZ`)\n- apoc.date.parse(\u00272012-12-23\u0027,time,format) - parse date string using the specified `format` into the specified time unit\n\nwhere `time` parameter is one of these: `\u0027ms\u0027, \u0027s\u0027, \u0027m\u0027, \u0027h\u0027, \u0027d\u0027, \u0027millis\u0027, \u0027milliseconds\u0027, \u0027seconds\u0027, \u0027minutes\u0027, \u0027hours\u0027 or \u0027days\u0027`,\nand `format` is the date format (e.g `\"yyyy-MM-dd\"`, `\"yyyy-MM-dd HH:mm:ss zzz\"`)\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 10:07:54.458",
+      "dateUpdated": "2021-11-11 13:19:53.181",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1531,8 +1365,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -1543,7 +1377,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eDate and time functions\u003c/h1\u003e\n\u003cp\u003eNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\u003c/p\u003e\n\u003cp\u003eAPOC has \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/temporal/datetime-conversions/\" target\u003d\"_blank\"\u003eseveral procedures\u003c/a\u003e for converting and formatting various date, time, and temporal values.\u003cbr /\u003e\nhere are some of them:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.date.add(12345, \u0026lsquo;ms\u0026rsquo;, -365, \u0026lsquo;d\u0026rsquo;) - given a timestamp in one time unit, adds a value of the specified time unit\u003c/li\u003e\n\u003cli\u003eapoc.date.convertFormat(\u0026lsquo;Tue, 14 May 2019 14:52:06 -0400\u0026rsquo;, \u0026lsquo;rfc_1123_date_time\u0026rsquo;, \u0026lsquo;iso_date_time\u0026rsquo;) - convert a String of one date format into a String of another date format.\u003c/li\u003e\n\u003cli\u003eapoc.date.fields(\u0026lsquo;2012-12-23\u0026rsquo;,(\u0026lsquo;yyyy-MM-dd\u0026rsquo;)) - return columns and a map representation of date parsed with the given format with entries for years,months,weekdays,days,hours,minutes,seconds,zoneid\u003c/li\u003e\n\u003cli\u003eapoc.date.format(12345,(\u0026lsquo;ms|s|m|h|d\u0026rsquo;),(\u0026lsquo;yyyy-MM-dd HH:mm:ss zzz\u0026rsquo;),(\u0026lsquo;TZ\u0026rsquo;)) - get string representation of time value optionally using the specified unit (default ms) using specified format (default ISO) and specified time zone (default current TZ)\u003c/li\u003e\n\u003cli\u003eapoc.date.parse(\u0026lsquo;2012-12-23\u0026rsquo;,\u0026lsquo;ms\\s|m|h|d\u0026rsquo;,\u0026lsquo;yyyy-MM-dd\u0026rsquo;) - parse date string using the specified format into the specified time unit\u003c/li\u003e\n\u003cli\u003eapoc.date.parseAsZonedDateTime(\u0026lsquo;2012-12-23 23:59:59\u0026rsquo;,\u0026lsquo;yyyy-MM-dd HH:mm:ss\u0026rsquo;, \u0026lsquo;UTC-hour-offset\u0026rsquo;) - parse date string using the specified format to specified timezone\u003c/li\u003e\n\u003cli\u003eapoc.date.systemTimezone() - returns the system timezone display name\u003c/li\u003e\n\u003cli\u003eapoc.date.toISO8601(12345,(\u0026lsquo;ms|s|m|h|d\u0026rsquo;) - return string representation of time in ISO8601 format\u003cbr /\u003e\ntoYears(timestamp) or toYears(date[,format]) - converts timestamp into floating point years\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eDate and time functions\u003c/h2\u003e\n\u003cp\u003eNeo4j supports date and temporal values, but often, we are dealing with differing date formats between systems or files. These can be difficult to express and translate without a few flexible procedures to handle converting one value formatting to another.\u003c/p\u003e\n\u003cp\u003eAPOC has \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/temporal/datetime-conversions/\" target\u003d\"_blank\"\u003eseveral procedures\u003c/a\u003e for converting and formatting various date, time, and temporal values.\u003cbr /\u003e\nhere are some of them:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.date.add(timestamp, \u0026lsquo;time\u0026rsquo;, value, \u0026lsquo;time\u0026rsquo;) - given a \u003ccode\u003etimestamp\u003c/code\u003e in one time unit, adds a \u003ccode\u003evalue\u003c/code\u003e of the specified time unit\u003c/li\u003e\n\u003cli\u003eapoc.date.fields(\u0026lsquo;2012-12-23\u0026rsquo;,(\u0026lsquo;yyyy-MM-dd\u0026rsquo;)) - return columns and a map representation of date parsed\u003c/li\u003e\n\u003cli\u003eapoc.date.format(12345,time,format,\u0026lsquo;timezone\u0026rsquo;) - get string representation of time value optionally using the specified \u003ccode\u003eunit\u003c/code\u003e (default ms) using specified \u003ccode\u003eformat\u003c/code\u003e (default ISO) and specified \u003ccode\u003etimezone\u003c/code\u003e (default \u003ccode\u003eTZ\u003c/code\u003e)\u003c/li\u003e\n\u003cli\u003eapoc.date.parse(\u0026lsquo;2012-12-23\u0026rsquo;,time,format) - parse date string using the specified \u003ccode\u003eformat\u003c/code\u003e into the specified time unit\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003ewhere \u003ccode\u003etime\u003c/code\u003e parameter is one of these: \u003ccode\u003e\u0027ms\u0027, \u0027s\u0027, \u0027m\u0027, \u0027h\u0027, \u0027d\u0027, \u0027millis\u0027, \u0027milliseconds\u0027, \u0027seconds\u0027, \u0027minutes\u0027, \u0027hours\u0027 or \u0027days\u0027\u003c/code\u003e,\u003cbr /\u003e\nand \u003ccode\u003eformat\u003c/code\u003e is the date format (e.g \u003ccode\u003e\u0026quot;yyyy-MM-dd\u0026quot;\u003c/code\u003e, \u003ccode\u003e\u0026quot;yyyy-MM-dd HH:mm:ss zzz\u0026quot;\u003c/code\u003e)\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -1553,14 +1387,15 @@
       "jobName": "paragraph_1635349592486_1411303387",
       "id": "paragraph_1635349592486_1411303387",
       "dateCreated": "2021-10-27 15:46:32.486",
-      "dateStarted": "2021-11-10 09:57:21.553",
-      "dateFinished": "2021-11-10 09:57:21.592",
+      "dateStarted": "2021-11-11 13:19:53.183",
+      "dateFinished": "2021-11-11 13:19:53.193",
       "status": "FINISHED"
     },
     {
+      "title": " apoc.date.fields",
       "text": "%neo4j\nRETURN apoc.date.fields(\"2020-11-04T10:30:21\", \"YYYY-MM-dd\u0027T\u0027HH:mm:ss\") AS date;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 10:23:20.825",
+      "dateUpdated": "2021-11-11 13:19:59.136",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1605,7 +1440,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1631,11 +1467,76 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\nWITH datetime(\"2020-11-04T11:23:22\").epochMillis AS datetime // convert in epoch milliseconds\nRETURN apoc.date.format(datetime, \"ms\", \"yyyy-MM-dd\") AS output",
+      "title": "apoc.date.format",
+      "text": "%neo4j\nWITH 891388800 as startDate\nWITH startDate, apoc.date.add(startDate, \u0027s\u0027, 31, \u0027d\u0027) as endDate\nRETURN apoc.date.format(startDate,\u0027s\u0027,\u0027yyyy-MM-dd\u0027) as startDate, \napoc.date.format(endDate,\u0027s\u0027,\u0027yyyy-MM-dd\u0027) as endDate",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 10:31:05.647",
+      "dateUpdated": "2021-11-11 13:22:08.966",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 148.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "startDate": "string",
+                      "endDate": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635409495647_893356114",
+      "id": "paragraph_1635409495647_893356114",
+      "dateCreated": "2021-10-28 08:24:55.647",
+      "dateStarted": "2021-11-03 10:39:37.671",
+      "dateFinished": "2021-11-03 10:39:37.714",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.date.format",
+      "text": "%neo4j\nWITH datetime(\"2020-11-04T11:23:22\").epochMillis AS datetime      \n// convert in epoch milliseconds\n\nRETURN apoc.date.format(datetime, \"ms\", \"yyyy-MM-dd\") AS output",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:24:06.308",
+      "config": {
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
@@ -1673,20 +1574,12 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "output\n\"2020-11-04\"\n"
-          }
-        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -1694,14 +1587,15 @@
       "jobName": "paragraph_1635933349161_134025564",
       "id": "paragraph_1635933349161_134025564",
       "dateCreated": "2021-11-03 09:55:49.161",
-      "dateStarted": "2021-11-03 10:30:58.200",
-      "dateFinished": "2021-11-03 10:30:58.225",
+      "dateStarted": "2021-11-11 13:24:06.328",
+      "dateFinished": "2021-11-11 13:24:06.546",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\n// the Movie Graph has only integer year values, so we have to convert them in string\nWITH 915148800 as matrixDate //1 January 1999 00:00:00 in epoch seconds\nMATCH (m:Movie)\nWHERE apoc.date.parse(toString(m.released), \u0027s\u0027, \u0027yyyy\u0027) \u003d matrixDate // 1999 movies\nRETURN m",
+      "title": "apoc.date.parse",
+      "text": "%neo4j\n\n// the Movie Graph has only integer year values, so we have to convert them in string\n//WITH 915148800 as matrixDate //1 January 1999 00:00:00 in epoch seconds\nMATCH (m:Movie)\n//WHERE apoc.date.parse(toString(m.released), \u0027s\u0027, \u0027yyyy\u0027) \u003d matrixDate // 1999 movies\nRETURN m",
       "user": "anonymous",
-      "dateUpdated": "2021-11-03 10:17:58.998",
+      "dateUpdated": "2021-11-11 13:24:14.403",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1721,76 +1615,8 @@
                       "label": "string",
                       "tagline": "string",
                       "title": "string",
-                      "released": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"tagline\":\"Welcome to the Real World\",\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":130,\"data\":{\"tagline\":\"Walk a mile you\\u0027ll never forget.\",\"title\":\"The Green Mile\",\"released\":1999},\"label\":\"Movie\"},{\"id\":157,\"data\":{\"tagline\":\"One robot\\u0027s 200 year journey to become an ordinary man.\",\"title\":\"Bicentennial Man\",\"released\":1999},\"label\":\"Movie\"},{\"id\":62,\"data\":{\"tagline\":\"First loves last. Forever.\",\"title\":\"Snow Falling on Cedars\",\"released\":1999},\"label\":\"Movie\"}],\"edges\":[],\"labels\":{\"TTL\":\"#6C116B\",\"Movie\":\"#ADC059\",\"Person\":\"#F25A9E\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635933561109_1996402939",
-      "id": "paragraph_1635933561109_1996402939",
-      "dateCreated": "2021-11-03 09:59:21.109",
-      "dateStarted": "2021-11-03 10:12:14.984",
-      "dateFinished": "2021-11-03 10:12:15.070",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%neo4j\nWITH 891388800 as startDate\nWITH startDate, apoc.date.add(startDate, \u0027s\u0027, 31, \u0027d\u0027) as endDate\nRETURN apoc.date.format(startDate,\u0027s\u0027,\u0027yyyy-MM-dd\u0027) as startDate, apoc.date.format(endDate,\u0027s\u0027,\u0027yyyy-MM-dd\u0027) as endDate",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 09:04:02.465",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 214.006,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "startDate": "string",
-                      "endDate": "string"
+                      "released": "string",
+                      "name": "string"
                     },
                     "updated": false
                   },
@@ -1815,60 +1641,22 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false,
+        "title": true,
         "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "startDate\tendDate\n\"1998-04-01\"\t\"1998-05-02\"\n"
-          }
-        ]
-      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635409495647_893356114",
-      "id": "paragraph_1635409495647_893356114",
-      "dateCreated": "2021-10-28 08:24:55.647",
-      "dateStarted": "2021-11-03 10:39:37.671",
-      "dateFinished": "2021-11-03 10:39:37.714",
+      "jobName": "paragraph_1635933561109_1996402939",
+      "id": "paragraph_1635933561109_1996402939",
+      "dateCreated": "2021-11-03 09:59:21.109",
+      "dateStarted": "2021-11-11 13:24:14.418",
+      "dateFinished": "2021-11-11 13:24:14.461",
       "status": "FINISHED"
-    },
-    {
-      "text": "%neo4j\nRETURN apoc.date.convertFormat(\u00272019-12-31 16:14:20\u0027, \u0027yyyy-MM-dd HH:mm:ss\u0027, \u0027iso_date_format\u0027)",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-10 10:07:22.012",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635935150413_1539766532",
-      "id": "paragraph_1635935150413_1539766532",
-      "dateCreated": "2021-11-03 10:25:50.413",
-      "status": "READY"
     },
     {
       "text": "%md\n\n## Conversion functions\n\n\u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.convert/\" target\u003d\"_blank\"\u003eHere\u003c/a\u003e are the conversion functions/procedures.\n",
@@ -1913,14 +1701,43 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\nMATCH path \u003d ()-[:ACTED_IN]-\u003e()\nRETURN apoc.convert.toList(path)[0];",
+      "text": "%neo4j\nRETURN apoc.convert.toSet([1,2,3,2]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 09:05:06.378",
+      "dateUpdated": "2021-11-11 13:24:24.543",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
-        "results": {},
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "output": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
         "editorSetting": {
           "language": "text",
           "editOnDblClick": false,
@@ -1935,7 +1752,12 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": []
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "output\n[1,2,3]\n"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -1943,8 +1765,8 @@
       "jobName": "paragraph_1636448703213_956391912",
       "id": "paragraph_1636448703213_956391912",
       "dateCreated": "2021-11-09 09:05:03.213",
-      "dateStarted": "2021-11-09 09:05:06.397",
-      "dateFinished": "2021-11-09 09:05:06.545",
+      "dateStarted": "2021-11-11 13:24:24.561",
+      "dateFinished": "2021-11-11 13:24:24.596",
       "status": "FINISHED"
     },
     {
@@ -2020,7 +1842,7 @@
       "status": "FINISHED"
     }
   ],
-  "name": "7. Property and composite types manipulation",
+  "name": "6. Property and composite types manipulation",
   "id": "2GN8QQ2U3",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",

@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n# Refactor data\n\nThe APOC library has a set of procedures that can be used to adjust data structure and values across parts or the entirety of the graph. \nWe will look at some of these of these procedures.\n\nThe complete list is \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.refactor/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 20:26:31.493",
+      "dateUpdated": "2021-11-11 10:29:40.214",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -16,8 +16,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -28,7 +28,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eRefactor data\u003c/h1\u003e\n\u003cp\u003eOne major component of data and business is that it constantly changes. When external factors change, we will likely need to modify our data to fit the new scenario, business requirements, or customer needs.\u003c/p\u003e\n\u003cp\u003eWe can do this with data refactoring. The APOC library has a set of procedures that can be used to adjust data structure and values across parts or the entirety of the graph. In this section, we will take a look at using several of these procedures to alter our data and respond to potential needs.\u003c/p\u003e\n\u003cp\u003eThe complete list is \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.refactor/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e.\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eRefactor data\u003c/h1\u003e\n\u003cp\u003eThe APOC library has a set of procedures that can be used to adjust data structure and values across parts or the entirety of the graph.\u003cbr /\u003e\nWe will look at some of these of these procedures.\u003c/p\u003e\n\u003cp\u003eThe complete list is \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.refactor/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e.\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -38,14 +38,14 @@
       "jobName": "paragraph_1635348036359_2131776212",
       "id": "paragraph_1635348036359_2131776212",
       "dateCreated": "2021-10-27 15:20:36.359",
-      "dateStarted": "2021-11-09 11:41:55.636",
-      "dateFinished": "2021-11-09 11:41:55.648",
+      "dateStarted": "2021-11-11 10:29:40.214",
+      "dateFinished": "2021-11-11 10:29:40.239",
       "status": "FINISHED"
     },
     {
       "text": "%md\n\n### Invert relationships\n\nWe can quickly invert a relationship with a `CALL apoc.refactor.invert(rel)`, where `rel` is the relationship to be inverted.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 20:28:28.817",
+      "dateUpdated": "2021-11-11 10:29:47.280",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -58,8 +58,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -70,7 +70,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.invert Example:\u003c/p\u003e\n\u003cp\u003eWith our scenario in the last slide, we want to invert the PART_OF relationship between Product and Category nodes. The query below shows us how to use the apoc.refactor.invert procedure to do that.\u003c/p\u003e\n\u003cp\u003eMATCH (p:Product)-[part:PART_OF]-\u0026gt;(c:Category)\u003cbr /\u003e\nCALL apoc.refactor.invert(part) YIELD output\u003cbr /\u003e\nRETURN output\u003c/p\u003e\n\u003cp\u003eAfter running this statement, we can run our data model query again or retrieve a sample of the data to see the change.\u003c/p\u003e\n\u003cp\u003eCALL db.schema.visualization\u003c/p\u003e\n\u003cp\u003eIt worked!\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eInvert relationships\u003c/h3\u003e\n\u003cp\u003eWe can quickly invert a relationship with a \u003ccode\u003eCALL apoc.refactor.invert(rel)\u003c/code\u003e, where \u003ccode\u003erel\u003c/code\u003e is the relationship to be inverted.\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -80,16 +80,17 @@
       "jobName": "paragraph_1635348071412_1417491836",
       "id": "paragraph_1635348071412_1417491836",
       "dateCreated": "2021-10-27 15:21:11.413",
-      "dateStarted": "2021-10-29 12:50:27.006",
-      "dateFinished": "2021-10-29 12:50:27.014",
+      "dateStarted": "2021-11-11 10:29:47.277",
+      "dateFinished": "2021-11-11 10:29:47.299",
       "status": "FINISHED"
     },
     {
+      "title": "apoc.refactor.invert",
       "text": "%neo4j\n\nMATCH (p:Person {name: \u0027Al Pacino\u0027})-[rel:ACTED_IN]-\u003e(c:Movie)\nCALL apoc.refactor.invert(rel) YIELD output\nRETURN p, output, c",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 20:28:59.052",
+      "dateUpdated": "2021-11-11 13:25:17.727",
       "config": {
-        "colWidth": 6.0,
+        "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {
@@ -132,7 +133,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -140,7 +142,12 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": []
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":20,\"data\":{\"tagline\":\"Evil has its winning ways\",\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"},{\"id\":22,\"data\":{\"name\":\"Al Pacino\",\"born\":1940},\"label\":\"Person\"}],\"edges\":[{\"source\":20,\"target\":22,\"id\":257,\"data\":{\"roles\":[\"John Milton\"]},\"label\":\"ACTED_IN\"}],\"labels\":{\"TTL\":\"#088E3E\",\"CsvPerson\":\"#B7A885\",\"Movie\":\"#648B7A\",\"Person\":\"#590B55\",\"NotKeanu\":\"#6650CC\",\"Start\":\"#46047E\",\"Batch\":\"#C7585A\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"KNOWS\"],\"directed\":true}"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -148,85 +155,14 @@
       "jobName": "paragraph_1635512346388_400316643",
       "id": "paragraph_1635512346388_400316643",
       "dateCreated": "2021-10-29 12:59:06.388",
-      "dateStarted": "2021-11-09 20:28:59.075",
-      "dateFinished": "2021-11-09 20:28:59.193",
+      "dateStarted": "2021-11-11 13:24:44.472",
+      "dateFinished": "2021-11-11 13:24:44.670",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nMATCH path\u003d(p:Person {name: \u0027Al Pacino\u0027})\u003c-[part:ACTED_IN]-(c:Movie) RETURN path;",
+      "text": "%md\n\n### Renaming\n\nWe can rename relationships with the `apoc.refactor.rename.type(oldType, newType, [rels])`,\nto rename all relationships with type `oldType` to `newType`. `rels` is optional, can be a list of relationships to apply the refactor to.\n\nFormat: apoc.refactor.rename.type(oldType, newType, `[rels]`)\n\n\nWith the same logic we have:\n- `CALL apoc.refactor.rename.label(oldLabel, newLabel, [nodes])`\n- `CALL apoc.refactor.rename.nodeProperty(oldName, newName, [nodes])`\n- `CALL apoc.refactor.rename.typeProperty(oldName, newName, [rels])`\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 20:29:02.049",
-      "config": {
-        "colWidth": 6.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "network",
-              "height": 300.0,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "id": "string",
-                      "label": "string",
-                      "tagline": "string",
-                      "title": "string",
-                      "released": "string",
-                      "name": "string",
-                      "born": "string",
-                      "roles": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            },
-            "helium": {}
-          }
-        },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": []
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635512384106_1528908340",
-      "id": "paragraph_1635512384106_1528908340",
-      "dateCreated": "2021-10-29 12:59:44.106",
-      "dateStarted": "2021-11-09 20:29:02.072",
-      "dateFinished": "2021-11-09 20:29:02.095",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\n### Renaming\n\nWe can rename relationships with the `apoc.refactor.rename.type(oldType, newType, [rels])`,\nto rename all relationships with type `oldType` to `newType`. `rels` is optional, can be a list of relationships to apply the refactor to.\n\nFormat: apoc.refactor.rename.type(oldType, newType, `[rels]`)\n\n\nWith the same logic we have:\n- call apoc.refactor.rename.label(oldLabel, newLabel, [nodes])\n- call apoc.refactor.rename.nodeProperty(oldName, newName, [nodes])\n- call apoc.refactor.rename.typeProperty(oldName, newName, [rels])\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 21:13:04.385",
+      "dateUpdated": "2021-11-11 12:08:29.799",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -239,8 +175,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -251,7 +187,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Renaming relationships\u003c/p\u003e\n\u003cp\u003eNow we might want to rename that relationship, since the idea that a Category is PART_OF a Product conveys the incorrect meaning for our use case. We can do this with the apoc.refactor.rename.type procedure.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.rename.type(oldType, newType, [rels])\u003c/p\u003e\n\u003cp\u003eThe procedure has 3 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe string type (name) of the relationship we want to change\n\nthe new string type (name) we want the relationship to have\n\n(optional) provided list of specific relationships we want to change\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.rename.type Example:\u003c/p\u003e\n\u003cp\u003eLet’s change the name of our PART_OF relationship between the Category and Product nodes so that it fits our business model more accurately.\u003c/p\u003e\n\u003cp\u003eCALL apoc.refactor.rename.type(\u0026lsquo;PART_OF\u0026rsquo;,\u0026lsquo;INCLUDES\u0026rsquo;) yield total\u003cbr /\u003e\nRETURN total\u003c/p\u003e\n\u003cp\u003eIn the above statement, we call the procedure and pass in the relationship we want to change (PART_OF) and tell it what we want the new relationship to be called (INCLUDES). Then, we pull the count of how many were updated in the procedure and return that count.\u003c/p\u003e\n\u003cp\u003eIf we run our visualization statement again, we now will see that a Category INCLUDES a Product, just as we planned.\u003c/p\u003e\n\u003cp\u003eCALL db.schema.visualization\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eRenaming\u003c/h3\u003e\n\u003cp\u003eWe can rename relationships with the \u003ccode\u003eapoc.refactor.rename.type(oldType, newType, [rels])\u003c/code\u003e,\u003cbr /\u003e\nto rename all relationships with type \u003ccode\u003eoldType\u003c/code\u003e to \u003ccode\u003enewType\u003c/code\u003e. \u003ccode\u003erels\u003c/code\u003e is optional, can be a list of relationships to apply the refactor to.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.rename.type(oldType, newType, \u003ccode\u003e[rels]\u003c/code\u003e)\u003c/p\u003e\n\u003cp\u003eWith the same logic we have:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.refactor.rename.label(oldLabel, newLabel, [nodes])\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.refactor.rename.nodeProperty(oldName, newName, [nodes])\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.refactor.rename.typeProperty(oldName, newName, [rels])\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -261,14 +197,15 @@
       "jobName": "paragraph_1635348082297_1111714116",
       "id": "paragraph_1635348082297_1111714116",
       "dateCreated": "2021-10-27 15:21:22.297",
-      "dateStarted": "2021-10-29 12:50:27.125",
-      "dateFinished": "2021-10-29 12:50:27.136",
+      "dateStarted": "2021-11-11 12:08:29.800",
+      "dateFinished": "2021-11-11 12:08:29.822",
       "status": "FINISHED"
     },
     {
+      "title": "apoc.refactor.rename.type",
       "text": "%neo4j\n\nMATCH path\u003d(p:Person {name: \u0027Al Pacino\u0027})-[rel:ACTED_IN]-(c:Movie) \nCALL apoc.refactor.rename.type(\"ACTED_IN\", \"NEW_REL\", [rel]) YIELD total\nWITH p,c\nMATCH path\u003d(p)--(c)\nRETURN path;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 20:41:15.564",
+      "dateUpdated": "2021-11-11 13:25:25.832",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -318,7 +255,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -344,9 +282,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### Grouping nodes into categories\n\nTo transform a unique property key of a target node into a new node and connect target and new node.\n\n\u003cpre\u003e\nCALL apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize)\n\u003c/pre\u003e\n```\nWhere the parameters are:\n\n- `sourceKey`: the property on the existing node we want to use to create the new node\n- `type`: the type for the new relationship for connecting the existing node to the new node\n- `outgoing`: whether the relationship is outgoing or not\n- `label`: the label for the new node\n- `targetKey`: the key property name we want on the new node\n- `copiedKeys`: any additional properties we’d like copied from the old node to the new\n- `batchSize`\n    \n\u003cpre\u003e\nBefore we can execute this procedure, we need to put a constraint on the new node and property key.\n\u003c/pre\u003e\n\n",
+      "text": "%md\n\n### Grouping nodes into categories\n\nTo transform a unique property key of a target node into a new node and connect target and new node.\n\n\n`CALL apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize)`\n\n\nThe parameters are:\n\n- `sourceKey`: the property on the existing node we want to use to create the new node\n- `type`: the type for the new relationship for connecting the existing node to the new node\n- `outgoing`: whether the relationship is outgoing or not\n- `label`: the label for the new node\n- `targetKey`: the key property name we want on the new node\n- `copiedKeys`: any additional properties we’d like copied from the old node to the new\n- `batchSize`\n\n\u003cpre\u003e\nBefore we can execute this procedure, we need to put a constraint on the new node and property key.\n\u003c/pre\u003e\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 08:10:57.860",
+      "dateUpdated": "2021-11-11 13:25:55.326",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -359,8 +297,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -371,7 +309,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003d\u003d Grouping nodes into categories\u003c/p\u003e\n\u003cp\u003eOutside of our product and category data, we also might want to add categorization for other groupings in our graph. For instance, we might want to categorize customers by country to know how our customers are distributed or for ensuring we have enough support staff to manage larger customer bases in different areas.\u003c/p\u003e\n\u003cp\u003eWe can use the apoc.refactor.categorize procedure to extract country information from our Customer nodes and create new Country nodes out of it.\u003c/p\u003e\n\u003cp\u003eFormat: apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize)\u003c/p\u003e\n\u003cp\u003eThe procedure has up to 7 parameters -\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ethe property on the existing node we want to use to create the new node\n\nthe type for the new relationship for connecting the existing node to the new node\n\nwhether the relationship is outgoing or not\n\nthe label for the new node\n\nthe key property name we want on the new node\n\nany additional properties we’d like copied from the old node to the new\n\nif we have a lot of nodes to update, we can specify to do it in batches\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003d\u003d apoc.refactor.categorize Example:\u003c/p\u003e\n\u003cp\u003eBefore we can execute this procedure, we need to put a constraint on the new node and property key. That can be done with the statement below.\u003c/p\u003e\n\u003cp\u003eCREATE CONSTRAINT ON (c:Country) ASSERT c.countryName IS UNIQUE;\u003c/p\u003e\n\u003cp\u003eWe will want to wait a few minutes for the constraint to come online, and we can check that by running the db.indexes procedure. Then, we can add our new Country node categories with the following procedure:\u003c/p\u003e\n\u003cp\u003eCALL apoc.refactor.categorize(\u0026lsquo;country\u0026rsquo;, \u0026lsquo;LOCATED_IN\u0026rsquo;, true, \u0026lsquo;Country\u0026rsquo;, \u0026lsquo;countryName\u0026rsquo;, [], 100)\u003c/p\u003e\n\u003cp\u003eHere, we have specified that we want to take the country property, which is on the Customer nodes and create a LOCATED_IN relationship that is outgoing from the customer to a new Country node with the property called countryName on the new node.\u003c/p\u003e\n\u003cp\u003eNote: This procedure will remove the country property from the Customer nodes and move them to Country, rather than making a copy of the property to the new nodes.\u003c/p\u003e\n\u003cp\u003e\u003d\u003d Verify categories\u003c/p\u003e\n\u003cp\u003eNow, if we run either our visualization or a sample data query, we can verify. Here, we will run a sample data query to see move of the property from Customer to Country.\u003c/p\u003e\n\u003cp\u003eMATCH (c:Customer)-[rel]-\u0026gt;(other)\u003cbr /\u003e\nRETURN c, rel, other\u003c/p\u003e\n\u003cp\u003eIf you click on a Customer node in the result set, you can see that the country property from customers no longer exists on those nodes and has been moved over to new Country nodes as countryName property. Everything looks as we expect it!\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eGrouping nodes into categories\u003c/h3\u003e\n\u003cp\u003eTo transform a unique property key of a target node into a new node and connect target and new node.\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize)\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eThe parameters are:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003esourceKey\u003c/code\u003e: the property on the existing node we want to use to create the new node\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003etype\u003c/code\u003e: the type for the new relationship for connecting the existing node to the new node\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eoutgoing\u003c/code\u003e: whether the relationship is outgoing or not\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003elabel\u003c/code\u003e: the label for the new node\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003etargetKey\u003c/code\u003e: the key property name we want on the new node\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ecopiedKeys\u003c/code\u003e: any additional properties we’d like copied from the old node to the new\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ebatchSize\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nBefore we can execute this procedure, we need to put a constraint on the new node and property key.\n\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -381,14 +319,15 @@
       "jobName": "paragraph_1635348112816_1621294288",
       "id": "paragraph_1635348112816_1621294288",
       "dateCreated": "2021-10-27 15:21:52.816",
-      "dateStarted": "2021-10-29 12:50:27.240",
-      "dateFinished": "2021-10-29 12:50:27.251",
+      "dateStarted": "2021-11-11 13:25:55.331",
+      "dateFinished": "2021-11-11 13:25:55.349",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nCREATE CONSTRAINT ON (n:`TagLine`) ASSERT n.`name` IS UNIQUE;\n\nCALL apoc.refactor.categorize(\u0027tagline\u0027, \u0027TAGLINE\u0027, true, \"TagLine\", \"name\", [\"released\"], 100);\n\n",
+      "title": "apoc.refactor.categorize",
+      "text": "%neo4j\n\nCREATE CONSTRAINT ON (n:`TagLine`) ASSERT n.`name` IS UNIQUE;\n\nCALL apoc.refactor.categorize(\u0027tagline\u0027, \n    \u0027HAS_TAGLINE\u0027, \n    true, \n    \"TagLine\", \n    \"name\", \n    [\"released\"], \n    100);\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 21:23:38.965",
+      "dateUpdated": "2021-11-11 13:27:07.513",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -400,7 +339,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -416,14 +356,15 @@
       "jobName": "paragraph_1636492769374_1747537371",
       "id": "paragraph_1636492769374_1747537371",
       "dateCreated": "2021-11-09 21:19:29.374",
-      "dateStarted": "2021-11-09 21:23:38.987",
-      "dateFinished": "2021-11-09 21:23:39.559",
+      "dateStarted": "2021-11-11 13:27:07.534",
+      "dateFinished": "2021-11-11 13:27:08.308",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nMATCH p\u003d(n)-[:TAGLINE]-()\nRETURN p;\n",
+      "title": "Check results",
+      "text": "%neo4j\n\nMATCH p\u003d(n)-[:HAS_TAGLINE]-()\nRETURN p;\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 21:23:52.260",
+      "dateUpdated": "2021-11-11 13:27:38.987",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -469,20 +410,13 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"title\":\"The Matrix\"},\"label\":\"Movie\"},{\"id\":130,\"data\":{\"title\":\"Johnny Mnemonic\"},\"label\":\"Movie\"},{\"id\":135,\"data\":{\"title\":\"Cloud Atlas\"},\"label\":\"Movie\"},{\"id\":141,\"data\":{\"title\":\"The Da Vinci Code\"},\"label\":\"Movie\"},{\"id\":146,\"data\":{\"title\":\"V for Vendetta\"},\"label\":\"Movie\"},{\"id\":151,\"data\":{\"title\":\"Speed Racer\"},\"label\":\"Movie\"},{\"id\":158,\"data\":{\"title\":\"Ninja Assassin\"},\"label\":\"Movie\"},{\"id\":160,\"data\":{\"title\":\"The Green Mile\"},\"label\":\"Movie\"},{\"id\":39,\"data\":{\"title\":\"The Matrix Reloaded\"},\"label\":\"Movie\"},{\"id\":167,\"data\":{\"title\":\"Frost/Nixon\"},\"label\":\"Movie\"},{\"id\":40,\"data\":{\"title\":\"The Matrix Revolutions\"},\"label\":\"Movie\"},{\"id\":41,\"data\":{\"title\":\"The Devil\\u0027s Advocate\"},\"label\":\"Movie\"},{\"id\":171,\"data\":{\"title\":\"Hoffa\"},\"label\":\"Movie\"},{\"id\":45,\"data\":{\"title\":\"A Few Good Men\"},\"label\":\"Movie\"},{\"id\":174,\"data\":{\"title\":\"Apollo 13\"},\"label\":\"Movie\"},{\"id\":177,\"data\":{\"title\":\"Twister\"},\"label\":\"Movie\"},{\"id\":180,\"data\":{\"title\":\"Cast Away\"},\"label\":\"Movie\"},{\"id\":182,\"data\":{\"title\":\"One Flew Over the Cuckoo\\u0027s Nest\"},\"label\":\"Movie\"},{\"id\":59,\"data\":{\"title\":\"Top Gun\"},\"label\":\"Movie\"},{\"id\":187,\"data\":{\"title\":\"Bicentennial Man\"},\"label\":\"Movie\"},{\"id\":189,\"data\":{\"title\":\"Charlie Wilson\\u0027s War\"},\"label\":\"Movie\"},{\"id\":191,\"data\":{\"title\":\"The Polar Express\"},\"label\":\"Movie\"},{\"id\":192,\"data\":{\"title\":\"A League of Their Own\"},\"label\":\"Movie\"},{\"id\":67,\"data\":{\"title\":\"Jerry Maguire\"},\"label\":\"Movie\"},{\"id\":201,\"data\":{\"name\":\"What if someone you never met, someone you never saw, someone you never knew was the only someone for you?\",\"released\":1993},\"label\":\"TagLine\"},{\"id\":202,\"data\":{\"name\":\"Welcome to the Real World\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":203,\"data\":{\"name\":\"A story of love, lava and burning desire.\",\"released\":1990},\"label\":\"TagLine\"},{\"id\":204,\"data\":{\"name\":\"Free your mind\",\"released\":2003},\"label\":\"TagLine\"},{\"id\":76,\"data\":{\"title\":\"Stand By Me\"},\"label\":\"Movie\"},{\"id\":205,\"data\":{\"name\":\"Can two friends sleep together and still love each other in the morning?\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":206,\"data\":{\"name\":\"Everything that has a beginning has an end\",\"released\":2003},\"label\":\"TagLine\"},{\"id\":207,\"data\":{\"name\":\"In every life there comes a time when that thing you dream becomes that thing you do\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":208,\"data\":{\"name\":\"Evil has its winning ways\",\"released\":1997},\"label\":\"TagLine\"},{\"id\":209,\"data\":{\"name\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":210,\"data\":{\"name\":\"In the heart of the nation\\u0027s capital, in a courthouse of the U.S. government, one man will stop at nothing to keep his honor, and one will stop at nothing to find the truth.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":82,\"data\":{\"title\":\"As Good as It Gets\"},\"label\":\"Movie\"},{\"id\":211,\"data\":{\"name\":\"Based on the extraordinary true story of one man\\u0027s fight for freedom\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":212,\"data\":{\"name\":\"Come as you are\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":213,\"data\":{\"name\":\"I feel the need, the need for speed.\",\"released\":1986},\"label\":\"TagLine\"},{\"id\":214,\"data\":{\"name\":\"It\\u0027s a hell of a thing, killing a man\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":86,\"data\":{\"title\":\"What Dreams May Come\"},\"label\":\"Movie\"},{\"id\":215,\"data\":{\"name\":\"The rest of his life begins now.\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":216,\"data\":{\"name\":\"For some, it\\u0027s the last real taste of innocence, and the first real taste of life. But for everyone, it\\u0027s the time that memories are made of.\",\"released\":1986},\"label\":\"TagLine\"},{\"id\":217,\"data\":{\"name\":\"The hottest data on earth. In the coolest head in town\",\"released\":1995},\"label\":\"TagLine\"},{\"id\":218,\"data\":{\"name\":\"A comedy from the heart that goes for the throat.\",\"released\":1997},\"label\":\"TagLine\"},{\"id\":219,\"data\":{\"name\":\"Everything is connected\",\"released\":2012},\"label\":\"TagLine\"},{\"id\":220,\"data\":{\"name\":\"After life there is more. The end is just the beginning.\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":92,\"data\":{\"title\":\"Snow Falling on Cedars\"},\"label\":\"Movie\"},{\"id\":221,\"data\":{\"name\":\"Break The Codes\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":222,\"data\":{\"name\":\"Freedom! Forever!\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":223,\"data\":{\"name\":\"First loves last. Forever.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":224,\"data\":{\"name\":\"Speed has no limits\",\"released\":2008},\"label\":\"TagLine\"},{\"id\":97,\"data\":{\"title\":\"You\\u0027ve Got Mail\"},\"label\":\"Movie\"},{\"id\":225,\"data\":{\"name\":\"At odds in life... in love on-line.\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":226,\"data\":{\"name\":\"Prepare to enter a secret world of assassins\",\"released\":2009},\"label\":\"TagLine\"},{\"id\":227,\"data\":{\"name\":\"Walk a mile you\\u0027ll never forget.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":228,\"data\":{\"name\":\"400 million people were waiting for the truth.\",\"released\":2008},\"label\":\"TagLine\"},{\"id\":229,\"data\":{\"name\":\"He didn\\u0027t want law. He wanted justice.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":230,\"data\":{\"name\":\"Houston, we have a problem.\",\"released\":1995},\"label\":\"TagLine\"},{\"id\":103,\"data\":{\"title\":\"Sleepless in Seattle\"},\"label\":\"Movie\"},{\"id\":231,\"data\":{\"name\":\"Don\\u0027t Breathe. Don\\u0027t Look Back.\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":232,\"data\":{\"name\":\"At the edge of the world, his journey begins.\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":233,\"data\":{\"name\":\"If he\\u0027s crazy, what does that make you?\",\"released\":1975},\"label\":\"TagLine\"},{\"id\":234,\"data\":{\"name\":\"One robot\\u0027s 200 year journey to become an ordinary man.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":235,\"data\":{\"name\":\"A stiff drink. A little mascara. A lot of nerve. Who said they couldn\\u0027t bring down the Soviet empire.\",\"released\":2007},\"label\":\"TagLine\"},{\"id\":108,\"data\":{\"title\":\"Joe Versus the Volcano\"},\"label\":\"Movie\"},{\"id\":236,\"data\":{\"name\":\"This Holiday Season... Believe\",\"released\":2004},\"label\":\"TagLine\"},{\"id\":237,\"data\":{\"name\":\"Once in a lifetime you get a chance to do something different.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":111,\"data\":{\"title\":\"When Harry Met Sally\"},\"label\":\"Movie\"},{\"id\":115,\"data\":{\"title\":\"That Thing You Do\"},\"label\":\"Movie\"},{\"id\":117,\"data\":{\"title\":\"The Replacements\"},\"label\":\"Movie\"},{\"id\":122,\"data\":{\"title\":\"RescueDawn\"},\"label\":\"Movie\"},{\"id\":125,\"data\":{\"title\":\"The Birdcage\"},\"label\":\"Movie\"},{\"id\":127,\"data\":{\"title\":\"Unforgiven\"},\"label\":\"Movie\"}],\"edges\":[{\"source\":1,\"target\":202,\"id\":275,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":108,\"target\":203,\"id\":276,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":39,\"target\":204,\"id\":277,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":111,\"target\":205,\"id\":278,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":40,\"target\":206,\"id\":279,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":115,\"target\":207,\"id\":280,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":117,\"target\":209,\"id\":281,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":41,\"target\":208,\"id\":282,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":122,\"target\":211,\"id\":283,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":45,\"target\":210,\"id\":284,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":125,\"target\":212,\"id\":285,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":59,\"target\":213,\"id\":286,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":67,\"target\":215,\"id\":287,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":127,\"target\":214,\"id\":288,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":76,\"target\":216,\"id\":289,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":130,\"target\":217,\"id\":290,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":82,\"target\":218,\"id\":291,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":135,\"target\":219,\"id\":292,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":141,\"target\":221,\"id\":293,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":86,\"target\":220,\"id\":294,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":146,\"target\":222,\"id\":295,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":92,\"target\":223,\"id\":296,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":151,\"target\":224,\"id\":297,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":97,\"target\":225,\"id\":298,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":158,\"target\":226,\"id\":299,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":160,\"target\":227,\"id\":300,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":103,\"target\":201,\"id\":45,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":167,\"target\":228,\"id\":301,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":171,\"target\":229,\"id\":302,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":174,\"target\":230,\"id\":303,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":177,\"target\":231,\"id\":304,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":180,\"target\":232,\"id\":305,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":182,\"target\":233,\"id\":306,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":187,\"target\":234,\"id\":307,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":189,\"target\":235,\"id\":308,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":191,\"target\":236,\"id\":309,\"data\":{},\"label\":\"TAGLINE\"},{\"source\":192,\"target\":237,\"id\":310,\"data\":{},\"label\":\"TAGLINE\"}],\"labels\":{\"TTL\":\"#2EC610\",\"NodeWithUnique\":\"#B8C858\",\"Person\":\"#F229BB\",\"Company\":\"#F4C50F\",\"Car\":\"#00123F\",\"Animal\":\"#D0B639\",\"Cat\":\"#6AC79B\",\"City\":\"#56B1BC\",\"MergeOne\":\"#15FFE2\",\"Movie\":\"#7A535E\",\"Genre\":\"#F1DFDE\",\"TagLine\":\"#E234BD\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"HAS_HQ\",\"FOLLOWS\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\",\"TAGLINE\",\"DRIVE\"],\"directed\":true}"
-          }
-        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -490,8 +424,8 @@
       "jobName": "paragraph_1636492841631_775451986",
       "id": "paragraph_1636492841631_775451986",
       "dateCreated": "2021-11-09 21:20:41.631",
-      "dateStarted": "2021-11-09 21:23:50.086",
-      "dateFinished": "2021-11-09 21:23:50.236",
+      "dateStarted": "2021-11-11 13:27:09.329",
+      "dateFinished": "2021-11-11 13:27:09.486",
       "status": "FINISHED"
     },
     {
@@ -537,9 +471,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "Dataset creation",
       "text": "%neo4j\nCREATE (person1:Person {name: \"Ryu\"})-[:FRIENDS]-\u003e(person2:Person {name: \"Ken\"})\nCREATE (person3:Person {name: \"Vega\"})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 21:37:52.313",
+      "dateUpdated": "2021-11-11 13:28:38.665",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -551,7 +486,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -572,9 +508,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.refactor.to",
       "text": "%neo4j\n\nMATCH (:Person {name: \"Ryu\"})-[rel:FRIENDS]-\u003e(:Person {name: \"Ken\"})\nMATCH (vega:Person {name: \"Vega\"})\nCALL apoc.refactor.to(rel, vega)\nYIELD input, output\nMATCH path\u003d(vega)--()\nRETURN path",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 21:37:54.509",
+      "dateUpdated": "2021-11-11 13:28:20.955",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -618,20 +555,12 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":238,\"data\":{\"name\":\"Ryu\"},\"label\":\"Person\"},{\"id\":239,\"data\":{\"name\":\"Vega\"},\"label\":\"Person\"}],\"edges\":[{\"source\":238,\"target\":239,\"id\":312,\"data\":{},\"label\":\"FRIENDS\"}],\"labels\":{\"TTL\":\"#2EC610\",\"NodeWithUnique\":\"#B8C858\",\"Person\":\"#F229BB\",\"Company\":\"#F4C50F\",\"Car\":\"#00123F\",\"Animal\":\"#D0B639\",\"Cat\":\"#6AC79B\",\"City\":\"#56B1BC\",\"MergeOne\":\"#15FFE2\",\"Movie\":\"#7A535E\",\"Genre\":\"#F1DFDE\",\"TagLine\":\"#E234BD\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"FRIENDS\",\"PRODUCED\",\"WROTE\",\"HAS_HQ\",\"FOLLOWS\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\",\"TAGLINE\",\"DRIVE\"],\"directed\":true}"
-          }
-        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -644,9 +573,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### Merge multiple relationships / nodes\n\nWe can join multiple entities through the procedures\n\n- apoc.refactor.mergeRelationships([rels], {config})\n- apoc.refactor.mergeRelationships([nodes], {config})\n\nWhere `{config}` can have:\n- properties (default: \u0027combine\u0027): Map\u003cprop, type\u003e or type, where type can be discard (to take 1st property value found with the same name), overwrite (to pick last prop value), combine (to join properties in an array)\n- mergeRels (default: false) - only for `apoc.refactor.mergeNodes`\n- singleElementAsArray (default: false)\n",
+      "text": "%md\n\n### Merge multiple relationships / nodes\n\nWe can join multiple entities through the procedures\n\n- apoc.refactor.mergeRelationships([rels], $config)\n- apoc.refactor.mergeRelationships([nodes], $config)\n\nWhere `$config` can have:\n- properties (default: \u0027combine\u0027): Map\u003cprop, type\u003e or type, where type can be discard (to take 1st property value found with the same name), overwrite (to pick last prop value), combine (to join properties in an array)\n- mergeRels (default: false) - only for `apoc.refactor.mergeNodes`\n- singleElementAsArray (default: false)\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 08:13:16.097",
+      "dateUpdated": "2021-11-11 13:28:29.244",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -658,11 +587,22 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eMerge multiple relationships / nodes\u003c/h3\u003e\n\u003cp\u003eWe can join multiple entities through the procedures\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.refactor.mergeRelationships([rels], $config)\u003c/li\u003e\n\u003cli\u003eapoc.refactor.mergeRelationships([nodes], $config)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWhere \u003ccode\u003e$config\u003c/code\u003e can have:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eproperties (default: \u0026lsquo;combine\u0026rsquo;): Map\u0026lt;prop, type\u0026gt; or type, where type can be discard (to take 1st property value found with the same name), overwrite (to pick last prop value), combine (to join properties in an array)\u003c/li\u003e\n\u003cli\u003emergeRels (default: false) - only for \u003ccode\u003eapoc.refactor.mergeNodes\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003esingleElementAsArray (default: false)\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -670,12 +610,15 @@
       "jobName": "paragraph_1636459119756_823886620",
       "id": "paragraph_1636459119756_823886620",
       "dateCreated": "2021-11-09 11:58:39.756",
-      "status": "READY"
+      "dateStarted": "2021-11-11 13:28:29.245",
+      "dateFinished": "2021-11-11 13:28:29.259",
+      "status": "FINISHED"
     },
     {
+      "title": "†",
       "text": "%neo4j\n\nCREATE (n1:MergeOne {name:\u0027Tom\u0027, surname: \u0027Jerry\u0027}),\n(n2:MergeOne {name:\u0027John\u0027, surname: \u0027Jack\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 08:16:02.339",
+      "dateUpdated": "2021-11-11 13:29:17.092",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -721,7 +664,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -747,9 +691,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.refactor.mergeNodes",
       "text": "%neo4j\n\nMATCH p\u003d(a1:MergeOne{name:\u0027John\u0027})--(), p2\u003d(a2:MergeOne {name:\u0027Tom\u0027})--()\nWITH [a1,a2] as nodes\nCALL apoc.refactor.mergeNodes(nodes,{properties:\"combine\", mergeRels:true})\nYIELD node RETURN null",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 13:19:48.771",
+      "dateUpdated": "2021-11-11 13:29:01.373",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -794,7 +739,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": true
+        "tableHide": true,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -820,9 +766,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "Check results",
       "text": "%neo4j\n\nMATCH p\u003d(a1:MergeOne)--()\nRETURN p",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 08:16:04.870",
+      "dateUpdated": "2021-11-11 13:29:55.420",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -869,7 +816,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -895,9 +843,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "Another dataset",
       "text": "%neo4j\n\nCREATE (n1:MergeTwo {name:\u0027Tom\u0027, surname: \u0027Jerry\u0027}),\n(n2:MergeTwo {name:\u0027John\u0027, surname: \u0027Jack\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 08:17:03.443",
+      "dateUpdated": "2021-11-11 13:29:31.912",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -942,7 +891,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -968,9 +918,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "mergeNodes with \"discard\" configuration",
       "text": "%neo4j\n\nMATCH p\u003d(a1:MergeTwo{name:\u0027John\u0027})--(), p2\u003d(a2:MergeOne {name:\u0027Tom\u0027})--()\nWITH [a1,a2] as nodes\nCALL apoc.refactor.mergeNodes(nodes,{properties: {name: \"discard\", surname: \"overwrite\"}, mergeRels:true})\nYIELD node RETURN null",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 08:17:05.864",
+      "dateUpdated": "2021-11-11 13:29:51.198",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -983,7 +934,8 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1004,9 +956,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "Check results",
       "text": "%neo4j\n\nMATCH p\u003d(a1:MergeTwo)--()\nRETURN p",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 08:17:09.312",
+      "dateUpdated": "2021-11-11 13:29:57.435",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1052,7 +1005,8 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1120,7 +1074,7 @@
       "status": "FINISHED"
     }
   ],
-  "name": "8. Refactor data",
+  "name": "7. Refactor data",
   "id": "2GKZNUE99",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",

@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n## Meta information\n\nApoc provides a set of procedures to retrieve info of labels / relationship-type present, and so on...\n\n- `CALL apoc.meta.stats()` - returns an overview of labels / rel-types counts\n\n- `CALL apoc.meta.graphSample({configMap})` - examines the database statistics to build the meta graph, very fast, might report extra relationships\n\n- `CALL apoc.meta.graph({configMap})` - examines the database statistics to create the meta-graph, post filters extra relationships by sampling\n\n- `CALL apoc.meta.subGraph({configMap})` - examines a sample sub graph to create the meta-graph\n\n- `CALL apoc.meta.data({configMap}})` - examines a subset of the graph to provide a tabular meta information\n\n- `CALL apoc.meta.schema({configMap})` - examines a subset of the graph to provide a map-like meta information\n\n- `CALL apoc.meta.nodeTypeProperties({configMap})` - replaces built-in function for node property schema to provide a sample-based result for high performance\n\n- `CALL apoc.meta.relTypeProperties({configMap})` - replaces built-in function for relationship property schema to provide a sample-based result for high performance\n\n\n`configMap` depends on procedure, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e .\n\n",
+      "text": "%md\n\n## Meta information\n\nApoc provides a set of procedures to retrieve info of labels / relationship-type present, and so on...\n\n- `CALL apoc.meta.stats()` - returns an overview of labels / rel-types counts\n\n- `CALL apoc.meta.graph($configMap)` / `CALL apoc.meta.subGraph($configMap)` - examines the entire database / sub graph to create the meta-graph\n\n- `CALL apoc.meta.data($configMap)` - examines a subset of the graph to provide a tabular / map-like meta information\n\n- `CALL apoc.meta.nodeTypeProperties($configMap)` / `CALL apoc.meta.relTypeProperties($configMap)` - examines a sample to get the node / relationship property list\n\n\n`$configMap` depends on procedure, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e .\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-08 15:39:43.895",
+      "dateUpdated": "2021-11-11 11:04:09.960",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -43,9 +43,10 @@
       "status": "FINISHED"
     },
     {
+      "title": " apoc.meta.stats",
       "text": "%neo4j\ncall apoc.meta.stats()",
       "user": "anonymous",
-      "dateUpdated": "2021-10-30 16:52:58.364",
+      "dateUpdated": "2021-11-11 12:58:58.434",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -162,7 +163,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -188,9 +190,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.meta.data",
       "text": "%neo4j\n\nCALL apoc.meta.data()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 10:32:37.520",
+      "dateUpdated": "2021-11-11 12:59:13.701",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -245,7 +248,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -266,9 +270,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.meta.data(sample)",
       "text": "%neo4j\n\n// for each label create batches of `total / sample` and take 1 element for each batch\nCALL apoc.meta.data({sample:2})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-08 15:44:40.732",
+      "dateUpdated": "2021-11-11 12:59:23.856",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -323,7 +328,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -349,9 +355,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.meta.nodeTypeProperties",
       "text": "%neo4j\n\nCALL apoc.meta.nodeTypeProperties({excludeLabels:[\"Movie\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:06:02.245",
+      "dateUpdated": "2021-11-11 12:59:32.006",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -397,7 +404,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -423,9 +431,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.meta.relTypeProperties",
       "text": "%neo4j\n\nCALL apoc.meta.relTypeProperties({excludeRels:[\"DIRECTED\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-08 15:55:00.910",
+      "dateUpdated": "2021-11-11 12:59:37.779",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -472,7 +481,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -498,9 +508,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.meta.cypher",
       "text": "%md\n\nMoreover, there are some apoc.meta.* functions to retrieve informations about a single entity or property.\n\n- apoc.meta.cypher.isType(value, metaType)\n- apoc.meta.cypher.type(value)\n- apoc.meta.cypher.types(value)\n\nPossible meta types are `INTEGER`,`FLOAT`,`STRING`,`BOOLEAN`,`RELATIONSHIP`,`NODE`,`PATH`,`NULL`,`MAP`,`POINT`,`DATE`,`DATE_TIME`,`LOCAL_TIME`,`LOCAL_DATE_TIME`,`TIME,DURATION`, `LIST OF \u003cPREVIOUS TYPE\u003e`",
       "user": "anonymous",
-      "dateUpdated": "2021-11-08 15:55:21.152",
+      "dateUpdated": "2021-11-11 13:00:12.037",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -512,11 +523,23 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "title": true,
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eMoreover, there are some apoc.meta.* functions to retrieve informations about a single entity or property.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.meta.cypher.isType(value, metaType)\u003c/li\u003e\n\u003cli\u003eapoc.meta.cypher.type(value)\u003c/li\u003e\n\u003cli\u003eapoc.meta.cypher.types(value)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003ePossible meta types are \u003ccode\u003eINTEGER\u003c/code\u003e,\u003ccode\u003eFLOAT\u003c/code\u003e,\u003ccode\u003eSTRING\u003c/code\u003e,\u003ccode\u003eBOOLEAN\u003c/code\u003e,\u003ccode\u003eRELATIONSHIP\u003c/code\u003e,\u003ccode\u003eNODE\u003c/code\u003e,\u003ccode\u003ePATH\u003c/code\u003e,\u003ccode\u003eNULL\u003c/code\u003e,\u003ccode\u003eMAP\u003c/code\u003e,\u003ccode\u003ePOINT\u003c/code\u003e,\u003ccode\u003eDATE\u003c/code\u003e,\u003ccode\u003eDATE_TIME\u003c/code\u003e,\u003ccode\u003eLOCAL_TIME\u003c/code\u003e,\u003ccode\u003eLOCAL_DATE_TIME\u003c/code\u003e,\u003ccode\u003eTIME,DURATION\u003c/code\u003e, \u003ccode\u003eLIST OF \u0026lt;PREVIOUS TYPE\u0026gt;\u003c/code\u003e\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -524,12 +547,15 @@
       "jobName": "paragraph_1635848556731_604775729",
       "id": "paragraph_1635848556731_604775729",
       "dateCreated": "2021-11-02 10:22:36.731",
-      "status": "READY"
+      "dateStarted": "2021-11-11 12:59:51.686",
+      "dateFinished": "2021-11-11 12:59:51.704",
+      "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nmatch (p:Person) with p limit 1 \nreturn apoc.meta.cypher.types(p) as types,                       // return 2 column, that is the properies (name and born)\n    apoc.meta.cypher.isType(p.name, \"STRING\") as isNameAString,  // return a boolean\n    apoc.meta.cypher.type(p.name) as typeName                    // return a column with a meta type\n\n",
+      "title": "apoc.meta.cypher",
+      "text": "%neo4j\n\nmatch (p:Person) with p limit 1 \nreturn apoc.meta.cypher.types(p) as types,                       // returns 2 column, that is the properies (name and born)\n    apoc.meta.cypher.isType(p.name, \"STRING\") as isNameAString,  // returns a boolean\n    apoc.meta.cypher.type(p.name) as typeName                    // returns a column with a meta type\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 10:39:53.809",
+      "dateUpdated": "2021-11-11 13:00:33.883",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -572,7 +598,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -593,197 +620,14 @@
       "jobName": "paragraph_1635849322493_867707092",
       "id": "paragraph_1635849322493_867707092",
       "dateCreated": "2021-11-02 10:35:22.493",
-      "dateStarted": "2021-11-05 10:39:53.828",
-      "dateFinished": "2021-11-05 10:39:53.858",
+      "dateStarted": "2021-11-11 13:00:32.489",
+      "dateFinished": "2021-11-11 13:00:32.594",
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Monitoring\n\nProvides some useful procedures to monitor what is happening / happened in the db \n\n- CALL apoc.monitor.store\n- CALL apoc.monitor.tx\n",
+      "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can verify database changes through these 2 procedures, to calculate hashsums:\n\n- `apoc.hashing.fingerprinting(object, $config)` - one or more entity\n- `apoc.hashing.fingerprintGraph(\u003clist_of_props_to_ignore\u003e)` - whole graph\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-08 15:57:04.762",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635423072482_1664531640",
-      "id": "paragraph_1635423072482_1664531640",
-      "dateCreated": "2021-10-28 12:11:12.482",
-      "status": "READY"
-    },
-    {
-      "title": "Store size information for the different types of stores",
-      "text": "%neo4j\n\nCALL apoc.monitor.store()",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:39:43.337",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 124.006,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "logSize": "string",
-                      "stringStoreSize": "string",
-                      "arrayStoreSize": "string",
-                      "relStoreSize": "string",
-                      "propStoreSize": "string",
-                      "totalStoreSize": "string",
-                      "nodeStoreSize": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "logSize\tstringStoreSize\tarrayStoreSize\trelStoreSize\tpropStoreSize\ttotalStoreSize\tnodeStoreSize\n262144256\t8192\t8192\t0\t8192\t869066\t0\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635424244582_1643948023",
-      "id": "paragraph_1635424244582_1643948023",
-      "dateCreated": "2021-10-28 12:30:44.582",
-      "dateStarted": "2021-10-28 15:25:43.347",
-      "dateFinished": "2021-10-28 15:25:43.576",
-      "status": "FINISHED"
-    },
-    {
-      "title": "Number of transactions total, opened, committed, rolled-back, last-tx-id",
-      "text": "%neo4j\n\nCALL apoc.monitor.tx()",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:39:39.952",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 84.0057,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "rolledBackTx": "string",
-                      "peakTx": "string",
-                      "lastTxId": "string",
-                      "currentOpenedTx": "string",
-                      "totalOpenedTx": "string",
-                      "totalTx": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true,
-        "editorHide": false,
-        "tableHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "rolledBackTx\tpeakTx\tlastTxId\tcurrentOpenedTx\ttotalOpenedTx\ttotalTx\n0\t2\t24\t1\t11367\t11366\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635424273157_1460585641",
-      "id": "paragraph_1635424273157_1460585641",
-      "dateCreated": "2021-10-28 12:31:13.158",
-      "dateStarted": "2021-11-05 10:43:36.877",
-      "dateFinished": "2021-11-05 10:43:36.902",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can verify database changes through these 2 procedures:\n\n\nThe following functions calculate hashsums of an entity\n\n- `apoc.hashing.fingerprinting(object, {conf})` - single entity\n- `apoc.hashing.fingerprintGraph(\u003clist_of_props_to_ignore\u003e)` - whole graph\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-08 15:58:23.134",
+      "dateUpdated": "2021-11-11 11:05:59.554",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -796,8 +640,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -826,7 +670,7 @@
       "title": "Whole graph",
       "text": "%neo4j\n\n// we ignore \u0027since\u0027 propery\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:06:30.882",
+      "dateUpdated": "2021-11-11 11:06:16.267",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -880,7 +724,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "output\n\"1ED0986E2BAE4D078A3C20EF49456389\"\n"
+            "data": "output\n\"894D48209C6BC6019AE419B2E3243761\"\n"
           }
         ]
       },
@@ -890,15 +734,15 @@
       "jobName": "paragraph_1635424699183_500883585",
       "id": "paragraph_1635424699183_500883585",
       "dateCreated": "2021-10-28 12:38:19.184",
-      "dateStarted": "2021-11-05 10:45:21.447",
-      "dateFinished": "2021-11-05 10:45:22.077",
+      "dateStarted": "2021-11-11 11:06:16.285",
+      "dateFinished": "2021-11-11 11:06:58.650",
       "status": "FINISHED"
     },
     {
       "title": "Whole graph after update",
       "text": "%neo4j\n\nCREATE (n:Something {id: apoc.create.uuid()});\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 10:45:15.880",
+      "dateUpdated": "2021-11-11 11:07:04.749",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -952,7 +796,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "output\n\"1ED0986E2BAE4D078A3C20EF49456389\"\n"
+            "data": "output\n\"18997E0DC75BFF407FE42AB6CCF9745E\"\n"
           }
         ]
       },
@@ -962,14 +806,14 @@
       "jobName": "paragraph_1635424825025_731790922",
       "id": "paragraph_1635424825025_731790922",
       "dateCreated": "2021-10-28 12:40:25.025",
-      "dateStarted": "2021-11-05 10:44:57.589",
-      "dateFinished": "2021-11-05 10:44:58.388",
+      "dateStarted": "2021-11-11 11:07:04.774",
+      "dateFinished": "2021-11-11 11:07:45.993",
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### apoc.hashing.fingerprinting\n\nThe procedure accepts 2 parameter, `apoc.hashing.fingerprinting(object, {config})`.\n\nThe `object` could be a node or relationship.\n\n\nThe procedure has the following config parameters:\n\n- `digestAlgorithm (default: \u0027MD5\u0027)` - The algorithm used to compute the fingerprint. Supported values are: `MD5`, `SHA-1`, `SHA-256`\n- `strategy (default: \u0027LAZY\u0027)` - `LAZY` to not include properties or `EAGER` to use all properties\n- `nodeAllowMap` / `nodeDisallowMap` - Properties to include / exclude per node label\n- `relAllowMap` / `relDisallowMap` - Properties to include / exclude per relationship type\n- `mapAllowList` / `mapDisallowList` - Map properties to include / exclude\n- `allNodesAllowList` / `allNodesDisallowList` - Node properties to include / exclude\n- `allRelsAllowList` / `allRelsDisallowList`  - Relationship properties to include / exclude\n\n\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no {config} parameter\n\u003c/pre\u003e",
+      "text": "%md\n\n### apoc.hashing.fingerprinting\n\nThe procedure accepts 2 parameter, `apoc.hashing.fingerprinting(object, $config)`.\n\nThe `object` could be a node, relationship or a list/map with nodes/relationships.\n\n\nThe procedure has the following config parameters:\n\n- `digestAlgorithm (default: \u0027MD5\u0027)` - The algorithm used to compute the fingerprint. Supported values are: `MD5`, `SHA-1`, `SHA-256`\n- `strategy (default: \u0027LAZY\u0027)` - `LAZY` to not include properties or `EAGER` to use all properties\n- `nodeAllowMap` / `nodeDisallowMap` - Properties to include / exclude per node label\n- `relAllowMap` / `relDisallowMap` - Properties to include / exclude per relationship type\n- `mapAllowList` / `mapDisallowList` - Map properties to include / exclude\n- `allNodesAllowList` / `allNodesDisallowList` - Node properties to include / exclude\n- `allRelsAllowList` / `allRelsDisallowList`  - Relationship properties to include / exclude\n\n\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no `$config` parameter\n\u003c/pre\u003e",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:31:53.119",
+      "dateUpdated": "2021-11-11 11:08:10.298",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -982,8 +826,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -1009,78 +853,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.hashing.fingerprinting(nodeAllowMap) included",
       "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property NOT included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashAfter, hashBefore",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 11:00:50.863",
-      "config": {
-        "colWidth": 6.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "table",
-              "height": 84.0057,
-              "optionOpen": false,
-              "setting": {
-                "table": {
-                  "tableGridState": {},
-                  "tableColumnTypeState": {
-                    "names": {
-                      "hashAfter": "string",
-                      "hashBefore": "string"
-                    },
-                    "updated": false
-                  },
-                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
-                  "tableOptionValue": {
-                    "useFilter": false,
-                    "showPagination": false,
-                    "showAggregationFooter": false
-                  },
-                  "updated": false,
-                  "initialized": false
-                }
-              },
-              "commonSetting": {}
-            }
-          }
-        },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "hashAfter\thashBefore\n\"5C3E579ACEF81AF691FC4BE5D2AE6D65\"\t\"01E981BA52C687498E1CE1CE93BABEB1\"\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635425240161_890228484",
-      "id": "paragraph_1635425240161_890228484",
-      "dateCreated": "2021-10-28 12:47:20.162",
-      "dateStarted": "2021-11-05 10:59:32.841",
-      "dateFinished": "2021-11-05 10:59:32.909",
-      "status": "FINISHED"
-    },
-    {
-      "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property other for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashAfter, hashBefore",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-05 11:00:45.810",
+      "dateUpdated": "2021-11-11 13:02:12.120",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1122,7 +898,8 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1133,7 +910,79 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "hashAfter\thashBefore\n\"754EABC659FD879BA07054E8377DA1EC\"\t\"5C3E579ACEF81AF691FC4BE5D2AE6D65\"\n"
+            "data": "hashAfter\thashBefore\n\"7C377916E927D8C8CB664202A5120C73\"\t\"40BED7CF9B3D4BB3A3D7A7E3EB18C5EB\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635425240161_890228484",
+      "id": "paragraph_1635425240161_890228484",
+      "dateCreated": "2021-10-28 12:47:20.162",
+      "dateStarted": "2021-11-11 11:08:33.441",
+      "dateFinished": "2021-11-11 11:08:33.660",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.hashing.fingerprinting(nodeAllowMap) not included",
+      "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027name\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027name\u0027]}}) as hashAfter, hashBefore",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:02:15.471",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "hashAfter": "string",
+                      "hashBefore": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "hashAfter\thashBefore\n\"B8350AD981D40D1107CB7B139E1FB618\"\t\"B8350AD981D40D1107CB7B139E1FB618\"\n"
           }
         ]
       },
@@ -1143,14 +992,15 @@
       "jobName": "paragraph_1636109985372_771018932",
       "id": "paragraph_1636109985372_771018932",
       "dateCreated": "2021-11-05 10:59:45.372",
-      "dateStarted": "2021-11-05 11:00:17.354",
-      "dateFinished": "2021-11-05 11:00:17.379",
+      "dateStarted": "2021-11-11 11:08:36.435",
+      "dateFinished": "2021-11-11 11:08:36.493",
       "status": "FINISHED"
     },
     {
+      "title": "apoc.hashing.fingerprinting(allNodesDisallowList)",
       "text": "%neo4j\n\nMATCH (person:Person {name: \u0027Keanu Reeves\u0027})\n// we create 2 fingerprint with allNodesDisallowList to disallow respectively \u0027name\u0027 and \u0027stuff\u0027\nWITH person, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBornBefore\n\nset person.stuff \u003d rand() // we change born propery\n\n// we create another 2 fingerprint as above\nRETURN apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS output, outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBorn , outputBornBefore\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 11:03:40.927",
+      "dateUpdated": "2021-11-11 13:01:54.492",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1194,7 +1044,8 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1205,7 +1056,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "output\toutputBefore\toutputBorn\toutputBornBefore\n\"E2F6CBE2ED866B915566934299AD1AA0\"\t\"D75B0103D6B59A4BF032EBA93A2FAA9F\"\t\"B13B087AD39FDC87A07815E109A275DD\"\t\"81BA011C0E08FC7B038346EB8A63AFDE\"\n"
+            "data": "output\toutputBefore\toutputBorn\toutputBornBefore\n\"C667A5D291E26DE0CDB6C0E3442420C2\"\t\"29CF09C04271819B5F6D129C80F6E265\"\t\"AF1C91FAA75CF410367AAA852C24D494\"\t\"AF1C91FAA75CF410367AAA852C24D494\"\n"
           }
         ]
       },
@@ -1215,14 +1066,15 @@
       "jobName": "paragraph_1635426007544_145180203",
       "id": "paragraph_1635426007544_145180203",
       "dateCreated": "2021-10-28 13:00:07.544",
-      "dateStarted": "2021-11-05 11:03:21.752",
-      "dateFinished": "2021-11-05 11:03:21.885",
+      "dateStarted": "2021-11-11 11:08:42.416",
+      "dateFinished": "2021-11-11 11:08:42.583",
       "status": "FINISHED"
     },
     {
+      "title": "apoc.hashing.fingerprinting(strategy)",
       "text": "%neo4j\n\n// The following generates the fingerprint for Keanu Reeves, using the EAGER strategy, which includes node properties:\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nWITH apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyBefore, person // we calculate fingerprints before property changes\n\nset person.something \u003d apoc.create.uuid() // we change a property\n\nRETURN eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerAfter, lazyBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyAfter  // we return fingerprints before and after property changes",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 11:01:10.979",
+      "dateUpdated": "2021-11-11 13:01:51.413",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1265,7 +1117,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1288,6 +1141,223 @@
       "dateCreated": "2021-10-28 12:52:18.359",
       "dateStarted": "2021-11-05 11:01:10.996",
       "dateFinished": "2021-11-05 11:01:11.091",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Example: create alert system to check nodes variations ",
+      "text": "%neo4j\n\nMATCH (n:Person)\nWITH collect(n) as nodes\nWITH nodes, apoc.hashing.fingerprinting(nodes,  {nodeAllowMap: {Person: [\u0027timestamp\u0027]}}) AS fingerprint // calculate fingerprint for all Person nodes through timestamp property\nOPTIONAL MATCH (a:Alert {fingerprint: fingerprint})\nWITH COLLECT(a) as alerts, fingerprint\nCALL apoc.do.when(size(alerts) \u003d 0, \n    \"CREATE (:Alert {fingerprint: $fingerprint})\", \n    \"RETURN 1\", \n    {fingerprint: fingerprint}) YIELD value RETURN value\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 11:11:15.420",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value.1": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636542238398_1865829614",
+      "id": "paragraph_1636542238398_1865829614",
+      "dateCreated": "2021-11-10 11:03:58.398",
+      "dateStarted": "2021-11-11 11:10:07.979",
+      "dateFinished": "2021-11-11 11:10:08.016",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Don\u0027t change fingerprint ",
+      "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.other \u003d 123",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:02:49.911",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636550905679_2025375362",
+      "id": "paragraph_1636550905679_2025375362",
+      "dateCreated": "2021-11-10 13:28:25.680",
+      "dateStarted": "2021-11-11 11:09:45.344",
+      "dateFinished": "2021-11-11 11:09:45.400",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Change fingerprint ",
+      "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.timestamp \u003d timestamp()",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:02:56.004",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636562701740_1838859840",
+      "id": "paragraph_1636562701740_1838859840",
+      "dateCreated": "2021-11-10 16:45:01.740",
+      "dateStarted": "2021-11-11 11:10:02.204",
+      "dateFinished": "2021-11-11 11:10:02.379",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\nmatch (n:Alert) return n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:03:03.874",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 148.011,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "fingerprint": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":727583,\"data\":{\"fingerprint\":\"5C205FA6707E4F912E93546AD6959139\"},\"label\":\"Alert\"},{\"id\":727584,\"data\":{\"fingerprint\":\"81B9DA875DE07CD8C11A8BFF612C5E72\"},\"label\":\"Alert\"}],\"edges\":[],\"labels\":{\"Movie\":\"#1C95ED\",\"Person\":\"#00105E\",\"NodePeriodic\":\"#36DCC8\",\"Batch\":\"#8C2B23\",\"Start\":\"#EE1EBD\",\"Something\":\"#D7B0EF\",\"Alert\":\"#0007B1\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636550925149_665699810",
+      "id": "paragraph_1636550925149_665699810",
+      "dateCreated": "2021-11-10 13:28:45.149",
+      "dateStarted": "2021-11-11 11:10:10.931",
+      "dateFinished": "2021-11-11 11:10:10.974",
       "status": "FINISHED"
     },
     {

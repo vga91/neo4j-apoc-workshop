@@ -3,21 +3,21 @@
     {
       "text": "%md\n\n# Cypher Execution\n\nThe Apoc library comes with many procedure to help us to execute specific Cypher statements. here are some of them: \n\n\n- `apoc.cypher.run(fragment, $params)` - executes a reading fragment with the given parameters\n- `apoc.cypher.doIt(fragment, $params)` - executes writing fragment\n- `apoc.cypher.runFile(file or url, $params)` - runs each statement in the file, all semicolon separated - currently no schema operations\n- `apoc.cypher.runSchema(statement, $params)` yield value - executes query schema statement\n- `apoc.cypher.runSchemaFile(file or url, $params)` - allows only schema operations, runs each schema statement in the file, all semicolon separated\n- `apoc.cypher.runTimeboxed(\u0027fragment\u0027,$params, timeout)` - abort transaction after `timeout` and return results\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/cypher-execution/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to complete list.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:10.161",
+      "dateUpdated": "2021-11-11 13:41:41.143",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -35,31 +35,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635854661682_1970406879",
+      "jobName": "paragraph_1636638101143_785053396",
       "id": "paragraph_1635854661682_1970406879",
-      "dateCreated": "2021-11-02 12:04:21.682",
-      "dateStarted": "2021-11-11 13:03:10.164",
-      "dateFinished": "2021-11-11 13:03:10.178",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:41:41.143",
+      "status": "READY"
     },
     {
       "text": "%md\n\n### apoc.cypher.run\n\nTo retrieve count of nodes for each labels we could do something like:\n\u003cpre\u003e\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*)\nUNION ALL\n...\n\u003c/pre\u003e\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:41:26.505",
+      "dateUpdated": "2021-11-11 13:41:41.143",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -77,22 +75,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635858459697_1303077886",
+      "jobName": "paragraph_1636638101143_194537660",
       "id": "paragraph_1635858459697_1303077886",
-      "dateCreated": "2021-11-02 13:07:39.697",
-      "dateStarted": "2021-11-11 13:41:26.505",
-      "dateFinished": "2021-11-11 13:41:26.517",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:41:41.143",
+      "status": "READY"
     },
     {
       "title": "Example",
       "text": "%neo4j\n\nCALL db.labels() yield label\n// we can concatenate string and variables (label)\n// otherwise, with pure cypher it would be `match (:label) ...` (doesn\u0027t work) because it would searching for nodes with label `:label`\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:22.095",
+      "dateUpdated": "2021-11-11 13:41:41.143",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -123,14 +126,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -148,22 +144,28 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635858066468_27777609",
+      "jobName": "paragraph_1636638101143_656529195",
       "id": "paragraph_1635858066468_27777609",
-      "dateCreated": "2021-11-02 13:01:06.468",
-      "dateStarted": "2021-11-05 11:24:02.322",
-      "dateFinished": "2021-11-05 11:24:02.343",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:41:41.143",
+      "status": "READY"
     },
     {
       "title": "apoc.cypher.runFile",
       "text": "%neo4j\n\n// I have a file `fileExample.cypher` with this content:\n// CREATE (n:Node {id:1});\n// MATCH (n:Node) SET n.import \u003d true;\n\n\nCALL apoc.cypher.runFile(\"fileExample.cypher\");",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:32.967",
+      "dateUpdated": "2021-11-11 13:41:41.143",
       "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -206,15 +208,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "tableHide": false,
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -232,22 +226,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635860142585_1100337140",
+      "jobName": "paragraph_1636638101143_1850770599",
       "id": "paragraph_1635860142585_1100337140",
-      "dateCreated": "2021-11-02 13:35:42.586",
-      "dateStarted": "2021-11-05 11:39:32.922",
-      "dateFinished": "2021-11-05 11:39:33.103",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:41:41.143",
+      "status": "READY"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nMATCH (n:Node {id: 1}) RETURN n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:43.114",
+      "dateUpdated": "2021-11-11 13:41:41.143",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -279,14 +278,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -304,22 +296,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635860300022_129065438",
+      "jobName": "paragraph_1636638101143_121823141",
       "id": "paragraph_1635860300022_129065438",
-      "dateCreated": "2021-11-02 13:38:20.022",
-      "dateStarted": "2021-11-05 11:40:02.779",
-      "dateFinished": "2021-11-05 11:40:02.828",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:41:41.143",
+      "status": "READY"
     },
     {
       "title": "apoc.cypher.runSchemaFile",
       "text": "%neo4j\n\n// File content:\n// CREATE INDEX FOR (a:Actor) ON (a.name, a.born);\n// CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE\n\nCALL apoc.cypher.runSchemaFile(\"fileExampleSchema.cypher\");",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:50.652",
+      "dateUpdated": "2021-11-11 13:41:41.143",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -362,14 +359,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -387,22 +377,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635862450813_1749992024",
+      "jobName": "paragraph_1636638101143_1817193328",
       "id": "paragraph_1635862450813_1749992024",
-      "dateCreated": "2021-11-02 14:14:10.814",
-      "dateStarted": "2021-11-05 11:41:05.018",
-      "dateFinished": "2021-11-05 11:41:05.305",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:41:41.143",
+      "status": "READY"
     },
     {
       "title": "Check results",
       "text": "%neo4j\ncall db.indexes",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:46.165",
+      "dateUpdated": "2021-11-11 13:41:41.144",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -441,14 +436,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -466,22 +454,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635862549037_1694262330",
+      "jobName": "paragraph_1636638101144_91484408",
       "id": "paragraph_1635862549037_1694262330",
-      "dateCreated": "2021-11-02 14:15:49.037",
-      "dateStarted": "2021-11-05 11:41:06.923",
-      "dateFinished": "2021-11-05 11:41:06.980",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:41:41.144",
+      "status": "READY"
     },
     {
       "title": "apoc.cypher.runTimeboxed",
       "text": "%neo4j\n\n// I create 20000 \u0027TimeoutTest\u0027 nodes\nUNWIND range(1, 20000) as idx CREATE (n:TimeoutTest {id: idx});\n\ncall apoc.cypher.runTimeboxed(\"match (n:TimeoutTest) RETURN n\", {}, 100) // I set a small timeout\nYIELD value\nRETURN count(value.n.id);\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:15:42.313",
+      "dateUpdated": "2021-11-11 13:41:41.144",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -511,14 +504,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -536,31 +522,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635862617028_1273613672",
+      "jobName": "paragraph_1636638101144_973762831",
       "id": "paragraph_1635862617028_1273613672",
-      "dateCreated": "2021-11-02 14:16:57.028",
-      "dateStarted": "2021-11-11 11:15:24.901",
-      "dateFinished": "2021-11-11 11:15:25.415",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:41:41.144",
+      "status": "READY"
     },
     {
-      "text": "%md\n\n## [Import - Export](http://localhost:8080/#/notebook/2GJCSVRMK)",
+      "text": "%md\n\n## [Import - Export](http://localhost:8080/#/notebook/2GPV4X4H9)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:43:22.559",
+      "dateUpdated": "2021-11-11 13:49:07.952",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -571,40 +555,23 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GJCSVRMK\"\u003eImport - Export\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GPV4X4H9\"\u003eImport - Export\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635863303356_2095614526",
+      "jobName": "paragraph_1636638101144_1820480479",
       "id": "paragraph_1635863303356_2095614526",
-      "dateCreated": "2021-11-02 14:28:23.356",
-      "dateStarted": "2021-11-10 09:43:22.567",
-      "dateFinished": "2021-11-10 09:43:24.795",
+      "dateCreated": "2021-11-11 13:41:41.144",
+      "dateStarted": "2021-11-11 13:49:07.953",
+      "dateFinished": "2021-11-11 13:49:07.968",
       "status": "FINISHED"
-    },
-    {
-      "text": "%neo4j\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:08:43.807",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636297723807_660054266",
-      "id": "paragraph_1636297723807_660054266",
-      "dateCreated": "2021-11-07 15:08:43.807",
-      "status": "READY"
     }
   ],
   "name": "3. Cypher executions",
-  "id": "2GMKN71T8",
+  "id": "2GMX7RKBM",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",
   "noteParams": {},

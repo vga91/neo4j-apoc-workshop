@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\n# Export\n\n\nTo activate it, use `apoc.export.file.enabled\u003dtrue`\n\n\n- Export to CSV (apoc.export.csv.TYPE)\n- Export to JSON (apoc.export.json.TYPE)\n- Export to Cypher Script (apoc.export.cypher.TYPE)\n- Export to GraphML (apoc.export.graphml.TYPE)\n- Export to Xls (apoc.export.xls.TYPE)\n\n\nWhere `\u003cTYPE\u003e` can be all, data, graph, query.\n\nFor example, in CSV case, we have `apoc.export.csv.all(fileName, {configMap})`, \n`apoc.export.csv.query(query, file, {configMap})`, \n`apoc.export.csv.data(nodes, rels, fileName, {configMap})`\n`apoc.export.csv.graph(graph, fileName?, {configMap})`.\n\n`{configMap}` depends on file Type. See \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.export/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to see all possible configurations.\n\nIn `apoc.export.csv.*` we have\n- batchSize (default: 20000) - define the batch size to export large files avoiding heap space errors\n- delim (default: \",\") - define the delimiter character (export csv)\n- arrayDelim (default: \";\") - define the delimiter character for arrays\n- quotes (default: \u0027always\u0027) - quote-character used for CSV. It can be \u0027always\u0027, \u0027none\u0027 or \u0027ifNeeded\u0027, that apply quotes only when it\u0027s necessary (for escape purpose or when a value is blank)\n\n",
+      "text": "%md\n\n# Export\n\n\nTo activate it, use `apoc.export.file.enabled\u003dtrue`\n\n- Export to CSV (apoc.export.csv.TYPE)\n- Export to JSON (apoc.export.json.TYPE)\n- Export to Cypher Script (apoc.export.cypher.TYPE)\n- Export to GraphML (apoc.export.graphml.TYPE)\n- Export to Xls (apoc.export.xls.TYPE)\n\n\nWhere `TYPE` can be all, data, graph, query.\n\nFor example, in CSV case, we have `apoc.export.csv.all(fileName, $configMap)`, \n`apoc.export.csv.query(query, file, $configMap)`, \n`apoc.export.csv.data(nodes, rels, fileName, $configMap)`\n`apoc.export.csv.graph(graph, fileName?, $configMap)`.\n\n`$configMap` depends on file Type. See \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.export/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to see all possible configurations.\n\nIn `apoc.export.csv.*` we have\n-` batchSize (default: 20000)` - define the batch size to export large files avoiding heap space errors\n- `delim (default: \",\")` - define the delimiter character (export csv)\n- `arrayDelim (default: \";\")` - define the delimiter character for arrays\n- `quotes (default: \u0027always\u0027)` - quote-character used for CSV. It can be \u0027always\u0027, \u0027none\u0027 or \u0027ifNeeded\u0027, that apply quotes only when it\u0027s necessary (for escape purpose or when a value is blank)\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:44:47.536",
+      "dateUpdated": "2021-11-11 13:04:13.098",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -43,9 +43,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.export.csv.all",
       "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfile.csv\u0027, {quotes: \u0027always\u0027})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:25:03.008",
+      "dateUpdated": "2021-11-11 13:04:24.483",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -96,7 +97,8 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -122,9 +124,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "With quotes: \u0027none\u0027",
       "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfileNoQuote.csv\u0027, {quotes: \u0027none\u0027})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:24:08.398",
+      "dateUpdated": "2021-11-11 13:05:43.584",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -176,7 +179,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -202,9 +206,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "With quotes: \u0027ifNeeded\u0027",
       "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfileNeededQuote.csv\u0027, {quotes: \u0027ifNeeded\u0027})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:03:38.028",
+      "dateUpdated": "2021-11-11 13:05:46.055",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -256,7 +261,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": false
+        "editorHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -282,9 +288,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.export.csv.query",
       "text": "%neo4j\n\nCALL apoc.export.csv.query(\"MATCH (person:Person) RETURN person\", \u0027person.csv\u0027, {})\nYIELD file RETURN file",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:15:49.321",
+      "dateUpdated": "2021-11-11 13:05:12.375",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -324,7 +331,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -350,9 +358,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.export.csv.graph",
       "text": "%neo4j\n\nMATCH (person:Person)-[r:DIRECTED]-\u003e() \nWITH {nodes: collect(person), relationships: collect(r)} as graph\nCALL apoc.export.csv.graph(graph, \u0027graphFile.csv\u0027, {}) YIELD file RETURN file",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:15:09.001",
+      "dateUpdated": "2021-11-11 13:05:08.227",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -392,7 +401,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -418,9 +428,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.export.csv.data",
       "text": "%neo4j\nMATCH (person:Person) \nWITH collect(person) as people\nCALL apoc.export.csv.data(people, [], \u0027dataFile.csv\u0027, {})\nyield file return file",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:52:07.669",
+      "dateUpdated": "2021-11-11 13:05:26.070",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -460,7 +471,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -486,9 +498,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "apoc.export.csv.all",
       "text": "%neo4j\n\nCALL apoc.export.csv.all(\"customDelim.csv\", {quotes: \u0027none\u0027, delim: \u0027|\u0027, arrayDelimiter: \u0027_\u0027}) ",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:52:02.317",
+      "dateUpdated": "2021-11-11 13:05:18.873",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -539,7 +552,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -565,9 +579,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "With stream: true",
       "text": "%neo4j\n\n// We can pass filename null and a config with `stream:true` to retrieve results directly in neo4j instead of a file\nCALL apoc.export.csv.all(null, {stream:true, batchSize: 20, quote: \u0027none\u0027}) yield data return data",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:53:41.259",
+      "dateUpdated": "2021-11-11 13:05:38.624",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -635,7 +650,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -661,9 +677,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n## Import procedures\n\n- apoc.import.csv\n- apoc.import.graphml\n- apoc.import.json\n- apoc.import.xml\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/\u003e for more details.",
+      "text": "%md\n## Import procedures\n\n- apoc.import.csv\n- apoc.import.graphml\n- apoc.import.json\n- apoc.import.xml\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:04:27.840",
+      "dateUpdated": "2021-11-11 13:05:57.346",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -675,11 +691,22 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eImport procedures\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.import.csv\u003c/li\u003e\n\u003cli\u003eapoc.import.graphml\u003c/li\u003e\n\u003cli\u003eapoc.import.json\u003c/li\u003e\n\u003cli\u003eapoc.import.xml\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -687,70 +714,15 @@
       "jobName": "paragraph_1635430474392_1169397948",
       "id": "paragraph_1635430474392_1169397948",
       "dateCreated": "2021-10-28 14:14:34.392",
-      "status": "READY"
+      "dateStarted": "2021-11-11 13:05:57.352",
+      "dateFinished": "2021-11-11 13:05:57.365",
+      "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nsulla falsariga (along the lines of) del neo4j-admin-import, ma non richiede riavvio e db vuoto `However, using the import command of neo4j-admin is generally faster since it is run against a stopped and empty database.`\n\napoc.import.csv(nodes :: LIST? OF MAP?, relationships :: LIST? OF MAP?, config :: MAP?)\n\nThe procedure support the following config parameters:\n\n.Config parameters\n[opts\u003dheader]\n|\u003d\u003d\u003d\n| name | type | default | description | https://neo4j.com/docs/operations-manual/current/tools/import/options/[import tool counterpart]\n| delimiter | String | ,  |delimiter character between columns  | `--delimiter\u003d,`\n| arrayDelimiter | String | ; | delimiter character in arrays | `--array-delimiter\u003d;`\n| ignoreDuplicateNodes | Boolean | false | for duplicate nodes, only load the first one and skip the rest (true) or fail the import (false)  | `--ignore-duplicate-nodes\u003dfalse`\n| quotationCharacter | String | \" | quotation character   | `--quote\u003d\u0027\"\u0027`\n| stringIds | Boolean | true | treat ids as strings  | `--id-type\u003dSTRING`\n| skipLines | Integer | 1 | lines to skip (incl. header)  | N/A\n| ignoreBlankString | Boolean | false | if true ignore properties with a blank string | N/A\n|\u003d\u003d\u003d",
+      "title": "apoc.import.csv",
+      "text": "%md\n\nThe `apoc.import.csv([nodeFiles], [relationshipsFiles], $config)` procedure \nit\u0027s implemented along the lines of \u003ca href\u003d\"https://neo4j.com/docs/operations-manual/current/tutorial/neo4j-admin-import/\"\u003eneo4j-admin-import\u003c/a\u003e native tool, but requires no reboot and empty db.\n\nFor example, supports the following config parameters:\n\n- `delimiter` - delimiter character between columns like `--delimiter\u003d,` of `neo4j-admin-import`\n- `arrayDelimiter` - delimiter character in arrays | `--array-delimiter\u003d;`\n- `ignoreDuplicateNodes` - for duplicate nodes, only load the first one and skip the rest (true) or fail the import (false)  | `--ignore-duplicate-nodes\u003dfalse`",
       "user": "anonymous",
-      "dateUpdated": "2021-10-28 14:31:00.486",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635431087189_1210091021",
-      "id": "paragraph_1635431087189_1210091021",
-      "dateCreated": "2021-10-28 14:24:47.190",
-      "status": "READY"
-    },
-    {
-      "text": "%neo4j\n\n/*  \n    person.csv\n    ---\n    id:ID,name:STRING\n    1,John\n    2,Jane\n*/\n\n\nCALL apoc.import.csv([{fileName: \u0027file:/persons.csv\u0027, labels: [\u0027Person\u0027]}], [], {});\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:54:40.587",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635431483321_1383593912",
-      "id": "paragraph_1635431483321_1383593912",
-      "dateCreated": "2021-10-28 14:31:23.321",
-      "status": "READY"
-    },
-    {
-      "text": "%md\n\n## File load procedures\nSimilar to import procedure, retrieve the results from file but doesn\u0027t execute graph operation, more flexible\n\n- apoc.load.csv\n- apoc.load.json \n- apoc.load.xls\n- apoc.load.xml\n- apoc.load.html\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\n\n\n\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:38:50.587",
+      "dateUpdated": "2021-11-11 11:42:47.859",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -764,7 +736,8 @@
         },
         "editorMode": "ace/mode/markdown",
         "editorHide": false,
-        "tableHide": true
+        "tableHide": true,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -775,7 +748,203 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFile load procedures\u003c/h2\u003e\n\u003cp\u003eSimilar to import procedure, retrieve the results from file but doesn\u0026rsquo;t execute graph operation, more flexible\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.load.csv\u003c/li\u003e\n\u003cli\u003eapoc.load.json\u003c/li\u003e\n\u003cli\u003eapoc.load.xls\u003c/li\u003e\n\u003cli\u003eapoc.load.xml\u003c/li\u003e\n\u003cli\u003eapoc.load.html\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.csv(\u0026lsquo;test.csv\u0026rsquo;)\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.csv($url,{skip: 1, limit: 2})\u003c/p\u003e\n\u003cp\u003ename,age,kids,pass\u003cbr /\u003e\nMichael,41,8:11:18,pass\u003cbr /\u003e\nMichael,41,8:11:18,pass\u003cbr /\u003e\nMichael,41,8:11:18,pass\u003cbr /\u003e\nCALL apoc.load.csv($url,{results:[\u0026lsquo;map\u0026rsquo;,\u0026lsquo;list\u0026rsquo;,\u0026lsquo;stringMap\u0026rsquo;,\u0026lsquo;strings\u0026rsquo;],mapping:{name:{type:\u0026lsquo;string\u0026rsquo;},age:{type:\u0026lsquo;int\u0026rsquo;},kids:{array:true,arraySep:\u0026lsquo;:\u0026rsquo;,type:\u0026lsquo;int\u0026rsquo;},pass:{ignore:true}}})\u003c/p\u003e\n\u003cp\u003ename\tage\u003cbr /\u003e\nRana\t11\u003cbr /\u003e\nCALL apoc.load.csv($url,{sep:\u0026lsquo;TAB\u0026rsquo;,results:[\u0026lsquo;map\u0026rsquo;,\u0026lsquo;list\u0026rsquo;,\u0026lsquo;stringMap\u0026rsquo;,\u0026lsquo;strings\u0026rsquo;]})\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eThe \u003ccode\u003eapoc.import.csv([nodeFiles], [relationshipsFiles], $config)\u003c/code\u003e procedure\u003cbr /\u003e\nit\u0026rsquo;s implemented along the lines of \u003ca href\u003d\"https://neo4j.com/docs/operations-manual/current/tutorial/neo4j-admin-import/\"\u003eneo4j-admin-import\u003c/a\u003e native tool, but requires no reboot and empty db.\u003c/p\u003e\n\u003cp\u003eFor example, supports the following config parameters:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003edelimiter\u003c/code\u003e - delimiter character between columns like \u003ccode\u003e--delimiter\u003d,\u003c/code\u003e of \u003ccode\u003eneo4j-admin-import\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003earrayDelimiter\u003c/code\u003e - delimiter character in arrays | \u003ccode\u003e--array-delimiter\u003d;\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eignoreDuplicateNodes\u003c/code\u003e - for duplicate nodes, only load the first one and skip the rest (true) or fail the import (false)  | \u003ccode\u003e--ignore-duplicate-nodes\u003dfalse\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635431087189_1210091021",
+      "id": "paragraph_1635431087189_1210091021",
+      "dateCreated": "2021-10-28 14:24:47.190",
+      "dateStarted": "2021-11-11 11:42:32.284",
+      "dateFinished": "2021-11-11 11:42:34.044",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Example",
+      "text": "%neo4j\n\n/*  \n    importPersons.csv             types.csv\n    ---                           ---\n    id:ID|name:STRING             :START_ID|:END_ID|since:INT\n    1|John                        1|2|2016\n    2|Bob                         1|3|2015\n    3|Jane \n*/\n\n\nCALL apoc.import.csv([{fileName: \u0027file:/importPersons.csv\u0027, labels: [\"CsvPerson\"]}], [{fileName: \u0027file:/types.csv\u0027, type: \u0027KNOWS\u0027}], {delimiter: \u0027|\u0027});\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:06:11.735",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"progress.csv\"\t\"file\"\t\"csv\"\t3\t2\t8\t30\t0\t-1\t0\tTRUE\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635431483321_1383593912",
+      "id": "paragraph_1635431483321_1383593912",
+      "dateCreated": "2021-10-28 14:31:23.321",
+      "dateStarted": "2021-11-11 11:37:36.371",
+      "dateFinished": "2021-11-11 11:37:36.441",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\n\nMATCH p\u003d(:CsvPerson)--(:CsvPerson) RETURN p",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:06:24.834",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "since": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":6,\"data\":{\"name\":\"John\",\"id\":\"1\"},\"label\":\"CsvPerson\"},{\"id\":7,\"data\":{\"name\":\"Bob\",\"id\":\"2\"},\"label\":\"CsvPerson\"},{\"id\":8,\"data\":{\"name\":\"Jane\",\"id\":\"3\"},\"label\":\"CsvPerson\"}],\"edges\":[{\"source\":6,\"target\":7,\"id\":0,\"data\":{\"since\":2016},\"label\":\"KNOWS\"},{\"source\":6,\"target\":8,\"id\":1,\"data\":{\"since\":2015},\"label\":\"KNOWS\"}],\"labels\":{\"TTL\":\"#088E3E\",\"CsvPerson\":\"#B7A885\"},\"types\":[\"KNOWS\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636630151080_940572401",
+      "id": "paragraph_1636630151080_940572401",
+      "dateCreated": "2021-11-11 11:29:11.083",
+      "dateStarted": "2021-11-11 11:37:50.363",
+      "dateFinished": "2021-11-11 11:37:50.697",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## File load procedures\nSimilar to import procedure, retrieve the results from file but doesn\u0027t execute graph operation, more flexible\n\n- apoc.load.csv\n- apoc.load.json \n- apoc.load.xls\n- apoc.load.xml\n- apoc.load.html\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:06:35.103",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFile load procedures\u003c/h2\u003e\n\u003cp\u003eSimilar to import procedure, retrieve the results from file but doesn\u0026rsquo;t execute graph operation, more flexible\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.load.csv\u003c/li\u003e\n\u003cli\u003eapoc.load.json\u003c/li\u003e\n\u003cli\u003eapoc.load.xls\u003c/li\u003e\n\u003cli\u003eapoc.load.xml\u003c/li\u003e\n\u003cli\u003eapoc.load.html\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -785,14 +954,15 @@
       "jobName": "paragraph_1635430550983_1766130711",
       "id": "paragraph_1635430550983_1766130711",
       "dateCreated": "2021-10-28 14:15:50.984",
-      "dateStarted": "2021-11-05 16:19:10.033",
-      "dateFinished": "2021-11-05 16:19:10.051",
+      "dateStarted": "2021-11-11 13:06:35.103",
+      "dateFinished": "2021-11-11 13:06:35.115",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\n// File content\nCALL apoc.load.csv(\u0027load.csv\u0027)",
+      "title": "apoc.load.csv",
+      "text": "%neo4j\n\n/* File content\n    name,age,beverage\n    Selma,9,Soda\n    Rana,12,Tea;Milk\n    Selina,19,Cola\n    Alhpa,55,Gamma\n    Beta,66,Delta\n*/\n\nCALL apoc.load.csv(\u0027load.csv\u0027)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:41:58.313",
+      "dateUpdated": "2021-11-11 13:07:18.533",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -839,7 +1009,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -860,14 +1031,15 @@
       "jobName": "paragraph_1636447121894_1927356040",
       "id": "paragraph_1636447121894_1927356040",
       "dateCreated": "2021-11-09 08:38:41.894",
-      "dateStarted": "2021-11-09 08:41:58.336",
-      "dateFinished": "2021-11-09 08:41:58.380",
+      "dateStarted": "2021-11-11 13:07:18.551",
+      "dateFinished": "2021-11-11 13:07:18.680",
       "status": "FINISHED"
     },
     {
+      "title": "With skip / limit",
       "text": "%neo4j\nCALL apoc.load.csv(\u0027load.csv\u0027,{skip: 1, limit: 2})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:42:11.098",
+      "dateUpdated": "2021-11-11 13:07:39.042",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -876,7 +1048,7 @@
           "0": {
             "graph": {
               "mode": "table",
-              "height": 300.0,
+              "height": 124.0,
               "optionOpen": false,
               "setting": {
                 "table": {
@@ -914,7 +1086,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -940,9 +1113,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "With sep / arraySep",
       "text": "%neo4j\n\n// File content\n//name\tage\n//Rana\t11\nCALL apoc.load.csv(\u0027loadSep.csv\u0027,{sep:\u0027|\u0027, arraySep: \u0027-\u0027})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:43:55.394",
+      "dateUpdated": "2021-11-11 13:07:47.882",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -989,7 +1163,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1015,9 +1190,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "With mapping",
       "text": "%neo4j\n\nCALL apoc.load.csv(\u0027load.csv\u0027, {mapping: {name:{type:\u0027string\u0027}, age:{type:\u0027int\u0027}, beverage:{ignore:true}}})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-09 08:45:54.477",
+      "dateUpdated": "2021-11-11 13:07:59.134",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1063,7 +1239,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1091,7 +1268,7 @@
     {
       "text": "%md\n\n## Load directory\n\napoc.load.directory(\u0027pattern\u0027, \u0027urlDir\u0027, {config}) YIELD value - Loads list of all files in folder specified by urlDir or in import folder if urlDir string is empty or not specified\n\n\nCALL apoc.load.directory();\n\nCALL apoc.load.directory(\"*.csv\");\n\nCALL apoc.load.directory(\"*.csv\", \"subfolder1\");\n\nCALL apoc.load.directory(\"*\", \"subfolder2\", {recursive: false});\n\n\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027path/to/directory\u0027)\nYIELD value WITH value as url ORDER BY url DESC\nCALL apoc.load.csv(url, {results:[\u0027map\u0027]}) YIELD map RETURN map",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 15:55:28.951",
+      "dateUpdated": "2021-11-11 13:08:02.147",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1103,11 +1280,22 @@
           "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eLoad directory\u003c/h2\u003e\n\u003cp\u003eapoc.load.directory(\u0026lsquo;pattern\u0026rsquo;, \u0026lsquo;urlDir\u0026rsquo;, {config}) YIELD value - Loads list of all files in folder specified by urlDir or in import folder if urlDir string is empty or not specified\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory();\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory(\u0026ldquo;*.csv\u0026rdquo;);\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory(\u0026ldquo;*.csv\u0026rdquo;, \u0026ldquo;subfolder1\u0026rdquo;);\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory(\u0026ldquo;*\u0026rdquo;, \u0026ldquo;subfolder2\u0026rdquo;, {recursive: false});\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory(\u0026lsquo;*.csv\u0026rsquo;, \u0026lsquo;path/to/directory\u0026rsquo;)\u003cbr /\u003e\nYIELD value WITH value as url ORDER BY url DESC\u003cbr /\u003e\nCALL apoc.load.csv(url, {results:[\u0026lsquo;map\u0026rsquo;]}) YIELD map RETURN map\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -1115,12 +1303,15 @@
       "jobName": "paragraph_1635349254490_188990093",
       "id": "paragraph_1635349254490_188990093",
       "dateCreated": "2021-10-27 15:40:54.490",
-      "status": "READY"
+      "dateStarted": "2021-11-11 13:08:02.148",
+      "dateFinished": "2021-11-11 13:08:02.164",
+      "status": "FINISHED"
     },
     {
+      "title": "Default",
       "text": "%neo4j\n\nCALL apoc.load.directory();",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:20:18.644",
+      "dateUpdated": "2021-11-11 13:08:13.457",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1162,7 +1353,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1188,9 +1380,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "File filter",
       "text": "%neo4j\n\nCALL apoc.load.directory(\u0027*.csv\u0027);",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:20:33.327",
+      "dateUpdated": "2021-11-11 13:08:18.405",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1232,7 +1425,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1258,9 +1452,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "With path",
       "text": "%neo4j\n\n// there is a sub-subfolder\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027subfolder\u0027);",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:23:16.414",
+      "dateUpdated": "2021-11-11 13:08:43.485",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1302,7 +1497,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1328,9 +1524,10 @@
       "status": "FINISHED"
     },
     {
+      "title": "With recursive: false",
       "text": "%neo4j\n\nCALL apoc.load.directory(\"*.csv\", \u0027subfolder\u0027, {recursive: false})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:23:28.452",
+      "dateUpdated": "2021-11-11 13:08:32.301",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1372,7 +1569,8 @@
         },
         "editorMode": "ace/mode/undefined",
         "editorHide": false,
-        "tableHide": false
+        "tableHide": false,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -1398,32 +1596,65 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n// todo\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027path/to/directory\u0027)\nYIELD value WITH value as url ORDER BY url DESC\nCALL apoc.load.csv(url, {results:[\u0027map\u0027]}) YIELD map RETURN map",
+      "title": "Usage with csv",
+      "text": "%neo4j\n\n/*  in loadDirSubfolder there are 2 files\n    fileTest.csv                  fileTest2.csv\n    ---                           ---\n    number,numero                 Eren,Jager\n    One,Uno                       Mikasa,Ackermann\n    Two,Due                       Armin,Arelet\n*/\n\n\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027loadDirSubfolder\u0027)\nYIELD value WITH value as url ORDER BY url DESC\nCALL apoc.load.csv(url, {results:[\u0027map\u0027]}) YIELD map RETURN map",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 16:24:01.183",
+      "dateUpdated": "2021-11-11 11:48:23.551",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
-        "results": {},
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "map.numero": "string",
+                      "map.number": "string",
+                      "map.name": "string",
+                      "map.surname": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/undefined",
+        "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
-            "type": "TEXT",
-            "data": "Failed to invoke procedure `apoc.load.directory`: Caused by: java.nio.file.NoSuchFileException: /import/path/to/directory"
+            "type": "TABLE",
+            "data": "map.numero\tmap.number\tmap.name\tmap.surname\nUno\tOne\t\t\nDue\tTwo\t\t\n\t\tEren\tJager\n\t\tMikasa\tAckermann\n\t\tArmin\tArelet\n"
           }
         ]
       },
@@ -1433,9 +1664,9 @@
       "jobName": "paragraph_1636129428031_1340573358",
       "id": "paragraph_1636129428031_1340573358",
       "dateCreated": "2021-11-05 16:23:48.032",
-      "dateStarted": "2021-11-05 16:24:01.204",
-      "dateFinished": "2021-11-05 16:24:01.400",
-      "status": "ERROR"
+      "dateStarted": "2021-11-11 11:46:46.235",
+      "dateFinished": "2021-11-11 11:46:46.482",
+      "status": "FINISHED"
     },
     {
       "text": "%md\n\n## [Event listeners](http://localhost:8080/#/notebook/2GNBRY6RV)",
@@ -1478,23 +1709,6 @@
       "dateStarted": "2021-11-10 09:45:21.245",
       "dateFinished": "2021-11-10 09:45:21.264",
       "status": "FINISHED"
-    },
-    {
-      "text": "%md\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-07 15:14:59.178",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636298099178_1283100991",
-      "id": "paragraph_1636298099178_1283100991",
-      "dateCreated": "2021-11-07 15:14:59.178",
-      "status": "READY"
     }
   ],
   "name": "4. Import and export",

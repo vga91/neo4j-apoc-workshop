@@ -1,0 +1,1218 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# Virtual entities\n\nWe can visualize nodes, relationships and sub-graph that don’t exist in the database but only returned by a query. This could be used for:\n\n- return only a few properties of nodes/rels to the visualization, e.g. if you have huge text properties\n- visualization of data from other sources (CSV, XML, JSON) as graph without even storing it\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/virtual/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more information.\nSome procedures are:\n- `CALL apoc.create.vNode(labels, propertyMap)`\n- `CALL apoc.graph.fromData(nodes, relationships, \"graphName\", $config)`\n- `CALL apoc.graph.fromDocument(Json, $config)`\n\nNote that, to manipulate virtual entities, you cannot use \"classic\" Neo4j statement, but you have to use these:\n- `apoc.create.setProperty` / `apoc.create.setProperties`\n- `apoc.node.id`\n- `apoc.node.labels`\n- `apoc.create.setRelProperty` / `apoc.create.setRelProperties`\n- `apoc.rel.type`\n- `apoc.rel.endNode` / `apoc.rel.startNode`\n- `apoc.rel.id`\n\nLet\u0027s see some examples:",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:30:17.662",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eVirtual entities\u003c/h1\u003e\n\u003cp\u003eWe can visualize nodes, relationships and sub-graph that don’t exist in the database but only returned by a query. This could be used for:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ereturn only a few properties of nodes/rels to the visualization, e.g. if you have huge text properties\u003c/li\u003e\n\u003cli\u003evisualization of data from other sources (CSV, XML, JSON) as graph without even storing it\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/virtual/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more information.\u003cbr /\u003e\nSome procedures are:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.create.vNode(labels, propertyMap)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.graph.fromData(nodes, relationships, \u0026quot;graphName\u0026quot;, $config)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.graph.fromDocument(Json, $config)\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eNote that, to manipulate virtual entities, you cannot use \u0026ldquo;classic\u0026rdquo; Neo4j statement, but you have to use these:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.create.setProperty\u003c/code\u003e / \u003ccode\u003eapoc.create.setProperties\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.node.id\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.node.labels\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.create.setRelProperty\u003c/code\u003e / \u003ccode\u003eapoc.create.setRelProperties\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.rel.type\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.rel.endNode\u003c/code\u003e / \u003ccode\u003eapoc.rel.startNode\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.rel.id\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eLet\u0026rsquo;s see some examples:\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636129873062_1526049960",
+      "id": "paragraph_1636129873062_1526049960",
+      "dateCreated": "2021-11-05 16:31:13.062",
+      "dateStarted": "2021-11-11 13:30:17.664",
+      "dateFinished": "2021-11-11 13:30:17.681",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.create.vNode",
+      "text": "%neo4j\n\n/* \nvisualize a graph from this csv file:\n    name,surname\n    Eren,Jager\n    Mikasa,Ackermann\n    Armin,Arelet  \n*/\n\n\n// we can use CALL apoc.create.vNode(labels, propertyMap)\n\nCALL apoc.load.csv(\"persons.csv\") YIELD map \n// we retrieve the csv as a row of maps, so {\"name\":\"Eren\", \"surname\": \"Jager\"} , {\"name\": \"Mikasa\", \"surname\": \"Ackermann\"}, {\"name\": \"Armin\", \"surname\": \"Arelet\"}\nWITH map \nCALL apoc.create.vNode([\u0027Person\u0027], map) // we create 2 virtual nodes from csv\nYIELD node\nRETURN node",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:30:39.997",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "summary": "string",
+                      "_start": "string",
+                      "born": "string",
+                      "roles": "string",
+                      "_type": "string",
+                      "rating": "string",
+                      "title": "string",
+                      "_end": "string",
+                      "children": "string",
+                      "unique": "string",
+                      "name": "string",
+                      "tagline": "string",
+                      "_id": "string",
+                      "_labels": "string",
+                      "released": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636293811647_1694047595",
+      "id": "paragraph_1636293811647_1694047595",
+      "dateCreated": "2021-11-07 14:03:31.647",
+      "dateStarted": "2021-11-09 11:30:49.757",
+      "dateFinished": "2021-11-09 11:30:49.819",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.graph.fromData",
+      "text": "%neo4j\n\nMATCH (p:Person)-[r:ACTED_IN]-\u003e(m:Movie)\nWITH collect(m) + collect(p) AS nodes, collect(r) AS relationships\nCALL apoc.graph.fromData(nodes, relationships, \"movies\", {})\nYIELD graph\nWITH graph.nodes as nodes, graph.relationships as rels\nUNWIND nodes AS node\nUNWIND rels AS rel\nRETURN DISTINCT node, rel",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:30:48.371",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "title": "string",
+                      "date": "string",
+                      "name": "string",
+                      "born": "string",
+                      "children": "string",
+                      "released": "string",
+                      "roles": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "tableHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"title\":\"The Matrix\"},\"label\":\"Movie\"},{\"id\":1,\"data\":{\"date\":\"2021-11-10T11:13:54.086Z\",\"name\":\"Keanu Reeves\",\"born\":1964},\"label\":\"Person\"},{\"id\":2,\"data\":{\"name\":\"Carrie-Anne Moss\",\"children\":[\"Al\",\"John\",\"Jack\"],\"born\":1967},\"label\":\"Person\"},{\"id\":3,\"data\":{\"name\":\"Laurence Fishburne\",\"children\":[\"Naruto\",\"Sasuke\",\"Sakura\"],\"born\":1961},\"label\":\"Person\"},{\"id\":4,\"data\":{\"name\":\"Hugo Weaving\",\"born\":1960},\"label\":\"Person\"},{\"id\":8,\"data\":{\"name\":\"Emil Eifrem\",\"born\":1978},\"label\":\"Person\"},{\"id\":9,\"data\":{\"title\":\"The Matrix Reloaded\"},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"title\":\"The Matrix Revolutions\"},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"title\":\"The Devil\\u0027s Advocate\"},\"label\":\"Movie\"},{\"id\":12,\"data\":{\"name\":\"Charlize Theron\",\"born\":1975},\"label\":\"Person\"},{\"id\":13,\"data\":{\"name\":\"Al Pacino\",\"born\":1940},\"label\":\"Person\"},{\"id\":15,\"data\":{\"title\":\"A Few Good Men\"},\"label\":\"Movie\"},{\"id\":16,\"data\":{\"name\":\"Tom Cruise\",\"born\":1962},\"label\":\"Person\"},{\"id\":17,\"data\":{\"name\":\"Jack Nicholson\",\"born\":1937},\"label\":\"Person\"},{\"id\":18,\"data\":{\"name\":\"Demi Moore\",\"born\":1962},\"label\":\"Person\"},{\"id\":19,\"data\":{\"name\":\"Kevin Bacon\",\"born\":1958},\"label\":\"Person\"},{\"id\":20,\"data\":{\"name\":\"Kiefer Sutherland\",\"born\":1966},\"label\":\"Person\"},{\"id\":21,\"data\":{\"name\":\"Noah Wyle\",\"born\":1971},\"label\":\"Person\"},{\"id\":22,\"data\":{\"name\":\"Cuba Gooding Jr.\",\"born\":1968},\"label\":\"Person\"},{\"id\":23,\"data\":{\"name\":\"Kevin Pollak\",\"born\":1957},\"label\":\"Person\"},{\"id\":24,\"data\":{\"name\":\"J.T. Walsh\",\"born\":1943},\"label\":\"Person\"},{\"id\":25,\"data\":{\"name\":\"James Marshall\",\"born\":1967},\"label\":\"Person\"},{\"id\":26,\"data\":{\"name\":\"Christopher Guest\",\"born\":1948},\"label\":\"Person\"},{\"id\":28,\"data\":{\"name\":\"Aaron Sorkin\",\"born\":1961},\"label\":\"Person\"},{\"id\":29,\"data\":{\"title\":\"Top Gun\"},\"label\":\"Movie\"},{\"id\":30,\"data\":{\"name\":\"Kelly McGillis\",\"born\":1957},\"label\":\"Person\"},{\"id\":31,\"data\":{\"name\":\"Val Kilmer\",\"born\":1959},\"label\":\"Person\"},{\"id\":32,\"data\":{\"name\":\"Anthony Edwards\",\"born\":1962},\"label\":\"Person\"},{\"id\":33,\"data\":{\"name\":\"Tom Skerritt\",\"born\":1933},\"label\":\"Person\"},{\"id\":34,\"data\":{\"name\":\"Meg Ryan\",\"born\":1961},\"label\":\"Person\"},{\"id\":37,\"data\":{\"title\":\"Jerry Maguire\"},\"label\":\"Movie\"},{\"id\":38,\"data\":{\"name\":\"Renee Zellweger\",\"born\":1969},\"label\":\"Person\"},{\"id\":39,\"data\":{\"name\":\"Kelly Preston\",\"born\":1962},\"label\":\"Person\"},{\"id\":40,\"data\":{\"name\":\"Jerry O\\u0027Connell\",\"born\":1974},\"label\":\"Person\"},{\"id\":41,\"data\":{\"name\":\"Jay Mohr\",\"born\":1970},\"label\":\"Person\"},{\"id\":42,\"data\":{\"name\":\"Bonnie Hunt\",\"born\":1961},\"label\":\"Person\"},{\"id\":43,\"data\":{\"name\":\"Regina King\",\"born\":1971},\"label\":\"Person\"},{\"id\":44,\"data\":{\"name\":\"Jonathan Lipnicki\",\"born\":1996},\"label\":\"Person\"},{\"id\":46,\"data\":{\"title\":\"Stand By Me\"},\"label\":\"Movie\"},{\"id\":47,\"data\":{\"name\":\"River Phoenix\",\"born\":1970},\"label\":\"Person\"},{\"id\":48,\"data\":{\"name\":\"Corey Feldman\",\"born\":1971},\"label\":\"Person\"},{\"id\":49,\"data\":{\"name\":\"Wil Wheaton\",\"born\":1972},\"label\":\"Person\"},{\"id\":50,\"data\":{\"name\":\"John Cusack\",\"born\":1966},\"label\":\"Person\"},{\"id\":51,\"data\":{\"name\":\"Marshall Bell\",\"born\":1942},\"label\":\"Person\"},{\"id\":52,\"data\":{\"title\":\"As Good as It Gets\"},\"label\":\"Movie\"},{\"id\":53,\"data\":{\"name\":\"Helen Hunt\",\"born\":1963},\"label\":\"Person\"},{\"id\":54,\"data\":{\"name\":\"Greg Kinnear\",\"born\":1963},\"label\":\"Person\"},{\"id\":56,\"data\":{\"title\":\"What Dreams May Come\"},\"label\":\"Movie\"},{\"id\":57,\"data\":{\"name\":\"Annabella Sciorra\",\"born\":1960},\"label\":\"Person\"},{\"id\":58,\"data\":{\"name\":\"Max von Sydow\",\"born\":1929},\"label\":\"Person\"},{\"id\":59,\"data\":{\"name\":\"Werner Herzog\",\"born\":1942},\"label\":\"Person\"},{\"id\":60,\"data\":{\"name\":\"Robin Williams\",\"born\":1951},\"label\":\"Person\"},{\"id\":62,\"data\":{\"title\":\"Snow Falling on Cedars\"},\"label\":\"Movie\"},{\"id\":63,\"data\":{\"name\":\"Ethan Hawke\",\"born\":1970},\"label\":\"Person\"},{\"id\":64,\"data\":{\"name\":\"Rick Yune\",\"born\":1971},\"label\":\"Person\"},{\"id\":65,\"data\":{\"name\":\"James Cromwell\",\"born\":1940},\"label\":\"Person\"},{\"id\":67,\"data\":{\"title\":\"You\\u0027ve Got Mail\"},\"label\":\"Movie\"},{\"id\":68,\"data\":{\"name\":\"Parker Posey\",\"born\":1968},\"label\":\"Person\"},{\"id\":69,\"data\":{\"name\":\"Dave Chappelle\",\"born\":1973},\"label\":\"Person\"},{\"id\":70,\"data\":{\"name\":\"Steve Zahn\",\"born\":1967},\"label\":\"Person\"},{\"id\":71,\"data\":{\"name\":\"Tom Hanks\",\"born\":1956},\"label\":\"Person\"},{\"id\":73,\"data\":{\"title\":\"Sleepless in Seattle\"},\"label\":\"Movie\"},{\"id\":74,\"data\":{\"name\":\"Rita Wilson\",\"born\":1956},\"label\":\"Person\"},{\"id\":75,\"data\":{\"name\":\"Bill Pullman\",\"born\":1953},\"label\":\"Person\"},{\"id\":76,\"data\":{\"name\":\"Victor Garber\",\"born\":1949},\"label\":\"Person\"},{\"id\":77,\"data\":{\"name\":\"Rosie O\\u0027Donnell\",\"born\":1962},\"label\":\"Person\"},{\"id\":78,\"data\":{\"title\":\"Joe Versus the Volcano\"},\"label\":\"Movie\"},{\"id\":80,\"data\":{\"name\":\"Nathan Lane\",\"born\":1956},\"label\":\"Person\"},{\"id\":81,\"data\":{\"title\":\"When Harry Met Sally\"},\"label\":\"Movie\"},{\"id\":82,\"data\":{\"name\":\"Billy Crystal\",\"born\":1948},\"label\":\"Person\"},{\"id\":83,\"data\":{\"name\":\"Carrie Fisher\",\"born\":1956},\"label\":\"Person\"},{\"id\":84,\"data\":{\"name\":\"Bruno Kirby\",\"born\":1949},\"label\":\"Person\"},{\"id\":85,\"data\":{\"title\":\"That Thing You Do\"},\"label\":\"Movie\"},{\"id\":86,\"data\":{\"name\":\"Liv Tyler\",\"born\":1977},\"label\":\"Person\"},{\"id\":87,\"data\":{\"title\":\"The Replacements\"},\"label\":\"Movie\"},{\"id\":88,\"data\":{\"name\":\"Brooke Langton\",\"born\":1970},\"label\":\"Person\"},{\"id\":89,\"data\":{\"name\":\"Gene Hackman\",\"born\":1930},\"label\":\"Person\"},{\"id\":90,\"data\":{\"name\":\"Orlando Jones\",\"born\":1968},\"label\":\"Person\"},{\"id\":92,\"data\":{\"title\":\"RescueDawn\"},\"label\":\"Movie\"},{\"id\":93,\"data\":{\"name\":\"Christian Bale\",\"born\":1974},\"label\":\"Person\"},{\"id\":94,\"data\":{\"name\":\"Zach Grenier\",\"born\":1954},\"label\":\"Person\"},{\"id\":95,\"data\":{\"title\":\"The Birdcage\"},\"label\":\"Movie\"},{\"id\":97,\"data\":{\"title\":\"Unforgiven\"},\"label\":\"Movie\"},{\"id\":98,\"data\":{\"name\":\"Richard Harris\",\"born\":1930},\"label\":\"Person\"},{\"id\":99,\"data\":{\"name\":\"Clint Eastwood\",\"born\":1930},\"label\":\"Person\"},{\"id\":100,\"data\":{\"title\":\"Johnny Mnemonic\"},\"label\":\"Movie\"},{\"id\":101,\"data\":{\"name\":\"Takeshi Kitano\",\"born\":1947},\"label\":\"Person\"},{\"id\":102,\"data\":{\"name\":\"Dina Meyer\",\"born\":1968},\"label\":\"Person\"},{\"id\":103,\"data\":{\"name\":\"Ice-T\",\"born\":1958},\"label\":\"Person\"},{\"id\":105,\"data\":{\"title\":\"Cloud Atlas\"},\"label\":\"Movie\"},{\"id\":106,\"data\":{\"name\":\"Halle Berry\",\"born\":1966},\"label\":\"Person\"},{\"id\":107,\"data\":{\"name\":\"Jim Broadbent\",\"born\":1949},\"label\":\"Person\"},{\"id\":111,\"data\":{\"title\":\"The Da Vinci Code\"},\"label\":\"Movie\"},{\"id\":112,\"data\":{\"name\":\"Ian McKellen\",\"born\":1939},\"label\":\"Person\"},{\"id\":113,\"data\":{\"name\":\"Audrey Tautou\",\"born\":1976},\"label\":\"Person\"},{\"id\":114,\"data\":{\"name\":\"Paul Bettany\",\"born\":1971},\"label\":\"Person\"},{\"id\":116,\"data\":{\"title\":\"V for Vendetta\"},\"label\":\"Movie\"},{\"id\":117,\"data\":{\"name\":\"Natalie Portman\",\"born\":1981},\"label\":\"Person\"},{\"id\":118,\"data\":{\"name\":\"Stephen Rea\",\"born\":1946},\"label\":\"Person\"},{\"id\":119,\"data\":{\"name\":\"John Hurt\",\"born\":1940},\"label\":\"Person\"},{\"id\":120,\"data\":{\"name\":\"Ben Miles\",\"born\":1967},\"label\":\"Person\"},{\"id\":121,\"data\":{\"title\":\"Speed Racer\"},\"label\":\"Movie\"},{\"id\":122,\"data\":{\"name\":\"Emile Hirsch\",\"born\":1985},\"label\":\"Person\"},{\"id\":123,\"data\":{\"name\":\"John Goodman\",\"born\":1960},\"label\":\"Person\"},{\"id\":124,\"data\":{\"name\":\"Susan Sarandon\",\"born\":1946},\"label\":\"Person\"},{\"id\":125,\"data\":{\"name\":\"Matthew Fox\",\"born\":1966},\"label\":\"Person\"},{\"id\":126,\"data\":{\"name\":\"Christina Ricci\",\"born\":1980},\"label\":\"Person\"},{\"id\":127,\"data\":{\"name\":\"Rain\",\"born\":1982},\"label\":\"Person\"},{\"id\":128,\"data\":{\"title\":\"Ninja Assassin\"},\"label\":\"Movie\"},{\"id\":129,\"data\":{\"name\":\"Naomie Harris\"},\"label\":\"Person\"},{\"id\":130,\"data\":{\"title\":\"The Green Mile\"},\"label\":\"Movie\"},{\"id\":131,\"data\":{\"name\":\"Michael Clarke Duncan\",\"born\":1957},\"label\":\"Person\"},{\"id\":132,\"data\":{\"name\":\"David Morse\",\"born\":1953},\"label\":\"Person\"},{\"id\":133,\"data\":{\"name\":\"Sam Rockwell\",\"born\":1968},\"label\":\"Person\"},{\"id\":134,\"data\":{\"name\":\"Gary Sinise\",\"born\":1955},\"label\":\"Person\"},{\"id\":135,\"data\":{\"name\":\"Patricia Clarkson\",\"born\":1959},\"label\":\"Person\"},{\"id\":137,\"data\":{\"title\":\"Frost/Nixon\"},\"label\":\"Movie\"},{\"id\":138,\"data\":{\"name\":\"Frank Langella\",\"born\":1938},\"label\":\"Person\"},{\"id\":139,\"data\":{\"name\":\"Michael Sheen\",\"born\":1969},\"label\":\"Person\"},{\"id\":140,\"data\":{\"name\":\"Oliver Platt\",\"born\":1960},\"label\":\"Person\"},{\"id\":141,\"data\":{\"title\":\"Hoffa\"},\"label\":\"Movie\"},{\"id\":142,\"data\":{\"name\":\"Danny DeVito\",\"born\":1944},\"label\":\"Person\"},{\"id\":143,\"data\":{\"name\":\"John C. Reilly\",\"born\":1965},\"label\":\"Person\"},{\"id\":144,\"data\":{\"title\":\"Apollo 13\"},\"label\":\"Movie\"},{\"id\":145,\"data\":{\"name\":\"Ed Harris\",\"born\":1950},\"label\":\"Person\"},{\"id\":146,\"data\":{\"name\":\"Bill Paxton\",\"born\":1955},\"label\":\"Person\"},{\"id\":147,\"data\":{\"title\":\"Twister\"},\"label\":\"Movie\"},{\"id\":148,\"data\":{\"name\":\"Philip Seymour Hoffman\",\"born\":1967},\"label\":\"Person\"},{\"id\":150,\"data\":{\"title\":\"Cast Away\"},\"label\":\"Movie\"},{\"id\":152,\"data\":{\"title\":\"One Flew Over the Cuckoo\\u0027s Nest\"},\"label\":\"Movie\"},{\"id\":154,\"data\":{\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"},{\"id\":155,\"data\":{\"name\":\"Diane Keaton\",\"born\":1946},\"label\":\"Person\"},{\"id\":157,\"data\":{\"title\":\"Bicentennial Man\"},\"label\":\"Movie\"},{\"id\":159,\"data\":{\"title\":\"Charlie Wilson\\u0027s War\"},\"label\":\"Movie\"},{\"id\":160,\"data\":{\"name\":\"Julia Roberts\",\"born\":1967},\"label\":\"Person\"},{\"id\":161,\"data\":{\"title\":\"The Polar Express\"},\"label\":\"Movie\"},{\"id\":162,\"data\":{\"title\":\"A League of Their Own\"},\"label\":\"Movie\"},{\"id\":163,\"data\":{\"name\":\"Madonna\",\"born\":1954},\"label\":\"Person\"},{\"id\":164,\"data\":{\"name\":\"Geena Davis\",\"born\":1956},\"label\":\"Person\"},{\"id\":165,\"data\":{\"name\":\"Lori Petty\",\"born\":1963},\"label\":\"Person\"}],\"edges\":[{\"source\":1,\"target\":0,\"id\":0,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":0,\"id\":1,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":0,\"id\":2,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":0,\"id\":3,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":8,\"target\":0,\"id\":7,\"data\":{\"roles\":[\"Emil\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":9,\"id\":8,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":9,\"id\":9,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":9,\"id\":10,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":9,\"id\":11,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":10,\"id\":15,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":10,\"id\":16,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":10,\"id\":17,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":10,\"id\":18,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":11,\"id\":22,\"data\":{\"roles\":[\"Kevin Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":12,\"target\":11,\"id\":23,\"data\":{\"roles\":[\"Mary Ann Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":13,\"target\":11,\"id\":24,\"data\":{\"roles\":[\"John Milton\"]},\"label\":\"ACTED_IN\"},{\"source\":16,\"target\":15,\"id\":26,\"data\":{\"roles\":[\"Lt. Daniel Kaffee\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":15,\"id\":27,\"data\":{\"roles\":[\"Col. Nathan R. Jessup\"]},\"label\":\"ACTED_IN\"},{\"source\":18,\"target\":15,\"id\":28,\"data\":{\"roles\":[\"Lt. Cdr. JoAnne Galloway\"]},\"label\":\"ACTED_IN\"},{\"source\":19,\"target\":15,\"id\":29,\"data\":{\"roles\":[\"Capt. Jack Ross\"]},\"label\":\"ACTED_IN\"},{\"source\":20,\"target\":15,\"id\":30,\"data\":{\"roles\":[\"Lt. Jonathan Kendrick\"]},\"label\":\"ACTED_IN\"},{\"source\":21,\"target\":15,\"id\":31,\"data\":{\"roles\":[\"Cpl. Jeffrey Barnes\"]},\"label\":\"ACTED_IN\"},{\"source\":22,\"target\":15,\"id\":32,\"data\":{\"roles\":[\"Cpl. Carl Hammaker\"]},\"label\":\"ACTED_IN\"},{\"source\":23,\"target\":15,\"id\":33,\"data\":{\"roles\":[\"Lt. Sam Weinberg\"]},\"label\":\"ACTED_IN\"},{\"source\":24,\"target\":15,\"id\":34,\"data\":{\"roles\":[\"Lt. Col. Matthew Andrew Markinson\"]},\"label\":\"ACTED_IN\"},{\"source\":25,\"target\":15,\"id\":35,\"data\":{\"roles\":[\"Pfc. Louden Downey\"]},\"label\":\"ACTED_IN\"},{\"source\":26,\"target\":15,\"id\":36,\"data\":{\"roles\":[\"Dr. Stone\"]},\"label\":\"ACTED_IN\"},{\"source\":28,\"target\":15,\"id\":37,\"data\":{\"roles\":[\"Man in Bar\"]},\"label\":\"ACTED_IN\"},{\"source\":16,\"target\":29,\"id\":40,\"data\":{\"roles\":[\"Maverick\"]},\"label\":\"ACTED_IN\"},{\"source\":30,\"target\":29,\"id\":41,\"data\":{\"roles\":[\"Charlie\"]},\"label\":\"ACTED_IN\"},{\"source\":31,\"target\":29,\"id\":42,\"data\":{\"roles\":[\"Iceman\"]},\"label\":\"ACTED_IN\"},{\"source\":32,\"target\":29,\"id\":43,\"data\":{\"roles\":[\"Goose\"]},\"label\":\"ACTED_IN\"},{\"source\":33,\"target\":29,\"id\":44,\"data\":{\"roles\":[\"Viper\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":29,\"id\":45,\"data\":{\"roles\":[\"Carole\"]},\"label\":\"ACTED_IN\"},{\"source\":16,\"target\":37,\"id\":48,\"data\":{\"roles\":[\"Jerry Maguire\"]},\"label\":\"ACTED_IN\"},{\"source\":22,\"target\":37,\"id\":49,\"data\":{\"roles\":[\"Rod Tidwell\"]},\"label\":\"ACTED_IN\"},{\"source\":38,\"target\":37,\"id\":50,\"data\":{\"roles\":[\"Dorothy Boyd\"]},\"label\":\"ACTED_IN\"},{\"source\":39,\"target\":37,\"id\":51,\"data\":{\"roles\":[\"Avery Bishop\"]},\"label\":\"ACTED_IN\"},{\"source\":40,\"target\":37,\"id\":52,\"data\":{\"roles\":[\"Frank Cushman\"]},\"label\":\"ACTED_IN\"},{\"source\":41,\"target\":37,\"id\":53,\"data\":{\"roles\":[\"Bob Sugar\"]},\"label\":\"ACTED_IN\"},{\"source\":42,\"target\":37,\"id\":54,\"data\":{\"roles\":[\"Laurel Boyd\"]},\"label\":\"ACTED_IN\"},{\"source\":43,\"target\":37,\"id\":55,\"data\":{\"roles\":[\"Marcee Tidwell\"]},\"label\":\"ACTED_IN\"},{\"source\":44,\"target\":37,\"id\":56,\"data\":{\"roles\":[\"Ray Boyd\"]},\"label\":\"ACTED_IN\"},{\"source\":49,\"target\":46,\"id\":60,\"data\":{\"roles\":[\"Gordie Lachance\"]},\"label\":\"ACTED_IN\"},{\"source\":47,\"target\":46,\"id\":61,\"data\":{\"roles\":[\"Chris Chambers\"]},\"label\":\"ACTED_IN\"},{\"source\":40,\"target\":46,\"id\":62,\"data\":{\"roles\":[\"Vern Tessio\"]},\"label\":\"ACTED_IN\"},{\"source\":48,\"target\":46,\"id\":63,\"data\":{\"roles\":[\"Teddy Duchamp\"]},\"label\":\"ACTED_IN\"},{\"source\":50,\"target\":46,\"id\":64,\"data\":{\"roles\":[\"Denny Lachance\"]},\"label\":\"ACTED_IN\"},{\"source\":20,\"target\":46,\"id\":65,\"data\":{\"roles\":[\"Ace Merrill\"]},\"label\":\"ACTED_IN\"},{\"source\":51,\"target\":46,\"id\":66,\"data\":{\"roles\":[\"Mr. Lachance\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":52,\"id\":68,\"data\":{\"roles\":[\"Melvin Udall\"]},\"label\":\"ACTED_IN\"},{\"source\":53,\"target\":52,\"id\":69,\"data\":{\"roles\":[\"Carol Connelly\"]},\"label\":\"ACTED_IN\"},{\"source\":54,\"target\":52,\"id\":70,\"data\":{\"roles\":[\"Simon Bishop\"]},\"label\":\"ACTED_IN\"},{\"source\":22,\"target\":52,\"id\":71,\"data\":{\"roles\":[\"Frank Sachs\"]},\"label\":\"ACTED_IN\"},{\"source\":60,\"target\":56,\"id\":73,\"data\":{\"roles\":[\"Chris Nielsen\"]},\"label\":\"ACTED_IN\"},{\"source\":22,\"target\":56,\"id\":74,\"data\":{\"roles\":[\"Albert Lewis\"]},\"label\":\"ACTED_IN\"},{\"source\":57,\"target\":56,\"id\":75,\"data\":{\"roles\":[\"Annie Collins-Nielsen\"]},\"label\":\"ACTED_IN\"},{\"source\":58,\"target\":56,\"id\":76,\"data\":{\"roles\":[\"The Tracker\"]},\"label\":\"ACTED_IN\"},{\"source\":59,\"target\":56,\"id\":77,\"data\":{\"roles\":[\"The Face\"]},\"label\":\"ACTED_IN\"},{\"source\":63,\"target\":62,\"id\":79,\"data\":{\"roles\":[\"Ishmael Chambers\"]},\"label\":\"ACTED_IN\"},{\"source\":64,\"target\":62,\"id\":80,\"data\":{\"roles\":[\"Kazuo Miyamoto\"]},\"label\":\"ACTED_IN\"},{\"source\":58,\"target\":62,\"id\":81,\"data\":{\"roles\":[\"Nels Gudmundsson\"]},\"label\":\"ACTED_IN\"},{\"source\":65,\"target\":62,\"id\":82,\"data\":{\"roles\":[\"Judge Fielding\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":67,\"id\":84,\"data\":{\"roles\":[\"Joe Fox\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":67,\"id\":85,\"data\":{\"roles\":[\"Kathleen Kelly\"]},\"label\":\"ACTED_IN\"},{\"source\":54,\"target\":67,\"id\":86,\"data\":{\"roles\":[\"Frank Navasky\"]},\"label\":\"ACTED_IN\"},{\"source\":68,\"target\":67,\"id\":87,\"data\":{\"roles\":[\"Patricia Eden\"]},\"label\":\"ACTED_IN\"},{\"source\":69,\"target\":67,\"id\":88,\"data\":{\"roles\":[\"Kevin Jackson\"]},\"label\":\"ACTED_IN\"},{\"source\":70,\"target\":67,\"id\":89,\"data\":{\"roles\":[\"George Pappas\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":73,\"id\":91,\"data\":{\"roles\":[\"Sam Baldwin\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":73,\"id\":92,\"data\":{\"roles\":[\"Annie Reed\"]},\"label\":\"ACTED_IN\"},{\"source\":74,\"target\":73,\"id\":93,\"data\":{\"roles\":[\"Suzy\"]},\"label\":\"ACTED_IN\"},{\"source\":75,\"target\":73,\"id\":94,\"data\":{\"roles\":[\"Walter\"]},\"label\":\"ACTED_IN\"},{\"source\":76,\"target\":73,\"id\":95,\"data\":{\"roles\":[\"Greg\"]},\"label\":\"ACTED_IN\"},{\"source\":77,\"target\":73,\"id\":96,\"data\":{\"roles\":[\"Becky\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":78,\"id\":98,\"data\":{\"roles\":[\"Joe Banks\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":78,\"id\":99,\"data\":{\"roles\":[\"DeDe\",\"Angelica Graynamore\",\"Patricia Graynamore\"]},\"label\":\"ACTED_IN\"},{\"source\":80,\"target\":78,\"id\":100,\"data\":{\"roles\":[\"Baw\"]},\"label\":\"ACTED_IN\"},{\"source\":82,\"target\":81,\"id\":102,\"data\":{\"roles\":[\"Harry Burns\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":81,\"id\":103,\"data\":{\"roles\":[\"Sally Albright\"]},\"label\":\"ACTED_IN\"},{\"source\":83,\"target\":81,\"id\":104,\"data\":{\"roles\":[\"Marie\"]},\"label\":\"ACTED_IN\"},{\"source\":84,\"target\":81,\"id\":105,\"data\":{\"roles\":[\"Jess\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":85,\"id\":110,\"data\":{\"roles\":[\"Mr. White\"]},\"label\":\"ACTED_IN\"},{\"source\":86,\"target\":85,\"id\":111,\"data\":{\"roles\":[\"Faye Dolan\"]},\"label\":\"ACTED_IN\"},{\"source\":12,\"target\":85,\"id\":112,\"data\":{\"roles\":[\"Tina\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":87,\"id\":114,\"data\":{\"roles\":[\"Shane Falco\"]},\"label\":\"ACTED_IN\"},{\"source\":88,\"target\":87,\"id\":115,\"data\":{\"roles\":[\"Annabelle Farrell\"]},\"label\":\"ACTED_IN\"},{\"source\":89,\"target\":87,\"id\":116,\"data\":{\"roles\":[\"Jimmy McGinty\"]},\"label\":\"ACTED_IN\"},{\"source\":90,\"target\":87,\"id\":117,\"data\":{\"roles\":[\"Clifford Franklin\"]},\"label\":\"ACTED_IN\"},{\"source\":51,\"target\":92,\"id\":119,\"data\":{\"roles\":[\"Admiral\"]},\"label\":\"ACTED_IN\"},{\"source\":93,\"target\":92,\"id\":120,\"data\":{\"roles\":[\"Dieter Dengler\"]},\"label\":\"ACTED_IN\"},{\"source\":94,\"target\":92,\"id\":121,\"data\":{\"roles\":[\"Squad Leader\"]},\"label\":\"ACTED_IN\"},{\"source\":70,\"target\":92,\"id\":122,\"data\":{\"roles\":[\"Duane\"]},\"label\":\"ACTED_IN\"},{\"source\":60,\"target\":95,\"id\":124,\"data\":{\"roles\":[\"Armand Goldman\"]},\"label\":\"ACTED_IN\"},{\"source\":80,\"target\":95,\"id\":125,\"data\":{\"roles\":[\"Albert Goldman\"]},\"label\":\"ACTED_IN\"},{\"source\":89,\"target\":95,\"id\":126,\"data\":{\"roles\":[\"Sen. Kevin Keeley\"]},\"label\":\"ACTED_IN\"},{\"source\":98,\"target\":97,\"id\":128,\"data\":{\"roles\":[\"English Bob\"]},\"label\":\"ACTED_IN\"},{\"source\":99,\"target\":97,\"id\":129,\"data\":{\"roles\":[\"Bill Munny\"]},\"label\":\"ACTED_IN\"},{\"source\":89,\"target\":97,\"id\":130,\"data\":{\"roles\":[\"Little Bill Daggett\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":100,\"id\":132,\"data\":{\"roles\":[\"Johnny Mnemonic\"]},\"label\":\"ACTED_IN\"},{\"source\":101,\"target\":100,\"id\":133,\"data\":{\"roles\":[\"Takahashi\"]},\"label\":\"ACTED_IN\"},{\"source\":102,\"target\":100,\"id\":134,\"data\":{\"roles\":[\"Jane\"]},\"label\":\"ACTED_IN\"},{\"source\":103,\"target\":100,\"id\":135,\"data\":{\"roles\":[\"J-Bone\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":105,\"id\":137,\"data\":{\"roles\":[\"Zachry\",\"Dr. Henry Goose\",\"Isaac Sachs\",\"Dermot Hoggins\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":105,\"id\":138,\"data\":{\"roles\":[\"Bill Smoke\",\"Haskell Moore\",\"Tadeusz Kesselring\",\"Nurse Noakes\",\"Boardman Mephi\",\"Old Georgie\"]},\"label\":\"ACTED_IN\"},{\"source\":106,\"target\":105,\"id\":139,\"data\":{\"roles\":[\"Luisa Rey\",\"Jocasta Ayrs\",\"Ovid\",\"Meronym\"]},\"label\":\"ACTED_IN\"},{\"source\":107,\"target\":105,\"id\":140,\"data\":{\"roles\":[\"Vyvyan Ayrs\",\"Captain Molyneux\",\"Timothy Cavendish\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":111,\"id\":146,\"data\":{\"roles\":[\"Dr. Robert Langdon\"]},\"label\":\"ACTED_IN\"},{\"source\":112,\"target\":111,\"id\":147,\"data\":{\"roles\":[\"Sir Leight Teabing\"]},\"label\":\"ACTED_IN\"},{\"source\":113,\"target\":111,\"id\":148,\"data\":{\"roles\":[\"Sophie Neveu\"]},\"label\":\"ACTED_IN\"},{\"source\":114,\"target\":111,\"id\":149,\"data\":{\"roles\":[\"Silas\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":116,\"id\":151,\"data\":{\"roles\":[\"V\"]},\"label\":\"ACTED_IN\"},{\"source\":117,\"target\":116,\"id\":152,\"data\":{\"roles\":[\"Evey Hammond\"]},\"label\":\"ACTED_IN\"},{\"source\":118,\"target\":116,\"id\":153,\"data\":{\"roles\":[\"Eric Finch\"]},\"label\":\"ACTED_IN\"},{\"source\":119,\"target\":116,\"id\":154,\"data\":{\"roles\":[\"High Chancellor Adam Sutler\"]},\"label\":\"ACTED_IN\"},{\"source\":120,\"target\":116,\"id\":155,\"data\":{\"roles\":[\"Dascomb\"]},\"label\":\"ACTED_IN\"},{\"source\":122,\"target\":121,\"id\":162,\"data\":{\"roles\":[\"Speed Racer\"]},\"label\":\"ACTED_IN\"},{\"source\":123,\"target\":121,\"id\":163,\"data\":{\"roles\":[\"Pops\"]},\"label\":\"ACTED_IN\"},{\"source\":124,\"target\":121,\"id\":164,\"data\":{\"roles\":[\"Mom\"]},\"label\":\"ACTED_IN\"},{\"source\":125,\"target\":121,\"id\":165,\"data\":{\"roles\":[\"Racer X\"]},\"label\":\"ACTED_IN\"},{\"source\":126,\"target\":121,\"id\":166,\"data\":{\"roles\":[\"Trixie\"]},\"label\":\"ACTED_IN\"},{\"source\":127,\"target\":121,\"id\":167,\"data\":{\"roles\":[\"Taejo Togokahn\"]},\"label\":\"ACTED_IN\"},{\"source\":120,\"target\":121,\"id\":168,\"data\":{\"roles\":[\"Cass Jones\"]},\"label\":\"ACTED_IN\"},{\"source\":127,\"target\":128,\"id\":174,\"data\":{\"roles\":[\"Raizo\"]},\"label\":\"ACTED_IN\"},{\"source\":129,\"target\":128,\"id\":175,\"data\":{\"roles\":[\"Mika Coretti\"]},\"label\":\"ACTED_IN\"},{\"source\":64,\"target\":128,\"id\":176,\"data\":{\"roles\":[\"Takeshi\"]},\"label\":\"ACTED_IN\"},{\"source\":120,\"target\":128,\"id\":177,\"data\":{\"roles\":[\"Ryan Maslow\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":130,\"id\":182,\"data\":{\"roles\":[\"Paul Edgecomb\"]},\"label\":\"ACTED_IN\"},{\"source\":131,\"target\":130,\"id\":183,\"data\":{\"roles\":[\"John Coffey\"]},\"label\":\"ACTED_IN\"},{\"source\":132,\"target\":130,\"id\":184,\"data\":{\"roles\":[\"Brutus \\\"Brutal\\\" Howell\"]},\"label\":\"ACTED_IN\"},{\"source\":42,\"target\":130,\"id\":185,\"data\":{\"roles\":[\"Jan Edgecomb\"]},\"label\":\"ACTED_IN\"},{\"source\":65,\"target\":130,\"id\":186,\"data\":{\"roles\":[\"Warden Hal Moores\"]},\"label\":\"ACTED_IN\"},{\"source\":133,\"target\":130,\"id\":187,\"data\":{\"roles\":[\"\\\"Wild Bill\\\" Wharton\"]},\"label\":\"ACTED_IN\"},{\"source\":134,\"target\":130,\"id\":188,\"data\":{\"roles\":[\"Burt Hammersmith\"]},\"label\":\"ACTED_IN\"},{\"source\":135,\"target\":130,\"id\":189,\"data\":{\"roles\":[\"Melinda Moores\"]},\"label\":\"ACTED_IN\"},{\"source\":138,\"target\":137,\"id\":191,\"data\":{\"roles\":[\"Richard Nixon\"]},\"label\":\"ACTED_IN\"},{\"source\":139,\"target\":137,\"id\":192,\"data\":{\"roles\":[\"David Frost\"]},\"label\":\"ACTED_IN\"},{\"source\":19,\"target\":137,\"id\":193,\"data\":{\"roles\":[\"Jack Brennan\"]},\"label\":\"ACTED_IN\"},{\"source\":140,\"target\":137,\"id\":194,\"data\":{\"roles\":[\"Bob Zelnick\"]},\"label\":\"ACTED_IN\"},{\"source\":133,\"target\":137,\"id\":195,\"data\":{\"roles\":[\"James Reston, Jr.\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":141,\"id\":197,\"data\":{\"roles\":[\"Hoffa\"]},\"label\":\"ACTED_IN\"},{\"source\":142,\"target\":141,\"id\":198,\"data\":{\"roles\":[\"Robert \\\"Bobby\\\" Ciaro\"]},\"label\":\"ACTED_IN\"},{\"source\":24,\"target\":141,\"id\":199,\"data\":{\"roles\":[\"Frank Fitzsimmons\"]},\"label\":\"ACTED_IN\"},{\"source\":143,\"target\":141,\"id\":200,\"data\":{\"roles\":[\"Peter \\\"Pete\\\" Connelly\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":144,\"id\":202,\"data\":{\"roles\":[\"Jim Lovell\"]},\"label\":\"ACTED_IN\"},{\"source\":19,\"target\":144,\"id\":203,\"data\":{\"roles\":[\"Jack Swigert\"]},\"label\":\"ACTED_IN\"},{\"source\":145,\"target\":144,\"id\":204,\"data\":{\"roles\":[\"Gene Kranz\"]},\"label\":\"ACTED_IN\"},{\"source\":146,\"target\":144,\"id\":205,\"data\":{\"roles\":[\"Fred Haise\"]},\"label\":\"ACTED_IN\"},{\"source\":134,\"target\":144,\"id\":206,\"data\":{\"roles\":[\"Ken Mattingly\"]},\"label\":\"ACTED_IN\"},{\"source\":146,\"target\":147,\"id\":208,\"data\":{\"roles\":[\"Bill Harding\"]},\"label\":\"ACTED_IN\"},{\"source\":53,\"target\":147,\"id\":209,\"data\":{\"roles\":[\"Dr. Jo Harding\"]},\"label\":\"ACTED_IN\"},{\"source\":94,\"target\":147,\"id\":210,\"data\":{\"roles\":[\"Eddie\"]},\"label\":\"ACTED_IN\"},{\"source\":148,\"target\":147,\"id\":211,\"data\":{\"roles\":[\"Dustin \\\"Dusty\\\" Davis\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":150,\"id\":213,\"data\":{\"roles\":[\"Chuck Noland\"]},\"label\":\"ACTED_IN\"},{\"source\":53,\"target\":150,\"id\":214,\"data\":{\"roles\":[\"Kelly Frears\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":152,\"id\":216,\"data\":{\"roles\":[\"Randle McMurphy\"]},\"label\":\"ACTED_IN\"},{\"source\":142,\"target\":152,\"id\":217,\"data\":{\"roles\":[\"Martini\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":154,\"id\":219,\"data\":{\"roles\":[\"Harry Sanborn\"]},\"label\":\"ACTED_IN\"},{\"source\":155,\"target\":154,\"id\":220,\"data\":{\"roles\":[\"Erica Barry\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":154,\"id\":221,\"data\":{\"roles\":[\"Julian Mercer\"]},\"label\":\"ACTED_IN\"},{\"source\":60,\"target\":157,\"id\":225,\"data\":{\"roles\":[\"Andrew Marin\"]},\"label\":\"ACTED_IN\"},{\"source\":140,\"target\":157,\"id\":226,\"data\":{\"roles\":[\"Rupert Burns\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":159,\"id\":228,\"data\":{\"roles\":[\"Rep. Charlie Wilson\"]},\"label\":\"ACTED_IN\"},{\"source\":160,\"target\":159,\"id\":229,\"data\":{\"roles\":[\"Joanne Herring\"]},\"label\":\"ACTED_IN\"},{\"source\":148,\"target\":159,\"id\":230,\"data\":{\"roles\":[\"Gust Avrakotos\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":161,\"id\":232,\"data\":{\"roles\":[\"Hero Boy\",\"Father\",\"Conductor\",\"Hobo\",\"Scrooge\",\"Santa Claus\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":162,\"id\":234,\"data\":{\"roles\":[\"Jimmy Dugan\"]},\"label\":\"ACTED_IN\"},{\"source\":164,\"target\":162,\"id\":235,\"data\":{\"roles\":[\"Dottie Hinson\"]},\"label\":\"ACTED_IN\"},{\"source\":165,\"target\":162,\"id\":236,\"data\":{\"roles\":[\"Kit Keller\"]},\"label\":\"ACTED_IN\"},{\"source\":77,\"target\":162,\"id\":237,\"data\":{\"roles\":[\"Doris Murphy\"]},\"label\":\"ACTED_IN\"},{\"source\":163,\"target\":162,\"id\":238,\"data\":{\"roles\":[\"\\\"All the Way\\\" Mae Mordabito\"]},\"label\":\"ACTED_IN\"},{\"source\":146,\"target\":162,\"id\":239,\"data\":{\"roles\":[\"Bob Hinson\"]},\"label\":\"ACTED_IN\"}],\"labels\":{\"TTL\":\"#F8F2B0\",\"Movie\":\"#1DFC3B\",\"Person\":\"#0834CC\",\"Keanu\":\"#DEB679\",\"NotKeanu\":\"#D360EA\",\"Trigger\":\"#F80B9C\",\"TagLine\":\"#ECA18A\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636544202474_1918473223",
+      "id": "paragraph_1636544202474_1918473223",
+      "dateCreated": "2021-11-10 11:36:42.474",
+      "dateStarted": "2021-11-10 11:37:05.171",
+      "dateFinished": "2021-11-10 11:37:05.696",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.graph.fromDocument",
+      "text": "%neo4j\n\nCALL apoc.graph.fromDocument(\"{\u0027id\u0027: 1,\u0027type\u0027: \u0027artist\u0027,\u0027name\u0027:\u0027Genesis\u0027,\u0027members\u0027: [\u0027Tony Banks\u0027,\u0027Mike Rutherford\u0027,\u0027Phil Collins\u0027],\u0027years\u0027: [1967, 1998, 1999, 2000, 2006],\u0027albums\u0027: [{\u0027type\u0027: \u0027album\u0027,\u0027id\u0027: 1,\u0027producer\u0027: \u0027Jonathan King\u0027,\u0027title\u0027: \u0027From Genesis to Revelation\u0027}]}\", {})\nYIELD graph \nWITH graph.nodes as nodes, graph.relationships as rels\nUNWIND nodes AS node\nUNWIND rels AS rel\nRETURN DISTINCT node, rel\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:30:55.007",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "type": "string",
+                      "years": "string",
+                      "members": "string",
+                      "producer": "string",
+                      "title": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636543612824_977596292",
+      "id": "paragraph_1636543612824_977596292",
+      "dateCreated": "2021-11-10 11:26:52.825",
+      "dateStarted": "2021-11-10 11:29:37.804",
+      "dateFinished": "2021-11-10 11:29:38.042",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.systemdb.graph",
+      "text": "%md\n\n## System database\n\nWith introduction of system database concept in neo4j 4.0, Apoc introduces a procedure to see a virtual graph visualization of system entities.\n\u003cpre\u003e\nCALL apoc.systemdb.graph\n\u003c/pre\u003e\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 12:41:42.436",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eSystem database\u003c/h2\u003e\n\u003cp\u003eWith introduction of system database concept in neo4j 4.0, Apoc introduces a procedure to see a virtual graph visualization of system entities\u003c/p\u003e\n\u003cpre\u003e\nCALL apoc.systemdb.graph() [see this one in Neo4j Desktop]\n\u003c/pre\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636110384368_1627598108",
+      "id": "paragraph_1636110384368_1627598108",
+      "dateCreated": "2021-11-05 11:06:24.368",
+      "dateStarted": "2021-11-09 11:30:50.008",
+      "dateFinished": "2021-11-09 11:30:50.024",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Example",
+      "text": "%neo4j\n\nCALL apoc.systemdb.graph() yield nodes, relationships\nUNWIND nodes AS node\nUNWIND relationships AS rel\nRETURN DISTINCT node, rel",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:34:48.860",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "default": "string",
+                      "uuid": "string",
+                      "status": "string",
+                      "passwordChangeRequired": "string",
+                      "credentials": "string",
+                      "suspended": "string",
+                      "security-privileges": "string",
+                      "dbms-runtime": "string",
+                      "security-users": "string",
+                      "type": "string",
+                      "arg2": "string",
+                      "arg1": "string",
+                      "action": "string",
+                      "paused": "string",
+                      "database": "string",
+                      "statement": "string",
+                      "selector": "string",
+                      "params": "string",
+                      "lastUpdated": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636543866363_709769901",
+      "id": "paragraph_1636543866363_709769901",
+      "dateCreated": "2021-11-10 11:31:06.363",
+      "dateStarted": "2021-11-11 13:34:48.875",
+      "dateFinished": "2021-11-11 13:34:49.074",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Get roles",
+      "text": "%neo4j\n\nCALL apoc.systemdb.graph() yield nodes, relationships\nUNWIND nodes AS node\nWITH node\nWHERE apoc.node.labels(node) \u003d [\"Role\"]\nRETURN DISTINCT node",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:31:10.637",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "default": "string",
+                      "uuid": "string",
+                      "status": "string",
+                      "passwordChangeRequired": "string",
+                      "credentials": "string",
+                      "suspended": "string",
+                      "security-privileges": "string",
+                      "dbms-runtime": "string",
+                      "security-users": "string",
+                      "type": "string",
+                      "arg2": "string",
+                      "arg1": "string",
+                      "action": "string",
+                      "paused": "string",
+                      "database": "string",
+                      "statement": "string",
+                      "selector": "string",
+                      "params": "string",
+                      "lastUpdated": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636634414289_1524495302",
+      "id": "paragraph_1636634414289_1524495302",
+      "dateCreated": "2021-11-11 12:40:14.289",
+      "dateStarted": "2021-11-11 12:40:46.189",
+      "dateFinished": "2021-11-11 12:40:46.360",
+      "status": "FINISHED"
+    },
+    {
+      "title": "",
+      "text": "%md\n\n## Automatic UUID\n\nWe can generate uuids when we create a node with specific label, through the procedure:\n\u003cpre\u003e\napoc.uuid.install(\u0027LabelName\u0027, $configMap)\n\u003c/pre\u003e\n\nSo, each new node with this label `LabelName` will have a uuid property.\n\nIn `configMap` parameter we can have the following values:\n- `addToExistingNodes` (adds the UUID to the nodes already existing in your graph),\n- `uuidProperty` (the name of the name of the UUID field, by default is `uuid` )\n\n\nHowever, to create auto uuid we have to add the apoc config `apoc.uuid.enabled\u003dtrue`.\n\nThen, we need to create a unique constraint on label and on property to associate with the uuid (otherwise we receive a `RuntimeException`)\n`CREATE CONSTRAINT ON (person:LabelName) ASSERT person.uuid IS UNIQUE`\n\n\nOther procedures regarding auto uuid:\n\n- `CALL apoc.uuid.remove(\u0027LabelName\u0027)`: To remove a specific auto uuid\n- `CALL apoc.uuid.removeAll()`: To remove all auto uuids\n- `CALL apoc.uuid.list()`: To get the list of auto uuids\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:36:54.149",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false,
+        "title": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eAutomatic UUID\u003c/h2\u003e\n\u003cp\u003eWe can generate uuids when we create a node with specific label, through the procedure:\u003c/p\u003e\n\u003cpre\u003e\napoc.uuid.install(\u0027LabelName\u0027, $configMap)\n\u003c/pre\u003e\n\u003cp\u003eSo, each new node with this label \u003ccode\u003eLabelName\u003c/code\u003e will have a uuid property.\u003c/p\u003e\n\u003cp\u003eIn \u003ccode\u003econfigMap\u003c/code\u003e parameter we can have the following values:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eaddToExistingNodes\u003c/code\u003e (adds the UUID to the nodes already existing in your graph),\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003euuidProperty\u003c/code\u003e (the name of the name of the UUID field, by default is \u003ccode\u003euuid\u003c/code\u003e )\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eHowever, to create auto uuid we have to add the apoc config \u003ccode\u003eapoc.uuid.enabled\u003dtrue\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eThen, we need to create a unique constraint on label and on property to associate with the uuid (otherwise we receive a \u003ccode\u003eRuntimeException\u003c/code\u003e)\u003cbr /\u003e\n\u003ccode\u003eCREATE CONSTRAINT ON (person:LabelName) ASSERT person.uuid IS UNIQUE\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eOther procedures regarding auto uuid:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.uuid.remove(\u0027LabelName\u0027)\u003c/code\u003e: To remove a specific auto uuid\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.uuid.removeAll()\u003c/code\u003e: To remove all auto uuids\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eCALL apoc.uuid.list()\u003c/code\u003e: To get the list of auto uuids\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635868849395_339438832",
+      "id": "paragraph_1635868849395_339438832",
+      "dateCreated": "2021-11-02 16:00:49.395",
+      "dateStarted": "2021-11-11 13:36:54.150",
+      "dateFinished": "2021-11-11 13:36:54.159",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.uuid.install",
+      "text": "%neo4j\n// First of all we create the constraint\nCREATE CONSTRAINT ON (node:NodeWithUnique) ASSERT node.omega IS UNIQUE;\n\nCALL apoc.uuid.install(\u0027NodeWithUnique\u0027, {uuidProperty: \u0027omega\u0027});",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:31:46.063",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "batchComputationResult.committedOperations": "string",
+                      "batchComputationResult.batch.total": "string",
+                      "batchComputationResult.batch.committed": "string",
+                      "batchComputationResult.batch.failed": "string",
+                      "batchComputationResult.wasTerminated": "string",
+                      "batchComputationResult.batches": "string",
+                      "batchComputationResult.timeTaken": "string",
+                      "batchComputationResult.retries": "string",
+                      "batchComputationResult.total": "string",
+                      "batchComputationResult.operations.total": "string",
+                      "batchComputationResult.operations.committed": "string",
+                      "batchComputationResult.operations.failed": "string",
+                      "batchComputationResult.failedOperations": "string",
+                      "batchComputationResult.updateStatistics.nodesDeleted": "string",
+                      "batchComputationResult.updateStatistics.labelsAdded": "string",
+                      "batchComputationResult.updateStatistics.relationshipsCreated": "string",
+                      "batchComputationResult.updateStatistics.nodesCreated": "string",
+                      "batchComputationResult.updateStatistics.propertiesSet": "string",
+                      "batchComputationResult.updateStatistics.relationshipsDeleted": "string",
+                      "batchComputationResult.updateStatistics.labelsRemoved": "string",
+                      "batchComputationResult.failedBatches": "string",
+                      "label": "string",
+                      "installed": "string",
+                      "properties.uuidProperty": "string",
+                      "properties.addToSetLabels": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "batchComputationResult.committedOperations\tbatchComputationResult.batch.total\tbatchComputationResult.batch.committed\tbatchComputationResult.batch.failed\tbatchComputationResult.wasTerminated\tbatchComputationResult.batches\tbatchComputationResult.timeTaken\tbatchComputationResult.retries\tbatchComputationResult.total\tbatchComputationResult.operations.total\tbatchComputationResult.operations.committed\tbatchComputationResult.operations.failed\tbatchComputationResult.failedOperations\tbatchComputationResult.updateStatistics.nodesDeleted\tbatchComputationResult.updateStatistics.labelsAdded\tbatchComputationResult.updateStatistics.relationshipsCreated\tbatchComputationResult.updateStatistics.nodesCreated\tbatchComputationResult.updateStatistics.propertiesSet\tbatchComputationResult.updateStatistics.relationshipsDeleted\tbatchComputationResult.updateStatistics.labelsRemoved\tbatchComputationResult.failedBatches\tlabel\tinstalled\tproperties.uuidProperty\tproperties.addToSetLabels\n0\t1\t1\t0\tfalse\t1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t\"NodeWithUnique\"\tTRUE\tomega\tfalse\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635868931436_15761564",
+      "id": "paragraph_1635868931436_15761564",
+      "dateCreated": "2021-11-02 16:02:11.436",
+      "dateStarted": "2021-11-09 11:30:50.315",
+      "dateFinished": "2021-11-09 11:30:52.297",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\nCREATE (n:NodeWithUnique);\n\nMATCH (n:NodeWithUnique) RETURN n;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:31:51.886",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "omega": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"omega\":\"16c9a187-ee4e-4a56-926c-263b4a1d6618\"},\"label\":\"NodeWithUnique\"}],\"edges\":[],\"labels\":{\"TTL\":\"#2EC610\",\"NodeWithUnique\":\"#B8C858\"},\"types\":[],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635868938917_1994016294",
+      "id": "paragraph_1635868938917_1994016294",
+      "dateCreated": "2021-11-02 16:02:18.918",
+      "dateStarted": "2021-11-09 11:30:52.359",
+      "dateFinished": "2021-11-09 11:30:52.671",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Block the query for a while\n\nWe can sleep the query execution through the:\n\u003cpre\u003e\napoc.util.sleep(\u0027duration in milliseconds\u0027)\n\u003c/pre\u003e\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:32:29.840",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eBlock the query for a while\u003c/h2\u003e\n\u003cp\u003eWe can sleep the query execution through the:\u003c/p\u003e\n\u003cpre\u003e\napoc.util.sleep(\u0027duration in milliseconds\u0027)\n\u003c/pre\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635349766818_1822740037",
+      "id": "paragraph_1635349766818_1822740037",
+      "dateCreated": "2021-10-27 15:49:26.818",
+      "dateStarted": "2021-11-11 13:32:29.840",
+      "dateFinished": "2021-11-11 13:32:29.850",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// we use `apoc.date.format` to get only minutes and seconds from a query \n//        and apoc.date.currentTimestamp() instead of timestamp() because the last one doesn\u0027t change during transaction\n\nWITH apoc.date.currentTimestamp() as currentTime\nCALL apoc.util.sleep(3000)\nRETURN apoc.date.format(currentTime, \u0027ms\u0027,\u0027mm:ss\u0027) as timeBefore, apoc.date.format(apoc.date.currentTimestamp(), \u0027ms\u0027,\u0027mm:ss\u0027) as timeAfter",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:32:40.479",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "timeBefore": "string",
+                      "timeAfter": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "timeBefore\ttimeAfter\n\"32:40\"\t\"32:43\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635869493908_1027009727",
+      "id": "paragraph_1635869493908_1027009727",
+      "dateCreated": "2021-11-02 16:11:33.908",
+      "dateStarted": "2021-11-11 13:32:40.498",
+      "dateFinished": "2021-11-11 13:32:43.578",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n# Schema operations\n\nTo drop or create index or constraint, you can use the following procedure:\n\n- `apoc.schema.assert(mapIndexes, mapConstraint, dropExisting)` - To create indexes and constraint at once. With `dropExisting` true we drop existing indexes/constraints.\n- `apoc.schema.nodes` / `apoc.schema.relationships` - To get nodes / relationships indexes\n- `apoc.schema.node.constraintExists`\n- `apoc.schema.relationship.constraintExists`\n- `apoc.schema.node.indexExists`\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 10:23:21.319",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eSchema operations\u003c/h1\u003e\n\u003cp\u003eTo drop or create index or constraint, you can use the following procedure:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.schema.assert(mapIndexes, mapConstraint, dropExisting)\u003c/code\u003e - To create indexes and constraint at once. With \u003ccode\u003edropExisting\u003c/code\u003e true we drop existing indexes/constraints.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.schema.nodes\u003c/code\u003e / \u003ccode\u003eapoc.schema.relationships\u003c/code\u003e - To get nodes / relationships indexes\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.schema.node.constraintExists\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.schema.relationship.constraintExists\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.schema.node.indexExists\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635376095899_1541463143",
+      "id": "paragraph_1635376095899_1541463143",
+      "dateCreated": "2021-10-27 23:08:15.899",
+      "dateStarted": "2021-11-10 10:23:21.317",
+      "dateFinished": "2021-11-10 10:23:21.336",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.schema.assert",
+      "text": "%neo4j\n\nCALL apoc.schema.assert({Person:[\u0027name\u0027], Movie: [\u0027title\u0027, \u0027tagline\u0027]}, {Movie: [\"title\"]}, true)\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 12:45:09.946",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "label": "string",
+                      "key": "string",
+                      "keys": "string",
+                      "unique": "string",
+                      "action": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "label\tkey\tkeys\tunique\taction\n\"TTL\"\t\"ttl\"\t[\"ttl\"]\tFALSE\t\"DROPPED\"\n\"Movie\"\t\"title\"\t[\"title\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"tagline\"\t[\"tagline\"]\tFALSE\t\"CREATED\"\n\"Person\"\t\"name\"\t[\"name\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"title1\"\t[\"title1\"]\tTRUE\t\"CREATED\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532662677_401422741",
+      "id": "paragraph_1636532662677_401422741",
+      "dateCreated": "2021-11-10 08:24:22.677",
+      "dateStarted": "2021-11-10 10:24:29.973",
+      "dateFinished": "2021-11-10 10:24:30.248",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.schema.node.constraintExists",
+      "text": "%neo4j\n\nRETURN apoc.schema.node.constraintExists(\"Movie\", [\"title\"])\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 12:45:19.448",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.schema.node.constraintExists(\"Movie\", [\"title\"])": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.schema.node.constraintExists(\"Movie\", [\"title\"])\nTRUE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532704343_2097459738",
+      "id": "paragraph_1636532704343_2097459738",
+      "dateCreated": "2021-11-10 08:25:04.343",
+      "dateStarted": "2021-11-10 08:26:25.254",
+      "dateFinished": "2021-11-10 08:26:25.296",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.schema.nodes",
+      "text": "%neo4j\nCALL apoc.schema.nodes()",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 12:45:28.555",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "name": "string",
+                      "label": "string",
+                      "properties": "string",
+                      "status": "string",
+                      "type": "string",
+                      "failure": "string",
+                      "populationProgress": "string",
+                      "size": "string",
+                      "valuesSelectivity": "string",
+                      "userDescription": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tlabel\tproperties\tstatus\ttype\tfailure\tpopulationProgress\tsize\tvaluesSelectivity\tuserDescription\n\":Movie(title)\"\t\"Movie\"\t[\"title\"]\t\"ONLINE\"\t\"UNIQUENESS\"\t\"NO FAILURE\"\t100.0\t38\t1.0\t\"Index( id\u003d12, name\u003d\u0027constraint_3044d997\u0027, type\u003d\u0027UNIQUE BTREE\u0027, schema\u003d(:Movie {title}), indexProvider\u003d\u0027native-btree-1.0\u0027, owningConstraint\u003d13 )\"\n\":Person(name)\"\t\"Person\"\t[\"name\"]\t\"ONLINE\"\t\"INDEX\"\t\"NO FAILURE\"\t100.0\t141\t0.9787234042553191\t\"Index( id\u003d11, name\u003d\u0027index_5c0607ad\u0027, type\u003d\u0027GENERAL BTREE\u0027, schema\u003d(:Person {name}), indexProvider\u003d\u0027native-btree-1.0\u0027 )\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636532750579_2013459649",
+      "id": "paragraph_1636532750579_2013459649",
+      "dateCreated": "2021-11-10 08:25:50.580",
+      "dateStarted": "2021-11-10 08:26:28.877",
+      "dateFinished": "2021-11-10 08:26:28.945",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Database interactions\n\nWe can execute read / write operations in other database:\n\n- `Jdbc (apoc.load.jdbc)`\n- `Elastic search (apoc.load.es.*)`\n- `MongoDb (apoc.mongo.*)`\n- `Redis (apoc.redis.*)`\n- `Couchbase (apoc.couchbase.*)`\n- `Ldap (apoc.load.ldap)`\n- `Bolt (apoc.bolt.*)` - To connect to other Neo4j instances\n\nEvery procedure has oviously a different implementation to interface with databases.\nYou can see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-integration\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e for more details.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:33:22.331",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eDatabase interactions\u003c/h2\u003e\n\u003cp\u003eWe can execute read / write operations in other database:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eJdbc (apoc.load.jdbc)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eElastic search (apoc.load.es.*)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eMongoDb (apoc.mongo.*)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eRedis (apoc.redis.*)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eCouchbase (apoc.couchbase.*)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eLdap (apoc.load.ldap)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eBolt (apoc.bolt.*)\u003c/code\u003e - To connect to other Neo4j instances\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eEvery procedure has oviously a different implementation to interface with databases.\u003cbr /\u003e\nYou can see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/database-integration\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e for more details.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635436437219_504267999",
+      "id": "paragraph_1635436437219_504267999",
+      "dateCreated": "2021-10-28 15:53:57.219",
+      "dateStarted": "2021-11-11 13:33:22.332",
+      "dateFinished": "2021-11-11 13:33:22.344",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.load.jdbc",
+      "text": "%neo4j\n\nCALL apoc.load.jdbc(\"jdbc:postgresql://postgres:5432/myDb\",              // connection URL\n    \u0027SELECT * FROM PERSON WHERE \"SURNAME\" \u003d ?\u0027,                          // query with param\n    [\u0027Test\u0027],                                                            // parameters\n    {schema: \"myDb\", credentials: {user: \"test\", password: \"postgres\"}}) // config with schema, credential\nYIELD row\nRETURN row",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:33:29.060",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 142.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "row.SURNAME": "string",
+                      "row.EFFECTIVE_FROM_DATE": "string",
+                      "row.HIRE_DATE": "string",
+                      "row.NULL_DATE": "string",
+                      "row.TEST_TIME": "string",
+                      "row.NAME": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text"
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "row.SURNAME\trow.EFFECTIVE_FROM_DATE\trow.HIRE_DATE\trow.NULL_DATE\trow.TEST_TIME\trow.NAME\nTest\t2016-06-22T17:10:25\t1999-05-25\t\t15:37\tAl\nTest\t2016-06-22T17:10:25\t2017-05-25\t\t15:37\tJohn\nTest\t2016-06-22T17:10:25\t2018-05-25\t\t15:37\tJack\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636564574714_611795321",
+      "id": "paragraph_1636564574714_611795321",
+      "dateCreated": "2021-11-10 17:16:14.714",
+      "dateStarted": "2021-11-11 12:47:20.472",
+      "dateFinished": "2021-11-11 12:47:20.502",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n## Conclusions\n\n\u003cpre\u003e\nThis guide is based on Apoc 4.3.x. In other versions some procedures / functions could be a little different\n\u003c/pre\u003e\n\nSee \u003ca href\u003d\"https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to get updated about last changes.\n\nVisit the \u003ca href\u003d\"https://community.neo4j.com/\" target\u003d\"_blank\"\u003eNeo4j Community\u003c/a\u003e to get help!\n\n### Thank you for your attention!\n\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:37:26.587",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eConclusions\u003c/h2\u003e\n\u003cpre\u003e\nThis guide is based on Apoc 4.3.x. In other versions some procedures / functions could be a little different\n\u003c/pre\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to get updated about last changes.\u003c/p\u003e\n\u003cp\u003eVisit the \u003ca href\u003d\"https://community.neo4j.com/\" target\u003d\"_blank\"\u003eNeo4j Community\u003c/a\u003e to get help!\u003c/p\u003e\n\u003ch3\u003eThank you for your attention!\u003c/h3\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636298465103_1913554570",
+      "id": "paragraph_1636298465103_1913554570",
+      "dateCreated": "2021-11-07 15:21:05.103",
+      "dateStarted": "2021-11-11 13:37:26.588",
+      "dateFinished": "2021-11-11 13:37:26.598",
+      "status": "FINISHED"
+    }
+  ],
+  "name": "8. Others",
+  "id": "2GK4BTA5G",
+  "defaultInterpreterGroup": "neo4j",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

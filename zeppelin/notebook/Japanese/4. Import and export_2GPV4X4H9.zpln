@@ -1,0 +1,1524 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# Export\n\n\nTo activate it, use `apoc.export.file.enabled\u003dtrue`\n\n- Export to CSV (apoc.export.csv.TYPE)\n- Export to JSON (apoc.export.json.TYPE)\n- Export to Cypher Script (apoc.export.cypher.TYPE)\n- Export to GraphML (apoc.export.graphml.TYPE)\n- Export to Xls (apoc.export.xls.TYPE)\n\n\nWhere `TYPE` can be all, data, graph, query.\n\nFor example, in CSV case, we have `apoc.export.csv.all(fileName, $configMap)`, \n`apoc.export.csv.query(query, file, $configMap)`, \n`apoc.export.csv.data(nodes, rels, fileName, $configMap)`\n`apoc.export.csv.graph(graph, fileName?, $configMap)`.\n\n`$configMap` depends on file Type. See \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.export/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to see all possible configurations.\n\nIn `apoc.export.csv.*` we have\n-` batchSize (default: 20000)` - define the batch size to export large files avoiding heap space errors\n- `delim (default: \",\")` - define the delimiter character (export csv)\n- `arrayDelim (default: \";\")` - define the delimiter character for arrays\n- `quotes (default: \u0027always\u0027)` - quote-character used for CSV. It can be \u0027always\u0027, \u0027none\u0027 or \u0027ifNeeded\u0027, that apply quotes only when it\u0027s necessary (for escape purpose or when a value is blank)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.428",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eExport\u003c/h1\u003e\n\u003cpre\u003e\u003ccode\u003eTo activate NEO4J_apoc_export_file_enabled: \u0026quot;true\u0026quot;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cul\u003e\n\u003cli\u003eExport to CSV (apoc.export.csv.TYPE)\u003c/li\u003e\n\u003cli\u003eExport to JSON (apoc.export.json.TYPE)\u003c/li\u003e\n\u003cli\u003eExport to Cypher Script (apoc.export.cypher.TYPE)\u003c/li\u003e\n\u003cli\u003eExport to GraphML (apoc.export.graphml.TYPE)\u003c/li\u003e\n\u003cli\u003eExport to Xls (apoc.export.xls.TYPE)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWhere \u003ccode\u003e\u0026lt;TYPE\u0026gt;\u003c/code\u003e can be all, data, graph, query.\u003c/p\u003e\n\u003cp\u003eFor example, in CSV case, we have \u003ccode\u003eapoc.export.csv.all(fileName, {configMap})\u003c/code\u003e,\u003cbr /\u003e\n\u003ccode\u003eapoc.export.csv.query(query, file, {configMap})\u003c/code\u003e,\u003cbr /\u003e\n\u003ccode\u003eapoc.export.csv.data(nodes, rels, fileName, {configMap})\u003c/code\u003e\u003cbr /\u003e\n\u003ccode\u003eapoc.export.csv.graph(graph, fileName?, {configMap})\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003e{configMap}\u003c/code\u003e depends on file Type. See \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.export/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to see all possible configurations.\u003c/p\u003e\n\u003cp\u003eIn \u003ccode\u003eapoc.export.csv.*\u003c/code\u003e we have\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ebatchSize (default: 20000) - define the batch size to export large files avoiding heap space errors\u003c/li\u003e\n\u003cli\u003edelim (default: \u0026ldquo;,\u0026rdquo;) - define the delimiter character (export csv)\u003c/li\u003e\n\u003cli\u003earrayDelim (default: \u0026ldquo;;\u0026rdquo;) - define the delimiter character for arrays\u003c/li\u003e\n\u003cli\u003equotes (default: \u0026lsquo;always\u0026rsquo;) - quote-character used for CSV. It can be \u0026lsquo;always\u0026rsquo;, \u0026lsquo;none\u0026rsquo; or \u0026lsquo;ifNeeded\u0026rsquo;, that apply quotes only when it\u0026rsquo;s necessary (escape purpose)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e// todo - esempio ifNeeded con arrays\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125427_1528920843",
+      "id": "paragraph_1635348979662_2072141118",
+      "dateCreated": "2021-11-11 13:42:05.427",
+      "status": "READY"
+    },
+    {
+      "title": "apoc.export.csv.all",
+      "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfile.csv\u0027, {quotes: \u0027always\u0027})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.428",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"testfile.csv\"\t\"database: nodes(171), rels(253)\"\t\"csv\"\t171\t253\t737\t22\t424\t20000\t1\tTRUE\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125428_487051228",
+      "id": "paragraph_1635427510277_1468145857",
+      "dateCreated": "2021-11-11 13:42:05.428",
+      "status": "READY"
+    },
+    {
+      "title": "With quotes: \u0027none\u0027",
+      "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfileNoQuote.csv\u0027, {quotes: \u0027none\u0027})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.428",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125428_511379507",
+      "id": "paragraph_1636123179923_1013459302",
+      "dateCreated": "2021-11-11 13:42:05.428",
+      "status": "READY"
+    },
+    {
+      "title": "With quotes: \u0027ifNeeded\u0027",
+      "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfileNeededQuote.csv\u0027, {quotes: \u0027ifNeeded\u0027})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.428",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125428_1927396656",
+      "id": "paragraph_1636124595874_8748788",
+      "dateCreated": "2021-11-11 13:42:05.428",
+      "status": "READY"
+    },
+    {
+      "title": "apoc.export.csv.query",
+      "text": "%neo4j\n\nCALL apoc.export.csv.query(\"MATCH (person:Person) RETURN person\", \u0027person.csv\u0027, {})\nYIELD file RETURN file",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.428",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125428_609061900",
+      "id": "paragraph_1635429979268_1227511209",
+      "dateCreated": "2021-11-11 13:42:05.428",
+      "status": "READY"
+    },
+    {
+      "title": "apoc.export.csv.graph",
+      "text": "%neo4j\n\nMATCH (person:Person)-[r:DIRECTED]-\u003e() \nWITH {nodes: collect(person), relationships: collect(r)} as graph\nCALL apoc.export.csv.graph(graph, \u0027graphFile.csv\u0027, {}) YIELD file RETURN file",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.428",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125428_962304481",
+      "id": "paragraph_1635430116277_440029225",
+      "dateCreated": "2021-11-11 13:42:05.428",
+      "status": "READY"
+    },
+    {
+      "title": "apoc.export.csv.data",
+      "text": "%neo4j\nMATCH (person:Person) \nWITH collect(person) as people\nCALL apoc.export.csv.data(people, [], \u0027dataFile.csv\u0027, {})\nyield file return file",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.429",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 101.989,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125429_540148905",
+      "id": "paragraph_1635430176279_54704858",
+      "dateCreated": "2021-11-11 13:42:05.429",
+      "status": "READY"
+    },
+    {
+      "title": "apoc.export.csv.all",
+      "text": "%neo4j\n\nCALL apoc.export.csv.all(\"customDelim.csv\", {quotes: \u0027none\u0027, delim: \u0027|\u0027, arrayDelimiter: \u0027_\u0027}) ",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.429",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125429_901913715",
+      "id": "paragraph_1635428971466_1949470120",
+      "dateCreated": "2021-11-11 13:42:05.429",
+      "status": "READY"
+    },
+    {
+      "title": "With stream: true",
+      "text": "%neo4j\n\n// We can pass filename null and a config with `stream:true` to retrieve results directly in neo4j instead of a file\nCALL apoc.export.csv.all(null, {stream:true, batchSize: 20, quote: \u0027none\u0027}) yield data return data",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.429",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 394.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "data",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125429_791647580",
+      "id": "paragraph_1635428920212_1319826402",
+      "dateCreated": "2021-11-11 13:42:05.429",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n## Import procedures\n\n- apoc.import.csv\n- apoc.import.graphml\n- apoc.import.json\n- apoc.import.xml\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.430",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eImport procedures\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.import.csv\u003c/li\u003e\n\u003cli\u003eapoc.import.graphml\u003c/li\u003e\n\u003cli\u003eapoc.import.json\u003c/li\u003e\n\u003cli\u003eapoc.import.xml\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125430_337508244",
+      "id": "paragraph_1635430474392_1169397948",
+      "dateCreated": "2021-11-11 13:42:05.430",
+      "status": "READY"
+    },
+    {
+      "title": "apoc.import.csv",
+      "text": "%md\n\nThe `apoc.import.csv([nodeFiles], [relationshipsFiles], $config)` procedure \nit\u0027s implemented along the lines of \u003ca href\u003d\"https://neo4j.com/docs/operations-manual/current/tutorial/neo4j-admin-import/\"\u003eneo4j-admin-import\u003c/a\u003e native tool, but requires no reboot and empty db.\n\nFor example, supports the following config parameters:\n\n- `delimiter` - delimiter character between columns like `--delimiter\u003d,` of `neo4j-admin-import`\n- `arrayDelimiter` - delimiter character in arrays | `--array-delimiter\u003d;`\n- `ignoreDuplicateNodes` - for duplicate nodes, only load the first one and skip the rest (true) or fail the import (false)  | `--ignore-duplicate-nodes\u003dfalse`",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.430",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eThe \u003ccode\u003eapoc.import.csv([nodeFiles], [relationshipsFiles], $config)\u003c/code\u003e procedure\u003cbr /\u003e\nit\u0026rsquo;s implemented along the lines of \u003ca href\u003d\"https://neo4j.com/docs/operations-manual/current/tutorial/neo4j-admin-import/\"\u003eneo4j-admin-import\u003c/a\u003e native tool, but requires no reboot and empty db.\u003c/p\u003e\n\u003cp\u003eFor example, supports the following config parameters:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003edelimiter\u003c/code\u003e - delimiter character between columns like \u003ccode\u003e--delimiter\u003d,\u003c/code\u003e of \u003ccode\u003eneo4j-admin-import\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003earrayDelimiter\u003c/code\u003e - delimiter character in arrays | \u003ccode\u003e--array-delimiter\u003d;\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eignoreDuplicateNodes\u003c/code\u003e - for duplicate nodes, only load the first one and skip the rest (true) or fail the import (false)  | \u003ccode\u003e--ignore-duplicate-nodes\u003dfalse\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125430_139782233",
+      "id": "paragraph_1635431087189_1210091021",
+      "dateCreated": "2021-11-11 13:42:05.430",
+      "status": "READY"
+    },
+    {
+      "title": "Example",
+      "text": "%neo4j\n\n/*  \n    importPersons.csv             types.csv\n    ---                           ---\n    id:ID|name:STRING             :START_ID|:END_ID|since:INT\n    1|John                        1|2|2016\n    2|Bob                         1|3|2015\n    3|Jane \n*/\n\n\nCALL apoc.import.csv([{fileName: \u0027file:/importPersons.csv\u0027, labels: [\"CsvPerson\"]}], [{fileName: \u0027file:/types.csv\u0027, type: \u0027KNOWS\u0027}], {delimiter: \u0027|\u0027});\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.430",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "file": "string",
+                      "source": "string",
+                      "format": "string",
+                      "nodes": "string",
+                      "relationships": "string",
+                      "properties": "string",
+                      "time": "string",
+                      "rows": "string",
+                      "batchSize": "string",
+                      "batches": "string",
+                      "done": "string",
+                      "data": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"progress.csv\"\t\"file\"\t\"csv\"\t3\t2\t8\t30\t0\t-1\t0\tTRUE\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125430_1496208460",
+      "id": "paragraph_1635431483321_1383593912",
+      "dateCreated": "2021-11-11 13:42:05.430",
+      "status": "READY"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\n\nMATCH p\u003d(:CsvPerson)--(:CsvPerson) RETURN p",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.430",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "since": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125430_1636156953",
+      "id": "paragraph_1636630151080_940572401",
+      "dateCreated": "2021-11-11 13:42:05.430",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n\n## File load procedures\nSimilar to import procedure, retrieve the results from file but doesn\u0027t execute graph operation, more flexible\n\n- apoc.load.csv\n- apoc.load.json \n- apoc.load.xls\n- apoc.load.xml\n- apoc.load.html\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.431",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFile load procedures\u003c/h2\u003e\n\u003cp\u003eSimilar to import procedure, retrieve the results from file but doesn\u0026rsquo;t execute graph operation, more flexible\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.load.csv\u003c/li\u003e\n\u003cli\u003eapoc.load.json\u003c/li\u003e\n\u003cli\u003eapoc.load.xls\u003c/li\u003e\n\u003cli\u003eapoc.load.xml\u003c/li\u003e\n\u003cli\u003eapoc.load.html\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.0/import/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e for more details.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125431_192602176",
+      "id": "paragraph_1635430550983_1766130711",
+      "dateCreated": "2021-11-11 13:42:05.431",
+      "status": "READY"
+    },
+    {
+      "title": "apoc.load.csv",
+      "text": "%neo4j\n\n/* File content\n    name,age,beverage\n    Selma,9,Soda\n    Rana,12,Tea;Milk\n    Selina,19,Cola\n    Alhpa,55,Gamma\n    Beta,66,Delta\n*/\n\nCALL apoc.load.csv(\u0027load.csv\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.431",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "lineNo": "string",
+                      "list": "string",
+                      "strings": "string",
+                      "map.name": "string",
+                      "map.age": "string",
+                      "map.beverage": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125431_1333554872",
+      "id": "paragraph_1636447121894_1927356040",
+      "dateCreated": "2021-11-11 13:42:05.431",
+      "status": "READY"
+    },
+    {
+      "title": "With skip / limit",
+      "text": "%neo4j\nCALL apoc.load.csv(\u0027load.csv\u0027,{skip: 1, limit: 2})\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.431",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 124.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "lineNo": "string",
+                      "list": "string",
+                      "strings": "string",
+                      "map.name": "string",
+                      "map.age": "string",
+                      "map.beverage": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125431_685604967",
+      "id": "paragraph_1636447114960_1911929590",
+      "dateCreated": "2021-11-11 13:42:05.431",
+      "status": "READY"
+    },
+    {
+      "title": "With sep / arraySep",
+      "text": "%neo4j\n\n// File content\n//name\tage\n//Rana\t11\nCALL apoc.load.csv(\u0027loadSep.csv\u0027,{sep:\u0027|\u0027, arraySep: \u0027-\u0027})\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.431",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "lineNo": "string",
+                      "list": "string",
+                      "strings": "string",
+                      "map.name": "string",
+                      "map.age": "string",
+                      "map.beverage": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125431_831108340",
+      "id": "paragraph_1636447020232_589420860",
+      "dateCreated": "2021-11-11 13:42:05.431",
+      "status": "READY"
+    },
+    {
+      "title": "With mapping",
+      "text": "%neo4j\n\nCALL apoc.load.csv(\u0027load.csv\u0027, {mapping: {name:{type:\u0027string\u0027}, age:{type:\u0027int\u0027}, beverage:{ignore:true}}})\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.431",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "lineNo": "string",
+                      "list": "string",
+                      "strings": "string",
+                      "map.name": "string",
+                      "map.age": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125431_236714478",
+      "id": "paragraph_1636447031072_222223989",
+      "dateCreated": "2021-11-11 13:42:05.431",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n\n## Load directory\n\napoc.load.directory(\u0027pattern\u0027, \u0027urlDir\u0027, {config}) YIELD value - Loads list of all files in folder specified by urlDir or in import folder if urlDir string is empty or not specified\n\n\nCALL apoc.load.directory();\n\nCALL apoc.load.directory(\"*.csv\");\n\nCALL apoc.load.directory(\"*.csv\", \"subfolder1\");\n\nCALL apoc.load.directory(\"*\", \"subfolder2\", {recursive: false});\n\n\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027path/to/directory\u0027)\nYIELD value WITH value as url ORDER BY url DESC\nCALL apoc.load.csv(url, {results:[\u0027map\u0027]}) YIELD map RETURN map",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.431",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eLoad directory\u003c/h2\u003e\n\u003cp\u003eapoc.load.directory(\u0026lsquo;pattern\u0026rsquo;, \u0026lsquo;urlDir\u0026rsquo;, {config}) YIELD value - Loads list of all files in folder specified by urlDir or in import folder if urlDir string is empty or not specified\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory();\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory(\u0026ldquo;*.csv\u0026rdquo;);\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory(\u0026ldquo;*.csv\u0026rdquo;, \u0026ldquo;subfolder1\u0026rdquo;);\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory(\u0026ldquo;*\u0026rdquo;, \u0026ldquo;subfolder2\u0026rdquo;, {recursive: false});\u003c/p\u003e\n\u003cp\u003eCALL apoc.load.directory(\u0026lsquo;*.csv\u0026rsquo;, \u0026lsquo;path/to/directory\u0026rsquo;)\u003cbr /\u003e\nYIELD value WITH value as url ORDER BY url DESC\u003cbr /\u003e\nCALL apoc.load.csv(url, {results:[\u0026lsquo;map\u0026rsquo;]}) YIELD map RETURN map\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125431_1235093792",
+      "id": "paragraph_1635349254490_188990093",
+      "dateCreated": "2021-11-11 13:42:05.431",
+      "status": "READY"
+    },
+    {
+      "title": "Default",
+      "text": "%neo4j\n\nCALL apoc.load.directory();",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.432",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125432_678737027",
+      "id": "paragraph_1636129189657_1174288019",
+      "dateCreated": "2021-11-11 13:42:05.432",
+      "status": "READY"
+    },
+    {
+      "title": "File filter",
+      "text": "%neo4j\n\nCALL apoc.load.directory(\u0027*.csv\u0027);",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.432",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125432_1434999761",
+      "id": "paragraph_1636129224968_1644618758",
+      "dateCreated": "2021-11-11 13:42:05.432",
+      "status": "READY"
+    },
+    {
+      "title": "With path",
+      "text": "%neo4j\n\n// there is a sub-subfolder\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027subfolder\u0027);",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.432",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125432_1043305476",
+      "id": "paragraph_1636129247531_1713475725",
+      "dateCreated": "2021-11-11 13:42:05.432",
+      "status": "READY"
+    },
+    {
+      "title": "With recursive: false",
+      "text": "%neo4j\n\nCALL apoc.load.directory(\"*.csv\", \u0027subfolder\u0027, {recursive: false})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.432",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 118.011,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125432_778045778",
+      "id": "paragraph_1636129261692_2130891748",
+      "dateCreated": "2021-11-11 13:42:05.432",
+      "status": "READY"
+    },
+    {
+      "title": "Usage with csv",
+      "text": "%neo4j\n\n/*  in loadDirSubfolder there are 2 files\n    fileTest.csv                  fileTest2.csv\n    ---                           ---\n    number,numero                 Eren,Jager\n    One,Uno                       Mikasa,Ackermann\n    Two,Due                       Armin,Arelet\n*/\n\n\nCALL apoc.load.directory(\u0027*.csv\u0027, \u0027loadDirSubfolder\u0027)\nYIELD value WITH value as url ORDER BY url DESC\nCALL apoc.load.csv(url, {results:[\u0027map\u0027]}) YIELD map RETURN map",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:42:05.432",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "map.numero": "string",
+                      "map.number": "string",
+                      "map.name": "string",
+                      "map.surname": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125432_1056849469",
+      "id": "paragraph_1636129428031_1340573358",
+      "dateCreated": "2021-11-11 13:42:05.432",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n\n## [Event listeners](http://localhost:8080/#/notebook/2GMKYPJ4D)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-11 13:50:07.262",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GMKYPJ4D\"\u003eEvent listeners\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636638125432_821387378",
+      "id": "paragraph_1635433647954_1159343284",
+      "dateCreated": "2021-11-11 13:42:05.432",
+      "dateStarted": "2021-11-11 13:50:07.259",
+      "dateFinished": "2021-11-11 13:50:07.279",
+      "status": "FINISHED"
+    }
+  ],
+  "name": "4. Import and export",
+  "id": "2GPV4X4H9",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

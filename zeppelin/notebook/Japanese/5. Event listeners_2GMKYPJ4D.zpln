@@ -3,21 +3,21 @@
     {
       "text": "%md\n# Triggers\n\nIn a trigger you register Cypher statements that are called when data in Neo4j is changed (created, updated, deleted).\nYou can run them before or after commit.\n\n\u003cpre\u003e\nYou have to enable trigger through the config `apoc.trigger.enabled\u003dtrue` to use it.\n\u003c/pre\u003e\n\n\nTo add a trigger you can execute this query:\n`CALL apoc.trigger.add(triggerName, statement, selector, params)`\n\nSecond param is the statement, in which you can put these parameters: `$createdNodes`, `$deletedNodes` etc.,\n\n- `transactionId` - the id of the transaction\n- `commitTime` - the date of the transaction in milliseconds\n- `createdNodes` - list of created nodes\n- `createdRelationships` - list of created relationships\n- `deletedNodes` - list of deleted nodes\n- `deletedRelationships` - list of deleted relationships\n- `removedLabels` - map of label / list of nodes\n- `assignedLabels` - map of label / list of nodes\n- `removedNodeProperties` - Map\u003cString, List\u003e, see below)\n- `removedRelationshipProperties` - Map\u003cString, List\u003e, see below\n- `assignedNodeProperties` - Map\u003cString, List\u003e, see below\n- `assignedRelationshipProperties` - Map\u003cString, List\u003e, see below\n\nIf i have 2 nodes (:Test {a: 1}), (:Test {b:1}),\nif i execute `MATCH (n:Test) SET n.a\u003d2, n.b\u003d3` in a trigger\nthe `$assignedNodeProperties` will be this one (where map keys are property names):\n```\n{\n   a: [{\n         node : NODE(1),\n         new: 2,\n         old: 1,\n         key: \"a\"\n      },\n      {\n         node: NODE(2),\n         new: 2,\n         old: null,\n         key: \"a\"\n      }],\n   \n   b: [{\n         node: NODE(1),\n         new: 3,\n         old: null,\n         key: \"b\"\n      },\n      {\n         node: NODE(2),\n         new: 3,\n         old: 1,\n         key: \"b\"\n      }]\n}\n```\nSame structure for `removedNodeProperties`. \nThe `removedRelationshipProperties` and `assignedRelationshipProperties` have `relationship : REL` instead of `node : NODE`.\n\n\nYou can use these helper functions to extract nodes or relationships by label/relationship-type or updated property key.\n\n- `apoc.trigger.nodesByLabel($assignedLabels/$assignedNodeProperties,\u0027Label\u0027)` - function to filter entries by label, to be used within a trigger statement with `$assignedLabels`\n- `apoc.trigger.propertiesByKey($assignedNodeProperties,\u0027key\u0027)` - function to filter propertyEntries by property-key, to be used within a trigger statement with `$assignedNodeProperties`, `$assignedRelationshipProperties`, `$removedNodeProperties` and `$removedRelationshipProperties` .\n    So in previous case `apoc.trigger.propertiesByKey($assignedNodeProperties,\u0027b\u0027)` return only second array, \n    that is `[{node:NODE(1), new:3, old:null, key:\"b\"}, {node:NODE(2), new:3, old:1, key:\"b\"}]`\n\n\n\nThe `selector` parameter could be `{phase:PHASENAME\u0027}`\nwhere `PHASENAME` is:\n\n- `before (default)` - The trigger will be activate right `before` the commit\n- `rollback` - The trigger will be activate right after the  `rollback`\n- `after` - The trigger will be activate right after the `commit`\n- `afterAsync` - The trigger will be activate right after the commit and inside a new transaction and thread so that will not\nimpact the original one. Useful for heavy operations without to not blocking the original transaction.\n\n\nInto the 4th argument, you can put additional parameters: `{params: {paramMap}}` \n\n\n## Other trigger procedures:\n\nIn addition to `trigger.add` there are:\n\n- `CALL apoc.trigger.remove(name)`\n- `CALL apoc.trigger.removeAll()`\n- `CALL apoc.trigger.list()`\n- `CALL apoc.trigger.pause(name)`\n- `CALL apoc.trigger.resume(name)`\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:09:40.088",
+      "dateUpdated": "2021-11-11 13:42:28.296",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -35,22 +35,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635375648253_1121247002",
+      "jobName": "paragraph_1636638148296_1763210287",
       "id": "paragraph_1635375648253_1121247002",
-      "dateCreated": "2021-10-27 23:00:48.253",
-      "dateStarted": "2021-11-11 13:09:40.090",
-      "dateFinished": "2021-11-11 13:09:40.114",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.296",
+      "status": "READY"
     },
     {
       "title": "Install a trigger ",
       "text": "%neo4j\n\n// We could add a trigger that when is added a specific property on a node, that property is added to all the nodes connected to this node\n\nCALL apoc.trigger.add(\u0027setlabels\u0027,\u0027UNWIND apoc.trigger.nodesByLabel($assignedLabels,\"Trigger\") AS n SET n.datetime \u003d $datetime\u0027,\n{phase:\u0027afterAsync\u0027}, \n{params: {datetime: datetime()}}) // param to be used in $triggered",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:53:06.365",
+      "dateUpdated": "2021-11-11 13:42:28.296",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -85,14 +90,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -110,22 +108,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635853267522_1557662643",
+      "jobName": "paragraph_1636638148296_718486196",
       "id": "paragraph_1635853267522_1557662643",
-      "dateCreated": "2021-11-02 11:41:07.522",
-      "dateStarted": "2021-11-10 11:14:21.217",
-      "dateFinished": "2021-11-10 11:14:21.345",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.296",
+      "status": "READY"
     },
     {
       "title": "Query to trigger ",
       "text": "%neo4j\n\nMATCH (d:Person {name:\u0027Keanu Reeves\u0027})\nSET d:Trigger\nRETURN d",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 11:14:25.980",
+      "dateUpdated": "2021-11-11 13:42:28.296",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -159,14 +162,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -184,22 +180,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635853359717_1862278247",
+      "jobName": "paragraph_1636638148296_1426906506",
       "id": "paragraph_1635853359717_1862278247",
-      "dateCreated": "2021-11-02 11:42:39.717",
-      "dateStarted": "2021-11-10 11:14:25.728",
-      "dateFinished": "2021-11-10 11:14:25.785",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.296",
+      "status": "READY"
     },
     {
       "title": "Check trigger execution",
       "text": "%neo4j\n\nMATCH (p:Person {name:\u0027Keanu Reeves\u0027}) RETURN p",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 11:14:26.834",
+      "dateUpdated": "2021-11-11 13:42:28.296",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -233,14 +234,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -258,22 +252,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635853392081_796719443",
+      "jobName": "paragraph_1636638148296_1623722192",
       "id": "paragraph_1635853392081_796719443",
-      "dateCreated": "2021-11-02 11:43:12.081",
-      "dateStarted": "2021-11-10 11:14:26.855",
-      "dateFinished": "2021-11-10 11:14:26.900",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.296",
+      "status": "READY"
     },
     {
       "title": "$createdNodes parameter",
       "text": "%neo4j\n// 3rd parameter is null, so phase is \u0027before\u0027 by default\nCALL apoc.trigger.add(\u0027unique\u0027,\u0027UNWIND $createdNodes AS n SET n.datetime \u003d $datetime\u0027, null, {params: {datetime: datetime()}}); ",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:10:13.793",
+      "dateUpdated": "2021-11-11 13:42:28.297",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -308,14 +307,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -333,22 +325,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635864280616_762486125",
+      "jobName": "paragraph_1636638148296_171494741",
       "id": "paragraph_1635864280616_762486125",
-      "dateCreated": "2021-11-02 14:44:40.616",
-      "dateStarted": "2021-11-10 11:14:57.716",
-      "dateFinished": "2021-11-10 11:14:57.830",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.296",
+      "status": "READY"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nCREATE (n:NodeWithTime);\nMATCH (n:NodeWithTime) RETURN n;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:10:17.043",
+      "dateUpdated": "2021-11-11 13:42:28.297",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -380,14 +377,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -405,22 +395,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635864655639_1005439890",
+      "jobName": "paragraph_1636638148297_1979590395",
       "id": "paragraph_1635864655639_1005439890",
-      "dateCreated": "2021-11-02 14:50:55.639",
-      "dateStarted": "2021-11-05 14:12:25.531",
-      "dateFinished": "2021-11-05 14:12:25.598",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.297",
+      "status": "READY"
     },
     {
       "title": "Enforcing property type",
       "text": "%neo4j\n\n// Enforcing property type, for this example, we would like that all the `reference` node properties are of type `STRING`\n\nCALL apoc.trigger.add(\"forceStringType\",\n\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\", {phase:\u0027before\u0027})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:10:25.147",
+      "dateUpdated": "2021-11-11 13:42:28.298",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -519,14 +514,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -544,29 +532,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635864199254_1511871497",
+      "jobName": "paragraph_1636638148298_1961354950",
       "id": "paragraph_1635864199254_1511871497",
-      "dateCreated": "2021-11-02 14:43:19.254",
-      "dateStarted": "2021-11-05 14:14:10.137",
-      "dateFinished": "2021-11-05 14:14:10.459",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.298",
+      "status": "READY"
     },
     {
       "text": "%neo4j\nCREATE (a:Node) SET a.reference \u003d 1",
       "user": "anonymous",
-      "dateUpdated": "2021-11-05 14:14:43.384",
+      "dateUpdated": "2021-11-11 13:42:28.298",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -584,22 +570,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635864255093_158993446",
+      "jobName": "paragraph_1636638148298_1220673529",
       "id": "paragraph_1635864255093_158993446",
-      "dateCreated": "2021-11-02 14:44:15.093",
-      "dateStarted": "2021-11-05 14:14:43.407",
-      "dateFinished": "2021-11-05 14:14:43.635",
-      "status": "ERROR"
+      "dateCreated": "2021-11-11 13:42:28.298",
+      "status": "READY"
     },
     {
       "title": "apoc.trigger.list",
       "text": "%neo4j\nCALL apoc.trigger.list",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:11:30.292",
+      "dateUpdated": "2021-11-11 13:42:28.298",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -635,14 +626,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -655,31 +639,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635864312695_2074767345",
+      "jobName": "paragraph_1636638148298_186106679",
       "id": "paragraph_1635864312695_2074767345",
-      "dateCreated": "2021-11-02 14:45:12.695",
-      "dateStarted": "2021-11-11 13:11:30.309",
-      "dateFinished": "2021-11-11 13:11:30.382",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.298",
+      "status": "READY"
     },
     {
       "title": "apoc.trigger.removeAll",
       "text": "%neo4j\nCALL apoc.trigger.removeAll()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:11:29.296",
+      "dateUpdated": "2021-11-11 13:42:28.298",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/undefined",
-        "title": true
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -692,31 +674,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636636268973_1703951230",
+      "jobName": "paragraph_1636638148298_1148199939",
       "id": "paragraph_1636636268973_1703951230",
-      "dateCreated": "2021-11-11 13:11:08.973",
-      "dateStarted": "2021-11-11 13:11:29.314",
-      "dateFinished": "2021-11-11 13:11:29.445",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.298",
+      "status": "READY"
     },
     {
       "text": "%md\n\n## Load directory async\n\nAdd a directory listener to handle changes in it.\n\napoc.load.directory.async.add(name, cypher, pattern, urlDir, $config) YIELD name, status, pattern, cypher, urlDir, config, error - \nAdd (or replace) a folder listener with a specific `name`, pattern and url directory that execute the specified cypher query when an event is triggered and return listener list\n\nThe first parameter is the name of our custom watch listener.\nIf we use an already existing listener name, that listener will be overwritten.\nThe second parameter is the cypher query that will be executed.\nThe `cypher` can have the following parameters:\n\n* `$fileName`: the name of the file which triggered the event\n* `$filePath`: the absolute path of the file which triggered the event if `apoc.import.file.use_neo4j_config\u003dfalse`, otherwise the relative path starting from `$IMPORT_DIR`\n* `$fileDirectory`: the absolute path directory of the file which triggered the event if `apoc.import.file.use_neo4j_config\u003dfalse`, otherwise the relative path starting from `$IMPORT_DIR`\n* `$listenEventType`: the triggered event (\"CREATE\", \"DELETE\" or \"MODIFY\"). The event `\"CREATE\"` happens when a file is inserted in the folder,\n`\"DELETE\"` when a file is removed from the folder and `\"MODIFY\"` when a file in the folder is changed.\nPlease note that if a file is renamed, will be triggered 2 event, that is first \"DELETE\" and then\"CREATE\"\n\nThe third parameter is the pattern of file to search for. By default is \u0027*\u0027, that is, search all files. The fourth is the search path of directory. By default is an empty string, that is, search file in import directory.\nThe 4th parameter is the directory url.\n\nIn `config` whe can put:\n- `listenEventType`: List of types of event that execute the cypher query, `CREATE`, `DELETE` or `MODIFY`\n- `interval` (default: 1000): Interval in ms after re-watch for directory changes\n\n\n\nOther procedures:\n- `CALL apoc.load.directory.async.list()`\n- `CALL apoc.load.directory.async.remove(name)`\n- `CALL apoc.load.directory.async.removeAll()`\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:12:07.583",
+      "dateUpdated": "2021-11-11 13:42:28.298",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -734,22 +714,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635375754840_2020527960",
+      "jobName": "paragraph_1636638148298_945707998",
       "id": "paragraph_1635375754840_2020527960",
-      "dateCreated": "2021-10-27 23:02:34.840",
-      "dateStarted": "2021-11-11 13:12:07.580",
-      "dateFinished": "2021-11-11 13:12:07.597",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.298",
+      "status": "READY"
     },
     {
       "title": "apoc.load.directory.async.add",
       "text": "%neo4j\n\nCALL apoc.load.directory.async.add(\u0027csvToImport\u0027,\n\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\",\n\"*.csv\", \"csvImport\" ,{listenEventType: [\"CREATE\", \"MODIFY\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:12:22.966",
+      "dateUpdated": "2021-11-11 13:42:28.298",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -786,14 +771,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -811,22 +789,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636544466331_1555017225",
+      "jobName": "paragraph_1636638148298_157522393",
       "id": "paragraph_1636544466331_1555017225",
-      "dateCreated": "2021-11-10 11:41:06.331",
-      "dateStarted": "2021-11-10 12:04:29.512",
-      "dateFinished": "2021-11-10 12:04:29.590",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.298",
+      "status": "READY"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nMATCH (n:CsvToNode) RETURN properties(n) as prop",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:12:31.516",
+      "dateUpdated": "2021-11-11 13:42:28.298",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -860,14 +843,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -885,22 +861,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636544521276_2107985340",
+      "jobName": "paragraph_1636638148298_985237736",
       "id": "paragraph_1636544521276_2107985340",
-      "dateCreated": "2021-11-10 11:42:01.276",
-      "dateStarted": "2021-11-10 12:04:53.040",
-      "dateFinished": "2021-11-10 12:04:53.109",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.298",
+      "status": "READY"
     },
     {
       "title": "With error",
       "text": "%neo4j\nCALL apoc.load.directory.async.add(\u0027another\u0027, \"CREATE (:Stuff)\", \"*.csv\", \"notExistentPath\")",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:12:37.840",
+      "dateUpdated": "2021-11-11 13:42:28.298",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -937,14 +918,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -962,18 +936,16 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636545967327_205410133",
+      "jobName": "paragraph_1636638148298_1511313122",
       "id": "paragraph_1636545967327_205410133",
-      "dateCreated": "2021-11-10 12:06:07.327",
-      "dateStarted": "2021-11-10 12:07:44.927",
-      "dateFinished": "2021-11-10 12:07:44.975",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.298",
+      "status": "READY"
     },
     {
       "title": "apoc.load.directory.async.list",
       "text": "%neo4j\nCALL apoc.load.directory.async.list()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:12:43.216",
+      "dateUpdated": "2021-11-11 13:42:28.299",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -985,6 +957,7 @@
         "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
         "editorHide": false,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -1021,8 +994,7 @@
             }
           }
         },
-        "enabled": true,
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1040,31 +1012,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636545976586_723359064",
+      "jobName": "paragraph_1636638148299_1164731479",
       "id": "paragraph_1636545976586_723359064",
-      "dateCreated": "2021-11-10 12:06:16.586",
-      "dateStarted": "2021-11-10 12:07:34.933",
-      "dateFinished": "2021-11-10 12:07:34.990",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-11 13:42:28.299",
+      "status": "READY"
     },
     {
       "title": "apoc.load.directory.async.removeAll",
       "text": "%neo4j\nCALL apoc.load.directory.async.removeAll()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:12:52.455",
+      "dateUpdated": "2021-11-11 13:42:28.299",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/undefined",
-        "title": true
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1073,29 +1043,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636545981605_989834727",
+      "jobName": "paragraph_1636638148299_40096094",
       "id": "paragraph_1636545981605_989834727",
-      "dateCreated": "2021-11-10 12:06:21.606",
+      "dateCreated": "2021-11-11 13:42:28.299",
       "status": "READY"
     },
     {
-      "text": "%md\n\n## [Property types manipulations](http://localhost:8080/#/notebook/2GN8QQ2U3)",
+      "text": "%md\n\n## [Property types manipulations](http://localhost:8080/#/notebook/2GM17BRS8)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:55:02.393",
+      "dateUpdated": "2021-11-11 13:50:29.932",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1106,40 +1076,23 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GN8QQ2U3\"\u003eProperty types manipulations\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GM17BRS8\"\u003eProperty types manipulations\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636537568290_841176267",
+      "jobName": "paragraph_1636638148299_1616840581",
       "id": "paragraph_1636537568290_841176267",
-      "dateCreated": "2021-11-10 09:46:08.290",
-      "dateStarted": "2021-11-11 11:55:02.394",
-      "dateFinished": "2021-11-11 11:55:02.410",
+      "dateCreated": "2021-11-11 13:42:28.299",
+      "dateStarted": "2021-11-11 13:50:29.930",
+      "dateFinished": "2021-11-11 13:50:29.942",
       "status": "FINISHED"
-    },
-    {
-      "text": "%md\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:54:38.197",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636631678196_1435247617",
-      "id": "paragraph_1636631678196_1435247617",
-      "dateCreated": "2021-11-11 11:54:38.196",
-      "status": "READY"
     }
   ],
   "name": "5. Event listeners",
-  "id": "2GNBRY6RV",
+  "id": "2GMKYPJ4D",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",
   "noteParams": {},
