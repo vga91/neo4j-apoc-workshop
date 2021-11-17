@@ -46,7 +46,7 @@
       "title": "apoc.when",
       "text": "%neo4j\n\nMATCH (n:Person)\nWITH n\nCALL apoc.when(\n  n.name \u003d \u0027Keanu Reeves\u0027,\n  \u0027RETURN \"yes \" + name as result\u0027,\n  \u0027RETURN \"no \" + name as result\u0027, \n  {name: n.name})\nYIELD value\n\nRETURN value.result as result",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:48:10.702",
+      "dateUpdated": "2021-11-17 19:31:25.506",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -109,15 +109,15 @@
       "jobName": "paragraph_1635516809897_465241544",
       "id": "paragraph_1635516809897_465241544",
       "dateCreated": "2021-10-29 14:13:29.897",
-      "dateStarted": "2021-11-10 10:49:50.772",
-      "dateFinished": "2021-11-10 10:49:51.244",
+      "dateStarted": "2021-11-17 19:31:25.528",
+      "dateFinished": "2021-11-17 19:31:26.396",
       "status": "FINISHED"
     },
     {
       "title": "apoc.do.when",
       "text": "%neo4j\n    match (n:Person)\n    with n\n    CALL apoc.do.when(n.name \u003d \u0027Keanu Reeves\u0027, \n        \u0027create (n)-[:HAS_MOVIE]-\u003e(:Movie {name: \"The movie about \" + n.name}) return n\u0027,            // create a node Movie from \u0027Keanu\u0027 node\n        \u0027create (node:NotKeanu) return n\u0027,  // create a node with `NotKeanu` label\n        {n: n}) // map of parameters, in this case $born \u003d n.born\n    yield value \n    return value.n.name, value.n.born",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:55:17.690",
+      "dateUpdated": "2021-11-17 19:31:54.983",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -180,15 +180,15 @@
       "jobName": "paragraph_1635939526752_538363380",
       "id": "paragraph_1635939526752_538363380",
       "dateCreated": "2021-11-03 11:38:46.752",
-      "dateStarted": "2021-11-11 12:49:57.761",
-      "dateFinished": "2021-11-11 12:49:58.028",
+      "dateStarted": "2021-11-17 19:31:55.006",
+      "dateFinished": "2021-11-17 19:31:55.602",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nmatch (nk:NotKeanu) return nk",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:55:38.475",
+      "dateUpdated": "2021-11-17 19:32:07.850",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -242,7 +242,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":256,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":257,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":258,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":259,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":260,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":261,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":262,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":263,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":264,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":265,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":266,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":267,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":268,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":269,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":270,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":271,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":272,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":273,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":274,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":275,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":276,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":277,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":278,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":279,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":280,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":281,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":282,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":283,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":284,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":285,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":286,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":287,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":288,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":289,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":290,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":291,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":292,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":293,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":294,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":295,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":296,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":297,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":298,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":299,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":300,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":301,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":302,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":303,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":304,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":305,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":306,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":307,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":308,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":309,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":310,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":311,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":312,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":313,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":182,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":183,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":184,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":185,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":186,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":187,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":188,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":189,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":190,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":191,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":192,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":193,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":194,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":195,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":196,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":197,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":198,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":199,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":200,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":201,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":202,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":203,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":204,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":205,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":206,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":207,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":208,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":209,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":210,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":211,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":212,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":213,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":214,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":215,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":216,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":217,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":218,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":219,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":220,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":221,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":222,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":223,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":224,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":225,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":226,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":227,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":228,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":229,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":230,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":231,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":232,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":233,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":234,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":235,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":236,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":237,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":238,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":239,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":240,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":241,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":242,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":243,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":244,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":245,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":246,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":247,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":248,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":249,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":250,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":251,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":252,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":253,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":254,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":255,\"data\":{},\"label\":\"NotKeanu\"}],\"edges\":[],\"labels\":{\"TTL\":\"#088E3E\",\"CsvPerson\":\"#B7A885\",\"Movie\":\"#648B7A\",\"Person\":\"#590B55\",\"NotKeanu\":\"#6650CC\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"KNOWS\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":256,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":257,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":258,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":259,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":260,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":261,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":262,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":263,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":264,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":265,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":266,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":267,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":268,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":269,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":270,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":271,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":272,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":273,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":274,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":275,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":276,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":277,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":278,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":279,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":280,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":281,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":282,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":283,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":284,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":285,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":286,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":287,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":288,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":289,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":290,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":291,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":292,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":293,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":294,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":295,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":296,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":297,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":298,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":299,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":300,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":301,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":302,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":303,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":172,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":173,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":174,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":175,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":176,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":177,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":178,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":179,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":180,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":181,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":182,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":183,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":184,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":185,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":186,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":187,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":188,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":189,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":190,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":191,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":192,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":193,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":194,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":195,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":196,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":197,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":198,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":199,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":200,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":201,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":202,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":203,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":204,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":205,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":206,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":207,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":208,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":209,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":210,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":211,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":212,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":213,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":214,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":215,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":216,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":217,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":218,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":219,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":220,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":221,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":222,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":223,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":224,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":225,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":226,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":227,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":228,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":229,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":230,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":231,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":232,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":233,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":234,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":235,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":236,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":237,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":238,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":239,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":240,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":241,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":242,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":243,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":244,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":245,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":246,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":247,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":248,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":249,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":250,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":251,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":252,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":253,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":254,\"data\":{},\"label\":\"NotKeanu\"},{\"id\":255,\"data\":{},\"label\":\"NotKeanu\"}],\"edges\":[],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
           }
         ]
       },
@@ -252,15 +252,15 @@
       "jobName": "paragraph_1635939537974_717266072",
       "id": "paragraph_1635939537974_717266072",
       "dateCreated": "2021-11-03 11:38:57.974",
-      "dateStarted": "2021-11-11 12:50:06.518",
-      "dateFinished": "2021-11-11 12:50:06.583",
+      "dateStarted": "2021-11-17 19:32:07.871",
+      "dateFinished": "2021-11-17 19:32:07.978",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nmatch (n:Movie {name: \"The movie about Keanu Reeves\"}) return n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:55:42.612",
+      "dateUpdated": "2021-11-17 19:32:10.452",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -315,7 +315,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":181,\"data\":{\"name\":\"The movie about Keanu Reeves\"},\"label\":\"Movie\"}],\"edges\":[],\"labels\":{\"TTL\":\"#088E3E\",\"CsvPerson\":\"#B7A885\",\"Movie\":\"#648B7A\",\"Person\":\"#590B55\",\"NotKeanu\":\"#6650CC\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"KNOWS\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":171,\"data\":{\"name\":\"The movie about Keanu Reeves\"},\"label\":\"Movie\"}],\"edges\":[],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
           }
         ]
       },
@@ -325,15 +325,15 @@
       "jobName": "paragraph_1635939784252_499221163",
       "id": "paragraph_1635939784252_499221163",
       "dateCreated": "2021-11-03 11:43:04.252",
-      "dateStarted": "2021-11-11 12:50:03.054",
-      "dateFinished": "2021-11-11 12:50:03.119",
+      "dateStarted": "2021-11-17 19:32:10.473",
+      "dateFinished": "2021-11-17 19:32:10.622",
       "status": "FINISHED"
     },
     {
       "title": "apoc.case",
       "text": "%neo4j\n\n// if name is Keanu Reeves we return list of \u0027title\u0027 movies related\n// if name contains \u0027Carrie\u0027 we return list of \u0027title\u0027 and \u0027tagline\u0027 movies related\n// otherwise we return list of \u0027released\u0027 movies related\n\nMATCH (n:Person)\nCALL apoc.case([                // list of pairs (condition and query)\n  n.name \u003d \u0027Keanu Reeves\u0027, \"RETURN [(n)-[]-(m:Movie) | m.title] as selection\",\n  n.name contains \u0027Carrie\u0027, \"RETURN [(n)-[]-(m:Movie) | \u0027title: \u0027 + m.title + \u0027, tagline: \u0027 + m.tagline] as selection\"],   \n  \u0027RETURN [(n)-[]-(m:Movie) | m.released] as selection\u0027,                                         \n  {n: n}\n)\nYIELD value\nRETURN n.name, value.selection as selection;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:55:53.688",
+      "dateUpdated": "2021-11-17 19:32:13.656",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -422,7 +422,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "n.name\tselection\n\"Keanu Reeves\"\t[\"Something\u0027s Gotta Give\",\"The Replacements\",\"Johnny Mnemonic\",\"The Devil\u0027s Advocate\",\"The Matrix Revolutions\",\"The Matrix Reloaded\",\"The Matrix\"]\n\"Carrie-Anne Moss\"\t[\"title: The Matrix Revolutions, tagline: Everything that has a beginning has an end\",\"title: The Matrix Reloaded, tagline: Free your mind\",\"title: The Matrix, tagline: Welcome to the Real World\"]\n\"Laurence Fishburne\"\t[2003,2003,1999]\n\"Hugo Weaving\"\t[2012,2006,2003,2003,1999]\n\"Lilly Wachowski\"\t[2008,2006,2008,2006,2009,2012,2003,2003,1999]\n\"Lana Wachowski\"\t[2008,2006,2006,2008,2012,2009,2003,2003,1999]\n\"Joel Silver\"\t[2008,2006,2009,2003,2003,1999]\n\"Emil Eifrem\"\t[1999]\n\"Charlize Theron\"\t[1996,1997]\n\"Al Pacino\"\t[1997]\n\"Taylor Hackford\"\t[1997]\n\"Tom Cruise\"\t[2000,1986,1992]\n\"Jack Nicholson\"\t[1997,1975,2003,1992,1992]\n\"Demi Moore\"\t[1992]\n\"Kevin Bacon\"\t[1995,2008,1992]\n\"Kiefer Sutherland\"\t[1986,1992]\n\"Noah Wyle\"\t[1992]\n\"Cuba Gooding Jr.\"\t[1998,2000,1997,1992]\n\"Kevin Pollak\"\t[1992]\n\"J.T. Walsh\"\t[1992,1992]\n\"James Marshall\"\t[1992,2009,2006]\n\"Christopher Guest\"\t[1992]\n\"Rob Reiner\"\t[1986,1998,1998,1992]\n\"Aaron Sorkin\"\t[1992,1992]\n\"Kelly McGillis\"\t[1986]\n\"Val Kilmer\"\t[1986]\n\"Anthony Edwards\"\t[1986]\n\"Tom Skerritt\"\t[1986]\n\"Meg Ryan\"\t[1993,1998,1986,1998,1990]\n\"Tony Scott\"\t[1986]\n\"Jim Cash\"\t[1986]\n\"Renee Zellweger\"\t[2000]\n\"Kelly Preston\"\t[2000]\n\"Jerry O\u0027Connell\"\t[2000,1986]\n\"Jay Mohr\"\t[2000]\n\"Bonnie Hunt\"\t[1999,2000]\n\"Regina King\"\t[2000]\n\"Jonathan Lipnicki\"\t[2000]\n\"Cameron Crowe\"\t[2000,2000,2000]\n\"River Phoenix\"\t[1986]\n\"Corey Feldman\"\t[1986]\n\"Wil Wheaton\"\t[1986]\n\"John Cusack\"\t[1986]\n\"Marshall Bell\"\t[1986,2006]\n\"Helen Hunt\"\t[1997,2000,1996]\n\"Greg Kinnear\"\t[1998,1997]\n\"James L. Brooks\"\t[1997]\n\"Annabella Sciorra\"\t[1998]\n\"Max von Sydow\"\t[1998,1999]\n\"Werner Herzog\"\t[2006,1998]\n\"Robin Williams\"\t[1998,1999,1996]\n\"Vincent Ward\"\t[1998]\n\"Ethan Hawke\"\t[1999]\n\"Rick Yune\"\t[2009,1999]\n\"James Cromwell\"\t[1999,1999]\n\"Scott Hicks\"\t[1999]\n\"Parker Posey\"\t[1998]\n\"Dave Chappelle\"\t[1998]\n\"Steve Zahn\"\t[2006,1998]\n\"Tom Hanks\"\t[1995,1998,1992,1990,1996,2006,2012,2000,1999,1993,2004,2007,1996]\n\"Nora Ephron\"\t[1998,1998,1993,1998]\n\"Rita Wilson\"\t[1993]\n\"Bill Pullman\"\t[1993]\n\"Victor Garber\"\t[1993]\n\"Rosie O\u0027Donnell\"\t[1992,1993]\n\"John Patrick Stanley\"\t[1990]\n\"Nathan Lane\"\t[1990,1996]\n\"Billy Crystal\"\t[1998]\n\"Carrie Fisher\"\t[\"title: When Harry Met Sally, tagline: Can two friends sleep together and still love each other in the morning?\"]\n\"Bruno Kirby\"\t[1998]\n\"Liv Tyler\"\t[1996]\n\"Brooke Langton\"\t[2000]\n\"Gene Hackman\"\t[1992,1996,2000]\n\"Orlando Jones\"\t[2000]\n\"Howard Deutch\"\t[2000]\n\"Christian Bale\"\t[2006]\n\"Zach Grenier\"\t[2006,1996]\n\"Mike Nichols\"\t[1996,2007]\n\"Richard Harris\"\t[1992]\n\"Clint Eastwood\"\t[1992,1992]\n\"Takeshi Kitano\"\t[1995]\n\"Dina Meyer\"\t[1995]\n\"Ice-T\"\t[1995]\n\"Robert Longo\"\t[1995]\n\"Halle Berry\"\t[2012]\n\"Jim Broadbent\"\t[2012]\n\"Tom Tykwer\"\t[2012]\n\"David Mitchell\"\t[2012]\n\"Stefan Arndt\"\t[2012]\n\"Ian McKellen\"\t[2006]\n\"Audrey Tautou\"\t[2006]\n\"Paul Bettany\"\t[2006]\n\"Ron Howard\"\t[1995,2008,2006]\n\"Natalie Portman\"\t[2006]\n\"Stephen Rea\"\t[2006]\n\"John Hurt\"\t[2006]\n\"Ben Miles\"\t[2008,2009,2006]\n\"Emile Hirsch\"\t[2008]\n\"John Goodman\"\t[2008]\n\"Susan Sarandon\"\t[2008]\n\"Matthew Fox\"\t[2008]\n\"Christina Ricci\"\t[2008]\n\"Rain\"\t[2008,2009]\n\"Naomie Harris\"\t[2009]\n\"Michael Clarke Duncan\"\t[1999]\n\"David Morse\"\t[1999]\n\"Sam Rockwell\"\t[1999,2008]\n\"Gary Sinise\"\t[1995,1999]\n\"Patricia Clarkson\"\t[1999]\n\"Frank Darabont\"\t[1999]\n\"Frank Langella\"\t[2008]\n\"Michael Sheen\"\t[2008]\n\"Oliver Platt\"\t[2008,1999]\n\"Danny DeVito\"\t[1992,1992,1975]\n\"John C. Reilly\"\t[1992]\n\"Ed Harris\"\t[1995]\n\"Bill Paxton\"\t[1996,1992,1995]\n\"Philip Seymour Hoffman\"\t[1996,2007]\n\"Jan de Bont\"\t[1996]\n\"Robert Zemeckis\"\t[2000,2004]\n\"Milos Forman\"\t[1975]\n\"Diane Keaton\"\t[2003]\n\"Nancy Meyers\"\t[2003,2003,2003]\n\"Chris Columbus\"\t[1999]\n\"Julia Roberts\"\t[2007]\n\"Madonna\"\t[1992]\n\"Geena Davis\"\t[1992]\n\"Lori Petty\"\t[1992]\n\"Penny Marshall\"\t[1992]\n\"Paul Blythe\"\t[]\n\"Angela Scope\"\t[2000]\n\"Jessica Thompson\"\t[2006,2000,2000,2012,1996,1992]\n\"James Thompson\"\t[2000,2006]\n"
+            "data": "n.name\tselection\n\"Keanu Reeves\"\t[null,\"Something\u0027s Gotta Give\",\"The Replacements\",\"Johnny Mnemonic\",\"The Devil\u0027s Advocate\",\"The Matrix Revolutions\",\"The Matrix Reloaded\",\"The Matrix\"]\n\"Carrie-Anne Moss\"\t[\"title: The Matrix Revolutions, tagline: Everything that has a beginning has an end\",\"title: The Matrix Reloaded, tagline: Free your mind\",\"title: The Matrix, tagline: Welcome to the Real World\"]\n\"Laurence Fishburne\"\t[2003,2003,1999]\n\"Hugo Weaving\"\t[2012,2006,2003,2003,1999]\n\"Lilly Wachowski\"\t[2008,2006,2008,2006,2009,2012,2003,2003,1999]\n\"Lana Wachowski\"\t[2008,2006,2006,2008,2012,2009,2003,2003,1999]\n\"Joel Silver\"\t[2008,2006,2009,2003,2003,1999]\n\"Emil Eifrem\"\t[1999]\n\"Charlize Theron\"\t[1996,1997]\n\"Al Pacino\"\t[1997]\n\"Taylor Hackford\"\t[1997]\n\"Tom Cruise\"\t[2000,1986,1992]\n\"Jack Nicholson\"\t[1997,1975,2003,1992,1992]\n\"Demi Moore\"\t[1992]\n\"Kevin Bacon\"\t[1995,2008,1992]\n\"Kiefer Sutherland\"\t[1986,1992]\n\"Noah Wyle\"\t[1992]\n\"Cuba Gooding Jr.\"\t[1998,2000,1997,1992]\n\"Kevin Pollak\"\t[1992]\n\"J.T. Walsh\"\t[1992,1992]\n\"James Marshall\"\t[1992,2009,2006]\n\"Christopher Guest\"\t[1992]\n\"Rob Reiner\"\t[1986,1998,1998,1992]\n\"Aaron Sorkin\"\t[1992,1992]\n\"Kelly McGillis\"\t[1986]\n\"Val Kilmer\"\t[1986]\n\"Anthony Edwards\"\t[1986]\n\"Tom Skerritt\"\t[1986]\n\"Meg Ryan\"\t[1993,1998,1986,1998,1990]\n\"Tony Scott\"\t[1986]\n\"Jim Cash\"\t[1986]\n\"Renee Zellweger\"\t[2000]\n\"Kelly Preston\"\t[2000]\n\"Jerry O\u0027Connell\"\t[2000,1986]\n\"Jay Mohr\"\t[2000]\n\"Bonnie Hunt\"\t[1999,2000]\n\"Regina King\"\t[2000]\n\"Jonathan Lipnicki\"\t[2000]\n\"Cameron Crowe\"\t[2000,2000,2000]\n\"River Phoenix\"\t[1986]\n\"Corey Feldman\"\t[1986]\n\"Wil Wheaton\"\t[1986]\n\"John Cusack\"\t[1986]\n\"Marshall Bell\"\t[1986,2006]\n\"Helen Hunt\"\t[1997,2000,1996]\n\"Greg Kinnear\"\t[1998,1997]\n\"James L. Brooks\"\t[1997]\n\"Annabella Sciorra\"\t[1998]\n\"Max von Sydow\"\t[1998,1999]\n\"Werner Herzog\"\t[2006,1998]\n\"Robin Williams\"\t[1998,1999,1996]\n\"Vincent Ward\"\t[1998]\n\"Ethan Hawke\"\t[1999]\n\"Rick Yune\"\t[2009,1999]\n\"James Cromwell\"\t[1999,1999]\n\"Scott Hicks\"\t[1999]\n\"Parker Posey\"\t[1998]\n\"Dave Chappelle\"\t[1998]\n\"Steve Zahn\"\t[2006,1998]\n\"Tom Hanks\"\t[1995,1998,1992,1990,1996,2006,2012,2000,1999,1993,2004,2007,1996]\n\"Nora Ephron\"\t[1998,1998,1993,1998]\n\"Rita Wilson\"\t[1993]\n\"Bill Pullman\"\t[1993]\n\"Victor Garber\"\t[1993]\n\"Rosie O\u0027Donnell\"\t[1992,1993]\n\"John Patrick Stanley\"\t[1990]\n\"Nathan Lane\"\t[1990,1996]\n\"Billy Crystal\"\t[1998]\n\"Carrie Fisher\"\t[\"title: When Harry Met Sally, tagline: Can two friends sleep together and still love each other in the morning?\"]\n\"Bruno Kirby\"\t[1998]\n\"Liv Tyler\"\t[1996]\n\"Brooke Langton\"\t[2000]\n\"Gene Hackman\"\t[1992,1996,2000]\n\"Orlando Jones\"\t[2000]\n\"Howard Deutch\"\t[2000]\n\"Christian Bale\"\t[2006]\n\"Zach Grenier\"\t[2006,1996]\n\"Mike Nichols\"\t[1996,2007]\n\"Richard Harris\"\t[1992]\n\"Clint Eastwood\"\t[1992,1992]\n\"Takeshi Kitano\"\t[1995]\n\"Dina Meyer\"\t[1995]\n\"Ice-T\"\t[1995]\n\"Robert Longo\"\t[1995]\n\"Halle Berry\"\t[2012]\n\"Jim Broadbent\"\t[2012]\n\"Tom Tykwer\"\t[2012]\n\"David Mitchell\"\t[2012]\n\"Stefan Arndt\"\t[2012]\n\"Ian McKellen\"\t[2006]\n\"Audrey Tautou\"\t[2006]\n\"Paul Bettany\"\t[2006]\n\"Ron Howard\"\t[1995,2008,2006]\n\"Natalie Portman\"\t[2006]\n\"Stephen Rea\"\t[2006]\n\"John Hurt\"\t[2006]\n\"Ben Miles\"\t[2008,2009,2006]\n\"Emile Hirsch\"\t[2008]\n\"John Goodman\"\t[2008]\n\"Susan Sarandon\"\t[2008]\n\"Matthew Fox\"\t[2008]\n\"Christina Ricci\"\t[2008]\n\"Rain\"\t[2008,2009]\n\"Naomie Harris\"\t[2009]\n\"Michael Clarke Duncan\"\t[1999]\n\"David Morse\"\t[1999]\n\"Sam Rockwell\"\t[1999,2008]\n\"Gary Sinise\"\t[1995,1999]\n\"Patricia Clarkson\"\t[1999]\n\"Frank Darabont\"\t[1999]\n\"Frank Langella\"\t[2008]\n\"Michael Sheen\"\t[2008]\n\"Oliver Platt\"\t[2008,1999]\n\"Danny DeVito\"\t[1992,1992,1975]\n\"John C. Reilly\"\t[1992]\n\"Ed Harris\"\t[1995]\n\"Bill Paxton\"\t[1996,1992,1995]\n\"Philip Seymour Hoffman\"\t[1996,2007]\n\"Jan de Bont\"\t[1996]\n\"Robert Zemeckis\"\t[2000,2004]\n\"Milos Forman\"\t[1975]\n\"Diane Keaton\"\t[2003]\n\"Nancy Meyers\"\t[2003,2003,2003]\n\"Chris Columbus\"\t[1999]\n\"Julia Roberts\"\t[2007]\n\"Madonna\"\t[1992]\n\"Geena Davis\"\t[1992]\n\"Lori Petty\"\t[1992]\n\"Penny Marshall\"\t[1992]\n\"Paul Blythe\"\t[]\n\"Angela Scope\"\t[2000]\n\"Jessica Thompson\"\t[2006,2000,2000,2012,1996,1992]\n\"James Thompson\"\t[2000,2006]\n"
           }
         ]
       },
@@ -432,15 +432,15 @@
       "jobName": "paragraph_1635516834037_1307698025",
       "id": "paragraph_1635516834037_1307698025",
       "dateCreated": "2021-10-29 14:13:54.037",
-      "dateStarted": "2021-11-10 10:51:23.746",
-      "dateFinished": "2021-11-10 10:51:24.935",
+      "dateStarted": "2021-11-17 19:32:13.674",
+      "dateFinished": "2021-11-17 19:32:14.772",
       "status": "FINISHED"
     },
     {
       "title": "apoc.do.case",
       "text": "%neo4j\n\nMATCH (n:Person)\nCALL apoc.do.case([                // list of pairs (condition and query)\n  n.name \u003d \u0027Keanu Reeves\u0027, \"WITH $n as n CREATE (n)-[:MY_CASE_REL]-\u003e(:MyCaseNode {myId: 1})\",\n  n.name contains \u0027Carrie\u0027, \"WITH $n as n CREATE (n)-[:MY_CASE_REL]-\u003e(:MyCaseNode {myId: 2})\"],   \n  \u0027\u0027,                                         \n  {n: n}\n)\nYIELD value RETURN n.name;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:55:59.923",
+      "dateUpdated": "2021-11-17 19:32:24.990",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -502,15 +502,15 @@
       "jobName": "paragraph_1635516847536_392308208",
       "id": "paragraph_1635516847536_392308208",
       "dateCreated": "2021-10-29 14:14:07.536",
-      "dateStarted": "2021-11-07 14:49:10.014",
-      "dateFinished": "2021-11-07 14:49:10.108",
+      "dateStarted": "2021-11-17 19:32:25.009",
+      "dateFinished": "2021-11-17 19:32:25.211",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\n\nMATCH (n)-[:MY_CASE_REL]-\u003e(m:MyCaseNode)\nRETURN n.name, m.myId",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:56:17.065",
+      "dateUpdated": "2021-11-17 19:32:26.937",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -564,7 +564,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "n.name\tm.myId\n\"Keanu Reeves\"\t1\n\"Carrie-Anne Moss\"\t2\n\"Carrie Fisher\"\t2\n\"Keanu Reeves\"\t1\n\"Carrie-Anne Moss\"\t2\n\"Carrie Fisher\"\t2\n"
+            "data": "n.name\tm.myId\n\"Keanu Reeves\"\t1\n\"Carrie-Anne Moss\"\t2\n\"Carrie Fisher\"\t2\n"
           }
         ]
       },
@@ -574,8 +574,8 @@
       "jobName": "paragraph_1636296350644_1972086368",
       "id": "paragraph_1636296350644_1972086368",
       "dateCreated": "2021-11-07 14:45:50.644",
-      "dateStarted": "2021-11-07 14:49:16.410",
-      "dateFinished": "2021-11-07 14:49:16.525",
+      "dateStarted": "2021-11-17 19:32:26.953",
+      "dateFinished": "2021-11-17 19:32:27.020",
       "status": "FINISHED"
     },
     {
@@ -624,7 +624,7 @@
       "title": "apoc.util.validate",
       "text": "%neo4j\nMATCH (n:Person) WITH n.name \u003d \u0027Keanu Reeves\u0027 as booleanPredicate, n\nCALL apoc.util.validate(booleanPredicate,\u0027Person with name %s found\u0027,[n.name])\nRETURN count(*)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:57:01.526",
+      "dateUpdated": "2021-11-17 19:32:44.810",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -688,15 +688,15 @@
       "jobName": "paragraph_1636043842236_1223515060",
       "id": "paragraph_1636043842236_1223515060",
       "dateCreated": "2021-11-04 16:37:22.237",
-      "dateStarted": "2021-11-10 10:54:44.468",
-      "dateFinished": "2021-11-10 10:54:44.497",
+      "dateStarted": "2021-11-17 19:32:44.824",
+      "dateFinished": "2021-11-17 19:32:44.928",
       "status": "ERROR"
     },
     {
       "title": "apoc.util.validate",
       "text": "%neo4j\nMATCH (n:Person) WITH n.name \u003d \u0027Not Existent\u0027 as booleanPredicate, n\nCALL apoc.util.validate(booleanPredicate,\u0027Person with name %s found\u0027,[n.name])\nRETURN count(*)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:57:06.351",
+      "dateUpdated": "2021-11-17 19:32:48.613",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -760,8 +760,8 @@
       "jobName": "paragraph_1636297212424_2097832834",
       "id": "paragraph_1636297212424_2097832834",
       "dateCreated": "2021-11-07 15:00:12.424",
-      "dateStarted": "2021-11-10 10:54:42.036",
-      "dateFinished": "2021-11-10 10:54:42.119",
+      "dateStarted": "2021-11-17 19:32:48.629",
+      "dateFinished": "2021-11-17 19:32:48.678",
       "status": "FINISHED"
     },
     {
@@ -840,9 +840,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n# Batching data\n\nApoc provides some procedures to split the data in batches to handle performance and memory issues:\n- apoc.periodic.iterate\n- apoc.periodic.commit\n- apoc.periodic.truncate\n\nThe `apoc.periodic.iterate(data-driven, operation, $config)` procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. \n\nIt provides a way to batch the data by dividing the workload into two parts:\n\n- a data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\n- an operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\n\nThe data-driven statement is provided as the first statement that results in a stream of values to be processed. \nThe results of the data-driven statement are passed to the operation statement as parameters and the operation statement is provided as the second statement to process one element at a time or a batch at a time\n\nWe can use the following configurations as 3rd parameter:\n\n- batchSize (default: 10000) - run the specified number of operation statements in a single transaction\n- parallel (default: false) - run operation statements in paralle\n- retries (default: 0) - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param \\{_retry}\n- batchMode (default: \"BATCH\") - how data-driven statements should be processed by operation statement. See below\n- params (default: EmtpyMap) - externally pass in map of params\n- concurrency (default: 50) - number of concurrent tasks are generated when using `parallel:true`\n\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\n`batchMode` can have 3 values. \n`SINGLE` to perform one operation at a time. \nBoth `BATCH` and `BATCH_SINGLE` execute operation statement once per batchSize and the results of data-driven statement will be grouped in a `$_batch`. For example, in this case:\n\n| first      | second |\n| ----------- | ----------- | \n| alpha      | beta       | \n| gamma   | delta        |\n| ...        | ... |\n\n`$_batch` will be a list of maps: `[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027}  .....]`\n\n\nBut with `BATCH` will be executed an unpacking of batch, that is:\n\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\nInstead with `BATCH_SINGLE` but leaves unpacking of batch to the operation statement.\nThe operation query can access the batched values via the `$_batch` parameter.\n",
+      "text": "%md\n\n# Batching data\n\nApoc provides some procedures to split the data in batches to handle performance and memory issues:\n- apoc.periodic.iterate\n- apoc.periodic.commit\n- apoc.periodic.truncate\n\nThe `apoc.periodic.iterate(data-driven, operation, $config)` procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. \n\nIt provides a way to batch the data by dividing the workload into two parts:\n\n- a data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\n- an operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\n\nThe data-driven statement is provided as the first statement that results in a stream of values to be processed. \nThe results of the data-driven statement are passed to the operation statement as parameters and the operation statement is provided as the second statement to process one element at a time or a batch at a time\n\nWe can use the following configurations as 3rd parameter:\n\n- `batchSize (default: 10000)` - run the specified number of operation statements in a single transaction\n- `parallel (default: false)` - run operation statements in paralle\n- `retries (default: 0)` - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached\n- `batchMode (default: \"BATCH\")` - how data-driven statements should be processed by operation statement. See below\n- `params (default: EmtpyMap)` - externally pass in map of params\n- `concurrency (default: 50)` - number of concurrent tasks are generated when using `parallel:true`\n\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\n`batchMode` can have 3 values. \n`SINGLE` to perform one operation at a time. \nBoth `BATCH` and `BATCH_SINGLE` execute operation statement once per batchSize and the results of data-driven statement will be grouped in a `$_batch`. For example, in this case:\n\n| first      | second |\n| ----------- | ----------- | \n| alpha      | beta       | \n| gamma   | delta        |\n| ...        | ... |\n\n`$_batch` will be a list of maps: `[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027}  .....]`\n\n\nBut with `BATCH` will be executed an unpacking of batch, that is:\n\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\nInstead with `BATCH_SINGLE` but leaves unpacking of batch to the operation statement.\nThe operation query can access the batched values via the `$_batch` parameter.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:59:34.959",
+      "dateUpdated": "2021-11-17 19:34:20.094",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -867,7 +867,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eBatching data\u003c/h1\u003e\n\u003cp\u003eApoc provides some procedures to split the data in batches to handle performance and memory issues:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.periodic.iterate\u003c/li\u003e\n\u003cli\u003eapoc.periodic.commit\u003c/li\u003e\n\u003cli\u003eapoc.periodic.truncate\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003eapoc.periodic.iterate(data-driven, operation, $config)\u003c/code\u003e procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions.\u003c/p\u003e\n\u003cp\u003eIt provides a way to batch the data by dividing the workload into two parts:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ea data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\u003c/li\u003e\n\u003cli\u003ean operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe data-driven statement is provided as the first statement that results in a stream of values to be processed.\u003cbr /\u003e\nThe results of the data-driven statement are passed to the operation statement as parameters and the operation statement is provided as the second statement to process one element at a time or a batch at a time\u003c/p\u003e\n\u003cp\u003eWe can use the following configurations as 3rd parameter:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ebatchSize (default: 10000) - run the specified number of operation statements in a single transaction\u003c/li\u003e\n\u003cli\u003eparallel (default: false) - run operation statements in paralle\u003c/li\u003e\n\u003cli\u003eretries (default: 0) - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached - param {_retry}\u003c/li\u003e\n\u003cli\u003ebatchMode (default: \u0026ldquo;BATCH\u0026rdquo;) - how data-driven statements should be processed by operation statement. See below\u003c/li\u003e\n\u003cli\u003eparams (default: EmtpyMap) - externally pass in map of params\u003c/li\u003e\n\u003cli\u003econcurrency (default: 50) - number of concurrent tasks are generated when using \u003ccode\u003eparallel:true\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\u003cp\u003e\u003ccode\u003ebatchMode\u003c/code\u003e can have 3 values.\u003cbr /\u003e\n\u003ccode\u003eSINGLE\u003c/code\u003e to perform one operation at a time.\u003cbr /\u003e\nBoth \u003ccode\u003eBATCH\u003c/code\u003e and \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e execute operation statement once per batchSize and the results of data-driven statement will be grouped in a \u003ccode\u003e$_batch\u003c/code\u003e. For example, in this case:\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003cth\u003efirst\u003c/th\u003e\u003cth\u003esecond\u003c/th\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003ealpha\u003c/td\u003e\u003ctd\u003ebeta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003egamma\u003c/td\u003e\u003ctd\u003edelta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003e\u003ccode\u003e$_batch\u003c/code\u003e will be a list of maps: \u003ccode\u003e[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027} .....]\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eBut with \u003ccode\u003eBATCH\u003c/code\u003e will be executed an unpacking of batch, that is:\u003c/p\u003e\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\u003cp\u003eInstead with \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e but leaves unpacking of batch to the operation statement.\u003cbr /\u003e\nThe operation query can access the batched values via the \u003ccode\u003e$_batch\u003c/code\u003e parameter.\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eBatching data\u003c/h1\u003e\n\u003cp\u003eApoc provides some procedures to split the data in batches to handle performance and memory issues:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.periodic.iterate\u003c/li\u003e\n\u003cli\u003eapoc.periodic.commit\u003c/li\u003e\n\u003cli\u003eapoc.periodic.truncate\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003eapoc.periodic.iterate(data-driven, operation, $config)\u003c/code\u003e procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions.\u003c/p\u003e\n\u003cp\u003eIt provides a way to batch the data by dividing the workload into two parts:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ea data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\u003c/li\u003e\n\u003cli\u003ean operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe data-driven statement is provided as the first statement that results in a stream of values to be processed.\u003cbr /\u003e\nThe results of the data-driven statement are passed to the operation statement as parameters and the operation statement is provided as the second statement to process one element at a time or a batch at a time\u003c/p\u003e\n\u003cp\u003eWe can use the following configurations as 3rd parameter:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003ebatchSize (default: 10000)\u003c/code\u003e - run the specified number of operation statements in a single transaction\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eparallel (default: false)\u003c/code\u003e - run operation statements in paralle\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eretries (default: 0)\u003c/code\u003e - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ebatchMode (default: \u0026quot;BATCH\u0026quot;)\u003c/code\u003e - how data-driven statements should be processed by operation statement. See below\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eparams (default: EmtpyMap)\u003c/code\u003e - externally pass in map of params\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003econcurrency (default: 50)\u003c/code\u003e - number of concurrent tasks are generated when using \u003ccode\u003eparallel:true\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\u003cp\u003e\u003ccode\u003ebatchMode\u003c/code\u003e can have 3 values.\u003cbr /\u003e\n\u003ccode\u003eSINGLE\u003c/code\u003e to perform one operation at a time.\u003cbr /\u003e\nBoth \u003ccode\u003eBATCH\u003c/code\u003e and \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e execute operation statement once per batchSize and the results of data-driven statement will be grouped in a \u003ccode\u003e$_batch\u003c/code\u003e. For example, in this case:\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003cth\u003efirst\u003c/th\u003e\u003cth\u003esecond\u003c/th\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003ealpha\u003c/td\u003e\u003ctd\u003ebeta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003egamma\u003c/td\u003e\u003ctd\u003edelta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003e\u003ccode\u003e$_batch\u003c/code\u003e will be a list of maps: \u003ccode\u003e[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027} .....]\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eBut with \u003ccode\u003eBATCH\u003c/code\u003e will be executed an unpacking of batch, that is:\u003c/p\u003e\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\u003cp\u003eInstead with \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e but leaves unpacking of batch to the operation statement.\u003cbr /\u003e\nThe operation query can access the batched values via the \u003ccode\u003e$_batch\u003c/code\u003e parameter.\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -877,52 +877,15 @@
       "jobName": "paragraph_1635518181245_851865146",
       "id": "paragraph_1635518181245_851865146",
       "dateCreated": "2021-10-29 14:36:21.246",
-      "dateStarted": "2021-11-11 13:59:34.960",
-      "dateFinished": "2021-11-11 13:59:34.977",
-      "status": "FINISHED"
-    },
-    {
-      "title": "Create \"periodic\" dataset",
-      "text": "%neo4j\nUNWIND range(1,100) as id create (:Start {myProp: id})-[rel:MY_PERIODIC_REL]-\u003e(:End);",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-08 15:23:06.881",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": []
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636297395447_1508173035",
-      "id": "paragraph_1636297395447_1508173035",
-      "dateCreated": "2021-11-07 15:03:15.447",
-      "dateStarted": "2021-11-08 15:23:03.883",
-      "dateFinished": "2021-11-08 15:23:04.224",
+      "dateStarted": "2021-11-17 19:34:20.094",
+      "dateFinished": "2021-11-17 19:34:20.121",
       "status": "FINISHED"
     },
     {
       "title": "BATCH mode",
-      "text": "%neo4j\n\ncreate (n:NodePeriodic);\n\nCALL apoc.periodic.iterate(\n  \"UNWIND range(1,99999) as id RETURN id\",\n  \"CREATE (:NodePeriodic {id: id, time: timestamp()})-[rel:MY_PERIODIC_REL]-\u003e(:End)\", // this is a single element of batch UNWINDed\n  {batchMode: \u0027BATCH\u0027,batchSize:10, parallel:false})\n",
+      "text": "%neo4j\n\nCALL apoc.periodic.iterate(\n  \"UNWIND range(1,99999) as id RETURN id\",\n  \"CREATE (:NodePeriodic {id: id, time: timestamp()})-[rel:MY_PERIODIC_REL]-\u003e(:End)\", // this is a single element of batch UNWINDed\n  {batchMode: \u0027BATCH\u0027,batchSize:10, parallel:false})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 10:50:47.380",
+      "dateUpdated": "2021-11-17 19:36:57.819",
       "config": {
         "colWidth": 9.0,
         "fontSize": 9.0,
@@ -992,11 +955,11 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
-            "type": "TEXT",
-            "data": "The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Explicitly terminated by the user. "
+            "type": "TABLE",
+            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n10000\t99999\t16\t99999\t0\t0\t0\t10000\t10000\t0\t99999\t99999\t0\tFALSE\t0\t199998\t99999\t199998\t199998\t0\t0\n"
           }
         ]
       },
@@ -1006,15 +969,15 @@
       "jobName": "paragraph_1635847089976_739455528",
       "id": "paragraph_1635847089976_739455528",
       "dateCreated": "2021-11-02 09:58:09.976",
-      "dateStarted": "2021-11-11 10:48:20.810",
-      "dateFinished": "2021-11-11 10:50:04.322",
-      "status": "ABORT"
+      "dateStarted": "2021-11-17 19:35:26.593",
+      "dateFinished": "2021-11-17 19:35:43.090",
+      "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\n\nmatch (s:NodePeriodic) \nreturn count(s);",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:55:37.002",
+      "dateUpdated": "2021-11-17 19:35:49.612",
       "config": {
         "colWidth": 3.0,
         "fontSize": 9.0,
@@ -1061,14 +1024,23 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "count(s)\n100000\n"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1635847187269_311493915",
       "id": "paragraph_1635847187269_311493915",
       "dateCreated": "2021-11-02 09:59:47.269",
-      "dateStarted": "2021-11-11 13:55:36.532",
-      "dateFinished": "2021-11-11 13:55:36.731",
+      "dateStarted": "2021-11-17 19:35:49.628",
+      "dateFinished": "2021-11-17 19:35:49.684",
       "status": "FINISHED"
     },
     {

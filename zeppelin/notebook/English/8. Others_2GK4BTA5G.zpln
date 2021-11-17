@@ -45,7 +45,7 @@
       "title": "apoc.create.vNode",
       "text": "%neo4j\n\n/* \nvisualize a graph from this csv file:\n    name,surname\n    Eren,Jager\n    Mikasa,Ackermann\n    Armin,Arelet  \n*/\n\n\n// we can use CALL apoc.create.vNode(labels, propertyMap)\n\nCALL apoc.load.csv(\"persons.csv\") YIELD map \n// we retrieve the csv as a row of maps, so {\"name\":\"Eren\", \"surname\": \"Jager\"} , {\"name\": \"Mikasa\", \"surname\": \"Ackermann\"}, {\"name\": \"Armin\", \"surname\": \"Arelet\"}\nWITH map \nCALL apoc.create.vNode([\u0027Person\u0027], map) // we create 2 virtual nodes from csv\nYIELD node\nRETURN node",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:30:39.997",
+      "dateUpdated": "2021-11-17 23:35:48.843",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -108,21 +108,30 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":-1,\"data\":{\"name\":\"Eren\",\"surname\":\"Jager\"},\"label\":\"Person\"},{\"id\":-2,\"data\":{\"name\":\"Mikasa\",\"surname\":\"Ackermann\"},\"label\":\"Person\"},{\"id\":-3,\"data\":{\"name\":\"Armin\",\"surname\":\"Arelet \"},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\",\"TagLine\":\"#28A859\",\"MergeOne\":\"#8F3CD7\",\"Company\":\"#445ECC\",\"Car\":\"#CD8F74\",\"Animal\":\"#4544D5\",\"Cat\":\"#5120AA\",\"MergeTwo\":\"#2D5DE2\"},\"types\":[\"NEW_REL\",\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636293811647_1694047595",
       "id": "paragraph_1636293811647_1694047595",
       "dateCreated": "2021-11-07 14:03:31.647",
-      "dateStarted": "2021-11-09 11:30:49.757",
-      "dateFinished": "2021-11-09 11:30:49.819",
+      "dateStarted": "2021-11-17 23:35:48.857",
+      "dateFinished": "2021-11-17 23:35:48.969",
       "status": "FINISHED"
     },
     {
       "title": "apoc.graph.fromData",
       "text": "%neo4j\n\nMATCH (p:Person)-[r:ACTED_IN]-\u003e(m:Movie)\nWITH collect(m) + collect(p) AS nodes, collect(r) AS relationships\nCALL apoc.graph.fromData(nodes, relationships, \"movies\", {})\nYIELD graph\nWITH graph.nodes as nodes, graph.relationships as rels\nUNWIND nodes AS node\nUNWIND rels AS rel\nRETURN DISTINCT node, rel",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:30:48.371",
+      "dateUpdated": "2021-11-17 23:37:32.800",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -171,21 +180,12 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "tableHide": true,
+        "tableHide": false,
         "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"title\":\"The Matrix\"},\"label\":\"Movie\"},{\"id\":1,\"data\":{\"date\":\"2021-11-10T11:13:54.086Z\",\"name\":\"Keanu Reeves\",\"born\":1964},\"label\":\"Person\"},{\"id\":2,\"data\":{\"name\":\"Carrie-Anne Moss\",\"children\":[\"Al\",\"John\",\"Jack\"],\"born\":1967},\"label\":\"Person\"},{\"id\":3,\"data\":{\"name\":\"Laurence Fishburne\",\"children\":[\"Naruto\",\"Sasuke\",\"Sakura\"],\"born\":1961},\"label\":\"Person\"},{\"id\":4,\"data\":{\"name\":\"Hugo Weaving\",\"born\":1960},\"label\":\"Person\"},{\"id\":8,\"data\":{\"name\":\"Emil Eifrem\",\"born\":1978},\"label\":\"Person\"},{\"id\":9,\"data\":{\"title\":\"The Matrix Reloaded\"},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"title\":\"The Matrix Revolutions\"},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"title\":\"The Devil\\u0027s Advocate\"},\"label\":\"Movie\"},{\"id\":12,\"data\":{\"name\":\"Charlize Theron\",\"born\":1975},\"label\":\"Person\"},{\"id\":13,\"data\":{\"name\":\"Al Pacino\",\"born\":1940},\"label\":\"Person\"},{\"id\":15,\"data\":{\"title\":\"A Few Good Men\"},\"label\":\"Movie\"},{\"id\":16,\"data\":{\"name\":\"Tom Cruise\",\"born\":1962},\"label\":\"Person\"},{\"id\":17,\"data\":{\"name\":\"Jack Nicholson\",\"born\":1937},\"label\":\"Person\"},{\"id\":18,\"data\":{\"name\":\"Demi Moore\",\"born\":1962},\"label\":\"Person\"},{\"id\":19,\"data\":{\"name\":\"Kevin Bacon\",\"born\":1958},\"label\":\"Person\"},{\"id\":20,\"data\":{\"name\":\"Kiefer Sutherland\",\"born\":1966},\"label\":\"Person\"},{\"id\":21,\"data\":{\"name\":\"Noah Wyle\",\"born\":1971},\"label\":\"Person\"},{\"id\":22,\"data\":{\"name\":\"Cuba Gooding Jr.\",\"born\":1968},\"label\":\"Person\"},{\"id\":23,\"data\":{\"name\":\"Kevin Pollak\",\"born\":1957},\"label\":\"Person\"},{\"id\":24,\"data\":{\"name\":\"J.T. Walsh\",\"born\":1943},\"label\":\"Person\"},{\"id\":25,\"data\":{\"name\":\"James Marshall\",\"born\":1967},\"label\":\"Person\"},{\"id\":26,\"data\":{\"name\":\"Christopher Guest\",\"born\":1948},\"label\":\"Person\"},{\"id\":28,\"data\":{\"name\":\"Aaron Sorkin\",\"born\":1961},\"label\":\"Person\"},{\"id\":29,\"data\":{\"title\":\"Top Gun\"},\"label\":\"Movie\"},{\"id\":30,\"data\":{\"name\":\"Kelly McGillis\",\"born\":1957},\"label\":\"Person\"},{\"id\":31,\"data\":{\"name\":\"Val Kilmer\",\"born\":1959},\"label\":\"Person\"},{\"id\":32,\"data\":{\"name\":\"Anthony Edwards\",\"born\":1962},\"label\":\"Person\"},{\"id\":33,\"data\":{\"name\":\"Tom Skerritt\",\"born\":1933},\"label\":\"Person\"},{\"id\":34,\"data\":{\"name\":\"Meg Ryan\",\"born\":1961},\"label\":\"Person\"},{\"id\":37,\"data\":{\"title\":\"Jerry Maguire\"},\"label\":\"Movie\"},{\"id\":38,\"data\":{\"name\":\"Renee Zellweger\",\"born\":1969},\"label\":\"Person\"},{\"id\":39,\"data\":{\"name\":\"Kelly Preston\",\"born\":1962},\"label\":\"Person\"},{\"id\":40,\"data\":{\"name\":\"Jerry O\\u0027Connell\",\"born\":1974},\"label\":\"Person\"},{\"id\":41,\"data\":{\"name\":\"Jay Mohr\",\"born\":1970},\"label\":\"Person\"},{\"id\":42,\"data\":{\"name\":\"Bonnie Hunt\",\"born\":1961},\"label\":\"Person\"},{\"id\":43,\"data\":{\"name\":\"Regina King\",\"born\":1971},\"label\":\"Person\"},{\"id\":44,\"data\":{\"name\":\"Jonathan Lipnicki\",\"born\":1996},\"label\":\"Person\"},{\"id\":46,\"data\":{\"title\":\"Stand By Me\"},\"label\":\"Movie\"},{\"id\":47,\"data\":{\"name\":\"River Phoenix\",\"born\":1970},\"label\":\"Person\"},{\"id\":48,\"data\":{\"name\":\"Corey Feldman\",\"born\":1971},\"label\":\"Person\"},{\"id\":49,\"data\":{\"name\":\"Wil Wheaton\",\"born\":1972},\"label\":\"Person\"},{\"id\":50,\"data\":{\"name\":\"John Cusack\",\"born\":1966},\"label\":\"Person\"},{\"id\":51,\"data\":{\"name\":\"Marshall Bell\",\"born\":1942},\"label\":\"Person\"},{\"id\":52,\"data\":{\"title\":\"As Good as It Gets\"},\"label\":\"Movie\"},{\"id\":53,\"data\":{\"name\":\"Helen Hunt\",\"born\":1963},\"label\":\"Person\"},{\"id\":54,\"data\":{\"name\":\"Greg Kinnear\",\"born\":1963},\"label\":\"Person\"},{\"id\":56,\"data\":{\"title\":\"What Dreams May Come\"},\"label\":\"Movie\"},{\"id\":57,\"data\":{\"name\":\"Annabella Sciorra\",\"born\":1960},\"label\":\"Person\"},{\"id\":58,\"data\":{\"name\":\"Max von Sydow\",\"born\":1929},\"label\":\"Person\"},{\"id\":59,\"data\":{\"name\":\"Werner Herzog\",\"born\":1942},\"label\":\"Person\"},{\"id\":60,\"data\":{\"name\":\"Robin Williams\",\"born\":1951},\"label\":\"Person\"},{\"id\":62,\"data\":{\"title\":\"Snow Falling on Cedars\"},\"label\":\"Movie\"},{\"id\":63,\"data\":{\"name\":\"Ethan Hawke\",\"born\":1970},\"label\":\"Person\"},{\"id\":64,\"data\":{\"name\":\"Rick Yune\",\"born\":1971},\"label\":\"Person\"},{\"id\":65,\"data\":{\"name\":\"James Cromwell\",\"born\":1940},\"label\":\"Person\"},{\"id\":67,\"data\":{\"title\":\"You\\u0027ve Got Mail\"},\"label\":\"Movie\"},{\"id\":68,\"data\":{\"name\":\"Parker Posey\",\"born\":1968},\"label\":\"Person\"},{\"id\":69,\"data\":{\"name\":\"Dave Chappelle\",\"born\":1973},\"label\":\"Person\"},{\"id\":70,\"data\":{\"name\":\"Steve Zahn\",\"born\":1967},\"label\":\"Person\"},{\"id\":71,\"data\":{\"name\":\"Tom Hanks\",\"born\":1956},\"label\":\"Person\"},{\"id\":73,\"data\":{\"title\":\"Sleepless in Seattle\"},\"label\":\"Movie\"},{\"id\":74,\"data\":{\"name\":\"Rita Wilson\",\"born\":1956},\"label\":\"Person\"},{\"id\":75,\"data\":{\"name\":\"Bill Pullman\",\"born\":1953},\"label\":\"Person\"},{\"id\":76,\"data\":{\"name\":\"Victor Garber\",\"born\":1949},\"label\":\"Person\"},{\"id\":77,\"data\":{\"name\":\"Rosie O\\u0027Donnell\",\"born\":1962},\"label\":\"Person\"},{\"id\":78,\"data\":{\"title\":\"Joe Versus the Volcano\"},\"label\":\"Movie\"},{\"id\":80,\"data\":{\"name\":\"Nathan Lane\",\"born\":1956},\"label\":\"Person\"},{\"id\":81,\"data\":{\"title\":\"When Harry Met Sally\"},\"label\":\"Movie\"},{\"id\":82,\"data\":{\"name\":\"Billy Crystal\",\"born\":1948},\"label\":\"Person\"},{\"id\":83,\"data\":{\"name\":\"Carrie Fisher\",\"born\":1956},\"label\":\"Person\"},{\"id\":84,\"data\":{\"name\":\"Bruno Kirby\",\"born\":1949},\"label\":\"Person\"},{\"id\":85,\"data\":{\"title\":\"That Thing You Do\"},\"label\":\"Movie\"},{\"id\":86,\"data\":{\"name\":\"Liv Tyler\",\"born\":1977},\"label\":\"Person\"},{\"id\":87,\"data\":{\"title\":\"The Replacements\"},\"label\":\"Movie\"},{\"id\":88,\"data\":{\"name\":\"Brooke Langton\",\"born\":1970},\"label\":\"Person\"},{\"id\":89,\"data\":{\"name\":\"Gene Hackman\",\"born\":1930},\"label\":\"Person\"},{\"id\":90,\"data\":{\"name\":\"Orlando Jones\",\"born\":1968},\"label\":\"Person\"},{\"id\":92,\"data\":{\"title\":\"RescueDawn\"},\"label\":\"Movie\"},{\"id\":93,\"data\":{\"name\":\"Christian Bale\",\"born\":1974},\"label\":\"Person\"},{\"id\":94,\"data\":{\"name\":\"Zach Grenier\",\"born\":1954},\"label\":\"Person\"},{\"id\":95,\"data\":{\"title\":\"The Birdcage\"},\"label\":\"Movie\"},{\"id\":97,\"data\":{\"title\":\"Unforgiven\"},\"label\":\"Movie\"},{\"id\":98,\"data\":{\"name\":\"Richard Harris\",\"born\":1930},\"label\":\"Person\"},{\"id\":99,\"data\":{\"name\":\"Clint Eastwood\",\"born\":1930},\"label\":\"Person\"},{\"id\":100,\"data\":{\"title\":\"Johnny Mnemonic\"},\"label\":\"Movie\"},{\"id\":101,\"data\":{\"name\":\"Takeshi Kitano\",\"born\":1947},\"label\":\"Person\"},{\"id\":102,\"data\":{\"name\":\"Dina Meyer\",\"born\":1968},\"label\":\"Person\"},{\"id\":103,\"data\":{\"name\":\"Ice-T\",\"born\":1958},\"label\":\"Person\"},{\"id\":105,\"data\":{\"title\":\"Cloud Atlas\"},\"label\":\"Movie\"},{\"id\":106,\"data\":{\"name\":\"Halle Berry\",\"born\":1966},\"label\":\"Person\"},{\"id\":107,\"data\":{\"name\":\"Jim Broadbent\",\"born\":1949},\"label\":\"Person\"},{\"id\":111,\"data\":{\"title\":\"The Da Vinci Code\"},\"label\":\"Movie\"},{\"id\":112,\"data\":{\"name\":\"Ian McKellen\",\"born\":1939},\"label\":\"Person\"},{\"id\":113,\"data\":{\"name\":\"Audrey Tautou\",\"born\":1976},\"label\":\"Person\"},{\"id\":114,\"data\":{\"name\":\"Paul Bettany\",\"born\":1971},\"label\":\"Person\"},{\"id\":116,\"data\":{\"title\":\"V for Vendetta\"},\"label\":\"Movie\"},{\"id\":117,\"data\":{\"name\":\"Natalie Portman\",\"born\":1981},\"label\":\"Person\"},{\"id\":118,\"data\":{\"name\":\"Stephen Rea\",\"born\":1946},\"label\":\"Person\"},{\"id\":119,\"data\":{\"name\":\"John Hurt\",\"born\":1940},\"label\":\"Person\"},{\"id\":120,\"data\":{\"name\":\"Ben Miles\",\"born\":1967},\"label\":\"Person\"},{\"id\":121,\"data\":{\"title\":\"Speed Racer\"},\"label\":\"Movie\"},{\"id\":122,\"data\":{\"name\":\"Emile Hirsch\",\"born\":1985},\"label\":\"Person\"},{\"id\":123,\"data\":{\"name\":\"John Goodman\",\"born\":1960},\"label\":\"Person\"},{\"id\":124,\"data\":{\"name\":\"Susan Sarandon\",\"born\":1946},\"label\":\"Person\"},{\"id\":125,\"data\":{\"name\":\"Matthew Fox\",\"born\":1966},\"label\":\"Person\"},{\"id\":126,\"data\":{\"name\":\"Christina Ricci\",\"born\":1980},\"label\":\"Person\"},{\"id\":127,\"data\":{\"name\":\"Rain\",\"born\":1982},\"label\":\"Person\"},{\"id\":128,\"data\":{\"title\":\"Ninja Assassin\"},\"label\":\"Movie\"},{\"id\":129,\"data\":{\"name\":\"Naomie Harris\"},\"label\":\"Person\"},{\"id\":130,\"data\":{\"title\":\"The Green Mile\"},\"label\":\"Movie\"},{\"id\":131,\"data\":{\"name\":\"Michael Clarke Duncan\",\"born\":1957},\"label\":\"Person\"},{\"id\":132,\"data\":{\"name\":\"David Morse\",\"born\":1953},\"label\":\"Person\"},{\"id\":133,\"data\":{\"name\":\"Sam Rockwell\",\"born\":1968},\"label\":\"Person\"},{\"id\":134,\"data\":{\"name\":\"Gary Sinise\",\"born\":1955},\"label\":\"Person\"},{\"id\":135,\"data\":{\"name\":\"Patricia Clarkson\",\"born\":1959},\"label\":\"Person\"},{\"id\":137,\"data\":{\"title\":\"Frost/Nixon\"},\"label\":\"Movie\"},{\"id\":138,\"data\":{\"name\":\"Frank Langella\",\"born\":1938},\"label\":\"Person\"},{\"id\":139,\"data\":{\"name\":\"Michael Sheen\",\"born\":1969},\"label\":\"Person\"},{\"id\":140,\"data\":{\"name\":\"Oliver Platt\",\"born\":1960},\"label\":\"Person\"},{\"id\":141,\"data\":{\"title\":\"Hoffa\"},\"label\":\"Movie\"},{\"id\":142,\"data\":{\"name\":\"Danny DeVito\",\"born\":1944},\"label\":\"Person\"},{\"id\":143,\"data\":{\"name\":\"John C. Reilly\",\"born\":1965},\"label\":\"Person\"},{\"id\":144,\"data\":{\"title\":\"Apollo 13\"},\"label\":\"Movie\"},{\"id\":145,\"data\":{\"name\":\"Ed Harris\",\"born\":1950},\"label\":\"Person\"},{\"id\":146,\"data\":{\"name\":\"Bill Paxton\",\"born\":1955},\"label\":\"Person\"},{\"id\":147,\"data\":{\"title\":\"Twister\"},\"label\":\"Movie\"},{\"id\":148,\"data\":{\"name\":\"Philip Seymour Hoffman\",\"born\":1967},\"label\":\"Person\"},{\"id\":150,\"data\":{\"title\":\"Cast Away\"},\"label\":\"Movie\"},{\"id\":152,\"data\":{\"title\":\"One Flew Over the Cuckoo\\u0027s Nest\"},\"label\":\"Movie\"},{\"id\":154,\"data\":{\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"},{\"id\":155,\"data\":{\"name\":\"Diane Keaton\",\"born\":1946},\"label\":\"Person\"},{\"id\":157,\"data\":{\"title\":\"Bicentennial Man\"},\"label\":\"Movie\"},{\"id\":159,\"data\":{\"title\":\"Charlie Wilson\\u0027s War\"},\"label\":\"Movie\"},{\"id\":160,\"data\":{\"name\":\"Julia Roberts\",\"born\":1967},\"label\":\"Person\"},{\"id\":161,\"data\":{\"title\":\"The Polar Express\"},\"label\":\"Movie\"},{\"id\":162,\"data\":{\"title\":\"A League of Their Own\"},\"label\":\"Movie\"},{\"id\":163,\"data\":{\"name\":\"Madonna\",\"born\":1954},\"label\":\"Person\"},{\"id\":164,\"data\":{\"name\":\"Geena Davis\",\"born\":1956},\"label\":\"Person\"},{\"id\":165,\"data\":{\"name\":\"Lori Petty\",\"born\":1963},\"label\":\"Person\"}],\"edges\":[{\"source\":1,\"target\":0,\"id\":0,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":0,\"id\":1,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":0,\"id\":2,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":0,\"id\":3,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":8,\"target\":0,\"id\":7,\"data\":{\"roles\":[\"Emil\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":9,\"id\":8,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":9,\"id\":9,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":9,\"id\":10,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":9,\"id\":11,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":10,\"id\":15,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":10,\"id\":16,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":10,\"id\":17,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":10,\"id\":18,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":11,\"id\":22,\"data\":{\"roles\":[\"Kevin Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":12,\"target\":11,\"id\":23,\"data\":{\"roles\":[\"Mary Ann Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":13,\"target\":11,\"id\":24,\"data\":{\"roles\":[\"John Milton\"]},\"label\":\"ACTED_IN\"},{\"source\":16,\"target\":15,\"id\":26,\"data\":{\"roles\":[\"Lt. Daniel Kaffee\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":15,\"id\":27,\"data\":{\"roles\":[\"Col. Nathan R. Jessup\"]},\"label\":\"ACTED_IN\"},{\"source\":18,\"target\":15,\"id\":28,\"data\":{\"roles\":[\"Lt. Cdr. JoAnne Galloway\"]},\"label\":\"ACTED_IN\"},{\"source\":19,\"target\":15,\"id\":29,\"data\":{\"roles\":[\"Capt. Jack Ross\"]},\"label\":\"ACTED_IN\"},{\"source\":20,\"target\":15,\"id\":30,\"data\":{\"roles\":[\"Lt. Jonathan Kendrick\"]},\"label\":\"ACTED_IN\"},{\"source\":21,\"target\":15,\"id\":31,\"data\":{\"roles\":[\"Cpl. Jeffrey Barnes\"]},\"label\":\"ACTED_IN\"},{\"source\":22,\"target\":15,\"id\":32,\"data\":{\"roles\":[\"Cpl. Carl Hammaker\"]},\"label\":\"ACTED_IN\"},{\"source\":23,\"target\":15,\"id\":33,\"data\":{\"roles\":[\"Lt. Sam Weinberg\"]},\"label\":\"ACTED_IN\"},{\"source\":24,\"target\":15,\"id\":34,\"data\":{\"roles\":[\"Lt. Col. Matthew Andrew Markinson\"]},\"label\":\"ACTED_IN\"},{\"source\":25,\"target\":15,\"id\":35,\"data\":{\"roles\":[\"Pfc. Louden Downey\"]},\"label\":\"ACTED_IN\"},{\"source\":26,\"target\":15,\"id\":36,\"data\":{\"roles\":[\"Dr. Stone\"]},\"label\":\"ACTED_IN\"},{\"source\":28,\"target\":15,\"id\":37,\"data\":{\"roles\":[\"Man in Bar\"]},\"label\":\"ACTED_IN\"},{\"source\":16,\"target\":29,\"id\":40,\"data\":{\"roles\":[\"Maverick\"]},\"label\":\"ACTED_IN\"},{\"source\":30,\"target\":29,\"id\":41,\"data\":{\"roles\":[\"Charlie\"]},\"label\":\"ACTED_IN\"},{\"source\":31,\"target\":29,\"id\":42,\"data\":{\"roles\":[\"Iceman\"]},\"label\":\"ACTED_IN\"},{\"source\":32,\"target\":29,\"id\":43,\"data\":{\"roles\":[\"Goose\"]},\"label\":\"ACTED_IN\"},{\"source\":33,\"target\":29,\"id\":44,\"data\":{\"roles\":[\"Viper\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":29,\"id\":45,\"data\":{\"roles\":[\"Carole\"]},\"label\":\"ACTED_IN\"},{\"source\":16,\"target\":37,\"id\":48,\"data\":{\"roles\":[\"Jerry Maguire\"]},\"label\":\"ACTED_IN\"},{\"source\":22,\"target\":37,\"id\":49,\"data\":{\"roles\":[\"Rod Tidwell\"]},\"label\":\"ACTED_IN\"},{\"source\":38,\"target\":37,\"id\":50,\"data\":{\"roles\":[\"Dorothy Boyd\"]},\"label\":\"ACTED_IN\"},{\"source\":39,\"target\":37,\"id\":51,\"data\":{\"roles\":[\"Avery Bishop\"]},\"label\":\"ACTED_IN\"},{\"source\":40,\"target\":37,\"id\":52,\"data\":{\"roles\":[\"Frank Cushman\"]},\"label\":\"ACTED_IN\"},{\"source\":41,\"target\":37,\"id\":53,\"data\":{\"roles\":[\"Bob Sugar\"]},\"label\":\"ACTED_IN\"},{\"source\":42,\"target\":37,\"id\":54,\"data\":{\"roles\":[\"Laurel Boyd\"]},\"label\":\"ACTED_IN\"},{\"source\":43,\"target\":37,\"id\":55,\"data\":{\"roles\":[\"Marcee Tidwell\"]},\"label\":\"ACTED_IN\"},{\"source\":44,\"target\":37,\"id\":56,\"data\":{\"roles\":[\"Ray Boyd\"]},\"label\":\"ACTED_IN\"},{\"source\":49,\"target\":46,\"id\":60,\"data\":{\"roles\":[\"Gordie Lachance\"]},\"label\":\"ACTED_IN\"},{\"source\":47,\"target\":46,\"id\":61,\"data\":{\"roles\":[\"Chris Chambers\"]},\"label\":\"ACTED_IN\"},{\"source\":40,\"target\":46,\"id\":62,\"data\":{\"roles\":[\"Vern Tessio\"]},\"label\":\"ACTED_IN\"},{\"source\":48,\"target\":46,\"id\":63,\"data\":{\"roles\":[\"Teddy Duchamp\"]},\"label\":\"ACTED_IN\"},{\"source\":50,\"target\":46,\"id\":64,\"data\":{\"roles\":[\"Denny Lachance\"]},\"label\":\"ACTED_IN\"},{\"source\":20,\"target\":46,\"id\":65,\"data\":{\"roles\":[\"Ace Merrill\"]},\"label\":\"ACTED_IN\"},{\"source\":51,\"target\":46,\"id\":66,\"data\":{\"roles\":[\"Mr. Lachance\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":52,\"id\":68,\"data\":{\"roles\":[\"Melvin Udall\"]},\"label\":\"ACTED_IN\"},{\"source\":53,\"target\":52,\"id\":69,\"data\":{\"roles\":[\"Carol Connelly\"]},\"label\":\"ACTED_IN\"},{\"source\":54,\"target\":52,\"id\":70,\"data\":{\"roles\":[\"Simon Bishop\"]},\"label\":\"ACTED_IN\"},{\"source\":22,\"target\":52,\"id\":71,\"data\":{\"roles\":[\"Frank Sachs\"]},\"label\":\"ACTED_IN\"},{\"source\":60,\"target\":56,\"id\":73,\"data\":{\"roles\":[\"Chris Nielsen\"]},\"label\":\"ACTED_IN\"},{\"source\":22,\"target\":56,\"id\":74,\"data\":{\"roles\":[\"Albert Lewis\"]},\"label\":\"ACTED_IN\"},{\"source\":57,\"target\":56,\"id\":75,\"data\":{\"roles\":[\"Annie Collins-Nielsen\"]},\"label\":\"ACTED_IN\"},{\"source\":58,\"target\":56,\"id\":76,\"data\":{\"roles\":[\"The Tracker\"]},\"label\":\"ACTED_IN\"},{\"source\":59,\"target\":56,\"id\":77,\"data\":{\"roles\":[\"The Face\"]},\"label\":\"ACTED_IN\"},{\"source\":63,\"target\":62,\"id\":79,\"data\":{\"roles\":[\"Ishmael Chambers\"]},\"label\":\"ACTED_IN\"},{\"source\":64,\"target\":62,\"id\":80,\"data\":{\"roles\":[\"Kazuo Miyamoto\"]},\"label\":\"ACTED_IN\"},{\"source\":58,\"target\":62,\"id\":81,\"data\":{\"roles\":[\"Nels Gudmundsson\"]},\"label\":\"ACTED_IN\"},{\"source\":65,\"target\":62,\"id\":82,\"data\":{\"roles\":[\"Judge Fielding\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":67,\"id\":84,\"data\":{\"roles\":[\"Joe Fox\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":67,\"id\":85,\"data\":{\"roles\":[\"Kathleen Kelly\"]},\"label\":\"ACTED_IN\"},{\"source\":54,\"target\":67,\"id\":86,\"data\":{\"roles\":[\"Frank Navasky\"]},\"label\":\"ACTED_IN\"},{\"source\":68,\"target\":67,\"id\":87,\"data\":{\"roles\":[\"Patricia Eden\"]},\"label\":\"ACTED_IN\"},{\"source\":69,\"target\":67,\"id\":88,\"data\":{\"roles\":[\"Kevin Jackson\"]},\"label\":\"ACTED_IN\"},{\"source\":70,\"target\":67,\"id\":89,\"data\":{\"roles\":[\"George Pappas\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":73,\"id\":91,\"data\":{\"roles\":[\"Sam Baldwin\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":73,\"id\":92,\"data\":{\"roles\":[\"Annie Reed\"]},\"label\":\"ACTED_IN\"},{\"source\":74,\"target\":73,\"id\":93,\"data\":{\"roles\":[\"Suzy\"]},\"label\":\"ACTED_IN\"},{\"source\":75,\"target\":73,\"id\":94,\"data\":{\"roles\":[\"Walter\"]},\"label\":\"ACTED_IN\"},{\"source\":76,\"target\":73,\"id\":95,\"data\":{\"roles\":[\"Greg\"]},\"label\":\"ACTED_IN\"},{\"source\":77,\"target\":73,\"id\":96,\"data\":{\"roles\":[\"Becky\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":78,\"id\":98,\"data\":{\"roles\":[\"Joe Banks\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":78,\"id\":99,\"data\":{\"roles\":[\"DeDe\",\"Angelica Graynamore\",\"Patricia Graynamore\"]},\"label\":\"ACTED_IN\"},{\"source\":80,\"target\":78,\"id\":100,\"data\":{\"roles\":[\"Baw\"]},\"label\":\"ACTED_IN\"},{\"source\":82,\"target\":81,\"id\":102,\"data\":{\"roles\":[\"Harry Burns\"]},\"label\":\"ACTED_IN\"},{\"source\":34,\"target\":81,\"id\":103,\"data\":{\"roles\":[\"Sally Albright\"]},\"label\":\"ACTED_IN\"},{\"source\":83,\"target\":81,\"id\":104,\"data\":{\"roles\":[\"Marie\"]},\"label\":\"ACTED_IN\"},{\"source\":84,\"target\":81,\"id\":105,\"data\":{\"roles\":[\"Jess\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":85,\"id\":110,\"data\":{\"roles\":[\"Mr. White\"]},\"label\":\"ACTED_IN\"},{\"source\":86,\"target\":85,\"id\":111,\"data\":{\"roles\":[\"Faye Dolan\"]},\"label\":\"ACTED_IN\"},{\"source\":12,\"target\":85,\"id\":112,\"data\":{\"roles\":[\"Tina\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":87,\"id\":114,\"data\":{\"roles\":[\"Shane Falco\"]},\"label\":\"ACTED_IN\"},{\"source\":88,\"target\":87,\"id\":115,\"data\":{\"roles\":[\"Annabelle Farrell\"]},\"label\":\"ACTED_IN\"},{\"source\":89,\"target\":87,\"id\":116,\"data\":{\"roles\":[\"Jimmy McGinty\"]},\"label\":\"ACTED_IN\"},{\"source\":90,\"target\":87,\"id\":117,\"data\":{\"roles\":[\"Clifford Franklin\"]},\"label\":\"ACTED_IN\"},{\"source\":51,\"target\":92,\"id\":119,\"data\":{\"roles\":[\"Admiral\"]},\"label\":\"ACTED_IN\"},{\"source\":93,\"target\":92,\"id\":120,\"data\":{\"roles\":[\"Dieter Dengler\"]},\"label\":\"ACTED_IN\"},{\"source\":94,\"target\":92,\"id\":121,\"data\":{\"roles\":[\"Squad Leader\"]},\"label\":\"ACTED_IN\"},{\"source\":70,\"target\":92,\"id\":122,\"data\":{\"roles\":[\"Duane\"]},\"label\":\"ACTED_IN\"},{\"source\":60,\"target\":95,\"id\":124,\"data\":{\"roles\":[\"Armand Goldman\"]},\"label\":\"ACTED_IN\"},{\"source\":80,\"target\":95,\"id\":125,\"data\":{\"roles\":[\"Albert Goldman\"]},\"label\":\"ACTED_IN\"},{\"source\":89,\"target\":95,\"id\":126,\"data\":{\"roles\":[\"Sen. Kevin Keeley\"]},\"label\":\"ACTED_IN\"},{\"source\":98,\"target\":97,\"id\":128,\"data\":{\"roles\":[\"English Bob\"]},\"label\":\"ACTED_IN\"},{\"source\":99,\"target\":97,\"id\":129,\"data\":{\"roles\":[\"Bill Munny\"]},\"label\":\"ACTED_IN\"},{\"source\":89,\"target\":97,\"id\":130,\"data\":{\"roles\":[\"Little Bill Daggett\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":100,\"id\":132,\"data\":{\"roles\":[\"Johnny Mnemonic\"]},\"label\":\"ACTED_IN\"},{\"source\":101,\"target\":100,\"id\":133,\"data\":{\"roles\":[\"Takahashi\"]},\"label\":\"ACTED_IN\"},{\"source\":102,\"target\":100,\"id\":134,\"data\":{\"roles\":[\"Jane\"]},\"label\":\"ACTED_IN\"},{\"source\":103,\"target\":100,\"id\":135,\"data\":{\"roles\":[\"J-Bone\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":105,\"id\":137,\"data\":{\"roles\":[\"Zachry\",\"Dr. Henry Goose\",\"Isaac Sachs\",\"Dermot Hoggins\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":105,\"id\":138,\"data\":{\"roles\":[\"Bill Smoke\",\"Haskell Moore\",\"Tadeusz Kesselring\",\"Nurse Noakes\",\"Boardman Mephi\",\"Old Georgie\"]},\"label\":\"ACTED_IN\"},{\"source\":106,\"target\":105,\"id\":139,\"data\":{\"roles\":[\"Luisa Rey\",\"Jocasta Ayrs\",\"Ovid\",\"Meronym\"]},\"label\":\"ACTED_IN\"},{\"source\":107,\"target\":105,\"id\":140,\"data\":{\"roles\":[\"Vyvyan Ayrs\",\"Captain Molyneux\",\"Timothy Cavendish\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":111,\"id\":146,\"data\":{\"roles\":[\"Dr. Robert Langdon\"]},\"label\":\"ACTED_IN\"},{\"source\":112,\"target\":111,\"id\":147,\"data\":{\"roles\":[\"Sir Leight Teabing\"]},\"label\":\"ACTED_IN\"},{\"source\":113,\"target\":111,\"id\":148,\"data\":{\"roles\":[\"Sophie Neveu\"]},\"label\":\"ACTED_IN\"},{\"source\":114,\"target\":111,\"id\":149,\"data\":{\"roles\":[\"Silas\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":116,\"id\":151,\"data\":{\"roles\":[\"V\"]},\"label\":\"ACTED_IN\"},{\"source\":117,\"target\":116,\"id\":152,\"data\":{\"roles\":[\"Evey Hammond\"]},\"label\":\"ACTED_IN\"},{\"source\":118,\"target\":116,\"id\":153,\"data\":{\"roles\":[\"Eric Finch\"]},\"label\":\"ACTED_IN\"},{\"source\":119,\"target\":116,\"id\":154,\"data\":{\"roles\":[\"High Chancellor Adam Sutler\"]},\"label\":\"ACTED_IN\"},{\"source\":120,\"target\":116,\"id\":155,\"data\":{\"roles\":[\"Dascomb\"]},\"label\":\"ACTED_IN\"},{\"source\":122,\"target\":121,\"id\":162,\"data\":{\"roles\":[\"Speed Racer\"]},\"label\":\"ACTED_IN\"},{\"source\":123,\"target\":121,\"id\":163,\"data\":{\"roles\":[\"Pops\"]},\"label\":\"ACTED_IN\"},{\"source\":124,\"target\":121,\"id\":164,\"data\":{\"roles\":[\"Mom\"]},\"label\":\"ACTED_IN\"},{\"source\":125,\"target\":121,\"id\":165,\"data\":{\"roles\":[\"Racer X\"]},\"label\":\"ACTED_IN\"},{\"source\":126,\"target\":121,\"id\":166,\"data\":{\"roles\":[\"Trixie\"]},\"label\":\"ACTED_IN\"},{\"source\":127,\"target\":121,\"id\":167,\"data\":{\"roles\":[\"Taejo Togokahn\"]},\"label\":\"ACTED_IN\"},{\"source\":120,\"target\":121,\"id\":168,\"data\":{\"roles\":[\"Cass Jones\"]},\"label\":\"ACTED_IN\"},{\"source\":127,\"target\":128,\"id\":174,\"data\":{\"roles\":[\"Raizo\"]},\"label\":\"ACTED_IN\"},{\"source\":129,\"target\":128,\"id\":175,\"data\":{\"roles\":[\"Mika Coretti\"]},\"label\":\"ACTED_IN\"},{\"source\":64,\"target\":128,\"id\":176,\"data\":{\"roles\":[\"Takeshi\"]},\"label\":\"ACTED_IN\"},{\"source\":120,\"target\":128,\"id\":177,\"data\":{\"roles\":[\"Ryan Maslow\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":130,\"id\":182,\"data\":{\"roles\":[\"Paul Edgecomb\"]},\"label\":\"ACTED_IN\"},{\"source\":131,\"target\":130,\"id\":183,\"data\":{\"roles\":[\"John Coffey\"]},\"label\":\"ACTED_IN\"},{\"source\":132,\"target\":130,\"id\":184,\"data\":{\"roles\":[\"Brutus \\\"Brutal\\\" Howell\"]},\"label\":\"ACTED_IN\"},{\"source\":42,\"target\":130,\"id\":185,\"data\":{\"roles\":[\"Jan Edgecomb\"]},\"label\":\"ACTED_IN\"},{\"source\":65,\"target\":130,\"id\":186,\"data\":{\"roles\":[\"Warden Hal Moores\"]},\"label\":\"ACTED_IN\"},{\"source\":133,\"target\":130,\"id\":187,\"data\":{\"roles\":[\"\\\"Wild Bill\\\" Wharton\"]},\"label\":\"ACTED_IN\"},{\"source\":134,\"target\":130,\"id\":188,\"data\":{\"roles\":[\"Burt Hammersmith\"]},\"label\":\"ACTED_IN\"},{\"source\":135,\"target\":130,\"id\":189,\"data\":{\"roles\":[\"Melinda Moores\"]},\"label\":\"ACTED_IN\"},{\"source\":138,\"target\":137,\"id\":191,\"data\":{\"roles\":[\"Richard Nixon\"]},\"label\":\"ACTED_IN\"},{\"source\":139,\"target\":137,\"id\":192,\"data\":{\"roles\":[\"David Frost\"]},\"label\":\"ACTED_IN\"},{\"source\":19,\"target\":137,\"id\":193,\"data\":{\"roles\":[\"Jack Brennan\"]},\"label\":\"ACTED_IN\"},{\"source\":140,\"target\":137,\"id\":194,\"data\":{\"roles\":[\"Bob Zelnick\"]},\"label\":\"ACTED_IN\"},{\"source\":133,\"target\":137,\"id\":195,\"data\":{\"roles\":[\"James Reston, Jr.\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":141,\"id\":197,\"data\":{\"roles\":[\"Hoffa\"]},\"label\":\"ACTED_IN\"},{\"source\":142,\"target\":141,\"id\":198,\"data\":{\"roles\":[\"Robert \\\"Bobby\\\" Ciaro\"]},\"label\":\"ACTED_IN\"},{\"source\":24,\"target\":141,\"id\":199,\"data\":{\"roles\":[\"Frank Fitzsimmons\"]},\"label\":\"ACTED_IN\"},{\"source\":143,\"target\":141,\"id\":200,\"data\":{\"roles\":[\"Peter \\\"Pete\\\" Connelly\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":144,\"id\":202,\"data\":{\"roles\":[\"Jim Lovell\"]},\"label\":\"ACTED_IN\"},{\"source\":19,\"target\":144,\"id\":203,\"data\":{\"roles\":[\"Jack Swigert\"]},\"label\":\"ACTED_IN\"},{\"source\":145,\"target\":144,\"id\":204,\"data\":{\"roles\":[\"Gene Kranz\"]},\"label\":\"ACTED_IN\"},{\"source\":146,\"target\":144,\"id\":205,\"data\":{\"roles\":[\"Fred Haise\"]},\"label\":\"ACTED_IN\"},{\"source\":134,\"target\":144,\"id\":206,\"data\":{\"roles\":[\"Ken Mattingly\"]},\"label\":\"ACTED_IN\"},{\"source\":146,\"target\":147,\"id\":208,\"data\":{\"roles\":[\"Bill Harding\"]},\"label\":\"ACTED_IN\"},{\"source\":53,\"target\":147,\"id\":209,\"data\":{\"roles\":[\"Dr. Jo Harding\"]},\"label\":\"ACTED_IN\"},{\"source\":94,\"target\":147,\"id\":210,\"data\":{\"roles\":[\"Eddie\"]},\"label\":\"ACTED_IN\"},{\"source\":148,\"target\":147,\"id\":211,\"data\":{\"roles\":[\"Dustin \\\"Dusty\\\" Davis\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":150,\"id\":213,\"data\":{\"roles\":[\"Chuck Noland\"]},\"label\":\"ACTED_IN\"},{\"source\":53,\"target\":150,\"id\":214,\"data\":{\"roles\":[\"Kelly Frears\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":152,\"id\":216,\"data\":{\"roles\":[\"Randle McMurphy\"]},\"label\":\"ACTED_IN\"},{\"source\":142,\"target\":152,\"id\":217,\"data\":{\"roles\":[\"Martini\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":154,\"id\":219,\"data\":{\"roles\":[\"Harry Sanborn\"]},\"label\":\"ACTED_IN\"},{\"source\":155,\"target\":154,\"id\":220,\"data\":{\"roles\":[\"Erica Barry\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":154,\"id\":221,\"data\":{\"roles\":[\"Julian Mercer\"]},\"label\":\"ACTED_IN\"},{\"source\":60,\"target\":157,\"id\":225,\"data\":{\"roles\":[\"Andrew Marin\"]},\"label\":\"ACTED_IN\"},{\"source\":140,\"target\":157,\"id\":226,\"data\":{\"roles\":[\"Rupert Burns\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":159,\"id\":228,\"data\":{\"roles\":[\"Rep. Charlie Wilson\"]},\"label\":\"ACTED_IN\"},{\"source\":160,\"target\":159,\"id\":229,\"data\":{\"roles\":[\"Joanne Herring\"]},\"label\":\"ACTED_IN\"},{\"source\":148,\"target\":159,\"id\":230,\"data\":{\"roles\":[\"Gust Avrakotos\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":161,\"id\":232,\"data\":{\"roles\":[\"Hero Boy\",\"Father\",\"Conductor\",\"Hobo\",\"Scrooge\",\"Santa Claus\"]},\"label\":\"ACTED_IN\"},{\"source\":71,\"target\":162,\"id\":234,\"data\":{\"roles\":[\"Jimmy Dugan\"]},\"label\":\"ACTED_IN\"},{\"source\":164,\"target\":162,\"id\":235,\"data\":{\"roles\":[\"Dottie Hinson\"]},\"label\":\"ACTED_IN\"},{\"source\":165,\"target\":162,\"id\":236,\"data\":{\"roles\":[\"Kit Keller\"]},\"label\":\"ACTED_IN\"},{\"source\":77,\"target\":162,\"id\":237,\"data\":{\"roles\":[\"Doris Murphy\"]},\"label\":\"ACTED_IN\"},{\"source\":163,\"target\":162,\"id\":238,\"data\":{\"roles\":[\"\\\"All the Way\\\" Mae Mordabito\"]},\"label\":\"ACTED_IN\"},{\"source\":146,\"target\":162,\"id\":239,\"data\":{\"roles\":[\"Bob Hinson\"]},\"label\":\"ACTED_IN\"}],\"labels\":{\"TTL\":\"#F8F2B0\",\"Movie\":\"#1DFC3B\",\"Person\":\"#0834CC\",\"Keanu\":\"#DEB679\",\"NotKeanu\":\"#D360EA\",\"Trigger\":\"#F80B9C\",\"TagLine\":\"#ECA18A\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
-          }
-        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -193,15 +193,15 @@
       "jobName": "paragraph_1636544202474_1918473223",
       "id": "paragraph_1636544202474_1918473223",
       "dateCreated": "2021-11-10 11:36:42.474",
-      "dateStarted": "2021-11-10 11:37:05.171",
-      "dateFinished": "2021-11-10 11:37:05.696",
+      "dateStarted": "2021-11-17 23:37:32.818",
+      "dateFinished": "2021-11-17 23:37:33.041",
       "status": "FINISHED"
     },
     {
       "title": "apoc.graph.fromDocument",
       "text": "%neo4j\n\nCALL apoc.graph.fromDocument(\"{\u0027id\u0027: 1,\u0027type\u0027: \u0027artist\u0027,\u0027name\u0027:\u0027Genesis\u0027,\u0027members\u0027: [\u0027Tony Banks\u0027,\u0027Mike Rutherford\u0027,\u0027Phil Collins\u0027],\u0027years\u0027: [1967, 1998, 1999, 2000, 2006],\u0027albums\u0027: [{\u0027type\u0027: \u0027album\u0027,\u0027id\u0027: 1,\u0027producer\u0027: \u0027Jonathan King\u0027,\u0027title\u0027: \u0027From Genesis to Revelation\u0027}]}\", {})\nYIELD graph \nWITH graph.nodes as nodes, graph.relationships as rels\nUNWIND nodes AS node\nUNWIND rels AS rel\nRETURN DISTINCT node, rel\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:30:55.007",
+      "dateUpdated": "2021-11-17 23:37:52.869",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -256,21 +256,30 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":-6,\"data\":{\"name\":\"Genesis\",\"id\":1,\"type\":\"artist\",\"years\":[1967,1998,1999,2000,2006],\"members\":[\"Tony Banks\",\"Mike Rutherford\",\"Phil Collins\"]},\"label\":\"Artist\"},{\"id\":-7,\"data\":{\"producer\":\"Jonathan King\",\"id\":1,\"type\":\"album\",\"title\":\"From Genesis to Revelation\"},\"label\":\"Album\"}],\"edges\":[{\"source\":-6,\"target\":-7,\"id\":-2,\"data\":{},\"label\":\"ALBUMS\"}],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\",\"TagLine\":\"#28A859\",\"MergeOne\":\"#8F3CD7\",\"Company\":\"#445ECC\",\"Car\":\"#CD8F74\",\"Animal\":\"#4544D5\",\"Cat\":\"#5120AA\",\"MergeTwo\":\"#2D5DE2\"},\"types\":[\"NEW_REL\",\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636543612824_977596292",
       "id": "paragraph_1636543612824_977596292",
       "dateCreated": "2021-11-10 11:26:52.825",
-      "dateStarted": "2021-11-10 11:29:37.804",
-      "dateFinished": "2021-11-10 11:29:38.042",
+      "dateStarted": "2021-11-17 23:37:52.886",
+      "dateFinished": "2021-11-17 23:37:52.928",
       "status": "FINISHED"
     },
     {
       "title": "apoc.systemdb.graph",
       "text": "%md\n\n## System database\n\nWith introduction of system database concept in neo4j 4.0, Apoc introduces a procedure to see a virtual graph visualization of system entities.\n\u003cpre\u003e\nCALL apoc.systemdb.graph\n\u003c/pre\u003e\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:41:42.436",
+      "dateUpdated": "2021-11-17 23:38:25.882",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -282,8 +291,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true,
+        "editorHide": true,
+        "tableHide": false,
         "title": true
       },
       "settings": {
@@ -295,7 +304,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eSystem database\u003c/h2\u003e\n\u003cp\u003eWith introduction of system database concept in neo4j 4.0, Apoc introduces a procedure to see a virtual graph visualization of system entities\u003c/p\u003e\n\u003cpre\u003e\nCALL apoc.systemdb.graph() [see this one in Neo4j Desktop]\n\u003c/pre\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eSystem database\u003c/h2\u003e\n\u003cp\u003eWith introduction of system database concept in neo4j 4.0, Apoc introduces a procedure to see a virtual graph visualization of system entities.\u003c/p\u003e\n\u003cpre\u003e\nCALL apoc.systemdb.graph\n\u003c/pre\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -305,15 +314,15 @@
       "jobName": "paragraph_1636110384368_1627598108",
       "id": "paragraph_1636110384368_1627598108",
       "dateCreated": "2021-11-05 11:06:24.368",
-      "dateStarted": "2021-11-09 11:30:50.008",
-      "dateFinished": "2021-11-09 11:30:50.024",
+      "dateStarted": "2021-11-17 23:38:25.882",
+      "dateFinished": "2021-11-17 23:38:25.894",
       "status": "FINISHED"
     },
     {
       "title": "Example",
       "text": "%neo4j\n\nCALL apoc.systemdb.graph() yield nodes, relationships\nUNWIND nodes AS node\nUNWIND relationships AS rel\nRETURN DISTINCT node, rel",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:34:48.860",
+      "dateUpdated": "2021-11-17 23:38:28.444",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -381,21 +390,30 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"name\":\"neo4j\",\"default\":true,\"uuid\":\"820d4149-5e12-4859-9a21-bb2ae9e8ed78\",\"status\":\"online\"},\"label\":\"Database\"},{\"id\":-1,\"data\":{\"name\":\"system\",\"default\":false,\"uuid\":\"00000000-0000-0000-0000-000000000001\",\"status\":\"online\"},\"label\":\"Database\"},{\"id\":-2,\"data\":{\"name\":\"neo4j\",\"passwordChangeRequired\":false,\"id\":\"3e5528e2-0164-4333-9c7b-0fe242e1c104\",\"credentials\":\"SHA-256,20b13dee55082753b021eb7b59318c4f918bb44c9dca43d3c06c27657728a4d2,3b715a04fb063d387f81457c718fe88d55551dfa74742db494758dd773bc757e,1024\",\"suspended\":false},\"label\":\"User\"},{\"id\":-3,\"data\":{\"security-privileges\":11,\"dbms-runtime\":4,\"security-users\":3},\"label\":\"Version\"},{\"id\":-4,\"data\":{\"name\":\"*\"},\"label\":\"DatabaseAll\"},{\"id\":-5,\"data\":{\"type\":\"node\",\"label\":\"*\"},\"label\":\"LabelQualifierAll\"},{\"id\":-6,\"data\":{\"type\":\"relationship\",\"label\":\"*\"},\"label\":\"RelationshipQualifierAll\"},{\"id\":-7,\"data\":{\"type\":\"database\",\"label\":\"\"},\"label\":\"DatabaseQualifier\"},{\"id\":-8,\"data\":{},\"label\":\"Segment\"},{\"id\":-9,\"data\":{},\"label\":\"Segment\"},{\"id\":-10,\"data\":{},\"label\":\"Segment\"},{\"id\":-11,\"data\":{\"arg2\":\"\",\"type\":\"graph\",\"arg1\":\"\"},\"label\":\"Resource\"},{\"id\":-12,\"data\":{\"arg2\":\"\",\"type\":\"all_properties\",\"arg1\":\"\"},\"label\":\"Resource\"},{\"id\":-13,\"data\":{\"arg2\":\"\",\"type\":\"database\",\"arg1\":\"\"},\"label\":\"Resource\"},{\"id\":-20,\"data\":{\"action\":\"access\"},\"label\":\"Privilege\"},{\"id\":-21,\"data\":{\"action\":\"token\"},\"label\":\"Privilege\"},{\"id\":-24,\"data\":{\"name\":\"DEFAULT\"},\"label\":\"DatabaseDefault\"},{\"id\":-25,\"data\":{},\"label\":\"Segment\"},{\"id\":-26,\"data\":{\"action\":\"match\"},\"label\":\"Privilege\"},{\"id\":-27,\"data\":{\"action\":\"match\"},\"label\":\"Privilege\"},{\"id\":-28,\"data\":{\"action\":\"write\"},\"label\":\"Privilege\"},{\"id\":-29,\"data\":{\"action\":\"write\"},\"label\":\"Privilege\"},{\"id\":-30,\"data\":{\"action\":\"access\"},\"label\":\"Privilege\"},{\"id\":-31,\"data\":{\"action\":\"index\"},\"label\":\"Privilege\"},{\"id\":-32,\"data\":{\"action\":\"constraint\"},\"label\":\"Privilege\"},{\"id\":-33,\"data\":{\"type\":\"procedure\",\"label\":\"*\"},\"label\":\"ProcedureQualifierAll\"},{\"id\":-34,\"data\":{},\"label\":\"Segment\"},{\"id\":-35,\"data\":{\"action\":\"execute\"},\"label\":\"Privilege\"},{\"id\":-36,\"data\":{\"type\":\"function\",\"label\":\"*\"},\"label\":\"FunctionQualifierAll\"},{\"id\":-37,\"data\":{},\"label\":\"Segment\"},{\"id\":-38,\"data\":{\"action\":\"execute\"},\"label\":\"Privilege\"},{\"id\":-39,\"data\":{\"type\":\"user\",\"label\":\"*\"},\"label\":\"UserQualifierAll\"},{\"id\":-40,\"data\":{},\"label\":\"Segment\"},{\"id\":-41,\"data\":{\"action\":\"transaction_management\"},\"label\":\"Privilege\"},{\"id\":-42,\"data\":{\"action\":\"start_database\"},\"label\":\"Privilege\"},{\"id\":-43,\"data\":{\"action\":\"stop_database\"},\"label\":\"Privilege\"},{\"id\":-44,\"data\":{\"action\":\"dbms_actions\"},\"label\":\"Privilege\"},{\"id\":-45,\"data\":{\"name\":\"admin\"},\"label\":\"Role\"},{\"id\":-46,\"data\":{\"name\":\"architect\"},\"label\":\"Role\"},{\"id\":-47,\"data\":{\"name\":\"publisher\"},\"label\":\"Role\"},{\"id\":-48,\"data\":{\"name\":\"editor\"},\"label\":\"Role\"},{\"id\":-49,\"data\":{\"name\":\"reader\"},\"label\":\"Role\"},{\"id\":-50,\"data\":{\"name\":\"PUBLIC\"},\"label\":\"Role\"},{\"id\":-52,\"data\":{\"lastUpdated\":1637185604029,\"database\":\"neo4j\"},\"label\":\"ApocTriggerMeta\"},{\"id\":-54,\"data\":{\"paused\":false,\"database\":\"neo4j\",\"name\":\"forceStringType\",\"statement\":\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \\u0027reference\\u0027) AS props WITH props.new as prop\\nCALL apoc.util.validate(apoc.meta.type(prop) \\u003c\\u003e \\u0027STRING\\u0027, \\u0027expected string property type, got %s\\u0027, [apoc.meta.type(prop)]) RETURN null\",\"selector\":\"{\\\"phase\\\":\\\"before\\\"}\",\"params\":\"{}\"},\"label\":\"ApocTrigger\"}],\"edges\":[{\"source\":-8,\"target\":-5,\"id\":0,\"data\":{},\"label\":\"QUALIFIED\"},{\"source\":-8,\"target\":-4,\"id\":-1,\"data\":{},\"label\":\"FOR\"},{\"source\":-9,\"target\":-6,\"id\":-2,\"data\":{},\"label\":\"QUALIFIED\"},{\"source\":-9,\"target\":-4,\"id\":-3,\"data\":{},\"label\":\"FOR\"},{\"source\":-10,\"target\":-7,\"id\":-4,\"data\":{},\"label\":\"QUALIFIED\"},{\"source\":-10,\"target\":-4,\"id\":-5,\"data\":{},\"label\":\"FOR\"},{\"source\":-20,\"target\":-10,\"id\":-18,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-20,\"target\":-13,\"id\":-19,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-21,\"target\":-10,\"id\":-20,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-21,\"target\":-13,\"id\":-21,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-25,\"target\":-7,\"id\":-26,\"data\":{},\"label\":\"QUALIFIED\"},{\"source\":-25,\"target\":-24,\"id\":-27,\"data\":{},\"label\":\"FOR\"},{\"source\":-26,\"target\":-8,\"id\":-28,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-26,\"target\":-12,\"id\":-29,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-27,\"target\":-9,\"id\":-30,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-27,\"target\":-12,\"id\":-31,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-28,\"target\":-8,\"id\":-32,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-28,\"target\":-11,\"id\":-33,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-29,\"target\":-9,\"id\":-34,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-29,\"target\":-11,\"id\":-35,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-30,\"target\":-25,\"id\":-36,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-30,\"target\":-13,\"id\":-37,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-31,\"target\":-10,\"id\":-38,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-31,\"target\":-13,\"id\":-39,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-32,\"target\":-10,\"id\":-40,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-32,\"target\":-13,\"id\":-41,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-34,\"target\":-33,\"id\":-42,\"data\":{},\"label\":\"QUALIFIED\"},{\"source\":-34,\"target\":-4,\"id\":-43,\"data\":{},\"label\":\"FOR\"},{\"source\":-35,\"target\":-34,\"id\":-44,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-35,\"target\":-13,\"id\":-45,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-37,\"target\":-36,\"id\":-46,\"data\":{},\"label\":\"QUALIFIED\"},{\"source\":-37,\"target\":-4,\"id\":-47,\"data\":{},\"label\":\"FOR\"},{\"source\":-38,\"target\":-37,\"id\":-48,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-38,\"target\":-13,\"id\":-49,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-40,\"target\":-39,\"id\":-50,\"data\":{},\"label\":\"QUALIFIED\"},{\"source\":-40,\"target\":-4,\"id\":-51,\"data\":{},\"label\":\"FOR\"},{\"source\":-41,\"target\":-40,\"id\":-52,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-41,\"target\":-13,\"id\":-53,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-42,\"target\":-10,\"id\":-54,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-42,\"target\":-13,\"id\":-55,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-43,\"target\":-10,\"id\":-56,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-43,\"target\":-13,\"id\":-57,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-44,\"target\":-10,\"id\":-58,\"data\":{},\"label\":\"SCOPE\"},{\"source\":-44,\"target\":-13,\"id\":-59,\"data\":{},\"label\":\"APPLIES_TO\"},{\"source\":-45,\"target\":-41,\"id\":-60,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-42,\"id\":-61,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-43,\"id\":-62,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-44,\"id\":-63,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-32,\"id\":-64,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-31,\"id\":-65,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-21,\"id\":-66,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-28,\"id\":-67,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-29,\"id\":-68,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-26,\"id\":-69,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-27,\"id\":-70,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-45,\"target\":-20,\"id\":-71,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-46,\"target\":-32,\"id\":-72,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-46,\"target\":-31,\"id\":-73,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-46,\"target\":-21,\"id\":-74,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-46,\"target\":-28,\"id\":-75,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-46,\"target\":-29,\"id\":-76,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-46,\"target\":-26,\"id\":-77,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-46,\"target\":-27,\"id\":-78,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-46,\"target\":-20,\"id\":-79,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-47,\"target\":-21,\"id\":-80,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-47,\"target\":-28,\"id\":-81,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-47,\"target\":-29,\"id\":-82,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-47,\"target\":-26,\"id\":-83,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-47,\"target\":-27,\"id\":-84,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-47,\"target\":-20,\"id\":-85,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-48,\"target\":-28,\"id\":-86,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-48,\"target\":-29,\"id\":-87,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-48,\"target\":-26,\"id\":-88,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-48,\"target\":-27,\"id\":-89,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-48,\"target\":-20,\"id\":-90,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-49,\"target\":-26,\"id\":-91,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-49,\"target\":-27,\"id\":-92,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-49,\"target\":-20,\"id\":-93,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-50,\"target\":-30,\"id\":-94,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-50,\"target\":-35,\"id\":-95,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-50,\"target\":-38,\"id\":-96,\"data\":{},\"label\":\"GRANTED\"},{\"source\":-2,\"target\":-45,\"id\":-97,\"data\":{},\"label\":\"HAS_ROLE\"}],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\",\"TagLine\":\"#28A859\",\"MergeOne\":\"#8F3CD7\",\"Company\":\"#445ECC\",\"Car\":\"#CD8F74\",\"Animal\":\"#4544D5\",\"Cat\":\"#5120AA\",\"MergeTwo\":\"#2D5DE2\"},\"types\":[\"NEW_REL\",\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636543866363_709769901",
       "id": "paragraph_1636543866363_709769901",
       "dateCreated": "2021-11-10 11:31:06.363",
-      "dateStarted": "2021-11-11 13:34:48.875",
-      "dateFinished": "2021-11-11 13:34:49.074",
+      "dateStarted": "2021-11-17 23:38:28.462",
+      "dateFinished": "2021-11-17 23:38:28.549",
       "status": "FINISHED"
     },
     {
       "title": "Get roles",
       "text": "%neo4j\n\nCALL apoc.systemdb.graph() yield nodes, relationships\nUNWIND nodes AS node\nWITH node\nWHERE apoc.node.labels(node) \u003d [\"Role\"]\nRETURN DISTINCT node",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:31:10.637",
+      "dateUpdated": "2021-11-17 23:38:40.716",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -464,14 +482,23 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":-49,\"data\":{\"name\":\"reader\"},\"label\":\"Role\"},{\"id\":-50,\"data\":{\"name\":\"PUBLIC\"},\"label\":\"Role\"},{\"id\":-45,\"data\":{\"name\":\"admin\"},\"label\":\"Role\"},{\"id\":-46,\"data\":{\"name\":\"architect\"},\"label\":\"Role\"},{\"id\":-47,\"data\":{\"name\":\"publisher\"},\"label\":\"Role\"},{\"id\":-48,\"data\":{\"name\":\"editor\"},\"label\":\"Role\"}],\"edges\":[],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\",\"TagLine\":\"#28A859\",\"MergeOne\":\"#8F3CD7\",\"Company\":\"#445ECC\",\"Car\":\"#CD8F74\",\"Animal\":\"#4544D5\",\"Cat\":\"#5120AA\",\"MergeTwo\":\"#2D5DE2\"},\"types\":[\"NEW_REL\",\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636634414289_1524495302",
       "id": "paragraph_1636634414289_1524495302",
       "dateCreated": "2021-11-11 12:40:14.289",
-      "dateStarted": "2021-11-11 12:40:46.189",
-      "dateFinished": "2021-11-11 12:40:46.360",
+      "dateStarted": "2021-11-17 23:38:40.736",
+      "dateFinished": "2021-11-17 23:38:40.810",
       "status": "FINISHED"
     },
     {
@@ -521,7 +548,7 @@
       "title": "apoc.uuid.install",
       "text": "%neo4j\n// First of all we create the constraint\nCREATE CONSTRAINT ON (node:NodeWithUnique) ASSERT node.omega IS UNIQUE;\n\nCALL apoc.uuid.install(\u0027NodeWithUnique\u0027, {uuidProperty: \u0027omega\u0027});",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:31:46.063",
+      "dateUpdated": "2021-11-17 23:40:45.535",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -606,15 +633,15 @@
       "jobName": "paragraph_1635868931436_15761564",
       "id": "paragraph_1635868931436_15761564",
       "dateCreated": "2021-11-02 16:02:11.436",
-      "dateStarted": "2021-11-09 11:30:50.315",
-      "dateFinished": "2021-11-09 11:30:52.297",
+      "dateStarted": "2021-11-17 23:40:45.561",
+      "dateFinished": "2021-11-17 23:40:45.851",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nCREATE (n:NodeWithUnique);\n\nMATCH (n:NodeWithUnique) RETURN n;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:31:51.886",
+      "dateUpdated": "2021-11-17 23:40:49.290",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -665,7 +692,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"omega\":\"16c9a187-ee4e-4a56-926c-263b4a1d6618\"},\"label\":\"NodeWithUnique\"}],\"edges\":[],\"labels\":{\"TTL\":\"#2EC610\",\"NodeWithUnique\":\"#B8C858\"},\"types\":[],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":200781,\"data\":{\"omega\":\"6354a2a7-e50a-4907-b082-b92cc8a4e794\"},\"label\":\"NodeWithUnique\"}],\"edges\":[],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\",\"TagLine\":\"#28A859\",\"MergeOne\":\"#8F3CD7\",\"Company\":\"#445ECC\",\"Car\":\"#CD8F74\",\"Animal\":\"#4544D5\",\"Cat\":\"#5120AA\",\"MergeTwo\":\"#2D5DE2\",\"NodeWithUnique\":\"#F30A49\"},\"types\":[\"NEW_REL\",\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
           }
         ]
       },
@@ -675,8 +702,8 @@
       "jobName": "paragraph_1635868938917_1994016294",
       "id": "paragraph_1635868938917_1994016294",
       "dateCreated": "2021-11-02 16:02:18.918",
-      "dateStarted": "2021-11-09 11:30:52.359",
-      "dateFinished": "2021-11-09 11:30:52.671",
+      "dateStarted": "2021-11-17 23:40:49.305",
+      "dateFinished": "2021-11-17 23:40:49.464",
       "status": "FINISHED"
     },
     {
@@ -723,7 +750,7 @@
     {
       "text": "%neo4j\n\n// we use `apoc.date.format` to get only minutes and seconds from a query \n//        and apoc.date.currentTimestamp() instead of timestamp() because the last one doesn\u0027t change during transaction\n\nWITH apoc.date.currentTimestamp() as currentTime\nCALL apoc.util.sleep(3000)\nRETURN apoc.date.format(currentTime, \u0027ms\u0027,\u0027mm:ss\u0027) as timeBefore, apoc.date.format(apoc.date.currentTimestamp(), \u0027ms\u0027,\u0027mm:ss\u0027) as timeAfter",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:32:40.479",
+      "dateUpdated": "2021-11-17 23:41:25.857",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -774,7 +801,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "timeBefore\ttimeAfter\n\"32:40\"\t\"32:43\"\n"
+            "data": "timeBefore\ttimeAfter\n\"41:25\"\t\"41:28\"\n"
           }
         ]
       },
@@ -784,8 +811,8 @@
       "jobName": "paragraph_1635869493908_1027009727",
       "id": "paragraph_1635869493908_1027009727",
       "dateCreated": "2021-11-02 16:11:33.908",
-      "dateStarted": "2021-11-11 13:32:40.498",
-      "dateFinished": "2021-11-11 13:32:43.578",
+      "dateStarted": "2021-11-17 23:41:25.876",
+      "dateFinished": "2021-11-17 23:41:28.940",
       "status": "FINISHED"
     },
     {
@@ -831,9 +858,9 @@
     },
     {
       "title": "apoc.schema.assert",
-      "text": "%neo4j\n\nCALL apoc.schema.assert({Person:[\u0027name\u0027], Movie: [\u0027title\u0027, \u0027tagline\u0027]}, {Movie: [\"title\"]}, true)\n",
+      "text": "%neo4j\n\nCALL apoc.schema.assert({Person:[\u0027name\u0027], Movie: [\u0027release\u0027, \u0027tagline\u0027]}, {Movie: [\"title\"]}, true);\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:45:09.946",
+      "dateUpdated": "2021-11-17 23:54:47.817",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -888,7 +915,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "label\tkey\tkeys\tunique\taction\n\"TTL\"\t\"ttl\"\t[\"ttl\"]\tFALSE\t\"DROPPED\"\n\"Movie\"\t\"title\"\t[\"title\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"tagline\"\t[\"tagline\"]\tFALSE\t\"CREATED\"\n\"Person\"\t\"name\"\t[\"name\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"title1\"\t[\"title1\"]\tTRUE\t\"CREATED\"\n"
+            "data": "label\tkey\tkeys\tunique\taction\n\"Movie\"\t\"release\"\t[\"release\"]\tFALSE\t\"DROPPED\"\n\"Movie\"\t\"tagline\"\t[\"tagline\"]\tFALSE\t\"DROPPED\"\n\"Person\"\t\"name\"\t[\"name\"]\tFALSE\t\"DROPPED\"\n\"Movie\"\t\"release\"\t[\"release\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"tagline\"\t[\"tagline\"]\tFALSE\t\"CREATED\"\n\"Person\"\t\"name\"\t[\"name\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"title\"\t[\"title\"]\tTRUE\t\"KEPT\"\n"
           }
         ]
       },
@@ -898,15 +925,15 @@
       "jobName": "paragraph_1636532662677_401422741",
       "id": "paragraph_1636532662677_401422741",
       "dateCreated": "2021-11-10 08:24:22.677",
-      "dateStarted": "2021-11-10 10:24:29.973",
-      "dateFinished": "2021-11-10 10:24:30.248",
+      "dateStarted": "2021-11-17 23:54:47.845",
+      "dateFinished": "2021-11-17 23:54:47.914",
       "status": "FINISHED"
     },
     {
       "title": "apoc.schema.node.constraintExists",
       "text": "%neo4j\n\nRETURN apoc.schema.node.constraintExists(\"Movie\", [\"title\"])\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:45:19.448",
+      "dateUpdated": "2021-11-17 23:48:30.270",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -968,15 +995,15 @@
       "jobName": "paragraph_1636532704343_2097459738",
       "id": "paragraph_1636532704343_2097459738",
       "dateCreated": "2021-11-10 08:25:04.343",
-      "dateStarted": "2021-11-10 08:26:25.254",
-      "dateFinished": "2021-11-10 08:26:25.296",
+      "dateStarted": "2021-11-17 23:48:30.287",
+      "dateFinished": "2021-11-17 23:48:30.316",
       "status": "FINISHED"
     },
     {
       "title": "apoc.schema.nodes",
       "text": "%neo4j\nCALL apoc.schema.nodes()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:45:28.555",
+      "dateUpdated": "2021-11-17 23:48:36.021",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1034,7 +1061,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "name\tlabel\tproperties\tstatus\ttype\tfailure\tpopulationProgress\tsize\tvaluesSelectivity\tuserDescription\n\":Movie(title)\"\t\"Movie\"\t[\"title\"]\t\"ONLINE\"\t\"UNIQUENESS\"\t\"NO FAILURE\"\t100.0\t38\t1.0\t\"Index( id\u003d12, name\u003d\u0027constraint_3044d997\u0027, type\u003d\u0027UNIQUE BTREE\u0027, schema\u003d(:Movie {title}), indexProvider\u003d\u0027native-btree-1.0\u0027, owningConstraint\u003d13 )\"\n\":Person(name)\"\t\"Person\"\t[\"name\"]\t\"ONLINE\"\t\"INDEX\"\t\"NO FAILURE\"\t100.0\t141\t0.9787234042553191\t\"Index( id\u003d11, name\u003d\u0027index_5c0607ad\u0027, type\u003d\u0027GENERAL BTREE\u0027, schema\u003d(:Person {name}), indexProvider\u003d\u0027native-btree-1.0\u0027 )\"\n"
+            "data": "name\tlabel\tproperties\tstatus\ttype\tfailure\tpopulationProgress\tsize\tvaluesSelectivity\tuserDescription\n\":Movie(release)\"\t\"Movie\"\t[\"release\"]\t\"ONLINE\"\t\"INDEX\"\t\"NO FAILURE\"\t100.0\t0\t1.0\t\"Index( id\u003d20, name\u003d\u0027index_aba47136\u0027, type\u003d\u0027GENERAL BTREE\u0027, schema\u003d(:Movie {release}), indexProvider\u003d\u0027native-btree-1.0\u0027 )\"\n\":Movie(tagline)\"\t\"Movie\"\t[\"tagline\"]\t\"ONLINE\"\t\"INDEX\"\t\"NO FAILURE\"\t100.0\t0\t1.0\t\"Index( id\u003d21, name\u003d\u0027index_531180b4\u0027, type\u003d\u0027GENERAL BTREE\u0027, schema\u003d(:Movie {tagline}), indexProvider\u003d\u0027native-btree-1.0\u0027 )\"\n\":Movie(title)\"\t\"Movie\"\t[\"title\"]\t\"ONLINE\"\t\"UNIQUENESS\"\t\"NO FAILURE\"\t100.0\t38\t1.0\t\"Index( id\u003d9, name\u003d\u0027constraint_3044d997\u0027, type\u003d\u0027UNIQUE BTREE\u0027, schema\u003d(:Movie {title}), indexProvider\u003d\u0027native-btree-1.0\u0027, owningConstraint\u003d19 )\"\n\":Person(name)\"\t\"Person\"\t[\"name\"]\t\"ONLINE\"\t\"INDEX\"\t\"NO FAILURE\"\t100.0\t133\t1.0\t\"Index( id\u003d22, name\u003d\u0027index_5c0607ad\u0027, type\u003d\u0027GENERAL BTREE\u0027, schema\u003d(:Person {name}), indexProvider\u003d\u0027native-btree-1.0\u0027 )\"\n"
           }
         ]
       },
@@ -1044,8 +1071,8 @@
       "jobName": "paragraph_1636532750579_2013459649",
       "id": "paragraph_1636532750579_2013459649",
       "dateCreated": "2021-11-10 08:25:50.580",
-      "dateStarted": "2021-11-10 08:26:28.877",
-      "dateFinished": "2021-11-10 08:26:28.945",
+      "dateStarted": "2021-11-17 23:48:36.042",
+      "dateFinished": "2021-11-17 23:48:36.081",
       "status": "FINISHED"
     },
     {
@@ -1093,7 +1120,7 @@
       "title": "apoc.load.jdbc",
       "text": "%neo4j\n\nCALL apoc.load.jdbc(\"jdbc:postgresql://postgres:5432/myDb\",              // connection URL\n    \u0027SELECT * FROM PERSON WHERE \"SURNAME\" \u003d ?\u0027,                          // query with param\n    [\u0027Test\u0027],                                                            // parameters\n    {schema: \"myDb\", credentials: {user: \"test\", password: \"postgres\"}}) // config with schema, credential\nYIELD row\nRETURN row",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:33:29.060",
+      "dateUpdated": "2021-11-17 23:48:40.454",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1143,23 +1170,14 @@
         "params": {},
         "forms": {}
       },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "row.SURNAME\trow.EFFECTIVE_FROM_DATE\trow.HIRE_DATE\trow.NULL_DATE\trow.TEST_TIME\trow.NAME\nTest\t2016-06-22T17:10:25\t1999-05-25\t\t15:37\tAl\nTest\t2016-06-22T17:10:25\t2017-05-25\t\t15:37\tJohn\nTest\t2016-06-22T17:10:25\t2018-05-25\t\t15:37\tJack\n"
-          }
-        ]
-      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636564574714_611795321",
       "id": "paragraph_1636564574714_611795321",
       "dateCreated": "2021-11-10 17:16:14.714",
-      "dateStarted": "2021-11-11 12:47:20.472",
-      "dateFinished": "2021-11-11 12:47:20.502",
+      "dateStarted": "2021-11-17 23:48:40.475",
+      "dateFinished": "2021-11-17 23:48:40.529",
       "status": "FINISHED"
     },
     {

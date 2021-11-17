@@ -807,9 +807,9 @@
     },
     {
       "title": "apoc.schema.assert",
-      "text": "%neo4j\n\nCALL apoc.schema.assert({Person:[\u0027name\u0027], Movie: [\u0027title\u0027, \u0027tagline\u0027]}, {Movie: [\"title\"]}, true)\n",
+      "text": "%neo4j\n\nCALL apoc.schema.assert({Person:[\u0027name\u0027], Movie: [\u0027release\u0027, \u0027tagline\u0027]}, {Movie: [\"title\"]}, true);\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:44:28.303",
+      "dateUpdated": "2021-11-17 23:48:04.623",
       "config": {
         "editorSetting": {
           "editOnDblClick": false,
@@ -864,7 +864,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "label\tkey\tkeys\tunique\taction\n\"TTL\"\t\"ttl\"\t[\"ttl\"]\tFALSE\t\"DROPPED\"\n\"Movie\"\t\"title\"\t[\"title\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"tagline\"\t[\"tagline\"]\tFALSE\t\"CREATED\"\n\"Person\"\t\"name\"\t[\"name\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"title1\"\t[\"title1\"]\tTRUE\t\"CREATED\"\n"
+            "data": "label\tkey\tkeys\tunique\taction\n\"Movie\"\t\"release\"\t[\"release\"]\tFALSE\t\"DROPPED\"\n\"Movie\"\t\"tagline\"\t[\"tagline\"]\tFALSE\t\"DROPPED\"\n\"Person\"\t\"name\"\t[\"name\"]\tFALSE\t\"DROPPED\"\n\"Movie\"\t\"release\"\t[\"release\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"tagline\"\t[\"tagline\"]\tFALSE\t\"CREATED\"\n\"Person\"\t\"name\"\t[\"name\"]\tFALSE\t\"CREATED\"\n\"Movie\"\t\"title\"\t[\"title\"]\tTRUE\t\"KEPT\"\n"
           }
         ]
       },
@@ -874,7 +874,9 @@
       "jobName": "paragraph_1636638268303_1388697063",
       "id": "paragraph_1636532662677_401422741",
       "dateCreated": "2021-11-11 13:44:28.303",
-      "status": "READY"
+      "dateStarted": "2021-11-17 23:48:04.639",
+      "dateFinished": "2021-11-17 23:48:04.689",
+      "status": "FINISHED"
     },
     {
       "title": "apoc.schema.node.constraintExists",

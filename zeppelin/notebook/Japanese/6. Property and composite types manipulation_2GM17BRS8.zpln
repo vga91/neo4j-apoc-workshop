@@ -1249,9 +1249,9 @@
     },
     {
       "title": "Dataset with coords",
-      "text": "%neo4j\n----\nCREATE (bruges:City {name:\"bruges\", latitude: 51.2605829, longitude: 3.0817189})\nCREATE (brussels:City {name:\"brussels\", latitude: 50.854954, longitude: 4.3051786})\nCREATE (paris:City {name:\"paris\", latitude: 48.8588376, longitude: 2.2773455})\nCREATE (dresden:City {name:\"dresden\", latitude: 51.0767496, longitude: 13.6321595})\nMERGE (bruges)-[:NEXT]-\u003e(brussels)\nMERGE (brussels)-[:NEXT]-\u003e(dresden)\nMERGE (brussels)-[:NEXT]-\u003e(paris)\nMERGE (bruges)-[:NEXT]-\u003e(paris)\nMERGE (paris)-[:NEXT]-\u003e(dresden)",
+      "text": "%neo4j\nCREATE (bruges:City {name:\"bruges\", latitude: 51.2605829, longitude: 3.0817189})\nCREATE (brussels:City {name:\"brussels\", latitude: 50.854954, longitude: 4.3051786})\nCREATE (paris:City {name:\"paris\", latitude: 48.8588376, longitude: 2.2773455})\nCREATE (dresden:City {name:\"dresden\", latitude: 51.0767496, longitude: 13.6321595})\nMERGE (bruges)-[:NEXT]-\u003e(brussels)\nMERGE (brussels)-[:NEXT]-\u003e(dresden)\nMERGE (brussels)-[:NEXT]-\u003e(paris)\nMERGE (bruges)-[:NEXT]-\u003e(paris)\nMERGE (paris)-[:NEXT]-\u003e(dresden)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:42:49.885",
+      "dateUpdated": "2021-11-17 23:45:47.616",
       "config": {
         "editorSetting": {
           "language": "scala",

@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n# Cypher Execution\n\nThe Apoc library comes with many procedure to help us to execute specific Cypher statements. here are some of them: \n\n\n- `apoc.cypher.run(fragment, $params)` - executes a reading fragment with the given parameters\n- `apoc.cypher.doIt(fragment, $params)` - executes writing fragment\n- `apoc.cypher.runFile(file or url, $params)` - runs each statement in the file, all semicolon separated - currently no schema operations\n- `apoc.cypher.runSchema(statement, $params)` yield value - executes query schema statement\n- `apoc.cypher.runSchemaFile(file or url, $params)` - allows only schema operations, runs each schema statement in the file, all semicolon separated\n- `apoc.cypher.runTimeboxed(\u0027fragment\u0027,$params, timeout)` - abort transaction after `timeout` and return results\n\nSee \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/cypher-execution/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to complete list.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:10.161",
+      "dateUpdated": "2021-11-17 21:20:42.324",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -38,14 +38,14 @@
       "jobName": "paragraph_1635854661682_1970406879",
       "id": "paragraph_1635854661682_1970406879",
       "dateCreated": "2021-11-02 12:04:21.682",
-      "dateStarted": "2021-11-11 13:03:10.164",
-      "dateFinished": "2021-11-11 13:03:10.178",
+      "dateStarted": "2021-11-17 21:20:42.325",
+      "dateFinished": "2021-11-17 21:20:42.499",
       "status": "FINISHED"
     },
     {
       "text": "%md\n\n### apoc.cypher.run\n\nTo retrieve count of nodes for each labels we could do something like:\n\u003cpre\u003e\nMATCH (:Person) RETURN count(*)\nUNION ALL\nMATCH (:Movie) RETURN count(*)\nUNION ALL\n...\n\u003c/pre\u003e\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:41:26.505",
+      "dateUpdated": "2021-11-17 21:20:44.893",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -80,15 +80,15 @@
       "jobName": "paragraph_1635858459697_1303077886",
       "id": "paragraph_1635858459697_1303077886",
       "dateCreated": "2021-11-02 13:07:39.697",
-      "dateStarted": "2021-11-11 13:41:26.505",
-      "dateFinished": "2021-11-11 13:41:26.517",
+      "dateStarted": "2021-11-17 21:20:44.894",
+      "dateFinished": "2021-11-17 21:20:44.910",
       "status": "FINISHED"
     },
     {
       "title": "Example",
       "text": "%neo4j\n\nCALL db.labels() yield label\n// we can concatenate string and variables (label)\n// otherwise, with pure cypher it would be `match (:label) ...` (doesn\u0027t work) because it would searching for nodes with label `:label`\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:22.095",
+      "dateUpdated": "2021-11-17 21:20:55.805",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -130,7 +130,8 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/undefined",
-        "title": true
+        "title": true,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -546,7 +547,7 @@
     {
       "text": "%md\n\n## [Import - Export](http://localhost:8080/#/notebook/2GJCSVRMK)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:43:22.559",
+      "dateUpdated": "2021-11-17 21:23:59.771",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -581,8 +582,8 @@
       "jobName": "paragraph_1635863303356_2095614526",
       "id": "paragraph_1635863303356_2095614526",
       "dateCreated": "2021-11-02 14:28:23.356",
-      "dateStarted": "2021-11-10 09:43:22.567",
-      "dateFinished": "2021-11-10 09:43:24.795",
+      "dateStarted": "2021-11-17 21:23:59.773",
+      "dateFinished": "2021-11-17 21:23:59.832",
       "status": "FINISHED"
     },
     {

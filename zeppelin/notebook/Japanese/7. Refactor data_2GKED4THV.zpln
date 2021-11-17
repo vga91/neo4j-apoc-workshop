@@ -582,10 +582,10 @@
       "status": "READY"
     },
     {
-      "title": "†",
+      "title": "Dataset",
       "text": "%neo4j\n\nCREATE (n1:MergeOne {name:\u0027Tom\u0027, surname: \u0027Jerry\u0027}),\n(n2:MergeOne {name:\u0027John\u0027, surname: \u0027Jack\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:43:49.344",
+      "dateUpdated": "2021-11-17 23:46:12.051",
       "config": {
         "tableHide": false,
         "editorSetting": {
