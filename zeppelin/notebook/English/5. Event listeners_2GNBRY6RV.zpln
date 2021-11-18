@@ -46,7 +46,7 @@
       "title": "Install a trigger ",
       "text": "%neo4j\n\n// We could add a trigger that when is added a specific property on a node, that property is added to all the nodes connected to this node\n\nCALL apoc.trigger.add(\u0027setlabels\u0027,\u0027UNWIND apoc.trigger.nodesByLabel($assignedLabels,\"Trigger\") AS n SET n.datetime \u003d $datetime\u0027,\n{phase:\u0027afterAsync\u0027}, \n{params: {datetime: datetime()}}) // param to be used in $triggered",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:39:54.553",
+      "dateUpdated": "2021-11-18 11:05:26.005",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -103,7 +103,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "name\tquery\tselector.phase\tparams.datetime\tinstalled\tpaused\n\"setlabels\"\t\"UNWIND apoc.trigger.nodesByLabel($assignedLabels,\\\"Trigger\\\") AS n SET n.datetime \u003d $datetime\"\tafterAsync\t2021-11-17T21:39:54.600Z\tTRUE\tFALSE\n"
+            "data": "name\tquery\tselector.phase\tparams.datetime\tinstalled\tpaused\n\"setlabels\"\t\"UNWIND apoc.trigger.nodesByLabel($assignedLabels,\\\"Trigger\\\") AS n SET n.datetime \u003d $datetime\"\tafterAsync\t2021-11-18T11:05:26.045Z\tTRUE\tFALSE\n"
           }
         ]
       },
@@ -113,15 +113,15 @@
       "jobName": "paragraph_1635853267522_1557662643",
       "id": "paragraph_1635853267522_1557662643",
       "dateCreated": "2021-11-02 11:41:07.522",
-      "dateStarted": "2021-11-17 21:39:54.569",
-      "dateFinished": "2021-11-17 21:39:55.065",
+      "dateStarted": "2021-11-18 11:05:26.027",
+      "dateFinished": "2021-11-18 11:05:26.222",
       "status": "FINISHED"
     },
     {
       "title": "Query to trigger ",
       "text": "%neo4j\n\nMATCH (d:Person {name:\u0027Keanu Reeves\u0027})\nSET d:Trigger\nRETURN d",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:39:58.643",
+      "dateUpdated": "2021-11-18 11:06:14.184",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -139,8 +139,13 @@
                     "names": {
                       "id": "string",
                       "label": "string",
+                      "other": "string",
+                      "born": "string",
                       "name": "string",
-                      "born": "string"
+                      "uuid": "string",
+                      "something": "string",
+                      "timestamp": "string",
+                      "stuff": "string"
                     },
                     "updated": false
                   },
@@ -176,7 +181,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"born\":1964},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"other\":444,\"born\":1964,\"name\":\"Keanu Reeves\",\"uuid\":\"9dfb4bfb-cff8-46e8-944a-c1076a4278cc\",\"something\":\"ba792e41-52c1-48f4-a1a8-203810464388\",\"timestamp\":1637231941653,\"stuff\":0.8392128050040525},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
           }
         ]
       },
@@ -186,15 +191,15 @@
       "jobName": "paragraph_1635853359717_1862278247",
       "id": "paragraph_1635853359717_1862278247",
       "dateCreated": "2021-11-02 11:42:39.717",
-      "dateStarted": "2021-11-17 21:39:58.074",
-      "dateFinished": "2021-11-17 21:39:58.435",
+      "dateStarted": "2021-11-18 11:06:13.863",
+      "dateFinished": "2021-11-18 11:06:13.981",
       "status": "FINISHED"
     },
     {
       "title": "Check trigger execution",
       "text": "%neo4j\n\nMATCH (p:Person {name:\u0027Keanu Reeves\u0027}) RETURN p",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:40:04.374",
+      "dateUpdated": "2021-11-18 11:06:23.319",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -212,9 +217,14 @@
                     "names": {
                       "id": "string",
                       "label": "string",
-                      "name": "string",
                       "datetime": "string",
-                      "born": "string"
+                      "other": "string",
+                      "born": "string",
+                      "name": "string",
+                      "uuid": "string",
+                      "something": "string",
+                      "timestamp": "string",
+                      "stuff": "string"
                     },
                     "updated": false
                   },
@@ -250,7 +260,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"datetime\":\"2021-11-17T21:39:54.600Z\",\"born\":1964},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"datetime\":\"2021-11-18T11:05:26.045Z\",\"other\":444,\"born\":1964,\"name\":\"Keanu Reeves\",\"uuid\":\"9dfb4bfb-cff8-46e8-944a-c1076a4278cc\",\"something\":\"ba792e41-52c1-48f4-a1a8-203810464388\",\"timestamp\":1637231941653,\"stuff\":0.8392128050040525},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
           }
         ]
       },
@@ -260,15 +270,15 @@
       "jobName": "paragraph_1635853392081_796719443",
       "id": "paragraph_1635853392081_796719443",
       "dateCreated": "2021-11-02 11:43:12.081",
-      "dateStarted": "2021-11-17 21:40:04.081",
-      "dateFinished": "2021-11-17 21:40:04.148",
+      "dateStarted": "2021-11-18 11:06:23.065",
+      "dateFinished": "2021-11-18 11:06:23.149",
       "status": "FINISHED"
     },
     {
       "title": "$createdNodes parameter",
       "text": "%neo4j\n// 3rd parameter is null, so phase is \u0027before\u0027 by default\nCALL apoc.trigger.add(\u0027unique\u0027,\u0027UNWIND $createdNodes AS n SET n.datetime \u003d $datetime\u0027, null, {params: {datetime: datetime()}}); ",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:40:48.566",
+      "dateUpdated": "2021-11-18 11:07:06.664",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -325,7 +335,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "name\tquery\tselector\tparams.datetime\tinstalled\tpaused\n\"unique\"\t\"UNWIND $createdNodes AS n SET n.datetime \u003d $datetime\"\tNULL\t2021-11-17T21:40:48.603Z\tTRUE\tFALSE\n"
+            "data": "name\tquery\tselector\tparams.datetime\tinstalled\tpaused\n\"unique\"\t\"UNWIND $createdNodes AS n SET n.datetime \u003d $datetime\"\tNULL\t2021-11-18T11:07:06.715Z\tTRUE\tFALSE\n"
           }
         ]
       },
@@ -335,15 +345,15 @@
       "jobName": "paragraph_1635864280616_762486125",
       "id": "paragraph_1635864280616_762486125",
       "dateCreated": "2021-11-02 14:44:40.616",
-      "dateStarted": "2021-11-17 21:40:48.583",
-      "dateFinished": "2021-11-17 21:40:48.666",
+      "dateStarted": "2021-11-18 11:07:06.687",
+      "dateFinished": "2021-11-18 11:07:06.806",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nCREATE (n:NodeWithTime);\nMATCH (n:NodeWithTime) RETURN n;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:40:51.196",
+      "dateUpdated": "2021-11-18 11:07:26.805",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -397,7 +407,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":200709,\"data\":{\"datetime\":\"2021-11-17T21:40:48.603Z\"},\"label\":\"NodeWithTime\"}],\"edges\":[],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":41411,\"data\":{\"datetime\":\"2021-11-18T11:07:06.715Z\"},\"label\":\"NodeWithTime\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\",\"NodeWithTime\":\"#87F334\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
           }
         ]
       },
@@ -407,15 +417,15 @@
       "jobName": "paragraph_1635864655639_1005439890",
       "id": "paragraph_1635864655639_1005439890",
       "dateCreated": "2021-11-02 14:50:55.639",
-      "dateStarted": "2021-11-17 21:40:50.817",
-      "dateFinished": "2021-11-17 21:40:50.931",
+      "dateStarted": "2021-11-18 11:07:26.823",
+      "dateFinished": "2021-11-18 11:07:26.968",
       "status": "FINISHED"
     },
     {
       "title": "Enforcing property type",
       "text": "%neo4j\n\n// Enforcing property type, for this example, we would like that all the `reference` node properties are of type `STRING`\n\nCALL apoc.trigger.add(\"forceStringType\",\n\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS props WITH props.new as prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\", {phase:\u0027before\u0027})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:46:43.911",
+      "dateUpdated": "2021-11-18 11:08:32.836",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -546,14 +556,14 @@
       "jobName": "paragraph_1635864199254_1511871497",
       "id": "paragraph_1635864199254_1511871497",
       "dateCreated": "2021-11-02 14:43:19.254",
-      "dateStarted": "2021-11-17 21:46:43.931",
-      "dateFinished": "2021-11-17 21:46:44.037",
+      "dateStarted": "2021-11-18 11:08:32.856",
+      "dateFinished": "2021-11-18 11:08:32.995",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\nCREATE (a:Node) SET a.reference \u003d 1",
+      "text": "%neo4j\nCREATE (a:Node) SET a.reference \u003d \"1\"",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:46:53.822",
+      "dateUpdated": "2021-11-18 11:08:56.996",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -572,13 +582,8 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "Error executing triggers {forceStringType\u003dFailed to invoke procedure `apoc.util.validate`: Caused by: java.lang.RuntimeException: expected string property type, got INTEGER}"
-          }
-        ]
+        "code": "SUCCESS",
+        "msg": []
       },
       "apps": [],
       "runtimeInfos": {},
@@ -586,15 +591,15 @@
       "jobName": "paragraph_1635864255093_158993446",
       "id": "paragraph_1635864255093_158993446",
       "dateCreated": "2021-11-02 14:44:15.093",
-      "dateStarted": "2021-11-17 21:46:53.840",
-      "dateFinished": "2021-11-17 21:46:53.868",
-      "status": "ERROR"
+      "dateStarted": "2021-11-18 11:08:57.014",
+      "dateFinished": "2021-11-18 11:08:57.055",
+      "status": "FINISHED"
     },
     {
       "title": "apoc.trigger.list",
       "text": "%neo4j\nCALL apoc.trigger.list",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:11:30.292",
+      "dateUpdated": "2021-11-18 11:09:02.337",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -612,11 +617,11 @@
                     "names": {
                       "name": "string",
                       "query": "string",
-                      "selector": "string",
-                      "params.unique": "string",
+                      "selector.phase": "string",
                       "installed": "string",
                       "paused": "string",
-                      "selector.phase": "string"
+                      "selector": "string",
+                      "params.datetime": "string"
                     },
                     "updated": false
                   },
@@ -649,7 +654,12 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": []
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tquery\tselector.phase\tparams.datetime\tinstalled\tpaused\tselector\n\"setlabels\"\t\"UNWIND apoc.trigger.nodesByLabel($assignedLabels,\\\"Trigger\\\") AS n SET n.datetime \u003d $datetime\"\tafterAsync\t2021-11-18T11:05:26.045Z\tTRUE\tFALSE\t\n\"unique\"\t\"UNWIND $createdNodes AS n SET n.datetime \u003d $datetime\"\t\t2021-11-18T11:07:06.715Z\tTRUE\tFALSE\tNULL\n\"forceStringType\"\t\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS props WITH props.new as prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\"\tbefore\t\tTRUE\tFALSE\t\n"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -657,15 +667,15 @@
       "jobName": "paragraph_1635864312695_2074767345",
       "id": "paragraph_1635864312695_2074767345",
       "dateCreated": "2021-11-02 14:45:12.695",
-      "dateStarted": "2021-11-11 13:11:30.309",
-      "dateFinished": "2021-11-11 13:11:30.382",
+      "dateStarted": "2021-11-18 11:09:02.356",
+      "dateFinished": "2021-11-18 11:09:02.411",
       "status": "FINISHED"
     },
     {
       "title": "apoc.trigger.removeAll",
       "text": "%neo4j\nCALL apoc.trigger.removeAll()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:46:39.863",
+      "dateUpdated": "2021-11-18 11:09:08.259",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -684,8 +694,10 @@
                       "name": "string",
                       "query": "string",
                       "selector.phase": "string",
+                      "params.datetime": "string",
                       "installed": "string",
-                      "paused": "string"
+                      "paused": "string",
+                      "selector": "string"
                     },
                     "updated": false
                   },
@@ -721,7 +733,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "name\tquery\tselector.phase\tinstalled\tpaused\n\"forceStringType\"\t\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS prop WITH prop.node as node\nCALL apoc.util.validate(apoc.meta.type(node) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(node)]) RETURN null\"\tbefore\tFALSE\tFALSE\n"
+            "data": "name\tquery\tselector.phase\tparams.datetime\tinstalled\tpaused\tselector\n\"setlabels\"\t\"UNWIND apoc.trigger.nodesByLabel($assignedLabels,\\\"Trigger\\\") AS n SET n.datetime \u003d $datetime\"\tafterAsync\t2021-11-18T11:05:26.045Z\tFALSE\tFALSE\t\n\"unique\"\t\"UNWIND $createdNodes AS n SET n.datetime \u003d $datetime\"\t\t2021-11-18T11:07:06.715Z\tFALSE\tFALSE\tNULL\n\"forceStringType\"\t\"UNWIND apoc.trigger.propertiesByKey($assignedNodeProperties, \u0027reference\u0027) AS props WITH props.new as prop\nCALL apoc.util.validate(apoc.meta.type(prop) \u003c\u003e \u0027STRING\u0027, \u0027expected string property type, got %s\u0027, [apoc.meta.type(prop)]) RETURN null\"\tbefore\t\tFALSE\tFALSE\t\n"
           }
         ]
       },
@@ -731,8 +743,8 @@
       "jobName": "paragraph_1636636268973_1703951230",
       "id": "paragraph_1636636268973_1703951230",
       "dateCreated": "2021-11-11 13:11:08.973",
-      "dateStarted": "2021-11-17 21:46:39.880",
-      "dateFinished": "2021-11-17 21:46:39.902",
+      "dateStarted": "2021-11-18 11:09:08.276",
+      "dateFinished": "2021-11-18 11:09:08.355",
       "status": "FINISHED"
     },
     {
@@ -779,9 +791,9 @@
     },
     {
       "title": "apoc.load.directory.async.add",
-      "text": "%neo4j\n\nCALL apoc.load.directory.async.add(\u0027csvToImport\u0027,\n\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\",\n\"*.csv\", \n\"csvImport\",\n{listenEventType: [\"CREATE\", \"MODIFY\"]})",
+      "text": "%neo4j\n\nCALL apoc.load.directory.async.add(\u0027csvToImportTest1\u0027,\n\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\",\n\"*.csv\", \n\"csvImport1\",\n{listenEventType: [\"CREATE\", \"MODIFY\", \"DELETE\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:50:42.927",
+      "dateUpdated": "2021-11-18 11:14:37.635",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -840,7 +852,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "name\tstatus\tpattern\tcypher\turlDir\tconfig.interval\tconfig.listenEventType\terror\n\"csvToImport\"\t\"CREATED\"\t\"*.csv\"\t\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport/\"\t1000\t[\"CREATE\",\"MODIFY\"]\t\"\"\n"
+            "data": "name\tstatus\tpattern\tcypher\turlDir\tconfig.interval\tconfig.listenEventType\terror\n\"csvToImportTest\"\t\"RUNNING\"\t\"*.csv\"\t\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport1/\"\t1000\t[\"CREATE\",\"MODIFY\",\"DELETE\"]\t\"\"\n\"csvToImportTest1\"\t\"CREATED\"\t\"*.csv\"\t\"CREATE (n:CsvToNode {fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport1/\"\t1000\t[\"CREATE\",\"MODIFY\",\"DELETE\"]\t\"\"\n"
           }
         ]
       },
@@ -850,15 +862,15 @@
       "jobName": "paragraph_1636544466331_1555017225",
       "id": "paragraph_1636544466331_1555017225",
       "dateCreated": "2021-11-10 11:41:06.331",
-      "dateStarted": "2021-11-17 21:48:26.395",
-      "dateFinished": "2021-11-17 21:48:26.666",
+      "dateStarted": "2021-11-18 11:13:53.614",
+      "dateFinished": "2021-11-18 11:13:53.684",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nMATCH (n:CsvToNode) RETURN properties(n) as prop",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:50:00.680",
+      "dateUpdated": "2021-11-18 11:15:21.588",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -902,7 +914,8 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/undefined",
-        "title": true
+        "title": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -910,12 +923,7 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "prop.fileDirectory\tprop.fileName\tprop.listenEventType\tprop.content\ncsvImport\ttoCsvImport.csv\tCREATE\t[\"0\",\":Nodo\",\"1\",\"\",\"\",\"\"]\ncsvImport\ttoCsvImport.csv\tMODIFY\t[\"0\",\":Nodo\",\"1\",\"\",\"\",\"\"]\n"
-          }
-        ]
+        "msg": []
       },
       "apps": [],
       "runtimeInfos": {},
@@ -923,15 +931,15 @@
       "jobName": "paragraph_1636544521276_2107985340",
       "id": "paragraph_1636544521276_2107985340",
       "dateCreated": "2021-11-10 11:42:01.276",
-      "dateStarted": "2021-11-17 21:50:00.694",
-      "dateFinished": "2021-11-17 21:50:00.711",
+      "dateStarted": "2021-11-18 11:15:21.604",
+      "dateFinished": "2021-11-18 11:15:21.620",
       "status": "FINISHED"
     },
     {
       "title": "With error",
       "text": "%neo4j\nCALL apoc.load.directory.async.add(\u0027another\u0027, \"CREATE (:Stuff)\", \"*.csv\", \"notExistentPath\")",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:51:00.955",
+      "dateUpdated": "2021-11-18 11:14:50.405",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -990,7 +998,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "name\tstatus\tpattern\tcypher\turlDir\tconfig.interval\tconfig.listenEventType\terror\n\"csvToImport\"\t\"RUNNING\"\t\"*.csv\"\t\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport/\"\t1000\t[\"CREATE\",\"MODIFY\"]\t\"\"\n\"another\"\t\"CREATED\"\t\"*.csv\"\t\"CREATE (:Stuff)\"\t\"file:/import/notExistentPath\"\t1000\t[\"MODIFY\",\"DELETE\",\"CREATE\"]\t\"\"\n"
+            "data": "name\tstatus\tpattern\tcypher\turlDir\tconfig.interval\tconfig.listenEventType\terror\n\"csvToImportTest\"\t\"RUNNING\"\t\"*.csv\"\t\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport1/\"\t1000\t[\"CREATE\",\"MODIFY\",\"DELETE\"]\t\"\"\n\"another\"\t\"CREATED\"\t\"*.csv\"\t\"CREATE (:Stuff)\"\t\"file:/import/notExistentPath\"\t1000\t[\"MODIFY\",\"DELETE\",\"CREATE\"]\t\"\"\n\"csvToImportTest1\"\t\"RUNNING\"\t\"*.csv\"\t\"CREATE (n:CsvToNode {fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport1/\"\t1000\t[\"CREATE\",\"MODIFY\",\"DELETE\"]\t\"\"\n"
           }
         ]
       },
@@ -1000,15 +1008,15 @@
       "jobName": "paragraph_1636545967327_205410133",
       "id": "paragraph_1636545967327_205410133",
       "dateCreated": "2021-11-10 12:06:07.327",
-      "dateStarted": "2021-11-17 21:51:00.975",
-      "dateFinished": "2021-11-17 21:51:01.058",
+      "dateStarted": "2021-11-18 11:14:50.423",
+      "dateFinished": "2021-11-18 11:14:50.510",
       "status": "FINISHED"
     },
     {
       "title": "apoc.load.directory.async.list",
       "text": "%neo4j\nCALL apoc.load.directory.async.list()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:51:04.369",
+      "dateUpdated": "2021-11-18 11:15:04.136",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1068,7 +1076,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "name\tstatus\tpattern\tcypher\turlDir\tconfig.interval\tconfig.listenEventType\terror\n\"csvToImport\"\t\"RUNNING\"\t\"*.csv\"\t\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport/\"\t1000\t[\"CREATE\",\"MODIFY\"]\t\"\"\n\"another\"\t\"ERROR\"\t\"*.csv\"\t\"CREATE (:Stuff)\"\t\"file:/import/notExistentPath\"\t1000\t[\"MODIFY\",\"DELETE\",\"CREATE\"]\t\"java.nio.file.NoSuchFileException: /import/notExistentPath\n\tat java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)\n\tat java.base/sun.nio.fs.UnixException.asIOException(UnixException.java:120)\n\tat java.base/sun.nio.fs.LinuxWatchService$Poller.implRegister(LinuxWatchService.java:248)\n\tat java.base/sun.nio.fs.AbstractPoller.processRequests(AbstractPoller.java:265)\n\tat java.base/sun.nio.fs.LinuxWatchService$Poller.run(LinuxWatchService.java:366)\n\tat java.base/java.lang.Thread.run(Thread.java:829)\n\"\n"
+            "data": "name\tstatus\tpattern\tcypher\turlDir\tconfig.interval\tconfig.listenEventType\terror\n\"csvToImportTest\"\t\"RUNNING\"\t\"*.csv\"\t\"CALL apoc.load.csv($filePath) yield list WITH list CREATE (n:CsvToNode {content: list, fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport1/\"\t1000\t[\"CREATE\",\"MODIFY\",\"DELETE\"]\t\"\"\n\"another\"\t\"ERROR\"\t\"*.csv\"\t\"CREATE (:Stuff)\"\t\"file:/import/notExistentPath\"\t1000\t[\"MODIFY\",\"DELETE\",\"CREATE\"]\t\"java.nio.file.NoSuchFileException: /import/notExistentPath\n\tat java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)\n\tat java.base/sun.nio.fs.UnixException.asIOException(UnixException.java:120)\n\tat java.base/sun.nio.fs.LinuxWatchService$Poller.implRegister(LinuxWatchService.java:248)\n\tat java.base/sun.nio.fs.AbstractPoller.processRequests(AbstractPoller.java:265)\n\tat java.base/sun.nio.fs.LinuxWatchService$Poller.run(LinuxWatchService.java:366)\n\tat java.base/java.lang.Thread.run(Thread.java:829)\n\"\n\"csvToImportTest1\"\t\"RUNNING\"\t\"*.csv\"\t\"CREATE (n:CsvToNode {fileName: $fileName, fileDirectory: $fileDirectory, listenEventType: $listenEventType})\"\t\"file:/import/csvImport1/\"\t1000\t[\"CREATE\",\"MODIFY\",\"DELETE\"]\t\"\"\n"
           }
         ]
       },
@@ -1078,15 +1086,15 @@
       "jobName": "paragraph_1636545976586_723359064",
       "id": "paragraph_1636545976586_723359064",
       "dateCreated": "2021-11-10 12:06:16.586",
-      "dateStarted": "2021-11-17 21:51:04.394",
-      "dateFinished": "2021-11-17 21:51:04.508",
+      "dateStarted": "2021-11-18 11:15:04.171",
+      "dateFinished": "2021-11-18 11:15:04.227",
       "status": "FINISHED"
     },
     {
       "title": "apoc.load.directory.async.removeAll",
       "text": "%neo4j\nCALL apoc.load.directory.async.removeAll()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:51:15.150",
+      "dateUpdated": "2021-11-18 11:15:28.490",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1115,8 +1123,8 @@
       "jobName": "paragraph_1636545981605_989834727",
       "id": "paragraph_1636545981605_989834727",
       "dateCreated": "2021-11-10 12:06:21.606",
-      "dateStarted": "2021-11-17 21:51:15.163",
-      "dateFinished": "2021-11-17 21:51:15.210",
+      "dateStarted": "2021-11-18 11:15:28.506",
+      "dateFinished": "2021-11-18 11:15:28.559",
       "status": "FINISHED"
     },
     {

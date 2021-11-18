@@ -85,7 +85,7 @@
           "description": "Max number of SCollection results to display."
         }
       },
-      "status": "DOWNLOADING_DEPENDENCIES",
+      "status": "READY",
       "interpreterGroup": [
         {
           "name": "beam",

@@ -88,7 +88,7 @@
       "title": "apoc.refactor.invert",
       "text": "%neo4j\n\nMATCH (p:Person {name: \u0027Al Pacino\u0027})-[rel:ACTED_IN]-\u003e(c:Movie)\nCALL apoc.refactor.invert(rel) YIELD output\nRETURN p, output, c",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:31:20.392",
+      "dateUpdated": "2021-11-18 11:29:30.488",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -145,7 +145,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":11,\"data\":{\"tagline\":\"Evil has its winning ways\",\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"},{\"id\":13,\"data\":{\"name\":\"Al Pacino\",\"born\":1940},\"label\":\"Person\"}],\"edges\":[{\"source\":11,\"target\":13,\"id\":100463,\"data\":{\"roles\":[\"John Milton\"]},\"label\":\"ACTED_IN\"}],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":11,\"data\":{\"tagline\":\"Evil has its winning ways\",\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"},{\"id\":13,\"data\":{\"name\":\"Al Pacino\",\"uuid\":\"f3645329-5345-4bcf-a40e-a47bbc3ecdf8\",\"born\":1940},\"label\":\"Person\"}],\"edges\":[{\"source\":11,\"target\":13,\"id\":10263,\"data\":{\"roles\":[\"John Milton\"]},\"label\":\"ACTED_IN\"}],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\",\"NodeWithTime\":\"#87F334\",\"City\":\"#094023\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
           }
         ]
       },
@@ -155,8 +155,8 @@
       "jobName": "paragraph_1635512346388_400316643",
       "id": "paragraph_1635512346388_400316643",
       "dateCreated": "2021-10-29 12:59:06.388",
-      "dateStarted": "2021-11-17 23:31:20.411",
-      "dateFinished": "2021-11-17 23:31:20.621",
+      "dateStarted": "2021-11-18 11:29:30.507",
+      "dateFinished": "2021-11-18 11:29:30.704",
       "status": "FINISHED"
     },
     {
@@ -325,9 +325,9 @@
     },
     {
       "title": "apoc.refactor.categorize",
-      "text": "%neo4j\n\nCREATE CONSTRAINT ON (n:`TagLine`) ASSERT n.`name` IS UNIQUE;\n\nCALL apoc.refactor.categorize(\u0027tagline\u0027, \n    \u0027HAS_TAGLINE\u0027, \n    true, \n    \"TagLine\", \n    \"name\", \n    [\"released\"], \n    100);\n\n",
+      "text": "%neo4j\n\nCREATE CONSTRAINT ON (n:`TagLine`) ASSERT n.`name` IS UNIQUE;\n\n// Movie {tagline: \"...\"}  --HAS_TAGLINE-\u003e (:Tagline)\nCALL apoc.refactor.categorize(\u0027tagline\u0027, \n    \u0027HAS_TAGLINE\u0027, \n    true, \n    \"TagLine\", \n    \"name\", \n    [\"released\"], \n    100);\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:31:32.502",
+      "dateUpdated": "2021-11-18 11:34:29.900",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -356,15 +356,15 @@
       "jobName": "paragraph_1636492769374_1747537371",
       "id": "paragraph_1636492769374_1747537371",
       "dateCreated": "2021-11-09 21:19:29.374",
-      "dateStarted": "2021-11-17 23:31:32.516",
-      "dateFinished": "2021-11-17 23:31:33.147",
+      "dateStarted": "2021-11-18 11:34:29.918",
+      "dateFinished": "2021-11-18 11:34:30.418",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\n\nMATCH p\u003d(n)-[:HAS_TAGLINE]-()\nRETURN p;\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:31:35.317",
+      "dateUpdated": "2021-11-18 11:34:34.220",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -423,7 +423,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"title\":\"The Matrix\"},\"label\":\"Movie\"},{\"id\":128,\"data\":{\"title\":\"Ninja Assassin\"},\"label\":\"Movie\"},{\"id\":130,\"data\":{\"title\":\"The Green Mile\"},\"label\":\"Movie\"},{\"id\":9,\"data\":{\"title\":\"The Matrix Reloaded\"},\"label\":\"Movie\"},{\"id\":137,\"data\":{\"title\":\"Frost/Nixon\"},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"title\":\"The Matrix Revolutions\"},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"title\":\"The Devil\\u0027s Advocate\"},\"label\":\"Movie\"},{\"id\":141,\"data\":{\"title\":\"Hoffa\"},\"label\":\"Movie\"},{\"id\":15,\"data\":{\"title\":\"A Few Good Men\"},\"label\":\"Movie\"},{\"id\":144,\"data\":{\"title\":\"Apollo 13\"},\"label\":\"Movie\"},{\"id\":147,\"data\":{\"title\":\"Twister\"},\"label\":\"Movie\"},{\"id\":150,\"data\":{\"title\":\"Cast Away\"},\"label\":\"Movie\"},{\"id\":152,\"data\":{\"title\":\"One Flew Over the Cuckoo\\u0027s Nest\"},\"label\":\"Movie\"},{\"id\":200735,\"data\":{\"name\":\"Free your mind\",\"released\":2003},\"label\":\"TagLine\"},{\"id\":200734,\"data\":{\"name\":\"The hottest data on earth. In the coolest head in town\",\"released\":1995},\"label\":\"TagLine\"},{\"id\":29,\"data\":{\"title\":\"Top Gun\"},\"label\":\"Movie\"},{\"id\":157,\"data\":{\"title\":\"Bicentennial Man\"},\"label\":\"Movie\"},{\"id\":200733,\"data\":{\"name\":\"Welcome to the Real World\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":159,\"data\":{\"title\":\"Charlie Wilson\\u0027s War\"},\"label\":\"Movie\"},{\"id\":200739,\"data\":{\"name\":\"I feel the need, the need for speed.\",\"released\":1986},\"label\":\"TagLine\"},{\"id\":200738,\"data\":{\"name\":\"In the heart of the nation\\u0027s capital, in a courthouse of the U.S. government, one man will stop at nothing to keep his honor, and one will stop at nothing to find the truth.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":161,\"data\":{\"title\":\"The Polar Express\"},\"label\":\"Movie\"},{\"id\":200737,\"data\":{\"name\":\"Evil has its winning ways\",\"released\":1997},\"label\":\"TagLine\"},{\"id\":162,\"data\":{\"title\":\"A League of Their Own\"},\"label\":\"Movie\"},{\"id\":200736,\"data\":{\"name\":\"Everything that has a beginning has an end\",\"released\":2003},\"label\":\"TagLine\"},{\"id\":200743,\"data\":{\"name\":\"Everything is connected\",\"released\":2012},\"label\":\"TagLine\"},{\"id\":37,\"data\":{\"title\":\"Jerry Maguire\"},\"label\":\"Movie\"},{\"id\":200742,\"data\":{\"name\":\"A comedy from the heart that goes for the throat.\",\"released\":1997},\"label\":\"TagLine\"},{\"id\":200741,\"data\":{\"name\":\"For some, it\\u0027s the last real taste of innocence, and the first real taste of life. But for everyone, it\\u0027s the time that memories are made of.\",\"released\":1986},\"label\":\"TagLine\"},{\"id\":200740,\"data\":{\"name\":\"The rest of his life begins now.\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":200747,\"data\":{\"name\":\"At odds in life... in love on-line.\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":200746,\"data\":{\"name\":\"Break The Codes\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":200745,\"data\":{\"name\":\"First loves last. Forever.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":200744,\"data\":{\"name\":\"After life there is more. The end is just the beginning.\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":200751,\"data\":{\"name\":\"A story of love, lava and burning desire.\",\"released\":1990},\"label\":\"TagLine\"},{\"id\":200750,\"data\":{\"name\":\"Speed has no limits\",\"released\":2008},\"label\":\"TagLine\"},{\"id\":46,\"data\":{\"title\":\"Stand By Me\"},\"label\":\"Movie\"},{\"id\":200749,\"data\":{\"name\":\"What if someone you never met, someone you never saw, someone you never knew was the only someone for you?\",\"released\":1993},\"label\":\"TagLine\"},{\"id\":200748,\"data\":{\"name\":\"Freedom! Forever!\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":200755,\"data\":{\"name\":\"In every life there comes a time when that thing you dream becomes that thing you do\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":200754,\"data\":{\"name\":\"Walk a mile you\\u0027ll never forget.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":200753,\"data\":{\"name\":\"Can two friends sleep together and still love each other in the morning?\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":200752,\"data\":{\"name\":\"Prepare to enter a secret world of assassins\",\"released\":2009},\"label\":\"TagLine\"},{\"id\":52,\"data\":{\"title\":\"As Good as It Gets\"},\"label\":\"Movie\"},{\"id\":200759,\"data\":{\"name\":\"Based on the extraordinary true story of one man\\u0027s fight for freedom\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":200758,\"data\":{\"name\":\"He didn\\u0027t want law. He wanted justice.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":200757,\"data\":{\"name\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":200756,\"data\":{\"name\":\"400 million people were waiting for the truth.\",\"released\":2008},\"label\":\"TagLine\"},{\"id\":56,\"data\":{\"title\":\"What Dreams May Come\"},\"label\":\"Movie\"},{\"id\":200763,\"data\":{\"name\":\"At the edge of the world, his journey begins.\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":200762,\"data\":{\"name\":\"Come as you are\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":200761,\"data\":{\"name\":\"Don\\u0027t Breathe. Don\\u0027t Look Back.\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":200760,\"data\":{\"name\":\"Houston, we have a problem.\",\"released\":1995},\"label\":\"TagLine\"},{\"id\":200767,\"data\":{\"name\":\"A stiff drink. A little mascara. A lot of nerve. Who said they couldn\\u0027t bring down the Soviet empire.\",\"released\":2007},\"label\":\"TagLine\"},{\"id\":200766,\"data\":{\"name\":\"One robot\\u0027s 200 year journey to become an ordinary man.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":62,\"data\":{\"title\":\"Snow Falling on Cedars\"},\"label\":\"Movie\"},{\"id\":200765,\"data\":{\"name\":\"It\\u0027s a hell of a thing, killing a man\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":200764,\"data\":{\"name\":\"If he\\u0027s crazy, what does that make you?\",\"released\":1975},\"label\":\"TagLine\"},{\"id\":200769,\"data\":{\"name\":\"Once in a lifetime you get a chance to do something different.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":67,\"data\":{\"title\":\"You\\u0027ve Got Mail\"},\"label\":\"Movie\"},{\"id\":200768,\"data\":{\"name\":\"This Holiday Season... Believe\",\"released\":2004},\"label\":\"TagLine\"},{\"id\":73,\"data\":{\"title\":\"Sleepless in Seattle\"},\"label\":\"Movie\"},{\"id\":78,\"data\":{\"title\":\"Joe Versus the Volcano\"},\"label\":\"Movie\"},{\"id\":81,\"data\":{\"title\":\"When Harry Met Sally\"},\"label\":\"Movie\"},{\"id\":85,\"data\":{\"title\":\"That Thing You Do\"},\"label\":\"Movie\"},{\"id\":87,\"data\":{\"title\":\"The Replacements\"},\"label\":\"Movie\"},{\"id\":92,\"data\":{\"title\":\"RescueDawn\"},\"label\":\"Movie\"},{\"id\":95,\"data\":{\"title\":\"The Birdcage\"},\"label\":\"Movie\"},{\"id\":97,\"data\":{\"title\":\"Unforgiven\"},\"label\":\"Movie\"},{\"id\":100,\"data\":{\"title\":\"Johnny Mnemonic\"},\"label\":\"Movie\"},{\"id\":105,\"data\":{\"title\":\"Cloud Atlas\"},\"label\":\"Movie\"},{\"id\":111,\"data\":{\"title\":\"The Da Vinci Code\"},\"label\":\"Movie\"},{\"id\":116,\"data\":{\"title\":\"V for Vendetta\"},\"label\":\"Movie\"},{\"id\":121,\"data\":{\"title\":\"Speed Racer\"},\"label\":\"Movie\"}],\"edges\":[{\"source\":78,\"target\":200751,\"id\":100481,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":73,\"target\":200749,\"id\":100480,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":81,\"target\":200753,\"id\":100483,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":128,\"target\":200752,\"id\":100482,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":130,\"target\":200754,\"id\":100485,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":85,\"target\":200755,\"id\":100484,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":87,\"target\":200757,\"id\":100487,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":137,\"target\":200756,\"id\":100486,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":92,\"target\":200759,\"id\":100489,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":141,\"target\":200758,\"id\":100488,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":147,\"target\":200761,\"id\":100491,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":144,\"target\":200760,\"id\":100490,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":95,\"target\":200762,\"id\":100493,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":150,\"target\":200763,\"id\":100492,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":97,\"target\":200765,\"id\":100495,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":152,\"target\":200764,\"id\":100494,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":159,\"target\":200767,\"id\":100497,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":157,\"target\":200766,\"id\":100496,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":162,\"target\":200769,\"id\":100499,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":161,\"target\":200768,\"id\":100498,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":0,\"target\":200733,\"id\":100463,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":9,\"target\":200735,\"id\":100465,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":100,\"target\":200734,\"id\":100464,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":11,\"target\":200737,\"id\":100467,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":10,\"target\":200736,\"id\":100466,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":29,\"target\":200739,\"id\":100469,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":15,\"target\":200738,\"id\":100468,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":46,\"target\":200741,\"id\":100471,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":37,\"target\":200740,\"id\":100470,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":56,\"target\":200744,\"id\":100473,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":52,\"target\":200742,\"id\":100472,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":62,\"target\":200745,\"id\":100475,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":105,\"target\":200743,\"id\":100474,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":67,\"target\":200747,\"id\":100477,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":111,\"target\":200746,\"id\":100476,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":121,\"target\":200750,\"id\":100479,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":116,\"target\":200748,\"id\":100478,\"data\":{},\"label\":\"HAS_TAGLINE\"}],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\",\"TagLine\":\"#28A859\"},\"types\":[\"NEW_REL\",\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"title\":\"The Matrix\"},\"label\":\"Movie\"},{\"id\":128,\"data\":{\"title\":\"Ninja Assassin\"},\"label\":\"Movie\"},{\"id\":130,\"data\":{\"title\":\"The Green Mile\"},\"label\":\"Movie\"},{\"id\":137,\"data\":{\"title\":\"Frost/Nixon\"},\"label\":\"Movie\"},{\"id\":9,\"data\":{\"title\":\"The Matrix Reloaded\"},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"title\":\"The Matrix Revolutions\"},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"title\":\"The Devil\\u0027s Advocate\"},\"label\":\"Movie\"},{\"id\":141,\"data\":{\"title\":\"Hoffa\"},\"label\":\"Movie\"},{\"id\":15,\"data\":{\"title\":\"A Few Good Men\"},\"label\":\"Movie\"},{\"id\":144,\"data\":{\"title\":\"Apollo 13\"},\"label\":\"Movie\"},{\"id\":147,\"data\":{\"title\":\"Twister\"},\"label\":\"Movie\"},{\"id\":150,\"data\":{\"title\":\"Cast Away\"},\"label\":\"Movie\"},{\"id\":152,\"data\":{\"title\":\"One Flew Over the Cuckoo\\u0027s Nest\"},\"label\":\"Movie\"},{\"id\":29,\"data\":{\"title\":\"Top Gun\"},\"label\":\"Movie\"},{\"id\":157,\"data\":{\"title\":\"Bicentennial Man\"},\"label\":\"Movie\"},{\"id\":159,\"data\":{\"title\":\"Charlie Wilson\\u0027s War\"},\"label\":\"Movie\"},{\"id\":161,\"data\":{\"title\":\"The Polar Express\"},\"label\":\"Movie\"},{\"id\":162,\"data\":{\"title\":\"A League of Their Own\"},\"label\":\"Movie\"},{\"id\":37,\"data\":{\"title\":\"Jerry Maguire\"},\"label\":\"Movie\"},{\"id\":46,\"data\":{\"title\":\"Stand By Me\"},\"label\":\"Movie\"},{\"id\":52,\"data\":{\"title\":\"As Good as It Gets\"},\"label\":\"Movie\"},{\"id\":56,\"data\":{\"title\":\"What Dreams May Come\"},\"label\":\"Movie\"},{\"id\":62,\"data\":{\"title\":\"Snow Falling on Cedars\"},\"label\":\"Movie\"},{\"id\":67,\"data\":{\"title\":\"You\\u0027ve Got Mail\"},\"label\":\"Movie\"},{\"id\":73,\"data\":{\"title\":\"Sleepless in Seattle\"},\"label\":\"Movie\"},{\"id\":41418,\"data\":{\"name\":\"Welcome to the Real World\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":41419,\"data\":{\"name\":\"The hottest data on earth. In the coolest head in town\",\"released\":1995},\"label\":\"TagLine\"},{\"id\":41420,\"data\":{\"name\":\"Everything is connected\",\"released\":2012},\"label\":\"TagLine\"},{\"id\":41421,\"data\":{\"name\":\"Break The Codes\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":41422,\"data\":{\"name\":\"Freedom! Forever!\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":78,\"data\":{\"title\":\"Joe Versus the Volcano\"},\"label\":\"Movie\"},{\"id\":41423,\"data\":{\"name\":\"Speed has no limits\",\"released\":2008},\"label\":\"TagLine\"},{\"id\":41424,\"data\":{\"name\":\"Prepare to enter a secret world of assassins\",\"released\":2009},\"label\":\"TagLine\"},{\"id\":41425,\"data\":{\"name\":\"Walk a mile you\\u0027ll never forget.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":81,\"data\":{\"title\":\"When Harry Met Sally\"},\"label\":\"Movie\"},{\"id\":41426,\"data\":{\"name\":\"400 million people were waiting for the truth.\",\"released\":2008},\"label\":\"TagLine\"},{\"id\":41427,\"data\":{\"name\":\"He didn\\u0027t want law. He wanted justice.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":41428,\"data\":{\"name\":\"Free your mind\",\"released\":2003},\"label\":\"TagLine\"},{\"id\":41429,\"data\":{\"name\":\"Houston, we have a problem.\",\"released\":1995},\"label\":\"TagLine\"},{\"id\":85,\"data\":{\"title\":\"That Thing You Do\"},\"label\":\"Movie\"},{\"id\":41430,\"data\":{\"name\":\"Don\\u0027t Breathe. Don\\u0027t Look Back.\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":41431,\"data\":{\"name\":\"Everything that has a beginning has an end\",\"released\":2003},\"label\":\"TagLine\"},{\"id\":87,\"data\":{\"title\":\"The Replacements\"},\"label\":\"Movie\"},{\"id\":41432,\"data\":{\"name\":\"Evil has its winning ways\",\"released\":1997},\"label\":\"TagLine\"},{\"id\":41433,\"data\":{\"name\":\"At the edge of the world, his journey begins.\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":41434,\"data\":{\"name\":\"If he\\u0027s crazy, what does that make you?\",\"released\":1975},\"label\":\"TagLine\"},{\"id\":41435,\"data\":{\"name\":\"In the heart of the nation\\u0027s capital, in a courthouse of the U.S. government, one man will stop at nothing to keep his honor, and one will stop at nothing to find the truth.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":41436,\"data\":{\"name\":\"One robot\\u0027s 200 year journey to become an ordinary man.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":92,\"data\":{\"title\":\"RescueDawn\"},\"label\":\"Movie\"},{\"id\":41437,\"data\":{\"name\":\"I feel the need, the need for speed.\",\"released\":1986},\"label\":\"TagLine\"},{\"id\":41438,\"data\":{\"name\":\"The rest of his life begins now.\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":41439,\"data\":{\"name\":\"A stiff drink. A little mascara. A lot of nerve. Who said they couldn\\u0027t bring down the Soviet empire.\",\"released\":2007},\"label\":\"TagLine\"},{\"id\":95,\"data\":{\"title\":\"The Birdcage\"},\"label\":\"Movie\"},{\"id\":41440,\"data\":{\"name\":\"This Holiday Season... Believe\",\"released\":2004},\"label\":\"TagLine\"},{\"id\":41441,\"data\":{\"name\":\"For some, it\\u0027s the last real taste of innocence, and the first real taste of life. But for everyone, it\\u0027s the time that memories are made of.\",\"released\":1986},\"label\":\"TagLine\"},{\"id\":97,\"data\":{\"title\":\"Unforgiven\"},\"label\":\"Movie\"},{\"id\":41442,\"data\":{\"name\":\"A comedy from the heart that goes for the throat.\",\"released\":1997},\"label\":\"TagLine\"},{\"id\":41443,\"data\":{\"name\":\"Once in a lifetime you get a chance to do something different.\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":100,\"data\":{\"title\":\"Johnny Mnemonic\"},\"label\":\"Movie\"},{\"id\":41444,\"data\":{\"name\":\"After life there is more. The end is just the beginning.\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":41445,\"data\":{\"name\":\"First loves last. Forever.\",\"released\":1999},\"label\":\"TagLine\"},{\"id\":41446,\"data\":{\"name\":\"At odds in life... in love on-line.\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":41447,\"data\":{\"name\":\"What if someone you never met, someone you never saw, someone you never knew was the only someone for you?\",\"released\":1993},\"label\":\"TagLine\"},{\"id\":41448,\"data\":{\"name\":\"A story of love, lava and burning desire.\",\"released\":1990},\"label\":\"TagLine\"},{\"id\":105,\"data\":{\"title\":\"Cloud Atlas\"},\"label\":\"Movie\"},{\"id\":41449,\"data\":{\"name\":\"Can two friends sleep together and still love each other in the morning?\",\"released\":1998},\"label\":\"TagLine\"},{\"id\":41450,\"data\":{\"name\":\"In every life there comes a time when that thing you dream becomes that thing you do\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":41451,\"data\":{\"name\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"released\":2000},\"label\":\"TagLine\"},{\"id\":41452,\"data\":{\"name\":\"Based on the extraordinary true story of one man\\u0027s fight for freedom\",\"released\":2006},\"label\":\"TagLine\"},{\"id\":41453,\"data\":{\"name\":\"Come as you are\",\"released\":1996},\"label\":\"TagLine\"},{\"id\":41454,\"data\":{\"name\":\"It\\u0027s a hell of a thing, killing a man\",\"released\":1992},\"label\":\"TagLine\"},{\"id\":111,\"data\":{\"title\":\"The Da Vinci Code\"},\"label\":\"Movie\"},{\"id\":116,\"data\":{\"title\":\"V for Vendetta\"},\"label\":\"Movie\"},{\"id\":121,\"data\":{\"title\":\"Speed Racer\"},\"label\":\"Movie\"}],\"edges\":[{\"source\":100,\"target\":41419,\"id\":24,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":0,\"target\":41418,\"id\":10264,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":105,\"target\":41420,\"id\":10265,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":111,\"target\":41421,\"id\":10266,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":116,\"target\":41422,\"id\":10267,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":121,\"target\":41423,\"id\":10268,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":128,\"target\":41424,\"id\":10269,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":130,\"target\":41425,\"id\":10270,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":137,\"target\":41426,\"id\":10271,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":141,\"target\":41427,\"id\":10272,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":144,\"target\":41429,\"id\":10273,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":9,\"target\":41428,\"id\":10274,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":147,\"target\":41430,\"id\":10275,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":10,\"target\":41431,\"id\":10276,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":150,\"target\":41433,\"id\":10277,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":11,\"target\":41432,\"id\":10278,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":15,\"target\":41435,\"id\":10279,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":152,\"target\":41434,\"id\":10280,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":29,\"target\":41437,\"id\":10281,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":157,\"target\":41436,\"id\":10282,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":37,\"target\":41438,\"id\":10283,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":159,\"target\":41439,\"id\":10284,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":46,\"target\":41441,\"id\":10285,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":161,\"target\":41440,\"id\":10286,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":52,\"target\":41442,\"id\":10287,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":162,\"target\":41443,\"id\":10288,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":56,\"target\":41444,\"id\":10289,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":62,\"target\":41445,\"id\":10290,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":67,\"target\":41446,\"id\":10291,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":73,\"target\":41447,\"id\":10292,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":78,\"target\":41448,\"id\":10293,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":81,\"target\":41449,\"id\":10294,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":85,\"target\":41450,\"id\":10295,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":87,\"target\":41451,\"id\":10296,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":92,\"target\":41452,\"id\":10297,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":95,\"target\":41453,\"id\":10298,\"data\":{},\"label\":\"HAS_TAGLINE\"},{\"source\":97,\"target\":41454,\"id\":10299,\"data\":{},\"label\":\"HAS_TAGLINE\"}],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\",\"NodeWithTime\":\"#87F334\",\"City\":\"#094023\",\"TagLine\":\"#333F63\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_TAGLINE\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"MY_CASE_REL\",\"KNOWS\"],\"directed\":true}"
           }
         ]
       },
@@ -433,8 +433,8 @@
       "jobName": "paragraph_1636492841631_775451986",
       "id": "paragraph_1636492841631_775451986",
       "dateCreated": "2021-11-09 21:20:41.631",
-      "dateStarted": "2021-11-17 23:31:35.333",
-      "dateFinished": "2021-11-17 23:31:35.452",
+      "dateStarted": "2021-11-18 11:34:34.235",
+      "dateFinished": "2021-11-18 11:34:34.381",
       "status": "FINISHED"
     },
     {
@@ -483,7 +483,7 @@
       "title": "Dataset creation",
       "text": "%neo4j\nCREATE (person1:Person {name: \"Ryu\"})-[:FRIENDS]-\u003e(person2:Person {name: \"Ken\"})\nCREATE (person3:Person {name: \"Vega\"})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:28:38.665",
+      "dateUpdated": "2021-11-18 11:36:01.788",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -512,15 +512,15 @@
       "jobName": "paragraph_1636493197463_663515208",
       "id": "paragraph_1636493197463_663515208",
       "dateCreated": "2021-11-09 21:26:37.463",
-      "dateStarted": "2021-11-09 21:37:52.339",
-      "dateFinished": "2021-11-09 21:37:52.369",
+      "dateStarted": "2021-11-18 11:36:01.808",
+      "dateFinished": "2021-11-18 11:36:01.853",
       "status": "FINISHED"
     },
     {
       "title": "apoc.refactor.to",
       "text": "%neo4j\n\nMATCH (:Person {name: \"Ryu\"})-[rel:FRIENDS]-\u003e(:Person {name: \"Ken\"})\nMATCH (vega:Person {name: \"Vega\"})\nCALL apoc.refactor.to(rel, vega)\nYIELD input, output\nMATCH path\u003d(vega)--()\nRETURN path",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:28:20.955",
+      "dateUpdated": "2021-11-18 11:36:15.923",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -571,20 +571,29 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":41457,\"data\":{\"name\":\"Vega\"},\"label\":\"Person\"},{\"id\":41455,\"data\":{\"name\":\"Ryu\"},\"label\":\"Person\"}],\"edges\":[{\"source\":41455,\"target\":41457,\"id\":10301,\"data\":{},\"label\":\"FRIENDS\"}],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\",\"NodeWithTime\":\"#87F334\",\"City\":\"#094023\",\"TagLine\":\"#333F63\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"HAS_TAGLINE\",\"FRIENDS\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636493214206_391080068",
       "id": "paragraph_1636493214206_391080068",
       "dateCreated": "2021-11-09 21:26:54.206",
-      "dateStarted": "2021-11-09 21:37:54.530",
-      "dateFinished": "2021-11-09 21:37:54.683",
+      "dateStarted": "2021-11-18 11:36:15.938",
+      "dateFinished": "2021-11-18 11:36:16.224",
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n### Merge multiple relationships / nodes\n\nWe can join multiple entities through the procedures\n\n- `apoc.refactor.mergeRelationships([rels], $config)`\n- `apoc.refactor.mergeRelationships([nodes], $config)`\n\nWhere `$config` can have:\n- properties (default: \u0027combine\u0027): Map\u003cprop, type\u003e or type, where type can be `discard` (to take 1st property value found with the same name), `overwrite` (to pick last prop value), `combine` (to join properties in an array)\n- mergeRels (default: false) - only for `apoc.refactor.mergeNodes`\n- singleElementAsArray (default: false)\n",
+      "text": "%md\n\n### Merge multiple relationships / nodes\n\nWe can join multiple entities through the procedures\n\n- `apoc.refactor.mergeRelationships([rels], $config)`\n- `apoc.refactor.mergeNodes([nodes], $config)`\n\nWhere `$config` can have:\n- properties (default: \u0027combine\u0027): Map\u003cprop, type\u003e or type, where type can be `discard` (to take 1st property value found with the same name), `overwrite` (to pick last prop value), `combine` (to join properties in an array)\n- mergeRels (default: false) - only for `apoc.refactor.mergeNodes`\n- singleElementAsArray (default: false)\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:34:51.707",
+      "dateUpdated": "2021-11-18 11:36:53.624",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -609,7 +618,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eMerge multiple relationships / nodes\u003c/h3\u003e\n\u003cp\u003eWe can join multiple entities through the procedures\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.refactor.mergeRelationships([rels], $config)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.refactor.mergeRelationships([nodes], $config)\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWhere \u003ccode\u003e$config\u003c/code\u003e can have:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eproperties (default: \u0026lsquo;combine\u0026rsquo;): Map\u0026lt;prop, type\u0026gt; or type, where type can be \u003ccode\u003ediscard\u003c/code\u003e (to take 1st property value found with the same name), \u003ccode\u003eoverwrite\u003c/code\u003e (to pick last prop value), \u003ccode\u003ecombine\u003c/code\u003e (to join properties in an array)\u003c/li\u003e\n\u003cli\u003emergeRels (default: false) - only for \u003ccode\u003eapoc.refactor.mergeNodes\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003esingleElementAsArray (default: false)\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eMerge multiple relationships / nodes\u003c/h3\u003e\n\u003cp\u003eWe can join multiple entities through the procedures\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.refactor.mergeRelationships([rels], $config)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.refactor.mergeNodes([nodes], $config)\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWhere \u003ccode\u003e$config\u003c/code\u003e can have:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eproperties (default: \u0026lsquo;combine\u0026rsquo;): Map\u0026lt;prop, type\u0026gt; or type, where type can be \u003ccode\u003ediscard\u003c/code\u003e (to take 1st property value found with the same name), \u003ccode\u003eoverwrite\u003c/code\u003e (to pick last prop value), \u003ccode\u003ecombine\u003c/code\u003e (to join properties in an array)\u003c/li\u003e\n\u003cli\u003emergeRels (default: false) - only for \u003ccode\u003eapoc.refactor.mergeNodes\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003esingleElementAsArray (default: false)\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -619,15 +628,15 @@
       "jobName": "paragraph_1636459119756_823886620",
       "id": "paragraph_1636459119756_823886620",
       "dateCreated": "2021-11-09 11:58:39.756",
-      "dateStarted": "2021-11-17 23:34:51.707",
-      "dateFinished": "2021-11-17 23:34:51.716",
+      "dateStarted": "2021-11-18 11:36:53.624",
+      "dateFinished": "2021-11-18 11:36:53.638",
       "status": "FINISHED"
     },
     {
       "title": "Dataset",
       "text": "%neo4j\n\nCREATE (n1:MergeOne {name:\u0027Tom\u0027, surname: \u0027Jerry\u0027}),\n(n2:MergeOne {name:\u0027John\u0027, surname: \u0027Jack\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:33:52.772",
+      "dateUpdated": "2021-11-18 11:38:30.270",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -680,21 +689,30 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":41458,\"data\":{\"name\":\"Tom\",\"surname\":\"Jerry\"},\"label\":\"MergeOne\"},{\"id\":41459,\"data\":{\"name\":\"John\",\"surname\":\"Jack\"},\"label\":\"MergeOne\"},{\"id\":41460,\"data\":{\"name\":\"Company1\"},\"label\":\"Company\"},{\"id\":41461,\"data\":{\"brand\":\"Ferrari\"},\"label\":\"Car\"},{\"id\":41462,\"data\":{\"name\":\"Derby\"},\"label\":\"Animal\"},{\"id\":41463,\"data\":{\"name\":\"London\"},\"label\":\"City\"}],\"edges\":[{\"source\":41458,\"target\":41461,\"id\":10304,\"data\":{\"since\":2017},\"label\":\"DRIVE\"},{\"source\":41459,\"target\":41462,\"id\":10305,\"data\":{\"since\":2013},\"label\":\"HAS\"},{\"source\":41458,\"target\":41460,\"id\":10300,\"data\":{\"since\":2015},\"label\":\"WORKS_FOR\"},{\"source\":41459,\"target\":41460,\"id\":10302,\"data\":{\"since\":2018},\"label\":\"WORKS_FOR\"},{\"source\":41460,\"target\":41463,\"id\":10303,\"data\":{\"since\":2004},\"label\":\"HAS_HQ\"}],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\",\"NodeWithTime\":\"#87F334\",\"City\":\"#094023\",\"TagLine\":\"#333F63\",\"MergeOne\":\"#C74341\",\"Company\":\"#802E1B\",\"Car\":\"#F6589E\",\"Animal\":\"#6E8B8B\",\"Cat\":\"#BB2E68\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"FRIENDS\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636458136545_2109617495",
       "id": "paragraph_1636458136545_2109617495",
       "dateCreated": "2021-11-09 11:42:16.545",
-      "dateStarted": "2021-11-17 23:33:52.789",
-      "dateFinished": "2021-11-17 23:33:52.922",
+      "dateStarted": "2021-11-18 11:38:30.288",
+      "dateFinished": "2021-11-18 11:38:30.436",
       "status": "FINISHED"
     },
     {
       "title": "apoc.refactor.mergeNode",
       "text": "%neo4j\n\nMATCH p\u003d(a1:MergeOne{name:\u0027John\u0027})--(), p2\u003d(a2:MergeOne {name:\u0027Tom\u0027})--()\nWITH [a1,a2] as nodes\nCALL apoc.refactor.mergeNodes(nodes,{properties:\"combine\", mergeRels:true})\nYIELD node RETURN null",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:33:54.182",
+      "dateUpdated": "2021-11-18 11:39:20.460",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -746,21 +764,30 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "null\nNULL\nNULL\nNULL\nNULL\n"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636458226521_1288066003",
       "id": "paragraph_1636458226521_1288066003",
       "dateCreated": "2021-11-09 11:43:46.521",
-      "dateStarted": "2021-11-17 23:33:54.197",
-      "dateFinished": "2021-11-17 23:33:54.339",
+      "dateStarted": "2021-11-18 11:39:20.479",
+      "dateFinished": "2021-11-18 11:39:20.729",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\n\n\nMATCH p\u003d(a1:MergeOne)--()\nRETURN p",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:34:13.974",
+      "dateUpdated": "2021-11-18 11:39:26.468",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -768,7 +795,7 @@
         "results": {
           "0": {
             "graph": {
-              "mode": "table",
+              "mode": "network",
               "height": 426.761,
               "optionOpen": false,
               "setting": {
@@ -815,21 +842,30 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":41459,\"data\":{\"name\":[\"John\",\"Tom\"],\"surname\":[\"Jack\",\"Jerry\"]},\"label\":\"MergeOne\"},{\"id\":41460,\"data\":{\"name\":\"Company1\"},\"label\":\"Company\"},{\"id\":41461,\"data\":{\"brand\":\"Ferrari\"},\"label\":\"Car\"},{\"id\":41462,\"data\":{\"name\":\"Derby\"},\"label\":\"Animal\"}],\"edges\":[{\"source\":41459,\"target\":41462,\"id\":10305,\"data\":{\"since\":2013},\"label\":\"HAS\"},{\"source\":41459,\"target\":41461,\"id\":10306,\"data\":{\"since\":2017},\"label\":\"DRIVE\"},{\"source\":41459,\"target\":41460,\"id\":10307,\"data\":{\"since\":[2015,2018]},\"label\":\"WORKS_FOR\"}],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\",\"NodeWithTime\":\"#87F334\",\"City\":\"#094023\",\"TagLine\":\"#333F63\",\"MergeOne\":\"#C74341\",\"Company\":\"#802E1B\",\"Car\":\"#F6589E\",\"Animal\":\"#6E8B8B\",\"Cat\":\"#BB2E68\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"FRIENDS\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1636463994491_1659705378",
       "id": "paragraph_1636463994491_1659705378",
       "dateCreated": "2021-11-09 13:19:54.491",
-      "dateStarted": "2021-11-17 23:33:55.534",
-      "dateFinished": "2021-11-17 23:33:55.594",
+      "dateStarted": "2021-11-18 11:39:24.412",
+      "dateFinished": "2021-11-18 11:39:24.479",
       "status": "FINISHED"
     },
     {
       "title": "Another dataset",
       "text": "%neo4j\n\nCREATE (n1:MergeTwo {name:\u0027Tom\u0027, surname: \u0027Jerry\u0027}),\n(n2:MergeTwo {name:\u0027John\u0027, surname: \u0027Jack\u0027}),\n(n3:Company {name:\u0027Company1\u0027}),\n(n5:Car {brand:\u0027Ferrari\u0027}),\n(n6:Animal:Cat {name:\u0027Derby\u0027}),\n(n7:City {name:\u0027London\u0027}),\n\n(n1)-[r1:WORKS_FOR {since:2015}]-\u003e(n3),\n(n2)-[r2:WORKS_FOR {since:2018}]-\u003e(n3),\n(n3)-[r3:HAS_HQ {since:2004}]-\u003e(n7),\n(n1)-[r4:DRIVE {since:2017}]-\u003e(n5),\n(n2)-[r5:HAS {since:2013}]-\u003e(n6)\nreturn *;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:34:24.726",
+      "dateUpdated": "2021-11-18 11:39:58.383",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -837,7 +873,7 @@
         "results": {
           "0": {
             "graph": {
-              "mode": "table",
+              "mode": "network",
               "height": 300.0,
               "optionOpen": false,
               "setting": {
@@ -865,7 +901,8 @@
                 }
               },
               "commonSetting": {}
-            }
+            },
+            "helium": {}
           }
         },
         "editorSetting": {
@@ -886,7 +923,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":200770,\"data\":{\"name\":\"Tom\",\"surname\":\"Jerry\"},\"label\":\"MergeTwo\"},{\"id\":200779,\"data\":{\"name\":\"Derby\"},\"label\":\"Animal\"},{\"id\":200778,\"data\":{\"brand\":\"Ferrari\"},\"label\":\"Car\"},{\"id\":200777,\"data\":{\"name\":\"Company1\"},\"label\":\"Company\"},{\"id\":200776,\"data\":{\"name\":\"John\",\"surname\":\"Jack\"},\"label\":\"MergeTwo\"},{\"id\":200780,\"data\":{\"name\":\"London\"},\"label\":\"City\"}],\"edges\":[{\"source\":200776,\"target\":200777,\"id\":100501,\"data\":{\"since\":2018},\"label\":\"WORKS_FOR\"},{\"source\":200770,\"target\":200777,\"id\":100500,\"data\":{\"since\":2015},\"label\":\"WORKS_FOR\"},{\"source\":200777,\"target\":200780,\"id\":100503,\"data\":{\"since\":2004},\"label\":\"HAS_HQ\"},{\"source\":200770,\"target\":200778,\"id\":100507,\"data\":{\"since\":2017},\"label\":\"DRIVE\"},{\"source\":200776,\"target\":200779,\"id\":100508,\"data\":{\"since\":2013},\"label\":\"HAS\"}],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\",\"TagLine\":\"#28A859\",\"MergeOne\":\"#8F3CD7\",\"Company\":\"#445ECC\",\"Car\":\"#CD8F74\",\"Animal\":\"#4544D5\",\"Cat\":\"#5120AA\",\"MergeTwo\":\"#2D5DE2\"},\"types\":[\"NEW_REL\",\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":41458,\"data\":{\"name\":\"Tom\",\"surname\":\"Jerry\"},\"label\":\"MergeTwo\"},{\"id\":41464,\"data\":{\"name\":\"John\",\"surname\":\"Jack\"},\"label\":\"MergeTwo\"},{\"id\":41465,\"data\":{\"name\":\"Company1\"},\"label\":\"Company\"},{\"id\":41466,\"data\":{\"brand\":\"Ferrari\"},\"label\":\"Car\"},{\"id\":41467,\"data\":{\"name\":\"Derby\"},\"label\":\"Animal\"},{\"id\":41468,\"data\":{\"name\":\"London\"},\"label\":\"City\"}],\"edges\":[{\"source\":41465,\"target\":41468,\"id\":10304,\"data\":{\"since\":2004},\"label\":\"HAS_HQ\"},{\"source\":41458,\"target\":41466,\"id\":10308,\"data\":{\"since\":2017},\"label\":\"DRIVE\"},{\"source\":41464,\"target\":41467,\"id\":10309,\"data\":{\"since\":2013},\"label\":\"HAS\"},{\"source\":41458,\"target\":41465,\"id\":10300,\"data\":{\"since\":2015},\"label\":\"WORKS_FOR\"},{\"source\":41464,\"target\":41465,\"id\":10302,\"data\":{\"since\":2018},\"label\":\"WORKS_FOR\"}],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\",\"NodeWithTime\":\"#87F334\",\"City\":\"#094023\",\"TagLine\":\"#333F63\",\"MergeOne\":\"#C74341\",\"Company\":\"#802E1B\",\"Car\":\"#F6589E\",\"Animal\":\"#6E8B8B\",\"Cat\":\"#BB2E68\",\"MergeTwo\":\"#E574AA\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"FRIENDS\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
           }
         ]
       },
@@ -896,15 +933,15 @@
       "jobName": "paragraph_1636458747902_1200537474",
       "id": "paragraph_1636458747902_1200537474",
       "dateCreated": "2021-11-09 11:52:27.902",
-      "dateStarted": "2021-11-17 23:34:24.740",
-      "dateFinished": "2021-11-17 23:34:24.839",
+      "dateStarted": "2021-11-18 11:39:55.561",
+      "dateFinished": "2021-11-18 11:39:55.721",
       "status": "FINISHED"
     },
     {
       "title": "mergeNodes with \"discard\" configuration",
       "text": "%neo4j\n\nMATCH p\u003d(a1:MergeTwo{name:\u0027John\u0027})--(), p2\u003d(a2:MergeOne {name:\u0027Tom\u0027})--()\nWITH [a1,a2] as nodes\nCALL apoc.refactor.mergeNodes(nodes,{properties: {name: \"discard\", surname: \"overwrite\"}, mergeRels:true})\nYIELD node RETURN null",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:34:31.233",
+      "dateUpdated": "2021-11-18 11:40:22.653",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -934,15 +971,15 @@
       "jobName": "paragraph_1636532174097_1810713463",
       "id": "paragraph_1636532174097_1810713463",
       "dateCreated": "2021-11-10 08:16:14.098",
-      "dateStarted": "2021-11-17 23:34:31.247",
-      "dateFinished": "2021-11-17 23:34:31.392",
+      "dateStarted": "2021-11-18 11:40:22.672",
+      "dateFinished": "2021-11-18 11:40:22.831",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\n\nMATCH p\u003d(a1:MergeTwo)--()\nRETURN p",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 23:35:03.051",
+      "dateUpdated": "2021-11-18 11:40:28.507",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -950,7 +987,7 @@
         "results": {
           "0": {
             "graph": {
-              "mode": "table",
+              "mode": "network",
               "height": 300.0,
               "optionOpen": false,
               "setting": {
@@ -978,7 +1015,8 @@
                 }
               },
               "commonSetting": {}
-            }
+            },
+            "helium": {}
           }
         },
         "editorSetting": {
@@ -1000,7 +1038,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":200770,\"data\":{\"name\":\"Tom\",\"surname\":\"Jerry\"},\"label\":\"MergeTwo\"},{\"id\":200779,\"data\":{\"name\":\"Derby\"},\"label\":\"Animal\"},{\"id\":200778,\"data\":{\"brand\":\"Ferrari\"},\"label\":\"Car\"},{\"id\":200777,\"data\":{\"name\":\"Company1\"},\"label\":\"Company\"},{\"id\":200776,\"data\":{\"name\":\"John\",\"surname\":\"Jack\"},\"label\":\"MergeTwo\"}],\"edges\":[{\"source\":200776,\"target\":200777,\"id\":100501,\"data\":{\"since\":2018},\"label\":\"WORKS_FOR\"},{\"source\":200770,\"target\":200777,\"id\":100500,\"data\":{\"since\":2015},\"label\":\"WORKS_FOR\"},{\"source\":200770,\"target\":200778,\"id\":100507,\"data\":{\"since\":2017},\"label\":\"DRIVE\"},{\"source\":200776,\"target\":200779,\"id\":100508,\"data\":{\"since\":2013},\"label\":\"HAS\"}],\"labels\":{\"Movie\":\"#DC08FB\",\"Person\":\"#67328A\",\"NotKeanu\":\"#DE7123\",\"MyCaseNode\":\"#1D745A\",\"Start\":\"#46C4AF\",\"End\":\"#4488B7\",\"NodePeriodic\":\"#AF1C5B\",\"CsvPerson\":\"#2AE579\",\"Trigger\":\"#D4C495\",\"NodeWithTime\":\"#DCE357\",\"Node\":\"#5C56BA\",\"CsvToNode\":\"#F4F197\",\"City\":\"#1E4760\",\"TagLine\":\"#28A859\",\"MergeOne\":\"#8F3CD7\",\"Company\":\"#445ECC\",\"Car\":\"#CD8F74\",\"Animal\":\"#4544D5\",\"Cat\":\"#5120AA\",\"MergeTwo\":\"#2D5DE2\"},\"types\":[\"NEW_REL\",\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":41458,\"data\":{\"name\":\"Tom\",\"surname\":\"Jerry\"},\"label\":\"MergeTwo\"},{\"id\":41464,\"data\":{\"name\":\"John\",\"surname\":\"Jack\"},\"label\":\"MergeTwo\"},{\"id\":41465,\"data\":{\"name\":\"Company1\"},\"label\":\"Company\"},{\"id\":41466,\"data\":{\"brand\":\"Ferrari\"},\"label\":\"Car\"},{\"id\":41467,\"data\":{\"name\":\"Derby\"},\"label\":\"Animal\"}],\"edges\":[{\"source\":41458,\"target\":41466,\"id\":10308,\"data\":{\"since\":2017},\"label\":\"DRIVE\"},{\"source\":41464,\"target\":41467,\"id\":10309,\"data\":{\"since\":2013},\"label\":\"HAS\"},{\"source\":41458,\"target\":41465,\"id\":10300,\"data\":{\"since\":2015},\"label\":\"WORKS_FOR\"},{\"source\":41464,\"target\":41465,\"id\":10302,\"data\":{\"since\":2018},\"label\":\"WORKS_FOR\"}],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\",\"Actor\":\"#F1EA15\",\"TimeoutTest\":\"#FFD2E6\",\"CsvPerson\":\"#26DE24\",\"Trigger\":\"#2553C2\",\"NodeWithTime\":\"#87F334\",\"City\":\"#094023\",\"TagLine\":\"#333F63\",\"MergeOne\":\"#C74341\",\"Company\":\"#802E1B\",\"Car\":\"#F6589E\",\"Animal\":\"#6E8B8B\",\"Cat\":\"#BB2E68\",\"MergeTwo\":\"#E574AA\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"MY_CASE_REL\",\"KNOWS\",\"DRIVE\",\"HAS_TAGLINE\",\"FRIENDS\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"HAS_HQ\",\"FOLLOWS\",\"NEXT\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\"],\"directed\":true}"
           }
         ]
       },
@@ -1010,8 +1048,8 @@
       "jobName": "paragraph_1636532214885_1158137498",
       "id": "paragraph_1636532214885_1158137498",
       "dateCreated": "2021-11-10 08:16:54.885",
-      "dateStarted": "2021-11-17 23:35:03.067",
-      "dateFinished": "2021-11-17 23:35:03.234",
+      "dateStarted": "2021-11-18 11:40:25.850",
+      "dateFinished": "2021-11-18 11:40:25.908",
       "status": "FINISHED"
     },
     {

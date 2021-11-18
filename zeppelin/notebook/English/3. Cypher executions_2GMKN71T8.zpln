@@ -88,7 +88,7 @@
       "title": "Example",
       "text": "%neo4j\n\nCALL db.labels() yield label\n// we can concatenate string and variables (label)\n// otherwise, with pure cypher it would be `match (:label) ...` (doesn\u0027t work) because it would searching for nodes with label `:label`\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 09:19:23.541",
+      "dateUpdated": "2021-11-18 10:41:33.737",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -131,7 +131,7 @@
         },
         "editorMode": "ace/mode/undefined",
         "title": true,
-        "tableHide": true
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -142,7 +142,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "label\tcount\n\"Movie\"\t39\n\"Person\"\t133\n\"NotKeanu\"\t132\n\"Start\"\t2000\n\"Batch\"\t300\n\"NodePeriodic\"\t19998\n\"End\"\t19998\n\"MyCaseNode\"\t6\n\"Alert\"\t2\n"
+            "data": "label\tcount\n\"Movie\"\t39\n\"Person\"\t133\n\"NotKeanu\"\t132\n\"MyCaseNode\"\t3\n\"NodePeriodic\"\t9999\n\"End\"\t9999\n\"Start\"\t1000\n\"Batch\"\t100\n\"Alert\"\t2\n"
           }
         ]
       },
@@ -152,15 +152,15 @@
       "jobName": "paragraph_1635858066468_27777609",
       "id": "paragraph_1635858066468_27777609",
       "dateCreated": "2021-11-02 13:01:06.468",
-      "dateStarted": "2021-11-18 09:19:23.557",
-      "dateFinished": "2021-11-18 09:19:23.811",
+      "dateStarted": "2021-11-18 10:41:31.950",
+      "dateFinished": "2021-11-18 10:41:31.975",
       "status": "FINISHED"
     },
     {
       "title": "apoc.cypher.runFile",
       "text": "%neo4j\n\n// I have a file `fileExample.cypher` with this content:\n// CREATE (n:Node {id:1});\n// MATCH (n:Node) SET n.import \u003d true;\n\n\nCALL apoc.cypher.runFile(\"fileExample.cypher\");",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 09:19:26.681",
+      "dateUpdated": "2021-11-18 10:42:07.141",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -236,15 +236,15 @@
       "jobName": "paragraph_1635860142585_1100337140",
       "id": "paragraph_1635860142585_1100337140",
       "dateCreated": "2021-11-02 13:35:42.586",
-      "dateStarted": "2021-11-18 09:19:26.698",
-      "dateFinished": "2021-11-18 09:19:26.886",
+      "dateStarted": "2021-11-18 10:42:07.157",
+      "dateFinished": "2021-11-18 10:42:07.400",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nMATCH (n:Node {id: 1}) RETURN n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 09:19:47.613",
+      "dateUpdated": "2021-11-18 10:42:10.223",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -298,7 +298,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":42608,\"data\":{\"import\":true,\"id\":1},\"label\":\"Node\"}],\"edges\":[],\"labels\":{\"Movie\":\"#415DA3\",\"Person\":\"#958C56\",\"NotKeanu\":\"#F106A2\",\"Start\":\"#B948DD\",\"Batch\":\"#7498D6\",\"NodePeriodic\":\"#495027\",\"End\":\"#3B5E9C\",\"MyCaseNode\":\"#E53F10\",\"Alert\":\"#D0297D\",\"Node\":\"#D7BA56\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":21407,\"data\":{\"import\":true,\"id\":1},\"label\":\"Node\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\",\"Node\":\"#FCC978\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\"],\"directed\":true}"
           }
         ]
       },
@@ -308,15 +308,15 @@
       "jobName": "paragraph_1635860300022_129065438",
       "id": "paragraph_1635860300022_129065438",
       "dateCreated": "2021-11-02 13:38:20.022",
-      "dateStarted": "2021-11-18 09:19:47.629",
-      "dateFinished": "2021-11-18 09:19:47.687",
+      "dateStarted": "2021-11-18 10:42:10.241",
+      "dateFinished": "2021-11-18 10:42:10.320",
       "status": "FINISHED"
     },
     {
       "title": "apoc.cypher.runSchemaFile",
       "text": "%neo4j\n\n// File content:\n// CREATE INDEX FOR (a:Actor) ON (a.name, a.born);\n// CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE\n\nCALL apoc.cypher.runSchemaFile(\"fileExampleSchema.cypher\");",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 09:20:18.205",
+      "dateUpdated": "2021-11-18 10:42:33.199",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -391,15 +391,15 @@
       "jobName": "paragraph_1635862450813_1749992024",
       "id": "paragraph_1635862450813_1749992024",
       "dateCreated": "2021-11-02 14:14:10.814",
-      "dateStarted": "2021-11-18 09:20:18.221",
-      "dateFinished": "2021-11-18 09:20:18.498",
+      "dateStarted": "2021-11-18 10:42:33.215",
+      "dateFinished": "2021-11-18 10:42:33.365",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\ncall db.indexes",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 09:20:20.394",
+      "dateUpdated": "2021-11-18 10:42:40.473",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -470,15 +470,15 @@
       "jobName": "paragraph_1635862549037_1694262330",
       "id": "paragraph_1635862549037_1694262330",
       "dateCreated": "2021-11-02 14:15:49.037",
-      "dateStarted": "2021-11-18 09:20:20.408",
-      "dateFinished": "2021-11-18 09:20:20.453",
+      "dateStarted": "2021-11-18 10:42:40.489",
+      "dateFinished": "2021-11-18 10:42:40.566",
       "status": "FINISHED"
     },
     {
       "title": "apoc.cypher.runTimeboxed",
       "text": "%neo4j\n\n// I create 20000 \u0027TimeoutTest\u0027 nodes\nUNWIND range(1, 20000) as idx CREATE (n:TimeoutTest {id: idx});\n\ncall apoc.cypher.runTimeboxed(\"match (n:TimeoutTest) RETURN n\", {}, 100) // I set a small timeout\nYIELD value\nRETURN count(value.n.id);\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 09:20:38.486",
+      "dateUpdated": "2021-11-18 10:43:14.661",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -530,7 +530,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "count(value.n.id)\n5047\n"
+            "data": "count(value.n.id)\n1001\n"
           }
         ]
       },
@@ -540,8 +540,8 @@
       "jobName": "paragraph_1635862617028_1273613672",
       "id": "paragraph_1635862617028_1273613672",
       "dateCreated": "2021-11-02 14:16:57.028",
-      "dateStarted": "2021-11-18 09:20:38.502",
-      "dateFinished": "2021-11-18 09:20:38.927",
+      "dateStarted": "2021-11-18 10:43:14.679",
+      "dateFinished": "2021-11-18 10:43:15.275",
       "status": "FINISHED"
     },
     {
