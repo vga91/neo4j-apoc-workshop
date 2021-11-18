@@ -46,7 +46,7 @@
       "title": " apoc.meta.stats",
       "text": "%neo4j\ncall apoc.meta.stats()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:58:58.434",
+      "dateUpdated": "2021-11-18 08:52:35.237",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -68,56 +68,89 @@
                       "nodeCount": "string",
                       "relCount": "string",
                       "labels.Movie": "string",
+                      "labels.MyCaseNode": "string",
+                      "labels.Start": "string",
+                      "labels.Batch": "string",
+                      "labels.NotKeanu": "string",
+                      "labels.End": "string",
+                      "labels.NodePeriodic": "string",
                       "labels.Person": "string",
+                      "relTypes.()-[:REVIEWED]-\u003e()": "string",
+                      "relTypes.(:Person)-[:REVIEWED]-\u003e()": "string",
+                      "relTypes.()-[:FOLLOWS]-\u003e()": "string",
+                      "relTypes.()-[:HAS_MOVIE]-\u003e(:Movie)": "string",
+                      "relTypes.()-[:WROTE]-\u003e()": "string",
+                      "relTypes.(:Person)-[:MY_CASE_REL]-\u003e()": "string",
+                      "relTypes.(:NodePeriodic)-[:MY_PERIODIC_REL]-\u003e()": "string",
+                      "relTypes.(:Person)-[:WROTE]-\u003e()": "string",
+                      "relTypes.()-[:HAS_MOVIE]-\u003e()": "string",
+                      "relTypes.()-[:REVIEWED]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:ACTED_IN]-\u003e()": "string",
+                      "relTypes.()-[:ACTED_IN]-\u003e()": "string",
                       "relTypes.()-[:DIRECTED]-\u003e(:Movie)": "string",
                       "relTypes.(:Person)-[:PRODUCED]-\u003e()": "string",
                       "relTypes.()-[:DIRECTED]-\u003e()": "string",
                       "relTypes.()-[:PRODUCED]-\u003e()": "string",
                       "relTypes.(:Person)-[:DIRECTED]-\u003e()": "string",
-                      "relTypes.()-[:REVIEWED]-\u003e()": "string",
+                      "relTypes.()-[:MY_PERIODIC_REL]-\u003e()": "string",
                       "relTypes.()-[:FOLLOWS]-\u003e(:Person)": "string",
-                      "relTypes.(:Person)-[:REVIEWED]-\u003e()": "string",
                       "relTypes.()-[:PRODUCED]-\u003e(:Movie)": "string",
-                      "relTypes.()-[:FOLLOWS]-\u003e()": "string",
-                      "relTypes.()-[:WROTE]-\u003e()": "string",
+                      "relTypes.()-[:MY_PERIODIC_REL]-\u003e(:End)": "string",
                       "relTypes.()-[:ACTED_IN]-\u003e(:Movie)": "string",
                       "relTypes.(:Person)-[:FOLLOWS]-\u003e()": "string",
                       "relTypes.()-[:WROTE]-\u003e(:Movie)": "string",
-                      "relTypes.(:Person)-[:WROTE]-\u003e()": "string",
-                      "relTypes.()-[:REVIEWED]-\u003e(:Movie)": "string",
-                      "relTypes.(:Person)-[:ACTED_IN]-\u003e()": "string",
-                      "relTypes.()-[:ACTED_IN]-\u003e()": "string",
+                      "relTypes.(:Person)-[:HAS_MOVIE]-\u003e()": "string",
+                      "relTypes.()-[:MY_CASE_REL]-\u003e(:MyCaseNode)": "string",
+                      "relTypes.()-[:MY_CASE_REL]-\u003e()": "string",
                       "relTypesCount.ACTED_IN": "string",
                       "relTypesCount.REVIEWED": "string",
+                      "relTypesCount.HAS_MOVIE": "string",
                       "relTypesCount.PRODUCED": "string",
                       "relTypesCount.WROTE": "string",
+                      "relTypesCount.MY_PERIODIC_REL": "string",
                       "relTypesCount.FOLLOWS": "string",
                       "relTypesCount.DIRECTED": "string",
+                      "relTypesCount.MY_CASE_REL": "string",
                       "stats.relTypeCount": "string",
                       "stats.propertyKeyCount": "string",
                       "stats.labelCount": "string",
                       "stats.nodeCount": "string",
                       "stats.relCount": "string",
                       "stats.labels.Movie": "string",
+                      "stats.labels.MyCaseNode": "string",
+                      "stats.labels.Start": "string",
+                      "stats.labels.Batch": "string",
+                      "stats.labels.NotKeanu": "string",
+                      "stats.labels.End": "string",
+                      "stats.labels.NodePeriodic": "string",
                       "stats.labels.Person": "string",
+                      "stats.relTypes.()-[:REVIEWED]-\u003e()": "string",
+                      "stats.relTypes.(:Person)-[:REVIEWED]-\u003e()": "string",
+                      "stats.relTypes.()-[:FOLLOWS]-\u003e()": "string",
+                      "stats.relTypes.()-[:HAS_MOVIE]-\u003e(:Movie)": "string",
+                      "stats.relTypes.()-[:WROTE]-\u003e()": "string",
+                      "stats.relTypes.(:Person)-[:MY_CASE_REL]-\u003e()": "string",
+                      "stats.relTypes.(:NodePeriodic)-[:MY_PERIODIC_REL]-\u003e()": "string",
+                      "stats.relTypes.(:Person)-[:WROTE]-\u003e()": "string",
+                      "stats.relTypes.()-[:HAS_MOVIE]-\u003e()": "string",
+                      "stats.relTypes.()-[:REVIEWED]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:ACTED_IN]-\u003e()": "string",
+                      "stats.relTypes.()-[:ACTED_IN]-\u003e()": "string",
                       "stats.relTypes.()-[:DIRECTED]-\u003e(:Movie)": "string",
                       "stats.relTypes.(:Person)-[:PRODUCED]-\u003e()": "string",
                       "stats.relTypes.()-[:DIRECTED]-\u003e()": "string",
                       "stats.relTypes.()-[:PRODUCED]-\u003e()": "string",
                       "stats.relTypes.(:Person)-[:DIRECTED]-\u003e()": "string",
-                      "stats.relTypes.()-[:REVIEWED]-\u003e()": "string",
+                      "stats.relTypes.()-[:MY_PERIODIC_REL]-\u003e()": "string",
                       "stats.relTypes.()-[:FOLLOWS]-\u003e(:Person)": "string",
-                      "stats.relTypes.(:Person)-[:REVIEWED]-\u003e()": "string",
                       "stats.relTypes.()-[:PRODUCED]-\u003e(:Movie)": "string",
-                      "stats.relTypes.()-[:FOLLOWS]-\u003e()": "string",
-                      "stats.relTypes.()-[:WROTE]-\u003e()": "string",
+                      "stats.relTypes.()-[:MY_PERIODIC_REL]-\u003e(:End)": "string",
                       "stats.relTypes.()-[:ACTED_IN]-\u003e(:Movie)": "string",
                       "stats.relTypes.(:Person)-[:FOLLOWS]-\u003e()": "string",
                       "stats.relTypes.()-[:WROTE]-\u003e(:Movie)": "string",
-                      "stats.relTypes.(:Person)-[:WROTE]-\u003e()": "string",
-                      "stats.relTypes.()-[:REVIEWED]-\u003e(:Movie)": "string",
-                      "stats.relTypes.(:Person)-[:ACTED_IN]-\u003e()": "string",
-                      "stats.relTypes.()-[:ACTED_IN]-\u003e()": "string"
+                      "stats.relTypes.(:Person)-[:HAS_MOVIE]-\u003e()": "string",
+                      "stats.relTypes.()-[:MY_CASE_REL]-\u003e(:MyCaseNode)": "string",
+                      "stats.relTypes.()-[:MY_CASE_REL]-\u003e()": "string"
                     },
                     "updated": false
                   },
@@ -175,7 +208,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "labelCount\trelTypeCount\tpropertyKeyCount\tnodeCount\trelCount\tlabels.Movie\tlabels.Person\trelTypes.()-[:DIRECTED]-\u003e(:Movie)\trelTypes.(:Person)-[:PRODUCED]-\u003e()\trelTypes.()-[:DIRECTED]-\u003e()\trelTypes.()-[:PRODUCED]-\u003e()\trelTypes.(:Person)-[:DIRECTED]-\u003e()\trelTypes.()-[:REVIEWED]-\u003e()\trelTypes.()-[:FOLLOWS]-\u003e(:Person)\trelTypes.(:Person)-[:REVIEWED]-\u003e()\trelTypes.()-[:PRODUCED]-\u003e(:Movie)\trelTypes.()-[:FOLLOWS]-\u003e()\trelTypes.()-[:WROTE]-\u003e()\trelTypes.()-[:ACTED_IN]-\u003e(:Movie)\trelTypes.(:Person)-[:FOLLOWS]-\u003e()\trelTypes.()-[:WROTE]-\u003e(:Movie)\trelTypes.(:Person)-[:WROTE]-\u003e()\trelTypes.()-[:REVIEWED]-\u003e(:Movie)\trelTypes.(:Person)-[:ACTED_IN]-\u003e()\trelTypes.()-[:ACTED_IN]-\u003e()\trelTypesCount.ACTED_IN\trelTypesCount.REVIEWED\trelTypesCount.PRODUCED\trelTypesCount.WROTE\trelTypesCount.FOLLOWS\trelTypesCount.DIRECTED\tstats.relTypeCount\tstats.propertyKeyCount\tstats.labelCount\tstats.nodeCount\tstats.relCount\tstats.labels.Movie\tstats.labels.Person\tstats.relTypes.()-[:DIRECTED]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:PRODUCED]-\u003e()\tstats.relTypes.()-[:DIRECTED]-\u003e()\tstats.relTypes.()-[:PRODUCED]-\u003e()\tstats.relTypes.(:Person)-[:DIRECTED]-\u003e()\tstats.relTypes.()-[:REVIEWED]-\u003e()\tstats.relTypes.()-[:FOLLOWS]-\u003e(:Person)\tstats.relTypes.(:Person)-[:REVIEWED]-\u003e()\tstats.relTypes.()-[:PRODUCED]-\u003e(:Movie)\tstats.relTypes.()-[:FOLLOWS]-\u003e()\tstats.relTypes.()-[:WROTE]-\u003e()\tstats.relTypes.()-[:ACTED_IN]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:FOLLOWS]-\u003e()\tstats.relTypes.()-[:WROTE]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:WROTE]-\u003e()\tstats.relTypes.()-[:REVIEWED]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:ACTED_IN]-\u003e()\tstats.relTypes.()-[:ACTED_IN]-\u003e()\n2\t6\t8\t171\t253\t38\t133\t44\t15\t44\t15\t44\t9\t3\t9\t15\t3\t10\t172\t3\t10\t10\t9\t172\t172\t172\t9\t15\t10\t3\t44\t6\t8\t2\t171\t253\t38\t133\t44\t15\t44\t15\t44\t9\t3\t9\t15\t3\t10\t172\t3\t10\t10\t9\t172\t172\n"
+            "data": "labelCount\trelTypeCount\tpropertyKeyCount\tnodeCount\trelCount\tlabels.Movie\tlabels.MyCaseNode\tlabels.Start\tlabels.Batch\tlabels.NotKeanu\tlabels.End\tlabels.NodePeriodic\tlabels.Person\trelTypes.()-[:REVIEWED]-\u003e()\trelTypes.(:Person)-[:REVIEWED]-\u003e()\trelTypes.()-[:FOLLOWS]-\u003e()\trelTypes.()-[:HAS_MOVIE]-\u003e(:Movie)\trelTypes.()-[:WROTE]-\u003e()\trelTypes.(:Person)-[:MY_CASE_REL]-\u003e()\trelTypes.(:NodePeriodic)-[:MY_PERIODIC_REL]-\u003e()\trelTypes.(:Person)-[:WROTE]-\u003e()\trelTypes.()-[:HAS_MOVIE]-\u003e()\trelTypes.()-[:REVIEWED]-\u003e(:Movie)\trelTypes.(:Person)-[:ACTED_IN]-\u003e()\trelTypes.()-[:ACTED_IN]-\u003e()\trelTypes.()-[:DIRECTED]-\u003e(:Movie)\trelTypes.(:Person)-[:PRODUCED]-\u003e()\trelTypes.()-[:DIRECTED]-\u003e()\trelTypes.()-[:PRODUCED]-\u003e()\trelTypes.(:Person)-[:DIRECTED]-\u003e()\trelTypes.()-[:MY_PERIODIC_REL]-\u003e()\trelTypes.()-[:FOLLOWS]-\u003e(:Person)\trelTypes.()-[:PRODUCED]-\u003e(:Movie)\trelTypes.()-[:MY_PERIODIC_REL]-\u003e(:End)\trelTypes.()-[:ACTED_IN]-\u003e(:Movie)\trelTypes.(:Person)-[:FOLLOWS]-\u003e()\trelTypes.()-[:WROTE]-\u003e(:Movie)\trelTypes.(:Person)-[:HAS_MOVIE]-\u003e()\trelTypes.()-[:MY_CASE_REL]-\u003e(:MyCaseNode)\trelTypes.()-[:MY_CASE_REL]-\u003e()\trelTypesCount.ACTED_IN\trelTypesCount.REVIEWED\trelTypesCount.HAS_MOVIE\trelTypesCount.PRODUCED\trelTypesCount.WROTE\trelTypesCount.MY_PERIODIC_REL\trelTypesCount.FOLLOWS\trelTypesCount.DIRECTED\trelTypesCount.MY_CASE_REL\tstats.relTypeCount\tstats.propertyKeyCount\tstats.labelCount\tstats.nodeCount\tstats.relCount\tstats.labels.Movie\tstats.labels.MyCaseNode\tstats.labels.Start\tstats.labels.Batch\tstats.labels.NotKeanu\tstats.labels.End\tstats.labels.NodePeriodic\tstats.labels.Person\tstats.relTypes.()-[:REVIEWED]-\u003e()\tstats.relTypes.(:Person)-[:REVIEWED]-\u003e()\tstats.relTypes.()-[:FOLLOWS]-\u003e()\tstats.relTypes.()-[:HAS_MOVIE]-\u003e(:Movie)\tstats.relTypes.()-[:WROTE]-\u003e()\tstats.relTypes.(:Person)-[:MY_CASE_REL]-\u003e()\tstats.relTypes.(:NodePeriodic)-[:MY_PERIODIC_REL]-\u003e()\tstats.relTypes.(:Person)-[:WROTE]-\u003e()\tstats.relTypes.()-[:HAS_MOVIE]-\u003e()\tstats.relTypes.()-[:REVIEWED]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:ACTED_IN]-\u003e()\tstats.relTypes.()-[:ACTED_IN]-\u003e()\tstats.relTypes.()-[:DIRECTED]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:PRODUCED]-\u003e()\tstats.relTypes.()-[:DIRECTED]-\u003e()\tstats.relTypes.()-[:PRODUCED]-\u003e()\tstats.relTypes.(:Person)-[:DIRECTED]-\u003e()\tstats.relTypes.()-[:MY_PERIODIC_REL]-\u003e()\tstats.relTypes.()-[:FOLLOWS]-\u003e(:Person)\tstats.relTypes.()-[:PRODUCED]-\u003e(:Movie)\tstats.relTypes.()-[:MY_PERIODIC_REL]-\u003e(:End)\tstats.relTypes.()-[:ACTED_IN]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:FOLLOWS]-\u003e()\tstats.relTypes.()-[:WROTE]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:HAS_MOVIE]-\u003e()\tstats.relTypes.()-[:MY_CASE_REL]-\u003e(:MyCaseNode)\tstats.relTypes.()-[:MY_CASE_REL]-\u003e()\n8\t9\t15\t201405\t100256\t39\t3\t1000\t100\t132\t99999\t99999\t133\t9\t9\t3\t1\t10\t3\t99999\t10\t1\t9\t172\t172\t44\t15\t44\t15\t44\t99999\t3\t15\t99999\t172\t3\t10\t1\t3\t3\t172\t9\t1\t15\t10\t99999\t3\t44\t3\t9\t15\t8\t201405\t100256\t39\t3\t1000\t100\t132\t99999\t99999\t133\t9\t9\t3\t1\t10\t3\t99999\t10\t1\t9\t172\t172\t44\t15\t44\t15\t44\t99999\t3\t15\t99999\t172\t3\t10\t1\t3\t3\n"
           }
         ]
       },
@@ -185,15 +218,15 @@
       "jobName": "paragraph_1635612379063_2028984115",
       "id": "paragraph_1635612379063_2028984115",
       "dateCreated": "2021-10-30 16:46:19.063",
-      "dateStarted": "2021-10-30 16:52:56.195",
-      "dateFinished": "2021-10-30 16:52:56.255",
+      "dateStarted": "2021-11-18 08:52:30.965",
+      "dateFinished": "2021-11-18 08:52:34.619",
       "status": "FINISHED"
     },
     {
       "title": "apoc.meta.data",
       "text": "%neo4j\n\nCALL apoc.meta.data()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:59:13.701",
+      "dateUpdated": "2021-11-18 08:52:39.400",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -257,7 +290,12 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": []
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "label\tproperty\tcount\tunique\tindex\texistence\ttype\tarray\tsample\tleftCount\trightCount\tleft\tright\tother\totherLabels\telementType\n\"ACTED_IN\"\t\"Person\"\t172\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t512\t940\t2\t5\t[\"Movie\"]\t[]\t\"relationship\"\n\"ACTED_IN\"\t\"roles\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"DIRECTED\"\t\"Person\"\t44\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t104\t58\t2\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"PRODUCED\"\t\"Person\"\t15\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t49\t29\t3\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"WROTE\"\t\"Person\"\t10\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t14\t14\t1\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"FOLLOWS\"\t\"Person\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t5\t1\t1\t[\"Person\"]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"Person\"\t9\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t41\t17\t4\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"summary\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"rating\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"HAS_MOVIE\"\t\"Person\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t1\t1\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"MY_CASE_REL\"\t\"Person\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t3\t1\t1\t[\"MyCaseNode\"]\t[]\t\"relationship\"\n\"MY_PERIODIC_REL\"\t\"NodePeriodic\"\t1123\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1123\t1123\t1\t1\t[\"End\"]\t[]\t\"relationship\"\n\"Movie\"\t\"title\"\t0\tFALSE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"tagline\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"released\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"name\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"MY_CASE_REL\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t3\t1\t1\t[\"MyCaseNode\"]\t[]\t\"node\"\n\"Person\"\t\"ACTED_IN\"\t172\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t512\t940\t2\t5\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"HAS_MOVIE\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t1\t1\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"uuid\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"name\"\t0\tTRUE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"born\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"children\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"DIRECTED\"\t44\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t104\t58\t2\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"PRODUCED\"\t15\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t49\t29\t3\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"WROTE\"\t10\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t14\t14\t1\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"FOLLOWS\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t5\t1\t1\t[\"Person\"]\t[]\t\"node\"\n\"Person\"\t\"REVIEWED\"\t9\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t41\t17\t4\t1\t[\"Movie\"]\t[]\t\"node\"\n\"MyCaseNode\"\t\"myId\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NodePeriodic\"\t\"MY_PERIODIC_REL\"\t1123\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1123\t1123\t1\t1\t[\"End\"]\t[]\t\"node\"\n\"NodePeriodic\"\t\"time\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NodePeriodic\"\t\"id\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Start\"\t\"myProp\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Batch\"\t\"prop\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -265,15 +303,15 @@
       "jobName": "paragraph_1635515971440_1210427180",
       "id": "paragraph_1635515971440_1210427180",
       "dateCreated": "2021-10-29 13:59:31.440",
-      "dateStarted": "2021-11-05 10:32:37.544",
-      "dateFinished": "2021-11-05 10:32:41.476",
+      "dateStarted": "2021-11-18 08:52:39.421",
+      "dateFinished": "2021-11-18 08:52:39.669",
       "status": "FINISHED"
     },
     {
       "title": "apoc.meta.data(sample)",
       "text": "%neo4j\n\n// for each label create batches of `total / sample` and take 1 element for each batch\nCALL apoc.meta.data({sample:2})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:59:23.856",
+      "dateUpdated": "2021-11-18 08:53:05.455",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -340,7 +378,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "label\tproperty\tcount\tunique\tindex\texistence\ttype\tarray\tsample\tleftCount\trightCount\tleft\tright\tother\totherLabels\telementType\n\"MY_PERIODIC_REL\"\t\"Start\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t1\t1\t1\t[\"End\"]\t[]\t\"relationship\"\n\"ACTED_IN\"\t\"Person\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t4\t1\t4\t[\"Movie\"]\t[]\t\"relationship\"\n\"ACTED_IN\"\t\"roles\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"Start\"\t\"MY_PERIODIC_REL\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t1\t1\t1\t[\"End\"]\t[]\t\"node\"\n\"Start\"\t\"myProp\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"tagline\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"title\"\t0\tFALSE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"released\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"ACTED_IN\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t4\t1\t4\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"name\"\t0\tTRUE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"born\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n"
+            "data": "label\tproperty\tcount\tunique\tindex\texistence\ttype\tarray\tsample\tleftCount\trightCount\tleft\tright\tother\totherLabels\telementType\n\"ACTED_IN\"\t\"Person\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t4\t1\t4\t[\"Movie\"]\t[]\t\"relationship\"\n\"ACTED_IN\"\t\"roles\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"MY_PERIODIC_REL\"\t\"NodePeriodic\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t1\t1\t1\t[\"End\"]\t[]\t\"relationship\"\n\"Movie\"\t\"title\"\t0\tFALSE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"tagline\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"released\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"ACTED_IN\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t4\t1\t4\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"uuid\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"name\"\t0\tTRUE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"born\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"MyCaseNode\"\t\"myId\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NodePeriodic\"\t\"MY_PERIODIC_REL\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t1\t1\t1\t[\"End\"]\t[]\t\"node\"\n\"NodePeriodic\"\t\"time\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NodePeriodic\"\t\"id\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Start\"\t\"myProp\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Batch\"\t\"prop\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n"
           }
         ]
       },
@@ -350,15 +388,15 @@
       "jobName": "paragraph_1635848599286_1638795506",
       "id": "paragraph_1635848599286_1638795506",
       "dateCreated": "2021-11-02 10:23:19.287",
-      "dateStarted": "2021-11-08 15:44:40.770",
-      "dateFinished": "2021-11-08 15:44:40.809",
+      "dateStarted": "2021-11-18 08:53:05.472",
+      "dateFinished": "2021-11-18 08:53:05.512",
       "status": "FINISHED"
     },
     {
       "title": "apoc.meta.nodeTypeProperties",
       "text": "%neo4j\n\nCALL apoc.meta.nodeTypeProperties({excludeLabels:[\"Movie\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:59:32.006",
+      "dateUpdated": "2021-11-18 08:53:36.957",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -416,7 +454,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "nodeType\tnodeLabels\tpropertyName\tpropertyTypes\tmandatory\tpropertyObservations\ttotalObservations\n\":`AnotherLabel`:`Start`\"\t[\"AnotherLabel\",\"Start\"]\t\"myProp\"\t[\"Long\"]\tFALSE\t400\t400\n\":`End`\"\t[\"End\"]\tNULL\tNULL\tFALSE\t0\t1598\n\":`Batch`\"\t[\"Batch\"]\t\"prop\"\t[\"LongArray\"]\tFALSE\t11\t11\n"
+            "data": "nodeType\tnodeLabels\tpropertyName\tpropertyTypes\tmandatory\tpropertyObservations\ttotalObservations\n\":`Person`\"\t[\"Person\"]\t\"name\"\t[\"String\"]\tFALSE\t133\t133\n\":`Person`\"\t[\"Person\"]\t\"uuid\"\t[\"String\"]\tFALSE\t133\t133\n\":`Person`\"\t[\"Person\"]\t\"children\"\t[\"StringArray\"]\tFALSE\t2\t133\n\":`Person`\"\t[\"Person\"]\t\"born\"\t[\"Long\"]\tFALSE\t128\t133\n\":`NotKeanu`\"\t[\"NotKeanu\"]\tNULL\tNULL\tFALSE\t0\t132\n\":`MyCaseNode`\"\t[\"MyCaseNode\"]\t\"myId\"\t[\"Long\"]\tFALSE\t3\t3\n\":`NodePeriodic`\"\t[\"NodePeriodic\"]\t\"time\"\t[\"Long\"]\tFALSE\t1052\t1052\n\":`NodePeriodic`\"\t[\"NodePeriodic\"]\t\"id\"\t[\"Long\"]\tFALSE\t1052\t1052\n\":`End`\"\t[\"End\"]\tNULL\tNULL\tFALSE\t0\t1111\n\":`Start`\"\t[\"Start\"]\t\"myProp\"\t[\"Long\"]\tFALSE\t1000\t1000\n\":`Batch`\"\t[\"Batch\"]\t\"prop\"\t[\"LongArray\"]\tFALSE\t100\t100\n"
           }
         ]
       },
@@ -426,15 +464,15 @@
       "jobName": "paragraph_1635612794975_468706129",
       "id": "paragraph_1635612794975_468706129",
       "dateCreated": "2021-10-30 16:53:14.976",
-      "dateStarted": "2021-11-02 10:21:40.391",
-      "dateFinished": "2021-11-02 10:21:40.656",
+      "dateStarted": "2021-11-18 08:53:36.977",
+      "dateFinished": "2021-11-18 08:53:37.150",
       "status": "FINISHED"
     },
     {
       "title": "apoc.meta.relTypeProperties",
       "text": "%neo4j\n\nCALL apoc.meta.relTypeProperties({excludeRels:[\"DIRECTED\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:59:37.779",
+      "dateUpdated": "2021-11-18 08:53:39.801",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -493,7 +531,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "relType\tsourceNodeLabels\ttargetNodeLabels\tpropertyName\tpropertyTypes\tmandatory\tpropertyObservations\ttotalObservations\n\":`ACTED_IN`\"\t[\"Person\"]\t[\"Movie\"]\t\"roles\"\t[\"StringArray\"]\tFALSE\t100\t155\n\":`PRODUCED`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t7\n\":`WROTE`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`FOLLOWS`\"\t[\"Person\"]\t[\"Person\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`REVIEWED`\"\t[\"Person\"]\t[\"Movie\"]\t\"summary\"\t[\"String\"]\tFALSE\t9\t9\n\":`REVIEWED`\"\t[\"Person\"]\t[\"Movie\"]\t\"rating\"\t[\"Long\"]\tFALSE\t9\t9\n"
+            "data": "relType\tsourceNodeLabels\ttargetNodeLabels\tpropertyName\tpropertyTypes\tmandatory\tpropertyObservations\ttotalObservations\n\":`MY_CASE_REL`\"\t[\"Person\"]\t[\"MyCaseNode\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`ACTED_IN`\"\t[\"Person\"]\t[\"Movie\"]\t\"roles\"\t[\"StringArray\"]\tFALSE\t100\t155\n\":`HAS_MOVIE`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t1\n\":`PRODUCED`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t7\n\":`WROTE`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`FOLLOWS`\"\t[\"Person\"]\t[\"Person\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`REVIEWED`\"\t[\"Person\"]\t[\"Movie\"]\t\"summary\"\t[\"String\"]\tFALSE\t9\t9\n\":`REVIEWED`\"\t[\"Person\"]\t[\"Movie\"]\t\"rating\"\t[\"Long\"]\tFALSE\t9\t9\n\":`MY_PERIODIC_REL`\"\t[\"NodePeriodic\"]\t[\"End\"]\tNULL\tNULL\tFALSE\t0\t1010\n"
           }
         ]
       },
@@ -503,15 +541,15 @@
       "jobName": "paragraph_1636108429613_1279360973",
       "id": "paragraph_1636108429613_1279360973",
       "dateCreated": "2021-11-05 10:33:49.613",
-      "dateStarted": "2021-11-05 10:35:50.559",
-      "dateFinished": "2021-11-05 10:35:50.623",
+      "dateStarted": "2021-11-18 08:53:39.818",
+      "dateFinished": "2021-11-18 08:53:39.965",
       "status": "FINISHED"
     },
     {
       "title": "apoc.meta.cypher",
       "text": "%md\n\nMoreover, there are some apoc.meta.* functions to retrieve informations about a single entity or property.\n\n- apoc.meta.cypher.isType(value, metaType)\n- apoc.meta.cypher.type(value)\n- apoc.meta.cypher.types(value)\n\nPossible meta types are `INTEGER`,`FLOAT`,`STRING`,`BOOLEAN`,`RELATIONSHIP`,`NODE`,`PATH`,`NULL`,`MAP`,`POINT`,`DATE`,`DATE_TIME`,`LOCAL_TIME`,`LOCAL_DATE_TIME`,`TIME,DURATION`, `LIST OF \u003cPREVIOUS TYPE\u003e`",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:00:12.037",
+      "dateUpdated": "2021-11-18 08:53:43.857",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -525,8 +563,8 @@
         },
         "editorMode": "ace/mode/markdown",
         "title": true,
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -547,15 +585,15 @@
       "jobName": "paragraph_1635848556731_604775729",
       "id": "paragraph_1635848556731_604775729",
       "dateCreated": "2021-11-02 10:22:36.731",
-      "dateStarted": "2021-11-11 12:59:51.686",
-      "dateFinished": "2021-11-11 12:59:51.704",
+      "dateStarted": "2021-11-18 08:53:43.857",
+      "dateFinished": "2021-11-18 08:53:43.872",
       "status": "FINISHED"
     },
     {
       "title": "apoc.meta.cypher",
       "text": "%neo4j\n\nmatch (p:Person) with p limit 1 \nreturn apoc.meta.cypher.types(p) as types,                       // returns 2 column, that is the properies (name and born)\n    apoc.meta.cypher.isType(p.name, \"STRING\") as isNameAString,  // returns a boolean\n    apoc.meta.cypher.type(p.name) as typeName                    // returns a column with a meta type\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:00:33.883",
+      "dateUpdated": "2021-11-18 08:53:49.403",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -572,6 +610,7 @@
                   "tableColumnTypeState": {
                     "names": {
                       "types.name": "string",
+                      "types.uuid": "string",
                       "types.born": "string",
                       "isNameAString": "string",
                       "typeName": "string"
@@ -610,7 +649,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "types.name\ttypes.born\tisNameAString\ttypeName\nSTRING\tINTEGER\tTRUE\t\"STRING\"\n"
+            "data": "types.name\ttypes.uuid\ttypes.born\tisNameAString\ttypeName\nSTRING\tSTRING\tINTEGER\tTRUE\t\"STRING\"\n"
           }
         ]
       },
@@ -620,14 +659,14 @@
       "jobName": "paragraph_1635849322493_867707092",
       "id": "paragraph_1635849322493_867707092",
       "dateCreated": "2021-11-02 10:35:22.493",
-      "dateStarted": "2021-11-11 13:00:32.489",
-      "dateFinished": "2021-11-11 13:00:32.594",
+      "dateStarted": "2021-11-18 08:53:49.000",
+      "dateFinished": "2021-11-18 08:53:49.086",
       "status": "FINISHED"
     },
     {
       "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can verify database changes through these 2 procedures, to calculate hashsums:\n\n- `apoc.hashing.fingerprinting(object, $config)` - one or more entity\n- `apoc.hashing.fingerprintGraph(\u003clist_of_props_to_ignore\u003e)` - whole graph\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:05:59.554",
+      "dateUpdated": "2021-11-18 08:53:51.975",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -640,8 +679,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
-        "tableHide": true
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -652,7 +691,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFingerprint (Checksum)\u003c/h2\u003e\n\u003cp\u003eWe can verify database changes through these 2 procedures:\u003c/p\u003e\n\u003cp\u003eThe following functions calculate hashsums of an entity\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.hashing.fingerprinting(object, {conf})\u003c/code\u003e - single entity\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.hashing.fingerprintGraph(\u0026lt;list_of_props_to_ignore\u0026gt;)\u003c/code\u003e - whole graph\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFingerprint (Checksum)\u003c/h2\u003e\n\u003cp\u003eWe can verify database changes through these 2 procedures, to calculate hashsums:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.hashing.fingerprinting(object, $config)\u003c/code\u003e - one or more entity\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.hashing.fingerprintGraph(\u0026lt;list_of_props_to_ignore\u0026gt;)\u003c/code\u003e - whole graph\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -662,15 +701,15 @@
       "jobName": "paragraph_1635376240174_40107247",
       "id": "paragraph_1635376240174_40107247",
       "dateCreated": "2021-10-27 23:10:40.174",
-      "dateStarted": "2021-11-08 15:58:23.135",
-      "dateFinished": "2021-11-08 15:58:23.145",
+      "dateStarted": "2021-11-18 08:53:51.976",
+      "dateFinished": "2021-11-18 08:53:51.989",
       "status": "FINISHED"
     },
     {
       "title": "Whole graph",
       "text": "%neo4j\n\n// we ignore \u0027since\u0027 propery\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:06:16.267",
+      "dateUpdated": "2021-11-18 08:54:02.596",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -720,11 +759,11 @@
         "forms": {}
       },
       "results": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "msg": [
           {
-            "type": "TABLE",
-            "data": "output\n\"894D48209C6BC6019AE419B2E3243761\"\n"
+            "type": "TEXT",
+            "data": "Failed to invoke function `apoc.hashing.fingerprintGraph`: Caused by: java.lang.RuntimeException"
           }
         ]
       },
@@ -734,9 +773,9 @@
       "jobName": "paragraph_1635424699183_500883585",
       "id": "paragraph_1635424699183_500883585",
       "dateCreated": "2021-10-28 12:38:19.184",
-      "dateStarted": "2021-11-11 11:06:16.285",
-      "dateFinished": "2021-11-11 11:06:58.650",
-      "status": "FINISHED"
+      "dateStarted": "2021-11-18 08:54:02.615",
+      "dateFinished": "2021-11-18 08:54:10.774",
+      "status": "ERROR"
     },
     {
       "title": "Whole graph after update",
