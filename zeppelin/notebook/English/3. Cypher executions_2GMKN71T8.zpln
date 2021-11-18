@@ -88,7 +88,7 @@
       "title": "Example",
       "text": "%neo4j\n\nCALL db.labels() yield label\n// we can concatenate string and variables (label)\n// otherwise, with pure cypher it would be `match (:label) ...` (doesn\u0027t work) because it would searching for nodes with label `:label`\nCALL apoc.cypher.run(\"match (:`\"+label+\"`) return count(*) as count\", null) yield value\nreturn label, value.count as count",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:20:55.805",
+      "dateUpdated": "2021-11-18 09:19:23.541",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -142,7 +142,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "label\tcount\n\"TTL\"\t0\n\"Movie\"\t38\n\"Person\"\t133\n\"Something\"\t1\n"
+            "data": "label\tcount\n\"Movie\"\t39\n\"Person\"\t133\n\"NotKeanu\"\t132\n\"Start\"\t2000\n\"Batch\"\t300\n\"NodePeriodic\"\t19998\n\"End\"\t19998\n\"MyCaseNode\"\t6\n\"Alert\"\t2\n"
           }
         ]
       },
@@ -152,15 +152,15 @@
       "jobName": "paragraph_1635858066468_27777609",
       "id": "paragraph_1635858066468_27777609",
       "dateCreated": "2021-11-02 13:01:06.468",
-      "dateStarted": "2021-11-05 11:24:02.322",
-      "dateFinished": "2021-11-05 11:24:02.343",
+      "dateStarted": "2021-11-18 09:19:23.557",
+      "dateFinished": "2021-11-18 09:19:23.811",
       "status": "FINISHED"
     },
     {
       "title": "apoc.cypher.runFile",
       "text": "%neo4j\n\n// I have a file `fileExample.cypher` with this content:\n// CREATE (n:Node {id:1});\n// MATCH (n:Node) SET n.import \u003d true;\n\n\nCALL apoc.cypher.runFile(\"fileExample.cypher\");",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:32.967",
+      "dateUpdated": "2021-11-18 09:19:26.681",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -226,7 +226,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "row\tresult.constraintsRemoved\tresult.indexesRemoved\tresult.nodesCreated\tresult.rows\tresult.propertiesSet\tresult.labelsRemoved\tresult.relationshipsDeleted\tresult.constraintsAdded\tresult.nodesDeleted\tresult.indexesAdded\tresult.labelsAdded\tresult.relationshipsCreated\tresult.time\n-1\t0\t0\t1\t0\t1\t0\t0\t0\t0\t0\t1\t0\t0\n-1\t0\t0\t0\t0\t9\t0\t0\t0\t0\t0\t0\t0\t0\n"
+            "data": "row\tresult.constraintsRemoved\tresult.indexesRemoved\tresult.nodesCreated\tresult.rows\tresult.propertiesSet\tresult.labelsRemoved\tresult.relationshipsDeleted\tresult.constraintsAdded\tresult.nodesDeleted\tresult.indexesAdded\tresult.labelsAdded\tresult.relationshipsCreated\tresult.time\n-1\t0\t0\t1\t0\t1\t0\t0\t0\t0\t0\t1\t0\t0\n-1\t0\t0\t0\t0\t1\t0\t0\t0\t0\t0\t0\t0\t0\n"
           }
         ]
       },
@@ -236,15 +236,15 @@
       "jobName": "paragraph_1635860142585_1100337140",
       "id": "paragraph_1635860142585_1100337140",
       "dateCreated": "2021-11-02 13:35:42.586",
-      "dateStarted": "2021-11-05 11:39:32.922",
-      "dateFinished": "2021-11-05 11:39:33.103",
+      "dateStarted": "2021-11-18 09:19:26.698",
+      "dateFinished": "2021-11-18 09:19:26.886",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nMATCH (n:Node {id: 1}) RETURN n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:43.114",
+      "dateUpdated": "2021-11-18 09:19:47.613",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -298,7 +298,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":181,\"data\":{\"import\":true,\"id\":1},\"label\":\"Node\"}],\"edges\":[],\"labels\":{\"TTL\":\"#C6497C\",\"Movie\":\"#9305B2\",\"Person\":\"#9E79D1\",\"Something\":\"#6343C6\",\"Node\":\"#DBE67F\",\"KKK\":\"#088420\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"X\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":42608,\"data\":{\"import\":true,\"id\":1},\"label\":\"Node\"}],\"edges\":[],\"labels\":{\"Movie\":\"#415DA3\",\"Person\":\"#958C56\",\"NotKeanu\":\"#F106A2\",\"Start\":\"#B948DD\",\"Batch\":\"#7498D6\",\"NodePeriodic\":\"#495027\",\"End\":\"#3B5E9C\",\"MyCaseNode\":\"#E53F10\",\"Alert\":\"#D0297D\",\"Node\":\"#D7BA56\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\"],\"directed\":true}"
           }
         ]
       },
@@ -308,15 +308,15 @@
       "jobName": "paragraph_1635860300022_129065438",
       "id": "paragraph_1635860300022_129065438",
       "dateCreated": "2021-11-02 13:38:20.022",
-      "dateStarted": "2021-11-05 11:40:02.779",
-      "dateFinished": "2021-11-05 11:40:02.828",
+      "dateStarted": "2021-11-18 09:19:47.629",
+      "dateFinished": "2021-11-18 09:19:47.687",
       "status": "FINISHED"
     },
     {
       "title": "apoc.cypher.runSchemaFile",
       "text": "%neo4j\n\n// File content:\n// CREATE INDEX FOR (a:Actor) ON (a.name, a.born);\n// CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE\n\nCALL apoc.cypher.runSchemaFile(\"fileExampleSchema.cypher\");",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:50.652",
+      "dateUpdated": "2021-11-18 09:20:18.205",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -381,7 +381,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "row\tresult.constraintsRemoved\tresult.indexesRemoved\tresult.nodesCreated\tresult.rows\tresult.propertiesSet\tresult.labelsRemoved\tresult.relationshipsDeleted\tresult.constraintsAdded\tresult.nodesDeleted\tresult.indexesAdded\tresult.labelsAdded\tresult.relationshipsCreated\tresult.time\n-1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t1\t0\t0\t0\n-1\t0\t0\t0\t0\t0\t0\t0\t1\t0\t0\t0\t0\t0\n"
+            "data": "row\tresult.constraintsRemoved\tresult.indexesRemoved\tresult.nodesCreated\tresult.rows\tresult.propertiesSet\tresult.labelsRemoved\tresult.relationshipsDeleted\tresult.constraintsAdded\tresult.nodesDeleted\tresult.indexesAdded\tresult.labelsAdded\tresult.relationshipsCreated\tresult.time\n-1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t1\t0\t0\t0\n"
           }
         ]
       },
@@ -391,15 +391,15 @@
       "jobName": "paragraph_1635862450813_1749992024",
       "id": "paragraph_1635862450813_1749992024",
       "dateCreated": "2021-11-02 14:14:10.814",
-      "dateStarted": "2021-11-05 11:41:05.018",
-      "dateFinished": "2021-11-05 11:41:05.305",
+      "dateStarted": "2021-11-18 09:20:18.221",
+      "dateFinished": "2021-11-18 09:20:18.498",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\ncall db.indexes",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:03:46.165",
+      "dateUpdated": "2021-11-18 09:20:20.394",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -460,7 +460,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "id\tname\tstate\tpopulationPercent\tuniqueness\ttype\tentityType\tlabelsOrTypes\tproperties\tprovider\n5\t\"constraint_3044d997\"\t\"ONLINE\"\t100.0\t\"UNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Movie\"]\t[\"title\"]\t\"native-btree-1.0\"\n1\t\"index_343aff4e\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"LOOKUP\"\t\"NODE\"\t[]\t[]\t\"token-lookup-1.0\"\n3\t\"index_a5e3e466\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"TTL\"]\t[\"ttl\"]\t\"native-btree-1.0\"\n4\t\"index_d3911f47\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Actor\"]\t[\"name\",\"born\"]\t\"native-btree-1.0\"\n2\t\"index_f7700477\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"LOOKUP\"\t\"RELATIONSHIP\"\t[]\t[]\t\"token-lookup-1.0\"\n"
+            "data": "id\tname\tstate\tpopulationPercent\tuniqueness\ttype\tentityType\tlabelsOrTypes\tproperties\tprovider\n4\t\"constraint_person\"\t\"ONLINE\"\t100.0\t\"UNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Person\"]\t[\"name\"]\t\"native-btree-1.0\"\n1\t\"index_343aff4e\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"LOOKUP\"\t\"NODE\"\t[]\t[]\t\"token-lookup-1.0\"\n6\t\"index_d3911f47\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Actor\"]\t[\"name\",\"born\"]\t\"native-btree-1.0\"\n2\t\"index_f7700477\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"LOOKUP\"\t\"RELATIONSHIP\"\t[]\t[]\t\"token-lookup-1.0\"\n3\t\"index_movie\"\t\"ONLINE\"\t100.0\t\"NONUNIQUE\"\t\"BTREE\"\t\"NODE\"\t[\"Movie\"]\t[\"title\"]\t\"native-btree-1.0\"\n"
           }
         ]
       },
@@ -470,15 +470,15 @@
       "jobName": "paragraph_1635862549037_1694262330",
       "id": "paragraph_1635862549037_1694262330",
       "dateCreated": "2021-11-02 14:15:49.037",
-      "dateStarted": "2021-11-05 11:41:06.923",
-      "dateFinished": "2021-11-05 11:41:06.980",
+      "dateStarted": "2021-11-18 09:20:20.408",
+      "dateFinished": "2021-11-18 09:20:20.453",
       "status": "FINISHED"
     },
     {
       "title": "apoc.cypher.runTimeboxed",
       "text": "%neo4j\n\n// I create 20000 \u0027TimeoutTest\u0027 nodes\nUNWIND range(1, 20000) as idx CREATE (n:TimeoutTest {id: idx});\n\ncall apoc.cypher.runTimeboxed(\"match (n:TimeoutTest) RETURN n\", {}, 100) // I set a small timeout\nYIELD value\nRETURN count(value.n.id);\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:15:42.313",
+      "dateUpdated": "2021-11-18 09:20:38.486",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -530,7 +530,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "count(value.n.id)\n7493\n"
+            "data": "count(value.n.id)\n5047\n"
           }
         ]
       },
@@ -540,8 +540,8 @@
       "jobName": "paragraph_1635862617028_1273613672",
       "id": "paragraph_1635862617028_1273613672",
       "dateCreated": "2021-11-02 14:16:57.028",
-      "dateStarted": "2021-11-11 11:15:24.901",
-      "dateFinished": "2021-11-11 11:15:25.415",
+      "dateStarted": "2021-11-18 09:20:38.502",
+      "dateFinished": "2021-11-18 09:20:38.927",
       "status": "FINISHED"
     },
     {

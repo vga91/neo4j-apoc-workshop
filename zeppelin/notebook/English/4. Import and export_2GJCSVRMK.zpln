@@ -46,7 +46,7 @@
       "title": "apoc.export.csv.all",
       "text": "%neo4j\n\nCALL apoc.export.csv.all(\u0027testfile.csv\u0027, {quotes: \u0027always\u0027})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:04:24.483",
+      "dateUpdated": "2021-11-18 09:20:48.308",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -109,7 +109,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"testfile.csv\"\t\"database: nodes(171), rels(253)\"\t\"csv\"\t171\t253\t737\t22\t424\t20000\t1\tTRUE\tNULL\n"
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"testfile.csv\"\t\"database: nodes(62609), rels(20258)\"\t\"csv\"\t62609\t20258\t83140\t1965\t82867\t20000\t5\tTRUE\tNULL\n"
           }
         ]
       },
@@ -119,8 +119,8 @@
       "jobName": "paragraph_1635427510277_1468145857",
       "id": "paragraph_1635427510277_1468145857",
       "dateCreated": "2021-10-28 13:25:10.278",
-      "dateStarted": "2021-11-05 15:25:03.035",
-      "dateFinished": "2021-11-05 15:25:03.106",
+      "dateStarted": "2021-11-18 09:20:48.329",
+      "dateFinished": "2021-11-18 09:20:50.395",
       "status": "FINISHED"
     },
     {
@@ -362,7 +362,7 @@
       "title": "apoc.export.csv.graph",
       "text": "%neo4j\n\nMATCH (person:Person)-[r:DIRECTED]-\u003e() \nWITH {nodes: collect(person), relationships: collect(r)} as graph\nCALL apoc.export.csv.graph(graph, \u0027graphFile.csv\u0027, {}) YIELD file RETURN file",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:05:08.227",
+      "dateUpdated": "2021-11-18 09:21:52.455",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -424,15 +424,15 @@
       "jobName": "paragraph_1635430116277_440029225",
       "id": "paragraph_1635430116277_440029225",
       "dateCreated": "2021-10-28 14:08:36.277",
-      "dateStarted": "2021-11-05 15:12:04.174",
-      "dateFinished": "2021-11-05 15:12:04.284",
+      "dateStarted": "2021-11-18 09:21:52.474",
+      "dateFinished": "2021-11-18 09:21:52.588",
       "status": "FINISHED"
     },
     {
       "title": "apoc.export.csv.data",
       "text": "%neo4j\nMATCH (person:Person) \nWITH collect(person) as people\nCALL apoc.export.csv.data(people, [], \u0027dataFile.csv\u0027, {})\nyield file return file",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:30:07.853",
+      "dateUpdated": "2021-11-18 09:22:34.145",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -494,15 +494,15 @@
       "jobName": "paragraph_1635430176279_54704858",
       "id": "paragraph_1635430176279_54704858",
       "dateCreated": "2021-10-28 14:09:36.279",
-      "dateStarted": "2021-11-17 21:30:07.880",
-      "dateFinished": "2021-11-17 21:30:08.324",
+      "dateStarted": "2021-11-18 09:22:34.167",
+      "dateFinished": "2021-11-18 09:22:34.259",
       "status": "FINISHED"
     },
     {
       "title": "apoc.export.csv.all",
       "text": "%neo4j\n\nCALL apoc.export.csv.all(\"customDelim.csv\", {quotes: \u0027none\u0027, delim: \u0027|\u0027, arrayDelimiter: \u0027_\u0027}) ",
       "user": "anonymous",
-      "dateUpdated": "2021-11-17 21:30:15.041",
+      "dateUpdated": "2021-11-18 09:22:35.766",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -565,7 +565,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"customDelim.csv\"\t\"database: nodes(200706), rels(100456)\"\t\"csv\"\t200706\t100456\t200768\t3403\t301162\t20000\t16\tTRUE\tNULL\n"
+            "data": "file\tsource\tformat\tnodes\trelationships\tproperties\ttime\trows\tbatchSize\tbatches\tdone\tdata\n\"customDelim.csv\"\t\"database: nodes(62609), rels(20258)\"\t\"csv\"\t62609\t20258\t83140\t1398\t82867\t20000\t5\tTRUE\tNULL\n"
           }
         ]
       },
@@ -575,8 +575,8 @@
       "jobName": "paragraph_1635428971466_1949470120",
       "id": "paragraph_1635428971466_1949470120",
       "dateCreated": "2021-10-28 13:49:31.466",
-      "dateStarted": "2021-11-17 21:30:15.065",
-      "dateFinished": "2021-11-17 21:30:18.542",
+      "dateStarted": "2021-11-18 09:22:35.784",
+      "dateFinished": "2021-11-18 09:22:37.237",
       "status": "FINISHED"
     },
     {

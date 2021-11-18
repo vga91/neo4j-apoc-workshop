@@ -751,7 +751,7 @@
       "title": "apoc.hashing.fingerprinting(nodeAllowMap) included",
       "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property NOT included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashAfter, hashBefore",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 09:06:17.294",
+      "dateUpdated": "2021-11-18 09:16:54.496",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -806,7 +806,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "hashAfter\thashBefore\n\"BB5F0078A3A61BB257ADE1F90F227513\"\t\"40BED7CF9B3D4BB3A3D7A7E3EB18C5EB\"\n"
+            "data": "hashAfter\thashBefore\n\"A8147D141600EDAD5F67128583346BB1\"\t\"40BED7CF9B3D4BB3A3D7A7E3EB18C5EB\"\n"
           }
         ]
       },
@@ -816,15 +816,15 @@
       "jobName": "paragraph_1635425240161_890228484",
       "id": "paragraph_1635425240161_890228484",
       "dateCreated": "2021-10-28 12:47:20.162",
-      "dateStarted": "2021-11-18 09:06:17.312",
-      "dateFinished": "2021-11-18 09:06:17.448",
+      "dateStarted": "2021-11-18 09:16:54.517",
+      "dateFinished": "2021-11-18 09:16:54.624",
       "status": "FINISHED"
     },
     {
       "title": "apoc.hashing.fingerprinting(nodeAllowMap) not included",
       "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027name\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027name\u0027]}}) as hashAfter, hashBefore",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 09:03:03.938",
+      "dateUpdated": "2021-11-18 09:16:56.716",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -875,7 +875,12 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": []
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "hashAfter\thashBefore\n\"B8350AD981D40D1107CB7B139E1FB618\"\t\"B8350AD981D40D1107CB7B139E1FB618\"\n"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -883,15 +888,15 @@
       "jobName": "paragraph_1636109985372_771018932",
       "id": "paragraph_1636109985372_771018932",
       "dateCreated": "2021-11-05 10:59:45.372",
-      "dateStarted": "2021-11-18 09:03:03.957",
-      "dateFinished": "2021-11-18 09:03:03.979",
+      "dateStarted": "2021-11-18 09:16:56.738",
+      "dateFinished": "2021-11-18 09:16:56.803",
       "status": "FINISHED"
     },
     {
       "title": "apoc.hashing.fingerprinting(allNodesDisallowList)",
       "text": "%neo4j\n\nMATCH (person:Person {name: \u0027Keanu Reeves\u0027})\n// we create 2 fingerprint with allNodesDisallowList to disallow respectively \u0027name\u0027 and \u0027stuff\u0027\nWITH person, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBornBefore\n\nset person.stuff \u003d rand() // we change born propery\n\n// we create another 2 fingerprint as above\nRETURN apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS output, outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBorn , outputBornBefore\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:01:54.492",
+      "dateUpdated": "2021-11-18 09:16:58.559",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -947,7 +952,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "output\toutputBefore\toutputBorn\toutputBornBefore\n\"C667A5D291E26DE0CDB6C0E3442420C2\"\t\"29CF09C04271819B5F6D129C80F6E265\"\t\"AF1C91FAA75CF410367AAA852C24D494\"\t\"AF1C91FAA75CF410367AAA852C24D494\"\n"
+            "data": "output\toutputBefore\toutputBorn\toutputBornBefore\n\"FC5608B2E182B192F16329FC5A8F6540\"\t\"B5E40276D3834DBB279741C0E6446CAA\"\t\"175619F0AB97859BECFFD2FF9366F0A9\"\t\"175619F0AB97859BECFFD2FF9366F0A9\"\n"
           }
         ]
       },
@@ -957,15 +962,15 @@
       "jobName": "paragraph_1635426007544_145180203",
       "id": "paragraph_1635426007544_145180203",
       "dateCreated": "2021-10-28 13:00:07.544",
-      "dateStarted": "2021-11-11 11:08:42.416",
-      "dateFinished": "2021-11-11 11:08:42.583",
+      "dateStarted": "2021-11-18 09:16:58.577",
+      "dateFinished": "2021-11-18 09:16:58.679",
       "status": "FINISHED"
     },
     {
       "title": "apoc.hashing.fingerprinting(strategy)",
       "text": "%neo4j\n\n// The following generates the fingerprint for Keanu Reeves, using the EAGER strategy, which includes node properties:\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nWITH apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyBefore, person // we calculate fingerprints before property changes\n\nset person.something \u003d apoc.create.uuid() // we change a property\n\nRETURN eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerAfter, lazyBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyAfter  // we return fingerprints before and after property changes",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:01:51.413",
+      "dateUpdated": "2021-11-18 09:17:01.157",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1020,7 +1025,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "eagerBefore\teagerAfter\tlazyBefore\tlazyAfter\n\"BA377FB2B32C6D709D6D0DCD7152C3DD\"\t\"CD4C724BB350153509B0C378631BF435\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\n"
+            "data": "eagerBefore\teagerAfter\tlazyBefore\tlazyAfter\n\"6EF451E7224BAC548BFA88A21F48BC6D\"\t\"5D8FDEF4FD312072D83E093ACA94D765\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\n"
           }
         ]
       },
@@ -1030,15 +1035,15 @@
       "jobName": "paragraph_1635425538359_312764038",
       "id": "paragraph_1635425538359_312764038",
       "dateCreated": "2021-10-28 12:52:18.359",
-      "dateStarted": "2021-11-05 11:01:10.996",
-      "dateFinished": "2021-11-05 11:01:11.091",
+      "dateStarted": "2021-11-18 09:17:01.174",
+      "dateFinished": "2021-11-18 09:17:01.272",
       "status": "FINISHED"
     },
     {
       "title": "Example: create alert system to check nodes variations ",
       "text": "%neo4j\n\nMATCH (n:Person)\nWITH collect(n) as nodes\nWITH nodes, apoc.hashing.fingerprinting(nodes,  {nodeAllowMap: {Person: [\u0027timestamp\u0027]}}) AS fingerprint // calculate fingerprint for all Person nodes through timestamp property\nOPTIONAL MATCH (a:Alert {fingerprint: fingerprint})\nWITH COLLECT(a) as alerts, fingerprint\nCALL apoc.do.when(size(alerts) \u003d 0, \n    \"CREATE (:Alert {fingerprint: $fingerprint})\", \n    \"RETURN 1\", \n    {fingerprint: fingerprint}) YIELD value RETURN value\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 00:32:00.543",
+      "dateUpdated": "2021-11-18 09:18:38.078",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1089,7 +1094,12 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": []
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value.1\n1\n"
+          }
+        ]
       },
       "apps": [],
       "runtimeInfos": {},
@@ -1097,15 +1107,15 @@
       "jobName": "paragraph_1636542238398_1865829614",
       "id": "paragraph_1636542238398_1865829614",
       "dateCreated": "2021-11-10 11:03:58.398",
-      "dateStarted": "2021-11-18 00:32:00.564",
-      "dateFinished": "2021-11-18 00:32:05.405",
+      "dateStarted": "2021-11-18 09:18:38.095",
+      "dateFinished": "2021-11-18 09:18:38.136",
       "status": "FINISHED"
     },
     {
       "title": "Don\u0027t change fingerprint ",
-      "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.other \u003d 123",
+      "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.other \u003d 444",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:02:49.911",
+      "dateUpdated": "2021-11-18 09:18:36.571",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1136,15 +1146,15 @@
       "jobName": "paragraph_1636550905679_2025375362",
       "id": "paragraph_1636550905679_2025375362",
       "dateCreated": "2021-11-10 13:28:25.680",
-      "dateStarted": "2021-11-11 11:09:45.344",
-      "dateFinished": "2021-11-11 11:09:45.400",
+      "dateStarted": "2021-11-18 09:18:36.587",
+      "dateFinished": "2021-11-18 09:18:36.617",
       "status": "FINISHED"
     },
     {
       "title": "Change fingerprint ",
       "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.timestamp \u003d timestamp()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 00:32:28.585",
+      "dateUpdated": "2021-11-18 09:18:19.839",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1175,15 +1185,15 @@
       "jobName": "paragraph_1636562701740_1838859840",
       "id": "paragraph_1636562701740_1838859840",
       "dateCreated": "2021-11-10 16:45:01.740",
-      "dateStarted": "2021-11-18 00:32:28.603",
-      "dateFinished": "2021-11-18 00:32:28.849",
+      "dateStarted": "2021-11-18 09:18:19.858",
+      "dateFinished": "2021-11-18 09:18:19.877",
       "status": "FINISHED"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nmatch (n:Alert) return n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 00:32:46.289",
+      "dateUpdated": "2021-11-18 09:18:39.806",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1237,7 +1247,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"fingerprint\":\"D41D8CD98F00B204E9800998ECF8427E\"},\"label\":\"Alert\"}],\"edges\":[],\"labels\":{\"Alert\":\"#7AAE33\"},\"types\":[],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":42606,\"data\":{\"fingerprint\":\"5C205FA6707E4F912E93546AD6959139\"},\"label\":\"Alert\"},{\"id\":42607,\"data\":{\"fingerprint\":\"FA91ABFC6673C4DA3002A3DD85EC3ABF\"},\"label\":\"Alert\"}],\"edges\":[],\"labels\":{\"Movie\":\"#415DA3\",\"Person\":\"#958C56\",\"NotKeanu\":\"#F106A2\",\"Start\":\"#B948DD\",\"Batch\":\"#7498D6\",\"NodePeriodic\":\"#495027\",\"End\":\"#3B5E9C\",\"MyCaseNode\":\"#E53F10\",\"Alert\":\"#D0297D\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\"],\"directed\":true}"
           }
         ]
       },
@@ -1247,8 +1257,8 @@
       "jobName": "paragraph_1636550925149_665699810",
       "id": "paragraph_1636550925149_665699810",
       "dateCreated": "2021-11-10 13:28:45.149",
-      "dateStarted": "2021-11-18 00:32:46.309",
-      "dateFinished": "2021-11-18 00:32:46.361",
+      "dateStarted": "2021-11-18 09:18:39.826",
+      "dateFinished": "2021-11-18 09:18:39.853",
       "status": "FINISHED"
     },
     {
