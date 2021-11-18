@@ -3,21 +3,21 @@
     {
       "text": "%md\n\n## Meta information\n\nApoc provides a set of procedures to retrieve info of labels / relationship-type present, and so on...\n\n- `CALL apoc.meta.stats()` - returns an overview of labels / rel-types counts\n\n- `CALL apoc.meta.graph($configMap)` / `CALL apoc.meta.subGraph($configMap)` - examines the entire database / sub graph to create the meta-graph\n\n- `CALL apoc.meta.data($configMap)` - examines a subset of the graph to provide a tabular / map-like meta information\n\n- `CALL apoc.meta.nodeTypeProperties($configMap)` / `CALL apoc.meta.relTypeProperties($configMap)` - examines a sample to get the node / relationship property list\n\n\n`$configMap` depends on procedure, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e .\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 00:30:02.086",
+      "dateUpdated": "2021-11-18 00:28:16.470",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -35,22 +35,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635422768628_1724003655",
+      "jobName": "paragraph_1637195211927_1972071136",
       "id": "paragraph_1635422768628_1724003655",
-      "dateCreated": "2021-10-28 12:06:08.628",
-      "dateStarted": "2021-11-18 00:30:02.086",
-      "dateFinished": "2021-11-18 00:30:02.120",
+      "dateCreated": "2021-11-18 00:26:51.927",
+      "dateStarted": "2021-11-18 00:28:16.467",
+      "dateFinished": "2021-11-18 00:28:16.526",
       "status": "FINISHED"
     },
     {
       "title": " apoc.meta.stats",
       "text": "%neo4j\ncall apoc.meta.stats()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:58:58.434",
+      "dateUpdated": "2021-11-18 00:26:51.930",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -157,14 +164,7 @@
             "helium": {}
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -182,22 +182,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635612379063_2028984115",
+      "jobName": "paragraph_1637195211930_1577344657",
       "id": "paragraph_1635612379063_2028984115",
-      "dateCreated": "2021-10-30 16:46:19.063",
-      "dateStarted": "2021-10-30 16:52:56.195",
-      "dateFinished": "2021-10-30 16:52:56.255",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.930",
+      "status": "READY"
     },
     {
       "title": "apoc.meta.data",
       "text": "%neo4j\n\nCALL apoc.meta.data()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:59:13.701",
+      "dateUpdated": "2021-11-18 00:26:51.930",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -242,14 +247,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -262,22 +260,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635515971440_1210427180",
+      "jobName": "paragraph_1637195211930_1324739975",
       "id": "paragraph_1635515971440_1210427180",
-      "dateCreated": "2021-10-29 13:59:31.440",
-      "dateStarted": "2021-11-05 10:32:37.544",
-      "dateFinished": "2021-11-05 10:32:41.476",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.930",
+      "status": "READY"
     },
     {
       "title": "apoc.meta.data(sample)",
       "text": "%neo4j\n\n// for each label create batches of `total / sample` and take 1 element for each batch\nCALL apoc.meta.data({sample:2})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:59:23.856",
+      "dateUpdated": "2021-11-18 00:26:51.931",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -322,14 +325,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -347,22 +343,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635848599286_1638795506",
+      "jobName": "paragraph_1637195211931_271591855",
       "id": "paragraph_1635848599286_1638795506",
-      "dateCreated": "2021-11-02 10:23:19.287",
-      "dateStarted": "2021-11-08 15:44:40.770",
-      "dateFinished": "2021-11-08 15:44:40.809",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.931",
+      "status": "READY"
     },
     {
       "title": "apoc.meta.nodeTypeProperties",
       "text": "%neo4j\n\nCALL apoc.meta.nodeTypeProperties({excludeLabels:[\"Movie\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:59:32.006",
+      "dateUpdated": "2021-11-18 00:26:51.931",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -398,14 +399,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -423,22 +417,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635612794975_468706129",
+      "jobName": "paragraph_1637195211931_1287586230",
       "id": "paragraph_1635612794975_468706129",
-      "dateCreated": "2021-10-30 16:53:14.976",
-      "dateStarted": "2021-11-02 10:21:40.391",
-      "dateFinished": "2021-11-02 10:21:40.656",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.931",
+      "status": "READY"
     },
     {
       "title": "apoc.meta.relTypeProperties",
       "text": "%neo4j\n\nCALL apoc.meta.relTypeProperties({excludeRels:[\"DIRECTED\"]})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 12:59:37.779",
+      "dateUpdated": "2021-11-18 00:26:51.931",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -475,14 +474,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -500,33 +492,31 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636108429613_1279360973",
+      "jobName": "paragraph_1637195211931_1495364870",
       "id": "paragraph_1636108429613_1279360973",
-      "dateCreated": "2021-11-05 10:33:49.613",
-      "dateStarted": "2021-11-05 10:35:50.559",
-      "dateFinished": "2021-11-05 10:35:50.623",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.931",
+      "status": "READY"
     },
     {
       "title": "apoc.meta.cypher",
       "text": "%md\n\nMoreover, there are some apoc.meta.* functions to retrieve informations about a single entity or property.\n\n- apoc.meta.cypher.isType(value, metaType)\n- apoc.meta.cypher.type(value)\n- apoc.meta.cypher.types(value)\n\nPossible meta types are `INTEGER`,`FLOAT`,`STRING`,`BOOLEAN`,`RELATIONSHIP`,`NODE`,`PATH`,`NULL`,`MAP`,`POINT`,`DATE`,`DATE_TIME`,`LOCAL_TIME`,`LOCAL_DATE_TIME`,`TIME,DURATION`, `LIST OF \u003cPREVIOUS TYPE\u003e`",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:00:12.037",
+      "dateUpdated": "2021-11-18 00:26:51.931",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": true,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
-        "title": true,
+        "fontSize": 9.0,
         "editorHide": false,
-        "tableHide": true
+        "title": true,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -544,22 +534,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635848556731_604775729",
+      "jobName": "paragraph_1637195211931_1961381419",
       "id": "paragraph_1635848556731_604775729",
-      "dateCreated": "2021-11-02 10:22:36.731",
-      "dateStarted": "2021-11-11 12:59:51.686",
-      "dateFinished": "2021-11-11 12:59:51.704",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.931",
+      "status": "READY"
     },
     {
       "title": "apoc.meta.cypher",
       "text": "%neo4j\n\nmatch (p:Person) with p limit 1 \nreturn apoc.meta.cypher.types(p) as types,                       // returns 2 column, that is the properies (name and born)\n    apoc.meta.cypher.isType(p.name, \"STRING\") as isNameAString,  // returns a boolean\n    apoc.meta.cypher.type(p.name) as typeName                    // returns a column with a meta type\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:00:33.883",
+      "dateUpdated": "2021-11-18 00:26:51.932",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -592,14 +587,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -617,31 +605,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635849322493_867707092",
+      "jobName": "paragraph_1637195211932_202376462",
       "id": "paragraph_1635849322493_867707092",
-      "dateCreated": "2021-11-02 10:35:22.493",
-      "dateStarted": "2021-11-11 13:00:32.489",
-      "dateFinished": "2021-11-11 13:00:32.594",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.932",
+      "status": "READY"
     },
     {
       "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can verify database changes through these 2 procedures, to calculate hashsums:\n\n- `apoc.hashing.fingerprinting(object, $config)` - one or more entity\n- `apoc.hashing.fingerprintGraph(\u003clist_of_props_to_ignore\u003e)` - whole graph\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:05:59.554",
+      "dateUpdated": "2021-11-18 00:26:51.932",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": true,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": false,
-        "tableHide": true
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -659,22 +645,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635376240174_40107247",
+      "jobName": "paragraph_1637195211932_41339627",
       "id": "paragraph_1635376240174_40107247",
-      "dateCreated": "2021-10-27 23:10:40.174",
-      "dateStarted": "2021-11-08 15:58:23.135",
-      "dateFinished": "2021-11-08 15:58:23.145",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.932",
+      "status": "READY"
     },
     {
       "title": "Whole graph",
       "text": "%neo4j\n\n// we ignore \u0027since\u0027 propery\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:06:16.267",
+      "dateUpdated": "2021-11-18 00:26:51.932",
       "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "editorHide": false,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -704,16 +697,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true,
-        "editorHide": false,
-        "tableHide": false
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -731,22 +715,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635424699183_500883585",
+      "jobName": "paragraph_1637195211932_2080988665",
       "id": "paragraph_1635424699183_500883585",
-      "dateCreated": "2021-10-28 12:38:19.184",
-      "dateStarted": "2021-11-11 11:06:16.285",
-      "dateFinished": "2021-11-11 11:06:58.650",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.932",
+      "status": "READY"
     },
     {
       "title": "Whole graph after update",
       "text": "%neo4j\n\nCREATE (n:Something {id: apoc.create.uuid()});\nRETURN apoc.hashing.fingerprintGraph([\"since\"]) AS output;\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:07:04.749",
+      "dateUpdated": "2021-11-18 00:26:51.932",
       "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "editorHide": false,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -776,16 +767,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true,
-        "editorHide": false,
-        "tableHide": false
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -803,31 +785,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635424825025_731790922",
+      "jobName": "paragraph_1637195211932_421466434",
       "id": "paragraph_1635424825025_731790922",
-      "dateCreated": "2021-10-28 12:40:25.025",
-      "dateStarted": "2021-11-11 11:07:04.774",
-      "dateFinished": "2021-11-11 11:07:45.993",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.932",
+      "status": "READY"
     },
     {
       "text": "%md\n\n### apoc.hashing.fingerprinting\n\nThe procedure accepts 2 parameter, `apoc.hashing.fingerprinting(object, $config)`.\n\nThe `object` could be a node, relationship or a list/map with nodes/relationships.\n\n\nThe procedure has the following config parameters:\n\n- `digestAlgorithm (default: \u0027MD5\u0027)` - The algorithm used to compute the fingerprint. Supported values are: `MD5`, `SHA-1`, `SHA-256`\n- `strategy (default: \u0027LAZY\u0027)` - `LAZY` to not include properties or `EAGER` to use all properties\n- `nodeAllowMap` / `nodeDisallowMap` - Properties to include / exclude per node label\n- `relAllowMap` / `relDisallowMap` - Properties to include / exclude per relationship type\n- `mapAllowList` / `mapDisallowList` - Map properties to include / exclude\n- `allNodesAllowList` / `allNodesDisallowList` - Node properties to include / exclude\n- `allRelsAllowList` / `allRelsDisallowList`  - Relationship properties to include / exclude\n\n\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no `$config` parameter\n\u003c/pre\u003e",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 11:08:10.298",
+      "dateUpdated": "2021-11-18 00:26:51.932",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": true,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": false,
-        "tableHide": true
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -845,22 +825,28 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635424958843_1538360015",
+      "jobName": "paragraph_1637195211932_854522042",
       "id": "paragraph_1635424958843_1538360015",
-      "dateCreated": "2021-10-28 12:42:38.843",
-      "dateStarted": "2021-11-10 09:31:53.129",
-      "dateFinished": "2021-11-10 09:31:53.175",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.932",
+      "status": "READY"
     },
     {
       "title": "apoc.hashing.fingerprinting(nodeAllowMap) included",
       "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property NOT included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashAfter, hashBefore",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:02:12.120",
+      "dateUpdated": "2021-11-18 00:26:51.933",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "editorHide": false,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -891,15 +877,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "editorHide": false,
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -917,22 +895,28 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635425240161_890228484",
+      "jobName": "paragraph_1637195211932_752628319",
       "id": "paragraph_1635425240161_890228484",
-      "dateCreated": "2021-10-28 12:47:20.162",
-      "dateStarted": "2021-11-11 11:08:33.441",
-      "dateFinished": "2021-11-11 11:08:33.660",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.932",
+      "status": "READY"
     },
     {
       "title": "apoc.hashing.fingerprinting(nodeAllowMap) not included",
       "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027name\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027name\u0027]}}) as hashAfter, hashBefore",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:02:15.471",
+      "dateUpdated": "2021-11-18 00:26:51.933",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 6.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "editorHide": false,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -963,15 +947,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "editorHide": false,
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -989,22 +965,28 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636109985372_771018932",
+      "jobName": "paragraph_1637195211933_751394869",
       "id": "paragraph_1636109985372_771018932",
-      "dateCreated": "2021-11-05 10:59:45.372",
-      "dateStarted": "2021-11-11 11:08:36.435",
-      "dateFinished": "2021-11-11 11:08:36.493",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.933",
+      "status": "READY"
     },
     {
       "title": "apoc.hashing.fingerprinting(allNodesDisallowList)",
       "text": "%neo4j\n\nMATCH (person:Person {name: \u0027Keanu Reeves\u0027})\n// we create 2 fingerprint with allNodesDisallowList to disallow respectively \u0027name\u0027 and \u0027stuff\u0027\nWITH person, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBornBefore\n\nset person.stuff \u003d rand() // we change born propery\n\n// we create another 2 fingerprint as above\nRETURN apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS output, outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBorn , outputBornBefore\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:01:54.492",
+      "dateUpdated": "2021-11-18 00:26:51.933",
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "editorHide": false,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -1037,15 +1019,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/undefined",
-        "editorHide": false,
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1063,22 +1037,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635426007544_145180203",
+      "jobName": "paragraph_1637195211933_1713825438",
       "id": "paragraph_1635426007544_145180203",
-      "dateCreated": "2021-10-28 13:00:07.544",
-      "dateStarted": "2021-11-11 11:08:42.416",
-      "dateFinished": "2021-11-11 11:08:42.583",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.933",
+      "status": "READY"
     },
     {
       "title": "apoc.hashing.fingerprinting(strategy)",
       "text": "%neo4j\n\n// The following generates the fingerprint for Keanu Reeves, using the EAGER strategy, which includes node properties:\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nWITH apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyBefore, person // we calculate fingerprints before property changes\n\nset person.something \u003d apoc.create.uuid() // we change a property\n\nRETURN eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerAfter, lazyBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyAfter  // we return fingerprints before and after property changes",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:01:51.413",
+      "dateUpdated": "2021-11-18 00:26:51.933",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -1111,14 +1090,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1136,22 +1108,29 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635425538359_312764038",
+      "jobName": "paragraph_1637195211933_838270463",
       "id": "paragraph_1635425538359_312764038",
-      "dateCreated": "2021-10-28 12:52:18.359",
-      "dateStarted": "2021-11-05 11:01:10.996",
-      "dateFinished": "2021-11-05 11:01:11.091",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.933",
+      "status": "READY"
     },
     {
       "title": "Example: create alert system to check nodes variations ",
       "text": "%neo4j\n\nMATCH (n:Person)\nWITH collect(n) as nodes\nWITH nodes, apoc.hashing.fingerprinting(nodes,  {nodeAllowMap: {Person: [\u0027timestamp\u0027]}}) AS fingerprint // calculate fingerprint for all Person nodes through timestamp property\nOPTIONAL MATCH (a:Alert {fingerprint: fingerprint})\nWITH COLLECT(a) as alerts, fingerprint\nCALL apoc.do.when(size(alerts) \u003d 0, \n    \"CREATE (:Alert {fingerprint: $fingerprint})\", \n    \"RETURN 1\", \n    {fingerprint: fingerprint}) YIELD value RETURN value\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 00:32:00.543",
+      "dateUpdated": "2021-11-18 00:26:51.933",
       "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "editorHide": false,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -1181,16 +1160,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "editorHide": false,
-        "tableHide": false,
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1203,33 +1173,31 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636542238398_1865829614",
+      "jobName": "paragraph_1637195211933_1441251292",
       "id": "paragraph_1636542238398_1865829614",
-      "dateCreated": "2021-11-10 11:03:58.398",
-      "dateStarted": "2021-11-18 00:32:00.564",
-      "dateFinished": "2021-11-18 00:32:05.405",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.933",
+      "status": "READY"
     },
     {
       "title": "Don\u0027t change fingerprint ",
       "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.other \u003d 123",
       "user": "anonymous",
-      "dateUpdated": "2021-11-11 13:02:49.911",
+      "dateUpdated": "2021-11-18 00:26:51.934",
       "config": {
-        "colWidth": 6.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "text",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 6.0,
         "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
         "editorHide": false,
-        "tableHide": false,
-        "title": true
+        "title": true,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1242,33 +1210,31 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636550905679_2025375362",
+      "jobName": "paragraph_1637195211934_1494283407",
       "id": "paragraph_1636550905679_2025375362",
-      "dateCreated": "2021-11-10 13:28:25.680",
-      "dateStarted": "2021-11-11 11:09:45.344",
-      "dateFinished": "2021-11-11 11:09:45.400",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.934",
+      "status": "READY"
     },
     {
       "title": "Change fingerprint ",
       "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.timestamp \u003d timestamp()",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 00:32:28.585",
+      "dateUpdated": "2021-11-18 00:26:51.934",
       "config": {
-        "colWidth": 6.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "text",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 6.0,
         "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
         "editorHide": false,
-        "tableHide": false,
-        "title": true
+        "title": true,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1281,22 +1247,27 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636562701740_1838859840",
+      "jobName": "paragraph_1637195211934_808404918",
       "id": "paragraph_1636562701740_1838859840",
-      "dateCreated": "2021-11-10 16:45:01.740",
-      "dateStarted": "2021-11-18 00:32:28.603",
-      "dateFinished": "2021-11-18 00:32:28.849",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.934",
+      "status": "READY"
     },
     {
       "title": "Check results",
       "text": "%neo4j\nmatch (n:Alert) return n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 00:32:46.289",
+      "dateUpdated": "2021-11-18 00:26:51.934",
       "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
         "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
         "fontSize": 9.0,
-        "enabled": true,
+        "title": true,
         "results": {
           "0": {
             "graph": {
@@ -1328,14 +1299,7 @@
             }
           }
         },
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/undefined",
-        "title": true
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1346,38 +1310,36 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"fingerprint\":\"D41D8CD98F00B204E9800998ECF8427E\"},\"label\":\"Alert\"}],\"edges\":[],\"labels\":{\"Alert\":\"#7AAE33\"},\"types\":[],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":727583,\"data\":{\"fingerprint\":\"5C205FA6707E4F912E93546AD6959139\"},\"label\":\"Alert\"},{\"id\":727584,\"data\":{\"fingerprint\":\"81B9DA875DE07CD8C11A8BFF612C5E72\"},\"label\":\"Alert\"}],\"edges\":[],\"labels\":{\"Movie\":\"#1C95ED\",\"Person\":\"#00105E\",\"NodePeriodic\":\"#36DCC8\",\"Batch\":\"#8C2B23\",\"Start\":\"#EE1EBD\",\"Something\":\"#D7B0EF\",\"Alert\":\"#0007B1\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
           }
         ]
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636550925149_665699810",
+      "jobName": "paragraph_1637195211934_967791995",
       "id": "paragraph_1636550925149_665699810",
-      "dateCreated": "2021-11-10 13:28:45.149",
-      "dateStarted": "2021-11-18 00:32:46.309",
-      "dateFinished": "2021-11-18 00:32:46.361",
-      "status": "FINISHED"
+      "dateCreated": "2021-11-18 00:26:51.934",
+      "status": "READY"
     },
     {
-      "text": "%md\n\n## [Cypher execution](http://localhost:8080/#/notebook/2GMKN71T8)",
+      "text": "%md\n\n## [Cypher execution](http://localhost:8080/#/notebook/2GMX7RKBM)",
       "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:32:42.956",
+      "dateUpdated": "2021-11-18 00:29:11.681",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
           "completionKey": "TAB",
           "completionSupport": false
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
         "editorHide": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -1388,40 +1350,23 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GMKN71T8\"\u003eCypher execution\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GMX7RKBM\"\u003eCypher execution\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1635851973936_1972506870",
+      "jobName": "paragraph_1637195211934_1379304756",
       "id": "paragraph_1635851973936_1972506870",
-      "dateCreated": "2021-11-02 11:19:33.936",
-      "dateStarted": "2021-11-10 09:32:42.957",
-      "dateFinished": "2021-11-10 09:32:42.973",
+      "dateCreated": "2021-11-18 00:26:51.934",
+      "dateStarted": "2021-11-18 00:29:11.682",
+      "dateFinished": "2021-11-18 00:29:11.700",
       "status": "FINISHED"
-    },
-    {
-      "text": "%md\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-11-10 09:32:42.954",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1636536762954_264568490",
-      "id": "paragraph_1636536762954_264568490",
-      "dateCreated": "2021-11-10 09:32:42.954",
-      "status": "READY"
     }
   ],
   "name": "2. Statistics and analysis",
-  "id": "2GKUM18D6",
+  "id": "2GKU3XS8X",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",
   "noteParams": {},
