@@ -106,9 +106,9 @@
     },
     {
       "title": "apoc.do.when",
-      "text": "%neo4j\n    match (n:Person)\n    with n\n    CALL apoc.do.when(n.name \u003d \u0027Keanu Reeves\u0027, \n        \u0027create (n)-[:HAS_MOVIE]-\u003e(:Movie {name: \"The movie about \" + n.name}) return n\u0027,            // create a node Movie from \u0027Keanu\u0027 node\n        \u0027create (node:NotKeanu) return n\u0027,  // create a node with `NotKeanu` label\n        {n: n}) // map of parameters, in this case $born \u003d n.born\n    yield value \n    return value.n.name, value.n.born",
+      "text": "%neo4j\n    match (n:Person)\n    with n\n    CALL apoc.do.when(n.name \u003d \u0027Keanu Reeves\u0027, \n        \u0027create (n)-[:HAS_MOVIE]-\u003e(:Movie {name: \"The movie about \" + n.name}) return n\u0027,            // create a node Movie from \u0027Keanu\u0027 node\n        \u0027create (node:NotKeanu {name: n.name}) return n\u0027,  // create a node with `NotKeanu` label\n        {n: n}) // map of parameters, in this case $born \u003d n.born\n    yield value \n    return value.n.name, value.n.born",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 08:40:29.424",
+      "dateUpdated": "2021-11-18 09:10:29.483",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -156,14 +156,23 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value.n.name\tvalue.n.born\n\"Keanu Reeves\"\t1964\n\"Carrie-Anne Moss\"\t1967\n\"Laurence Fishburne\"\t1961\n\"Hugo Weaving\"\t1960\n\"Lilly Wachowski\"\t1967\n\"Lana Wachowski\"\t1965\n\"Joel Silver\"\t1952\n\"Emil Eifrem\"\t1978\n\"Charlize Theron\"\t1975\n\"Al Pacino\"\t1940\n\"Taylor Hackford\"\t1944\n\"Tom Cruise\"\t1962\n\"Jack Nicholson\"\t1937\n\"Demi Moore\"\t1962\n\"Kevin Bacon\"\t1958\n\"Kiefer Sutherland\"\t1966\n\"Noah Wyle\"\t1971\n\"Cuba Gooding Jr.\"\t1968\n\"Kevin Pollak\"\t1957\n\"J.T. Walsh\"\t1943\n\"James Marshall\"\t1967\n\"Christopher Guest\"\t1948\n\"Rob Reiner\"\t1947\n\"Aaron Sorkin\"\t1961\n\"Kelly McGillis\"\t1957\n\"Val Kilmer\"\t1959\n\"Anthony Edwards\"\t1962\n\"Tom Skerritt\"\t1933\n\"Meg Ryan\"\t1961\n\"Tony Scott\"\t1944\n\"Jim Cash\"\t1941\n\"Renee Zellweger\"\t1969\n\"Kelly Preston\"\t1962\n\"Jerry O\u0027Connell\"\t1974\n\"Jay Mohr\"\t1970\n\"Bonnie Hunt\"\t1961\n\"Regina King\"\t1971\n\"Jonathan Lipnicki\"\t1996\n\"Cameron Crowe\"\t1957\n\"River Phoenix\"\t1970\n\"Corey Feldman\"\t1971\n\"Wil Wheaton\"\t1972\n\"John Cusack\"\t1966\n\"Marshall Bell\"\t1942\n\"Helen Hunt\"\t1963\n\"Greg Kinnear\"\t1963\n\"James L. Brooks\"\t1940\n\"Annabella Sciorra\"\t1960\n\"Max von Sydow\"\t1929\n\"Werner Herzog\"\t1942\n\"Robin Williams\"\t1951\n\"Vincent Ward\"\t1956\n\"Ethan Hawke\"\t1970\n\"Rick Yune\"\t1971\n\"James Cromwell\"\t1940\n\"Scott Hicks\"\t1953\n\"Parker Posey\"\t1968\n\"Dave Chappelle\"\t1973\n\"Steve Zahn\"\t1967\n\"Tom Hanks\"\t1956\n\"Nora Ephron\"\t1941\n\"Rita Wilson\"\t1956\n\"Bill Pullman\"\t1953\n\"Victor Garber\"\t1949\n\"Rosie O\u0027Donnell\"\t1962\n\"John Patrick Stanley\"\t1950\n\"Nathan Lane\"\t1956\n\"Billy Crystal\"\t1948\n\"Carrie Fisher\"\t1956\n\"Bruno Kirby\"\t1949\n\"Liv Tyler\"\t1977\n\"Brooke Langton\"\t1970\n\"Gene Hackman\"\t1930\n\"Orlando Jones\"\t1968\n\"Howard Deutch\"\t1950\n\"Christian Bale\"\t1974\n\"Zach Grenier\"\t1954\n\"Mike Nichols\"\t1931\n\"Richard Harris\"\t1930\n\"Clint Eastwood\"\t1930\n\"Takeshi Kitano\"\t1947\n\"Dina Meyer\"\t1968\n\"Ice-T\"\t1958\n\"Robert Longo\"\t1953\n\"Halle Berry\"\t1966\n\"Jim Broadbent\"\t1949\n\"Tom Tykwer\"\t1965\n\"David Mitchell\"\t1969\n\"Stefan Arndt\"\t1961\n\"Ian McKellen\"\t1939\n\"Audrey Tautou\"\t1976\n\"Paul Bettany\"\t1971\n\"Ron Howard\"\t1954\n\"Natalie Portman\"\t1981\n\"Stephen Rea\"\t1946\n\"John Hurt\"\t1940\n\"Ben Miles\"\t1967\n\"Emile Hirsch\"\t1985\n\"John Goodman\"\t1960\n\"Susan Sarandon\"\t1946\n\"Matthew Fox\"\t1966\n\"Christina Ricci\"\t1980\n\"Rain\"\t1982\n\"Naomie Harris\"\tNULL\n\"Michael Clarke Duncan\"\t1957\n\"David Morse\"\t1953\n\"Sam Rockwell\"\t1968\n\"Gary Sinise\"\t1955\n\"Patricia Clarkson\"\t1959\n\"Frank Darabont\"\t1959\n\"Frank Langella\"\t1938\n\"Michael Sheen\"\t1969\n\"Oliver Platt\"\t1960\n\"Danny DeVito\"\t1944\n\"John C. Reilly\"\t1965\n\"Ed Harris\"\t1950\n\"Bill Paxton\"\t1955\n\"Philip Seymour Hoffman\"\t1967\n\"Jan de Bont\"\t1943\n\"Robert Zemeckis\"\t1951\n\"Milos Forman\"\t1932\n\"Diane Keaton\"\t1946\n\"Nancy Meyers\"\t1949\n\"Chris Columbus\"\t1958\n\"Julia Roberts\"\t1967\n\"Madonna\"\t1954\n\"Geena Davis\"\t1956\n\"Lori Petty\"\t1963\n\"Penny Marshall\"\t1943\n\"Paul Blythe\"\tNULL\n\"Angela Scope\"\tNULL\n\"Jessica Thompson\"\tNULL\n\"James Thompson\"\tNULL\n"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1635939526752_538363380",
       "id": "paragraph_1635939526752_538363380",
       "dateCreated": "2021-11-03 11:38:46.752",
-      "dateStarted": "2021-11-18 08:40:29.446",
-      "dateFinished": "2021-11-18 08:40:30.088",
+      "dateStarted": "2021-11-18 09:10:29.506",
+      "dateFinished": "2021-11-18 09:10:30.243",
       "status": "FINISHED"
     },
     {
@@ -297,7 +306,7 @@
       "title": "apoc.case",
       "text": "%neo4j\n\n// if name is Keanu Reeves we return list of \u0027title\u0027 movies related\n// if name contains \u0027Carrie\u0027 we return list of \u0027title\u0027 and \u0027tagline\u0027 movies related\n// otherwise we return list of \u0027released\u0027 movies related\n\nMATCH (n:Person)\nCALL apoc.case([                // list of pairs (condition and query)\n  n.name \u003d \u0027Keanu Reeves\u0027, \"RETURN [(n)-[]-(m:Movie) | m.title] as selection\",\n  n.name contains \u0027Carrie\u0027, \"RETURN [(n)-[]-(m:Movie) | \u0027title: \u0027 + m.title + \u0027, tagline: \u0027 + m.tagline] as selection\"],   \n  \u0027RETURN [(n)-[]-(m:Movie) | m.released] as selection\u0027,                                         \n  {n: n}\n)\nYIELD value\nRETURN n.name, value.selection as selection;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 08:40:39.176",
+      "dateUpdated": "2021-11-18 09:10:53.702",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -381,21 +390,30 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "n.name\tselection\n\"Keanu Reeves\"\t[null,\"Something\u0027s Gotta Give\",\"The Replacements\",\"Johnny Mnemonic\",\"The Devil\u0027s Advocate\",\"The Matrix Revolutions\",\"The Matrix Reloaded\",\"The Matrix\"]\n\"Carrie-Anne Moss\"\t[\"title: The Matrix Revolutions, tagline: Everything that has a beginning has an end\",\"title: The Matrix Reloaded, tagline: Free your mind\",\"title: The Matrix, tagline: Welcome to the Real World\"]\n\"Laurence Fishburne\"\t[2003,2003,1999]\n\"Hugo Weaving\"\t[2012,2006,2003,2003,1999]\n\"Lilly Wachowski\"\t[2008,2006,2008,2006,2009,2012,2003,2003,1999]\n\"Lana Wachowski\"\t[2008,2006,2006,2008,2012,2009,2003,2003,1999]\n\"Joel Silver\"\t[2008,2006,2009,2003,2003,1999]\n\"Emil Eifrem\"\t[1999]\n\"Charlize Theron\"\t[1996,1997]\n\"Al Pacino\"\t[1997]\n\"Taylor Hackford\"\t[1997]\n\"Tom Cruise\"\t[2000,1986,1992]\n\"Jack Nicholson\"\t[1997,1975,2003,1992,1992]\n\"Demi Moore\"\t[1992]\n\"Kevin Bacon\"\t[1995,2008,1992]\n\"Kiefer Sutherland\"\t[1986,1992]\n\"Noah Wyle\"\t[1992]\n\"Cuba Gooding Jr.\"\t[1998,2000,1997,1992]\n\"Kevin Pollak\"\t[1992]\n\"J.T. Walsh\"\t[1992,1992]\n\"James Marshall\"\t[1992,2009,2006]\n\"Christopher Guest\"\t[1992]\n\"Rob Reiner\"\t[1986,1998,1998,1992]\n\"Aaron Sorkin\"\t[1992,1992]\n\"Kelly McGillis\"\t[1986]\n\"Val Kilmer\"\t[1986]\n\"Anthony Edwards\"\t[1986]\n\"Tom Skerritt\"\t[1986]\n\"Meg Ryan\"\t[1993,1998,1986,1998,1990]\n\"Tony Scott\"\t[1986]\n\"Jim Cash\"\t[1986]\n\"Renee Zellweger\"\t[2000]\n\"Kelly Preston\"\t[2000]\n\"Jerry O\u0027Connell\"\t[2000,1986]\n\"Jay Mohr\"\t[2000]\n\"Bonnie Hunt\"\t[1999,2000]\n\"Regina King\"\t[2000]\n\"Jonathan Lipnicki\"\t[2000]\n\"Cameron Crowe\"\t[2000,2000,2000]\n\"River Phoenix\"\t[1986]\n\"Corey Feldman\"\t[1986]\n\"Wil Wheaton\"\t[1986]\n\"John Cusack\"\t[1986]\n\"Marshall Bell\"\t[1986,2006]\n\"Helen Hunt\"\t[1997,2000,1996]\n\"Greg Kinnear\"\t[1998,1997]\n\"James L. Brooks\"\t[1997]\n\"Annabella Sciorra\"\t[1998]\n\"Max von Sydow\"\t[1998,1999]\n\"Werner Herzog\"\t[2006,1998]\n\"Robin Williams\"\t[1998,1999,1996]\n\"Vincent Ward\"\t[1998]\n\"Ethan Hawke\"\t[1999]\n\"Rick Yune\"\t[2009,1999]\n\"James Cromwell\"\t[1999,1999]\n\"Scott Hicks\"\t[1999]\n\"Parker Posey\"\t[1998]\n\"Dave Chappelle\"\t[1998]\n\"Steve Zahn\"\t[2006,1998]\n\"Tom Hanks\"\t[1995,1998,1992,1990,1996,2006,2012,2000,1999,1993,2004,2007,1996]\n\"Nora Ephron\"\t[1998,1998,1993,1998]\n\"Rita Wilson\"\t[1993]\n\"Bill Pullman\"\t[1993]\n\"Victor Garber\"\t[1993]\n\"Rosie O\u0027Donnell\"\t[1992,1993]\n\"John Patrick Stanley\"\t[1990]\n\"Nathan Lane\"\t[1990,1996]\n\"Billy Crystal\"\t[1998]\n\"Carrie Fisher\"\t[\"title: When Harry Met Sally, tagline: Can two friends sleep together and still love each other in the morning?\"]\n\"Bruno Kirby\"\t[1998]\n\"Liv Tyler\"\t[1996]\n\"Brooke Langton\"\t[2000]\n\"Gene Hackman\"\t[1992,1996,2000]\n\"Orlando Jones\"\t[2000]\n\"Howard Deutch\"\t[2000]\n\"Christian Bale\"\t[2006]\n\"Zach Grenier\"\t[2006,1996]\n\"Mike Nichols\"\t[1996,2007]\n\"Richard Harris\"\t[1992]\n\"Clint Eastwood\"\t[1992,1992]\n\"Takeshi Kitano\"\t[1995]\n\"Dina Meyer\"\t[1995]\n\"Ice-T\"\t[1995]\n\"Robert Longo\"\t[1995]\n\"Halle Berry\"\t[2012]\n\"Jim Broadbent\"\t[2012]\n\"Tom Tykwer\"\t[2012]\n\"David Mitchell\"\t[2012]\n\"Stefan Arndt\"\t[2012]\n\"Ian McKellen\"\t[2006]\n\"Audrey Tautou\"\t[2006]\n\"Paul Bettany\"\t[2006]\n\"Ron Howard\"\t[1995,2008,2006]\n\"Natalie Portman\"\t[2006]\n\"Stephen Rea\"\t[2006]\n\"John Hurt\"\t[2006]\n\"Ben Miles\"\t[2008,2009,2006]\n\"Emile Hirsch\"\t[2008]\n\"John Goodman\"\t[2008]\n\"Susan Sarandon\"\t[2008]\n\"Matthew Fox\"\t[2008]\n\"Christina Ricci\"\t[2008]\n\"Rain\"\t[2008,2009]\n\"Naomie Harris\"\t[2009]\n\"Michael Clarke Duncan\"\t[1999]\n\"David Morse\"\t[1999]\n\"Sam Rockwell\"\t[1999,2008]\n\"Gary Sinise\"\t[1995,1999]\n\"Patricia Clarkson\"\t[1999]\n\"Frank Darabont\"\t[1999]\n\"Frank Langella\"\t[2008]\n\"Michael Sheen\"\t[2008]\n\"Oliver Platt\"\t[2008,1999]\n\"Danny DeVito\"\t[1992,1992,1975]\n\"John C. Reilly\"\t[1992]\n\"Ed Harris\"\t[1995]\n\"Bill Paxton\"\t[1996,1992,1995]\n\"Philip Seymour Hoffman\"\t[1996,2007]\n\"Jan de Bont\"\t[1996]\n\"Robert Zemeckis\"\t[2000,2004]\n\"Milos Forman\"\t[1975]\n\"Diane Keaton\"\t[2003]\n\"Nancy Meyers\"\t[2003,2003,2003]\n\"Chris Columbus\"\t[1999]\n\"Julia Roberts\"\t[2007]\n\"Madonna\"\t[1992]\n\"Geena Davis\"\t[1992]\n\"Lori Petty\"\t[1992]\n\"Penny Marshall\"\t[1992]\n\"Paul Blythe\"\t[]\n\"Angela Scope\"\t[2000]\n\"Jessica Thompson\"\t[2006,2000,2000,2012,1996,1992]\n\"James Thompson\"\t[2000,2006]\n"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1635516834037_1307698025",
       "id": "paragraph_1635516834037_1307698025",
       "dateCreated": "2021-10-29 14:13:54.037",
-      "dateStarted": "2021-11-18 08:40:39.205",
-      "dateFinished": "2021-11-18 08:40:40.395",
+      "dateStarted": "2021-11-18 09:10:53.725",
+      "dateFinished": "2021-11-18 09:10:54.578",
       "status": "FINISHED"
     },
     {
       "title": "apoc.do.case",
       "text": "%neo4j\n\nMATCH (n:Person)\nCALL apoc.do.case([                // list of pairs (condition and query)\n  n.name \u003d \u0027Keanu Reeves\u0027, \"WITH $n as n CREATE (n)-[:MY_CASE_REL]-\u003e(:MyCaseNode {myId: 1})\",\n  n.name contains \u0027Carrie\u0027, \"WITH $n as n CREATE (n)-[:MY_CASE_REL]-\u003e(:MyCaseNode {myId: 2})\"],   \n  \u0027\u0027,                                         \n  {n: n}\n)\nYIELD value RETURN n.name;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 08:40:51.856",
+      "dateUpdated": "2021-11-18 09:14:30.870",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -442,14 +460,23 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "n.name\n\"Laurence Fishburne\"\n\"Hugo Weaving\"\n\"Lilly Wachowski\"\n\"Lana Wachowski\"\n\"Joel Silver\"\n\"Emil Eifrem\"\n\"Charlize Theron\"\n\"Al Pacino\"\n\"Taylor Hackford\"\n\"Tom Cruise\"\n\"Jack Nicholson\"\n\"Demi Moore\"\n\"Kevin Bacon\"\n\"Kiefer Sutherland\"\n\"Noah Wyle\"\n\"Cuba Gooding Jr.\"\n\"Kevin Pollak\"\n\"J.T. Walsh\"\n\"James Marshall\"\n\"Christopher Guest\"\n\"Rob Reiner\"\n\"Aaron Sorkin\"\n\"Kelly McGillis\"\n\"Val Kilmer\"\n\"Anthony Edwards\"\n\"Tom Skerritt\"\n\"Meg Ryan\"\n\"Tony Scott\"\n\"Jim Cash\"\n\"Renee Zellweger\"\n\"Kelly Preston\"\n\"Jerry O\u0027Connell\"\n\"Jay Mohr\"\n\"Bonnie Hunt\"\n\"Regina King\"\n\"Jonathan Lipnicki\"\n\"Cameron Crowe\"\n\"River Phoenix\"\n\"Corey Feldman\"\n\"Wil Wheaton\"\n\"John Cusack\"\n\"Marshall Bell\"\n\"Helen Hunt\"\n\"Greg Kinnear\"\n\"James L. Brooks\"\n\"Annabella Sciorra\"\n\"Max von Sydow\"\n\"Werner Herzog\"\n\"Robin Williams\"\n\"Vincent Ward\"\n\"Ethan Hawke\"\n\"Rick Yune\"\n\"James Cromwell\"\n\"Scott Hicks\"\n\"Parker Posey\"\n\"Dave Chappelle\"\n\"Steve Zahn\"\n\"Tom Hanks\"\n\"Nora Ephron\"\n\"Rita Wilson\"\n\"Bill Pullman\"\n\"Victor Garber\"\n\"Rosie O\u0027Donnell\"\n\"John Patrick Stanley\"\n\"Nathan Lane\"\n\"Billy Crystal\"\n\"Bruno Kirby\"\n\"Liv Tyler\"\n\"Brooke Langton\"\n\"Gene Hackman\"\n\"Orlando Jones\"\n\"Howard Deutch\"\n\"Christian Bale\"\n\"Zach Grenier\"\n\"Mike Nichols\"\n\"Richard Harris\"\n\"Clint Eastwood\"\n\"Takeshi Kitano\"\n\"Dina Meyer\"\n\"Ice-T\"\n\"Robert Longo\"\n\"Halle Berry\"\n\"Jim Broadbent\"\n\"Tom Tykwer\"\n\"David Mitchell\"\n\"Stefan Arndt\"\n\"Ian McKellen\"\n\"Audrey Tautou\"\n\"Paul Bettany\"\n\"Ron Howard\"\n\"Natalie Portman\"\n\"Stephen Rea\"\n\"John Hurt\"\n\"Ben Miles\"\n\"Emile Hirsch\"\n\"John Goodman\"\n\"Susan Sarandon\"\n\"Matthew Fox\"\n\"Christina Ricci\"\n\"Rain\"\n\"Naomie Harris\"\n\"Michael Clarke Duncan\"\n\"David Morse\"\n\"Sam Rockwell\"\n\"Gary Sinise\"\n\"Patricia Clarkson\"\n\"Frank Darabont\"\n\"Frank Langella\"\n\"Michael Sheen\"\n\"Oliver Platt\"\n\"Danny DeVito\"\n\"John C. Reilly\"\n\"Ed Harris\"\n\"Bill Paxton\"\n\"Philip Seymour Hoffman\"\n\"Jan de Bont\"\n\"Robert Zemeckis\"\n\"Milos Forman\"\n\"Diane Keaton\"\n\"Nancy Meyers\"\n\"Chris Columbus\"\n\"Julia Roberts\"\n\"Madonna\"\n\"Geena Davis\"\n\"Lori Petty\"\n\"Penny Marshall\"\n\"Paul Blythe\"\n\"Angela Scope\"\n\"Jessica Thompson\"\n\"James Thompson\"\n"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1635516847536_392308208",
       "id": "paragraph_1635516847536_392308208",
       "dateCreated": "2021-10-29 14:14:07.536",
-      "dateStarted": "2021-11-18 08:40:51.877",
-      "dateFinished": "2021-11-18 08:40:52.152",
+      "dateStarted": "2021-11-18 09:14:30.885",
+      "dateFinished": "2021-11-18 09:14:30.919",
       "status": "FINISHED"
     },
     {
@@ -813,7 +840,7 @@
       "title": "BATCH mode",
       "text": "%neo4j\n\nCALL apoc.periodic.iterate(\n  \"UNWIND range(1,9999) as id RETURN id\",\n  \"CREATE (:NodePeriodic {id: id, time: timestamp()})-[rel:MY_PERIODIC_REL]-\u003e(:End {id: id})\", // this is a single element of batch UNWINDed\n  {batchMode: \u0027BATCH\u0027,batchSize:10, parallel:false})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 08:55:12.107",
+      "dateUpdated": "2021-11-18 09:14:37.989",
       "config": {
         "colWidth": 9.0,
         "fontSize": 9.0,
@@ -887,7 +914,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n10000\t99999\t20\t99999\t0\t0\t0\t10000\t10000\t0\t99999\t99999\t0\tFALSE\t0\t199998\t99999\t199998\t199998\t0\t0\n"
+            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n1000\t9999\t3\t9999\t0\t0\t0\t1000\t1000\t0\t9999\t9999\t0\tFALSE\t0\t19998\t9999\t19998\t29997\t0\t0\n"
           }
         ]
       },
@@ -897,8 +924,8 @@
       "jobName": "paragraph_1635847089976_739455528",
       "id": "paragraph_1635847089976_739455528",
       "dateCreated": "2021-11-02 09:58:09.976",
-      "dateStarted": "2021-11-18 08:50:18.879",
-      "dateFinished": "2021-11-18 08:50:39.765",
+      "dateStarted": "2021-11-18 09:14:38.010",
+      "dateFinished": "2021-11-18 09:14:41.160",
       "status": "FINISHED"
     },
     {
@@ -975,7 +1002,7 @@
       "title": " apoc.periodic.iterate with BATCH_SINGLE",
       "text": "%neo4j\n\nUNWIND range(1,1000) as id create (:Start {myProp: id});\n\n// the `$_batch` is [{n: Node(1)}, {n: Node(2)}, ....]\nCALL apoc.periodic.iterate(\n  \"MATCH (n:Start) RETURN n\",\n  \"WITH $_batch as b CREATE (batch:Batch) set batch.prop \u003d [item in b | item.n.myProp]\", // we create for each batch a list of \u0027myProp\u0027s\n  {batchMode: \u0027BATCH_SINGLE\u0027,batchSize:10, parallel:false})\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 08:51:15.576",
+      "dateUpdated": "2021-11-18 09:14:44.378",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1047,7 +1074,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n100\t1000\t0\t1000\t0\t0\t0\t100\t100\t0\t1000\t1000\t0\tFALSE\t0\t100\t0\t100\t100\t0\t0\n"
+            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n200\t2000\t0\t2000\t0\t0\t0\t200\t200\t0\t2000\t2000\t0\tFALSE\t0\t200\t0\t200\t200\t0\t0\n"
           }
         ]
       },
@@ -1057,8 +1084,8 @@
       "jobName": "paragraph_1635518708818_1857499773",
       "id": "paragraph_1635518708818_1857499773",
       "dateCreated": "2021-10-29 14:45:08.818",
-      "dateStarted": "2021-11-18 08:51:15.593",
-      "dateFinished": "2021-11-18 08:51:16.182",
+      "dateStarted": "2021-11-18 09:14:44.397",
+      "dateFinished": "2021-11-18 09:14:44.914",
       "status": "FINISHED"
     },
     {
@@ -1217,7 +1244,7 @@
       "title": "apoc.periodic.commit",
       "text": "%neo4j\n\n// apoc.periodic.commit must contain a LIMIT clause to batch results\n\nCALL apoc.periodic.commit(\n  \"MATCH (person:Person) WHERE NOT exists(person.uuid)\n   with person LIMIT $limit                            // we limit the result\n   SET person.uuid \u003d apoc.create.uuid()                // apoc.create.uuid() is a simple function that generate an UUID, e.g. \u00273a4500b3-350e-43e9-aadb-d839eeb23b62\u0027\n   RETURN count(*)\", // until count is 0, we continue the execution\n  {limit:10})",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 08:52:10.534",
+      "dateUpdated": "2021-11-18 09:14:47.697",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1275,7 +1302,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "updates\texecutions\truntime\tbatches\tfailedBatches\tfailedCommits\twasTerminated\n133\t14\t0\t15\t0\t0\tFALSE\n"
+            "data": "updates\texecutions\truntime\tbatches\tfailedBatches\tfailedCommits\twasTerminated\n0\t0\t0\t1\t0\t0\tFALSE\n"
           }
         ]
       },
@@ -1285,8 +1312,8 @@
       "jobName": "paragraph_1635518599254_1715714712",
       "id": "paragraph_1635518599254_1715714712",
       "dateCreated": "2021-10-29 14:43:19.254",
-      "dateStarted": "2021-11-18 08:52:10.554",
-      "dateFinished": "2021-11-18 08:52:11.066",
+      "dateStarted": "2021-11-18 09:14:47.719",
+      "dateFinished": "2021-11-18 09:14:47.886",
       "status": "FINISHED"
     },
     {
