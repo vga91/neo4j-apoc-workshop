@@ -1,0 +1,3041 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n## Meta information\n\nApoc provides a set of procedures to retrieve info of labels / relationship-type present, and so on...\n\n- `CALL apoc.meta.stats()` - returns an overview of labels / rel-types counts\n\n- `CALL apoc.meta.graph($configMap)` / `CALL apoc.meta.subGraph($configMap)` - examines the entire database / sub graph to create the meta-graph\n\n- `CALL apoc.meta.data($configMap)` - examines a subset of the graph to provide a tabular / map-like meta information\n\n- `CALL apoc.meta.nodeTypeProperties($configMap)` / `CALL apoc.meta.relTypeProperties($configMap)` - examines a sample to get the node / relationship property list\n\n\n`$configMap` depends on procedure, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e .\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 00:30:02.086",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eMeta information\u003c/h2\u003e\n\u003cp\u003eApoc provides a set of procedures to retrieve info of labels / relationship-type present, and so on\u0026hellip;\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.stats()\u003c/code\u003e - returns an overview of labels / rel-types counts\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.graph($configMap)\u003c/code\u003e / \u003ccode\u003eCALL apoc.meta.subGraph($configMap)\u003c/code\u003e - examines the entire database / sub graph to create the meta-graph\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.data($configMap)\u003c/code\u003e - examines a subset of the graph to provide a tabular / map-like meta information\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eCALL apoc.meta.nodeTypeProperties($configMap)\u003c/code\u003e / \u003ccode\u003eCALL apoc.meta.relTypeProperties($configMap)\u003c/code\u003e - examines a sample to get the node / relationship property list\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003ccode\u003e$configMap\u003c/code\u003e depends on procedure, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e .\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635422768628_1724003655",
+      "id": "paragraph_1635422768628_1724003655",
+      "dateCreated": "2021-10-28 12:06:08.628",
+      "dateStarted": "2021-11-18 00:30:02.086",
+      "dateFinished": "2021-11-18 00:30:02.120",
+      "status": "FINISHED"
+    },
+    {
+      "title": " apoc.meta.stats",
+      "text": "%neo4j\ncall apoc.meta.stats()",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:29:10.200",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "labelCount": "string",
+                      "relTypeCount": "string",
+                      "propertyKeyCount": "string",
+                      "nodeCount": "string",
+                      "relCount": "string",
+                      "labels.Movie": "string",
+                      "labels.MyCaseNode": "string",
+                      "labels.Start": "string",
+                      "labels.Batch": "string",
+                      "labels.NotKeanu": "string",
+                      "labels.End": "string",
+                      "labels.NodePeriodic": "string",
+                      "labels.Person": "string",
+                      "relTypes.()-[:REVIEWED]-\u003e()": "string",
+                      "relTypes.(:Person)-[:REVIEWED]-\u003e()": "string",
+                      "relTypes.()-[:FOLLOWS]-\u003e()": "string",
+                      "relTypes.()-[:HAS_MOVIE]-\u003e(:Movie)": "string",
+                      "relTypes.()-[:WROTE]-\u003e()": "string",
+                      "relTypes.(:Person)-[:MY_CASE_REL]-\u003e()": "string",
+                      "relTypes.(:NodePeriodic)-[:MY_PERIODIC_REL]-\u003e()": "string",
+                      "relTypes.(:Person)-[:WROTE]-\u003e()": "string",
+                      "relTypes.()-[:HAS_MOVIE]-\u003e()": "string",
+                      "relTypes.()-[:REVIEWED]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:ACTED_IN]-\u003e()": "string",
+                      "relTypes.()-[:ACTED_IN]-\u003e()": "string",
+                      "relTypes.()-[:DIRECTED]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:PRODUCED]-\u003e()": "string",
+                      "relTypes.()-[:DIRECTED]-\u003e()": "string",
+                      "relTypes.()-[:PRODUCED]-\u003e()": "string",
+                      "relTypes.(:Person)-[:DIRECTED]-\u003e()": "string",
+                      "relTypes.()-[:MY_PERIODIC_REL]-\u003e()": "string",
+                      "relTypes.()-[:FOLLOWS]-\u003e(:Person)": "string",
+                      "relTypes.()-[:PRODUCED]-\u003e(:Movie)": "string",
+                      "relTypes.()-[:MY_PERIODIC_REL]-\u003e(:End)": "string",
+                      "relTypes.()-[:ACTED_IN]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:FOLLOWS]-\u003e()": "string",
+                      "relTypes.()-[:WROTE]-\u003e(:Movie)": "string",
+                      "relTypes.(:Person)-[:HAS_MOVIE]-\u003e()": "string",
+                      "relTypes.()-[:MY_CASE_REL]-\u003e(:MyCaseNode)": "string",
+                      "relTypes.()-[:MY_CASE_REL]-\u003e()": "string",
+                      "relTypesCount.ACTED_IN": "string",
+                      "relTypesCount.REVIEWED": "string",
+                      "relTypesCount.HAS_MOVIE": "string",
+                      "relTypesCount.PRODUCED": "string",
+                      "relTypesCount.WROTE": "string",
+                      "relTypesCount.MY_PERIODIC_REL": "string",
+                      "relTypesCount.FOLLOWS": "string",
+                      "relTypesCount.DIRECTED": "string",
+                      "relTypesCount.MY_CASE_REL": "string",
+                      "stats.relTypeCount": "string",
+                      "stats.propertyKeyCount": "string",
+                      "stats.labelCount": "string",
+                      "stats.nodeCount": "string",
+                      "stats.relCount": "string",
+                      "stats.labels.Movie": "string",
+                      "stats.labels.MyCaseNode": "string",
+                      "stats.labels.Start": "string",
+                      "stats.labels.Batch": "string",
+                      "stats.labels.NotKeanu": "string",
+                      "stats.labels.End": "string",
+                      "stats.labels.NodePeriodic": "string",
+                      "stats.labels.Person": "string",
+                      "stats.relTypes.()-[:REVIEWED]-\u003e()": "string",
+                      "stats.relTypes.(:Person)-[:REVIEWED]-\u003e()": "string",
+                      "stats.relTypes.()-[:FOLLOWS]-\u003e()": "string",
+                      "stats.relTypes.()-[:HAS_MOVIE]-\u003e(:Movie)": "string",
+                      "stats.relTypes.()-[:WROTE]-\u003e()": "string",
+                      "stats.relTypes.(:Person)-[:MY_CASE_REL]-\u003e()": "string",
+                      "stats.relTypes.(:NodePeriodic)-[:MY_PERIODIC_REL]-\u003e()": "string",
+                      "stats.relTypes.(:Person)-[:WROTE]-\u003e()": "string",
+                      "stats.relTypes.()-[:HAS_MOVIE]-\u003e()": "string",
+                      "stats.relTypes.()-[:REVIEWED]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:ACTED_IN]-\u003e()": "string",
+                      "stats.relTypes.()-[:ACTED_IN]-\u003e()": "string",
+                      "stats.relTypes.()-[:DIRECTED]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:PRODUCED]-\u003e()": "string",
+                      "stats.relTypes.()-[:DIRECTED]-\u003e()": "string",
+                      "stats.relTypes.()-[:PRODUCED]-\u003e()": "string",
+                      "stats.relTypes.(:Person)-[:DIRECTED]-\u003e()": "string",
+                      "stats.relTypes.()-[:MY_PERIODIC_REL]-\u003e()": "string",
+                      "stats.relTypes.()-[:FOLLOWS]-\u003e(:Person)": "string",
+                      "stats.relTypes.()-[:PRODUCED]-\u003e(:Movie)": "string",
+                      "stats.relTypes.()-[:MY_PERIODIC_REL]-\u003e(:End)": "string",
+                      "stats.relTypes.()-[:ACTED_IN]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:FOLLOWS]-\u003e()": "string",
+                      "stats.relTypes.()-[:WROTE]-\u003e(:Movie)": "string",
+                      "stats.relTypes.(:Person)-[:HAS_MOVIE]-\u003e()": "string",
+                      "stats.relTypes.()-[:MY_CASE_REL]-\u003e(:MyCaseNode)": "string",
+                      "stats.relTypes.()-[:MY_CASE_REL]-\u003e()": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "labelCount\trelTypeCount\tpropertyKeyCount\tnodeCount\trelCount\tlabels.Movie\tlabels.MyCaseNode\tlabels.Start\tlabels.Batch\tlabels.NotKeanu\tlabels.End\tlabels.NodePeriodic\tlabels.Person\trelTypes.()-[:REVIEWED]-\u003e()\trelTypes.(:Person)-[:REVIEWED]-\u003e()\trelTypes.()-[:FOLLOWS]-\u003e()\trelTypes.()-[:HAS_MOVIE]-\u003e(:Movie)\trelTypes.()-[:WROTE]-\u003e()\trelTypes.(:Person)-[:MY_CASE_REL]-\u003e()\trelTypes.(:NodePeriodic)-[:MY_PERIODIC_REL]-\u003e()\trelTypes.(:Person)-[:WROTE]-\u003e()\trelTypes.()-[:HAS_MOVIE]-\u003e()\trelTypes.()-[:REVIEWED]-\u003e(:Movie)\trelTypes.(:Person)-[:ACTED_IN]-\u003e()\trelTypes.()-[:ACTED_IN]-\u003e()\trelTypes.()-[:DIRECTED]-\u003e(:Movie)\trelTypes.(:Person)-[:PRODUCED]-\u003e()\trelTypes.()-[:DIRECTED]-\u003e()\trelTypes.()-[:PRODUCED]-\u003e()\trelTypes.(:Person)-[:DIRECTED]-\u003e()\trelTypes.()-[:MY_PERIODIC_REL]-\u003e()\trelTypes.()-[:FOLLOWS]-\u003e(:Person)\trelTypes.()-[:PRODUCED]-\u003e(:Movie)\trelTypes.()-[:MY_PERIODIC_REL]-\u003e(:End)\trelTypes.()-[:ACTED_IN]-\u003e(:Movie)\trelTypes.(:Person)-[:FOLLOWS]-\u003e()\trelTypes.()-[:WROTE]-\u003e(:Movie)\trelTypes.(:Person)-[:HAS_MOVIE]-\u003e()\trelTypes.()-[:MY_CASE_REL]-\u003e(:MyCaseNode)\trelTypes.()-[:MY_CASE_REL]-\u003e()\trelTypesCount.ACTED_IN\trelTypesCount.REVIEWED\trelTypesCount.HAS_MOVIE\trelTypesCount.PRODUCED\trelTypesCount.WROTE\trelTypesCount.MY_PERIODIC_REL\trelTypesCount.FOLLOWS\trelTypesCount.DIRECTED\trelTypesCount.MY_CASE_REL\tstats.relTypeCount\tstats.propertyKeyCount\tstats.labelCount\tstats.nodeCount\tstats.relCount\tstats.labels.Movie\tstats.labels.MyCaseNode\tstats.labels.Start\tstats.labels.Batch\tstats.labels.NotKeanu\tstats.labels.End\tstats.labels.NodePeriodic\tstats.labels.Person\tstats.relTypes.()-[:REVIEWED]-\u003e()\tstats.relTypes.(:Person)-[:REVIEWED]-\u003e()\tstats.relTypes.()-[:FOLLOWS]-\u003e()\tstats.relTypes.()-[:HAS_MOVIE]-\u003e(:Movie)\tstats.relTypes.()-[:WROTE]-\u003e()\tstats.relTypes.(:Person)-[:MY_CASE_REL]-\u003e()\tstats.relTypes.(:NodePeriodic)-[:MY_PERIODIC_REL]-\u003e()\tstats.relTypes.(:Person)-[:WROTE]-\u003e()\tstats.relTypes.()-[:HAS_MOVIE]-\u003e()\tstats.relTypes.()-[:REVIEWED]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:ACTED_IN]-\u003e()\tstats.relTypes.()-[:ACTED_IN]-\u003e()\tstats.relTypes.()-[:DIRECTED]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:PRODUCED]-\u003e()\tstats.relTypes.()-[:DIRECTED]-\u003e()\tstats.relTypes.()-[:PRODUCED]-\u003e()\tstats.relTypes.(:Person)-[:DIRECTED]-\u003e()\tstats.relTypes.()-[:MY_PERIODIC_REL]-\u003e()\tstats.relTypes.()-[:FOLLOWS]-\u003e(:Person)\tstats.relTypes.()-[:PRODUCED]-\u003e(:Movie)\tstats.relTypes.()-[:MY_PERIODIC_REL]-\u003e(:End)\tstats.relTypes.()-[:ACTED_IN]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:FOLLOWS]-\u003e()\tstats.relTypes.()-[:WROTE]-\u003e(:Movie)\tstats.relTypes.(:Person)-[:HAS_MOVIE]-\u003e()\tstats.relTypes.()-[:MY_CASE_REL]-\u003e(:MyCaseNode)\tstats.relTypes.()-[:MY_CASE_REL]-\u003e()\n8\t9\t15\t21405\t10256\t39\t3\t1000\t100\t132\t9999\t9999\t133\t9\t9\t3\t1\t10\t3\t9999\t10\t1\t9\t172\t172\t44\t15\t44\t15\t44\t9999\t3\t15\t9999\t172\t3\t10\t1\t3\t3\t172\t9\t1\t15\t10\t9999\t3\t44\t3\t9\t15\t8\t21405\t10256\t39\t3\t1000\t100\t132\t9999\t9999\t133\t9\t9\t3\t1\t10\t3\t9999\t10\t1\t9\t172\t172\t44\t15\t44\t15\t44\t9999\t3\t15\t9999\t172\t3\t10\t1\t3\t3\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635612379063_2028984115",
+      "id": "paragraph_1635612379063_2028984115",
+      "dateCreated": "2021-10-30 16:46:19.063",
+      "dateStarted": "2021-11-18 10:29:10.217",
+      "dateFinished": "2021-11-18 10:29:14.424",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.meta.data",
+      "text": "%neo4j\n\nCALL apoc.meta.data()",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 08:52:39.400",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 364.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "label": "string",
+                      "property": "string",
+                      "count": "string",
+                      "unique": "string",
+                      "index": "string",
+                      "existence": "string",
+                      "type": "string",
+                      "array": "string",
+                      "sample": "string",
+                      "leftCount": "string",
+                      "rightCount": "string",
+                      "left": "string",
+                      "right": "string",
+                      "other": "string",
+                      "otherLabels": "string",
+                      "elementType": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "label\tproperty\tcount\tunique\tindex\texistence\ttype\tarray\tsample\tleftCount\trightCount\tleft\tright\tother\totherLabels\telementType\n\"ACTED_IN\"\t\"Person\"\t172\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t512\t940\t2\t5\t[\"Movie\"]\t[]\t\"relationship\"\n\"ACTED_IN\"\t\"roles\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"DIRECTED\"\t\"Person\"\t44\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t104\t58\t2\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"PRODUCED\"\t\"Person\"\t15\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t49\t29\t3\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"WROTE\"\t\"Person\"\t10\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t14\t14\t1\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"FOLLOWS\"\t\"Person\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t5\t1\t1\t[\"Person\"]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"Person\"\t9\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t41\t17\t4\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"summary\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"REVIEWED\"\t\"rating\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"HAS_MOVIE\"\t\"Person\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t1\t1\t1\t[\"Movie\"]\t[]\t\"relationship\"\n\"MY_CASE_REL\"\t\"Person\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t3\t1\t1\t[\"MyCaseNode\"]\t[]\t\"relationship\"\n\"MY_PERIODIC_REL\"\t\"NodePeriodic\"\t1123\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1123\t1123\t1\t1\t[\"End\"]\t[]\t\"relationship\"\n\"Movie\"\t\"title\"\t0\tFALSE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"tagline\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"released\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"name\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"MY_CASE_REL\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t3\t1\t1\t[\"MyCaseNode\"]\t[]\t\"node\"\n\"Person\"\t\"ACTED_IN\"\t172\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t512\t940\t2\t5\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"HAS_MOVIE\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t1\t1\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"uuid\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"name\"\t0\tTRUE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"born\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"children\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"DIRECTED\"\t44\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t104\t58\t2\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"PRODUCED\"\t15\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t49\t29\t3\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"WROTE\"\t10\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t14\t14\t1\t1\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"FOLLOWS\"\t3\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t3\t5\t1\t1\t[\"Person\"]\t[]\t\"node\"\n\"Person\"\t\"REVIEWED\"\t9\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tTRUE\tNULL\t41\t17\t4\t1\t[\"Movie\"]\t[]\t\"node\"\n\"MyCaseNode\"\t\"myId\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NodePeriodic\"\t\"MY_PERIODIC_REL\"\t1123\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1123\t1123\t1\t1\t[\"End\"]\t[]\t\"node\"\n\"NodePeriodic\"\t\"time\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NodePeriodic\"\t\"id\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Start\"\t\"myProp\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Batch\"\t\"prop\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635515971440_1210427180",
+      "id": "paragraph_1635515971440_1210427180",
+      "dateCreated": "2021-10-29 13:59:31.440",
+      "dateStarted": "2021-11-18 08:52:39.421",
+      "dateFinished": "2021-11-18 08:52:39.669",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.meta.data(sample)",
+      "text": "%neo4j\n\n// for each label create batches of `total / sample` and take 1 element for each batch\nCALL apoc.meta.data({sample:2})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:30:25.192",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "label": "string",
+                      "property": "string",
+                      "count": "string",
+                      "unique": "string",
+                      "index": "string",
+                      "existence": "string",
+                      "type": "string",
+                      "array": "string",
+                      "sample": "string",
+                      "leftCount": "string",
+                      "rightCount": "string",
+                      "left": "string",
+                      "right": "string",
+                      "other": "string",
+                      "otherLabels": "string",
+                      "elementType": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "label\tproperty\tcount\tunique\tindex\texistence\ttype\tarray\tsample\tleftCount\trightCount\tleft\tright\tother\totherLabels\telementType\n\"ACTED_IN\"\t\"Person\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t4\t1\t4\t[\"Movie\"]\t[]\t\"relationship\"\n\"ACTED_IN\"\t\"roles\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"relationship\"\n\"MY_PERIODIC_REL\"\t\"NodePeriodic\"\t2\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t2\t2\t1\t1\t[\"End\"]\t[]\t\"relationship\"\n\"Movie\"\t\"tagline\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"released\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Movie\"\t\"title\"\t0\tFALSE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"ACTED_IN\"\t1\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t1\t4\t1\t4\t[\"Movie\"]\t[]\t\"node\"\n\"Person\"\t\"uuid\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"name\"\t0\tTRUE\tTRUE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Person\"\t\"born\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NotKeanu\"\t\"name\"\t0\tFALSE\tFALSE\tFALSE\t\"STRING\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"MyCaseNode\"\t\"myId\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NodePeriodic\"\t\"MY_PERIODIC_REL\"\t2\tFALSE\tFALSE\tFALSE\t\"RELATIONSHIP\"\tFALSE\tNULL\t2\t2\t1\t1\t[\"End\"]\t[]\t\"node\"\n\"NodePeriodic\"\t\"time\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"NodePeriodic\"\t\"id\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"End\"\t\"id\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Start\"\t\"myProp\"\t0\tFALSE\tFALSE\tFALSE\t\"INTEGER\"\tFALSE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n\"Batch\"\t\"prop\"\t0\tFALSE\tFALSE\tFALSE\t\"LIST\"\tTRUE\tNULL\t0\t0\t0\t0\t[]\t[]\t\"node\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635848599286_1638795506",
+      "id": "paragraph_1635848599286_1638795506",
+      "dateCreated": "2021-11-02 10:23:19.287",
+      "dateStarted": "2021-11-18 10:30:25.213",
+      "dateFinished": "2021-11-18 10:30:25.374",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.meta.nodeTypeProperties",
+      "text": "%neo4j\n\nCALL apoc.meta.nodeTypeProperties({excludeLabels:[\"Movie\"]})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:31:38.289",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 208.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "nodeType": "string",
+                      "nodeLabels": "string",
+                      "propertyName": "string",
+                      "propertyTypes": "string",
+                      "mandatory": "string",
+                      "propertyObservations": "string",
+                      "totalObservations": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "nodeType\tnodeLabels\tpropertyName\tpropertyTypes\tmandatory\tpropertyObservations\ttotalObservations\n\":`Person`\"\t[\"Person\"]\t\"name\"\t[\"String\"]\tFALSE\t133\t133\n\":`Person`\"\t[\"Person\"]\t\"uuid\"\t[\"String\"]\tFALSE\t133\t133\n\":`Person`\"\t[\"Person\"]\t\"children\"\t[\"StringArray\"]\tFALSE\t2\t133\n\":`Person`\"\t[\"Person\"]\t\"born\"\t[\"Long\"]\tFALSE\t128\t133\n\":`NotKeanu`\"\t[\"NotKeanu\"]\t\"name\"\t[\"String\"]\tFALSE\t132\t132\n\":`MyCaseNode`\"\t[\"MyCaseNode\"]\t\"myId\"\t[\"Long\"]\tFALSE\t3\t3\n\":`NodePeriodic`\"\t[\"NodePeriodic\"]\t\"time\"\t[\"Long\"]\tFALSE\t1249\t1249\n\":`NodePeriodic`\"\t[\"NodePeriodic\"]\t\"id\"\t[\"Long\"]\tFALSE\t1249\t1249\n\":`End`\"\t[\"End\"]\t\"id\"\t[\"Long\"]\tFALSE\t1249\t1249\n\":`Start`\"\t[\"Start\"]\t\"myProp\"\t[\"Long\"]\tFALSE\t1000\t1000\n\":`Batch`\"\t[\"Batch\"]\t\"prop\"\t[\"LongArray\"]\tFALSE\t100\t100\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635612794975_468706129",
+      "id": "paragraph_1635612794975_468706129",
+      "dateCreated": "2021-10-30 16:53:14.976",
+      "dateStarted": "2021-11-18 10:31:21.976",
+      "dateFinished": "2021-11-18 10:31:22.276",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.meta.relTypeProperties",
+      "text": "%neo4j\n\nCALL apoc.meta.relTypeProperties({excludeRels:[\"DIRECTED\"]})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:32:05.768",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "relType": "string",
+                      "sourceNodeLabels": "string",
+                      "targetNodeLabels": "string",
+                      "propertyName": "string",
+                      "propertyTypes": "string",
+                      "mandatory": "string",
+                      "propertyObservations": "string",
+                      "totalObservations": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "relType\tsourceNodeLabels\ttargetNodeLabels\tpropertyName\tpropertyTypes\tmandatory\tpropertyObservations\ttotalObservations\n\":`MY_CASE_REL`\"\t[\"Person\"]\t[\"MyCaseNode\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`ACTED_IN`\"\t[\"Person\"]\t[\"Movie\"]\t\"roles\"\t[\"StringArray\"]\tFALSE\t100\t155\n\":`HAS_MOVIE`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t1\n\":`PRODUCED`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t7\n\":`WROTE`\"\t[\"Person\"]\t[\"Movie\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`FOLLOWS`\"\t[\"Person\"]\t[\"Person\"]\tNULL\tNULL\tFALSE\t0\t3\n\":`REVIEWED`\"\t[\"Person\"]\t[\"Movie\"]\t\"summary\"\t[\"String\"]\tFALSE\t9\t9\n\":`REVIEWED`\"\t[\"Person\"]\t[\"Movie\"]\t\"rating\"\t[\"Long\"]\tFALSE\t9\t9\n\":`MY_PERIODIC_REL`\"\t[\"NodePeriodic\"]\t[\"End\"]\tNULL\tNULL\tFALSE\t0\t1111\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636108429613_1279360973",
+      "id": "paragraph_1636108429613_1279360973",
+      "dateCreated": "2021-11-05 10:33:49.613",
+      "dateStarted": "2021-11-18 10:32:05.784",
+      "dateFinished": "2021-11-18 10:32:05.921",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.meta.cypher",
+      "text": "%md\n\nMoreover, there are some apoc.meta.* functions to retrieve informations about a single entity or property.\n\n- apoc.meta.cypher.isType(value, metaType)\n- apoc.meta.cypher.type(value)\n- apoc.meta.cypher.types(value)\n\nPossible meta types are `INTEGER`,`FLOAT`,`STRING`,`BOOLEAN`,`RELATIONSHIP`,`NODE`,`PATH`,`NULL`,`MAP`,`POINT`,`DATE`,`DATE_TIME`,`LOCAL_TIME`,`LOCAL_DATE_TIME`,`TIME,DURATION`, `LIST OF \u003cPREVIOUS TYPE\u003e`",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 08:53:43.857",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "title": true,
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eMoreover, there are some apoc.meta.* functions to retrieve informations about a single entity or property.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.meta.cypher.isType(value, metaType)\u003c/li\u003e\n\u003cli\u003eapoc.meta.cypher.type(value)\u003c/li\u003e\n\u003cli\u003eapoc.meta.cypher.types(value)\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003ePossible meta types are \u003ccode\u003eINTEGER\u003c/code\u003e,\u003ccode\u003eFLOAT\u003c/code\u003e,\u003ccode\u003eSTRING\u003c/code\u003e,\u003ccode\u003eBOOLEAN\u003c/code\u003e,\u003ccode\u003eRELATIONSHIP\u003c/code\u003e,\u003ccode\u003eNODE\u003c/code\u003e,\u003ccode\u003ePATH\u003c/code\u003e,\u003ccode\u003eNULL\u003c/code\u003e,\u003ccode\u003eMAP\u003c/code\u003e,\u003ccode\u003ePOINT\u003c/code\u003e,\u003ccode\u003eDATE\u003c/code\u003e,\u003ccode\u003eDATE_TIME\u003c/code\u003e,\u003ccode\u003eLOCAL_TIME\u003c/code\u003e,\u003ccode\u003eLOCAL_DATE_TIME\u003c/code\u003e,\u003ccode\u003eTIME,DURATION\u003c/code\u003e, \u003ccode\u003eLIST OF \u0026lt;PREVIOUS TYPE\u0026gt;\u003c/code\u003e\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635848556731_604775729",
+      "id": "paragraph_1635848556731_604775729",
+      "dateCreated": "2021-11-02 10:22:36.731",
+      "dateStarted": "2021-11-18 08:53:43.857",
+      "dateFinished": "2021-11-18 08:53:43.872",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.meta.cypher",
+      "text": "%neo4j\n\nmatch (p:Person) with p limit 1 \nreturn apoc.meta.cypher.types(p) as types,                       // returns 2 column, that is the properies (name and born)\n    apoc.meta.cypher.isType(p.name, \"STRING\") as isNameAString,  // returns a boolean\n    apoc.meta.cypher.type(p.name) as typeName                    // returns a column with a meta type\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:32:41.805",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "types.name": "string",
+                      "types.uuid": "string",
+                      "types.born": "string",
+                      "isNameAString": "string",
+                      "typeName": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "types.name\ttypes.uuid\ttypes.born\tisNameAString\ttypeName\nSTRING\tSTRING\tINTEGER\tTRUE\t\"STRING\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635849322493_867707092",
+      "id": "paragraph_1635849322493_867707092",
+      "dateCreated": "2021-11-02 10:35:22.493",
+      "dateStarted": "2021-11-18 10:32:41.823",
+      "dateFinished": "2021-11-18 10:32:41.915",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Monitoring\n\nProvides some useful procedures to monitor what is happening / happened in the db \n\n- CALL apoc.monitor.store\n- CALL apoc.monitor.tx\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-25 16:20:24.484",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637857211906_784247140",
+      "id": "paragraph_1637857211906_784247140",
+      "dateCreated": "2021-11-25 16:20:11.906",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\nCALL apoc.monitor.store",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-25 16:20:42.305",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 88.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "logSize": "string",
+                      "stringStoreSize": "string",
+                      "arrayStoreSize": "string",
+                      "relStoreSize": "string",
+                      "propStoreSize": "string",
+                      "totalStoreSize": "string",
+                      "nodeStoreSize": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "logSize\tstringStoreSize\tarrayStoreSize\trelStoreSize\tpropStoreSize\ttotalStoreSize\tnodeStoreSize\n262145024\t8192\t24576\t16384\t24576\t1147657\t8192\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637857224582_2033963086",
+      "id": "paragraph_1637857224582_2033963086",
+      "dateCreated": "2021-11-25 16:20:24.582",
+      "dateStarted": "2021-11-25 16:20:30.536",
+      "dateFinished": "2021-11-25 16:20:30.640",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nCALL apoc.monitor.tx",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-25 16:20:58.194",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "rolledBackTx": "string",
+                      "peakTx": "string",
+                      "lastTxId": "string",
+                      "currentOpenedTx": "string",
+                      "totalOpenedTx": "string",
+                      "totalTx": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "rolledBackTx\tpeakTx\tlastTxId\tcurrentOpenedTx\ttotalOpenedTx\ttotalTx\n15\t4\t46\t1\t29013\t28997\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637857243067_1370360983",
+      "id": "paragraph_1637857243067_1370360983",
+      "dateCreated": "2021-11-25 16:20:43.067",
+      "dateStarted": "2021-11-25 16:20:56.614",
+      "dateFinished": "2021-11-25 16:20:56.677",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Fingerprint (Checksum)\n\nWe can verify database changes through these 2 procedures, to calculate hashsums:\n\n- `RETURN apoc.hashing.fingerprinting(object, $config)` - one or more entity\n- `RETURN apoc.hashing.fingerprintGraph(\u003clist_of_props_to_ignore\u003e)` - whole graph\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 09:15:53.653",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eFingerprint (Checksum)\u003c/h2\u003e\n\u003cp\u003eWe can verify database changes through these 2 procedures, to calculate hashsums:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eRETURN apoc.hashing.fingerprinting(object, $config)\u003c/code\u003e - one or more entity\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eRETURN apoc.hashing.fingerprintGraph(\u0026lt;list_of_props_to_ignore\u0026gt;)\u003c/code\u003e - whole graph\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635376240174_40107247",
+      "id": "paragraph_1635376240174_40107247",
+      "dateCreated": "2021-10-27 23:10:40.174",
+      "dateStarted": "2021-11-18 09:15:53.654",
+      "dateFinished": "2021-11-18 09:15:55.353",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n### apoc.hashing.fingerprinting\n\nThe procedure accepts 2 parameter, `apoc.hashing.fingerprinting(object, $config)`.\n\nThe `object` could be a node, relationship or a list/map with nodes/relationships.\n\n\nThe procedure has the following config parameters:\n\n- `digestAlgorithm (default: \u0027MD5\u0027)` - The algorithm used to compute the fingerprint. Supported values are: `MD5`, `SHA-1`, `SHA-256`\n- `strategy (default: \u0027LAZY\u0027)` - `LAZY` to not include properties or `EAGER` to use all properties\n- `nodeAllowMap` / `nodeDisallowMap` - Properties to include / exclude per node label\n- `relAllowMap` / `relDisallowMap` - Properties to include / exclude per relationship type\n- `mapAllowList` / `mapDisallowList` - Map properties to include / exclude\n- `allNodesAllowList` / `allNodesDisallowList` - Node properties to include / exclude\n- `allRelsAllowList` / `allRelsDisallowList`  - Relationship properties to include / exclude\n\n\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no `$config` parameter\n\u003c/pre\u003e",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 09:01:58.233",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eapoc.hashing.fingerprinting\u003c/h3\u003e\n\u003cp\u003eThe procedure accepts 2 parameter, \u003ccode\u003eapoc.hashing.fingerprinting(object, $config)\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eobject\u003c/code\u003e could be a node, relationship or a list/map with nodes/relationships.\u003c/p\u003e\n\u003cp\u003eThe procedure has the following config parameters:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003edigestAlgorithm (default: \u0027MD5\u0027)\u003c/code\u003e - The algorithm used to compute the fingerprint. Supported values are: \u003ccode\u003eMD5\u003c/code\u003e, \u003ccode\u003eSHA-1\u003c/code\u003e, \u003ccode\u003eSHA-256\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003estrategy (default: \u0027LAZY\u0027)\u003c/code\u003e - \u003ccode\u003eLAZY\u003c/code\u003e to not include properties or \u003ccode\u003eEAGER\u003c/code\u003e to use all properties\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003enodeAllowMap\u003c/code\u003e / \u003ccode\u003enodeDisallowMap\u003c/code\u003e - Properties to include / exclude per node label\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003erelAllowMap\u003c/code\u003e / \u003ccode\u003erelDisallowMap\u003c/code\u003e - Properties to include / exclude per relationship type\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003emapAllowList\u003c/code\u003e / \u003ccode\u003emapDisallowList\u003c/code\u003e - Map properties to include / exclude\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eallNodesAllowList\u003c/code\u003e / \u003ccode\u003eallNodesDisallowList\u003c/code\u003e - Node properties to include / exclude\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eallRelsAllowList\u003c/code\u003e / \u003ccode\u003eallRelsDisallowList\u003c/code\u003e  - Relationship properties to include / exclude\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nThere is another procedure, apoc.hashing.fingerprint (whithout final ing), with no `$config` parameter\n\u003c/pre\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635424958843_1538360015",
+      "id": "paragraph_1635424958843_1538360015",
+      "dateCreated": "2021-10-28 12:42:38.843",
+      "dateStarted": "2021-11-18 09:01:58.221",
+      "dateFinished": "2021-11-18 09:02:00.024",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.hashing.fingerprinting(nodeAllowMap) included",
+      "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property NOT included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027other\u0027]}}) as hashAfter, hashBefore",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:35:03.495",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "hashAfter": "string",
+                      "hashBefore": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "hashAfter\thashBefore\n\"2303B33378CCAA12E7E8DA750691E077\"\t\"40BED7CF9B3D4BB3A3D7A7E3EB18C5EB\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635425240161_890228484",
+      "id": "paragraph_1635425240161_890228484",
+      "dateCreated": "2021-10-28 12:47:20.162",
+      "dateStarted": "2021-11-18 10:35:03.515",
+      "dateFinished": "2021-11-18 10:35:03.719",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.hashing.fingerprinting(nodeAllowMap) not included",
+      "text": "%neo4j\n\n// through \"nodeAllowMap\" we include only property name for label \u0027Person\u0027\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nwith apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027name\u0027]}}) as hashBefore, person \n\nSET person.other \u003d timestamp()   // updating a property included in map\n\nRETURN apoc.hashing.fingerprinting(person, {nodeAllowMap: {Person: [\u0027name\u0027]}}) as hashAfter, hashBefore",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:35:43.256",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "hashAfter": "string",
+                      "hashBefore": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "hashAfter\thashBefore\n\"B8350AD981D40D1107CB7B139E1FB618\"\t\"B8350AD981D40D1107CB7B139E1FB618\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636109985372_771018932",
+      "id": "paragraph_1636109985372_771018932",
+      "dateCreated": "2021-11-05 10:59:45.372",
+      "dateStarted": "2021-11-18 10:35:43.274",
+      "dateFinished": "2021-11-18 10:35:43.342",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.hashing.fingerprinting(allNodesDisallowList)",
+      "text": "%neo4j\n\nMATCH (person:Person {name: \u0027Keanu Reeves\u0027})\n// we create 2 fingerprint with allNodesDisallowList to disallow respectively \u0027name\u0027 and \u0027stuff\u0027\nWITH person, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBornBefore\n\nset person.stuff \u003d rand() // we change born propery\n\n// we create another 2 fingerprint as above\nRETURN apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"name\"]}) AS output, outputBefore, apoc.hashing.fingerprinting(person, {allNodesDisallowList: [\"stuff\"]}) AS outputBorn , outputBornBefore\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:36:03.792",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "output": "string",
+                      "outputBorn": "string",
+                      "outputBefore": "string",
+                      "outputBornBefore": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "output\toutputBefore\toutputBorn\toutputBornBefore\n\"CCF1EE5E17EA3D016BB26E53E2F5BCE5\"\t\"191962191A8473CAE9B037A9FC8AE6AF\"\t\"92C107EBB36DA6243F4C5EB72451EA2F\"\t\"92C107EBB36DA6243F4C5EB72451EA2F\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635426007544_145180203",
+      "id": "paragraph_1635426007544_145180203",
+      "dateCreated": "2021-10-28 13:00:07.544",
+      "dateStarted": "2021-11-18 10:36:03.809",
+      "dateFinished": "2021-11-18 10:36:03.944",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.hashing.fingerprinting(strategy)",
+      "text": "%neo4j\n\n// The following generates the fingerprint for Keanu Reeves, using the EAGER strategy, which includes node properties:\n\nMATCH (person:Person {name: \"Keanu Reeves\"})\nWITH apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyBefore, person // we calculate fingerprints before property changes\n\nset person.something \u003d apoc.create.uuid() // we change a property\n\nRETURN eagerBefore, apoc.hashing.fingerprinting(person, {strategy: \"EAGER\"}) AS eagerAfter, lazyBefore, apoc.hashing.fingerprinting(person, {strategy: \"LAZY\"}) AS lazyAfter  // we return fingerprints before and after property changes",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:37:00.178",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "eagerBefore": "string",
+                      "eagerAfter": "string",
+                      "lazyBefore": "string",
+                      "lazyAfter": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "eagerBefore\teagerAfter\tlazyBefore\tlazyAfter\n\"E39F3DFE743564F727A0E985A4D0F99B\"\t\"B8D9991C861D11D9040CCF14AA0EE9D2\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\t\"D41D8CD98F00B204E9800998ECF8427E\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635425538359_312764038",
+      "id": "paragraph_1635425538359_312764038",
+      "dateCreated": "2021-10-28 12:52:18.359",
+      "dateStarted": "2021-11-18 10:37:00.195",
+      "dateFinished": "2021-11-18 10:37:00.337",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Example: create alert system to check nodes variations ",
+      "text": "%neo4j\n\nMATCH (n:Person)\nWITH collect(n) as nodes\nWITH nodes, apoc.hashing.fingerprinting(nodes,  {nodeAllowMap: {Person: [\u0027timestamp\u0027]}}) AS fingerprint // calculate fingerprint for all Person nodes through timestamp property\nOPTIONAL MATCH (a:Alert {fingerprint: fingerprint})\nWITH COLLECT(a) as alerts, fingerprint\nCALL apoc.do.when(size(alerts) \u003d 0, \n    \"CREATE (:Alert {fingerprint: $fingerprint})\", \n    \"RETURN 1\", \n    {fingerprint: fingerprint}) YIELD value RETURN value\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:39:06.459",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value.1": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636542238398_1865829614",
+      "id": "paragraph_1636542238398_1865829614",
+      "dateCreated": "2021-11-10 11:03:58.398",
+      "dateStarted": "2021-11-18 10:39:06.474",
+      "dateFinished": "2021-11-18 10:39:06.501",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Don\u0027t change fingerprint ",
+      "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.other \u003d 444",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:38:46.574",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636550905679_2025375362",
+      "id": "paragraph_1636550905679_2025375362",
+      "dateCreated": "2021-11-10 13:28:25.680",
+      "dateStarted": "2021-11-18 10:38:46.594",
+      "dateFinished": "2021-11-18 10:38:46.646",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Change fingerprint ",
+      "text": "%neo4j\nMatch (n:Person {name: \u0027Keanu Reeves\u0027}) set n.timestamp \u003d timestamp()",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:39:01.612",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636562701740_1838859840",
+      "id": "paragraph_1636562701740_1838859840",
+      "dateCreated": "2021-11-10 16:45:01.740",
+      "dateStarted": "2021-11-18 10:39:01.633",
+      "dateFinished": "2021-11-18 10:39:01.693",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\nmatch (n:Alert) return n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:39:11.322",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 148.011,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "fingerprint": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":21405,\"data\":{\"fingerprint\":\"5C205FA6707E4F912E93546AD6959139\"},\"label\":\"Alert\"},{\"id\":21406,\"data\":{\"fingerprint\":\"BC41FF44B2C64202A826D1838CCC7475\"},\"label\":\"Alert\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\",\"Alert\":\"#73B17A\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636550925149_665699810",
+      "id": "paragraph_1636550925149_665699810",
+      "dateCreated": "2021-11-10 13:28:45.149",
+      "dateStarted": "2021-11-18 10:39:11.341",
+      "dateFinished": "2021-11-18 10:39:11.386",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n### Hashing Functions\n\n- apoc.util.sha1([values]) /apoc.util.md5([values]) / apoc.util.sha384([values])/apoc.util.sha256([values])/apoc.util.sha512([values])  - computes the sha1 / md5 / ... of the concatenation of all string values of the list\n%neo4j\nRETURN apoc.util.sha1([\"ASD\", \"ZXC\"]) AS output; --\u003e sha1(\"ASDZXC\") --\u003e \"3d66263062512dd289132628bd9be7bdfda41fe7\"",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-25 15:59:51.652",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637855810828_1414873392",
+      "id": "paragraph_1637855810828_1414873392",
+      "dateCreated": "2021-11-25 15:56:50.828",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nTODO\n// - instead of Match (n:LabelName) return count(n) \u003e 0\n\u003d\u003d apoc.label.exists:\n\n// todo - integrarla da qualche parte...\n[source, cypher]\n----\nMATCH (s1:Student {name: \u0027Priya\u0027})\nRETURN apoc.label.exists(s1, \"Student\") AS output;\n----",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 10:25:42.320",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eTODO\u003cbr /\u003e\n// - instead of Match (n:LabelName) return count(n) \u0026gt; 0\u003cbr /\u003e\n\u003d\u003d apoc.label.exists:\u003c/p\u003e\n\u003ch2\u003e// todo - integrarla da qualche parte\u0026hellip;\u003cbr /\u003e\n[source, cypher]\u003c/h2\u003e\n\u003ch2\u003eMATCH (s1:Student {name: \u0026lsquo;Priya\u0026rsquo;})\u003cbr /\u003e\nRETURN apoc.label.exists(s1, \u0026ldquo;Student\u0026rdquo;) AS output;\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637675875839_71005261",
+      "id": "paragraph_1637675875839_71005261",
+      "dateCreated": "2021-11-23 13:57:55.840",
+      "dateStarted": "2021-11-24 10:25:42.320",
+      "dateFinished": "2021-11-24 10:25:42.344",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nCREATE\n    (n:Person{name:\u0027Steve\u0027,age:34, eyes:\u0027blue\u0027}),\n    (m:Person{name:\u0027Jake\u0027,hair:\u0027brown\u0027,age:34})\nWITH n,m\nreturn apoc.diff.nodes(n,m)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23 15:54:24.346",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 104.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.diff.nodes(n,m).leftOnly.eyes": "string",
+                      "apoc.diff.nodes(n,m).inCommon.age": "string",
+                      "apoc.diff.nodes(n,m).different.name.left": "string",
+                      "apoc.diff.nodes(n,m).different.name.right": "string",
+                      "apoc.diff.nodes(n,m).rightOnly.hair": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.diff.nodes(n,m).leftOnly.eyes\tapoc.diff.nodes(n,m).inCommon.age\tapoc.diff.nodes(n,m).different.name.left\tapoc.diff.nodes(n,m).different.name.right\tapoc.diff.nodes(n,m).rightOnly.hair\nblue\t34\tSteve\tJake\tbrown\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637682823683_213018881",
+      "id": "paragraph_1637682823683_213018881",
+      "dateCreated": "2021-11-23 15:53:43.683",
+      "dateStarted": "2021-11-23 15:54:15.393",
+      "dateFinished": "2021-11-23 15:54:17.219",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n## Natural Language Processing (NLP)\n\nDowload dependencies from this link and put in `plugin` folder https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/{APOC-VERSION}/apoc-nlp-dependencies-{APOC-VERSION}.jar\n\n\n\n--\u003e todo: dire che fa tutto questa pagina-----\u003ehttps://docs.aws.amazon.com/comprehend/latest/dg/API_Entity.html\n\n\n- `apoc.nlp.azure.\u003cOPERATION\u003e.\u003cMETHOD\u003e`  - Azure Cognitive Services: https://azure.microsoft.com/en-us/services/cognitive-services/\n- `apoc.nlp.aws.\u003cOPERATION\u003e.\u003cMETHOD\u003e` - Amazon Web Services: https://docs.aws.amazon.com/comprehend/index.html\n- `apoc.nlp.gcp.\u003cOPERATION\u003e.\u003cMETHOD\u003e` - google cloud: https://docs.aws.amazon.com/comprehend/index.html\n\n\n`\u003cMETHOD\u003e` can be TODO\n\n`\u003cOPERATION\u003e` depends on API. In case of AWS can be:\n\n- `entities`: leverage on https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html\n- `keyPhrases`: leverage on https://docs.aws.amazon.com/comprehend/latest/dg/how-key-phrases.html\n- `sentiment`: leverage on https://docs.aws.amazon.com/comprehend/latest/dg/how-sentiment.html\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 10:49:25.512",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eNatural Language Processing (NLP)\u003c/h2\u003e\n\u003cp\u003eDowload dependencies from this link and put in \u003ccode\u003eplugin\u003c/code\u003e folder \u003ca href\u003d\"https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/{APOC-VERSION}/apoc-nlp-dependencies-{APOC-VERSION}.jar\"\u003ehttps://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/{APOC-VERSION}/apoc-nlp-dependencies-{APOC-VERSION}.jar\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e\u0026ndash;\u0026gt; todo: dire che fa tutto questa pagina\u0026mdash;\u0026ndash;\u0026gt;\u003ca href\u003d\"https://docs.aws.amazon.com/comprehend/latest/dg/API_Entity.html\"\u003ehttps://docs.aws.amazon.com/comprehend/latest/dg/API_Entity.html\u003c/a\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.nlp.azure.\u0026lt;OPERATION\u0026gt;.\u0026lt;METHOD\u0026gt;\u003c/code\u003e  - Azure Cognitive Services: \u003ca href\u003d\"https://azure.microsoft.com/en-us/services/cognitive-services/\"\u003ehttps://azure.microsoft.com/en-us/services/cognitive-services/\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.nlp.aws.\u0026lt;OPERATION\u0026gt;.\u0026lt;METHOD\u0026gt;\u003c/code\u003e - Amazon Web Services: \u003ca href\u003d\"https://docs.aws.amazon.com/comprehend/index.html\"\u003ehttps://docs.aws.amazon.com/comprehend/index.html\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.nlp.gcp.\u0026lt;OPERATION\u0026gt;.\u0026lt;METHOD\u0026gt;\u003c/code\u003e - google cloud: \u003ca href\u003d\"https://docs.aws.amazon.com/comprehend/index.html\"\u003ehttps://docs.aws.amazon.com/comprehend/index.html\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637747378677_859597781",
+      "id": "paragraph_1637747378677_859597781",
+      "dateCreated": "2021-11-24 09:49:38.678",
+      "dateStarted": "2021-11-24 10:44:59.864",
+      "dateFinished": "2021-11-24 10:44:59.893",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nCREATE (a:Article {body: \"metti quello che vuoi\", id: 3});\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 10:37:14.657",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637750203024_1095227793",
+      "id": "paragraph_1637750203024_1095227793",
+      "dateCreated": "2021-11-24 10:36:43.024",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\nMATCH (a:Article) WITH a ORDER BY a.id\nWITH collect(a) AS articles\nCALL apoc.nlp.aws.entities.stream(articles, {\n                      key: \"apiKey\",\n                      secret: \"apiPassword\",\n                      nodeProperty: \"body\",\n                      unsupportedDummyClient: true\n})\nYIELD value\nUNWIND value.entities AS entity\nRETURN entity;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 11:02:51.933",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "entity.score0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "entity.endOffset1",
+                        "visible": true,
+                        "width": 262.0,
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "entity.text2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "entity.type3",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "entity.beginOffset4",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "entity.score": "string",
+                      "entity.endOffset": "string",
+                      "entity.text": "string",
+                      "entity.type": "string",
+                      "entity.beginOffset": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "entity.score\tentity.endOffset\tentity.text\tentity.type\tentity.beginOffset\n0.5\t\ttoken-1-index-0-batch-0\tCOMMERCIAL_ITEM\t\n0.699999988079071\t\ttoken-2-index-0-batch-0\tORGANIZATION\t\n0.5\t\ttoken-1-index-1-batch-0\tCOMMERCIAL_ITEM\t\n0.699999988079071\t\ttoken-2-index-1-batch-0\tORGANIZATION\t\n0.5\t\ttoken-1-index-2-batch-0\tCOMMERCIAL_ITEM\t\n0.699999988079071\t\ttoken-2-index-2-batch-0\tORGANIZATION\t\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637751365056_2014260904",
+      "id": "paragraph_1637751365056_2014260904",
+      "dateCreated": "2021-11-24 10:56:05.056",
+      "dateStarted": "2021-11-24 11:02:51.953",
+      "dateFinished": "2021-11-24 11:02:51.979",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n// UNWIND range(1,26) AS id\nMATCH (a:Article) WITH a ORDER BY a.id\nWITH collect(a) AS articles\nCALL apoc.nlp.aws.entities.graph(articles, {\n  key: \"apiKey\",\n  secret: \"apiSecret\",\n  nodeProperty: \"body\",\n  unsupportedDummyClient: true\n})\nYIELD graph AS g\nWITH g.nodes AS nodes, g.relationships AS relationships\nUNWIND nodes as node\nUNWIND relationships as rel\nRETURN node, rel",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 11:07:20.049",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "body": "string",
+                      "type": "string",
+                      "text": "string",
+                      "score": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"body\":\"dummyText\",\"id\":1},\"label\":\"Article\"},{\"id\":1,\"data\":{\"body\":\"dummyText\",\"id\":2},\"label\":\"Article\"},{\"id\":2,\"data\":{\"body\":\"osvaldone\",\"id\":3},\"label\":\"Article\"},{\"id\":-7,\"data\":{\"type\":\"COMMERCIAL_ITEM\",\"text\":\"token-1-index-0-batch-0\"},\"label\":\"Entity\"},{\"id\":-8,\"data\":{\"type\":\"ORGANIZATION\",\"text\":\"token-2-index-0-batch-0\"},\"label\":\"Entity\"},{\"id\":-9,\"data\":{\"type\":\"COMMERCIAL_ITEM\",\"text\":\"token-1-index-1-batch-0\"},\"label\":\"Entity\"},{\"id\":-10,\"data\":{\"type\":\"ORGANIZATION\",\"text\":\"token-2-index-1-batch-0\"},\"label\":\"Entity\"},{\"id\":-11,\"data\":{\"type\":\"COMMERCIAL_ITEM\",\"text\":\"token-1-index-2-batch-0\"},\"label\":\"Entity\"},{\"id\":-12,\"data\":{\"type\":\"ORGANIZATION\",\"text\":\"token-2-index-2-batch-0\"},\"label\":\"Entity\"}],\"edges\":[{\"source\":0,\"target\":-7,\"id\":-7,\"data\":{\"score\":0.5},\"label\":\"ENTITY\"},{\"source\":0,\"target\":-8,\"id\":-8,\"data\":{\"score\":0.699999988079071},\"label\":\"ENTITY\"},{\"source\":1,\"target\":-9,\"id\":-9,\"data\":{\"score\":0.5},\"label\":\"ENTITY\"},{\"source\":1,\"target\":-10,\"id\":-10,\"data\":{\"score\":0.699999988079071},\"label\":\"ENTITY\"},{\"source\":2,\"target\":-11,\"id\":-11,\"data\":{\"score\":0.5},\"label\":\"ENTITY\"},{\"source\":2,\"target\":-12,\"id\":-12,\"data\":{\"score\":0.699999988079071},\"label\":\"ENTITY\"}],\"labels\":{\"Article\":\"#D4C6D6\"},\"types\":[],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637751775524_2105745239",
+      "id": "paragraph_1637751775524_2105745239",
+      "dateCreated": "2021-11-24 11:02:55.524",
+      "dateStarted": "2021-11-24 11:07:16.712",
+      "dateFinished": "2021-11-24 11:07:16.992",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nMATCH (a:Article) WITH a ORDER BY a.id\nWITH collect(a) AS articles\nCALL apoc.nlp.aws.entities.graph(articles, {\n  key: \"apiKey\",\n  secret: \"apiSecret\",\n  nodeProperty: \"body\",\n  unsupportedDummyClient: true,\n  scoreCutoff: 0.6,\n  writeRelationshipType: \"HAS_ENTITY\",\n  writeRelationshipProperty: \"myScore\"\n  \n  // write: true - to save the graph in Neo4j\n})\nYIELD graph AS g\nWITH g.nodes AS nodes, g.relationships AS relationships\nUNWIND nodes as node\nUNWIND relationships as rel\nRETURN node, rel",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 11:10:16.266",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "body": "string",
+                      "type": "string",
+                      "text": "string",
+                      "myScore": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637752063525_1341806267",
+      "id": "paragraph_1637752063525_1341806267",
+      "dateCreated": "2021-11-24 11:07:43.525",
+      "dateStarted": "2021-11-24 11:08:42.606",
+      "dateFinished": "2021-11-24 11:08:42.746",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Extract data from url / email",
+      "text": "%md\n\n- apoc.data.url(\u0027url\u0027) as {protocol,user,host,port,path,query,file,anchor} - turn URL into map structure\n- apoc.data.email(\u0027email_address\u0027) as {personal,user,domain} - extract the personal name, user and domain as a map",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 13:11:22.241",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.data.url(\u0026lsquo;url\u0026rsquo;) as {protocol,user,host,port,path,query,file,anchor} - turn URL into map structure\u003c/li\u003e\n\u003cli\u003eapoc.data.email(\u0026lsquo;email_address\u0026rsquo;) as {personal,user,domain} - extract the personal name, user and domain as a map\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637759187998_2026131110",
+      "id": "paragraph_1637759187998_2026131110",
+      "dateCreated": "2021-11-24 13:06:27.998",
+      "dateStarted": "2021-11-24 13:06:37.260",
+      "dateFinished": "2021-11-24 13:06:37.283",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// require additional dependency\n// https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/{apoc-version}/apoc-email-dependencies-{apoc-version}.jar\n\nRETURN apoc.data.email(\"michael@neo4j.com\") AS output;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 13:10:47.859",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637759309198_1199862566",
+      "id": "paragraph_1637759309198_1199862566",
+      "dateCreated": "2021-11-24 13:08:29.198",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\n\nWITH apoc.data.url(\"https://www.neo4j.com:8080/developer/graph-data-science?q\u003dneo4j\u0026alpha\u003dbeta#heading-1\") AS output\nUNWIND keys(output) AS key\nRETURN key, output[key] AS value;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 08:35:29.184",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "key": "string",
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "key\tvalue\n\"path\"\t\"/developer/graph-data-science\"\n\"protocol\"\t\"https\"\n\"file\"\t\"/developer/graph-data-science?q\u003dneo4j\u0026alpha\u003dbeta\"\n\"port\"\t8080\n\"query\"\t\"q\u003dneo4j\u0026alpha\u003dbeta\"\n\"anchor\"\t\"heading-1\"\n\"host\"\t\"www.neo4j.com\"\n\"user\"\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637759330410_2134236167",
+      "id": "paragraph_1637759330410_2134236167",
+      "dateCreated": "2021-11-24 13:08:50.410",
+      "dateStarted": "2021-11-30 08:35:29.166",
+      "dateFinished": "2021-11-30 08:35:29.182",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n## Aggregation functions\n\nApoc provide some aggregation functions (similar to count() and collect())\n\n- `apoc.agg.nth(value,offset)` - returns non-null value of nth row (or -1 for last) offset is 0 based\n- `apoc.agg.first(value)` `apoc.agg.last(value)`/  - returns first / last non-null value\n- `apoc.agg.slice(value, start, length)` - returns subset of non-null values, start is 0 based and length can be -1\n- `apoc.agg.product(number)` - returns given product for non-null values\n- `apoc.agg.median(number)` - returns median for non-null numeric values\n- `apoc.agg.percentiles(value,[percentiles \u003d 0.5,0.75,0.9,0.95,0.99])` - returns given percentiles for integer values\n- `apoc.agg.statistics(value,[percentiles \u003d 0.5,0.75,0.9,0.95,0.99])` - returns numeric statistics (percentiles, min,minNonZero,max,total,mean,stdev) for values\n- `apoc.agg.maxItems(item, value, groupLimit: -1) - for collecting only items with the maximal value. Returns a map {items:[], value:n} where `value` is the maximum value, and `items` are all items with the same maximal value. The number of items can be optionally limited\n- `apoc.agg.minItems(item, value, groupLimit: -1)` - for collecting only items with the minimal value. Returns a map {items:[], value:n} where `value` is the minimum value, and `items` are all items with the same minimal value. The number of items can be optionally limited.\n- `apoc.agg.graph(element)` as graph - aggregates graph elements to a \"graph\" map with unique sets of \"nodes\" and \"relationships\"\n\n\nThe apoc.agg.slice(list, 0, 3) is equivalent to collect(list)[0..3], but the last one collects all of the movies into memory, before returning the first three, instead the apoc equivalent we avoid this build up of in memory state.\nSimilarly, the apoc.agg.first(list) and  apoc.agg.last(list), apoc.agg.nth(list, N) are equivalent to collect(list)[0], collect(list)[-1] and  collect(list)[N] but without extra-memory.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 09:23:49.188",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638260582266_231122687",
+      "id": "paragraph_1638260582266_231122687",
+      "dateCreated": "2021-11-30 08:23:02.266",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\n\nmatch (p:Person)-[:ACTED_IN]-\u003e(movie)\nreturn p.name AS person, apoc.agg.median(movie.released) AS medianReleaseYear;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 09:19:55.178",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 204.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "person": "string",
+                      "medianReleaseYear": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "person\tmedianReleaseYear\n\"Keanu Reeves\"\t2000.0\n\"Carrie-Anne Moss\"\t2003.0\n\"Laurence Fishburne\"\t2003.0\n\"Hugo Weaving\"\t2003.0\n\"Emil Eifrem\"\t1999.0\n\"Charlize Theron\"\t1996.5\n\"Al Pacino\"\t1997.0\n\"Tom Cruise\"\t1992.0\n\"Jack Nicholson\"\t1992.0\n\"Demi Moore\"\t1992.0\n\"Kevin Bacon\"\t1995.0\n\"Kiefer Sutherland\"\t1989.0\n\"Noah Wyle\"\t1992.0\n\"Cuba Gooding Jr.\"\t1997.5\n\"Kevin Pollak\"\t1992.0\n\"J.T. Walsh\"\t1992.0\n\"James Marshall\"\t1992.0\n\"Christopher Guest\"\t1992.0\n\"Aaron Sorkin\"\t1992.0\n\"Kelly McGillis\"\t1986.0\n\"Val Kilmer\"\t1986.0\n\"Anthony Edwards\"\t1986.0\n\"Tom Skerritt\"\t1986.0\n\"Meg Ryan\"\t1993.0\n\"Renee Zellweger\"\t2000.0\n\"Kelly Preston\"\t2000.0\n\"Jerry O\u0027Connell\"\t1993.0\n\"Jay Mohr\"\t2000.0\n\"Bonnie Hunt\"\t1999.5\n\"Regina King\"\t2000.0\n\"Jonathan Lipnicki\"\t2000.0\n\"River Phoenix\"\t1986.0\n\"Corey Feldman\"\t1986.0\n\"Wil Wheaton\"\t1986.0\n\"John Cusack\"\t1986.0\n\"Marshall Bell\"\t1996.0\n\"Helen Hunt\"\t1997.0\n\"Greg Kinnear\"\t1997.5\n\"Annabella Sciorra\"\t1998.0\n\"Max von Sydow\"\t1998.5\n\"Werner Herzog\"\t1998.0\n\"Robin Williams\"\t1998.0\n\"Ethan Hawke\"\t1999.0\n\"Rick Yune\"\t2004.0\n\"James Cromwell\"\t1999.0\n\"Parker Posey\"\t1998.0\n\"Dave Chappelle\"\t1998.0\n\"Steve Zahn\"\t2002.0\n\"Tom Hanks\"\t1998.5\n\"Rita Wilson\"\t1993.0\n\"Bill Pullman\"\t1993.0\n\"Victor Garber\"\t1993.0\n\"Rosie O\u0027Donnell\"\t1992.5\n\"Nathan Lane\"\t1993.0\n\"Billy Crystal\"\t1998.0\n\"Carrie Fisher\"\t1998.0\n\"Bruno Kirby\"\t1998.0\n\"Liv Tyler\"\t1996.0\n\"Brooke Langton\"\t2000.0\n\"Gene Hackman\"\t1996.0\n\"Orlando Jones\"\t2000.0\n\"Christian Bale\"\t2006.0\n\"Zach Grenier\"\t2001.0\n\"Richard Harris\"\t1992.0\n\"Clint Eastwood\"\t1992.0\n\"Takeshi Kitano\"\t1995.0\n\"Dina Meyer\"\t1995.0\n\"Ice-T\"\t1995.0\n\"Halle Berry\"\t2012.0\n\"Jim Broadbent\"\t2012.0\n\"Ian McKellen\"\t2006.0\n\"Audrey Tautou\"\t2006.0\n\"Paul Bettany\"\t2006.0\n\"Natalie Portman\"\t2006.0\n\"Stephen Rea\"\t2006.0\n\"John Hurt\"\t2006.0\n\"Ben Miles\"\t2008.0\n\"Emile Hirsch\"\t2008.0\n\"John Goodman\"\t2008.0\n\"Susan Sarandon\"\t2008.0\n\"Matthew Fox\"\t2008.0\n\"Christina Ricci\"\t2008.0\n\"Rain\"\t2008.5\n\"Naomie Harris\"\t2009.0\n\"Michael Clarke Duncan\"\t1999.0\n\"David Morse\"\t1999.0\n\"Sam Rockwell\"\t2003.5\n\"Gary Sinise\"\t1997.0\n\"Patricia Clarkson\"\t1999.0\n\"Frank Langella\"\t2008.0\n\"Michael Sheen\"\t2008.0\n\"Oliver Platt\"\t2003.5\n\"Danny DeVito\"\t1983.5\n\"John C. Reilly\"\t1992.0\n\"Ed Harris\"\t1995.0\n\"Bill Paxton\"\t1995.0\n\"Philip Seymour Hoffman\"\t2001.5\n\"Diane Keaton\"\t2003.0\n\"Julia Roberts\"\t2007.0\n\"Madonna\"\t1992.0\n\"Geena Davis\"\t1992.0\n\"Lori Petty\"\t1992.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638261407486_568543548",
+      "id": "paragraph_1638261407486_568543548",
+      "dateCreated": "2021-11-30 08:36:47.486",
+      "dateStarted": "2021-11-30 08:41:40.121",
+      "dateFinished": "2021-11-30 08:41:40.233",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nunwind range(1,5) AS value\nreturn apoc.agg.product(value), 1*2*3*4*5 AS equivalent;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 09:23:17.922",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.agg.product(value)": "string",
+                      "equivalent": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.agg.product(value)\tequivalent\n120\t120\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638263805188_1015449193",
+      "id": "paragraph_1638263805188_1015449193",
+      "dateCreated": "2021-11-30 09:16:45.188",
+      "dateStarted": "2021-11-30 09:17:02.199",
+      "dateFinished": "2021-11-30 09:17:02.299",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nmatch (p:Person)\nwith apoc.agg.maxItems(p, p.born) AS maxItems\nreturn maxItems.value AS value, [item in maxItems.items | item.name] AS items",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 08:51:26.541",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string",
+                      "items": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value\titems\n1996\t[\"Jonathan Lipnicki\"]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638261692998_2040414843",
+      "id": "paragraph_1638261692998_2040414843",
+      "dateCreated": "2021-11-30 08:41:32.998",
+      "dateStarted": "2021-11-30 08:51:15.743",
+      "dateFinished": "2021-11-30 08:51:15.855",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nmatch (p:Person)\nwith apoc.agg.minItems(p, p.born) AS minItems\nreturn minItems.value AS value, [item in minItems.items | item.name] AS items",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 08:51:40.768",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value": "string",
+                      "items": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value\titems\n1929\t[\"Max von Sydow\"]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638262289707_1381989624",
+      "id": "paragraph_1638262289707_1381989624",
+      "dateCreated": "2021-11-30 08:51:29.707",
+      "dateStarted": "2021-11-30 08:51:40.784",
+      "dateFinished": "2021-11-30 08:51:40.837",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nmatch (p:Person)\nreturn apoc.agg.percentiles(p.born, [0.1, 0.75, 0.9]) // return respectively the 10% / 75% and 90% percentile",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 09:07:04.532",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.agg.percentiles(p.born, [0.1, 0.75, 0.9])": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.agg.percentiles(p.born, [0.1, 0.75, 0.9])\n[1940,1967,1971]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638262401798_1838699952",
+      "id": "paragraph_1638262401798_1838699952",
+      "dateCreated": "2021-11-30 08:53:21.798",
+      "dateStarted": "2021-11-30 09:07:03.985",
+      "dateFinished": "2021-11-30 09:07:04.010",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nmatch (p:Person)\nreturn apoc.agg.median(p.born) // return respectively the 10% / 75% and 90% percentile",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 09:07:10.125",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "apoc.agg.median(p.born)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "apoc.agg.median(p.born)\n1959.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638263204368_1362635279",
+      "id": "paragraph_1638263204368_1362635279",
+      "dateCreated": "2021-11-30 09:06:44.368",
+      "dateStarted": "2021-11-30 09:07:10.145",
+      "dateFinished": "2021-11-30 09:07:10.162",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nmatch (movie:Movie)\nwith apoc.agg.statistics(movie.released, [0.1, 0.25]) AS stats // by default 2nd param is [0.5, 0.75, 0.9, 0.95, 0.99 ]\nunwind keys(stats) AS key\nreturn key, stats[key] AS value;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 09:29:00.983",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 304.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "key": "string",
+                      "value": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "key\tvalue\n\"total\"\t39\n\"min\"\t0\n\"minNonZero\"\t1975.0\n\"0.1\"\t1986\n\"max\"\t2012\n\"mean\"\t1947.051282051282\n\"0.25\"\t1993\n\"stdev\"\t315.9344259062556\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638263845950_991287663",
+      "id": "paragraph_1638263845950_991287663",
+      "dateCreated": "2021-11-30 09:17:25.950",
+      "dateStarted": "2021-11-30 09:27:00.022",
+      "dateFinished": "2021-11-30 09:27:00.087",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Expand path\n\nTo find a path with certain parameters.\n`apoc.path.expandConfig(startNode, $config)`\n\n`$config` can have:\n\n###### minLevel\n\nThe minimum number of hops in the traversal. Default is -1, so any path.\n\n###### maxLevel\n\nThe max number of hops in the traversal. Default is -1, so any path.\n\n###### relationshipFilter\n\n- null (default): any rel\n\nLIKES\u003e\n\t\n\nLIKES\n\t\n\nOUTGOING\n\n\u003cFOLLOWS\n\t\n\nFOLLOWS\n\t\n\nINCOMING\n\nKNOWS\n\t\n\nKNOWS\n\t\n\nBOTH\n\n\u003e\n\t\n\nany type\n\t\n\nOUTGOING\n\n\u003c\n\t\n\nany type\n\t\n\nINCOMING\n\n\n###### labelFilter\n\n\nresult\n\n-Foe\n\t\n\nblacklist filter - No node in the path will have a label in the blacklist.\n\n+Friend\n\t\n\nwhitelist filter - All nodes in the path must have a label in the whitelist (exempting termination and end nodes, if using those filters). If no whitelist operator is present, all labels are considered whitelisted.\n\n/Friend\n\t\n\ntermination filter - Only return paths up to a node of the given labels, and stop further expansion beyond it. Termination nodes do not have to respect the whitelist. Termination filtering takes precedence over end node filtering.\n\n\u003eFriend\n\t\n\nend node filter - Only return paths up to a node of the given labels, but continue expansion to match on end nodes beyond it. End nodes do not have to respect the whitelist to be returned, but expansion beyond them is only allowed if the node has a label in the whitelist.\n\n\n###### sequence\n\ncombine label and rel filter alternatively: \u0027labelFilter, relFilter, labelFilter, relFilter, .....\u0027\n\n###### beginSequenceAtStart\n\nif false start filtering one node away from the start node. \n\n###### uniqueness\n\nTODO - mettere link con tutti...\n\n| RELATIONSHIP_PATH | For each returned node there\u0027s a (relationship wise) unique path from the start node to it. This is Cypher\u0027s default expansion mode.\n| NODE_GLOBAL | A node cannot be traversed more than once. This is what the legacy traversal framework does.\n\n###### bfs\n\nDepth-first search / Breadth-first search\n\n\n\n###### filterStartNode\n\nDefault false. if true, doesn\u0027t return the start node if filter is not matched. \n\n###### limit\n\nMax number of paths.\n\n###### optional\n\nIf no path found, return a result with `null`, otherwise doesn\u0027t return nothing\n\n###### endNodes\n\n`List\u003cNode\u003e` considered as end nodes. Same behaviour as \u003eLabelName.\n\n###### terminatorNodes\n\n`List\u003cNode\u003e` considered as terminator nodes. Same behaviour as /LabelName.\n\n###### whitelistNodes\n`List\u003cNode\u003e` considered as whitelist nodes. Same behaviour as +LabelName.\n\n###### blacklistNodes\n`List\u003cNode\u003e` considered as blacklist nodes. Same behaviour as -LabelName.",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 10:19:24.693",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eExpand path\u003c/h2\u003e\n\u003cp\u003eTo find a path with certain parameters.\u003cbr /\u003e\n\u003ccode\u003eapoc.path.expandConfig(startNode, $config)\u003c/code\u003e\u003c/p\u003e\n\u003ch6\u003eeeeeee\u003c/h6\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638264233977_602605292",
+      "id": "paragraph_1638264233977_602605292",
+      "dateCreated": "2021-11-30 09:23:53.977",
+      "dateStarted": "2021-11-30 09:49:19.463",
+      "dateFinished": "2021-11-30 09:49:19.490",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.path.expandConfig(p, {\n\trelationshipFilter: \"ACTED_IN\",\n    minLevel: 1,\n    maxLevel: 2\n})\nYIELD path\nRETURN length(path) AS hops,  path\nORDER BY hops;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 10:25:12.710",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "tagline": "string",
+                      "century": "string",
+                      "title": "string",
+                      "released": "string",
+                      "name": "string",
+                      "born": "string",
+                      "children": "string",
+                      "roles": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"tagline\":\"Welcome to the Real World\",\"century\":1900,\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"century\":1900,\"born\":1964},\"label\":\"Person\"},{\"id\":2,\"data\":{\"name\":\"Carrie-Anne Moss\",\"century\":1900,\"children\":[\"Al\",\"John\",\"Jack\"],\"born\":1967},\"label\":\"Person\"},{\"id\":3,\"data\":{\"name\":\"Laurence Fishburne\",\"century\":1900,\"children\":[\"Naruto\",\"Sasuke\",\"Sakura\"],\"born\":1961},\"label\":\"Person\"},{\"id\":100,\"data\":{\"tagline\":\"The hottest data on earth. In the coolest head in town\",\"century\":1900,\"title\":\"Johnny Mnemonic\",\"released\":1995},\"label\":\"Movie\"},{\"id\":4,\"data\":{\"name\":\"Hugo Weaving\",\"century\":1900,\"born\":1960},\"label\":\"Person\"},{\"id\":101,\"data\":{\"name\":\"Takeshi Kitano\",\"century\":1900,\"born\":1947},\"label\":\"Person\"},{\"id\":102,\"data\":{\"name\":\"Dina Meyer\",\"century\":1900,\"born\":1968},\"label\":\"Person\"},{\"id\":103,\"data\":{\"name\":\"Ice-T\",\"century\":1900,\"born\":1958},\"label\":\"Person\"},{\"id\":8,\"data\":{\"name\":\"Emil Eifrem\",\"century\":1900,\"born\":1978},\"label\":\"Person\"},{\"id\":9,\"data\":{\"tagline\":\"Free your mind\",\"century\":2000,\"title\":\"The Matrix Reloaded\",\"released\":2003},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"tagline\":\"Everything that has a beginning has an end\",\"century\":2000,\"title\":\"The Matrix Revolutions\",\"released\":2003},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"tagline\":\"Evil has its winning ways\",\"century\":1900,\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"},{\"id\":12,\"data\":{\"name\":\"Charlize Theron\",\"century\":1900,\"born\":1975},\"label\":\"Person\"},{\"id\":13,\"data\":{\"name\":\"Al Pacino\",\"century\":1900,\"born\":1940},\"label\":\"Person\"},{\"id\":17,\"data\":{\"name\":\"Jack Nicholson\",\"century\":1900,\"born\":1937},\"label\":\"Person\"},{\"id\":87,\"data\":{\"tagline\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"century\":2000,\"title\":\"The Replacements\",\"released\":2000},\"label\":\"Movie\"},{\"id\":88,\"data\":{\"name\":\"Brooke Langton\",\"century\":1900,\"born\":1970},\"label\":\"Person\"},{\"id\":89,\"data\":{\"name\":\"Gene Hackman\",\"century\":1900,\"born\":1930},\"label\":\"Person\"},{\"id\":154,\"data\":{\"century\":2000,\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"},{\"id\":90,\"data\":{\"name\":\"Orlando Jones\",\"century\":1900,\"born\":1968},\"label\":\"Person\"},{\"id\":155,\"data\":{\"name\":\"Diane Keaton\",\"century\":1900,\"born\":1946},\"label\":\"Person\"}],\"edges\":[{\"source\":1,\"target\":0,\"id\":0,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":0,\"id\":1,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":0,\"id\":2,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":0,\"id\":3,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":100,\"id\":132,\"data\":{\"roles\":[\"Johnny Mnemonic\"]},\"label\":\"ACTED_IN\"},{\"source\":101,\"target\":100,\"id\":133,\"data\":{\"roles\":[\"Takahashi\"]},\"label\":\"ACTED_IN\"},{\"source\":102,\"target\":100,\"id\":134,\"data\":{\"roles\":[\"Jane\"]},\"label\":\"ACTED_IN\"},{\"source\":103,\"target\":100,\"id\":135,\"data\":{\"roles\":[\"J-Bone\"]},\"label\":\"ACTED_IN\"},{\"source\":8,\"target\":0,\"id\":7,\"data\":{\"roles\":[\"Emil\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":9,\"id\":8,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":9,\"id\":9,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":9,\"id\":10,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":9,\"id\":11,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":10,\"id\":15,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":10,\"id\":16,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":10,\"id\":17,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":10,\"id\":18,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":11,\"id\":22,\"data\":{\"roles\":[\"Kevin Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":12,\"target\":11,\"id\":23,\"data\":{\"roles\":[\"Mary Ann Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":13,\"target\":11,\"id\":24,\"data\":{\"roles\":[\"John Milton\"]},\"label\":\"ACTED_IN\"},{\"source\":17,\"target\":154,\"id\":219,\"data\":{\"roles\":[\"Harry Sanborn\"]},\"label\":\"ACTED_IN\"},{\"source\":155,\"target\":154,\"id\":220,\"data\":{\"roles\":[\"Erica Barry\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":154,\"id\":221,\"data\":{\"roles\":[\"Julian Mercer\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":87,\"id\":114,\"data\":{\"roles\":[\"Shane Falco\"]},\"label\":\"ACTED_IN\"},{\"source\":88,\"target\":87,\"id\":115,\"data\":{\"roles\":[\"Annabelle Farrell\"]},\"label\":\"ACTED_IN\"},{\"source\":89,\"target\":87,\"id\":116,\"data\":{\"roles\":[\"Jimmy McGinty\"]},\"label\":\"ACTED_IN\"},{\"source\":90,\"target\":87,\"id\":117,\"data\":{\"roles\":[\"Clifford Franklin\"]},\"label\":\"ACTED_IN\"}],\"labels\":{\"TTL\":\"#C90F39\",\"Movie\":\"#F9F660\",\"Person\":\"#94A59C\",\"MergeOne\":\"#45312C\",\"Company\":\"#793953\",\"Car\":\"#D44CC3\",\"Animal\":\"#C77CC5\",\"Cat\":\"#076AC1\",\"City\":\"#28F077\",\"MergeTwo\":\"#EC0FED\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"HAS_HQ\",\"FOLLOWS\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\",\"DRIVE\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638267468009_88463248",
+      "id": "paragraph_1638267468009_88463248",
+      "dateCreated": "2021-11-30 10:17:48.010",
+      "dateStarted": "2021-11-30 10:24:06.022",
+      "dateFinished": "2021-11-30 10:24:06.101",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.path.expandConfig(p, {\n    relationshipFilter: \"ACTED_IN\",\n        labelFilter: \"Movie|Person\",\n        beginSequenceAtStart: false,\n//    minLevel: 2,\n    maxLevel: 4\n   // limit: 3\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 10:55:05.879",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "tagline": "string",
+                      "century": "string",
+                      "title": "string",
+                      "released": "string",
+                      "name": "string",
+                      "born": "string",
+                      "roles": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Failed to invoke procedure `apoc.path.expandConfig`: Caused by: java.lang.ArithmeticException: / by zero"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638267688819_368173334",
+      "id": "paragraph_1638267688819_368173334",
+      "dateCreated": "2021-11-30 10:21:28.819",
+      "dateStarted": "2021-11-30 10:55:05.899",
+      "dateFinished": "2021-11-30 10:55:05.958",
+      "status": "ERROR"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.path.expandConfig(p, {\n//    relationshipFilter: \"ACTED_IN\u003e|DIRECTED\u003e\",\n        labelFilter: \"/Movie\",\n//        beginSequenceAtStart: false,\n   // minLevel: 2,\n//    maxLevel: 4,\n    limit: 10\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 10:41:53.921",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "century": "string",
+                      "born": "string",
+                      "title": "string",
+                      "released": "string",
+                      "roles": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"tagline\":\"Welcome to the Real World\",\"century\":1900,\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"century\":1900,\"born\":1964},\"label\":\"Person\"},{\"id\":100,\"data\":{\"tagline\":\"The hottest data on earth. In the coolest head in town\",\"century\":1900,\"title\":\"Johnny Mnemonic\",\"released\":1995},\"label\":\"Movie\"},{\"id\":87,\"data\":{\"tagline\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"century\":2000,\"title\":\"The Replacements\",\"released\":2000},\"label\":\"Movie\"},{\"id\":9,\"data\":{\"tagline\":\"Free your mind\",\"century\":2000,\"title\":\"The Matrix Reloaded\",\"released\":2003},\"label\":\"Movie\"},{\"id\":154,\"data\":{\"century\":2000,\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"tagline\":\"Everything that has a beginning has an end\",\"century\":2000,\"title\":\"The Matrix Revolutions\",\"released\":2003},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"tagline\":\"Evil has its winning ways\",\"century\":1900,\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"}],\"edges\":[{\"source\":1,\"target\":0,\"id\":0,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":87,\"id\":114,\"data\":{\"roles\":[\"Shane Falco\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":100,\"id\":132,\"data\":{\"roles\":[\"Johnny Mnemonic\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":11,\"id\":22,\"data\":{\"roles\":[\"Kevin Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":9,\"id\":8,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":154,\"id\":221,\"data\":{\"roles\":[\"Julian Mercer\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":10,\"id\":15,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"}],\"labels\":{\"TTL\":\"#C90F39\",\"Movie\":\"#F9F660\",\"Person\":\"#94A59C\",\"MergeOne\":\"#45312C\",\"Company\":\"#793953\",\"Car\":\"#D44CC3\",\"Animal\":\"#C77CC5\",\"Cat\":\"#076AC1\",\"City\":\"#28F077\",\"MergeTwo\":\"#EC0FED\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"HAS_HQ\",\"FOLLOWS\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\",\"DRIVE\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638267692055_1647921251",
+      "id": "paragraph_1638267692055_1647921251",
+      "dateCreated": "2021-11-30 10:21:32.055",
+      "dateStarted": "2021-11-30 10:41:53.939",
+      "dateFinished": "2021-11-30 10:41:53.984",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.path.expandConfig(p, {\n//    relationshipFilter: \"ACTED_IN\u003e|DIRECTED\u003e\",\n        labelFilter: \"\u003eMovie\",\n//        beginSequenceAtStart: false,\n//    minLevel: 2,\n  //  maxLevel: 4,\n    limit: 10\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 10:41:43.915",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "century": "string",
+                      "born": "string",
+                      "title": "string",
+                      "released": "string",
+                      "roles": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"tagline\":\"Welcome to the Real World\",\"century\":1900,\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"century\":1900,\"born\":1964},\"label\":\"Person\"},{\"id\":100,\"data\":{\"tagline\":\"The hottest data on earth. In the coolest head in town\",\"century\":1900,\"title\":\"Johnny Mnemonic\",\"released\":1995},\"label\":\"Movie\"},{\"id\":87,\"data\":{\"tagline\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"century\":2000,\"title\":\"The Replacements\",\"released\":2000},\"label\":\"Movie\"},{\"id\":9,\"data\":{\"tagline\":\"Free your mind\",\"century\":2000,\"title\":\"The Matrix Reloaded\",\"released\":2003},\"label\":\"Movie\"},{\"id\":154,\"data\":{\"century\":2000,\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"tagline\":\"Everything that has a beginning has an end\",\"century\":2000,\"title\":\"The Matrix Revolutions\",\"released\":2003},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"tagline\":\"Evil has its winning ways\",\"century\":1900,\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"},{\"id\":156,\"data\":{\"name\":\"Nancy Meyers\",\"century\":1900,\"born\":1949},\"label\":\"Person\"}],\"edges\":[{\"source\":1,\"target\":0,\"id\":0,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":156,\"target\":154,\"id\":224,\"data\":{},\"label\":\"WROTE\"},{\"source\":1,\"target\":87,\"id\":114,\"data\":{\"roles\":[\"Shane Falco\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":100,\"id\":132,\"data\":{\"roles\":[\"Johnny Mnemonic\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":11,\"id\":22,\"data\":{\"roles\":[\"Kevin Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":9,\"id\":8,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":154,\"id\":221,\"data\":{\"roles\":[\"Julian Mercer\"]},\"label\":\"ACTED_IN\"},{\"source\":156,\"target\":154,\"id\":222,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":1,\"target\":10,\"id\":15,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":156,\"target\":154,\"id\":223,\"data\":{},\"label\":\"PRODUCED\"}],\"labels\":{\"TTL\":\"#C90F39\",\"Movie\":\"#F9F660\",\"Person\":\"#94A59C\",\"MergeOne\":\"#45312C\",\"Company\":\"#793953\",\"Car\":\"#D44CC3\",\"Animal\":\"#C77CC5\",\"Cat\":\"#076AC1\",\"City\":\"#28F077\",\"MergeTwo\":\"#EC0FED\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"HAS_HQ\",\"FOLLOWS\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\",\"DRIVE\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638267711708_1277710200",
+      "id": "paragraph_1638267711708_1277710200",
+      "dateCreated": "2021-11-30 10:21:51.708",
+      "dateStarted": "2021-11-30 10:41:43.936",
+      "dateFinished": "2021-11-30 10:41:44.001",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nMATCH (danny:Person {name: \"Danny DeVito\"})\nCALL apoc.path.expandConfig(p, {\n    endNodes: [danny],\n    relationshipFilter: \"ACTED_IN|DIRECTED\",\n//        labelFilter: \"\u003eMovie\",\n//        beginSequenceAtStart: false,\n//    minLevel: 2,\n   maxLevel: 4,\n  //  limit: 10\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 11:03:31.178",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Unable to establish connection in 30000ms"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638270102416_492448352",
+      "id": "paragraph_1638270102416_492448352",
+      "dateCreated": "2021-11-30 11:01:42.416",
+      "dateStarted": "2021-11-30 11:03:31.199",
+      "dateFinished": "2021-11-30 11:04:01.240",
+      "status": "ABORT"
+    },
+    {
+      "text": "%md\n\n## [Conditional and batch data](http://localhost:8080/#/notebook/2GK7PWGHH)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 13:20:45.511",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GK7PWGHH\"\u003eConditional and batch data\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635851973936_1972506870",
+      "id": "paragraph_1635851973936_1972506870",
+      "dateCreated": "2021-11-02 11:19:33.936",
+      "dateStarted": "2021-11-24 13:20:45.511",
+      "dateFinished": "2021-11-24 13:20:45.518",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-10 09:32:42.954",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636536762954_264568490",
+      "id": "paragraph_1636536762954_264568490",
+      "dateCreated": "2021-11-10 09:32:42.954",
+      "status": "READY"
+    }
+  ],
+  "name": "1. Statistics and analysis",
+  "id": "2GKUM18D6",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

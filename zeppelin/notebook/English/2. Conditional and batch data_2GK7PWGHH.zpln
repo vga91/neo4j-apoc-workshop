@@ -1,0 +1,1627 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# If-else statements\n\nSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher. \n\nFor example, to simulate a conditional with pure Cypher we could execute for example:\n`MATCH (n:Test) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.myProp) THEN [1] ELSE [] END | SET n.otherProp \u003d 0)`\n\nThe `FOREACH` clause can be used to update data, but with more complex use cases (for example a `MATCH`), we cannot use it.\n\nSo if I want to do more complex conditional executions, I can use `apoc.when` / `apoc.case` procedure.\n- `apoc.when(condition, ifQuery, elseQuery, {parameters})` - only for read queries\n- `apoc.case([listOfConditionals], elseQuery, {parameters})` - only for read queries\n- `apoc.do.when` - equals to apoc.when but we can also execute \u0027write\u0027 statements\n- `apoc.do.case` - equals to apoc.case but we can also execute \u0027write\u0027 statements\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 13:18:58.090",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eIf-else statements\u003c/h1\u003e\n\u003cp\u003eSometimes queries require conditional execution logic that can’t be adequately expressed in Cypher.\u003c/p\u003e\n\u003cp\u003eFor example, to simulate a conditional with pure Cypher we could execute for example:\u003cbr /\u003e\n\u003ccode\u003eMATCH (n:Test) FOREACH(ignoreMe IN CASE WHEN EXISTS(s.myProp) THEN [1] ELSE [] END | SET n.otherProp \u003d 0)\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eFOREACH\u003c/code\u003e clause can be used to update data, but with more complex use cases (for example a \u003ccode\u003eMATCH\u003c/code\u003e), we cannot use it.\u003c/p\u003e\n\u003cp\u003eSo if I want to do more complex conditional executions, I can use \u003ccode\u003eapoc.when\u003c/code\u003e / \u003ccode\u003eapoc.case\u003c/code\u003e procedure.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.when(condition, ifQuery, elseQuery, {parameters})\u003c/code\u003e - only for read queries\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.case([listOfConditionals], elseQuery, {parameters})\u003c/code\u003e - only for read queries\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.do.when\u003c/code\u003e - equals to apoc.when but we can also execute \u0026lsquo;write\u0026rsquo; statements\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.do.case\u003c/code\u003e - equals to apoc.case but we can also execute \u0026lsquo;write\u0026rsquo; statements\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635516691436_323316003",
+      "id": "paragraph_1635516691436_323316003",
+      "dateCreated": "2021-10-29 14:11:31.436",
+      "dateStarted": "2021-11-24 13:18:58.090",
+      "dateFinished": "2021-11-24 13:18:58.118",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.when",
+      "text": "%neo4j\n\nMATCH (n:Person)\nWITH n\nCALL apoc.when(\n  n.name \u003d \u0027Keanu Reeves\u0027,\n  \u0027RETURN \"yes \" + name as result\u0027,\n  \u0027RETURN \"no \" + name as result\u0027, \n  {name: n.name})\nYIELD value\n\nRETURN value.result as result",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:15:07.807",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 271.989,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "result": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "result\n\"yes Keanu Reeves\"\n\"no Carrie-Anne Moss\"\n\"no Laurence Fishburne\"\n\"no Hugo Weaving\"\n\"no Lilly Wachowski\"\n\"no Lana Wachowski\"\n\"no Joel Silver\"\n\"no Emil Eifrem\"\n\"no Charlize Theron\"\n\"no Al Pacino\"\n\"no Taylor Hackford\"\n\"no Tom Cruise\"\n\"no Jack Nicholson\"\n\"no Demi Moore\"\n\"no Kevin Bacon\"\n\"no Kiefer Sutherland\"\n\"no Noah Wyle\"\n\"no Cuba Gooding Jr.\"\n\"no Kevin Pollak\"\n\"no J.T. Walsh\"\n\"no James Marshall\"\n\"no Christopher Guest\"\n\"no Rob Reiner\"\n\"no Aaron Sorkin\"\n\"no Kelly McGillis\"\n\"no Val Kilmer\"\n\"no Anthony Edwards\"\n\"no Tom Skerritt\"\n\"no Meg Ryan\"\n\"no Tony Scott\"\n\"no Jim Cash\"\n\"no Renee Zellweger\"\n\"no Kelly Preston\"\n\"no Jerry O\u0027Connell\"\n\"no Jay Mohr\"\n\"no Bonnie Hunt\"\n\"no Regina King\"\n\"no Jonathan Lipnicki\"\n\"no Cameron Crowe\"\n\"no River Phoenix\"\n\"no Corey Feldman\"\n\"no Wil Wheaton\"\n\"no John Cusack\"\n\"no Marshall Bell\"\n\"no Helen Hunt\"\n\"no Greg Kinnear\"\n\"no James L. Brooks\"\n\"no Annabella Sciorra\"\n\"no Max von Sydow\"\n\"no Werner Herzog\"\n\"no Robin Williams\"\n\"no Vincent Ward\"\n\"no Ethan Hawke\"\n\"no Rick Yune\"\n\"no James Cromwell\"\n\"no Scott Hicks\"\n\"no Parker Posey\"\n\"no Dave Chappelle\"\n\"no Steve Zahn\"\n\"no Tom Hanks\"\n\"no Nora Ephron\"\n\"no Rita Wilson\"\n\"no Bill Pullman\"\n\"no Victor Garber\"\n\"no Rosie O\u0027Donnell\"\n\"no John Patrick Stanley\"\n\"no Nathan Lane\"\n\"no Billy Crystal\"\n\"no Carrie Fisher\"\n\"no Bruno Kirby\"\n\"no Liv Tyler\"\n\"no Brooke Langton\"\n\"no Gene Hackman\"\n\"no Orlando Jones\"\n\"no Howard Deutch\"\n\"no Christian Bale\"\n\"no Zach Grenier\"\n\"no Mike Nichols\"\n\"no Richard Harris\"\n\"no Clint Eastwood\"\n\"no Takeshi Kitano\"\n\"no Dina Meyer\"\n\"no Ice-T\"\n\"no Robert Longo\"\n\"no Halle Berry\"\n\"no Jim Broadbent\"\n\"no Tom Tykwer\"\n\"no David Mitchell\"\n\"no Stefan Arndt\"\n\"no Ian McKellen\"\n\"no Audrey Tautou\"\n\"no Paul Bettany\"\n\"no Ron Howard\"\n\"no Natalie Portman\"\n\"no Stephen Rea\"\n\"no John Hurt\"\n\"no Ben Miles\"\n\"no Emile Hirsch\"\n\"no John Goodman\"\n\"no Susan Sarandon\"\n\"no Matthew Fox\"\n\"no Christina Ricci\"\n\"no Rain\"\n\"no Naomie Harris\"\n\"no Michael Clarke Duncan\"\n\"no David Morse\"\n\"no Sam Rockwell\"\n\"no Gary Sinise\"\n\"no Patricia Clarkson\"\n\"no Frank Darabont\"\n\"no Frank Langella\"\n\"no Michael Sheen\"\n\"no Oliver Platt\"\n\"no Danny DeVito\"\n\"no John C. Reilly\"\n\"no Ed Harris\"\n\"no Bill Paxton\"\n\"no Philip Seymour Hoffman\"\n\"no Jan de Bont\"\n\"no Robert Zemeckis\"\n\"no Milos Forman\"\n\"no Diane Keaton\"\n\"no Nancy Meyers\"\n\"no Chris Columbus\"\n\"no Julia Roberts\"\n\"no Madonna\"\n\"no Geena Davis\"\n\"no Lori Petty\"\n\"no Penny Marshall\"\n\"no Paul Blythe\"\n\"no Angela Scope\"\n\"no Jessica Thompson\"\n\"no James Thompson\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635516809897_465241544",
+      "id": "paragraph_1635516809897_465241544",
+      "dateCreated": "2021-10-29 14:13:29.897",
+      "dateStarted": "2021-11-18 10:15:07.828",
+      "dateFinished": "2021-11-18 10:15:08.845",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.do.when",
+      "text": "%neo4j\n    match (n:Person)\n    with n\n    CALL apoc.do.when(n.name \u003d \u0027Keanu Reeves\u0027, \n        \u0027create (n)-[:HAS_MOVIE]-\u003e(:Movie {name: \"The movie about \" + n.name}) return n\u0027,            // create a node Movie from \u0027Keanu\u0027 node\n        \u0027create (node:NotKeanu {name: n.name}) return n\u0027,  // create a node with `NotKeanu` label\n        {n: n}) // map of parameters, in this case $born \u003d n.born\n    yield value \n    return value.n.name, value.n.born",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:16:23.481",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "value.n.name": "string",
+                      "value.n.born": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "value.n.name\tvalue.n.born\n\"Keanu Reeves\"\t1964\n\"Carrie-Anne Moss\"\t1967\n\"Laurence Fishburne\"\t1961\n\"Hugo Weaving\"\t1960\n\"Lilly Wachowski\"\t1967\n\"Lana Wachowski\"\t1965\n\"Joel Silver\"\t1952\n\"Emil Eifrem\"\t1978\n\"Charlize Theron\"\t1975\n\"Al Pacino\"\t1940\n\"Taylor Hackford\"\t1944\n\"Tom Cruise\"\t1962\n\"Jack Nicholson\"\t1937\n\"Demi Moore\"\t1962\n\"Kevin Bacon\"\t1958\n\"Kiefer Sutherland\"\t1966\n\"Noah Wyle\"\t1971\n\"Cuba Gooding Jr.\"\t1968\n\"Kevin Pollak\"\t1957\n\"J.T. Walsh\"\t1943\n\"James Marshall\"\t1967\n\"Christopher Guest\"\t1948\n\"Rob Reiner\"\t1947\n\"Aaron Sorkin\"\t1961\n\"Kelly McGillis\"\t1957\n\"Val Kilmer\"\t1959\n\"Anthony Edwards\"\t1962\n\"Tom Skerritt\"\t1933\n\"Meg Ryan\"\t1961\n\"Tony Scott\"\t1944\n\"Jim Cash\"\t1941\n\"Renee Zellweger\"\t1969\n\"Kelly Preston\"\t1962\n\"Jerry O\u0027Connell\"\t1974\n\"Jay Mohr\"\t1970\n\"Bonnie Hunt\"\t1961\n\"Regina King\"\t1971\n\"Jonathan Lipnicki\"\t1996\n\"Cameron Crowe\"\t1957\n\"River Phoenix\"\t1970\n\"Corey Feldman\"\t1971\n\"Wil Wheaton\"\t1972\n\"John Cusack\"\t1966\n\"Marshall Bell\"\t1942\n\"Helen Hunt\"\t1963\n\"Greg Kinnear\"\t1963\n\"James L. Brooks\"\t1940\n\"Annabella Sciorra\"\t1960\n\"Max von Sydow\"\t1929\n\"Werner Herzog\"\t1942\n\"Robin Williams\"\t1951\n\"Vincent Ward\"\t1956\n\"Ethan Hawke\"\t1970\n\"Rick Yune\"\t1971\n\"James Cromwell\"\t1940\n\"Scott Hicks\"\t1953\n\"Parker Posey\"\t1968\n\"Dave Chappelle\"\t1973\n\"Steve Zahn\"\t1967\n\"Tom Hanks\"\t1956\n\"Nora Ephron\"\t1941\n\"Rita Wilson\"\t1956\n\"Bill Pullman\"\t1953\n\"Victor Garber\"\t1949\n\"Rosie O\u0027Donnell\"\t1962\n\"John Patrick Stanley\"\t1950\n\"Nathan Lane\"\t1956\n\"Billy Crystal\"\t1948\n\"Carrie Fisher\"\t1956\n\"Bruno Kirby\"\t1949\n\"Liv Tyler\"\t1977\n\"Brooke Langton\"\t1970\n\"Gene Hackman\"\t1930\n\"Orlando Jones\"\t1968\n\"Howard Deutch\"\t1950\n\"Christian Bale\"\t1974\n\"Zach Grenier\"\t1954\n\"Mike Nichols\"\t1931\n\"Richard Harris\"\t1930\n\"Clint Eastwood\"\t1930\n\"Takeshi Kitano\"\t1947\n\"Dina Meyer\"\t1968\n\"Ice-T\"\t1958\n\"Robert Longo\"\t1953\n\"Halle Berry\"\t1966\n\"Jim Broadbent\"\t1949\n\"Tom Tykwer\"\t1965\n\"David Mitchell\"\t1969\n\"Stefan Arndt\"\t1961\n\"Ian McKellen\"\t1939\n\"Audrey Tautou\"\t1976\n\"Paul Bettany\"\t1971\n\"Ron Howard\"\t1954\n\"Natalie Portman\"\t1981\n\"Stephen Rea\"\t1946\n\"John Hurt\"\t1940\n\"Ben Miles\"\t1967\n\"Emile Hirsch\"\t1985\n\"John Goodman\"\t1960\n\"Susan Sarandon\"\t1946\n\"Matthew Fox\"\t1966\n\"Christina Ricci\"\t1980\n\"Rain\"\t1982\n\"Naomie Harris\"\tNULL\n\"Michael Clarke Duncan\"\t1957\n\"David Morse\"\t1953\n\"Sam Rockwell\"\t1968\n\"Gary Sinise\"\t1955\n\"Patricia Clarkson\"\t1959\n\"Frank Darabont\"\t1959\n\"Frank Langella\"\t1938\n\"Michael Sheen\"\t1969\n\"Oliver Platt\"\t1960\n\"Danny DeVito\"\t1944\n\"John C. Reilly\"\t1965\n\"Ed Harris\"\t1950\n\"Bill Paxton\"\t1955\n\"Philip Seymour Hoffman\"\t1967\n\"Jan de Bont\"\t1943\n\"Robert Zemeckis\"\t1951\n\"Milos Forman\"\t1932\n\"Diane Keaton\"\t1946\n\"Nancy Meyers\"\t1949\n\"Chris Columbus\"\t1958\n\"Julia Roberts\"\t1967\n\"Madonna\"\t1954\n\"Geena Davis\"\t1956\n\"Lori Petty\"\t1963\n\"Penny Marshall\"\t1943\n\"Paul Blythe\"\tNULL\n\"Angela Scope\"\tNULL\n\"Jessica Thompson\"\tNULL\n\"James Thompson\"\tNULL\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635939526752_538363380",
+      "id": "paragraph_1635939526752_538363380",
+      "dateCreated": "2021-11-03 11:38:46.752",
+      "dateStarted": "2021-11-18 10:16:23.508",
+      "dateFinished": "2021-11-18 10:16:24.411",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\nmatch (nk:NotKeanu) return nk",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:16:28.960",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":256,\"data\":{\"name\":\"Jim Broadbent\"},\"label\":\"NotKeanu\"},{\"id\":257,\"data\":{\"name\":\"Tom Tykwer\"},\"label\":\"NotKeanu\"},{\"id\":258,\"data\":{\"name\":\"David Mitchell\"},\"label\":\"NotKeanu\"},{\"id\":259,\"data\":{\"name\":\"Stefan Arndt\"},\"label\":\"NotKeanu\"},{\"id\":260,\"data\":{\"name\":\"Ian McKellen\"},\"label\":\"NotKeanu\"},{\"id\":261,\"data\":{\"name\":\"Audrey Tautou\"},\"label\":\"NotKeanu\"},{\"id\":262,\"data\":{\"name\":\"Paul Bettany\"},\"label\":\"NotKeanu\"},{\"id\":263,\"data\":{\"name\":\"Ron Howard\"},\"label\":\"NotKeanu\"},{\"id\":264,\"data\":{\"name\":\"Natalie Portman\"},\"label\":\"NotKeanu\"},{\"id\":265,\"data\":{\"name\":\"Stephen Rea\"},\"label\":\"NotKeanu\"},{\"id\":266,\"data\":{\"name\":\"John Hurt\"},\"label\":\"NotKeanu\"},{\"id\":267,\"data\":{\"name\":\"Ben Miles\"},\"label\":\"NotKeanu\"},{\"id\":268,\"data\":{\"name\":\"Emile Hirsch\"},\"label\":\"NotKeanu\"},{\"id\":269,\"data\":{\"name\":\"John Goodman\"},\"label\":\"NotKeanu\"},{\"id\":270,\"data\":{\"name\":\"Susan Sarandon\"},\"label\":\"NotKeanu\"},{\"id\":271,\"data\":{\"name\":\"Matthew Fox\"},\"label\":\"NotKeanu\"},{\"id\":272,\"data\":{\"name\":\"Christina Ricci\"},\"label\":\"NotKeanu\"},{\"id\":273,\"data\":{\"name\":\"Rain\"},\"label\":\"NotKeanu\"},{\"id\":274,\"data\":{\"name\":\"Naomie Harris\"},\"label\":\"NotKeanu\"},{\"id\":275,\"data\":{\"name\":\"Michael Clarke Duncan\"},\"label\":\"NotKeanu\"},{\"id\":276,\"data\":{\"name\":\"David Morse\"},\"label\":\"NotKeanu\"},{\"id\":277,\"data\":{\"name\":\"Sam Rockwell\"},\"label\":\"NotKeanu\"},{\"id\":278,\"data\":{\"name\":\"Gary Sinise\"},\"label\":\"NotKeanu\"},{\"id\":279,\"data\":{\"name\":\"Patricia Clarkson\"},\"label\":\"NotKeanu\"},{\"id\":280,\"data\":{\"name\":\"Frank Darabont\"},\"label\":\"NotKeanu\"},{\"id\":281,\"data\":{\"name\":\"Frank Langella\"},\"label\":\"NotKeanu\"},{\"id\":282,\"data\":{\"name\":\"Michael Sheen\"},\"label\":\"NotKeanu\"},{\"id\":283,\"data\":{\"name\":\"Oliver Platt\"},\"label\":\"NotKeanu\"},{\"id\":284,\"data\":{\"name\":\"Danny DeVito\"},\"label\":\"NotKeanu\"},{\"id\":285,\"data\":{\"name\":\"John C. Reilly\"},\"label\":\"NotKeanu\"},{\"id\":286,\"data\":{\"name\":\"Ed Harris\"},\"label\":\"NotKeanu\"},{\"id\":287,\"data\":{\"name\":\"Bill Paxton\"},\"label\":\"NotKeanu\"},{\"id\":288,\"data\":{\"name\":\"Philip Seymour Hoffman\"},\"label\":\"NotKeanu\"},{\"id\":289,\"data\":{\"name\":\"Jan de Bont\"},\"label\":\"NotKeanu\"},{\"id\":290,\"data\":{\"name\":\"Robert Zemeckis\"},\"label\":\"NotKeanu\"},{\"id\":291,\"data\":{\"name\":\"Milos Forman\"},\"label\":\"NotKeanu\"},{\"id\":292,\"data\":{\"name\":\"Diane Keaton\"},\"label\":\"NotKeanu\"},{\"id\":293,\"data\":{\"name\":\"Nancy Meyers\"},\"label\":\"NotKeanu\"},{\"id\":294,\"data\":{\"name\":\"Chris Columbus\"},\"label\":\"NotKeanu\"},{\"id\":295,\"data\":{\"name\":\"Julia Roberts\"},\"label\":\"NotKeanu\"},{\"id\":296,\"data\":{\"name\":\"Madonna\"},\"label\":\"NotKeanu\"},{\"id\":297,\"data\":{\"name\":\"Geena Davis\"},\"label\":\"NotKeanu\"},{\"id\":298,\"data\":{\"name\":\"Lori Petty\"},\"label\":\"NotKeanu\"},{\"id\":299,\"data\":{\"name\":\"Penny Marshall\"},\"label\":\"NotKeanu\"},{\"id\":300,\"data\":{\"name\":\"Paul Blythe\"},\"label\":\"NotKeanu\"},{\"id\":301,\"data\":{\"name\":\"Angela Scope\"},\"label\":\"NotKeanu\"},{\"id\":302,\"data\":{\"name\":\"Jessica Thompson\"},\"label\":\"NotKeanu\"},{\"id\":303,\"data\":{\"name\":\"James Thompson\"},\"label\":\"NotKeanu\"},{\"id\":172,\"data\":{\"name\":\"Carrie-Anne Moss\"},\"label\":\"NotKeanu\"},{\"id\":173,\"data\":{\"name\":\"Laurence Fishburne\"},\"label\":\"NotKeanu\"},{\"id\":174,\"data\":{\"name\":\"Hugo Weaving\"},\"label\":\"NotKeanu\"},{\"id\":175,\"data\":{\"name\":\"Lilly Wachowski\"},\"label\":\"NotKeanu\"},{\"id\":176,\"data\":{\"name\":\"Lana Wachowski\"},\"label\":\"NotKeanu\"},{\"id\":177,\"data\":{\"name\":\"Joel Silver\"},\"label\":\"NotKeanu\"},{\"id\":178,\"data\":{\"name\":\"Emil Eifrem\"},\"label\":\"NotKeanu\"},{\"id\":179,\"data\":{\"name\":\"Charlize Theron\"},\"label\":\"NotKeanu\"},{\"id\":180,\"data\":{\"name\":\"Al Pacino\"},\"label\":\"NotKeanu\"},{\"id\":181,\"data\":{\"name\":\"Taylor Hackford\"},\"label\":\"NotKeanu\"},{\"id\":182,\"data\":{\"name\":\"Tom Cruise\"},\"label\":\"NotKeanu\"},{\"id\":183,\"data\":{\"name\":\"Jack Nicholson\"},\"label\":\"NotKeanu\"},{\"id\":184,\"data\":{\"name\":\"Demi Moore\"},\"label\":\"NotKeanu\"},{\"id\":185,\"data\":{\"name\":\"Kevin Bacon\"},\"label\":\"NotKeanu\"},{\"id\":186,\"data\":{\"name\":\"Kiefer Sutherland\"},\"label\":\"NotKeanu\"},{\"id\":187,\"data\":{\"name\":\"Noah Wyle\"},\"label\":\"NotKeanu\"},{\"id\":188,\"data\":{\"name\":\"Cuba Gooding Jr.\"},\"label\":\"NotKeanu\"},{\"id\":189,\"data\":{\"name\":\"Kevin Pollak\"},\"label\":\"NotKeanu\"},{\"id\":190,\"data\":{\"name\":\"J.T. Walsh\"},\"label\":\"NotKeanu\"},{\"id\":191,\"data\":{\"name\":\"James Marshall\"},\"label\":\"NotKeanu\"},{\"id\":192,\"data\":{\"name\":\"Christopher Guest\"},\"label\":\"NotKeanu\"},{\"id\":193,\"data\":{\"name\":\"Rob Reiner\"},\"label\":\"NotKeanu\"},{\"id\":194,\"data\":{\"name\":\"Aaron Sorkin\"},\"label\":\"NotKeanu\"},{\"id\":195,\"data\":{\"name\":\"Kelly McGillis\"},\"label\":\"NotKeanu\"},{\"id\":196,\"data\":{\"name\":\"Val Kilmer\"},\"label\":\"NotKeanu\"},{\"id\":197,\"data\":{\"name\":\"Anthony Edwards\"},\"label\":\"NotKeanu\"},{\"id\":198,\"data\":{\"name\":\"Tom Skerritt\"},\"label\":\"NotKeanu\"},{\"id\":199,\"data\":{\"name\":\"Meg Ryan\"},\"label\":\"NotKeanu\"},{\"id\":200,\"data\":{\"name\":\"Tony Scott\"},\"label\":\"NotKeanu\"},{\"id\":201,\"data\":{\"name\":\"Jim Cash\"},\"label\":\"NotKeanu\"},{\"id\":202,\"data\":{\"name\":\"Renee Zellweger\"},\"label\":\"NotKeanu\"},{\"id\":203,\"data\":{\"name\":\"Kelly Preston\"},\"label\":\"NotKeanu\"},{\"id\":204,\"data\":{\"name\":\"Jerry O\\u0027Connell\"},\"label\":\"NotKeanu\"},{\"id\":205,\"data\":{\"name\":\"Jay Mohr\"},\"label\":\"NotKeanu\"},{\"id\":206,\"data\":{\"name\":\"Bonnie Hunt\"},\"label\":\"NotKeanu\"},{\"id\":207,\"data\":{\"name\":\"Regina King\"},\"label\":\"NotKeanu\"},{\"id\":208,\"data\":{\"name\":\"Jonathan Lipnicki\"},\"label\":\"NotKeanu\"},{\"id\":209,\"data\":{\"name\":\"Cameron Crowe\"},\"label\":\"NotKeanu\"},{\"id\":210,\"data\":{\"name\":\"River Phoenix\"},\"label\":\"NotKeanu\"},{\"id\":211,\"data\":{\"name\":\"Corey Feldman\"},\"label\":\"NotKeanu\"},{\"id\":212,\"data\":{\"name\":\"Wil Wheaton\"},\"label\":\"NotKeanu\"},{\"id\":213,\"data\":{\"name\":\"John Cusack\"},\"label\":\"NotKeanu\"},{\"id\":214,\"data\":{\"name\":\"Marshall Bell\"},\"label\":\"NotKeanu\"},{\"id\":215,\"data\":{\"name\":\"Helen Hunt\"},\"label\":\"NotKeanu\"},{\"id\":216,\"data\":{\"name\":\"Greg Kinnear\"},\"label\":\"NotKeanu\"},{\"id\":217,\"data\":{\"name\":\"James L. Brooks\"},\"label\":\"NotKeanu\"},{\"id\":218,\"data\":{\"name\":\"Annabella Sciorra\"},\"label\":\"NotKeanu\"},{\"id\":219,\"data\":{\"name\":\"Max von Sydow\"},\"label\":\"NotKeanu\"},{\"id\":220,\"data\":{\"name\":\"Werner Herzog\"},\"label\":\"NotKeanu\"},{\"id\":221,\"data\":{\"name\":\"Robin Williams\"},\"label\":\"NotKeanu\"},{\"id\":222,\"data\":{\"name\":\"Vincent Ward\"},\"label\":\"NotKeanu\"},{\"id\":223,\"data\":{\"name\":\"Ethan Hawke\"},\"label\":\"NotKeanu\"},{\"id\":224,\"data\":{\"name\":\"Rick Yune\"},\"label\":\"NotKeanu\"},{\"id\":225,\"data\":{\"name\":\"James Cromwell\"},\"label\":\"NotKeanu\"},{\"id\":226,\"data\":{\"name\":\"Scott Hicks\"},\"label\":\"NotKeanu\"},{\"id\":227,\"data\":{\"name\":\"Parker Posey\"},\"label\":\"NotKeanu\"},{\"id\":228,\"data\":{\"name\":\"Dave Chappelle\"},\"label\":\"NotKeanu\"},{\"id\":229,\"data\":{\"name\":\"Steve Zahn\"},\"label\":\"NotKeanu\"},{\"id\":230,\"data\":{\"name\":\"Tom Hanks\"},\"label\":\"NotKeanu\"},{\"id\":231,\"data\":{\"name\":\"Nora Ephron\"},\"label\":\"NotKeanu\"},{\"id\":232,\"data\":{\"name\":\"Rita Wilson\"},\"label\":\"NotKeanu\"},{\"id\":233,\"data\":{\"name\":\"Bill Pullman\"},\"label\":\"NotKeanu\"},{\"id\":234,\"data\":{\"name\":\"Victor Garber\"},\"label\":\"NotKeanu\"},{\"id\":235,\"data\":{\"name\":\"Rosie O\\u0027Donnell\"},\"label\":\"NotKeanu\"},{\"id\":236,\"data\":{\"name\":\"John Patrick Stanley\"},\"label\":\"NotKeanu\"},{\"id\":237,\"data\":{\"name\":\"Nathan Lane\"},\"label\":\"NotKeanu\"},{\"id\":238,\"data\":{\"name\":\"Billy Crystal\"},\"label\":\"NotKeanu\"},{\"id\":239,\"data\":{\"name\":\"Carrie Fisher\"},\"label\":\"NotKeanu\"},{\"id\":240,\"data\":{\"name\":\"Bruno Kirby\"},\"label\":\"NotKeanu\"},{\"id\":241,\"data\":{\"name\":\"Liv Tyler\"},\"label\":\"NotKeanu\"},{\"id\":242,\"data\":{\"name\":\"Brooke Langton\"},\"label\":\"NotKeanu\"},{\"id\":243,\"data\":{\"name\":\"Gene Hackman\"},\"label\":\"NotKeanu\"},{\"id\":244,\"data\":{\"name\":\"Orlando Jones\"},\"label\":\"NotKeanu\"},{\"id\":245,\"data\":{\"name\":\"Howard Deutch\"},\"label\":\"NotKeanu\"},{\"id\":246,\"data\":{\"name\":\"Christian Bale\"},\"label\":\"NotKeanu\"},{\"id\":247,\"data\":{\"name\":\"Zach Grenier\"},\"label\":\"NotKeanu\"},{\"id\":248,\"data\":{\"name\":\"Mike Nichols\"},\"label\":\"NotKeanu\"},{\"id\":249,\"data\":{\"name\":\"Richard Harris\"},\"label\":\"NotKeanu\"},{\"id\":250,\"data\":{\"name\":\"Clint Eastwood\"},\"label\":\"NotKeanu\"},{\"id\":251,\"data\":{\"name\":\"Takeshi Kitano\"},\"label\":\"NotKeanu\"},{\"id\":252,\"data\":{\"name\":\"Dina Meyer\"},\"label\":\"NotKeanu\"},{\"id\":253,\"data\":{\"name\":\"Ice-T\"},\"label\":\"NotKeanu\"},{\"id\":254,\"data\":{\"name\":\"Robert Longo\"},\"label\":\"NotKeanu\"},{\"id\":255,\"data\":{\"name\":\"Halle Berry\"},\"label\":\"NotKeanu\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635939537974_717266072",
+      "id": "paragraph_1635939537974_717266072",
+      "dateCreated": "2021-11-03 11:38:57.974",
+      "dateStarted": "2021-11-18 10:16:28.635",
+      "dateFinished": "2021-11-18 10:16:28.802",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\nmatch (n:Movie {name: \"The movie about Keanu Reeves\"}) return n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:16:34.522",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":171,\"data\":{\"name\":\"The movie about Keanu Reeves\"},\"label\":\"Movie\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635939784252_499221163",
+      "id": "paragraph_1635939784252_499221163",
+      "dateCreated": "2021-11-03 11:43:04.252",
+      "dateStarted": "2021-11-18 10:16:34.540",
+      "dateFinished": "2021-11-18 10:16:34.741",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.case",
+      "text": "%neo4j\n\n// if name is Keanu Reeves we return list of \u0027title\u0027 movies related\n// if name contains \u0027Carrie\u0027 we return list of \u0027title\u0027 and \u0027tagline\u0027 movies related\n// otherwise we return list of \u0027released\u0027 movies related\n\nMATCH (n:Person)\nCALL apoc.case([                // list of pairs (condition and query)\n  n.name \u003d \u0027Keanu Reeves\u0027, \"RETURN [(n)-[]-(m:Movie) | m.title] as selection\",\n  n.name contains \u0027Carrie\u0027, \"RETURN [(n)-[]-(m:Movie) | \u0027title: \u0027 + m.title + \u0027, tagline: \u0027 + m.tagline] as selection\"],   \n  \u0027RETURN [(n)-[]-(m:Movie) | m.released] as selection\u0027,                                         \n  {n: n}\n)\nYIELD value\nRETURN n.name, value.selection as selection;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:17:28.223",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "n.name0",
+                        "visible": true,
+                        "width": 200.0,
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "selection1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "n.name": "string",
+                      "selection": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "n.name\tselection\n\"Keanu Reeves\"\t[null,\"Something\u0027s Gotta Give\",\"The Replacements\",\"Johnny Mnemonic\",\"The Devil\u0027s Advocate\",\"The Matrix Revolutions\",\"The Matrix Reloaded\",\"The Matrix\"]\n\"Carrie-Anne Moss\"\t[\"title: The Matrix Revolutions, tagline: Everything that has a beginning has an end\",\"title: The Matrix Reloaded, tagline: Free your mind\",\"title: The Matrix, tagline: Welcome to the Real World\"]\n\"Laurence Fishburne\"\t[2003,2003,1999]\n\"Hugo Weaving\"\t[2012,2006,2003,2003,1999]\n\"Lilly Wachowski\"\t[2008,2006,2008,2006,2009,2012,2003,2003,1999]\n\"Lana Wachowski\"\t[2008,2006,2006,2008,2012,2009,2003,2003,1999]\n\"Joel Silver\"\t[2008,2006,2009,2003,2003,1999]\n\"Emil Eifrem\"\t[1999]\n\"Charlize Theron\"\t[1996,1997]\n\"Al Pacino\"\t[1997]\n\"Taylor Hackford\"\t[1997]\n\"Tom Cruise\"\t[2000,1986,1992]\n\"Jack Nicholson\"\t[1997,1975,2003,1992,1992]\n\"Demi Moore\"\t[1992]\n\"Kevin Bacon\"\t[1995,2008,1992]\n\"Kiefer Sutherland\"\t[1986,1992]\n\"Noah Wyle\"\t[1992]\n\"Cuba Gooding Jr.\"\t[1998,2000,1997,1992]\n\"Kevin Pollak\"\t[1992]\n\"J.T. Walsh\"\t[1992,1992]\n\"James Marshall\"\t[1992,2009,2006]\n\"Christopher Guest\"\t[1992]\n\"Rob Reiner\"\t[1986,1998,1998,1992]\n\"Aaron Sorkin\"\t[1992,1992]\n\"Kelly McGillis\"\t[1986]\n\"Val Kilmer\"\t[1986]\n\"Anthony Edwards\"\t[1986]\n\"Tom Skerritt\"\t[1986]\n\"Meg Ryan\"\t[1993,1998,1986,1998,1990]\n\"Tony Scott\"\t[1986]\n\"Jim Cash\"\t[1986]\n\"Renee Zellweger\"\t[2000]\n\"Kelly Preston\"\t[2000]\n\"Jerry O\u0027Connell\"\t[2000,1986]\n\"Jay Mohr\"\t[2000]\n\"Bonnie Hunt\"\t[1999,2000]\n\"Regina King\"\t[2000]\n\"Jonathan Lipnicki\"\t[2000]\n\"Cameron Crowe\"\t[2000,2000,2000]\n\"River Phoenix\"\t[1986]\n\"Corey Feldman\"\t[1986]\n\"Wil Wheaton\"\t[1986]\n\"John Cusack\"\t[1986]\n\"Marshall Bell\"\t[1986,2006]\n\"Helen Hunt\"\t[1997,2000,1996]\n\"Greg Kinnear\"\t[1998,1997]\n\"James L. Brooks\"\t[1997]\n\"Annabella Sciorra\"\t[1998]\n\"Max von Sydow\"\t[1998,1999]\n\"Werner Herzog\"\t[2006,1998]\n\"Robin Williams\"\t[1998,1999,1996]\n\"Vincent Ward\"\t[1998]\n\"Ethan Hawke\"\t[1999]\n\"Rick Yune\"\t[2009,1999]\n\"James Cromwell\"\t[1999,1999]\n\"Scott Hicks\"\t[1999]\n\"Parker Posey\"\t[1998]\n\"Dave Chappelle\"\t[1998]\n\"Steve Zahn\"\t[2006,1998]\n\"Tom Hanks\"\t[1995,1998,1992,1990,1996,2006,2012,2000,1999,1993,2004,2007,1996]\n\"Nora Ephron\"\t[1998,1998,1993,1998]\n\"Rita Wilson\"\t[1993]\n\"Bill Pullman\"\t[1993]\n\"Victor Garber\"\t[1993]\n\"Rosie O\u0027Donnell\"\t[1992,1993]\n\"John Patrick Stanley\"\t[1990]\n\"Nathan Lane\"\t[1990,1996]\n\"Billy Crystal\"\t[1998]\n\"Carrie Fisher\"\t[\"title: When Harry Met Sally, tagline: Can two friends sleep together and still love each other in the morning?\"]\n\"Bruno Kirby\"\t[1998]\n\"Liv Tyler\"\t[1996]\n\"Brooke Langton\"\t[2000]\n\"Gene Hackman\"\t[1992,1996,2000]\n\"Orlando Jones\"\t[2000]\n\"Howard Deutch\"\t[2000]\n\"Christian Bale\"\t[2006]\n\"Zach Grenier\"\t[2006,1996]\n\"Mike Nichols\"\t[1996,2007]\n\"Richard Harris\"\t[1992]\n\"Clint Eastwood\"\t[1992,1992]\n\"Takeshi Kitano\"\t[1995]\n\"Dina Meyer\"\t[1995]\n\"Ice-T\"\t[1995]\n\"Robert Longo\"\t[1995]\n\"Halle Berry\"\t[2012]\n\"Jim Broadbent\"\t[2012]\n\"Tom Tykwer\"\t[2012]\n\"David Mitchell\"\t[2012]\n\"Stefan Arndt\"\t[2012]\n\"Ian McKellen\"\t[2006]\n\"Audrey Tautou\"\t[2006]\n\"Paul Bettany\"\t[2006]\n\"Ron Howard\"\t[1995,2008,2006]\n\"Natalie Portman\"\t[2006]\n\"Stephen Rea\"\t[2006]\n\"John Hurt\"\t[2006]\n\"Ben Miles\"\t[2008,2009,2006]\n\"Emile Hirsch\"\t[2008]\n\"John Goodman\"\t[2008]\n\"Susan Sarandon\"\t[2008]\n\"Matthew Fox\"\t[2008]\n\"Christina Ricci\"\t[2008]\n\"Rain\"\t[2008,2009]\n\"Naomie Harris\"\t[2009]\n\"Michael Clarke Duncan\"\t[1999]\n\"David Morse\"\t[1999]\n\"Sam Rockwell\"\t[1999,2008]\n\"Gary Sinise\"\t[1995,1999]\n\"Patricia Clarkson\"\t[1999]\n\"Frank Darabont\"\t[1999]\n\"Frank Langella\"\t[2008]\n\"Michael Sheen\"\t[2008]\n\"Oliver Platt\"\t[2008,1999]\n\"Danny DeVito\"\t[1992,1992,1975]\n\"John C. Reilly\"\t[1992]\n\"Ed Harris\"\t[1995]\n\"Bill Paxton\"\t[1996,1992,1995]\n\"Philip Seymour Hoffman\"\t[1996,2007]\n\"Jan de Bont\"\t[1996]\n\"Robert Zemeckis\"\t[2000,2004]\n\"Milos Forman\"\t[1975]\n\"Diane Keaton\"\t[2003]\n\"Nancy Meyers\"\t[2003,2003,2003]\n\"Chris Columbus\"\t[1999]\n\"Julia Roberts\"\t[2007]\n\"Madonna\"\t[1992]\n\"Geena Davis\"\t[1992]\n\"Lori Petty\"\t[1992]\n\"Penny Marshall\"\t[1992]\n\"Paul Blythe\"\t[]\n\"Angela Scope\"\t[2000]\n\"Jessica Thompson\"\t[2006,2000,2000,2012,1996,1992]\n\"James Thompson\"\t[2000,2006]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635516834037_1307698025",
+      "id": "paragraph_1635516834037_1307698025",
+      "dateCreated": "2021-10-29 14:13:54.037",
+      "dateStarted": "2021-11-18 10:17:28.247",
+      "dateFinished": "2021-11-18 10:17:29.407",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.do.case",
+      "text": "%neo4j\n\nMATCH (n:Person)\nCALL apoc.do.case([                // list of pairs (condition and query)\n  n.name \u003d \u0027Keanu Reeves\u0027, \"WITH $n as n CREATE (n)-[:MY_CASE_REL]-\u003e(:MyCaseNode {myId: 1})\",\n  n.name contains \u0027Carrie\u0027, \"WITH $n as n CREATE (n)-[:MY_CASE_REL]-\u003e(:MyCaseNode {myId: 2})\"],   \n  \u0027\u0027,                                         \n  {n: n}\n)\nYIELD value RETURN n.name;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:18:03.023",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "n.name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "n.name\n\"Laurence Fishburne\"\n\"Hugo Weaving\"\n\"Lilly Wachowski\"\n\"Lana Wachowski\"\n\"Joel Silver\"\n\"Emil Eifrem\"\n\"Charlize Theron\"\n\"Al Pacino\"\n\"Taylor Hackford\"\n\"Tom Cruise\"\n\"Jack Nicholson\"\n\"Demi Moore\"\n\"Kevin Bacon\"\n\"Kiefer Sutherland\"\n\"Noah Wyle\"\n\"Cuba Gooding Jr.\"\n\"Kevin Pollak\"\n\"J.T. Walsh\"\n\"James Marshall\"\n\"Christopher Guest\"\n\"Rob Reiner\"\n\"Aaron Sorkin\"\n\"Kelly McGillis\"\n\"Val Kilmer\"\n\"Anthony Edwards\"\n\"Tom Skerritt\"\n\"Meg Ryan\"\n\"Tony Scott\"\n\"Jim Cash\"\n\"Renee Zellweger\"\n\"Kelly Preston\"\n\"Jerry O\u0027Connell\"\n\"Jay Mohr\"\n\"Bonnie Hunt\"\n\"Regina King\"\n\"Jonathan Lipnicki\"\n\"Cameron Crowe\"\n\"River Phoenix\"\n\"Corey Feldman\"\n\"Wil Wheaton\"\n\"John Cusack\"\n\"Marshall Bell\"\n\"Helen Hunt\"\n\"Greg Kinnear\"\n\"James L. Brooks\"\n\"Annabella Sciorra\"\n\"Max von Sydow\"\n\"Werner Herzog\"\n\"Robin Williams\"\n\"Vincent Ward\"\n\"Ethan Hawke\"\n\"Rick Yune\"\n\"James Cromwell\"\n\"Scott Hicks\"\n\"Parker Posey\"\n\"Dave Chappelle\"\n\"Steve Zahn\"\n\"Tom Hanks\"\n\"Nora Ephron\"\n\"Rita Wilson\"\n\"Bill Pullman\"\n\"Victor Garber\"\n\"Rosie O\u0027Donnell\"\n\"John Patrick Stanley\"\n\"Nathan Lane\"\n\"Billy Crystal\"\n\"Bruno Kirby\"\n\"Liv Tyler\"\n\"Brooke Langton\"\n\"Gene Hackman\"\n\"Orlando Jones\"\n\"Howard Deutch\"\n\"Christian Bale\"\n\"Zach Grenier\"\n\"Mike Nichols\"\n\"Richard Harris\"\n\"Clint Eastwood\"\n\"Takeshi Kitano\"\n\"Dina Meyer\"\n\"Ice-T\"\n\"Robert Longo\"\n\"Halle Berry\"\n\"Jim Broadbent\"\n\"Tom Tykwer\"\n\"David Mitchell\"\n\"Stefan Arndt\"\n\"Ian McKellen\"\n\"Audrey Tautou\"\n\"Paul Bettany\"\n\"Ron Howard\"\n\"Natalie Portman\"\n\"Stephen Rea\"\n\"John Hurt\"\n\"Ben Miles\"\n\"Emile Hirsch\"\n\"John Goodman\"\n\"Susan Sarandon\"\n\"Matthew Fox\"\n\"Christina Ricci\"\n\"Rain\"\n\"Naomie Harris\"\n\"Michael Clarke Duncan\"\n\"David Morse\"\n\"Sam Rockwell\"\n\"Gary Sinise\"\n\"Patricia Clarkson\"\n\"Frank Darabont\"\n\"Frank Langella\"\n\"Michael Sheen\"\n\"Oliver Platt\"\n\"Danny DeVito\"\n\"John C. Reilly\"\n\"Ed Harris\"\n\"Bill Paxton\"\n\"Philip Seymour Hoffman\"\n\"Jan de Bont\"\n\"Robert Zemeckis\"\n\"Milos Forman\"\n\"Diane Keaton\"\n\"Nancy Meyers\"\n\"Chris Columbus\"\n\"Julia Roberts\"\n\"Madonna\"\n\"Geena Davis\"\n\"Lori Petty\"\n\"Penny Marshall\"\n\"Paul Blythe\"\n\"Angela Scope\"\n\"Jessica Thompson\"\n\"James Thompson\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635516847536_392308208",
+      "id": "paragraph_1635516847536_392308208",
+      "dateCreated": "2021-10-29 14:14:07.536",
+      "dateStarted": "2021-11-18 10:18:03.040",
+      "dateFinished": "2021-11-18 10:18:03.338",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\n\nMATCH (n)-[:MY_CASE_REL]-\u003e(m:MyCaseNode)\nRETURN n.name, m.myId",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:18:08.742",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "n.name": "string",
+                      "m.myId": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "n.name\tm.myId\n\"Keanu Reeves\"\t1\n\"Carrie-Anne Moss\"\t2\n\"Carrie Fisher\"\t2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636296350644_1972086368",
+      "id": "paragraph_1636296350644_1972086368",
+      "dateCreated": "2021-11-07 14:45:50.644",
+      "dateStarted": "2021-11-18 10:18:08.759",
+      "dateFinished": "2021-11-18 10:18:08.872",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n\n## Conditional exception\n\nApoc also provide a procedure to raise an exception with a specific message when predicate is false.\n\n\u003cpre\u003e\napoc.util.validate(predicate, message, params) - if the `predicate` is true raise an exception with `message`.\n\u003c/pre\u003e\n\n\nWe have also `apoc.util.validatePredicate(predicate, message, params)`, equivalent but it\u0027s a function.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 13:19:12.393",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eConditional exception\u003c/h2\u003e\n\u003cp\u003eApoc also provide a procedure to raise an exception with a specific message when predicate is false.\u003c/p\u003e\n\u003cpre\u003e\napoc.util.validate(predicate, message, params) - if the `predicate` is true raise an exception with `message`.\n\u003c/pre\u003e\n\u003cp\u003eWe have also \u003ccode\u003eapoc.util.validatePredicate(predicate, message, params)\u003c/code\u003e, equivalent but it\u0026rsquo;s a function.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635865337623_10689460",
+      "id": "paragraph_1635865337623_10689460",
+      "dateCreated": "2021-11-02 15:02:17.623",
+      "dateStarted": "2021-11-24 13:19:12.393",
+      "dateFinished": "2021-11-24 13:19:12.406",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.util.validate",
+      "text": "%neo4j\nMATCH (n:Person) WITH n.name \u003d \u0027Keanu Reeves\u0027 as booleanPredicate, n\nCALL apoc.util.validate(booleanPredicate,\u0027Person with name %s found\u0027,[n.name])\nRETURN count(*)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:18:56.509",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "count(*)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Failed to invoke procedure `apoc.util.validate`: Caused by: java.lang.RuntimeException: Person with name Keanu Reeves found"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636043842236_1223515060",
+      "id": "paragraph_1636043842236_1223515060",
+      "dateCreated": "2021-11-04 16:37:22.237",
+      "dateStarted": "2021-11-18 10:18:56.531",
+      "dateFinished": "2021-11-18 10:18:56.739",
+      "status": "ERROR"
+    },
+    {
+      "title": "apoc.util.validate",
+      "text": "%neo4j\nMATCH (n:Person) WITH n.name \u003d \u0027Not Existent\u0027 as booleanPredicate, n\nCALL apoc.util.validate(booleanPredicate,\u0027Person with name %s found\u0027,[n.name])\nRETURN count(*)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:19:07.710",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0057,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "count(*)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "count(*)\n133\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636297212424_2097832834",
+      "id": "paragraph_1636297212424_2097832834",
+      "dateCreated": "2021-11-07 15:00:12.424",
+      "dateStarted": "2021-11-18 10:19:07.730",
+      "dateFinished": "2021-11-18 10:19:07.816",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.util.validatePredicate",
+      "text": "%md\n\nEquivalent to apoc.util.validate but is a function\n\n```\nMATCH (a:Person)\nWHERE apoc.util.validatePredicate(true,\u0027Person with name %s found\u0027,[n.name])\nRETURN a\n```",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:19:22.966",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "born": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "title": true,
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eEquivalent to apoc.util.validate but is a function\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eMATCH (a:Person)\nWHERE apoc.util.validatePredicate(true,\u0027Person with name %s found\u0027,[n.name])\nRETURN a\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636043895936_231881876",
+      "id": "paragraph_1636043895936_231881876",
+      "dateCreated": "2021-11-04 16:38:15.936",
+      "dateStarted": "2021-11-18 10:19:22.967",
+      "dateFinished": "2021-11-18 10:19:22.991",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n# Batching data\n\nApoc provides some procedures to split the data in batches to handle performance and memory issues:\n- apoc.periodic.iterate\n- apoc.periodic.commit\n- apoc.periodic.truncate\n\nThe `apoc.periodic.iterate(data-driven, operation, $config)` procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions. \n\nIt provides a way to batch the data by dividing the workload into two parts:\n\n- a data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\n- an operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\n\nThe data-driven statement is provided as the first statement that results in a stream of values to be processed. \nThe results of the data-driven statement are passed to the operation statement as parameters and the operation statement is provided as the second statement to process one element at a time or a batch at a time\n\nWe can use the following configurations as 3rd parameter:\n\n- `batchSize (default: 10000)` - run the specified number of operation statements in a single transaction\n- `parallel (default: false)` - run operation statements in paralle\n- `retries (default: 0)` - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached\n- `batchMode (default: \"BATCH\")` - how data-driven statements should be processed by operation statement. See below\n- `params (default: EmtpyMap)` - externally pass in map of params\n- `concurrency (default: 50)` - number of concurrent tasks are generated when using `parallel:true`\n\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\n`batchMode` can have 3 values. \n`SINGLE` to perform one operation at a time. \nBoth `BATCH` and `BATCH_SINGLE` execute operation statement once per batchSize and the results of data-driven statement will be grouped in a `$_batch`. For example, in this case:\n\n| first      | second |\n| ----------- | ----------- | \n| alpha      | beta       | \n| gamma   | delta        |\n| ...        | ... |\n\n`$_batch` will be a list of maps: `[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027}  .....]`\n\n\nBut with `BATCH` will be executed an unpacking of batch, that is:\n\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\nInstead with `BATCH_SINGLE` but leaves unpacking of batch to the operation statement.\nThe operation query can access the batched values via the `$_batch` parameter.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:19:25.545",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eBatching data\u003c/h1\u003e\n\u003cp\u003eApoc provides some procedures to split the data in batches to handle performance and memory issues:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eapoc.periodic.iterate\u003c/li\u003e\n\u003cli\u003eapoc.periodic.commit\u003c/li\u003e\n\u003cli\u003eapoc.periodic.truncate\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003eapoc.periodic.iterate(data-driven, operation, $config)\u003c/code\u003e procedure is helpful when you need to handle large amounts of data for import, refactoring, and other cases that require large transactions.\u003c/p\u003e\n\u003cp\u003eIt provides a way to batch the data by dividing the workload into two parts:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ea data-driven statement: This defines how you select what data needs handled. You can provide a Cypher statement to select from existing graph data, read external data from a file or API, or retrieve data from another datastore.\u003c/li\u003e\n\u003cli\u003ean operation statement: This defines what you want done to the selected data. You can do things like execute Cypher for updating or creating/deleting the data or run other procedures to manipulate and transform values before loading.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe data-driven statement is provided as the first statement that results in a stream of values to be processed.\u003cbr /\u003e\nThe results of the data-driven statement are passed to the operation statement as parameters and the operation statement is provided as the second statement to process one element at a time or a batch at a time\u003c/p\u003e\n\u003cp\u003eWe can use the following configurations as 3rd parameter:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003ebatchSize (default: 10000)\u003c/code\u003e - run the specified number of operation statements in a single transaction\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eparallel (default: false)\u003c/code\u003e - run operation statements in paralle\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eretries (default: 0)\u003c/code\u003e - if the operation statement fails with an error, sleep 100ms and retry until retries-count is reached\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003ebatchMode (default: \u0026quot;BATCH\u0026quot;)\u003c/code\u003e - how data-driven statements should be processed by operation statement. See below\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eparams (default: EmtpyMap)\u003c/code\u003e - externally pass in map of params\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003econcurrency (default: 50)\u003c/code\u003e - number of concurrent tasks are generated when using \u003ccode\u003eparallel:true\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\nFor complex operations like updating or removing relationships, \neither do not use `parallel: true` or make sure that you batch the work in a way that each subgraph of data is updated in one operation,\notherwise might deadlock due to conflicts [same relationship updated twice]\n\u003c/pre\u003e\n\u003cp\u003e\u003ccode\u003ebatchMode\u003c/code\u003e can have 3 values.\u003cbr /\u003e\n\u003ccode\u003eSINGLE\u003c/code\u003e to perform one operation at a time.\u003cbr /\u003e\nBoth \u003ccode\u003eBATCH\u003c/code\u003e and \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e execute operation statement once per batchSize and the results of data-driven statement will be grouped in a \u003ccode\u003e$_batch\u003c/code\u003e. For example, in this case:\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003cth\u003efirst\u003c/th\u003e\u003cth\u003esecond\u003c/th\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003ealpha\u003c/td\u003e\u003ctd\u003ebeta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003egamma\u003c/td\u003e\u003ctd\u003edelta\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003ctd\u003e\u0026hellip;\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003e\u003ccode\u003e$_batch\u003c/code\u003e will be a list of maps: \u003ccode\u003e[{first: \u0027alpha\u0027, second: \u0027beta\u0027} , {first: \u0027gamma\u0027, second: \u0027delta\u0027} .....]\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eBut with \u003ccode\u003eBATCH\u003c/code\u003e will be executed an unpacking of batch, that is:\u003c/p\u003e\n\u003cpre\u003e\nUNWIND $_batch AS _batch\nWITH _batch.field1 AS field1, _batch.field2 AS field2\n\u003c/pre\u003e\n\u003cp\u003eInstead with \u003ccode\u003eBATCH_SINGLE\u003c/code\u003e but leaves unpacking of batch to the operation statement.\u003cbr /\u003e\nThe operation query can access the batched values via the \u003ccode\u003e$_batch\u003c/code\u003e parameter.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635518181245_851865146",
+      "id": "paragraph_1635518181245_851865146",
+      "dateCreated": "2021-10-29 14:36:21.246",
+      "dateStarted": "2021-11-18 10:19:25.545",
+      "dateFinished": "2021-11-18 10:19:25.617",
+      "status": "FINISHED"
+    },
+    {
+      "title": "BATCH mode",
+      "text": "%neo4j\n\nCALL apoc.periodic.iterate(\n  \"UNWIND range(1,9999) as id RETURN id\",\n  \"CREATE (:NodePeriodic {id: id, time: timestamp()})-[rel:MY_PERIODIC_REL]-\u003e(:End {id: id})\", // this is a single element of batch UNWINDed\n  {batchMode: \u0027BATCH\u0027,batchSize:10, parallel:false})\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:25:01.636",
+      "config": {
+        "colWidth": 9.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 228.011,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "batches": "string",
+                      "total": "string",
+                      "timeTaken": "string",
+                      "committedOperations": "string",
+                      "failedOperations": "string",
+                      "failedBatches": "string",
+                      "retries": "string",
+                      "batch.total": "string",
+                      "batch.committed": "string",
+                      "batch.failed": "string",
+                      "operations.total": "string",
+                      "operations.committed": "string",
+                      "operations.failed": "string",
+                      "wasTerminated": "string",
+                      "updateStatistics.nodesDeleted": "string",
+                      "updateStatistics.labelsAdded": "string",
+                      "updateStatistics.relationshipsCreated": "string",
+                      "updateStatistics.nodesCreated": "string",
+                      "updateStatistics.propertiesSet": "string",
+                      "updateStatistics.relationshipsDeleted": "string",
+                      "updateStatistics.labelsRemoved": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n1000\t9999\t5\t9999\t0\t0\t0\t1000\t1000\t0\t9999\t9999\t0\tFALSE\t0\t19998\t9999\t19998\t29997\t0\t0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635847089976_739455528",
+      "id": "paragraph_1635847089976_739455528",
+      "dateCreated": "2021-11-02 09:58:09.976",
+      "dateStarted": "2021-11-18 10:24:00.279",
+      "dateFinished": "2021-11-18 10:24:05.756",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\n\nmatch (s:NodePeriodic) \nreturn count(s);",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:24:50.311",
+      "config": {
+        "colWidth": 3.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 244.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "count(s)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "count(s)\n9999\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635847187269_311493915",
+      "id": "paragraph_1635847187269_311493915",
+      "dateCreated": "2021-11-02 09:59:47.269",
+      "dateStarted": "2021-11-18 10:24:50.337",
+      "dateFinished": "2021-11-18 10:24:50.437",
+      "status": "FINISHED"
+    },
+    {
+      "title": " apoc.periodic.iterate with BATCH_SINGLE",
+      "text": "%neo4j\n\nUNWIND range(1,1000) as id create (:Start {myProp: id});\n\n// the `$_batch` is [{n: Node(1)}, {n: Node(2)}, ....]\nCALL apoc.periodic.iterate(\n  \"MATCH (n:Start) RETURN n\",\n  \"WITH $_batch as b CREATE (batch:Batch) set batch.prop \u003d [item in b | item.n.myProp]\", // we create for each batch a list of \u0027myProp\u0027s\n  {batchMode: \u0027BATCH_SINGLE\u0027,batchSize:10, parallel:false})\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:25:43.016",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.006,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "batches": "string",
+                      "total": "string",
+                      "timeTaken": "string",
+                      "committedOperations": "string",
+                      "failedOperations": "string",
+                      "failedBatches": "string",
+                      "retries": "string",
+                      "batch.total": "string",
+                      "batch.committed": "string",
+                      "batch.failed": "string",
+                      "operations.total": "string",
+                      "operations.committed": "string",
+                      "operations.failed": "string",
+                      "wasTerminated": "string",
+                      "updateStatistics.nodesDeleted": "string",
+                      "updateStatistics.labelsAdded": "string",
+                      "updateStatistics.relationshipsCreated": "string",
+                      "updateStatistics.nodesCreated": "string",
+                      "updateStatistics.propertiesSet": "string",
+                      "updateStatistics.relationshipsDeleted": "string",
+                      "updateStatistics.labelsRemoved": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "batches\ttotal\ttimeTaken\tcommittedOperations\tfailedOperations\tfailedBatches\tretries\tbatch.total\tbatch.committed\tbatch.failed\toperations.total\toperations.committed\toperations.failed\twasTerminated\tupdateStatistics.nodesDeleted\tupdateStatistics.labelsAdded\tupdateStatistics.relationshipsCreated\tupdateStatistics.nodesCreated\tupdateStatistics.propertiesSet\tupdateStatistics.relationshipsDeleted\tupdateStatistics.labelsRemoved\n100\t1000\t0\t1000\t0\t0\t0\t100\t100\t0\t1000\t1000\t0\tFALSE\t0\t100\t0\t100\t100\t0\t0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635518708818_1857499773",
+      "id": "paragraph_1635518708818_1857499773",
+      "dateCreated": "2021-10-29 14:45:08.818",
+      "dateStarted": "2021-11-18 10:25:43.034",
+      "dateFinished": "2021-11-18 10:25:43.717",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\n\nMATCH (n:Batch) return n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:25:47.110",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "id0",
+                        "visible": true,
+                        "width": 150.0,
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "label1",
+                        "visible": true,
+                        "width": 307.0,
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "prop2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "prop": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":21305,\"data\":{\"prop\":[1,2,3,4,5,6,7,8,9,10]},\"label\":\"Batch\"},{\"id\":21306,\"data\":{\"prop\":[11,12,13,14,15,16,17,18,19,20]},\"label\":\"Batch\"},{\"id\":21307,\"data\":{\"prop\":[21,22,23,24,25,26,27,28,29,30]},\"label\":\"Batch\"},{\"id\":21308,\"data\":{\"prop\":[31,32,33,34,35,36,37,38,39,40]},\"label\":\"Batch\"},{\"id\":21309,\"data\":{\"prop\":[41,42,43,44,45,46,47,48,49,50]},\"label\":\"Batch\"},{\"id\":21310,\"data\":{\"prop\":[51,52,53,54,55,56,57,58,59,60]},\"label\":\"Batch\"},{\"id\":21311,\"data\":{\"prop\":[61,62,63,64,65,66,67,68,69,70]},\"label\":\"Batch\"},{\"id\":21312,\"data\":{\"prop\":[71,72,73,74,75,76,77,78,79,80]},\"label\":\"Batch\"},{\"id\":21313,\"data\":{\"prop\":[81,82,83,84,85,86,87,88,89,90]},\"label\":\"Batch\"},{\"id\":21314,\"data\":{\"prop\":[91,92,93,94,95,96,97,98,99,100]},\"label\":\"Batch\"},{\"id\":21315,\"data\":{\"prop\":[101,102,103,104,105,106,107,108,109,110]},\"label\":\"Batch\"},{\"id\":21316,\"data\":{\"prop\":[111,112,113,114,115,116,117,118,119,120]},\"label\":\"Batch\"},{\"id\":21317,\"data\":{\"prop\":[121,122,123,124,125,126,127,128,129,130]},\"label\":\"Batch\"},{\"id\":21318,\"data\":{\"prop\":[131,132,133,134,135,136,137,138,139,140]},\"label\":\"Batch\"},{\"id\":21319,\"data\":{\"prop\":[141,142,143,144,145,146,147,148,149,150]},\"label\":\"Batch\"},{\"id\":21320,\"data\":{\"prop\":[151,152,153,154,155,156,157,158,159,160]},\"label\":\"Batch\"},{\"id\":21321,\"data\":{\"prop\":[161,162,163,164,165,166,167,168,169,170]},\"label\":\"Batch\"},{\"id\":21322,\"data\":{\"prop\":[171,172,173,174,175,176,177,178,179,180]},\"label\":\"Batch\"},{\"id\":21323,\"data\":{\"prop\":[181,182,183,184,185,186,187,188,189,190]},\"label\":\"Batch\"},{\"id\":21324,\"data\":{\"prop\":[191,192,193,194,195,196,197,198,199,200]},\"label\":\"Batch\"},{\"id\":21325,\"data\":{\"prop\":[201,202,203,204,205,206,207,208,209,210]},\"label\":\"Batch\"},{\"id\":21326,\"data\":{\"prop\":[211,212,213,214,215,216,217,218,219,220]},\"label\":\"Batch\"},{\"id\":21327,\"data\":{\"prop\":[221,222,223,224,225,226,227,228,229,230]},\"label\":\"Batch\"},{\"id\":21328,\"data\":{\"prop\":[231,232,233,234,235,236,237,238,239,240]},\"label\":\"Batch\"},{\"id\":21329,\"data\":{\"prop\":[241,242,243,244,245,246,247,248,249,250]},\"label\":\"Batch\"},{\"id\":21330,\"data\":{\"prop\":[251,252,253,254,255,256,257,258,259,260]},\"label\":\"Batch\"},{\"id\":21331,\"data\":{\"prop\":[261,262,263,264,265,266,267,268,269,270]},\"label\":\"Batch\"},{\"id\":21332,\"data\":{\"prop\":[271,272,273,274,275,276,277,278,279,280]},\"label\":\"Batch\"},{\"id\":21333,\"data\":{\"prop\":[281,282,283,284,285,286,287,288,289,290]},\"label\":\"Batch\"},{\"id\":21334,\"data\":{\"prop\":[291,292,293,294,295,296,297,298,299,300]},\"label\":\"Batch\"},{\"id\":21335,\"data\":{\"prop\":[301,302,303,304,305,306,307,308,309,310]},\"label\":\"Batch\"},{\"id\":21336,\"data\":{\"prop\":[311,312,313,314,315,316,317,318,319,320]},\"label\":\"Batch\"},{\"id\":21337,\"data\":{\"prop\":[321,322,323,324,325,326,327,328,329,330]},\"label\":\"Batch\"},{\"id\":21338,\"data\":{\"prop\":[331,332,333,334,335,336,337,338,339,340]},\"label\":\"Batch\"},{\"id\":21339,\"data\":{\"prop\":[341,342,343,344,345,346,347,348,349,350]},\"label\":\"Batch\"},{\"id\":21340,\"data\":{\"prop\":[351,352,353,354,355,356,357,358,359,360]},\"label\":\"Batch\"},{\"id\":21341,\"data\":{\"prop\":[361,362,363,364,365,366,367,368,369,370]},\"label\":\"Batch\"},{\"id\":21342,\"data\":{\"prop\":[371,372,373,374,375,376,377,378,379,380]},\"label\":\"Batch\"},{\"id\":21343,\"data\":{\"prop\":[381,382,383,384,385,386,387,388,389,390]},\"label\":\"Batch\"},{\"id\":21344,\"data\":{\"prop\":[391,392,393,394,395,396,397,398,399,400]},\"label\":\"Batch\"},{\"id\":21345,\"data\":{\"prop\":[401,402,403,404,405,406,407,408,409,410]},\"label\":\"Batch\"},{\"id\":21346,\"data\":{\"prop\":[411,412,413,414,415,416,417,418,419,420]},\"label\":\"Batch\"},{\"id\":21347,\"data\":{\"prop\":[421,422,423,424,425,426,427,428,429,430]},\"label\":\"Batch\"},{\"id\":21348,\"data\":{\"prop\":[431,432,433,434,435,436,437,438,439,440]},\"label\":\"Batch\"},{\"id\":21349,\"data\":{\"prop\":[441,442,443,444,445,446,447,448,449,450]},\"label\":\"Batch\"},{\"id\":21350,\"data\":{\"prop\":[451,452,453,454,455,456,457,458,459,460]},\"label\":\"Batch\"},{\"id\":21351,\"data\":{\"prop\":[461,462,463,464,465,466,467,468,469,470]},\"label\":\"Batch\"},{\"id\":21352,\"data\":{\"prop\":[471,472,473,474,475,476,477,478,479,480]},\"label\":\"Batch\"},{\"id\":21353,\"data\":{\"prop\":[481,482,483,484,485,486,487,488,489,490]},\"label\":\"Batch\"},{\"id\":21354,\"data\":{\"prop\":[491,492,493,494,495,496,497,498,499,500]},\"label\":\"Batch\"},{\"id\":21355,\"data\":{\"prop\":[501,502,503,504,505,506,507,508,509,510]},\"label\":\"Batch\"},{\"id\":21356,\"data\":{\"prop\":[511,512,513,514,515,516,517,518,519,520]},\"label\":\"Batch\"},{\"id\":21357,\"data\":{\"prop\":[521,522,523,524,525,526,527,528,529,530]},\"label\":\"Batch\"},{\"id\":21358,\"data\":{\"prop\":[531,532,533,534,535,536,537,538,539,540]},\"label\":\"Batch\"},{\"id\":21359,\"data\":{\"prop\":[541,542,543,544,545,546,547,548,549,550]},\"label\":\"Batch\"},{\"id\":21360,\"data\":{\"prop\":[551,552,553,554,555,556,557,558,559,560]},\"label\":\"Batch\"},{\"id\":21361,\"data\":{\"prop\":[561,562,563,564,565,566,567,568,569,570]},\"label\":\"Batch\"},{\"id\":21362,\"data\":{\"prop\":[571,572,573,574,575,576,577,578,579,580]},\"label\":\"Batch\"},{\"id\":21363,\"data\":{\"prop\":[581,582,583,584,585,586,587,588,589,590]},\"label\":\"Batch\"},{\"id\":21364,\"data\":{\"prop\":[591,592,593,594,595,596,597,598,599,600]},\"label\":\"Batch\"},{\"id\":21365,\"data\":{\"prop\":[601,602,603,604,605,606,607,608,609,610]},\"label\":\"Batch\"},{\"id\":21366,\"data\":{\"prop\":[611,612,613,614,615,616,617,618,619,620]},\"label\":\"Batch\"},{\"id\":21367,\"data\":{\"prop\":[621,622,623,624,625,626,627,628,629,630]},\"label\":\"Batch\"},{\"id\":21368,\"data\":{\"prop\":[631,632,633,634,635,636,637,638,639,640]},\"label\":\"Batch\"},{\"id\":21369,\"data\":{\"prop\":[641,642,643,644,645,646,647,648,649,650]},\"label\":\"Batch\"},{\"id\":21370,\"data\":{\"prop\":[651,652,653,654,655,656,657,658,659,660]},\"label\":\"Batch\"},{\"id\":21371,\"data\":{\"prop\":[661,662,663,664,665,666,667,668,669,670]},\"label\":\"Batch\"},{\"id\":21372,\"data\":{\"prop\":[671,672,673,674,675,676,677,678,679,680]},\"label\":\"Batch\"},{\"id\":21373,\"data\":{\"prop\":[681,682,683,684,685,686,687,688,689,690]},\"label\":\"Batch\"},{\"id\":21374,\"data\":{\"prop\":[691,692,693,694,695,696,697,698,699,700]},\"label\":\"Batch\"},{\"id\":21375,\"data\":{\"prop\":[701,702,703,704,705,706,707,708,709,710]},\"label\":\"Batch\"},{\"id\":21376,\"data\":{\"prop\":[711,712,713,714,715,716,717,718,719,720]},\"label\":\"Batch\"},{\"id\":21377,\"data\":{\"prop\":[721,722,723,724,725,726,727,728,729,730]},\"label\":\"Batch\"},{\"id\":21378,\"data\":{\"prop\":[731,732,733,734,735,736,737,738,739,740]},\"label\":\"Batch\"},{\"id\":21379,\"data\":{\"prop\":[741,742,743,744,745,746,747,748,749,750]},\"label\":\"Batch\"},{\"id\":21380,\"data\":{\"prop\":[751,752,753,754,755,756,757,758,759,760]},\"label\":\"Batch\"},{\"id\":21381,\"data\":{\"prop\":[761,762,763,764,765,766,767,768,769,770]},\"label\":\"Batch\"},{\"id\":21382,\"data\":{\"prop\":[771,772,773,774,775,776,777,778,779,780]},\"label\":\"Batch\"},{\"id\":21383,\"data\":{\"prop\":[781,782,783,784,785,786,787,788,789,790]},\"label\":\"Batch\"},{\"id\":21384,\"data\":{\"prop\":[791,792,793,794,795,796,797,798,799,800]},\"label\":\"Batch\"},{\"id\":21385,\"data\":{\"prop\":[801,802,803,804,805,806,807,808,809,810]},\"label\":\"Batch\"},{\"id\":21386,\"data\":{\"prop\":[811,812,813,814,815,816,817,818,819,820]},\"label\":\"Batch\"},{\"id\":21387,\"data\":{\"prop\":[821,822,823,824,825,826,827,828,829,830]},\"label\":\"Batch\"},{\"id\":21388,\"data\":{\"prop\":[831,832,833,834,835,836,837,838,839,840]},\"label\":\"Batch\"},{\"id\":21389,\"data\":{\"prop\":[841,842,843,844,845,846,847,848,849,850]},\"label\":\"Batch\"},{\"id\":21390,\"data\":{\"prop\":[851,852,853,854,855,856,857,858,859,860]},\"label\":\"Batch\"},{\"id\":21391,\"data\":{\"prop\":[861,862,863,864,865,866,867,868,869,870]},\"label\":\"Batch\"},{\"id\":21392,\"data\":{\"prop\":[871,872,873,874,875,876,877,878,879,880]},\"label\":\"Batch\"},{\"id\":21393,\"data\":{\"prop\":[881,882,883,884,885,886,887,888,889,890]},\"label\":\"Batch\"},{\"id\":21394,\"data\":{\"prop\":[891,892,893,894,895,896,897,898,899,900]},\"label\":\"Batch\"},{\"id\":21395,\"data\":{\"prop\":[901,902,903,904,905,906,907,908,909,910]},\"label\":\"Batch\"},{\"id\":21396,\"data\":{\"prop\":[911,912,913,914,915,916,917,918,919,920]},\"label\":\"Batch\"},{\"id\":21397,\"data\":{\"prop\":[921,922,923,924,925,926,927,928,929,930]},\"label\":\"Batch\"},{\"id\":21398,\"data\":{\"prop\":[931,932,933,934,935,936,937,938,939,940]},\"label\":\"Batch\"},{\"id\":21399,\"data\":{\"prop\":[941,942,943,944,945,946,947,948,949,950]},\"label\":\"Batch\"},{\"id\":21400,\"data\":{\"prop\":[951,952,953,954,955,956,957,958,959,960]},\"label\":\"Batch\"},{\"id\":21401,\"data\":{\"prop\":[961,962,963,964,965,966,967,968,969,970]},\"label\":\"Batch\"},{\"id\":21402,\"data\":{\"prop\":[971,972,973,974,975,976,977,978,979,980]},\"label\":\"Batch\"},{\"id\":21403,\"data\":{\"prop\":[981,982,983,984,985,986,987,988,989,990]},\"label\":\"Batch\"},{\"id\":21404,\"data\":{\"prop\":[991,992,993,994,995,996,997,998,999,1000]},\"label\":\"Batch\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635846293577_421797261",
+      "id": "paragraph_1635846293577_421797261",
+      "dateCreated": "2021-11-02 09:44:53.578",
+      "dateStarted": "2021-11-18 10:25:47.128",
+      "dateFinished": "2021-11-18 10:25:47.300",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n### Periodic commit\n\nEspecially for graph processing it is useful to run a query repeatedly in separate transactions until it doesn’t generates any results anymore. \n\nIn this case, we can use `apoc.periodic.commit(query, $param)`, \nwith which the query is executed in separate transactions until it returns `0`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 13:19:18.332",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003ePeriodic commit\u003c/h3\u003e\n\u003cp\u003eEspecially for graph processing it is useful to run a query repeatedly in separate transactions until it doesn’t generates any results anymore.\u003c/p\u003e\n\u003cp\u003eIn this case, we can use \u003ccode\u003eapoc.periodic.commit(query, $param)\u003c/code\u003e,\u003cbr /\u003e\nwith which the query is executed in separate transactions until it returns \u003ccode\u003e0\u003c/code\u003e.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635518388146_1831838883",
+      "id": "paragraph_1635518388146_1831838883",
+      "dateCreated": "2021-10-29 14:39:48.146",
+      "dateStarted": "2021-11-24 13:19:18.333",
+      "dateFinished": "2021-11-24 13:19:18.343",
+      "status": "FINISHED"
+    },
+    {
+      "title": "apoc.periodic.commit",
+      "text": "%neo4j\n\n// apoc.periodic.commit must contain a LIMIT clause to batch results\n\nCALL apoc.periodic.commit(\n  \"MATCH (person:Person) WHERE NOT exists(person.uuid)\n   with person LIMIT $limit                            // we limit the result\n   SET person.uuid \u003d apoc.create.uuid()                // apoc.create.uuid() is a simple function that generate an UUID, e.g. \u00273a4500b3-350e-43e9-aadb-d839eeb23b62\u0027\n   RETURN count(*)\", // until count is 0, we continue the execution\n  {limit:10})",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:27:38.658",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 88.0114,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "updates": "string",
+                      "executions": "string",
+                      "runtime": "string",
+                      "batches": "string",
+                      "failedBatches": "string",
+                      "failedCommits": "string",
+                      "wasTerminated": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "updates\texecutions\truntime\tbatches\tfailedBatches\tfailedCommits\twasTerminated\n133\t14\t0\t15\t0\t0\tFALSE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635518599254_1715714712",
+      "id": "paragraph_1635518599254_1715714712",
+      "dateCreated": "2021-10-29 14:43:19.254",
+      "dateStarted": "2021-11-18 10:27:38.678",
+      "dateFinished": "2021-11-18 10:27:39.234",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check results",
+      "text": "%neo4j\nmatch (person:Person) return person",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:27:44.025",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "id0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "label1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "name2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "city3",
+                        "visible": true,
+                        "width": 292.0,
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "born4",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "uuid": "string",
+                      "born": "string",
+                      "children": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"uuid\":\"9dfb4bfb-cff8-46e8-944a-c1076a4278cc\",\"born\":1964},\"label\":\"Person\"},{\"id\":2,\"data\":{\"name\":\"Carrie-Anne Moss\",\"children\":[\"Al\",\"John\",\"Jack\"],\"uuid\":\"25023b8a-ecfc-409f-bb3a-0943a110b69d\",\"born\":1967},\"label\":\"Person\"},{\"id\":3,\"data\":{\"name\":\"Laurence Fishburne\",\"children\":[\"Naruto\",\"Sasuke\",\"Sakura\"],\"uuid\":\"7494617b-5e28-4cd8-8784-8dcf829a40f5\",\"born\":1961},\"label\":\"Person\"},{\"id\":4,\"data\":{\"name\":\"Hugo Weaving\",\"uuid\":\"592ac47b-fdea-4633-9e26-3f52b37443d5\",\"born\":1960},\"label\":\"Person\"},{\"id\":5,\"data\":{\"name\":\"Lilly Wachowski\",\"uuid\":\"86beab54-2226-495a-8e70-b2f73b344a57\",\"born\":1967},\"label\":\"Person\"},{\"id\":6,\"data\":{\"name\":\"Lana Wachowski\",\"uuid\":\"b90ffda6-07e4-45fc-bd6c-5f39ea7d3fb3\",\"born\":1965},\"label\":\"Person\"},{\"id\":7,\"data\":{\"name\":\"Joel Silver\",\"uuid\":\"fc4a6aea-88c3-48fb-a635-8a8fccfe4b6c\",\"born\":1952},\"label\":\"Person\"},{\"id\":8,\"data\":{\"name\":\"Emil Eifrem\",\"uuid\":\"e0440321-36f3-4d40-ac29-9f04ce6317e9\",\"born\":1978},\"label\":\"Person\"},{\"id\":12,\"data\":{\"name\":\"Charlize Theron\",\"uuid\":\"3ef6bbd0-fc58-406f-8d31-0d3f10a60f6f\",\"born\":1975},\"label\":\"Person\"},{\"id\":13,\"data\":{\"name\":\"Al Pacino\",\"uuid\":\"f3645329-5345-4bcf-a40e-a47bbc3ecdf8\",\"born\":1940},\"label\":\"Person\"},{\"id\":14,\"data\":{\"name\":\"Taylor Hackford\",\"uuid\":\"59fc6194-5ba2-40f6-94f2-349038ed52af\",\"born\":1944},\"label\":\"Person\"},{\"id\":16,\"data\":{\"name\":\"Tom Cruise\",\"uuid\":\"62786267-8892-4075-aa86-b5f701333342\",\"born\":1962},\"label\":\"Person\"},{\"id\":17,\"data\":{\"name\":\"Jack Nicholson\",\"uuid\":\"5f4c9d22-4964-45c2-94ca-9b463588a412\",\"born\":1937},\"label\":\"Person\"},{\"id\":18,\"data\":{\"name\":\"Demi Moore\",\"uuid\":\"9eb89c60-269c-401a-bb73-310c72fd0f3a\",\"born\":1962},\"label\":\"Person\"},{\"id\":19,\"data\":{\"name\":\"Kevin Bacon\",\"uuid\":\"e3c6b8c1-c751-4a13-a31f-20322c15158c\",\"born\":1958},\"label\":\"Person\"},{\"id\":20,\"data\":{\"name\":\"Kiefer Sutherland\",\"uuid\":\"1ac6802a-d8c3-4722-a755-c1d3a5b712f5\",\"born\":1966},\"label\":\"Person\"},{\"id\":21,\"data\":{\"name\":\"Noah Wyle\",\"uuid\":\"bef880ae-098d-4fc2-8f75-96c8c6bdc27c\",\"born\":1971},\"label\":\"Person\"},{\"id\":22,\"data\":{\"name\":\"Cuba Gooding Jr.\",\"uuid\":\"54e4df95-e107-4b29-97af-36d8c735f8c2\",\"born\":1968},\"label\":\"Person\"},{\"id\":23,\"data\":{\"name\":\"Kevin Pollak\",\"uuid\":\"98cb08d3-f0c4-464d-b4dd-da7a5d80660a\",\"born\":1957},\"label\":\"Person\"},{\"id\":24,\"data\":{\"name\":\"J.T. Walsh\",\"uuid\":\"4289c105-d985-45b2-8fa9-4ff9f89212fd\",\"born\":1943},\"label\":\"Person\"},{\"id\":25,\"data\":{\"name\":\"James Marshall\",\"uuid\":\"1a10d90c-f943-4dda-bc57-ca8f1532a277\",\"born\":1967},\"label\":\"Person\"},{\"id\":26,\"data\":{\"name\":\"Christopher Guest\",\"uuid\":\"e6f7357c-26cb-4486-9fab-8fff71a1f21d\",\"born\":1948},\"label\":\"Person\"},{\"id\":27,\"data\":{\"name\":\"Rob Reiner\",\"uuid\":\"e65505fc-c81e-4691-aea7-c80ef657af48\",\"born\":1947},\"label\":\"Person\"},{\"id\":28,\"data\":{\"name\":\"Aaron Sorkin\",\"uuid\":\"48c7a268-c253-4a48-8fd1-df222f58ec17\",\"born\":1961},\"label\":\"Person\"},{\"id\":30,\"data\":{\"name\":\"Kelly McGillis\",\"uuid\":\"ed7fd054-62d3-4ca9-9b4b-2d956eb232c0\",\"born\":1957},\"label\":\"Person\"},{\"id\":31,\"data\":{\"name\":\"Val Kilmer\",\"uuid\":\"f37b3ec8-8405-46f2-8731-992abf65cf84\",\"born\":1959},\"label\":\"Person\"},{\"id\":32,\"data\":{\"name\":\"Anthony Edwards\",\"uuid\":\"c8509914-05af-4e14-b2e8-71480471f2ee\",\"born\":1962},\"label\":\"Person\"},{\"id\":33,\"data\":{\"name\":\"Tom Skerritt\",\"uuid\":\"8a1e6b5e-3a24-4445-8b65-e000022edc5b\",\"born\":1933},\"label\":\"Person\"},{\"id\":34,\"data\":{\"name\":\"Meg Ryan\",\"uuid\":\"fbc54f55-77c0-44bc-a0fc-1a386718f256\",\"born\":1961},\"label\":\"Person\"},{\"id\":35,\"data\":{\"name\":\"Tony Scott\",\"uuid\":\"9e03c0ff-c58d-48e5-81e4-961a6bad8ee1\",\"born\":1944},\"label\":\"Person\"},{\"id\":36,\"data\":{\"name\":\"Jim Cash\",\"uuid\":\"3650c202-8828-46ef-91cb-656372c0fc38\",\"born\":1941},\"label\":\"Person\"},{\"id\":38,\"data\":{\"name\":\"Renee Zellweger\",\"uuid\":\"dd8618ac-83ef-4c79-8e9d-dfa7c6f224ea\",\"born\":1969},\"label\":\"Person\"},{\"id\":39,\"data\":{\"name\":\"Kelly Preston\",\"uuid\":\"8ffe0048-805e-4493-a75c-0d56399a16bb\",\"born\":1962},\"label\":\"Person\"},{\"id\":40,\"data\":{\"name\":\"Jerry O\\u0027Connell\",\"uuid\":\"9ba52f63-a69a-466d-bb74-ae1c91a3d50c\",\"born\":1974},\"label\":\"Person\"},{\"id\":41,\"data\":{\"name\":\"Jay Mohr\",\"uuid\":\"6bf1b901-6ce2-4dd4-88a5-e00545a62f1b\",\"born\":1970},\"label\":\"Person\"},{\"id\":42,\"data\":{\"name\":\"Bonnie Hunt\",\"uuid\":\"242db06c-2321-494b-afef-f28cf889998b\",\"born\":1961},\"label\":\"Person\"},{\"id\":43,\"data\":{\"name\":\"Regina King\",\"uuid\":\"0eab85c3-afaf-4be1-bfbe-dc7b38ffcf84\",\"born\":1971},\"label\":\"Person\"},{\"id\":44,\"data\":{\"name\":\"Jonathan Lipnicki\",\"uuid\":\"a58bac99-dc1e-436f-86fd-ecbd25b5c444\",\"born\":1996},\"label\":\"Person\"},{\"id\":45,\"data\":{\"name\":\"Cameron Crowe\",\"uuid\":\"cff13f15-3d42-45f5-baf8-9c7eec5284cb\",\"born\":1957},\"label\":\"Person\"},{\"id\":47,\"data\":{\"name\":\"River Phoenix\",\"uuid\":\"ef30fcda-a6f8-4723-935c-bf87f2690dc8\",\"born\":1970},\"label\":\"Person\"},{\"id\":48,\"data\":{\"name\":\"Corey Feldman\",\"uuid\":\"7d42eab3-3241-449b-86e0-4378cb5abbbc\",\"born\":1971},\"label\":\"Person\"},{\"id\":49,\"data\":{\"name\":\"Wil Wheaton\",\"uuid\":\"8fca522b-85ad-44de-9cd2-f3144b5bf4ce\",\"born\":1972},\"label\":\"Person\"},{\"id\":50,\"data\":{\"name\":\"John Cusack\",\"uuid\":\"bbd41086-58dc-4ac7-9e4d-a9cf0586a13c\",\"born\":1966},\"label\":\"Person\"},{\"id\":51,\"data\":{\"name\":\"Marshall Bell\",\"uuid\":\"9282997d-c8c1-42d5-856c-9ca620a1a16f\",\"born\":1942},\"label\":\"Person\"},{\"id\":53,\"data\":{\"name\":\"Helen Hunt\",\"uuid\":\"98575f7c-0a2a-4f0c-9f6d-604ce7b3ff68\",\"born\":1963},\"label\":\"Person\"},{\"id\":54,\"data\":{\"name\":\"Greg Kinnear\",\"uuid\":\"6c296e2b-2789-43b2-accd-74b84efcba5d\",\"born\":1963},\"label\":\"Person\"},{\"id\":55,\"data\":{\"name\":\"James L. Brooks\",\"uuid\":\"ed88c188-4071-410e-a152-97463625cad8\",\"born\":1940},\"label\":\"Person\"},{\"id\":57,\"data\":{\"name\":\"Annabella Sciorra\",\"uuid\":\"6e44a242-96c3-46d6-ae9b-7c053583c6cc\",\"born\":1960},\"label\":\"Person\"},{\"id\":58,\"data\":{\"name\":\"Max von Sydow\",\"uuid\":\"fb250d08-83b6-48f3-b103-ed99814c2bf5\",\"born\":1929},\"label\":\"Person\"},{\"id\":59,\"data\":{\"name\":\"Werner Herzog\",\"uuid\":\"2e67c248-e32a-4a61-831e-15a46b6ec720\",\"born\":1942},\"label\":\"Person\"},{\"id\":60,\"data\":{\"name\":\"Robin Williams\",\"uuid\":\"0632b616-ad8f-4edd-9eea-1346f3c7c86c\",\"born\":1951},\"label\":\"Person\"},{\"id\":61,\"data\":{\"name\":\"Vincent Ward\",\"uuid\":\"acc7a8cd-7c67-4ee5-9ed5-993b3c2edfa3\",\"born\":1956},\"label\":\"Person\"},{\"id\":63,\"data\":{\"name\":\"Ethan Hawke\",\"uuid\":\"0e6dbf28-6e7a-4e19-9fed-97b672ac37f2\",\"born\":1970},\"label\":\"Person\"},{\"id\":64,\"data\":{\"name\":\"Rick Yune\",\"uuid\":\"b6dd7f8f-a8bd-46a0-be3e-a8e601ca32c8\",\"born\":1971},\"label\":\"Person\"},{\"id\":65,\"data\":{\"name\":\"James Cromwell\",\"uuid\":\"99b7ab01-14f9-4ed7-81e1-0d0452f15ae0\",\"born\":1940},\"label\":\"Person\"},{\"id\":66,\"data\":{\"name\":\"Scott Hicks\",\"uuid\":\"35089fcf-33ea-4a26-9598-4b9cc8717112\",\"born\":1953},\"label\":\"Person\"},{\"id\":68,\"data\":{\"name\":\"Parker Posey\",\"uuid\":\"821680d2-522e-4479-bb56-e57dc3bfa9cb\",\"born\":1968},\"label\":\"Person\"},{\"id\":69,\"data\":{\"name\":\"Dave Chappelle\",\"uuid\":\"5f887519-ecdd-4cd7-8ed7-8c5803851232\",\"born\":1973},\"label\":\"Person\"},{\"id\":70,\"data\":{\"name\":\"Steve Zahn\",\"uuid\":\"c073fcc7-2952-466b-ab56-a802fcb67065\",\"born\":1967},\"label\":\"Person\"},{\"id\":71,\"data\":{\"name\":\"Tom Hanks\",\"uuid\":\"8988b3d7-1c27-4b10-b3b5-256c78e62fe4\",\"born\":1956},\"label\":\"Person\"},{\"id\":72,\"data\":{\"name\":\"Nora Ephron\",\"uuid\":\"0e3eb02b-98e3-464a-aaa1-99f817ffef8c\",\"born\":1941},\"label\":\"Person\"},{\"id\":74,\"data\":{\"name\":\"Rita Wilson\",\"uuid\":\"8e365564-f1ef-4d3e-9321-78d611b48221\",\"born\":1956},\"label\":\"Person\"},{\"id\":75,\"data\":{\"name\":\"Bill Pullman\",\"uuid\":\"f4f99d16-7d45-40bf-b851-4269e292c389\",\"born\":1953},\"label\":\"Person\"},{\"id\":76,\"data\":{\"name\":\"Victor Garber\",\"uuid\":\"abd5cf5c-941a-4471-8df6-c8181cfcbd5c\",\"born\":1949},\"label\":\"Person\"},{\"id\":77,\"data\":{\"name\":\"Rosie O\\u0027Donnell\",\"uuid\":\"568786dc-3dd1-444a-905f-9c77496e0a93\",\"born\":1962},\"label\":\"Person\"},{\"id\":79,\"data\":{\"name\":\"John Patrick Stanley\",\"uuid\":\"ba4cf843-eb86-48a7-839b-71db198acabe\",\"born\":1950},\"label\":\"Person\"},{\"id\":80,\"data\":{\"name\":\"Nathan Lane\",\"uuid\":\"699ca55e-a570-4e2e-bf09-3b01a3189ec7\",\"born\":1956},\"label\":\"Person\"},{\"id\":82,\"data\":{\"name\":\"Billy Crystal\",\"uuid\":\"ee90a260-b03f-42c9-bb4a-e809d5a1a0c3\",\"born\":1948},\"label\":\"Person\"},{\"id\":83,\"data\":{\"name\":\"Carrie Fisher\",\"uuid\":\"ebcbbdb5-ad62-4804-935d-3ef69a8fd838\",\"born\":1956},\"label\":\"Person\"},{\"id\":84,\"data\":{\"name\":\"Bruno Kirby\",\"uuid\":\"66e9e584-8769-4982-9cc2-2d74e9bb422f\",\"born\":1949},\"label\":\"Person\"},{\"id\":86,\"data\":{\"name\":\"Liv Tyler\",\"uuid\":\"749dc28d-c9a9-4813-9f98-ce1a412b31bb\",\"born\":1977},\"label\":\"Person\"},{\"id\":88,\"data\":{\"name\":\"Brooke Langton\",\"uuid\":\"f9901453-007b-4778-8358-a0dde960a0b0\",\"born\":1970},\"label\":\"Person\"},{\"id\":89,\"data\":{\"name\":\"Gene Hackman\",\"uuid\":\"ca939089-5936-47ae-b293-094a46657f50\",\"born\":1930},\"label\":\"Person\"},{\"id\":90,\"data\":{\"name\":\"Orlando Jones\",\"uuid\":\"65908b72-96e0-4fc4-9820-a22dd3b9c56b\",\"born\":1968},\"label\":\"Person\"},{\"id\":91,\"data\":{\"name\":\"Howard Deutch\",\"uuid\":\"f97a9919-4fa4-431f-9a88-63443c7d899b\",\"born\":1950},\"label\":\"Person\"},{\"id\":93,\"data\":{\"name\":\"Christian Bale\",\"uuid\":\"1e154db1-6c7f-40c0-abc6-5ab004253226\",\"born\":1974},\"label\":\"Person\"},{\"id\":94,\"data\":{\"name\":\"Zach Grenier\",\"uuid\":\"45866677-e0bd-4fba-aafa-76ed7bd526ae\",\"born\":1954},\"label\":\"Person\"},{\"id\":96,\"data\":{\"name\":\"Mike Nichols\",\"uuid\":\"7b4e81ae-04e6-45c5-b642-3e50b1c99080\",\"born\":1931},\"label\":\"Person\"},{\"id\":98,\"data\":{\"name\":\"Richard Harris\",\"uuid\":\"80e319bb-98c6-4dd2-beb4-7b3f83f557ac\",\"born\":1930},\"label\":\"Person\"},{\"id\":99,\"data\":{\"name\":\"Clint Eastwood\",\"uuid\":\"7d81777e-dd61-4c59-8339-1fdec47e34f5\",\"born\":1930},\"label\":\"Person\"},{\"id\":101,\"data\":{\"name\":\"Takeshi Kitano\",\"uuid\":\"d411c603-291e-451f-989a-11a37e558033\",\"born\":1947},\"label\":\"Person\"},{\"id\":102,\"data\":{\"name\":\"Dina Meyer\",\"uuid\":\"07abcd68-d275-4239-ab56-5718576b782c\",\"born\":1968},\"label\":\"Person\"},{\"id\":103,\"data\":{\"name\":\"Ice-T\",\"uuid\":\"aaec34ef-2a42-44e5-a5d5-88389ca35c14\",\"born\":1958},\"label\":\"Person\"},{\"id\":104,\"data\":{\"name\":\"Robert Longo\",\"uuid\":\"32945cd6-f08d-49e1-b513-29695683a1c5\",\"born\":1953},\"label\":\"Person\"},{\"id\":106,\"data\":{\"name\":\"Halle Berry\",\"uuid\":\"d53df215-34b2-481b-baf4-e18cf59bb1fa\",\"born\":1966},\"label\":\"Person\"},{\"id\":107,\"data\":{\"name\":\"Jim Broadbent\",\"uuid\":\"067e8244-c68a-4b05-8b01-64fc3a7a60dd\",\"born\":1949},\"label\":\"Person\"},{\"id\":108,\"data\":{\"name\":\"Tom Tykwer\",\"uuid\":\"a0d1a199-ccd0-44a3-a84c-7e47f29fcffc\",\"born\":1965},\"label\":\"Person\"},{\"id\":109,\"data\":{\"name\":\"David Mitchell\",\"uuid\":\"4a5bb8d2-ede9-4f85-8c23-490772e65fe0\",\"born\":1969},\"label\":\"Person\"},{\"id\":110,\"data\":{\"name\":\"Stefan Arndt\",\"uuid\":\"adb58724-2035-4106-b157-f2d7770e3082\",\"born\":1961},\"label\":\"Person\"},{\"id\":112,\"data\":{\"name\":\"Ian McKellen\",\"uuid\":\"4fb92755-c4d4-446b-9ff6-b199520b77ff\",\"born\":1939},\"label\":\"Person\"},{\"id\":113,\"data\":{\"name\":\"Audrey Tautou\",\"uuid\":\"4313a0b0-d058-44e4-b51e-8007249bfb98\",\"born\":1976},\"label\":\"Person\"},{\"id\":114,\"data\":{\"name\":\"Paul Bettany\",\"uuid\":\"d47194aa-1c90-402b-9c3a-68a0b08ddb2b\",\"born\":1971},\"label\":\"Person\"},{\"id\":115,\"data\":{\"name\":\"Ron Howard\",\"uuid\":\"60f18e7b-77ce-4fd6-9d0f-fcd724f4c6ad\",\"born\":1954},\"label\":\"Person\"},{\"id\":117,\"data\":{\"name\":\"Natalie Portman\",\"uuid\":\"f91d4e05-9e24-4993-9524-3c30b4987825\",\"born\":1981},\"label\":\"Person\"},{\"id\":118,\"data\":{\"name\":\"Stephen Rea\",\"uuid\":\"1eaf1056-6d42-45c1-8c5f-03dc58a463f8\",\"born\":1946},\"label\":\"Person\"},{\"id\":119,\"data\":{\"name\":\"John Hurt\",\"uuid\":\"beb806a4-c488-4e87-a700-bb6f650fa8f8\",\"born\":1940},\"label\":\"Person\"},{\"id\":120,\"data\":{\"name\":\"Ben Miles\",\"uuid\":\"088f61b6-d5c0-49f8-94b9-0e47f9af9a35\",\"born\":1967},\"label\":\"Person\"},{\"id\":122,\"data\":{\"name\":\"Emile Hirsch\",\"uuid\":\"fc5f5924-ac82-4844-bd6a-829a4e5c613e\",\"born\":1985},\"label\":\"Person\"},{\"id\":123,\"data\":{\"name\":\"John Goodman\",\"uuid\":\"8fbf12c0-cd6d-4fc0-a631-900546d04ebe\",\"born\":1960},\"label\":\"Person\"},{\"id\":124,\"data\":{\"name\":\"Susan Sarandon\",\"uuid\":\"8cc243d0-c08d-4704-8000-19a77b0cb04f\",\"born\":1946},\"label\":\"Person\"},{\"id\":125,\"data\":{\"name\":\"Matthew Fox\",\"uuid\":\"4ef98c58-88f9-41c2-840a-4f7241e4f563\",\"born\":1966},\"label\":\"Person\"},{\"id\":126,\"data\":{\"name\":\"Christina Ricci\",\"uuid\":\"bf9a10e5-9237-4864-a7f7-b17e06431c95\",\"born\":1980},\"label\":\"Person\"},{\"id\":127,\"data\":{\"name\":\"Rain\",\"uuid\":\"3065477a-df03-4706-be24-99093e4689a8\",\"born\":1982},\"label\":\"Person\"},{\"id\":129,\"data\":{\"name\":\"Naomie Harris\",\"uuid\":\"fdff0629-b2e9-4052-bb26-52d99f8d014c\"},\"label\":\"Person\"},{\"id\":131,\"data\":{\"name\":\"Michael Clarke Duncan\",\"uuid\":\"266810b1-476a-4bce-a398-b87739dc72da\",\"born\":1957},\"label\":\"Person\"},{\"id\":132,\"data\":{\"name\":\"David Morse\",\"uuid\":\"5259bc1f-511c-4721-b281-3cff6f49e98d\",\"born\":1953},\"label\":\"Person\"},{\"id\":133,\"data\":{\"name\":\"Sam Rockwell\",\"uuid\":\"41edc557-6d20-4810-9685-eac4dccea456\",\"born\":1968},\"label\":\"Person\"},{\"id\":134,\"data\":{\"name\":\"Gary Sinise\",\"uuid\":\"28d90914-a7ee-47a7-bedd-d23c72192691\",\"born\":1955},\"label\":\"Person\"},{\"id\":135,\"data\":{\"name\":\"Patricia Clarkson\",\"uuid\":\"a6e541e6-185a-4758-9332-0d4d6b255b4c\",\"born\":1959},\"label\":\"Person\"},{\"id\":136,\"data\":{\"name\":\"Frank Darabont\",\"uuid\":\"45edc97e-56ca-4c14-abce-3f11bf9c3707\",\"born\":1959},\"label\":\"Person\"},{\"id\":138,\"data\":{\"name\":\"Frank Langella\",\"uuid\":\"10fa9856-87b8-4262-acc2-820a446c25ca\",\"born\":1938},\"label\":\"Person\"},{\"id\":139,\"data\":{\"name\":\"Michael Sheen\",\"uuid\":\"b0be9dea-a467-4b3c-b15f-53ed841b3ee0\",\"born\":1969},\"label\":\"Person\"},{\"id\":140,\"data\":{\"name\":\"Oliver Platt\",\"uuid\":\"c8af8a8f-8a77-4c20-ae12-1edac91a9c10\",\"born\":1960},\"label\":\"Person\"},{\"id\":142,\"data\":{\"name\":\"Danny DeVito\",\"uuid\":\"a5e98892-0d3b-44e4-a922-b881e60d7788\",\"born\":1944},\"label\":\"Person\"},{\"id\":143,\"data\":{\"name\":\"John C. Reilly\",\"uuid\":\"e7f06576-74f1-4bff-b049-c03b5105f4eb\",\"born\":1965},\"label\":\"Person\"},{\"id\":145,\"data\":{\"name\":\"Ed Harris\",\"uuid\":\"32bf70a1-be9f-4a99-b665-a068f4ac5d14\",\"born\":1950},\"label\":\"Person\"},{\"id\":146,\"data\":{\"name\":\"Bill Paxton\",\"uuid\":\"706490cb-6d3c-464c-8965-5c798273bb84\",\"born\":1955},\"label\":\"Person\"},{\"id\":148,\"data\":{\"name\":\"Philip Seymour Hoffman\",\"uuid\":\"6c699e36-087f-4eca-85e8-2653df1f6981\",\"born\":1967},\"label\":\"Person\"},{\"id\":149,\"data\":{\"name\":\"Jan de Bont\",\"uuid\":\"27ede042-5fa1-4e04-9e7d-5c66b60290ca\",\"born\":1943},\"label\":\"Person\"},{\"id\":151,\"data\":{\"name\":\"Robert Zemeckis\",\"uuid\":\"0a2d9339-1cd3-4a05-a94e-e077750071a3\",\"born\":1951},\"label\":\"Person\"},{\"id\":153,\"data\":{\"name\":\"Milos Forman\",\"uuid\":\"f7335b02-ddfe-4a01-9813-9e5793ffc481\",\"born\":1932},\"label\":\"Person\"},{\"id\":155,\"data\":{\"name\":\"Diane Keaton\",\"uuid\":\"8b82dcc5-4f2f-4f3f-8a53-6d042dc9bede\",\"born\":1946},\"label\":\"Person\"},{\"id\":156,\"data\":{\"name\":\"Nancy Meyers\",\"uuid\":\"1cc61bce-29ed-4408-9497-a787a92dbbcf\",\"born\":1949},\"label\":\"Person\"},{\"id\":158,\"data\":{\"name\":\"Chris Columbus\",\"uuid\":\"fc942b34-c72c-49dd-9bad-d01e17bc0f02\",\"born\":1958},\"label\":\"Person\"},{\"id\":160,\"data\":{\"name\":\"Julia Roberts\",\"uuid\":\"9a3fab89-b352-4918-861b-5b6bf09dc740\",\"born\":1967},\"label\":\"Person\"},{\"id\":163,\"data\":{\"name\":\"Madonna\",\"uuid\":\"950df5af-6110-4cdd-91a8-573f8212fa30\",\"born\":1954},\"label\":\"Person\"},{\"id\":164,\"data\":{\"name\":\"Geena Davis\",\"uuid\":\"a5a323cc-3e2e-485a-9628-061f783ede71\",\"born\":1956},\"label\":\"Person\"},{\"id\":165,\"data\":{\"name\":\"Lori Petty\",\"uuid\":\"c093beb4-5c03-48eb-9999-87316b598736\",\"born\":1963},\"label\":\"Person\"},{\"id\":166,\"data\":{\"name\":\"Penny Marshall\",\"uuid\":\"62ee2765-abb9-4c0b-9daa-fae53c2c6316\",\"born\":1943},\"label\":\"Person\"},{\"id\":167,\"data\":{\"name\":\"Paul Blythe\",\"uuid\":\"87edf07b-9272-46f0-b04b-1db065199ac8\"},\"label\":\"Person\"},{\"id\":168,\"data\":{\"name\":\"Angela Scope\",\"uuid\":\"8ef9063c-be15-4bc0-a8cd-efda891651c7\"},\"label\":\"Person\"},{\"id\":169,\"data\":{\"name\":\"Jessica Thompson\",\"uuid\":\"63ce1561-dcf4-4eeb-aca8-7349580b2682\"},\"label\":\"Person\"},{\"id\":170,\"data\":{\"name\":\"James Thompson\",\"uuid\":\"06c9a391-1207-4f85-b378-d3b107d0ef76\"},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Movie\":\"#4FF400\",\"Person\":\"#94ABF6\",\"NotKeanu\":\"#4F9641\",\"MyCaseNode\":\"#C9E51B\",\"NodePeriodic\":\"#97A58B\",\"End\":\"#1E8E19\",\"Start\":\"#7A9C1E\",\"Batch\":\"#01AE6A\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"HAS_MOVIE\",\"PRODUCED\",\"WROTE\",\"MY_PERIODIC_REL\",\"FOLLOWS\",\"DIRECTED\",\"MY_CASE_REL\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1636045445009_612766002",
+      "id": "paragraph_1636045445009_612766002",
+      "dateCreated": "2021-11-04 17:04:05.009",
+      "dateStarted": "2021-11-18 10:27:44.045",
+      "dateFinished": "2021-11-18 10:27:44.159",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n### Delete the entire database\n\nWe can use the `apoc.periodic.truncate` to delete periodically the entire database. This procedure uses the apoc.periodic.iterate under the hood.\nThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies.\n\n\u003cpre\u003e\nCALL apoc.periodic.truncate({dropSchema: true})\n\u003c/pre\u003e\nWith dropSchema\u003dtrue/false that eventually drops indexes and constraints.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 13:19:23.278",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eDelete the entire database\u003c/h3\u003e\n\u003cp\u003eWe can use the \u003ccode\u003eapoc.periodic.truncate\u003c/code\u003e to delete periodically the entire database. This procedure uses the apoc.periodic.iterate under the hood.\u003cbr /\u003e\nThe procedure is useful when you’re in the prototyping phase and you’re defining your graph model or your ingestion strategies.\u003c/p\u003e\n\u003cpre\u003e\nCALL apoc.periodic.truncate({dropSchema: true})\n\u003c/pre\u003e\n\u003cp\u003eWith dropSchema\u003dtrue/false that eventually drops indexes and constraints.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635848145239_975766747",
+      "id": "paragraph_1635848145239_975766747",
+      "dateCreated": "2021-11-02 10:15:45.240",
+      "dateStarted": "2021-11-24 13:19:23.279",
+      "dateFinished": "2021-11-24 13:19:23.295",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## [Cypher execution](http://localhost:8080/#/notebook/2GMKN71T8)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-24 13:20:12.366",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e\u003ca href\u003d\"http://localhost:8080/#/notebook/2GMKN71T8\"\u003eCypher execution\u003c/a\u003e\u003c/h2\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635518678615_1647023307",
+      "id": "paragraph_1635518678615_1647023307",
+      "dateCreated": "2021-10-29 14:44:38.615",
+      "dateStarted": "2021-11-24 13:20:12.367",
+      "dateFinished": "2021-11-24 13:20:12.374",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-18 10:28:32.377",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637231312377_2094663591",
+      "id": "paragraph_1637231312377_2094663591",
+      "dateCreated": "2021-11-18 10:28:32.377",
+      "status": "READY"
+    }
+  ],
+  "name": "2. Conditional and batch data",
+  "id": "2GK7PWGHH",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
