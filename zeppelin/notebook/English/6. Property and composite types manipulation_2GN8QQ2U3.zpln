@@ -3265,6 +3265,35 @@
       "status": "FINISHED"
     },
     {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:24:03.093",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638278547764_758250103",
+      "id": "paragraph_1638278547764_758250103",
+      "dateCreated": "2021-11-30 13:22:27.764",
+      "status": "READY"
+    },
+    {
       "text": "%md\n\n## [Refactor data](http://localhost:8080/#/notebook/2GKZNUE99)\n",
       "user": "anonymous",
       "dateUpdated": "2021-11-10 10:08:34.863",

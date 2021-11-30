@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n## Meta information\n\nApoc provides a set of procedures to retrieve info of labels / relationship-type present, and so on...\n\n- `CALL apoc.meta.stats()` - returns an overview of labels / rel-types counts\n\n- `CALL apoc.meta.graph($configMap)` / `CALL apoc.meta.subGraph($configMap)` - examines the entire database / sub graph to create the meta-graph\n\n- `CALL apoc.meta.data($configMap)` - examines a subset of the graph to provide a tabular / map-like meta information\n\n- `CALL apoc.meta.nodeTypeProperties($configMap)` / `CALL apoc.meta.relTypeProperties($configMap)` - examines a sample to get the node / relationship property list\n\n\n`$configMap` depends on procedure, see \u003ca href\u003d\"https://neo4j.com/labs/apoc/4.1/overview/apoc.meta/\" target\u003d\"_blank\"\u003ethis page\u003c/a\u003e .\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-18 00:30:02.086",
+      "dateUpdated": "2021-11-30 14:37:59.175",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -38,8 +38,8 @@
       "jobName": "paragraph_1635422768628_1724003655",
       "id": "paragraph_1635422768628_1724003655",
       "dateCreated": "2021-10-28 12:06:08.628",
-      "dateStarted": "2021-11-18 00:30:02.086",
-      "dateFinished": "2021-11-18 00:30:02.120",
+      "dateStarted": "2021-11-30 14:37:36.051",
+      "dateFinished": "2021-11-30 14:37:36.067",
       "status": "FINISHED"
     },
     {
@@ -1462,23 +1462,23 @@
       "status": "READY"
     },
     {
-      "text": "%md\nTODO\n// - instead of Match (n:LabelName) return count(n) \u003e 0\n\u003d\u003d apoc.label.exists:\n\n// todo - integrarla da qualche parte...\n[source, cypher]\n----\nMATCH (s1:Student {name: \u0027Priya\u0027})\nRETURN apoc.label.exists(s1, \"Student\") AS output;\n----",
+      "text": "",
       "user": "anonymous",
-      "dateUpdated": "2021-11-24 10:25:42.320",
+      "dateUpdated": "2021-11-30 13:53:26.658",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
+          "language": "scala",
+          "editOnDblClick": false,
           "completionKey": "TAB",
-          "completionSupport": false
+          "completionSupport": true
         },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -1504,9 +1504,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nCREATE\n    (n:Person{name:\u0027Steve\u0027,age:34, eyes:\u0027blue\u0027}),\n    (m:Person{name:\u0027Jake\u0027,hair:\u0027brown\u0027,age:34})\nWITH n,m\nreturn apoc.diff.nodes(n,m)",
+      "text": "",
       "user": "anonymous",
-      "dateUpdated": "2021-11-23 15:54:24.346",
+      "dateUpdated": "2021-11-30 13:56:09.389",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1545,12 +1545,12 @@
           }
         },
         "editorSetting": {
-          "language": "text",
+          "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
-          "completionSupport": false
+          "completionSupport": true
         },
-        "editorMode": "ace/mode/undefined"
+        "editorMode": "ace/mode/scala"
       },
       "settings": {
         "params": {},
@@ -2579,9 +2579,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## Expand path\n\nTo find a path with certain parameters.\n`apoc.path.expandConfig(startNode, $config)`\n\n`$config` can have:\n\n###### minLevel\n\nThe minimum number of hops in the traversal. Default is -1, so any path.\n\n###### maxLevel\n\nThe max number of hops in the traversal. Default is -1, so any path.\n\n###### relationshipFilter\n\n- null (default): any rel\n\nLIKES\u003e\n\t\n\nLIKES\n\t\n\nOUTGOING\n\n\u003cFOLLOWS\n\t\n\nFOLLOWS\n\t\n\nINCOMING\n\nKNOWS\n\t\n\nKNOWS\n\t\n\nBOTH\n\n\u003e\n\t\n\nany type\n\t\n\nOUTGOING\n\n\u003c\n\t\n\nany type\n\t\n\nINCOMING\n\n\n###### labelFilter\n\n\nresult\n\n-Foe\n\t\n\nblacklist filter - No node in the path will have a label in the blacklist.\n\n+Friend\n\t\n\nwhitelist filter - All nodes in the path must have a label in the whitelist (exempting termination and end nodes, if using those filters). If no whitelist operator is present, all labels are considered whitelisted.\n\n/Friend\n\t\n\ntermination filter - Only return paths up to a node of the given labels, and stop further expansion beyond it. Termination nodes do not have to respect the whitelist. Termination filtering takes precedence over end node filtering.\n\n\u003eFriend\n\t\n\nend node filter - Only return paths up to a node of the given labels, but continue expansion to match on end nodes beyond it. End nodes do not have to respect the whitelist to be returned, but expansion beyond them is only allowed if the node has a label in the whitelist.\n\n\n###### sequence\n\ncombine label and rel filter alternatively: \u0027labelFilter, relFilter, labelFilter, relFilter, .....\u0027\n\n###### beginSequenceAtStart\n\nif false start filtering one node away from the start node. \n\n###### uniqueness\n\nTODO - mettere link con tutti...\n\n| RELATIONSHIP_PATH | For each returned node there\u0027s a (relationship wise) unique path from the start node to it. This is Cypher\u0027s default expansion mode.\n| NODE_GLOBAL | A node cannot be traversed more than once. This is what the legacy traversal framework does.\n\n###### bfs\n\nDepth-first search / Breadth-first search\n\n\n\n###### filterStartNode\n\nDefault false. if true, doesn\u0027t return the start node if filter is not matched. \n\n###### limit\n\nMax number of paths.\n\n###### optional\n\nIf no path found, return a result with `null`, otherwise doesn\u0027t return nothing\n\n###### endNodes\n\n`List\u003cNode\u003e` considered as end nodes. Same behaviour as \u003eLabelName.\n\n###### terminatorNodes\n\n`List\u003cNode\u003e` considered as terminator nodes. Same behaviour as /LabelName.\n\n###### whitelistNodes\n`List\u003cNode\u003e` considered as whitelist nodes. Same behaviour as +LabelName.\n\n###### blacklistNodes\n`List\u003cNode\u003e` considered as blacklist nodes. Same behaviour as -LabelName.",
+      "text": "%md\n\n## Expand path\n\nTo find a path with certain parameters.\n`apoc.path.expandConfig(startNode, $config)`\n\nThis procedure is based on \u003ca href\u003d\"https://neo4j.com/docs/java-reference/current/traversal/\" target\u003d\"_blank\"\u003eTraversal framework\u003c/a\u003e\n\n`$config` can have:\n\n###### minLevel\n\nThe minimum number of hops in the traversal. Default is -1, so any path.\n\n###### maxLevel\n\nThe max number of hops in the traversal. Default is -1, so any path.\n\n###### relationshipFilter\n\n- null (default): any rel\n\nLIKES\u003e\n\t\n\nLIKES\n\t\n\nOUTGOING\n\n\u003cFOLLOWS\n\t\n\nFOLLOWS\n\t\n\nINCOMING\n\nKNOWS\n\t\n\nKNOWS\n\t\n\nBOTH\n\n\u003e\n\t\n\nany type\n\t\n\nOUTGOING\n\n\u003c\n\t\n\nany type\n\t\n\nINCOMING\n\n\n###### labelFilter\n\n\nresult\n\n-Foe\n\t\n\nblacklist filter - No node in the path will have a label in the blacklist.\n\n+Friend\n\t\n\nwhitelist filter - All nodes in the path must have a label in the whitelist (exempting termination and end nodes, if using those filters). If no whitelist operator is present, all labels are considered whitelisted.\n\n/Friend\n\t\n\ntermination filter - Only return paths up to a node of the given labels, and stop further expansion beyond it. Termination nodes do not have to respect the whitelist. Termination filtering takes precedence over end node filtering.\n\n\u003eFriend\n\t\n\nend node filter - Only return paths up to a node of the given labels, but continue expansion to match on end nodes beyond it. End nodes do not have to respect the whitelist to be returned, but expansion beyond them is only allowed if the node has a label in the whitelist.\n\n\n###### sequence\n\ncombine label and rel filter alternatively: \u0027labelFilter, relFilter, labelFilter, relFilter, .....\u0027\n\n###### beginSequenceAtStart\n\nif false start filtering one node away from the start node. \n\n###### uniqueness\n\nTODO - mettere link con tutti...\n\n| RELATIONSHIP_PATH | For each returned node there\u0027s a (relationship wise) unique path from the start node to it. This is Cypher\u0027s default expansion mode.\n| NODE_GLOBAL | A node cannot be traversed more than once. This is what the legacy traversal framework does.\n\n###### bfs\n\nDepth-first search / Breadth-first search\n\n\n\n###### filterStartNode\n\nDefault false. if true, doesn\u0027t return the start node if filter is not matched. \n\n###### limit\n\nMax number of paths.\n\n###### optional\n\nIf no path found, return a result with `null`, otherwise doesn\u0027t return nothing\n\n###### endNodes\n\n`List\u003cNode\u003e` considered as end nodes. Same behaviour as \u003eLabelName.\n\n###### terminatorNodes\n\n`List\u003cNode\u003e` considered as terminator nodes. Same behaviour as /LabelName.\n\n###### whitelistNodes\n`List\u003cNode\u003e` considered as whitelist nodes. Same behaviour as +LabelName.\n\n###### blacklistNodes\n`List\u003cNode\u003e` considered as blacklist nodes. Same behaviour as -LabelName.\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-11-30 10:19:24.693",
+      "dateUpdated": "2021-11-30 11:54:13.006",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2601,23 +2601,14 @@
         "params": {},
         "forms": {}
       },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eExpand path\u003c/h2\u003e\n\u003cp\u003eTo find a path with certain parameters.\u003cbr /\u003e\n\u003ccode\u003eapoc.path.expandConfig(startNode, $config)\u003c/code\u003e\u003c/p\u003e\n\u003ch6\u003eeeeeee\u003c/h6\u003e\n\n\u003c/div\u003e"
-          }
-        ]
-      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1638264233977_602605292",
       "id": "paragraph_1638264233977_602605292",
       "dateCreated": "2021-11-30 09:23:53.977",
-      "dateStarted": "2021-11-30 09:49:19.463",
-      "dateFinished": "2021-11-30 09:49:19.490",
+      "dateStarted": "2021-11-30 11:27:11.284",
+      "dateFinished": "2021-11-30 11:27:13.618",
       "status": "FINISHED"
     },
     {
@@ -2854,7 +2845,7 @@
     {
       "text": "%neo4j\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.path.expandConfig(p, {\n//    relationshipFilter: \"ACTED_IN\u003e|DIRECTED\u003e\",\n        labelFilter: \"\u003eMovie\",\n//        beginSequenceAtStart: false,\n//    minLevel: 2,\n  //  maxLevel: 4,\n    limit: 10\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-30 10:41:43.915",
+      "dateUpdated": "2021-11-30 11:25:02.890",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2913,7 +2904,7 @@
         "msg": [
           {
             "type": "NETWORK",
-            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"tagline\":\"Welcome to the Real World\",\"century\":1900,\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":1,\"data\":{\"name\":\"Keanu Reeves\",\"century\":1900,\"born\":1964},\"label\":\"Person\"},{\"id\":100,\"data\":{\"tagline\":\"The hottest data on earth. In the coolest head in town\",\"century\":1900,\"title\":\"Johnny Mnemonic\",\"released\":1995},\"label\":\"Movie\"},{\"id\":87,\"data\":{\"tagline\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"century\":2000,\"title\":\"The Replacements\",\"released\":2000},\"label\":\"Movie\"},{\"id\":9,\"data\":{\"tagline\":\"Free your mind\",\"century\":2000,\"title\":\"The Matrix Reloaded\",\"released\":2003},\"label\":\"Movie\"},{\"id\":154,\"data\":{\"century\":2000,\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"tagline\":\"Everything that has a beginning has an end\",\"century\":2000,\"title\":\"The Matrix Revolutions\",\"released\":2003},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"tagline\":\"Evil has its winning ways\",\"century\":1900,\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"},{\"id\":156,\"data\":{\"name\":\"Nancy Meyers\",\"century\":1900,\"born\":1949},\"label\":\"Person\"}],\"edges\":[{\"source\":1,\"target\":0,\"id\":0,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":156,\"target\":154,\"id\":224,\"data\":{},\"label\":\"WROTE\"},{\"source\":1,\"target\":87,\"id\":114,\"data\":{\"roles\":[\"Shane Falco\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":100,\"id\":132,\"data\":{\"roles\":[\"Johnny Mnemonic\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":11,\"id\":22,\"data\":{\"roles\":[\"Kevin Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":9,\"id\":8,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":1,\"target\":154,\"id\":221,\"data\":{\"roles\":[\"Julian Mercer\"]},\"label\":\"ACTED_IN\"},{\"source\":156,\"target\":154,\"id\":222,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":1,\"target\":10,\"id\":15,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":156,\"target\":154,\"id\":223,\"data\":{},\"label\":\"PRODUCED\"}],\"labels\":{\"TTL\":\"#C90F39\",\"Movie\":\"#F9F660\",\"Person\":\"#94A59C\",\"MergeOne\":\"#45312C\",\"Company\":\"#793953\",\"Car\":\"#D44CC3\",\"Animal\":\"#C77CC5\",\"Cat\":\"#076AC1\",\"City\":\"#28F077\",\"MergeTwo\":\"#EC0FED\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"HAS_HQ\",\"FOLLOWS\",\"DIRECTED\",\"WORKS_FOR\",\"HAS\",\"DRIVE\"],\"directed\":true}"
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"tagline\":\"Welcome to the Real World\",\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":2,\"data\":{\"name\":\"Keanu Reeves\",\"born\":1964},\"label\":\"Person\"},{\"id\":101,\"data\":{\"tagline\":\"The hottest data on earth. In the coolest head in town\",\"title\":\"Johnny Mnemonic\",\"released\":1995},\"label\":\"Movie\"},{\"id\":88,\"data\":{\"tagline\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"title\":\"The Replacements\",\"released\":2000},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"tagline\":\"Free your mind\",\"title\":\"The Matrix Reloaded\",\"released\":2003},\"label\":\"Movie\"},{\"id\":155,\"data\":{\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"tagline\":\"Everything that has a beginning has an end\",\"title\":\"The Matrix Revolutions\",\"released\":2003},\"label\":\"Movie\"},{\"id\":12,\"data\":{\"tagline\":\"Evil has its winning ways\",\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"},{\"id\":157,\"data\":{\"name\":\"Nancy Meyers\",\"born\":1949},\"label\":\"Person\"}],\"edges\":[{\"source\":2,\"target\":1,\"id\":0,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":157,\"target\":155,\"id\":224,\"data\":{},\"label\":\"WROTE\"},{\"source\":2,\"target\":88,\"id\":114,\"data\":{\"roles\":[\"Shane Falco\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":101,\"id\":132,\"data\":{\"roles\":[\"Johnny Mnemonic\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":12,\"id\":22,\"data\":{\"roles\":[\"Kevin Lomax\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":10,\"id\":8,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":155,\"id\":221,\"data\":{\"roles\":[\"Julian Mercer\"]},\"label\":\"ACTED_IN\"},{\"source\":157,\"target\":155,\"id\":222,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":2,\"target\":11,\"id\":15,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":157,\"target\":155,\"id\":223,\"data\":{},\"label\":\"PRODUCED\"}],\"labels\":{\"TTL\":\"#415DC3\",\"Movie\":\"#345999\",\"Person\":\"#EB1312\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
           }
         ]
       },
@@ -2923,16 +2914,319 @@
       "jobName": "paragraph_1638267711708_1277710200",
       "id": "paragraph_1638267711708_1277710200",
       "dateCreated": "2021-11-30 10:21:51.708",
-      "dateStarted": "2021-11-30 10:41:43.936",
-      "dateFinished": "2021-11-30 10:41:44.001",
+      "dateStarted": "2021-11-30 11:25:02.927",
+      "dateFinished": "2021-11-30 11:25:03.252",
       "status": "FINISHED"
     },
     {
-      "text": "%neo4j\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nMATCH (danny:Person {name: \"Danny DeVito\"})\nCALL apoc.path.expandConfig(p, {\n    endNodes: [danny],\n    relationshipFilter: \"ACTED_IN|DIRECTED\",\n//        labelFilter: \"\u003eMovie\",\n//        beginSequenceAtStart: false,\n//    minLevel: 2,\n   maxLevel: 4,\n  //  limit: 10\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
+      "text": "%neo4j\n\nmatch (p:Person {name: \"Keanu Reeves\"}),\n    (danny:Person {name: \"Danny DeVito\"}),\n    (carrie:Person {name: \"Carrie-Anne Moss\"})\ncall apoc.path.expandConfig(p, {\n    endNodes: [danny, carrie],\n    relationshipFilter: \"ACTED_IN|DIRECTED\",\n//        labelFilter: \"\u003eMovie\",\n//        beginSequenceAtStart: false,\n//    minLevel: 2,\n   maxLevel: 4\n  //  limit: 10\n})\nyield path\nreturn path, length(path) AS hops\norder by hops;",
       "user": "anonymous",
-      "dateUpdated": "2021-11-30 11:03:31.178",
+      "dateUpdated": "2021-11-30 11:33:52.383",
       "config": {
         "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "born": "string",
+                      "tagline": "string",
+                      "title": "string",
+                      "released": "string",
+                      "roles": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"tagline\":\"Welcome to the Real World\",\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":2,\"data\":{\"name\":\"Keanu Reeves\",\"born\":1964},\"label\":\"Person\"},{\"id\":3,\"data\":{\"name\":\"Carrie-Anne Moss\",\"children\":[\"Al\",\"John\",\"Jack\"],\"born\":1967},\"label\":\"Person\"},{\"id\":4,\"data\":{\"name\":\"Laurence Fishburne\",\"children\":[\"Naruto\",\"Sasuke\",\"Sakura\"],\"born\":1961},\"label\":\"Person\"},{\"id\":5,\"data\":{\"name\":\"Hugo Weaving\",\"born\":1960},\"label\":\"Person\"},{\"id\":6,\"data\":{\"name\":\"Lilly Wachowski\",\"born\":1967},\"label\":\"Person\"},{\"id\":7,\"data\":{\"name\":\"Lana Wachowski\",\"born\":1965},\"label\":\"Person\"},{\"id\":10,\"data\":{\"tagline\":\"Free your mind\",\"title\":\"The Matrix Reloaded\",\"released\":2003},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"tagline\":\"Everything that has a beginning has an end\",\"title\":\"The Matrix Revolutions\",\"released\":2003},\"label\":\"Movie\"},{\"id\":142,\"data\":{\"tagline\":\"He didn\\u0027t want law. He wanted justice.\",\"title\":\"Hoffa\",\"released\":1992},\"label\":\"Movie\"},{\"id\":143,\"data\":{\"name\":\"Danny DeVito\",\"born\":1944},\"label\":\"Person\"},{\"id\":18,\"data\":{\"name\":\"Jack Nicholson\",\"born\":1937},\"label\":\"Person\"},{\"id\":153,\"data\":{\"tagline\":\"If he\\u0027s crazy, what does that make you?\",\"title\":\"One Flew Over the Cuckoo\\u0027s Nest\",\"released\":1975},\"label\":\"Movie\"},{\"id\":155,\"data\":{\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"}],\"edges\":[{\"source\":2,\"target\":1,\"id\":0,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":1,\"id\":1,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":1,\"id\":2,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":5,\"target\":1,\"id\":3,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":6,\"target\":1,\"id\":4,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":18,\"target\":142,\"id\":197,\"data\":{\"roles\":[\"Hoffa\"]},\"label\":\"ACTED_IN\"},{\"source\":7,\"target\":1,\"id\":5,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":143,\"target\":142,\"id\":198,\"data\":{\"roles\":[\"Robert \\\"Bobby\\\" Ciaro\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":10,\"id\":8,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":10,\"id\":9,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":143,\"target\":142,\"id\":201,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":4,\"target\":10,\"id\":10,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":5,\"target\":10,\"id\":11,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":6,\"target\":10,\"id\":12,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":7,\"target\":10,\"id\":13,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":2,\"target\":11,\"id\":15,\"data\":{\"roles\":[\"Neo\"]},\"label\":\"ACTED_IN\"},{\"source\":3,\"target\":11,\"id\":16,\"data\":{\"roles\":[\"Trinity\"]},\"label\":\"ACTED_IN\"},{\"source\":4,\"target\":11,\"id\":17,\"data\":{\"roles\":[\"Morpheus\"]},\"label\":\"ACTED_IN\"},{\"source\":5,\"target\":11,\"id\":18,\"data\":{\"roles\":[\"Agent Smith\"]},\"label\":\"ACTED_IN\"},{\"source\":6,\"target\":11,\"id\":19,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":7,\"target\":11,\"id\":20,\"data\":{},\"label\":\"DIRECTED\"},{\"source\":18,\"target\":153,\"id\":216,\"data\":{\"roles\":[\"Randle McMurphy\"]},\"label\":\"ACTED_IN\"},{\"source\":143,\"target\":153,\"id\":217,\"data\":{\"roles\":[\"Martini\"]},\"label\":\"ACTED_IN\"},{\"source\":18,\"target\":155,\"id\":219,\"data\":{\"roles\":[\"Harry Sanborn\"]},\"label\":\"ACTED_IN\"},{\"source\":2,\"target\":155,\"id\":221,\"data\":{\"roles\":[\"Julian Mercer\"]},\"label\":\"ACTED_IN\"}],\"labels\":{\"TTL\":\"#415DC3\",\"Movie\":\"#345999\",\"Person\":\"#EB1312\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638270102416_492448352",
+      "id": "paragraph_1638270102416_492448352",
+      "dateCreated": "2021-11-30 11:01:42.416",
+      "dateStarted": "2021-11-30 11:28:51.074",
+      "dateFinished": "2021-11-30 11:28:51.334",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n### Other path expand procedures\n\n- `apoc.path.spanningTree(startNode, $config)` - equivalent to `apoc.path.expandConfig` but with config uniqueness: \"NODE_GLOBAL\"\n- `apoc.path.subgraphNodes(startNode, $config)` - equivalent to `apoc.path.expandConfig` but with config uniqueness: \"NODE_GLOBAL\" and return only end nodes\n- `apoc.path.subgraphAll(startNode, $config)` - equivalent to `apoc.path.expandConfig` but with config uniqueness: \"NODE_GLOBAL\" and return only end nodes  and, if present, relationships between them\n ",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 11:57:11.256",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eOther path expand procedures\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.path.spanningTree(startNode, $config)\u003c/code\u003e - equivalent to \u003ccode\u003eapoc.path.expandConfig\u003c/code\u003e but with config uniqueness: \u0026ldquo;NODE_GLOBAL\u0026rdquo;\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.path.subgraphNodes(startNode, $config)\u003c/code\u003e - equivalent to \u003ccode\u003eapoc.path.expandConfig\u003c/code\u003e but with config uniqueness: \u0026ldquo;NODE_GLOBAL\u0026rdquo; and return only end nodes\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.path.subgraphAll(startNode, $config)\u003c/code\u003e - equivalent to \u003ccode\u003eapoc.path.expandConfig\u003c/code\u003e but with config uniqueness: \u0026ldquo;NODE_GLOBAL\u0026rdquo; and return only end nodes  and, if present, relationships between them\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638273194035_1195929215",
+      "id": "paragraph_1638273194035_1195929215",
+      "dateCreated": "2021-11-30 11:53:14.035",
+      "dateStarted": "2021-11-30 11:57:11.258",
+      "dateFinished": "2021-11-30 11:57:11.299",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.path.subgraphNodes(p, {\n//    relationshipFilter: \"ACTED_IN\u003e|DIRECTED\u003e\",\n        labelFilter: \"\u003eMovie\",\n//        beginSequenceAtStart: false,\n//    minLevel: 2,\n  //  maxLevel: 4,\n    limit: 10\n})\nYIELD node return node",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 11:56:46.905",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "children": "string",
+                      "born": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"tagline\":\"Welcome to the Real World\",\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":101,\"data\":{\"tagline\":\"The hottest data on earth. In the coolest head in town\",\"title\":\"Johnny Mnemonic\",\"released\":1995},\"label\":\"Movie\"},{\"id\":53,\"data\":{\"tagline\":\"A comedy from the heart that goes for the throat.\",\"title\":\"As Good as It Gets\",\"released\":1997},\"label\":\"Movie\"},{\"id\":88,\"data\":{\"tagline\":\"Pain heals, Chicks dig scars... Glory lasts forever\",\"title\":\"The Replacements\",\"released\":2000},\"label\":\"Movie\"},{\"id\":153,\"data\":{\"tagline\":\"If he\\u0027s crazy, what does that make you?\",\"title\":\"One Flew Over the Cuckoo\\u0027s Nest\",\"released\":1975},\"label\":\"Movie\"},{\"id\":10,\"data\":{\"tagline\":\"Free your mind\",\"title\":\"The Matrix Reloaded\",\"released\":2003},\"label\":\"Movie\"},{\"id\":155,\"data\":{\"title\":\"Something\\u0027s Gotta Give\",\"released\":2003},\"label\":\"Movie\"},{\"id\":11,\"data\":{\"tagline\":\"Everything that has a beginning has an end\",\"title\":\"The Matrix Revolutions\",\"released\":2003},\"label\":\"Movie\"},{\"id\":12,\"data\":{\"tagline\":\"Evil has its winning ways\",\"title\":\"The Devil\\u0027s Advocate\",\"released\":1997},\"label\":\"Movie\"},{\"id\":142,\"data\":{\"tagline\":\"He didn\\u0027t want law. He wanted justice.\",\"title\":\"Hoffa\",\"released\":1992},\"label\":\"Movie\"}],\"edges\":[],\"labels\":{\"TTL\":\"#415DC3\",\"Movie\":\"#345999\",\"Person\":\"#EB1312\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638272293602_1132869877",
+      "id": "paragraph_1638272293602_1132869877",
+      "dateCreated": "2021-11-30 11:38:13.602",
+      "dateStarted": "2021-11-30 11:39:22.200",
+      "dateFinished": "2021-11-30 11:39:22.301",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// return endNodes and, if present, relationships between subgraph result\n\n\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.path.subgraphAll(p, {\n    //relationshipFilter: \"ACTED_IN\u003e|DIRECTED\u003e\",\n        labelFilter: \"\u003ePerson\",\n//        beginSequenceAtStart: false,\n//    minLevel: 2,\n    maxLevel: 3\n   // limit: 10\n})\nYIELD nodes, relationships \n//unwind nodes as node\n//unwind relationships as rel\nreturn nodes, relationships ",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 11:50:45.283",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "tagline": "string",
+                      "title": "string",
+                      "released": "string",
+                      "name": "string",
+                      "born": "string",
+                      "children": "string",
+                      "roles": "string",
+                      "summary": "string",
+                      "rating": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638272383531_1608053137",
+      "id": "paragraph_1638272383531_1608053137",
+      "dateCreated": "2021-11-30 11:39:43.531",
+      "dateStarted": "2021-11-30 11:47:07.255",
+      "dateFinished": "2021-11-30 11:47:07.486",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n- `apoc.neighbors.athop(node, pattern, N)` - return nodes at `N` hops\n- `apoc.neighbors.byhop(node, pattern, N)` - return nodes up to `N` hops\n- `apoc.neighbors.tohop(node, pattern, N)` - return list of nodes for each hops, up to `N` hops\n\nThe `pattern` parameter works like `relFilter` configuration of apoc.path.expandConfig.\n\nThere are also the `apoc.neighbors.athop.count/apoc.neighbors.byhop.count/apoc.neighbors.tohop(...) yield value` equivalent, but return only count of nodes matched.",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:19:46.382",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003eapoc.neighbors.athop(node, pattern, distance)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.neighbors.byhop(node, pattern, distance)\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003eapoc.neighbors.tohop(node, pattern, distance)\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe \u003ccode\u003epattern\u003c/code\u003e parameter works like \u003ccode\u003erelFilter\u003c/code\u003e configuration of apoc.path.expandConfig\u003c/p\u003e\n\u003cp\u003eThere are also the\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638277460557_264784892",
+      "id": "paragraph_1638277460557_264784892",
+      "dateCreated": "2021-11-30 13:04:20.561",
+      "dateStarted": "2021-11-30 13:15:54.131",
+      "dateFinished": "2021-11-30 13:15:54.178",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.neighbors.tohop(p, \"ACTED_IN\", 2)\nYIELD node\nRETURN node",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:19:54.768",
+      "config": {
+        "colWidth": 6.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
@@ -2948,24 +3242,912 @@
         "params": {},
         "forms": {}
       },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638277884070_946155315",
+      "id": "paragraph_1638277884070_946155315",
+      "dateCreated": "2021-11-30 13:11:24.070",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.neighbors.athop(p, \"ACTED_IN\", 2)\nYIELD node\nRETURN node",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:20:06.375",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638277891938_1251415443",
+      "id": "paragraph_1638277891938_1251415443",
+      "dateCreated": "2021-11-30 13:11:31.938",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\nMATCH (p:Person {name: \"Keanu Reeves\"})\nCALL apoc.neighbors.byhop(p, \"ACTED_IN\", 2)\nYIELD nodes // return 2 lists (one for 1-hop nodes, one for 2-hop nodes)\nRETURN [n in nodes | coalesce(n.title, n.name)]",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:13:29.370",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "[n in nodes | coalesce(n.title, n.name)]": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
-            "type": "TEXT",
-            "data": "Unable to establish connection in 30000ms"
+            "type": "TABLE",
+            "data": "[n in nodes | coalesce(n.title, n.name)]\n[\"The Matrix\",\"The Matrix Reloaded\",\"The Matrix Revolutions\",\"The Devil\u0027s Advocate\",\"The Replacements\",\"Johnny Mnemonic\",\"Something\u0027s Gotta Give\"]\n[\"Carrie-Anne Moss\",\"Laurence Fishburne\",\"Hugo Weaving\",\"Emil Eifrem\",\"Charlize Theron\",\"Al Pacino\",\"Jack Nicholson\",\"Brooke Langton\",\"Gene Hackman\",\"Orlando Jones\",\"Takeshi Kitano\",\"Dina Meyer\",\"Ice-T\",\"Diane Keaton\"]\n"
           }
         ]
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1638270102416_492448352",
-      "id": "paragraph_1638270102416_492448352",
-      "dateCreated": "2021-11-30 11:01:42.416",
-      "dateStarted": "2021-11-30 11:03:31.199",
-      "dateFinished": "2021-11-30 11:04:01.240",
-      "status": "ABORT"
+      "jobName": "paragraph_1638277881234_201091456",
+      "id": "paragraph_1638277881234_201091456",
+      "dateCreated": "2021-11-30 13:11:21.238",
+      "dateStarted": "2021-11-30 13:12:45.316",
+      "dateFinished": "2021-11-30 13:12:45.431",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Node and relationships querying\n\n- `apoc.search.node(stringMap, operator, value)` - search a node with a `value` given a string with defined properties and a comparison operator (which can be \"exact\",\"starts with\", \"ends with\", \"contains\", \"\u003c\", \"\u003e\", \"\u003d\", \"\u003c\u003e\", \"\u003c\u003d\", \"\u003e\u003d\", \"\u003d~\")\n\n- `apoc.nodes.connected(start, end, rel-direction-pattern)`\n- `apoc.node.relationship.exists(node, rel-direction-pattern)`\n- `apoc.node.relationship.types(node, rel-direction-pattern)`\n- `apoc.node.degree(node, rel-direction-pattern)`\n- `apoc.label.exists(element, label)`\n- `apoc.diff.nodes(node1, node2)` - compare 2 nodes\n- `apoc.nodes.get / apoc.get.rels(listIds)` - return nodes / relationships with this id in listIds.\n\nwhere `rel-direction-pattern` works like `relFilter` configuration of apoc.path.expandConfig.",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:55:44.939",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638278425242_1147307279",
+      "id": "paragraph_1638278425242_1147307279",
+      "dateCreated": "2021-11-30 13:20:25.242",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\n\n// there is also the apoc.search.nodeAll, equivalent but return also duplicated nodes if present\n\ncall apoc.search.node(\u0027{Person: \"name\", Movie: [\"title\",\"tagline\"]}\u0027, \"CONTAINS\", \"her\") yield node return node",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:50:58.513",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "tagline": "string",
+                      "title": "string",
+                      "released": "string",
+                      "name": "string",
+                      "born": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":82,\"data\":{\"tagline\":\"Can two friends sleep together and still love each other in the morning?\",\"title\":\"When Harry Met Sally\",\"released\":1998},\"label\":\"Movie\"},{\"id\":84,\"data\":{\"name\":\"Carrie Fisher\",\"born\":1956},\"label\":\"Person\"},{\"id\":21,\"data\":{\"name\":\"Kiefer Sutherland\",\"born\":1966},\"label\":\"Person\"},{\"id\":86,\"data\":{\"tagline\":\"In every life there comes a time when that thing you dream becomes that thing you do\",\"title\":\"That Thing You Do\",\"released\":1996},\"label\":\"Movie\"},{\"id\":57,\"data\":{\"tagline\":\"After life there is more. The end is just the beginning.\",\"title\":\"What Dreams May Come\",\"released\":1998},\"label\":\"Movie\"},{\"id\":27,\"data\":{\"name\":\"Christopher Guest\",\"born\":1948},\"label\":\"Person\"},{\"id\":13,\"data\":{\"name\":\"Charlize Theron\",\"born\":1975},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"TTL\":\"#415DC3\",\"Movie\":\"#345999\",\"Person\":\"#EB1312\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638279099086_2013733115",
+      "id": "paragraph_1638279099086_2013733115",
+      "dateCreated": "2021-11-30 13:31:39.086",
+      "dateStarted": "2021-11-30 13:32:29.602",
+      "dateFinished": "2021-11-30 13:32:29.984",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// there is also the apoc.search.nodeReducedAll, equivalent but return also duplicated nodes if present\n\ncall apoc.search.nodeReduced(\u0027{Person: \"name\", Movie: [\"title\",\"tagline\"]}\u0027, \"CONTAINS\", \"her\") \nyield id, labels, values return *",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:51:06.748",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "labels": "string",
+                      "values.tagline": "string",
+                      "values.name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "id\tlabels\tvalues.tagline\tvalues.name\n82\t[\"Movie\"]\tCan two friends sleep together and still love each other in the morning?\t\n84\t[\"Person\"]\t\tCarrie Fisher\n21\t[\"Person\"]\t\tKiefer Sutherland\n86\t[\"Movie\"]\tIn every life there comes a time when that thing you dream becomes that thing you do\t\n57\t[\"Movie\"]\tAfter life there is more. The end is just the beginning.\t\n27\t[\"Person\"]\t\tChristopher Guest\n13\t[\"Person\"]\t\tCharlize Theron\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638279280468_2062935376",
+      "id": "paragraph_1638279280468_2062935376",
+      "dateCreated": "2021-11-30 13:34:40.468",
+      "dateStarted": "2021-11-30 13:36:44.386",
+      "dateFinished": "2021-11-30 13:36:44.566",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nMATCH (p:Person {name: \"Keanu Reeves\"})\nRETURN apoc.nodes.isDense(p) AS output;",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:39:33.290",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "output": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "output\nFALSE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638279560961_1503171182",
+      "id": "paragraph_1638279560961_1503171182",
+      "dateCreated": "2021-11-30 13:39:20.961",
+      "dateStarted": "2021-11-30 13:39:30.935",
+      "dateFinished": "2021-11-30 13:39:30.997",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p1:Person {name: \"Keanu Reeves\"})\nMATCH (p2:Movie {title: \"The Matrix\"})\nRETURN apoc.nodes.connected(p1, p2, \"ANOTHER|ACTED_IN\u003e\") AS output\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:58:47.661",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "output": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "output\nTRUE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638279630440_482471396",
+      "id": "paragraph_1638279630440_482471396",
+      "dateCreated": "2021-11-30 13:40:30.440",
+      "dateStarted": "2021-11-30 14:58:47.683",
+      "dateFinished": "2021-11-30 14:58:47.713",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nCALL apoc.nodes.get([1, 2, 3]);",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:42:48.080",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "tagline": "string",
+                      "title": "string",
+                      "released": "string",
+                      "name": "string",
+                      "born": "string",
+                      "children": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":1,\"data\":{\"tagline\":\"Welcome to the Real World\",\"title\":\"The Matrix\",\"released\":1999},\"label\":\"Movie\"},{\"id\":2,\"data\":{\"name\":\"Keanu Reeves\",\"born\":1964},\"label\":\"Person\"},{\"id\":3,\"data\":{\"name\":\"Carrie-Anne Moss\",\"children\":[\"Al\",\"John\",\"Jack\"],\"born\":1967},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"TTL\":\"#415DC3\",\"Movie\":\"#345999\",\"Person\":\"#EB1312\"},\"types\":[\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638279737477_1852666055",
+      "id": "paragraph_1638279737477_1852666055",
+      "dateCreated": "2021-11-30 13:42:17.477",
+      "dateStarted": "2021-11-30 13:42:34.699",
+      "dateFinished": "2021-11-30 13:42:34.769",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nCALL apoc.get.rels([1, 2, 3]) \nyield rel \nmatch (n)-[rel]-\u003e(m)\nreturn n, rel, m",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:45:42.712",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "tagline": "string",
+                      "title": "string",
+                      "released": "string",
+                      "name": "string",
+                      "children": "string",
+                      "born": "string",
+                      "roles": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638279771098_1583065821",
+      "id": "paragraph_1638279771098_1583065821",
+      "dateCreated": "2021-11-30 13:42:51.098",
+      "dateStarted": "2021-11-30 13:45:39.760",
+      "dateFinished": "2021-11-30 13:45:39.816",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\n// - instead of Match (n:LabelName) return count(n) \u003e 0\n\nMATCH (s1:Person {name: \u0027Madonna\u0027})\nRETURN apoc.label.exists(s1, \"Garpez\") AS output, apoc.label.exists(s1, \"Person\") AS output2",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:56:53.254",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 94.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "output": "string",
+                      "output2": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "output\toutput2\nFALSE\tTRUE\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638280422844_1905499280",
+      "id": "paragraph_1638280422844_1905499280",
+      "dateCreated": "2021-11-30 13:53:42.844",
+      "dateStarted": "2021-11-30 13:56:36.642",
+      "dateFinished": "2021-11-30 13:56:36.726",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMERGE (n:Person{name:\u0027Steve\u0027,age:34, eyes:\u0027blue\u0027})\nMERGE (m:Person{name:\u0027Jake\u0027,hair:\u0027brown\u0027,age:34})\nWITH n,m\nreturn [apoc.diff.nodes(n,m)]  // {leftOnly: {....}, inCommon: {....}, different: {....}, rightOnly: {...}}",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 13:59:35.593",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 134.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "[apoc.diff.nodes(n,m)]": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "[apoc.diff.nodes(n,m)]\n[{\"leftOnly\":{\"eyes\":\"blue\"},\"inCommon\":{\"age\":34},\"different\":{\"name\":{\"left\":\"Steve\",\"right\":\"Jake\"}},\"rightOnly\":{\"hair\":\"brown\"}}]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638280569499_394825963",
+      "id": "paragraph_1638280569499_394825963",
+      "dateCreated": "2021-11-30 13:56:09.499",
+      "dateStarted": "2021-11-30 13:59:10.683",
+      "dateFinished": "2021-11-30 13:59:10.973",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## Detect cycles\n\n`CALL apoc.nodes.cycles([nodes], $config)` - Detect all path cycles from node list\n\nwhere `$config` can have:\n- maxDepth: max number of hops. With 0 we searching for nodes with self-relationships.\n- relTypes (List\u003cString\u003e): the relationships types to be considered\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:23:49.934",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638282000930_590522980",
+      "id": "paragraph_1638282000930_590522980",
+      "dateCreated": "2021-11-30 14:20:00.930",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\n\nCREATE (m1:Start {bar: \u0027alpha\u0027}) with m1 CREATE (m1)-[:DEPENDS_ON {id: 0}]-\u003e(m2:Module {bar: \u0027one\u0027})-[:DEPENDS_ON {id: 1}]-\u003e(m3:Module {bar: \u0027two\u0027})-[:DEPENDS_ON {id: 2}]-\u003e(m1)  WITH m1, m2, m3 CREATE (m1)-[:DEPENDS_ON {id: 3}]-\u003e(m2), (m2)-[:ANOTHER {id: 4}]-\u003e(m3), (m2)-[:DEPENDS_ON {id: 5}]-\u003e(m3) CREATE (m1)-[:DEPENDS_ON {id: 6}]-\u003e(:Module {bar: \u0027seven\u0027})-[:DEPENDS_ON {id: 7}]-\u003e(:Module {bar: \u0027eight\u0027})-[:DEPENDS_ON {id: 8}]-\u003e(m1);\n\nCREATE (m1:Start {bar: \u0027gamma\u0027}) with m1 CREATE (m1)-[:DEPENDS_ON {id: 12}]-\u003e(m2:Module {bar: \u0027five\u0027})-\u003e(m1);\nCREATE (m1:Start {bar: \u0027beta\u0027}) with m1 CREATE (m1)-[:MY_REL {id: 9}]-\u003e(m2:Module {bar: \u0027three\u0027})-[:MY_REL  {id: 10}]-\u003e(m3:Module {bar: \u0027four\u0027})-[:MY_REL {id: 11}]-\u003e(m1);\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:31:57.784",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638282435293_265726687",
+      "id": "paragraph_1638282435293_265726687",
+      "dateCreated": "2021-11-30 14:27:15.293",
+      "dateStarted": "2021-11-30 14:31:57.801",
+      "dateFinished": "2021-11-30 14:31:57.843",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (n:Start) with collect(n) as nodes \ncall apoc.nodes.cycles(nodes, {maxDepth: 2}) yield path return path",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:32:12.001",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "bar": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "tableHide": false,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":193,\"data\":{\"bar\":\"beta\"},\"label\":\"Start\"},{\"id\":194,\"data\":{\"bar\":\"three\"},\"label\":\"Module\"},{\"id\":195,\"data\":{\"bar\":\"four\"},\"label\":\"Module\"},{\"id\":196,\"data\":{\"bar\":\"alpha\"},\"label\":\"Start\"},{\"id\":197,\"data\":{\"bar\":\"one\"},\"label\":\"Module\"},{\"id\":198,\"data\":{\"bar\":\"two\"},\"label\":\"Module\"},{\"id\":199,\"data\":{\"bar\":\"seven\"},\"label\":\"Module\"},{\"id\":200,\"data\":{\"bar\":\"eight\"},\"label\":\"Module\"},{\"id\":201,\"data\":{\"bar\":\"beta\"},\"label\":\"Start\"},{\"id\":202,\"data\":{\"bar\":\"three\"},\"label\":\"Module\"},{\"id\":203,\"data\":{\"bar\":\"four\"},\"label\":\"Module\"},{\"id\":176,\"data\":{\"bar\":\"alpha\"},\"label\":\"Start\"},{\"id\":177,\"data\":{\"bar\":\"one\"},\"label\":\"Module\"},{\"id\":178,\"data\":{\"bar\":\"two\"},\"label\":\"Module\"},{\"id\":179,\"data\":{\"bar\":\"seven\"},\"label\":\"Module\"},{\"id\":180,\"data\":{\"bar\":\"eight\"},\"label\":\"Module\"},{\"id\":181,\"data\":{\"bar\":\"gamma\"},\"label\":\"Start\"},{\"id\":182,\"data\":{\"bar\":\"beta\"},\"label\":\"Start\"},{\"id\":183,\"data\":{\"bar\":\"three\"},\"label\":\"Module\"},{\"id\":184,\"data\":{\"bar\":\"four\"},\"label\":\"Module\"},{\"id\":185,\"data\":{\"bar\":\"alpha\"},\"label\":\"Start\"},{\"id\":186,\"data\":{\"bar\":\"one\"},\"label\":\"Module\"},{\"id\":187,\"data\":{\"bar\":\"two\"},\"label\":\"Module\"},{\"id\":188,\"data\":{\"bar\":\"seven\"},\"label\":\"Module\"},{\"id\":189,\"data\":{\"bar\":\"eight\"},\"label\":\"Module\"}],\"edges\":[{\"source\":176,\"target\":177,\"id\":256,\"data\":{\"id\":3},\"label\":\"DEPENDS_ON\"},{\"source\":177,\"target\":178,\"id\":257,\"data\":{\"id\":4},\"label\":\"ANOTHER\"},{\"source\":176,\"target\":179,\"id\":259,\"data\":{\"id\":6},\"label\":\"DEPENDS_ON\"},{\"source\":179,\"target\":180,\"id\":260,\"data\":{\"id\":7},\"label\":\"DEPENDS_ON\"},{\"source\":180,\"target\":176,\"id\":261,\"data\":{\"id\":8},\"label\":\"DEPENDS_ON\"},{\"source\":181,\"target\":181,\"id\":262,\"data\":{\"id\":20},\"label\":\"DEPENDS_ON\"},{\"source\":182,\"target\":183,\"id\":263,\"data\":{\"id\":9},\"label\":\"MY_REL\"},{\"source\":183,\"target\":184,\"id\":264,\"data\":{\"id\":10},\"label\":\"MY_REL\"},{\"source\":184,\"target\":182,\"id\":265,\"data\":{\"id\":11},\"label\":\"MY_REL\"},{\"source\":186,\"target\":187,\"id\":267,\"data\":{\"id\":1},\"label\":\"DEPENDS_ON\"},{\"source\":187,\"target\":185,\"id\":268,\"data\":{\"id\":2},\"label\":\"DEPENDS_ON\"},{\"source\":185,\"target\":186,\"id\":269,\"data\":{\"id\":3},\"label\":\"DEPENDS_ON\"},{\"source\":185,\"target\":188,\"id\":272,\"data\":{\"id\":6},\"label\":\"DEPENDS_ON\"},{\"source\":188,\"target\":189,\"id\":273,\"data\":{\"id\":7},\"label\":\"DEPENDS_ON\"},{\"source\":189,\"target\":185,\"id\":274,\"data\":{\"id\":8},\"label\":\"DEPENDS_ON\"},{\"source\":193,\"target\":194,\"id\":277,\"data\":{\"id\":9},\"label\":\"MY_REL\"},{\"source\":194,\"target\":195,\"id\":278,\"data\":{\"id\":10},\"label\":\"MY_REL\"},{\"source\":195,\"target\":193,\"id\":279,\"data\":{\"id\":11},\"label\":\"MY_REL\"},{\"source\":197,\"target\":198,\"id\":281,\"data\":{\"id\":1},\"label\":\"DEPENDS_ON\"},{\"source\":198,\"target\":196,\"id\":282,\"data\":{\"id\":2},\"label\":\"DEPENDS_ON\"},{\"source\":196,\"target\":197,\"id\":283,\"data\":{\"id\":3},\"label\":\"DEPENDS_ON\"},{\"source\":196,\"target\":199,\"id\":286,\"data\":{\"id\":6},\"label\":\"DEPENDS_ON\"},{\"source\":199,\"target\":200,\"id\":287,\"data\":{\"id\":7},\"label\":\"DEPENDS_ON\"},{\"source\":200,\"target\":196,\"id\":288,\"data\":{\"id\":8},\"label\":\"DEPENDS_ON\"},{\"source\":201,\"target\":202,\"id\":289,\"data\":{\"id\":9},\"label\":\"MY_REL\"},{\"source\":202,\"target\":203,\"id\":290,\"data\":{\"id\":10},\"label\":\"MY_REL\"},{\"source\":203,\"target\":201,\"id\":291,\"data\":{\"id\":11},\"label\":\"MY_REL\"},{\"source\":178,\"target\":176,\"id\":255,\"data\":{\"id\":2},\"label\":\"DEPENDS_ON\"}],\"labels\":{\"TTL\":\"#415DC3\",\"Movie\":\"#345999\",\"Person\":\"#EB1312\",\"Start\":\"#32BEA9\",\"Module\":\"#87A767\"},\"types\":[\"MY_REL\",\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"DEPENDS_ON\",\"ANOTHER\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638282263709_135665486",
+      "id": "paragraph_1638282263709_135665486",
+      "dateCreated": "2021-11-30 14:24:23.710",
+      "dateStarted": "2021-11-30 14:32:12.020",
+      "dateFinished": "2021-11-30 14:32:12.054",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (m1:Start) WITH collect(m1) as nodes CALL apoc.nodes.cycles(nodes, {maxDepth: 5, relTypes: [\"MY_REL\"]}) YIELD path RETURN path",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:32:48.298",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "network",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "bar": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":193,\"data\":{\"bar\":\"beta\"},\"label\":\"Start\"},{\"id\":194,\"data\":{\"bar\":\"three\"},\"label\":\"Module\"},{\"id\":195,\"data\":{\"bar\":\"four\"},\"label\":\"Module\"},{\"id\":182,\"data\":{\"bar\":\"beta\"},\"label\":\"Start\"},{\"id\":183,\"data\":{\"bar\":\"three\"},\"label\":\"Module\"},{\"id\":184,\"data\":{\"bar\":\"four\"},\"label\":\"Module\"},{\"id\":201,\"data\":{\"bar\":\"beta\"},\"label\":\"Start\"},{\"id\":202,\"data\":{\"bar\":\"three\"},\"label\":\"Module\"},{\"id\":203,\"data\":{\"bar\":\"four\"},\"label\":\"Module\"}],\"edges\":[{\"source\":201,\"target\":202,\"id\":289,\"data\":{\"id\":9},\"label\":\"MY_REL\"},{\"source\":202,\"target\":203,\"id\":290,\"data\":{\"id\":10},\"label\":\"MY_REL\"},{\"source\":203,\"target\":201,\"id\":291,\"data\":{\"id\":11},\"label\":\"MY_REL\"},{\"source\":193,\"target\":194,\"id\":277,\"data\":{\"id\":9},\"label\":\"MY_REL\"},{\"source\":194,\"target\":195,\"id\":278,\"data\":{\"id\":10},\"label\":\"MY_REL\"},{\"source\":182,\"target\":183,\"id\":263,\"data\":{\"id\":9},\"label\":\"MY_REL\"},{\"source\":195,\"target\":193,\"id\":279,\"data\":{\"id\":11},\"label\":\"MY_REL\"},{\"source\":183,\"target\":184,\"id\":264,\"data\":{\"id\":10},\"label\":\"MY_REL\"},{\"source\":184,\"target\":182,\"id\":265,\"data\":{\"id\":11},\"label\":\"MY_REL\"}],\"labels\":{\"TTL\":\"#415DC3\",\"Movie\":\"#345999\",\"Person\":\"#EB1312\",\"Start\":\"#32BEA9\",\"Module\":\"#87A767\"},\"types\":[\"MY_REL\",\"ACTED_IN\",\"REVIEWED\",\"PRODUCED\",\"WROTE\",\"FOLLOWS\",\"DIRECTED\",\"DEPENDS_ON\",\"ANOTHER\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638282197083_2024363639",
+      "id": "paragraph_1638282197083_2024363639",
+      "dateCreated": "2021-11-30 14:23:17.083",
+      "dateStarted": "2021-11-30 14:32:48.317",
+      "dateFinished": "2021-11-30 14:32:48.394",
+      "status": "FINISHED"
     },
     {
       "text": "%md\n\n## [Conditional and batch data](http://localhost:8080/#/notebook/2GK7PWGHH)",

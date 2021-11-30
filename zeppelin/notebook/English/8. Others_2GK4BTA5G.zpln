@@ -3534,6 +3534,199 @@
       "status": "FINISHED"
     },
     {
+      "text": "%md\n\n## Lock nodes\n\nWe can lock one or more entities during a transaction:\n- apoc.lock.all([nodes],[relationships])\n- apoc.lock.nodes([nodes])\n- apoc.lock.rels([relationships]\n- apoc.lock.read.nodes\n- apoc.lock.read.rels\n\nThis can be used to prevent some not-thread safety condition.\nFor example, with a dataset like this:\n\n\u003cpre\u003e\nCREATE (:Person {name:\u0027Alex\u0027})\nCREATE (:Email {address:\u0027alex@somewhere.com\u0027});\n\u003c/pre\u003e\n\n// todo - used to prevent some not-thread safety condition\n\nWe may want to create exactly one HAS_EMAIL relationship between these nodes. \nWe can use the MERGE clause to help us do this, but the MERGE clause isn’t thread safe, \nso we could have a situation where two nodes write the HAS_EMAIL relationship at the same time.\nInstead, we want exactly one write.\n\nWe can ensure this condition by using the apoc.lock.nodes procedure, as shown below:\n\n\u003cpre\u003e\nMATCH (p:Person {name:\u0027Alex\u0027})\nMATCH (e:Email {address:\u0027alex@somewhere.com\u0027})\nCALL apoc.lock.nodes([p,e])\nMERGE (p)-[rel:HAS_EMAIL]-\u003e(e)\nRETURN rel;\n\u003c/pre\u003e",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:03:27.214",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638281001352_1481162814",
+      "id": "paragraph_1638281001352_1481162814",
+      "dateCreated": "2021-11-30 14:03:21.352",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n## Atomic operations\n\n- apoc.atomic.add(entity, propertyName, number, retry)\n- apoc.atomic.subtract(entity, propertyName, number, retry)\n- apoc.atomic.concat(entity, propertyName, value, retry)\n- apoc.atomic.insert(entity, propertyName, position, operation,retry)\n- apoc.atomic.remove(entity, propertyName,retry)\n- apoc.atomic.update(entity, propertyName, operation,retry)\n\nWith `retry` parameter (default 5), we retry operation N times.",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:15:04.516",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638281094705_1850356784",
+      "id": "paragraph_1638281094705_1850356784",
+      "dateCreated": "2021-11-30 14:04:54.705",
+      "status": "READY"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p:Person {name:\u0027Carrie-Anne Moss\u0027})\nCALL apoc.atomic.insert(p, \u0027children\u0027,2,\u0027Franco\u0027,5)\nYIELD oldValue, newValue\nRETURN oldValue, newValue",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:14:21.844",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "oldValue": "string",
+                      "newValue": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "oldValue\tnewValue\n[\"Al\",\"John\",\"Jack\"]\t[\"Al\",\"John\",\"Franco\",\"Jack\"]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638281414341_733143677",
+      "id": "paragraph_1638281414341_733143677",
+      "dateCreated": "2021-11-30 14:10:14.341",
+      "dateStarted": "2021-11-30 14:12:24.376",
+      "dateFinished": "2021-11-30 14:12:24.498",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n\nMATCH (p:Person {name:\u0027Carrie-Anne Moss\u0027})\nCALL apoc.atomic.concat(p,\u0027name\u0027,\u0027 Super Saiyan 2\u0027,5)\nYIELD oldValue, newValue\nRETURN oldValue, newValue",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-30 14:14:26.745",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 84.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "oldValue": "string",
+                      "newValue": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "text",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "oldValue\tnewValue\n\"Carrie-Anne Moss\"\t\"Carrie-Anne Moss Super Saiyan 2\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638281427440_1524080727",
+      "id": "paragraph_1638281427440_1524080727",
+      "dateCreated": "2021-11-30 14:10:27.440",
+      "dateStarted": "2021-11-30 14:14:08.630",
+      "dateFinished": "2021-11-30 14:14:08.713",
+      "status": "FINISHED"
+    },
+    {
       "text": "%md\n## Conclusions\n\n\u003cpre\u003e\nThis guide is based on Apoc 4.3.x. In other versions some procedures / functions could be a little different\n\u003c/pre\u003e\n\nSee \u003ca href\u003d\"https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to get updated about last changes.\n\nVisit the \u003ca href\u003d\"https://community.neo4j.com/\" target\u003d\"_blank\"\u003eNeo4j Community\u003c/a\u003e to get help!\n\n\n\n### Thank you for your attention!\n\n\n\n",
       "user": "anonymous",
       "dateUpdated": "2021-11-24 16:10:32.754",
